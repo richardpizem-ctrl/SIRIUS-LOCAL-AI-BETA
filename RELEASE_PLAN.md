@@ -59,15 +59,16 @@ Included:
 - **time‑based limits for children**  
 - **Schoolwork Priority Mode (schoolwork always allowed)**  
 - integration with NL Router, AITE, and WIN‑CAP  
-- new submodules:
-  - `identity_engine.py`  
-  - `behavior_audit.py`  
-  - `access_control.py`  
-  - `family_mode.py`  
-  - `stranger_mode.py`  
-  - `time_limits.py`  
-  - `schoolwork_detector.py`  
-  - `profile_store.json`  
+
+**Submodules:**
+- `identity_engine.py`  
+- `behavior_audit.py`  
+- `access_control.py`  
+- `family_mode.py`  
+- `stranger_mode.py`  
+- `time_limits.py`  
+- `schoolwork_detector.py`  
+- `profile_store.json`  
 
 This version introduces the first generation of **intelligent, behavior‑based runtime safety**.
 
