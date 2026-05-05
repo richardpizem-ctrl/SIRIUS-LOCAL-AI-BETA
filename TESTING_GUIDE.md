@@ -175,11 +175,12 @@ Checklist:
 [MODULE] action – status – notes
 
 Examples:
-[FS-AGENT] delete_file – blocked – protected directory
-[WIN-CAP] snap_window – confirmed – window positioned left
-[PLUGIN:notes] create_note – success – workflow completed
-[SECURITY_FAMILY] time_limit_check – enforced – child profile exceeded limit
-[SECURITY_FAMILY] schoolwork_detected – bypass – restrictions lifted 
+[FS-AGENT] delete_file – blocked – protected directory  
+[WIN-CAP] snap_window – confirmed – window positioned left  
+[PLUGIN:notes] create_note – success – workflow completed  
+[SECURITY_FAMILY] time_limit_check – enforced – child profile exceeded limit  
+[SECURITY_FAMILY] schoolwork_detected – bypass – restrictions lifted  
+
 ---
 
 # 5. Document Status
