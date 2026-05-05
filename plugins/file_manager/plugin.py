@@ -3,35 +3,35 @@ import shutil
 
 class Plugin:
     """
-    File Manager plugin pre SIRIUS-LOCAL-AI.
-    Umožňuje:
-    - vytvárať priečinky
-    - presúvať súbory
-    - mazať súbory
-    - vypisovať obsah priečinkov
+    File Manager plugin for SIRIUS-LOCAL-AI.
+    Allows:
+    - creating folders
+    - moving files
+    - deleting files
+    - listing directory contents
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
 
     # --------------------------------------------------------
-    # NL PRÍKAZY
+    # NL COMMANDS
     # --------------------------------------------------------
     def nl_commands(self):
         return {
-            "vytvor priecinok": self.nl_create_folder,
-            "presun subory": self.nl_move_files,
-            "vymaz subor": self.nl_delete_file,
-            "obsah priecinka": self.nl_list_directory
+            "create folder": self.nl_create_folder,
+            "move files": self.nl_move_files,
+            "delete file": self.nl_delete_file,
+            "list directory": self.nl_list_directory
         }
 
     def nl_create_folder(self, text):
         path = text.strip()
         try:
             os.makedirs(path, exist_ok=True)
-            return f"Priečinok vytvorený: {path}"
+            return f"Folder created: {path}"
         except Exception as e:
-            return f"Chyba pri vytváraní priečinka: {e}"
+            return f"Error creating folder: {e}"
 
     def nl_move_files(self, text):
         try:
@@ -41,30 +41,30 @@ class Plugin:
             os.makedirs(dst, exist_ok=True)
             for file in os.listdir(src):
                 shutil.move(os.path.join(src, file), dst)
-            return f"Súbory presunuté z {src} do {dst}"
+            return f"Files moved from {src} to {dst}"
         except Exception as e:
-            return f"Chyba pri presúvaní súborov: {e}"
+            return f"Error moving files: {e}"
 
     def nl_delete_file(self, text):
         path = text.strip()
         try:
             os.remove(path)
-            return f"Súbor vymazaný: {path}"
+            return f"File deleted: {path}"
         except Exception as e:
-            return f"Chyba pri mazaní súboru: {e}"
+            return f"Error deleting file: {e}"
 
     def nl_list_directory(self, text):
         path = text.strip()
         try:
             items = os.listdir(path)
             if not items:
-                return "Priečinok je prázdny."
+                return "Directory is empty."
             return "\n".join(items)
         except Exception as e:
-            return f"Chyba pri čítaní priečinka: {e}"
+            return f"Error reading directory: {e}"
 
     # --------------------------------------------------------
-    # AI TASKY
+    # AI TASKS
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -97,22 +97,22 @@ class Plugin:
         return {"items": os.listdir(path)}
 
     # --------------------------------------------------------
-    # WORKFLOWY
+    # WORKFLOWS
     # --------------------------------------------------------
     def workflows(self):
         return [
             {
                 "name": "auto_clean_downloads",
                 "steps": [
-                    {"action": "log", "message": "Čistenie priečinka Downloads..."},
+                    {"action": "log", "message": "Cleaning Downloads folder..."},
                     {"action": "task", "task": "list_directory", "params": {"path": "Downloads"}},
-                    {"action": "return", "value": "Hotovo."}
+                    {"action": "return", "value": "Done."}
                 ]
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP PRAVIDLÁ
+    # AI LOOP RULES
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -126,18 +126,18 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI PRVKY
+    # GUI ELEMENTS
     # --------------------------------------------------------
     def gui_elements(self):
         return [
             {
                 "type": "button",
-                "label": "Vytvoriť priečinok",
+                "label": "Create folder",
                 "action": "create_folder"
             },
             {
                 "type": "button",
-                "label": "Presunúť súbory",
+                "label": "Move files",
                 "action": "move_files"
             }
         ]
