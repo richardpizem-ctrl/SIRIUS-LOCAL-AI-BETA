@@ -31,9 +31,14 @@ All modules operate offline, with strict safety boundaries and deterministic beh
 
 1. Install **Python 3.10+**
 2. Clone the repository:
-git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-ALFA 3. Open the project in VS Code or any terminal  
+```
+git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-ALFA
+```
+3. Open the project in VS Code or any terminal  
 4. Run the main entrypoint:
+```
 python sirius.py
+```
 5. Optional: run individual modules for testing (runtime, plugins, GUI, workflows)
 
 Developer mode provides full access to:
@@ -84,4 +89,4 @@ Packaging: **Planned for v2.1.0+**
 Runtime: **Stable**  
 Plugins: **Stable**  
 Architecture: **Stable**  
-SECURITY FAMILY: **Planned for v3.0.0 (identity, time‑limits, schoolwork priority)**  
+SECURITY FAMILY: **Planned for v3.0.0 (identity, time‑limits, schoolwork priority)**
