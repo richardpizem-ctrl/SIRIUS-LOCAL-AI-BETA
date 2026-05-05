@@ -7,10 +7,10 @@ from runtime.nl_router import NaturalLanguageRouter
 
 class SiriusVoice:
     """
-    Hlasové ovládanie pre SIRIUS LOCAL AI – v2.0.0
-    - počúva mikrofón
-    - rozpoznáva hlas
-    - posiela text do NL Routera 2.0
+    Voice control for SIRIUS LOCAL AI – v2.0.0
+    - listens to the microphone
+    - recognizes speech
+    - sends text to NL Router 2.0
     """
 
     def __init__(self):
@@ -18,7 +18,7 @@ class SiriusVoice:
         self.runtime = RuntimeManager()
         self.runtime.initialize()
 
-        # Pluginy
+        # Plugins
         self.plugins = PluginLoader(self.runtime)
         self.plugins.load_all()
 
@@ -31,36 +31,36 @@ class SiriusVoice:
         self.microphone = sr.Microphone()
 
     # --------------------------------------------------------
-    # ROZPOZNÁVANIE HLASU
+    # SPEECH RECOGNITION
     # --------------------------------------------------------
     def listen(self):
         """
-        Počúva mikrofón a vracia rozpoznaný text.
+        Listens to the microphone and returns recognized text.
         """
         with self.microphone as source:
-            print("🎤 Počúvam...")
+            print("🎤 Listening...")
             self.recognizer.adjust_for_ambient_noise(source)
             audio = self.recognizer.listen(source)
 
         try:
             text = self.recognizer.recognize_google(audio, language="sk-SK")
-            print(f"➡ Rozpoznané: {text}")
+            print(f"➡ Recognized: {text}")
             return text
 
         except sr.UnknownValueError:
-            print("❗ Nerozumel som.")
+            print("❗ I did not understand.")
             return None
 
         except sr.RequestError:
-            print("❗ Chyba pri komunikácii so službou rozpoznávania.")
+            print("❗ Speech recognition service error.")
             return None
 
     # --------------------------------------------------------
-    # SPRACOVANIE PRÍKAZU
+    # PROCESS COMMAND
     # --------------------------------------------------------
     def process(self, text):
         """
-        Pošle rozpoznaný text do NL Routera 2.0.
+        Sends recognized text to NL Router 2.0.
         """
         if not text:
             return
@@ -70,17 +70,17 @@ class SiriusVoice:
         except Exception as e:
             result = f"Error: {e}"
 
-        print("➡ Výsledok:", result)
+        print("➡ Result:", result)
 
     # --------------------------------------------------------
-    # HLAVNÁ SLUČKA
+    # MAIN LOOP
     # --------------------------------------------------------
     def run(self):
         """
-        Nekonečná slučka – počúva hlas a spracováva príkazy.
+        Infinite loop – listens to voice and processes commands.
         """
-        print("🎙️ SIRIUS Voice Control – aktívne")
-        print("Povedz príkaz...")
+        print("🎙️ SIRIUS Voice Control – active")
+        print("Say a command...")
 
         while True:
             text = self.listen()
@@ -88,7 +88,7 @@ class SiriusVoice:
 
 
 # ------------------------------------------------------------
-# SPÚŠŤACÍ BOD
+# ENTRY POINT
 # ------------------------------------------------------------
 if __name__ == "__main__":
     voice = SiriusVoice()
