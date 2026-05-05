@@ -2,37 +2,37 @@ import pyperclip
 
 class Plugin:
     """
-    Clipboard plugin pre SIRIUS-LOCAL-AI.
-    Umožňuje čítať a zapisovať text do systémovej schránky.
+    Clipboard plugin for SIRIUS-LOCAL-AI.
+    Allows reading and writing text to the system clipboard.
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
 
     # --------------------------------------------------------
-    # NL PRÍKAZY
+    # NL COMMANDS
     # --------------------------------------------------------
     def nl_commands(self):
         return {
-            "skopiruj": self.nl_copy,
-            "vloz": self.nl_paste,
-            "schranka": self.nl_read_clipboard
+            "copy": self.nl_copy,
+            "paste": self.nl_paste,
+            "clipboard": self.nl_read_clipboard
         }
 
     def nl_copy(self, text):
         pyperclip.copy(text)
-        return f"Skopírované do schránky: {text}"
+        return f"Copied to clipboard: {text}"
 
     def nl_paste(self, text):
         content = pyperclip.paste()
-        return f"Zo schránky: {content}"
+        return f"From clipboard: {content}"
 
     def nl_read_clipboard(self, text):
         content = pyperclip.paste()
-        return f"Schránka obsahuje: {content}"
+        return f"Clipboard contains: {content}"
 
     # --------------------------------------------------------
-    # AI TASKY
+    # AI TASKS
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -55,22 +55,22 @@ class Plugin:
         return {"clipboard": content}
 
     # --------------------------------------------------------
-    # WORKFLOWY
+    # WORKFLOWS
     # --------------------------------------------------------
     def workflows(self):
         return [
             {
                 "name": "clipboard_log",
                 "steps": [
-                    {"action": "log", "message": "Čítam obsah schránky..."},
+                    {"action": "log", "message": "Reading clipboard content..."},
                     {"action": "task", "task": "clipboard_read"},
-                    {"action": "return", "value": "Hotovo."}
+                    {"action": "return", "value": "Done."}
                 ]
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP PRAVIDLÁ
+    # AI LOOP RULES
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -84,24 +84,24 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI PRVKY
+    # GUI ELEMENTS
     # --------------------------------------------------------
     def gui_elements(self):
         return [
             {
                 "type": "button",
-                "label": "Kopírovať text",
+                "label": "Copy text",
                 "action": "clipboard_copy",
-                "params": {"text": "Ahoj svet"}
+                "params": {"text": "Hello world"}
             },
             {
                 "type": "button",
-                "label": "Vložiť zo schránky",
+                "label": "Paste from clipboard",
                 "action": "clipboard_paste"
             },
             {
                 "type": "button",
-                "label": "Zobraziť schránku",
+                "label": "Show clipboard",
                 "action": "clipboard_read"
             }
         ]
