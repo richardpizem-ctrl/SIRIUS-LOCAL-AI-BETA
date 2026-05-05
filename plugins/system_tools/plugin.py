@@ -4,15 +4,15 @@ import shutil
 
 class Plugin:
     """
-    System Tools plugin pre SIRIUS-LOCAL-AI.
-    Poskytuje informácie o systéme, CPU, RAM, disku a OS.
+    System Tools plugin for SIRIUS-LOCAL-AI.
+    Provides information about system, CPU, RAM, disk, and OS.
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
 
     # --------------------------------------------------------
-    # NL PRÍKAZY
+    # NL COMMANDS
     # --------------------------------------------------------
     def nl_commands(self):
         return {
@@ -38,7 +38,7 @@ class Plugin:
         return f"Disk: {percent:.2f}%"
 
     # --------------------------------------------------------
-    # AI TASKY
+    # AI TASKS
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -64,22 +64,22 @@ class Plugin:
         return {"disk_percent": percent}
 
     # --------------------------------------------------------
-    # WORKFLOWY
+    # WORKFLOWS
     # --------------------------------------------------------
     def workflows(self):
         return [
             {
                 "name": "system_diagnostics",
                 "steps": [
-                    {"action": "log", "message": "Spúšťam diagnostiku systému..."},
+                    {"action": "log", "message": "Running system diagnostics..."},
                     {"action": "task", "task": "system_info"},
-                    {"action": "return", "value": "Diagnostika dokončená."}
+                    {"action": "return", "value": "Diagnostics completed."}
                 ]
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP PRAVIDLÁ
+    # AI LOOP RULES
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -93,7 +93,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI PRVKY
+    # GUI ELEMENTS
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -120,7 +120,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # INTERNÉ FUNKCIE
+    # INTERNAL FUNCTIONS
     # --------------------------------------------------------
     def _system_info(self):
         info = self._system_info_dict()
@@ -140,4 +140,3 @@ class Plugin:
             "ram_percent": ram.percent,
             "disk_percent": (disk.used / disk.total) * 100
         }
-
