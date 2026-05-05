@@ -31,11 +31,11 @@ class FSHandler(FileSystemEventHandler):
 # ------------------------------------------------------------
 class SiriusAILoop:
     """
-    ENTERPRISE AUTONÓMNY REŽIM
+    ENTERPRISE AUTONOMOUS MODE
     - FS monitoring
-    - systémový monitoring
-    - pravidlá
-    - autonómne workflowy
+    - system monitoring
+    - rules
+    - autonomous workflows
     """
 
     def __init__(self):
@@ -46,12 +46,12 @@ class SiriusAILoop:
         self.rules = self._load_rules()
 
     # --------------------------------------------------------
-    # PRAVIDLÁ
+    # RULES
     # --------------------------------------------------------
     def _load_rules(self):
         """
-        Pravidlá autonómneho správania.
-        Môžeš ich meniť bez reštartu.
+        Autonomous behavior rules.
+        Can be modified without restart.
         """
         return {
             "log_auto_archive": {
@@ -73,7 +73,7 @@ class SiriusAILoop:
         }
 
     # --------------------------------------------------------
-    # FILESYSTEM EVENTY
+    # FILESYSTEM EVENTS
     # --------------------------------------------------------
     def handle_fs_event(self, event_type, path):
         print(f"[FS] {event_type}: {path}")
@@ -112,19 +112,19 @@ class SiriusAILoop:
         self.observer.start()
 
     # --------------------------------------------------------
-    # HLAVNÁ SLUČKA
+    # MAIN LOOP
     # --------------------------------------------------------
     def run(self):
         print("🤖 SIRIUS AI LOOP – ENTERPRISE MODE")
-        print("Autonómny režim beží...")
+        print("Autonomous mode running...")
 
-        # Spusti FS monitoring
+        # Start FS monitoring
         threading.Thread(target=self.monitor_fs, daemon=True).start()
 
-        # Spusti systémový monitoring
+        # Start system monitoring
         threading.Thread(target=self.monitor_system, daemon=True).start()
 
-        # Udrž hlavné vlákno živé
+        # Keep main thread alive
         try:
             while True:
                 time.sleep(1)
@@ -134,7 +134,7 @@ class SiriusAILoop:
 
 
 # ------------------------------------------------------------
-# SPÚŠŤACÍ BOD
+# ENTRY POINT
 # ------------------------------------------------------------
 if __name__ == "__main__":
     loop = SiriusAILoop()
