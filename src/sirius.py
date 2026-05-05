@@ -1,13 +1,13 @@
 """
 SIRIUS LOCAL AI ALFA – v2.0.0 entrypoint
 
-Toto je hlavný spúšťací bod pre SIRIUS 2.0 runtime.
+This is the main entrypoint for the SIRIUS 2.0 runtime.
 – bootstrap RuntimeManager 2.0
-– načítanie pluginov cez PluginLoader 2.0
-– inicializácia NL Router 2.0
-– spustenie AI Loop 2.0 (autonómny režim)
-– CLI režim ako základný front-end
-– hooky pre GUI / TRAY / VOICE (budúce moduly)
+– load plugins via PluginLoader 2.0
+– initialize NL Router 2.0
+– start AI Loop 2.0 (autonomous mode)
+– CLI mode as the primary front-end
+– hooks for GUI / TRAY / VOICE (future modules)
 """
 
 import argparse
@@ -25,7 +25,7 @@ from runtime.ai_loop import AILoop
 
 class SiriusApp:
     """
-    Hlavná aplikačná trieda, ktorá orchestruje celý SIRIUS runtime.
+    Main application class that orchestrates the entire SIRIUS runtime.
     """
 
     def __init__(self, enable_ai_loop: bool = True) -> None:
@@ -38,7 +38,7 @@ class SiriusApp:
         # Natural language router
         self.nl_router = NaturalLanguageRouter(self.runtime, self.plugin_loader)
 
-        # Autonómny AI loop
+        # Autonomous AI loop
         self.ai_loop: Optional[AILoop] = None
         if enable_ai_loop:
             self.ai_loop = AILoop(self.runtime, self.plugin_loader)
@@ -51,24 +51,24 @@ class SiriusApp:
 
     def bootstrap(self) -> None:
         """
-        Inicializuje runtime, načíta pluginy a pripraví systém na použitie.
+        Initializes the runtime, loads plugins, and prepares the system.
         """
-        # 1) Inicializácia runtime
+        # 1) Initialize runtime
         self.runtime.initialize()
 
-        # 2) Načítanie pluginov
+        # 2) Load plugins
         self.plugin_loader.load_all()
 
-        # 3) Inicializácia NL routera
+        # 3) Initialize NL router
         self.nl_router.initialize()
 
-        # 4) Spustenie AI loop (ak je zapnutý)
+        # 4) Start AI loop (if enabled)
         if self.ai_loop is not None:
             self._start_ai_loop_background()
 
     def _start_ai_loop_background(self) -> None:
         """
-        Spustí AI loop v samostatnom vlákne (autonómny režim).
+        Starts the AI loop in a background thread (autonomous mode).
         """
         if self.ai_loop is None:
             return
@@ -77,7 +77,7 @@ class SiriusApp:
             try:
                 self.ai_loop.run()
             except Exception as e:
-                # Runtime by mal mať vlastný logging, tu len fallback
+                # Runtime should have its own logging, this is just fallback
                 self.runtime.log_error(f"AI Loop crashed: {e}")
 
         self._ai_loop_thread = threading.Thread(
@@ -93,7 +93,7 @@ class SiriusApp:
 
     def handle_text(self, text: str) -> str:
         """
-        Spracuje textový vstup (CLI, GUI, VOICE) cez NL Router 2.0.
+        Processes text input (CLI, GUI, VOICE) through NL Router 2.0.
         """
         text = text.strip()
         if not text:
@@ -106,12 +106,12 @@ class SiriusApp:
             return f"Error: {e}"
 
     # --------------------------------------------------------------------- #
-    #  CLI REŽIM
+    #  CLI MODE
     # --------------------------------------------------------------------- #
 
     def run_cli(self) -> None:
         """
-        Jednoduchý konzolový režim – základný front-end pre SIRIUS 2.0.
+        Simple console mode – primary front-end for SIRIUS 2.0.
         """
         print("SIRIUS LOCAL AI ALFA – v2.0.0 (Runtime 2.0)")
         print("Type 'exit' to quit.\n")
@@ -140,7 +140,7 @@ class SiriusApp:
 
     def shutdown(self) -> None:
         """
-        Korektné ukončenie runtime a AI loop.
+        Gracefully shuts down the runtime and AI loop.
         """
         if self.ai_loop is not None:
             try:
@@ -179,7 +179,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Force CLI mode (no GUI/TRAY/VOICE front-end).",
     )
 
-    # Hooky pre budúce moduly – zatiaľ len placeholdery
+    # Hooks for future modules – placeholders for now
     parser.add_argument(
         "--gui",
         action="store_true",
@@ -210,10 +210,10 @@ def main(argv: Optional[list[str]] = None) -> None:
     try:
         app.bootstrap()
 
-        # Zatiaľ máme len CLI – GUI/TRAY/VOICE prídu neskôr
-        # Logika:
-        # – ak je --cli → spusti CLI
-        # – ak neskôr pribudne GUI/TRAY/VOICE, tu sa rozhodne podľa args
+        # For now we only have CLI – GUI/TRAY/VOICE will come later
+        # Logic:
+        # – if --cli → run CLI
+        # – when GUI/TRAY/VOICE exist, this will decide based on args
         app.run_cli()
 
     finally:
