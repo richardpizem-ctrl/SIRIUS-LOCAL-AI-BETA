@@ -1,7 +1,7 @@
 {
     "name": "system_tools",
     "version": "1.0.0",
-    "description": "Plugin poskytujúci systémové informácie: CPU, RAM, disk, OS a diagnostiku.",
+    "description": "Plugin providing system information: CPU, RAM, disk, OS, and diagnostics.",
     "author": "Richard Pizem",
     "entry": "plugin.py",
     "enabled": true,
