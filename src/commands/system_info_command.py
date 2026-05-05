@@ -6,26 +6,26 @@ from .base_command import BaseCommand
 class SystemInfoCommand(BaseCommand):
     """
     SystemInfoCommand 4.0
-    Vráti základné informácie o systéme, platforme a prostredí.
+    Returns basic information about the system, platform, and environment.
 
-    Novinky vo verzii 4.0:
-    - metadata pre NL Router 4.0
-    - SECURITY FAMILY integrácia
+    New in version 4.0:
+    - metadata for NL Router 4.0
+    - SECURITY FAMILY integration
     - risk-aware execution
     - capability flags (WIN-CAP)
-    - audit trail cez BaseCommand lifecycle
-    - štruktúrovaný výstup pre Workflow Engine 4.0
+    - audit trail via BaseCommand lifecycle
+    - structured output for Workflow Engine 4.0
     """
 
     # ---------------------------------------------------------
     # METADATA (v4.0)
     # ---------------------------------------------------------
     name = "system-info"
-    description = "Zobrazí informácie o systéme, platforme a prostredí."
+    description = "Displays information about the system, platform, and environment."
     category = "system"
 
-    required_identity = "FAMILY"     # bezpečné pre všetkých
-    risk_level = 0.0                 # žiadne riziko
+    required_identity = "FAMILY"     # safe for everyone
+    risk_level = 0.0                 # no risk
     capabilities = ["system_read"]
 
     keywords = ["system", "info", "platform", "os", "environment"]
@@ -36,8 +36,8 @@ class SystemInfoCommand(BaseCommand):
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
-        Vráti prehľad základných systémových informácií.
-        Výstup je štruktúrovaný pre Workflow Engine 4.0.
+        Returns an overview of basic system information.
+        Output is structured for Workflow Engine 4.0.
         """
 
         info = {
@@ -50,8 +50,8 @@ class SystemInfoCommand(BaseCommand):
             "working_directory": os.getcwd(),
         }
 
-        # Pre CLI / NL Router môžeme vrátiť aj textovú verziu
-        text_output = ["Systémové informácie:\n"]
+        # Text output for CLI / NL Router
+        text_output = ["System information:\n"]
         for key, value in info.items():
             text_output.append(f"- {key}: {value}")
 
