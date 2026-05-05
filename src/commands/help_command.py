@@ -5,14 +5,14 @@ from .base_command import BaseCommand
 class HelpCommand(BaseCommand):
     """
     HelpCommand 4.0
-    Poskytuje detailnú introspekciu príkazov pre CLI, NL Router a GUI.
+    Provides detailed command introspection for CLI, NL Router, and GUI.
     """
 
     name = "help"
-    description = "Zobrazí zoznam príkazov alebo detailné informácie o konkrétnom príkaze."
+    description = "Displays a list of commands or detailed information about a specific command."
     category = "system"
 
-    required_identity = "FAMILY"   # Help je bezpečný pre všetkých
+    required_identity = "FAMILY"   # Help is safe for everyone
     risk_level = 0.0
 
     keywords = ["help", "commands", "info"]
