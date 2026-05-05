@@ -1,38 +1,38 @@
 class Plugin:
     """
-    Plnohodnotný ukážkový plugin pre SIRIUS-LOCAL-AI.
-    Demonštruje všetky capability:
-    - NL príkazy
-    - AI tasky
+    Fully featured example plugin for SIRIUS-LOCAL-AI.
+    Demonstrates all capabilities:
+    - NL commands
+    - AI tasks
     - Workflow
-    - AI Loop pravidlá
-    - GUI prvky
+    - AI Loop rules
+    - GUI elements
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
 
     # --------------------------------------------------------
-    # NL PRÍKAZY
+    # NL COMMANDS
     # --------------------------------------------------------
     def nl_commands(self):
         return {
-            "ahoj plugin": self.say_hello,
+            "hello plugin": self.say_hello,
             "test plugin": self.test_action,
             "plugin workflow": self.run_workflow_demo
         }
 
     def say_hello(self, text):
-        return "Ahoj! Plugin je aktívny a odpovedá."
+        return "Hello! The plugin is active and responding."
 
     def test_action(self, text):
-        return "Plugin funguje správne – NL príkaz bol vykonaný."
+        return "The plugin is working correctly – NL command executed."
 
     def run_workflow_demo(self, text):
         return self.rm.run_workflow("plugin_demo_workflow")
 
     # --------------------------------------------------------
-    # AI TASKY
+    # AI TASKS
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -43,33 +43,33 @@ class Plugin:
     def ai_task_example(self, params):
         return {
             "status": "OK",
-            "message": "AI task z pluginu bol úspešne vykonaný."
+            "message": "AI task from the plugin was executed successfully."
         }
 
     def ai_status(self, params):
         return {
             "plugin": "example",
             "state": "running",
-            "info": "Plugin beží bez problémov."
+            "info": "Plugin is running without issues."
         }
 
     # --------------------------------------------------------
-    # WORKFLOWY
+    # WORKFLOWS
     # --------------------------------------------------------
     def workflows(self):
         return [
             {
                 "name": "plugin_demo_workflow",
                 "steps": [
-                    {"action": "log", "message": "Workflow z pluginu bol spustený."},
+                    {"action": "log", "message": "Workflow from plugin started."},
                     {"action": "task", "task": "plugin_test_task"},
-                    {"action": "return", "value": "Workflow úspešne dokončený."}
+                    {"action": "return", "value": "Workflow completed successfully."}
                 ]
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP PRAVIDLÁ
+    # AI LOOP RULES
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -82,7 +82,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI PRVKY
+    # GUI ELEMENTS
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -93,7 +93,7 @@ class Plugin:
             },
             {
                 "type": "button",
-                "label": "Spusti workflow",
+                "label": "Run workflow",
                 "action": "plugin_demo_workflow"
             }
         ]
