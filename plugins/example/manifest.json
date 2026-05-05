@@ -1,7 +1,7 @@
 {
     "name": "example",
     "version": "1.0.0",
-    "description": "Ukážkový plugin demonštrujúci všetky capability SIRIUS-LOCAL-AI.",
+    "description": "Example plugin demonstrating all SIRIUS-LOCAL-AI capabilities.",
     "author": "Richard Pizem",
     "entry": "plugin.py",
     "enabled": true,
