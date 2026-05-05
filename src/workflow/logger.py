@@ -4,9 +4,9 @@ import os
 
 class WorkflowLogger:
     """
-    Jednoduchý workflow logger (mock).
-    Zapisuje textové logy do súboru workflow.log.
-    Neskôr sa nahradí UI log panelom.
+    Simple workflow logger (mock).
+    Writes text logs into workflow.log.
+    Will be replaced by a UI log panel later.
     """
 
     def __init__(self, log_file: str = "workflow.log"):
@@ -15,7 +15,7 @@ class WorkflowLogger:
 
     def _ensure_log_file(self):
         """
-        Vytvorí prázdny log súbor, ak neexistuje.
+        Create an empty log file if it does not exist.
         """
         if not os.path.exists(self.log_file):
             with open(self.log_file, "w", encoding="utf-8") as f:
@@ -23,7 +23,7 @@ class WorkflowLogger:
 
     def _write(self, level: str, message: str):
         """
-        Zapíše správu do log súboru.
+        Write a log entry into the log file.
         """
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         line = f"[{timestamp}] [{level}] {message}\n"
