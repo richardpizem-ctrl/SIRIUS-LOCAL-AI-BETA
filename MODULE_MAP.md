@@ -1,13 +1,13 @@
-# Module Map – SIRIUS LOCAL AI (v2.0.0)
+# Module Map – SIRIUS LOCAL AI (v3.0.0)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the stable Runtime 2.0 architecture.
+It serves as an architectural orientation map for the stable Runtime 3.0 architecture.
 
 All processing is fully local; no data leaves the user's PC.
 
 ---
 
-# 1. Runtime Core 2.0
+# 1. Runtime Core 3.0
 **Purpose:** Central system layer.  
 **Responsibilities:**
 - module initialization  
@@ -18,10 +18,11 @@ All processing is fully local; no data leaves the user's PC.
 - capability registration  
 - event routing  
 - maintaining global system stability  
+- integration with SECURITY FAMILY  
 
 ---
 
-# 2. Filesystem Agent (FS‑AGENT 2.0)
+# 2. Filesystem Agent (FS‑AGENT 3.0)
 **Purpose:** Safe file operations.  
 **Responsibilities:**
 - moving, copying, deleting  
@@ -30,10 +31,11 @@ All processing is fully local; no data leaves the user's PC.
 - action confirmations  
 - conflict detection  
 - rollback‑safe operations  
+- SCHOOLWORK priority routing  
 
 ---
 
-# 3. Natural Language Router (NL Router 2.0)
+# 3. Natural Language Router (NL Router 3.0)
 **Purpose:** Translation and routing of user commands.  
 **Responsibilities:**
 - recognizing command type  
@@ -42,10 +44,11 @@ All processing is fully local; no data leaves the user's PC.
 - detecting plugin NL commands  
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
+- applying FAMILY identity rules  
 
 ---
 
-# 4. Context Memory Engine (CME‑MEM 2.0)
+# 4. Context Memory Engine (CME‑MEM 3.0)
 **Purpose:** Maintaining context and recent actions.  
 **Responsibilities:**
 - tracking recent user actions  
@@ -53,10 +56,11 @@ All processing is fully local; no data leaves the user's PC.
 - providing contextual suggestions  
 - supporting multi‑step workflows  
 - metadata for plugins and workflows  
+- SCHOOLWORK metadata tagging  
 
 ---
 
-# 5. Workflow Engine 2.0
+# 5. Workflow Engine 3.0
 **Purpose:** Logic of step sequences and plugin workflows.  
 **Responsibilities:**
 - workflow state machine  
@@ -64,17 +68,19 @@ All processing is fully local; no data leaves the user's PC.
 - validating transitions  
 - generating next‑step predictions  
 - preventing invalid sequences  
+- SCHOOLWORK workflow prioritization  
 
 ---
 
-# 6. GUI Layer 2.0
+# 6. GUI Layer 3.0
 **Purpose:** Modular user interface.  
 **Responsibilities:**
 - rendering plugin buttons  
 - executing GUI actions  
 - integrating with Runtime Core  
 - providing visual feedback  
-- preparing for tray/voice integration  
+- tray/voice integration (planned)  
+- SCHOOLWORK visual indicators  
 
 ---
 
@@ -87,7 +93,7 @@ All processing is fully local; no data leaves the user's PC.
 
 ---
 
-# 8. Automatic Input Triage Engine (AITE 2.0)
+# 8. Automatic Input Triage Engine (AITE 3.0)
 **Purpose:** Automatic detection and classification of input type.  
 **Responsibilities:**
 - detecting input type (text, image, application, document)  
@@ -95,11 +101,13 @@ All processing is fully local; no data leaves the user's PC.
 - metadata generation  
 - integration with FS‑AGENT and CME‑MEM  
 - rejecting unsupported or unsafe inputs  
-- **(v3.0.0) detecting schoolwork and triggering Schoolwork Priority Mode**  
+- detecting schoolwork  
+- triggering **Schoolwork Priority Mode**  
+- bypassing FAMILY time‑limits for academic content  
 
 ---
 
-# 9. Windows System Capabilities Layer (WIN‑CAP 2.0)
+# 9. Windows System Capabilities Layer (WIN‑CAP 3.0)
 **Purpose:** Provide safe, abstracted access to Windows 11 system functions.  
 This module transforms SIRIUS into a true local OS‑level AI agent.
 
@@ -108,6 +116,7 @@ This module transforms SIRIUS into a true local OS‑level AI agent.
 - enforcing permissions and allowed scopes  
 - providing safe wrappers around OS operations  
 - enabling multi‑step system actions through AI reasoning  
+- integrating with SECURITY FAMILY identity restrictions  
 
 **Submodules:**
 - `file_ops`  
@@ -141,10 +150,11 @@ This module transforms SIRIUS into a true local OS‑level AI agent.
 - validating transitions  
 - predictable behavior  
 - integrating CME, FS‑AGENT, and GUI  
+- SCHOOLWORK workflow routing  
 
 ---
 
-# 12. Plugin System 2.0
+# 12. Plugin System 3.0
 **Purpose:** Extensible plugin ecosystem.  
 **Responsibilities:**
 - loading plugin manifests  
@@ -154,6 +164,7 @@ This module transforms SIRIUS into a true local OS‑level AI agent.
 - registering AI loop rules  
 - registering GUI elements  
 - safe plugin isolation  
+- SCHOOLWORK‑aware plugin behavior  
 
 Official plugins include:
 - automation  
@@ -166,27 +177,18 @@ Official plugins include:
 
 ---
 
-# 13. AI Loop 2.0
+# 13. AI Loop 3.0
 **Purpose:** Autonomous interval‑based logic.  
 **Responsibilities:**
 - executing plugin heartbeat rules  
 - safe periodic tasks  
 - deterministic scheduling  
 - error protection  
+- SCHOOLWORK‑aware timing  
 
 ---
 
-# 14. Future Modules (Extensibility)
-
-Possible future modules:
-- UI Automation Layer  
-- Voice Command Layer  
-- System Monitoring Layer  
-- Advanced Semantic Triage  
-
----
-
-# 15. Self‑Repair & Health‑Check Layer (v4.0.0)
+# 14. Self‑Repair & Health‑Check Layer (v4.0.0)
 **Purpose:** Diagnostics and safe automatic recovery.  
 **Responsibilities:**  
 - checking integrity of core modules  
@@ -203,7 +205,7 @@ Possible future modules:
 
 ---
 
-# 16. SECURITY FAMILY (planned for v3.0.0)
+# 15. SECURITY FAMILY (v3.0.0)
 **Purpose:** Behavior‑based identity and family safety layer.  
 This module introduces **OWNER / FAMILY / STRANGER** identity levels.
 
@@ -216,8 +218,9 @@ This module introduces **OWNER / FAMILY / STRANGER** identity levels.
 - integration with NL Router and WIN‑CAP  
 - **time‑based limits for children**  
 - **Schoolwork Priority Mode (schoolwork always allowed)**  
+- STRANGER‑mode restrictions  
 
-**Submodules (already scaffolded):**
+**Submodules:**
 - `identity_engine.py`  
 - `behavior_audit.py`  
 - `access_control.py`  
@@ -227,28 +230,28 @@ This module introduces **OWNER / FAMILY / STRANGER** identity levels.
 - `schoolwork_detector.py`  
 - `profile_store.json`  
 
-This becomes a **core security module** in version **3.0.0**.
+This is a **core security module** in version **3.0.0**.
 
 ---
 
-# 17. Future Vision Modules (v3.0.0 – v4.0.0)
+# 16. v3.0.0 Intelligent Runtime Modules
 
 These modules extend SIRIUS from a system automation runtime into a **full offline household assistant**, while staying safe, modular, and local‑only.
 
 ---
 
-## 17.1 HOME_ASSISTANT (v3.0.0)
+## 16.1 HOME_ASSISTANT (v3.0.0)
 **Purpose:** General household advice and daily assistance.  
 **Responsibilities:**
 - safe household recommendations  
 - cleaning tips  
 - organization workflows  
 - safety‑first guidance  
-- integration with IMAGE_ANALYZER for object recognition  
+- integration with IMAGE_ANALYZER  
 
 ---
 
-## 17.2 COOKING_ADVISOR (v3.0.0)
+## 16.2 COOKING_ADVISOR (v3.0.0)
 **Purpose:** Offline cooking and recipe assistant.  
 **Responsibilities:**
 - recipe generation  
@@ -259,29 +262,29 @@ These modules extend SIRIUS from a system automation runtime into a **full offli
 
 ---
 
-## 17.3 DEVICE_DIAGNOSTICS (v3.0.0)
+## 16.3 DEVICE_DIAGNOSTICS (v3.0.0)
 **Purpose:** Safe troubleshooting for household devices.  
 **Responsibilities:**
 - identifying common device issues  
 - providing safe repair suggestions  
 - detecting dangerous situations  
-- routing to OWNER‑only actions if needed  
+- routing to OWNER‑only actions  
 - integration with SECURITY FAMILY  
 
 ---
 
-## 17.4 SCHOOL_HELPER (v3.0.0)
+## 16.4 SCHOOL_HELPER (v3.0.0)
 **Purpose:** Offline schoolwork assistant.  
 **Responsibilities:**
 - math, language, science explanations  
 - step‑by‑step reasoning  
 - safe educational help  
-- integration with SCHOOLWORK PRIORITY MODE  
+- SCHOOLWORK PRIORITY MODE integration  
 - image‑based homework recognition  
 
 ---
 
-## 17.5 IMAGE_ANALYZER (v3.0.0)
+## 16.5 IMAGE_ANALYZER (v3.0.0)
 **Purpose:** Local image understanding.  
 **Responsibilities:**
 - reading homework from photos  
@@ -291,7 +294,7 @@ These modules extend SIRIUS from a system automation runtime into a **full offli
 
 ---
 
-## 17.6 CONTEXT_ROUTER v3 (v3.0.0)
+## 16.6 CONTEXT_ROUTER v3 (v3.0.0)
 **Purpose:** Smarter routing of user intent.  
 **Responsibilities:**
 - detecting household tasks  
@@ -302,7 +305,7 @@ These modules extend SIRIUS from a system automation runtime into a **full offli
 
 ---
 
-## 17.7 KNOWLEDGE_PACKS (v3.0.0+)
+## 16.7 KNOWLEDGE_PACKS (v3.0.0+)
 **Purpose:** Modular offline knowledge expansions.  
 **Responsibilities:**
 - domain‑specific knowledge (kitchen, repairs, school subjects)  
@@ -312,7 +315,7 @@ These modules extend SIRIUS from a system automation runtime into a **full offli
 
 ---
 
-# 18. Module Interconnections
+# 17. Module Interconnections
 
 - **NL Router → FS‑AGENT:** determines file operations  
 - **NL Router → Plugins:** routes NL commands  
@@ -332,5 +335,5 @@ All communication is explicit and controlled.
 ---
 
 # Document Status
-Current version: **2.0.0 (Stable)**  
-Future modules for **v3.0.0** and **v4.0.0** are defined as part of the long‑term vision.
+Current version: **3.0.0 (Stable)**  
+Future modules for **v4.0.0** are defined as part of the long‑term vision.
