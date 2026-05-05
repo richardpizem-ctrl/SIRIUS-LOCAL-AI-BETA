@@ -8,10 +8,10 @@ from runtime.nl_router import NaturalLanguageRouter
 
 class SiriusGUI:
     """
-    GUI front-end pre SIRIUS LOCAL AI ALFA – v2.0.0
-    - prepojené s RuntimeManager 2.0
-    - používa NL Router 2.0
-    - podporuje AI tasky cez pluginy
+    GUI front-end for SIRIUS LOCAL AI ALFA – v2.0.0
+    - connected to RuntimeManager 2.0
+    - uses NL Router 2.0
+    - supports AI tasks through plugins
     """
 
     def __init__(self):
@@ -19,7 +19,7 @@ class SiriusGUI:
         self.runtime = RuntimeManager()
         self.runtime.initialize()
 
-        # Pluginy
+        # Plugins
         self.plugins = PluginLoader(self.runtime)
         self.plugins.load_all()
 
@@ -28,7 +28,7 @@ class SiriusGUI:
         self.router.initialize()
 
     # --------------------------------------------------------
-    # GUI LOGIKA
+    # GUI LOGIC
     # --------------------------------------------------------
     def send_nl(self, sender, data):
         text = get_value("##input")
@@ -53,7 +53,7 @@ class SiriusGUI:
         add_text(str(result), parent="Log")
 
     # --------------------------------------------------------
-    # GUI OKNO
+    # GUI WINDOW
     # --------------------------------------------------------
     def run(self):
         with window("SIRIUS LOCAL AI – GUI", width=650, height=520):
@@ -67,13 +67,17 @@ class SiriusGUI:
             add_separator()
             add_text("Quick actions:")
 
-            add_button("Snap VS Code Left",
-                       callback=self.run_ai_task,
-                       callback_data={"task": "snap_left", "params": {"app": "code.exe"}})
+            add_button(
+                "Snap VS Code Left",
+                callback=self.run_ai_task,
+                callback_data={"task": "snap_left", "params": {"app": "code.exe"}}
+            )
 
-            add_button("Snap VS Code Right",
-                       callback=self.run_ai_task,
-                       callback_data={"task": "snap_right", "params": {"app": "code.exe"}})
+            add_button(
+                "Snap VS Code Right",
+                callback=self.run_ai_task,
+                callback_data={"task": "snap_right", "params": {"app": "code.exe"}}
+            )
 
             add_separator()
             add_text("Log:")
@@ -83,7 +87,7 @@ class SiriusGUI:
 
 
 # ------------------------------------------------------------
-# SPÚŠŤACÍ BOD
+# ENTRY POINT
 # ------------------------------------------------------------
 if __name__ == "__main__":
     gui = SiriusGUI()
