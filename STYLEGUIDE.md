@@ -178,13 +178,16 @@ Every module must include:
 - consistent import ordering:
 
 standard library  
-import os
-import json 
+import os  
+import json  
+
 third‑party  
-import win32api 
+import win32api  
+
 internal  
-from filesystem.agent import FilesystemAgent
-from security_family.time_limits import TimeLimitsEngine 
+from filesystem.agent import FilesystemAgent  
+from security_family.time_limits import TimeLimitsEngine  
+
 ---
 
 # 11. Module Boundaries
