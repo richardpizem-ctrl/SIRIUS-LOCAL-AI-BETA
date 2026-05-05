@@ -32,9 +32,15 @@ class EmailDeleteCommand(BaseCommand):
 
         email_id = args[0]
 
+        # -----------------------------
+        # SNAPSHOT BEFORE DELETE
+        # -----------------------------
         if hasattr(self.context, "snapshot"):
             self.context.snapshot()
 
+        # -----------------------------
+        # DELETE EMAIL
+        # -----------------------------
         success = self.email_manager.delete_email(email_id)
 
         if not success:
@@ -43,6 +49,9 @@ class EmailDeleteCommand(BaseCommand):
                 "message": f"Email '{email_id}' not found."
             }
 
+        # -----------------------------
+        # LOG INTO CONTEXT STATE
+        # -----------------------------
         self.context.merge({
             "last_email_deleted_id": email_id
         })
