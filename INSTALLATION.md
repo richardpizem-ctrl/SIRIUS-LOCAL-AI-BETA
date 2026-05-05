@@ -1,6 +1,6 @@
-# 📦 Installation Guide – SIRIUS LOCAL AI (v2.0.0)
+# 📦 Installation Guide – SIRIUS LOCAL AI (v3.0.0)
 
-SIRIUS LOCAL AI is a fully local, modular AI runtime built on the stable Runtime 2.0 architecture.  
+SIRIUS LOCAL AI is a fully local, modular AI runtime built on the stable Runtime 3.0 architecture.  
 The system is currently distributed as clean Python source code, intended for developers, testers, and advanced users.
 
 A packaged installer will be introduced in a future release.
@@ -9,7 +9,7 @@ All processing is fully local; no data leaves your PC.
 
 ---
 
-## ⚠️ System Notes (v2.0.0)
+## ⚠️ System Notes (v3.0.0)
 
 SIRIUS LOCAL AI interacts with Windows 11 system APIs, including:
 
@@ -18,7 +18,9 @@ SIRIUS LOCAL AI interacts with Windows 11 system APIs, including:
 - application control  
 - accessibility interfaces  
 - plugin‑driven system actions  
-- **(v3.0.0) SECURITY FAMILY safety hooks for identity, time‑limits, and schoolwork priority**
+- **SECURITY FAMILY (NEW)** — identity engine, time‑limits, stranger‑mode, schoolwork priority  
+- **AITE 3.0** — schoolwork detection and priority routing  
+- **WIN‑CAP 3.0** — safe system‑level capability layer  
 
 Windows Defender or SmartScreen may classify the runtime as an “Unknown App”.  
 Antivirus tools may generate false positives during development.
@@ -43,33 +45,37 @@ python sirius.py
 
 Developer mode provides full access to:
 
-- Runtime Core 2.0  
-- Plugin System 2.0  
-- Workflow Engine 2.0  
-- AI Loop 2.0  
-- GUI 2.0  
-- AITE 2.0  
-- WIN‑CAP 2.0  
-- **SECURITY FAMILY scaffolding (identity engine, time‑limits, schoolwork bypass)**  
+- Runtime Core 3.0  
+- Plugin System 3.0  
+- Workflow Engine 3.0  
+- AI Loop 3.0  
+- GUI 3.0  
+- AITE 3.0  
+- WIN‑CAP 3.0  
+- **SECURITY FAMILY 3.0 (identity engine, time‑limits, schoolwork bypass, stranger‑mode)**  
 
 ---
 
 ## 🛠️ Future Installation System (Planned)
 
-### v2.1.0 – Basic Packaging
+### v3.1.0 – Basic Packaging (Updated)
 - simple startup executable  
 - minimal Windows integration  
 - bundled Python environment  
 - plugin auto‑loader  
+- SECURITY FAMILY pre‑startup checks  
 
-### v3.0.0 – Intelligent Runtime Builds
+### v4.0.0 – Intelligent Runtime Builds
 - optional UI/animation bundles  
 - performance‑optimized packaging  
 - tray/voice integration  
 - semantic triage extensions  
-- **SECURITY FAMILY integration (behavior‑based identity, time‑limits, schoolwork priority mode)**  
+- **deep SECURITY FAMILY integration**  
+  - identity learning  
+  - behavior‑based restrictions  
+  - schoolwork priority enforcement  
 
-### v4.0.0 – Self‑Repair & Health‑Check Layer
+### v5.0.0 – Self‑Repair & Health‑Check Layer
 The installation system will integrate with the diagnostic layer:
 
 - integrity checks before startup  
@@ -82,11 +88,14 @@ This ensures long‑term stability even in packaged builds.
 
 ---
 
-## 📌 Status (v2.0.0)
+## 📌 Status (v3.0.0)
 
 Installation system: **Not yet implemented**  
-Packaging: **Planned for v2.1.0+**  
-Runtime: **Stable**  
-Plugins: **Stable**  
-Architecture: **Stable**  
-SECURITY FAMILY: **Planned for v3.0.0 (identity, time‑limits, schoolwork priority)**
+Packaging: **Planned for v3.1.0+**  
+Runtime: **Stable (3.0.0)**  
+Plugins: **Stable (3.0.0)**  
+Architecture: **Stable (3.0.0)**  
+SECURITY FAMILY: **Fully integrated (identity, time‑limits, schoolwork priority, stranger‑mode)**  
+AITE: **Upgraded to v3.0.0 with schoolwork detection**  
+WIN‑CAP: **Upgraded to v3.0.0**
+
