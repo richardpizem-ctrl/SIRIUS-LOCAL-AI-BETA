@@ -4,24 +4,24 @@ from .base_command import BaseCommand
 class RunCommand(BaseCommand):
     """
     RunCommand 4.0
-    Centrálna exekúcia akcií, AI taskov a NL príkazov.
+    Central execution of actions, AI tasks, and NL commands.
 
-    Novinky vo verzii 4.0:
-    - integrácia s Runtime Core 4.0
-    - integrácia s NL Router 4.0
-    - integrácia s SECURITY FAMILY 4.0
+    New in version 4.0:
+    - integration with Runtime Core 4.0
+    - integration with NL Router 4.0
+    - integration with SECURITY FAMILY 4.0
     - risk-aware execution
     - capability enforcement
     - audit trail
-    - štruktúrované výsledky
+    - structured results
     """
 
     name = "run"
-    description = "Spustí AI task, NL príkaz alebo systémovú akciu."
+    description = "Runs an AI task, NL command, or system action."
     category = "system"
 
-    required_identity = "FAMILY"   # každý môže spúšťať príkazy, ale AccessControl rozhodne
-    risk_level = 0.1               # nízke riziko
+    required_identity = "FAMILY"   # anyone may run commands, AccessControl decides
+    risk_level = 0.1               # low risk
     capabilities = ["command_exec"]
 
     keywords = ["run", "execute", "do", "perform"]
@@ -37,15 +37,15 @@ class RunCommand(BaseCommand):
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
-        Spustí AI task, NL príkaz alebo command z registry.
+        Runs an AI task, NL command, or command from registry.
         """
         if not args:
-            return {"status": "error", "message": "Nebola zadaná žiadna akcia."}
+            return {"status": "error", "message": "No action provided."}
 
         action = args[0]
 
         # -----------------------------------------------------
-        # 1) Skús command registry (najvyššia priorita)
+        # 1) Try command registry (highest priority)
         # -----------------------------------------------------
         if self.registry:
             cmd_cls = self.registry.get(action)
@@ -66,7 +66,7 @@ class RunCommand(BaseCommand):
                     }
 
         # -----------------------------------------------------
-        # 2) Skús AI task
+        # 2) Try AI task
         # -----------------------------------------------------
         if self.runtime:
             result = self.runtime.handle_ai_task(action, {})
@@ -78,7 +78,7 @@ class RunCommand(BaseCommand):
                 }
 
         # -----------------------------------------------------
-        # 3) Skús NL Router
+        # 3) Try NL Router
         # -----------------------------------------------------
         if self.router:
             result = self.router.route(action)
@@ -93,5 +93,5 @@ class RunCommand(BaseCommand):
         # -----------------------------------------------------
         return {
             "status": "fallback",
-            "message": f"Spúšťam akciu: {action}"
+            "message": f"Running action: {action}"
         }
