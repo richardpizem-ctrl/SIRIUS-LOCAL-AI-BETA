@@ -35,8 +35,8 @@ class MoveTextFilesCommand(BaseCommand):
     description = "Moves all .txt files from source to target folder."
     category = "filesystem"
 
-    required_identity = "OWNER"       # FAMILY nesmie presúvať súbory
-    risk_level = 0.4                  # stredné riziko (práca so súbormi)
+    required_identity = "OWNER"       # FAMILY cannot move files
+    risk_level = 0.4                  # medium risk (file operations)
     capabilities = ["fs_write", "fs_move"]
 
     keywords = ["move", "text files", "txt", "folder", "transfer"]
