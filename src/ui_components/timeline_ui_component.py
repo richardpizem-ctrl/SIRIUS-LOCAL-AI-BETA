@@ -3,15 +3,15 @@
 # SIRIUS LOCAL AI – ui_components (Phase 4)
 
 from .manager import UIComponent
-from timeline.timeline_ui import TimelineUI  # tvoje existujúce TimelineUI
+from timeline.timeline_ui import TimelineUI  # your existing TimelineUI
 
 class TimelineUIComponent(UIComponent):
     """
-    UI wrapper pre TimelineUI.
-    Poskytuje:
+    UI wrapper for TimelineUI.
+    Provides:
         - mount / unmount lifecycle
-        - render() → vracia layout bloky
-        - generate_layout() → pripravuje pixelové bloky pre PixelLayoutEngine
+        - render() → returns layout blocks
+        - generate_layout() → prepares pixel blocks for PixelLayoutEngine
     """
 
     def __init__(self):
@@ -28,13 +28,14 @@ class TimelineUIComponent(UIComponent):
 
     def generate_layout(self):
         """
-        TimelineUI v budúcnosti vráti skutočné pixelové bloky.
-        Zatiaľ placeholder, aby PixelLayoutEngine mal konzistentný vstup.
+        TimelineUI will later return real pixel blocks.
+        For now this is a placeholder so PixelLayoutEngine
+        always receives a consistent input.
         """
         if hasattr(self.timeline, "generate_layout"):
             return self.timeline.generate_layout()
 
-        # Fallback placeholder – bezpečný pre Phase 4
+        # Fallback placeholder – safe for Phase 4
         return [
             {
                 "type": "text",
@@ -46,8 +47,8 @@ class TimelineUIComponent(UIComponent):
 
     def render(self):
         """
-        UIManager volá render() → ten musí vrátiť layout bloky.
-        PixelLayoutEngine ich následne vykreslí.
+        UIManager calls render() → it must return layout blocks.
+        PixelLayoutEngine will then render them.
         """
         layout = self.generate_layout()
         return layout
