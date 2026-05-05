@@ -4,41 +4,41 @@ import os
 
 class Plugin:
     """
-    Automation plugin pre SIRIUS-LOCAL-AI.
-    Umožňuje spúšťať shell príkazy, skripty a automatizované úlohy.
+    Automation plugin for SIRIUS-LOCAL-AI.
+    Allows running shell commands, scripts, and automated tasks.
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
 
     # --------------------------------------------------------
-    # NL PRÍKAZY
+    # NL COMMANDS
     # --------------------------------------------------------
     def nl_commands(self):
         return {
-            "spusti prikaz": self.nl_run_command,
-            "spusti skript": self.nl_run_script
+            "run command": self.nl_run_command,
+            "run script": self.nl_run_script
         }
 
     def nl_run_command(self, text):
         try:
             result = subprocess.check_output(text, shell=True, stderr=subprocess.STDOUT, encoding="utf-8")
-            return f"Výstup:\n{result}"
+            return f"Output:\n{result}"
         except subprocess.CalledProcessError as e:
-            return f"Chyba:\n{e.output}"
+            return f"Error:\n{e.output}"
 
     def nl_run_script(self, text):
         script = text.strip()
         if not os.path.exists(script):
-            return "Skript neexistuje."
+            return "Script does not exist."
         try:
             result = subprocess.check_output([sys.executable, script], stderr=subprocess.STDOUT, encoding="utf-8")
-            return f"Výstup skriptu:\n{result}"
+            return f"Script output:\n{result}"
         except subprocess.CalledProcessError as e:
-            return f"Chyba skriptu:\n{e.output}"
+            return f"Script error:\n{e.output}"
 
     # --------------------------------------------------------
-    # AI TASKY
+    # AI TASKS
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -67,22 +67,22 @@ class Plugin:
             return {"error": e.output}
 
     # --------------------------------------------------------
-    # WORKFLOWY
+    # WORKFLOWS
     # --------------------------------------------------------
     def workflows(self):
         return [
             {
                 "name": "auto_cleanup",
                 "steps": [
-                    {"action": "log", "message": "Spúšťam automatické čistenie..."},
-                    {"action": "task", "task": "run_command", "params": {"cmd": "echo Cistenie hotove"}},
-                    {"action": "return", "value": "Automatizácia dokončená."}
+                    {"action": "log", "message": "Starting automatic cleanup..."},
+                    {"action": "task", "task": "run_command", "params": {"cmd": "echo Cleanup done"}},
+                    {"action": "return", "value": "Automation completed."}
                 ]
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP PRAVIDLÁ
+    # AI LOOP RULES
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -96,19 +96,19 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI PRVKY
+    # GUI ELEMENTS
     # --------------------------------------------------------
     def gui_elements(self):
         return [
             {
                 "type": "button",
-                "label": "Spusti test príkaz",
+                "label": "Run test command",
                 "action": "run_command",
                 "params": {"cmd": "echo Test OK"}
             },
             {
                 "type": "button",
-                "label": "Spusti skript",
+                "label": "Run script",
                 "action": "run_script",
                 "params": {"script": "test.py"}
             }
