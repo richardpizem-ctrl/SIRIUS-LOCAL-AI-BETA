@@ -4,16 +4,16 @@ import time
 
 class BaseCommand:
     """
-    Základná trieda pre všetky príkazy v systéme SIRIUS LOCAL AI 4.0.
-    Každý príkaz musí implementovať metódu `execute()`.
+    Base class for all commands in the SIRIUS LOCAL AI 4.0 system.
+    Every command must implement the `execute()` method.
 
-    Novinky vo verzii 4.0:
-    - introspekcia 4.0 (parametre, typy, default hodnoty)
-    - metadata pre NL Router 4.0
-    - bezpečnostné capability flags
+    New in version 4.0:
+    - introspection 4.0 (parameters, types, default values)
+    - metadata for NL Router 4.0
+    - security capability flags
     - risk-aware execution hooks
-    - audit trail pre Runtime Core 4.0
-    - jednotný command lifecycle
+    - audit trail for Runtime Core 4.0
+    - unified command lifecycle
     """
 
     # ---------------------------------------------------------
@@ -39,7 +39,7 @@ class BaseCommand:
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
-        Metóda, ktorú musia potomkovia prepísať.
+        Method that must be overridden by subclasses.
         """
         raise NotImplementedError("Subclasses must implement execute().")
 
@@ -49,8 +49,8 @@ class BaseCommand:
     @classmethod
     def get_parameters(cls):
         """
-        Vráti zoznam parametrov __init__ metódy pre introspekciu.
-        Používa sa v HelpCommand, CLI a NL Router 4.0.
+        Returns a list of __init__ parameters for introspection.
+        Used in HelpCommand, CLI, and NL Router 4.0.
         """
         signature = inspect.signature(cls.__init__)
         params = []
@@ -72,8 +72,8 @@ class BaseCommand:
     # ---------------------------------------------------------
     def before_execute(self):
         """
-        Hook pred vykonaním príkazu.
-        Runtime Core 4.0 sem vloží:
+        Hook before command execution.
+        Runtime Core 4.0 will insert:
         - identity check
         - risk check
         - capability enforcement
@@ -83,8 +83,8 @@ class BaseCommand:
 
     def after_execute(self, result=None):
         """
-        Hook po vykonaní príkazu.
-        Runtime Core 4.0 sem vloží:
+        Hook after command execution.
+        Runtime Core 4.0 will insert:
         - audit trail
         - performance metrics
         - anomaly detection
@@ -101,8 +101,8 @@ class BaseCommand:
     # ---------------------------------------------------------
     def run(self, *args, **kwargs):
         """
-        Bezpečný wrapper okolo execute().
-        Runtime Core 4.0 bude volať iba run(), nie execute().
+        Safe wrapper around execute().
+        Runtime Core 4.0 will call only run(), not execute().
         """
         self.before_execute()
         result = self.execute(*args, **kwargs)
