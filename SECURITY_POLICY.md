@@ -1,13 +1,13 @@
-# 🔐 SECURITY POLICY – SIRIUS LOCAL AI (v2.0.0)
+# 🔐 SECURITY POLICY – SIRIUS LOCAL AI (v3.0.0)
 
-This document defines the security rules, expectations, and responsibilities for users and contributors of **SIRIUS LOCAL AI**.  
-The system interacts with Windows 11 APIs and must always operate in a safe, predictable, and controlled manner.
+This document defines the **security rules, guarantees, and responsibilities** for users and contributors of **SIRIUS LOCAL AI**.  
+Version **3.0.0** introduces identity‑based protection, Schoolwork Priority Mode, and the SECURITY FAMILY module.
 
 All processing is fully local; no data leaves the user’s PC.
 
 ---
 
-# 1. 🛡 Security Principles
+# 1. 🛡 Core Security Principles (v3.0.0)
 
 - **No operation may execute without explicit user confirmation.**  
 - **No module may bypass safety checks.**  
@@ -15,15 +15,21 @@ All processing is fully local; no data leaves the user’s PC.
 - **All filesystem operations must be validated and reversible when possible.**  
 - **No hidden automation or background tasks.**  
 - **No global mutable state.**  
-- **All privileged actions must go through WIN‑CAP 2.0.**  
+- **All privileged actions must go through WIN‑CAP 3.0.**  
 - **Plugins must follow strict capability boundaries.**  
-- **Safety‑critical modules (SECURITY FAMILY) must never be bypassed or weakened.**
+- **SECURITY FAMILY decisions must never be bypassed or overridden.**  
+- **Schoolwork must always be allowed (Schoolwork Priority Mode).**  
+- **Identity‑restricted actions must be enforced deterministically.**
 
 These principles ensure predictable, transparent, and safe behavior.
 
 ---
 
-# 2. 🔒 Filesystem Safety Rules (FS‑AGENT 2.0)
+# 2. 🔒 Filesystem Safety Rules (FS‑AGENT 3.0)
+
+FS‑AGENT is the **only module** allowed to perform filesystem operations.
+
+Rules:
 
 - destructive actions (delete, overwrite) require double confirmation  
 - protected directories must be blocked  
@@ -31,17 +37,18 @@ These principles ensure predictable, transparent, and safe behavior.
 - no recursive operations without explicit approval  
 - no automatic cleanup or background deletion  
 - rollback‑safe operations must be used whenever possible  
-
-FS‑AGENT is the only module allowed to perform filesystem operations.
+- SCHOOLWORK files must bypass restrictions safely  
+- identity‑restricted deletes must be enforced (OWNER‑only)
 
 ---
 
-# 3. 🪟 Windows System Interaction Rules (WIN‑CAP 2.0)
+# 3. 🪟 Windows System Interaction Rules (WIN‑CAP 3.0)
 
 All system‑level actions must:
 
 - go through WIN‑CAP  
 - validate permissions  
+- respect identity level (OWNER / FAMILY / STRANGER)  
 - avoid modifying system state without confirmation  
 - avoid interacting with system‑critical processes  
 - fail safely if access is denied  
@@ -53,10 +60,11 @@ WIN‑CAP must never:
 - modify registry keys  
 - alter system configuration  
 - perform privileged actions without explicit user approval  
+- allow OWNER‑level actions in FAMILY or STRANGER mode  
 
 ---
 
-# 4. 🔍 Input Validation (AITE 2.0)
+# 4. 🔍 Input Validation (AITE 3.0)
 
 All user inputs must be:
 
@@ -65,61 +73,33 @@ All user inputs must be:
 - classified by AITE  
 - rejected if ambiguous or unsafe  
 
-Unsupported input types must not be processed.
+AITE 3.0 responsibilities:
 
-AITE ensures deterministic routing and prevents unsafe operations.
-
----
-
-# 5. 🧪 Security Testing Requirements
-
-Every release must include:
-
-- filesystem safety tests  
-- workflow validation tests  
-- permission‑level tests  
-- WIN‑CAP capability tests  
-- plugin sandboxing tests  
-- error‑state and fallback tests  
-- **SECURITY FAMILY identity and time‑limit tests (v3.0.0)**  
-- **Schoolwork Priority Mode tests (v3.0.0)**  
-
-Security tests must be reproducible and manual.
+- detect schoolwork  
+- trigger Schoolwork Priority Mode  
+- enforce identity‑based routing  
+- block unsafe or unsupported inputs  
 
 ---
 
-# 6. 🧾 Reporting Security Issues
+# 5. 🧠 SECURITY FAMILY (Core Module – v3.0.0)
 
-If you discover a security vulnerability:
+The SECURITY FAMILY module provides **identity‑based safety**.
 
-- **Do NOT open a public Issue.**  
-- Contact the maintainer privately at:  
-  **richardpizem@gmail.com**
-
-Include:
-
-- description of the issue  
-- reproduction steps  
-- affected modules  
-- expected vs. actual behavior  
-
-You will receive a response within **72 hours**.
-
----
-
-# 7. 🛡 SECURITY FAMILY (v3.0.0)
-
-A future core module responsible for identity‑based safety and family protection.
+### Identity Levels:
+- **OWNER** — full access  
+- **FAMILY** — restricted mode  
+- **STRANGER** — safe‑mode  
 
 ### Responsibilities:
-- behavior‑based identity recognition (OWNER / FAMILY / STRANGER)  
-- offline learning of user behavior (no biometrics, no cloud)  
+- behavior‑based identity recognition  
+- offline learning (no biometrics, no cloud)  
 - restricted mode for children  
 - safe‑mode for unknown users  
 - protection of sensitive operations  
-- integration with NL Router, AITE, and WIN‑CAP  
+- integration with NL Router, AITE, FS‑AGENT, WIN‑CAP  
 - **time‑based limits for children**  
-- **Schoolwork Priority Mode — schoolwork always allowed**  
+- **Schoolwork Priority Mode (schoolwork always allowed)**  
 
 ### Security Guarantees:
 - identity classification must be deterministic  
@@ -131,12 +111,53 @@ A future core module responsible for identity‑based safety and family protecti
 
 ---
 
+# 6. 🎓 Schoolwork Priority Mode (v3.0.0)
+
+Schoolwork is **never blocked**.
+
+This mode:
+
+- bypasses time‑limits  
+- bypasses FAMILY restrictions  
+- bypasses STRANGER restrictions  
+- overrides identity rules  
+- ensures academic tasks always run  
+- cannot be disabled by plugins or workflows  
+
+Triggered by:
+
+- AITE 3.0  
+- SCHOOL_HELPER  
+- IMAGE_ANALYZER (homework detection)  
+- CONTEXT_ROUTER v3  
+
+---
+
+# 7. 🧪 Security Testing Requirements
+
+Every release must include:
+
+- filesystem safety tests  
+- workflow validation tests  
+- permission‑level tests  
+- WIN‑CAP capability tests  
+- plugin sandboxing tests  
+- error‑state and fallback tests  
+- **SECURITY FAMILY identity and time‑limit tests**  
+- **Schoolwork Priority Mode tests**  
+- **STRANGER‑mode restrictions**  
+- **OWNER‑only action validation**  
+
+Security tests must be reproducible and manual.
+
+---
+
 # 8. 🛠️ Self‑Repair & Health‑Check Layer (v4.0.0)
 
 A future security‑critical module designed to maintain long‑term system stability.
 
 ### Responsibilities:
-- integrity checks for core modules (runtime, context, commands, filesystem)  
+- integrity checks for core modules  
 - detection of corrupted states, missing files, invalid configs  
 - safe automatic repairs (cache reset, index rebuild, default config restore)  
 - patch suggestions for code‑level fixes (manual approval required)  
@@ -150,17 +171,22 @@ A future security‑critical module designed to maintain long‑term system stab
 - all repairs must be logged  
 - all high‑risk repairs require explicit user approval  
 
-This layer will be implemented in **version 4.0.0**, after the system reaches full stability.
-
 ---
 
 # 9. 📄 Supported Versions
 
 Only the **latest stable release** receives security updates.
 
+| Version | Status |
+|--------|--------|
+| **v3.0.0** | Supported |
+| v2.x.x | Critical fixes only |
+| v1.x.x | Unsupported |
+
 ---
 
 # 10. 📌 Document Status
 
-Current version: **2.0.0 (Stable)**  
-This policy will evolve as new modules and capabilities are introduced.
+Current version: **3.0.0 (Stable)**  
+This policy evolves with new modules and capabilities.
+
