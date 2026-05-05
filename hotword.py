@@ -4,10 +4,10 @@ from runtime.runtime_manager import RuntimeManager
 
 class SiriusHotword:
     """
-    HOTWORD režim pre SIRIUS-LOCAL-AI
-    - čaká na vyslovenie "sirius"
-    - po aktivácii počúva príkaz
-    - príkaz pošle do NL Routera
+    HOTWORD mode for SIRIUS-LOCAL-AI
+    - waits for the word "sirius"
+    - after activation listens for a command
+    - sends the command to the NL Router
     """
 
     def __init__(self):
@@ -20,66 +20,66 @@ class SiriusHotword:
         self.hotword = "sirius"
 
     # --------------------------------------------------------
-    # ROZPOZNÁVANIE HLASU
+    # SPEECH RECOGNITION
     # --------------------------------------------------------
     def listen(self):
         with self.microphone as source:
-            print("🎤 Počúvam hotword...")
+            print("🎤 Listening for hotword...")
             self.recognizer.adjust_for_ambient_noise(source)
             audio = self.recognizer.listen(source)
 
         try:
             text = self.recognizer.recognize_google(audio, language="sk-SK").lower()
-            print(f"➡ Rozpoznané: {text}")
+            print(f"➡ Recognized: {text}")
             return text
         except:
             return ""
 
     # --------------------------------------------------------
-    # POČÚVANIE PRÍKAZU PO HOTWORDE
+    # LISTEN FOR COMMAND AFTER HOTWORD
     # --------------------------------------------------------
     def listen_command(self):
         with self.microphone as source:
-            print("🎤 Počúvam príkaz...")
+            print("🎤 Listening for command...")
             self.recognizer.adjust_for_ambient_noise(source)
             audio = self.recognizer.listen(source)
 
         try:
             text = self.recognizer.recognize_google(audio, language="sk-SK")
-            print(f"➡ Príkaz: {text}")
+            print(f"➡ Command: {text}")
             return text
         except:
-            print("❗ Nerozumel som príkazu.")
+            print("❗ Could not understand the command.")
             return None
 
     # --------------------------------------------------------
-    # SPRACOVANIE PRÍKAZU
+    # PROCESS COMMAND
     # --------------------------------------------------------
     def process(self, text):
         if not text:
             return
 
         result = self.rm.handle_nl(text)
-        print("➡ Výsledok:", result)
+        print("➡ Result:", result)
 
     # --------------------------------------------------------
-    # HLAVNÁ SLUČKA
+    # MAIN LOOP
     # --------------------------------------------------------
     def run(self):
-        print("🟢 SIRIUS HOTWORD MODE – aktívne")
-        print("Povedz: 'Sirius'")
+        print("🟢 SIRIUS HOTWORD MODE – active")
+        print("Say: 'Sirius'")
 
         while True:
             text = self.listen()
 
             if self.hotword in text:
-                print("🟡 Hotword detegovaný → čakám na príkaz...")
+                print("🟡 Hotword detected → waiting for command...")
                 command = self.listen_command()
                 self.process(command)
 
 
 # ------------------------------------------------------------
-# SPÚŠŤACÍ BOD
+# ENTRY POINT
 # ------------------------------------------------------------
 if __name__ == "__main__":
     hw = SiriusHotword()
