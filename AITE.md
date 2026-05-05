@@ -1,24 +1,34 @@
-# Automatic Input Triage Engine (AITE)
+# Automatic Input Triage Engine (AITE) — v3.0.0 RELEASE
 
-AITE is a core module of **SIRIUS‑LOCAL‑AI v2.0.0** responsible for automatic detection, classification, and routing of user‑provided input.  
-It ensures that the system immediately understands what the user inserted, downloaded, or provided — without questions, confirmations, or manual selection.
+AITE is a core module of **SIRIUS‑LOCAL‑AI v3.0.0**, responsible for automatic detection, classification, and routing of all user‑provided input.  
+Version 3 introduces **Schoolwork Priority Mode**, deeper integration with **SECURITY FAMILY**, and expanded triage intelligence.
 
-AITE is fully integrated into the **Runtime 2.0 architecture**, cooperating with the Filesystem Agent, Context Memory Engine, and Workflow Engine.
+AITE ensures that the system immediately understands what the user inserted, downloaded, or provided — without questions, confirmations, or manual selection.
+
+AITE is fully integrated into the **Runtime 3.0 architecture**, cooperating with the Filesystem Agent, Context Memory Engine, Workflow Engine, and the new Family Security Layer.
 
 ---
 
-## ⚠️ MODULE STATUS — v2.0.0 (STABLE FOUNDATION)
+## 🚀 MODULE STATUS — v3.0.0 (MAJOR UPGRADE)
 
-AITE is now part of the stabilized module set in SIRIUS‑LOCAL‑AI v2.0.0.  
-Its architecture is complete, predictable, and ready for future extensions.
+AITE has been upgraded from the stable v2 foundation to a more intelligent and context‑aware triage engine.
 
+### What’s new in v3.0.0
+- **SchoolworkDetector** — detects academic content  
+- **Schoolwork Priority Mode** — bypasses FAMILY time limits  
+- **Academic safety rules** — homework is always allowed  
+- **Improved routing logic**  
+- **Extended file‑type recognition**  
+- **Better metadata generation**  
+- **Deeper Runtime 3.0 integration**  
+
+### Still guaranteed
 - Fully local processing  
+- Deterministic behavior  
+- No cloud dependencies  
 - Safe filesystem operations  
-- Deterministic routing  
-- Integrated with RuntimeManager 2.0  
-- No external services or cloud dependencies  
 
-AITE is stable, but additional capabilities (OCR, video detection, semantic classification) are planned for future versions.
+AITE v3 is production‑ready and designed for intelligent expansion in v4.
 
 ---
 
@@ -27,10 +37,10 @@ AITE is stable, but additional capabilities (OCR, video detection, semantic clas
 AITE automatically determines the type of input and routes it to the correct subsystem:
 
 - **text →** text storage  
-- **photo / image →** gallery (media storage)  
+- **photo / image →** gallery  
 - **application / installer →** applications section  
 - **documents →** document storage  
-- **schoolwork →** *priority academic mode (NEW – v3.0.0)*  
+- **schoolwork →** *Schoolwork Priority Mode (NEW – v3.0.0)*  
 
 This enables seamless automation and eliminates the need for user interaction during input handling.
 
@@ -46,28 +56,29 @@ AITE recognizes:
 - images: png, jpg, jpeg, webp, gif  
 - applications: exe, msi, zip, apk, dmg  
 - documents: pdf, docx, txt  
-- (future) audio, video, OCR‑based text extraction  
-- (future) **schoolwork classification** — math, essays, homework, assignments  
+- (new) **schoolwork** — math, essays, homework, assignments  
+- (future) audio, video, OCR‑based extraction  
 
 ### 2.2 Routing Logic
 
 Based on the detected type, AITE determines:
 
-- the correct storage location  
-- the metadata to generate  
-- the module responsible for further processing  
-- whether a workflow or automation rule should be triggered  
-- **whether the input qualifies as schoolwork and must bypass FAMILY time limits**  
+- correct storage location  
+- metadata to generate  
+- responsible module  
+- workflow triggers  
+- **whether the input qualifies as schoolwork**  
+- **whether FAMILY time limits must be bypassed**  
 
 ### 2.3 Integration with Other Modules
 
 AITE cooperates with:
 
-- **FS‑AGENT** — performs file operations  
-- **CME‑MEM** — stores context metadata  
-- **Workflow Engine 2.0** — triggers next‑step predictions  
-- **RuntimeManager 2.0** — orchestrates module communication  
-- **SECURITY FAMILY (v3.0.0)** — ensures schoolwork is always allowed even under FAMILY restrictions  
+- **FS‑AGENT** — file operations  
+- **CME‑MEM** — metadata storage  
+- **Workflow Engine 3.0** — next‑step predictions  
+- **RuntimeManager 3.0** — orchestration  
+- **SECURITY FAMILY 3.0** — schoolwork bypass rules  
 
 ---
 
@@ -75,40 +86,37 @@ AITE cooperates with:
 
 ### 3.1 Components
 
-- **InputClassifier** — detects the input type  
-- **InputRouter** — selects the correct destination  
-- **MetadataBuilder** — generates metadata for CME‑MEM  
-- **AITEController** — orchestrates the entire triage process  
-- **(v3.0.0) SchoolworkDetector** — identifies academic content and flags it as priority  
+- **InputClassifier** — detects input type  
+- **InputRouter** — selects destination  
+- **MetadataBuilder** — generates metadata  
+- **AITEController** — orchestrates triage  
+- **SchoolworkDetector (NEW)** — identifies academic content  
 
 ### 3.2 Processing Flow
 
 1. User inserts text / image / file  
-2. **InputClassifier** determines the type  
-3. **SchoolworkDetector** checks if the content is academic  
-4. **InputRouter** selects the target module  
-5. **FS‑AGENT** performs the move/save operation  
+2. **InputClassifier** determines type  
+3. **SchoolworkDetector** checks for academic content  
+4. **InputRouter** selects target module  
+5. **FS‑AGENT** performs move/save  
 6. **CME‑MEM** stores metadata  
-7. **Workflow Engine** may trigger next‑step automation  
-8. **SECURITY FAMILY** bypasses time limits if the input is schoolwork  
+7. **Workflow Engine** may trigger automation  
+8. **SECURITY FAMILY** bypasses time limits for schoolwork  
 
 ---
 
-## 4. Future Extensions (Planned for v2.x → v3.x)
+## 4. Future Extensions (v3.x → v4.x)
 
-- OCR for automatic text extraction from images  
-- Video detection and classification  
-- Document semantic categorization  
+- OCR for text extraction  
+- Video detection  
+- Semantic document classification  
 - Automatic media tagging  
-- AI‑assisted triage using contextual understanding  
-- **Schoolwork Priority Mode** (NEW)  
-  - academic detection  
-  - FAMILY time‑limit bypass  
-  - safe unrestricted access for homework  
+- AI‑assisted triage  
+- Deeper academic analysis (subject detection, difficulty level)  
 
 ---
 
-## 5. Module Status — v2.0.0
+## 5. Module Status — v3.0.0
 
-AITE is **stable**, fully integrated, and ready for production use in SIRIUS‑LOCAL‑AI v2.0.0.  
-Its architecture is complete and prepared for future intelligent extensions in version 3.0.0, including **schoolwork prioritization**.
+AITE is **fully upgraded**, stable, and production‑ready in SIRIUS‑LOCAL‑AI v3.0.0.  
+The architecture is complete and prepared for intelligent extensions in v4, including deeper semantic understanding and advanced automation.
