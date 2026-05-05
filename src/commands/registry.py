@@ -18,14 +18,14 @@ from commands.move_text_files import MoveTextFilesCommand
 class CommandRegistry:
     """
     Command Registry 4.0
-    Centrálna registrácia príkazov pre SIRIUS LOCAL AI 4.0.
+    Central registration of commands for SIRIUS LOCAL AI 4.0.
 
-    Novinky vo verzii 4.0:
-    - registruje command TRIEDY, nie inštancie
-    - podporuje introspekciu 4.0
-    - poskytuje metadata pre NL Router 4.0
-    - podporuje dynamickú inštanciáciu cez Runtime Core 4.0
-    - podporuje SECURITY FAMILY 4.0 (identity, risk, capabilities)
+    New in version 4.0:
+    - registers command CLASSES, not instances
+    - supports introspection 4.0
+    - provides metadata for NL Router 4.0
+    - supports dynamic instantiation via Runtime Core 4.0
+    - supports SECURITY FAMILY 4.0 (identity, risk, capabilities)
     """
 
     def __init__(self, context):
@@ -37,7 +37,7 @@ class CommandRegistry:
     # ---------------------------------------------------------
     def register(self, command_cls: type[BaseCommand]):
         """
-        Zaregistruje command TRIEDU podľa jej mena.
+        Registers a command CLASS by its name.
         """
         if not issubclass(command_cls, BaseCommand):
             raise TypeError(f"Command {command_cls} must inherit from BaseCommand.")
@@ -49,13 +49,13 @@ class CommandRegistry:
     # ---------------------------------------------------------
     def get(self, name: str) -> type[BaseCommand] | None:
         """
-        Vráti command TRIEDU podľa mena.
+        Returns a command CLASS by name.
         """
         return self._commands.get(name)
 
     def all(self) -> dict[str, type[BaseCommand]]:
         """
-        Vráti všetky registrované command triedy.
+        Returns all registered command classes.
         """
         return self._commands
 
@@ -64,8 +64,8 @@ class CommandRegistry:
     # ---------------------------------------------------------
     def create_instance(self, name: str, *args, **kwargs) -> BaseCommand | None:
         """
-        Vytvorí inštanciu commandu podľa mena.
-        Runtime Core 4.0 bude používať iba toto.
+        Creates an instance of a command by name.
+        Runtime Core 4.0 will use only this.
         """
         cmd_cls = self.get(name)
         if not cmd_cls:
@@ -79,17 +79,17 @@ class CommandRegistry:
 # ---------------------------------------------------------
 def create_default_registry(context) -> CommandRegistry:
     """
-    Vytvorí predvolený register so základnými príkazmi.
-    Registrujú sa TRIEDY, nie inštancie.
+    Creates the default registry with core commands.
+    Registers CLASSES, not instances.
     """
     registry = CommandRegistry(context)
 
-    # HelpCommand potrebuje registry, ale registrujeme TRIEDU
+    # HelpCommand needs registry, but we register the CLASS
     registry.register(HelpCommand)
     registry.register(RunCommand)
     registry.register(SystemInfoCommand)
 
-    # Kontextové príkazy
+    # Context commands
     registry.register(ContextInfoCommand)
     registry.register(ContextSetCommand)
     registry.register(ContextClearCommand)
@@ -98,7 +98,7 @@ def create_default_registry(context) -> CommandRegistry:
     registry.register(ContextDumpCommand)
     registry.register(TranslateCommand)
 
-    # AITE testovací príkaz
+    # AITE test command
     registry.register(TriageTestCommand)
 
     # MoveTextFilesCommand (FS-AGENT)
