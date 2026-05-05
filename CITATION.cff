@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "SIRIUS LOCAL AI"
-version: "2.0.0"
-date-released: 2026-05-01
+version: "3.0.0"
+date-released: 2026-05-05
 
 authors:
   - family-names: "Pizem"
@@ -14,25 +14,42 @@ repository-code: "https://github.com/SeeBus-Global/SIRIUS-LOCAL-AI-ALFA"
 keywords:
   - "local AI"
   - "offline assistant"
-  - "workflow automation"
+  - "modular AI runtime"
+  - "runtime 3.0 architecture"
+  - "plugin system 3.0"
+  - "workflow engine 3.0"
   - "secure local processing"
-  - "SIRIUS architecture"
-  - "plugin system"
-  - "runtime engine"
   - "Windows automation"
+  - "context-aware automation"
   - "family safety"
   - "behavior-based identity"
+  - "SECURITY FAMILY"
   - "schoolwork priority mode"
+  - "time-limits engine"
+  - "identity engine"
+  - "AITE 3.0"
+  - "intelligent triage"
+  - "household assistant modules"
+  - "self-repair diagnostics"
+  - "health-check engine"
 
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline AI runtime designed for secure,
   local-only execution of commands, workflows, plugins, and context-aware automation.
-  Version 2.0.0 introduces the complete Runtime 2.0 architecture, Plugin System 2.0,
-  Workflow Engine 2.0, AI Loop 2.0, GUI 2.0, and a fully stabilized module ecosystem.
-  All processing is performed locally on the user's machine with strict safety,
-  determinism, and full control over system operations.
+  Version 3.0.0 introduces the Intelligent Runtime architecture, including Runtime Core 3.0,
+  Plugin System 3.0, Workflow Engine 3.0, AI Loop 3.0, GUI 3.0, AITE 3.0, and expanded
+  household-oriented modules such as HOME_ASSISTANT, COOKING_ADVISOR, SCHOOL_HELPER,
+  DEVICE_DIAGNOSTICS, IMAGE_ANALYZER, and CONTEXT_ROUTER v3.
 
-  The architecture also prepares for version 3.0.0, which introduces the SECURITY FAMILY
-  module — a behavior-based identity and family safety layer with OWNER/FAMILY/STRANGER
-  profiles, time-based limits for children, and a Schoolwork Priority Mode ensuring that
-  academic tasks always bypass restrictions.
+  This version also introduces the SECURITY FAMILY module, a behavior-based identity
+  and family safety layer providing OWNER/FAMILY/STRANGER identity levels, time-limits
+  for children, safe-mode for unknown users, and a Schoolwork Priority Mode ensuring
+  unrestricted access to academic tasks.
+
+  The system operates entirely on the user's machine, without any cloud dependencies
+  or external data transmission. All modules follow strict security boundaries,
+  deterministic behavior, and predictable execution rules.
+
+  Future versions include the Self-Repair & Health-Check Layer (v4.0.0), which provides
+  integrity checks, safe automatic repairs, and diagnostic capabilities to maintain
+  long-term system stability.
