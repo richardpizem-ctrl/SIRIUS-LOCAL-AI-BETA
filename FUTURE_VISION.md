@@ -1,9 +1,9 @@
-# 🌟 Future Vision (v3.0.0 – v4.0.0)
+# 🌟 Future Vision – SIRIUS LOCAL AI (v3.0.0 → v4.0.0)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household AI assistant**, while staying safe, predictable, and fully local.
 
 This document describes:
-1. **What has already been delivered** (v1.0.0 → v2.0.0)  
+1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0)  
 2. **What is coming next** (v3.0.0 → v4.0.0)  
 3. **Long‑term direction**  
 
@@ -48,6 +48,24 @@ Delivered:
 - foundation for SECURITY FAMILY  
 
 **Purpose:** Create a fully modular, extensible, safe runtime.
+
+---
+
+# 🟦 3. Version 3.0.0 – Intelligent Runtime (Delivered)
+
+Version 3.0.0 transforms SIRIUS from a system automation engine into a **daily‑life offline assistant** with identity‑based safety and schoolwork‑aware intelligence.
+
+Delivered:
+- Runtime Core 3.0  
+- Plugin System 3.0  
+- Workflow Engine 3.0  
+- AI Loop 3.0  
+- GUI 3.0  
+- AITE 3.0 (schoolwork detection)  
+- WIN‑CAP 3.0  
+- SECURITY FAMILY (identity, time‑limits, schoolwork priority)  
+- new household modules  
+- new intelligent routing  
 
 ---
 
@@ -161,12 +179,15 @@ Becomes a **core runtime module** in v3.0.0.
 
 # 🩺 4. Self‑Repair & Health‑Check Layer (v4.0.0)
 
+Version 4.0.0 introduces the first generation of **safe, controlled self‑repair logic**.
+
 **Responsibilities:**
 - integrity checks  
 - detection of corrupted states  
 - safe automatic repairs  
 - patch suggestions  
 - system‑wide health reporting  
+- protection against uncontrolled source‑code modifications  
 
 **Purpose:** Ensure long‑term stability.
 
@@ -208,3 +229,4 @@ SIRIUS LOCAL AI aims to become the **first fully local, modular AI agent** capab
 All without cloud, telemetry, or external dependencies.
 
 A personal AI that works *with you*, safely and locally.
+
