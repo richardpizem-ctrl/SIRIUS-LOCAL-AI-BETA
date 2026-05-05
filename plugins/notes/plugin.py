@@ -3,8 +3,8 @@ import datetime
 
 class Plugin:
     """
-    Notes plugin pre SIRIUS-LOCAL-AI.
-    Umožňuje zapisovať, čítať, listovať a mazať poznámky.
+    Notes plugin for SIRIUS-LOCAL-AI.
+    Allows writing, reading, listing, and deleting notes.
     """
 
     def __init__(self, runtime_manager):
@@ -13,14 +13,14 @@ class Plugin:
         os.makedirs(self.storage, exist_ok=True)
 
     # --------------------------------------------------------
-    # NL PRÍKAZY
+    # NL COMMANDS
     # --------------------------------------------------------
     def nl_commands(self):
         return {
-            "zapíš poznámku": self.nl_write_note,
-            "zobraz poznámky": self.nl_list_notes,
-            "čítaj poznámku": self.nl_read_note,
-            "vymaž poznámku": self.nl_delete_note
+            "write note": self.nl_write_note,
+            "show notes": self.nl_list_notes,
+            "read note": self.nl_read_note,
+            "delete note": self.nl_delete_note
         }
 
     def nl_write_note(self, text):
@@ -28,30 +28,30 @@ class Plugin:
         filename = f"{self.storage}/note_{timestamp}.txt"
         with open(filename, "w", encoding="utf-8") as f:
             f.write(text)
-        return f"Poznámka uložená: {filename}"
+        return f"Note saved: {filename}"
 
     def nl_list_notes(self, text):
         files = os.listdir(self.storage)
         if not files:
-            return "Žiadne poznámky."
+            return "No notes."
         return "\n".join(files)
 
     def nl_read_note(self, text):
         filename = f"{self.storage}/{text.strip()}"
         if not os.path.exists(filename):
-            return "Poznámka neexistuje."
+            return "Note does not exist."
         with open(filename, "r", encoding="utf-8") as f:
             return f.read()
 
     def nl_delete_note(self, text):
         filename = f"{self.storage}/{text.strip()}"
         if not os.path.exists(filename):
-            return "Poznámka neexistuje."
+            return "Note does not exist."
         os.remove(filename)
-        return f"Poznámka vymazaná: {filename}"
+        return f"Note deleted: {filename}"
 
     # --------------------------------------------------------
-    # AI TASKY
+    # AI TASKS
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -89,22 +89,22 @@ class Plugin:
         return {"status": "OK", "deleted": name}
 
     # --------------------------------------------------------
-    # WORKFLOWY
+    # WORKFLOWS
     # --------------------------------------------------------
     def workflows(self):
         return [
             {
                 "name": "daily_note",
                 "steps": [
-                    {"action": "log", "message": "Zapisujem dennú poznámku..."},
-                    {"action": "task", "task": "write_note", "params": {"text": "Denný záznam."}},
-                    {"action": "return", "value": "Denná poznámka uložená."}
+                    {"action": "log", "message": "Writing daily note..."},
+                    {"action": "task", "task": "write_note", "params": {"text": "Daily entry."}},
+                    {"action": "return", "value": "Daily note saved."}
                 ]
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP PRAVIDLÁ
+    # AI LOOP RULES
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -118,19 +118,19 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI PRVKY
+    # GUI ELEMENTS
     # --------------------------------------------------------
     def gui_elements(self):
         return [
             {
                 "type": "button",
-                "label": "Zobraziť poznámky",
+                "label": "Show notes",
                 "action": "list_notes"
             },
             {
                 "type": "button",
-                "label": "Zapísať rýchlu poznámku",
+                "label": "Write quick note",
                 "action": "write_note",
-                "params": {"text": "Rýchla poznámka."}
+                "params": {"text": "Quick note."}
             }
         ]
