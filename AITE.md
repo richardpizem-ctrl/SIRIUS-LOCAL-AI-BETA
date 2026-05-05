@@ -17,6 +17,7 @@ AITE has been upgraded from the stable v2 foundation to a more intelligent and c
 - **SchoolworkDetector** — detects academic content  
 - **Schoolwork Priority Mode** — bypasses FAMILY time limits  
 - **Academic safety rules** — homework is always allowed  
+- **Integration with SECURITY FAMILY** — identity‑aware triage  
 - **Improved routing logic**  
 - **Extended file‑type recognition**  
 - **Better metadata generation**  
@@ -44,6 +45,8 @@ AITE automatically determines the type of input and routes it to the correct sub
 
 This enables seamless automation and eliminates the need for user interaction during input handling.
 
+AITE also cooperates with **SECURITY FAMILY** to ensure that schoolwork is always allowed, even when FAMILY time limits are active.
+
 ---
 
 ## 2. Module Functions
@@ -69,6 +72,7 @@ Based on the detected type, AITE determines:
 - workflow triggers  
 - **whether the input qualifies as schoolwork**  
 - **whether FAMILY time limits must be bypassed**  
+- **whether STRANGER mode must restrict access**  
 
 ### 2.3 Integration with Other Modules
 
@@ -78,7 +82,10 @@ AITE cooperates with:
 - **CME‑MEM** — metadata storage  
 - **Workflow Engine 3.0** — next‑step predictions  
 - **RuntimeManager 3.0** — orchestration  
-- **SECURITY FAMILY 3.0** — schoolwork bypass rules  
+- **SECURITY FAMILY 3.0** — identity‑based rules  
+  - OWNER: full access  
+  - FAMILY: time‑limits, but schoolwork bypass  
+  - STRANGER: restricted mode  
 
 ---
 
@@ -91,17 +98,23 @@ AITE cooperates with:
 - **MetadataBuilder** — generates metadata  
 - **AITEController** — orchestrates triage  
 - **SchoolworkDetector (NEW)** — identifies academic content  
+- **FamilyBypassHandler (NEW)** — communicates with SECURITY FAMILY  
 
 ### 3.2 Processing Flow
 
 1. User inserts text / image / file  
 2. **InputClassifier** determines type  
 3. **SchoolworkDetector** checks for academic content  
-4. **InputRouter** selects target module  
-5. **FS‑AGENT** performs move/save  
-6. **CME‑MEM** stores metadata  
-7. **Workflow Engine** may trigger automation  
-8. **SECURITY FAMILY** bypasses time limits for schoolwork  
+4. **SECURITY FAMILY** identity is evaluated  
+   - OWNER → full access  
+   - FAMILY → time‑limits may apply  
+   - STRANGER → restricted mode  
+5. If schoolwork → **bypass FAMILY time limits**  
+6. **InputRouter** selects target module  
+7. **FS‑AGENT** performs move/save  
+8. **CME‑MEM** stores metadata  
+9. **Workflow Engine** may trigger automation  
+10. **SECURITY FAMILY** logs behavior for identity learning  
 
 ---
 
@@ -113,10 +126,23 @@ AITE cooperates with:
 - Automatic media tagging  
 - AI‑assisted triage  
 - Deeper academic analysis (subject detection, difficulty level)  
+- Identity‑aware triage refinement  
+- STRANGER‑mode auto‑blocking for sensitive content  
 
 ---
 
 ## 5. Module Status — v3.0.0
 
 AITE is **fully upgraded**, stable, and production‑ready in SIRIUS‑LOCAL‑AI v3.0.0.  
-The architecture is complete and prepared for intelligent extensions in v4, including deeper semantic understanding and advanced automation.
+The architecture is complete and prepared for intelligent extensions in v4, including deeper semantic understanding, identity‑aware triage, and advanced automation.
+
+AITE is now a **core pillar** of the intelligent runtime, tightly integrated with:
+
+- Runtime Core 3.0  
+- SECURITY FAMILY  
+- SCHOOLWORK PRIORITY MODE  
+- Workflow Engine  
+- FS‑AGENT  
+- CME‑MEM  
+
+AITE ensures that **every input is understood, classified, routed, and handled safely — instantly and offline.**
