@@ -96,6 +96,7 @@ The workflow layer manages:
 ---
 
 ## 📁 Project Structure (v2.0.0)
+```
 src/
 ├── commands/
 ├── context/
@@ -109,7 +110,9 @@ src/
 ├── workflow/
 ├── plugins/
 ├── security_family/   ← NEW (planned for v3.0.0)
-└── sirius.py 
+└── sirius.py
+```
+
 Each directory has a clear responsibility and is described in **MODULE_MAP.md**.
 
 ---
