@@ -1,7 +1,7 @@
-# 🗺️ Roadmap – SIRIUS LOCAL AI (v2.0.0)
+# 🗺️ Roadmap – SIRIUS LOCAL AI (v3.0.0)
 
 This document defines the long‑term development plan, milestones, and evolution of the SIRIUS LOCAL AI system.  
-The project is now built on the stable Runtime 2.0 architecture and continues toward intelligent automation, family‑safe behavior, and self‑repair capabilities.
+The project is now built on the stable Runtime 3.0 architecture and continues toward intelligent automation, family‑safe behavior, and self‑repair capabilities.
 
 All processing is fully local; no data leaves the user's PC.
 
@@ -26,7 +26,7 @@ Delivered:
 
 ---
 
-# 2. Version 2.0.0 – Extended Architecture (Current)
+# 2. Version 2.0.0 – Extended Architecture (Completed)
 **Focus:** Runtime 2.0 + Plugin System 2.0
 
 Delivered:
@@ -47,17 +47,19 @@ Delivered:
 
 ---
 
-# 3. Version 3.0.0 – Intelligent Runtime
+# 3. Version 3.0.0 – Intelligent Runtime (Current Stable Release)
 **Focus:** Semantics, identity, household assistance, schoolwork, and advanced interaction
 
-Planned:
+Delivered:
+- Runtime Core 3.0  
 - AI‑assisted triage  
 - semantic workflows  
 - contextual automation  
 - advanced GUI/tray/voice integration  
 - expanded animation engine  
 - plugin‑driven visual components  
-- improved real‑time feedback  
+- SCHOOLWORK‑aware routing  
+- identity‑aware runtime behavior  
 
 ---
 
@@ -186,7 +188,7 @@ Planned capabilities:
 
 ---
 
-# 5. Long‑Term Vision
+# 5. Long‑Term Vision (v5.0.0+)
 - advanced plugin ecosystem  
 - voice command layer  
 - UI automation layer  
@@ -197,9 +199,10 @@ Planned capabilities:
 - **adaptive identity learning in SECURITY FAMILY**  
 - **expanded family‑safe automation**  
 - **full household assistance through v3 modules**  
+- autonomous household workflows  
 
 ---
 
 # Roadmap Status
-Current version: **2.0.0 (Stable)**  
+Current version: **3.0.0 (Stable)**  
 The system is fully modular and ready for future intelligent, household‑aware, and self‑repairing capabilities.
