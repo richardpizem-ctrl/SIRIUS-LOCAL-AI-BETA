@@ -10,10 +10,10 @@ import pathlib
 
 class SiriusTray:
     """
-    Windows Tray ikonka pre SIRIUS LOCAL AI – v2.0.0
-    - otvára GUI (cez python -m)
-    - reštartuje celý SIRIUS runtime
-    - vypína systém
+    Windows Tray icon for SIRIUS LOCAL AI – v2.0.0
+    - opens GUI (via python -m)
+    - restarts the entire SIRIUS runtime
+    - exits the system
     """
 
     def __init__(self):
@@ -25,11 +25,11 @@ class SiriusTray:
         )
 
     # --------------------------------------------------------
-    # IKONA
+    # ICON
     # --------------------------------------------------------
     def _create_icon(self):
         """
-        Jednoduchá čiernobiela ikonka (32x32).
+        Simple black and white icon (32x32).
         """
         img = Image.new("RGB", (32, 32), "black")
         d = ImageDraw.Draw(img)
@@ -47,27 +47,27 @@ class SiriusTray:
         )
 
     # --------------------------------------------------------
-    # AKCIE
+    # ACTIONS
     # --------------------------------------------------------
     def open_gui(self, icon, item):
         """
-        Spustí GUI cez python -m, aby fungovalo aj pri rôznych cestách.
+        Launches the GUI using python -m so it works with any path.
         """
         python = sys.executable
 
-        # GUI modul v root priečinku
+        # GUI module in root directory
         gui_path = pathlib.Path(__file__).parent / "gui.py"
 
         subprocess.Popen([python, str(gui_path)])
 
     def restart_sirius(self, icon, item):
         """
-        Reštartuje celý SIRIUS systém.
-        Použije python -m sirius, aby sa spustil hlavný orchestrátor.
+        Restarts the entire SIRIUS system.
+        Uses python -m sirius to start the main orchestrator.
         """
         python = sys.executable
 
-        # Hlavný orchestrátor sirius.py
+        # Main orchestrator sirius.py
         sirius_path = pathlib.Path(__file__).parent / "sirius.py"
 
         subprocess.Popen([python, str(sirius_path)])
@@ -75,28 +75,28 @@ class SiriusTray:
 
     def exit_app(self, icon, item):
         """
-        Ukončí tray ikonku.
+        Stops the tray icon.
         """
         icon.stop()
 
     # --------------------------------------------------------
-    # SPUSTENIE
+    # RUN
     # --------------------------------------------------------
     def run(self):
         """
-        Spustí tray ikonku v samostatnom vlákne.
+        Runs the tray icon in a separate thread.
         """
         threading.Thread(target=self.icon.run, daemon=True).start()
 
 
 # ------------------------------------------------------------
-# SPÚŠŤACÍ BOD
+# ENTRY POINT
 # ------------------------------------------------------------
 if __name__ == "__main__":
     tray = SiriusTray()
     tray.run()
 
-    # Tray beží na pozadí → hlavné vlákno musí zostať živé
+    # Tray runs in background → keep main thread alive
     try:
         while True:
             pass
