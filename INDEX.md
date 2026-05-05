@@ -2,7 +2,7 @@
 **A fully modular, offline AI runtime with a stable architecture, plugin ecosystem, and real‑time processing.**
 
 SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, and full offline autonomy**.  
-Version **2.0.0** introduces a complete Runtime 2.0 architecture, Plugin System 2.0, Workflow Engine 2.0, AI Loop 2.0, GUI 2.0, and a fully stabilized module ecosystem.
+Version **3.0.0** introduces the Intelligent Runtime, SECURITY FAMILY, Schoolwork Priority Mode, and expanded triage and workflow intelligence.
 
 The entire system runs **100% locally**, without external dependencies or cloud services.
 
@@ -21,25 +21,25 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 
 ## 🚀 Key Features
 
-### **Modular Architecture (v2.0.0)**
+### **Modular Architecture (v3.0.0)**
 Each module is isolated and follows strict boundaries:
 
 - `commands/` – NL routing and command logic  
 - `context/` – context memory engine  
 - `filesystem/` – safe file operations  
-- `runtime/` – Runtime Core 2.0  
-- `triage/` – AITE 2.0  
+- `runtime/` – Runtime Core 3.0  
+- `triage/` – AITE 3.0  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
-- `workflow/` – Workflow Engine 2.0  
-- `plugins/` – Plugin System 2.0  
-- `security_family/` – **NEW (planned for v3.0.0): behavior‑based identity, family safety, time‑limits, schoolwork priority**
+- `workflow/` – Workflow Engine 3.0  
+- `plugins/` – Plugin System 3.0  
+- `security_family/` – **NEW (v3.0.0): behavior‑based identity, family safety, time‑limits, schoolwork priority**
 
 The system is designed to be extended **without modifying the core**.
 
 ---
 
-### **Plugin System 2.0**
+### **Plugin System 3.0**
 Plugins can define:
 
 - NL commands  
@@ -48,11 +48,11 @@ Plugins can define:
 - AI loop rules  
 - GUI elements  
 
-All official plugins are fully prepared for v2.0.0.
+All official plugins are fully prepared for v3.0.0.
 
 ---
 
-### **Automatic Input Triage Engine (AITE 2.0)**
+### **Automatic Input Triage Engine (AITE 3.0)**
 AITE analyzes inputs, classifies them, and routes them to the correct modules.
 
 It ensures:
@@ -61,7 +61,8 @@ It ensures:
 - safe routing  
 - deterministic behavior  
 - zero conflicts between modules  
-- **(v3.0.0) Schoolwork Priority Mode — academic tasks always bypass FAMILY restrictions**
+- **Schoolwork Priority Mode — academic tasks always bypass FAMILY restrictions**  
+- **integration with SECURITY FAMILY identity rules**
 
 ---
 
@@ -75,16 +76,16 @@ The system includes a custom real‑time engine with:
 
 ---
 
-### **GUI Layer 2.0**
+### **GUI Layer 3.0**
 The UI is built on modular components:
 
 - `ui/` – UI logic  
 - `ui_components/` – graphical elements  
-- `ui_components/animations/` – animations (ready for v2.0.0 and v3.0.0)  
+- `ui_components/animations/` – animations (ready for v3.0.0)  
 
 ---
 
-### **Workflow Engine 2.0**
+### **Workflow Engine 3.0**
 The workflow layer manages:
 
 - multi‑step processes  
@@ -92,10 +93,11 @@ The workflow layer manages:
 - plugin workflows  
 - predictable state transitions  
 - UI feedback  
+- SCHOOLWORK workflow prioritization  
 
 ---
 
-## 📁 Project Structure (v2.0.0)
+## 📁 Project Structure (v3.0.0)
 ```
 src/
 ├── commands/
@@ -109,7 +111,7 @@ src/
 │    └── animations/
 ├── workflow/
 ├── plugins/
-├── security_family/   ← NEW (planned for v3.0.0)
+├── security_family/   ← NEW (v3.0.0)
 └── sirius.py
 ```
 
@@ -126,6 +128,8 @@ The project includes a complete testing plan:
 - UI tests  
 - workflow sequence tests  
 - plugin integration tests  
+- SECURITY FAMILY identity tests  
+- SCHOOLWORK PRIORITY MODE tests  
 
 Details are in **TESTING_GUIDE.md**.
 
@@ -146,25 +150,18 @@ More in **PERFORMANCE_GUIDE.md**.
 
 ## 🗓️ Release Plan
 
-### **v2.0.0 – Current Stable Release**
-- Runtime 2.0  
-- Plugin System 2.0  
-- Workflow Engine 2.0  
-- AI Loop 2.0  
-- GUI 2.0  
-- AITE 2.0  
-- WIN‑CAP 2.0  
-- Full plugin suite  
-- Complete documentation refresh  
-
-### **v3.0.0 – Intelligent Runtime**
-- AI‑assisted triage  
-- semantic workflows  
-- advanced GUI/tray/voice integration  
-- contextual automation  
+### **v3.0.0 – Intelligent Runtime (Current Stable Release)**
+- Runtime 3.0  
+- Plugin System 3.0  
+- Workflow Engine 3.0  
+- AI Loop 3.0  
+- GUI 3.0  
+- AITE 3.0  
+- WIN‑CAP 3.0  
 - **SECURITY FAMILY – behavior‑based identity & family safety layer**  
 - **time‑based limits for children**  
 - **Schoolwork Priority Mode (schoolwork always allowed)**  
+- expanded household modules (HOME_ASSISTANT, COOKING_ADVISOR, SCHOOL_HELPER, DEVICE_DIAGNOSTICS)
 
 ### **v4.0.0 – Self‑Repair & Health‑Check Layer**
 - integrity checks  
