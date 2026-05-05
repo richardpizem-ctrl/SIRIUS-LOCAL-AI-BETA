@@ -4,26 +4,26 @@ from .base_command import BaseCommand
 class TriageTestCommand(BaseCommand):
     """
     TriageTestCommand 4.0
-    Testovací príkaz pre AITE (Automatic Input Triage Engine).
+    Test command for AITE (Automatic Input Triage Engine).
 
-    Novinky vo verzii 4.0:
-    - integrácia s BaseCommand lifecycle
+    New in version 4.0:
+    - integration with BaseCommand lifecycle
     - SECURITY FAMILY enforcement
     - risk-aware execution
     - capability flags (filesystem read)
     - NL Router metadata
-    - štruktúrovaný výstup pre Workflow Engine 4.0
+    - structured output for Workflow Engine 4.0
     """
 
     # ---------------------------------------------------------
     # METADATA (v4.0)
     # ---------------------------------------------------------
     name = "triage-test"
-    description = "Otestuje AITE triage na zadanom súbore."
+    description = "Tests AITE triage on a given file."
     category = "diagnostics"
 
-    required_identity = "FAMILY"     # bezpečné pre všetkých
-    risk_level = 0.1                 # nízke riziko
+    required_identity = "FAMILY"     # safe for everyone
+    risk_level = 0.1                 # low risk
     capabilities = ["fs_read"]
 
     keywords = ["triage", "detect", "file type", "analyze"]
@@ -40,12 +40,12 @@ class TriageTestCommand(BaseCommand):
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
-        Otestuje AITE triage na zadanom súbore.
+        Tests AITE triage on a given file.
         """
         if not args:
             return {
                 "status": "error",
-                "message": "Použi: triage-test <cesta>"
+                "message": "Usage: triage-test <path>"
             }
 
         path = args[0]
@@ -55,7 +55,7 @@ class TriageTestCommand(BaseCommand):
         except Exception as e:
             return {
                 "status": "error",
-                "message": "Chyba AITE",
+                "message": "AITE error",
                 "exception": str(e)
             }
 
