@@ -1,7 +1,7 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (v2.0.0)
+# 🏗 Architecture – SIRIUS LOCAL AI (v3.0.0 RELEASE)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2.0.0-blue">
+  <img src="https://img.shields.io/badge/version-3.0.0-blue">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
   <img src="https://img.shields.io/badge/architecture-modular-lightgrey">
@@ -10,38 +10,41 @@
 
 SIRIUS LOCAL AI is a fully modular, local‑only AI runtime designed to safely interpret user commands and interact with the Windows 11 environment through isolated capability modules.
 
-Version **2.0.0** introduces a complete architectural stabilization, a new plugin ecosystem, and a unified Runtime 2.0 core.
+Version **3.0.0** introduces a major architectural expansion, new intelligent subsystems, SCHOOLWORK PRIORITY MODE, SECURITY FAMILY integration, and the first generation of household‑oriented modules.
 
-The architecture emphasizes **safety**, **predictability**, **modularity**, and **full local control**.
+The architecture emphasizes **safety**, **predictability**, **modularity**, **identity‑based access**, and **full local control**.
 
 ---
 
-# 🛡 Stability Notice (v2.0.0)
+# 🛡 Stability Notice (v3.0.0)
 
-SIRIUS LOCAL AI now operates on the **stable Runtime 2.0 architecture**.
+SIRIUS LOCAL AI now operates on the **stable Runtime 3.0 architecture**.
 
 - All modules are isolated and deterministic  
-- No background automation without explicit rules  
-- No network communication  
+- No cloud communication  
+- No background automation unless explicitly defined  
 - All processing is fully local  
 - All plugin interfaces are stable  
-- All core modules (runtime, context, filesystem, commands) are validated for v2.0.0  
+- All core modules (runtime, context, filesystem, commands, security) are validated for v3.0.0  
+- SCHOOLWORK PRIORITY MODE is fully integrated  
+- SECURITY FAMILY is now an active core module  
 
-This version is stable and production‑ready, with future expansions planned for v3.0.0 and v4.0.0.
+This version is production‑ready and forms the foundation for v4.0.0.
 
 ---
 
-# 🧩 Architectural Principles
+# 🧩 Architectural Principles (v3.0.0)
 
 - strict modular separation  
 - deterministic behavior  
+- identity‑based access control  
+- FAMILY‑safe operation  
+- SCHOOLWORK always allowed  
 - no hidden automation  
-- no background tasks unless defined by AI Loop rules  
 - no network communication  
 - predictable, reversible actions  
 - capability‑based access to Windows functions  
 - explicit user intent for all operations  
-- no implicit state sharing  
 - plugin‑driven extensibility  
 
 ---
@@ -56,9 +59,9 @@ This version is stable and production‑ready, with future expansions planned fo
 
 ---
 
-# 🧱 Core Layers (v2.0.0)
+# 🧱 Core Layers (v3.0.0)
 
-## 1. Runtime Core 2.0
+## 1. Runtime Core 3.0
 Central orchestrator responsible for:
 
 - module initialization  
@@ -69,12 +72,13 @@ Central orchestrator responsible for:
 - capability registration  
 - event routing  
 - maintaining global system stability  
+- integration with SECURITY FAMILY  
 
-Runtime Core 2.0 is the **heart of the system**.
+Runtime Core 3.0 is the **heart of the system**.
 
 ---
 
-## 2. Natural Language Router (NL Router 2.0)
+## 2. Natural Language Router (NL Router 3.0)
 Processes natural‑language commands.
 
 Responsibilities:
@@ -84,12 +88,13 @@ Responsibilities:
 - routing to modules  
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
+- integration with FAMILY identity rules  
 
-NL Router 2.0 ensures **clear intent and safe execution**.
+NL Router 3.0 ensures **clear intent and safe execution**.
 
 ---
 
-## 3. Filesystem Agent (FS‑AGENT 2.0)
+## 3. Filesystem Agent (FS‑AGENT 3.0)
 Safe filesystem operations.
 
 Responsibilities:
@@ -99,12 +104,13 @@ Responsibilities:
 - safety checks  
 - conflict detection  
 - rollback‑safe operations  
+- SCHOOLWORK priority routing  
 
-FS‑AGENT 2.0 performs only **safe, validated actions**.
+FS‑AGENT 3.0 performs only **safe, validated actions**.
 
 ---
 
-## 4. Context Memory Engine (CME‑MEM 2.0)
+## 4. Context Memory Engine (CME‑MEM 3.0)
 Maintains short‑term workflow context.
 
 Responsibilities:
@@ -113,12 +119,13 @@ Responsibilities:
 - tracking last actions  
 - providing contextual hints  
 - supporting multi‑step workflows  
+- SCHOOLWORK metadata tagging  
 
 CME‑MEM stores **only workflow‑related context**, never personal data.
 
 ---
 
-## 5. Workflow Engine 2.0
+## 5. Workflow Engine 3.0
 Controls multi‑step logic.
 
 Responsibilities:
@@ -128,12 +135,13 @@ Responsibilities:
 - validating transitions  
 - predictable behavior  
 - preventing invalid sequences  
+- SCHOOLWORK workflow prioritization  
 
-Workflow Engine 2.0 ensures **transparent, deterministic workflows**.
+Workflow Engine 3.0 ensures **transparent, deterministic workflows**.
 
 ---
 
-## 6. GUI Layer 2.0
+## 6. GUI Layer 3.0
 Plugin‑driven user interface.
 
 Responsibilities:
@@ -142,12 +150,13 @@ Responsibilities:
 - executing GUI actions  
 - integrating with RuntimeManager  
 - future expansion to tray/voice layers  
+- SCHOOLWORK visual indicators  
 
-GUI 2.0 is fully modular and extensible.
+GUI 3.0 is fully modular and extensible.
 
 ---
 
-## 7. Automatic Input Triage Engine (AITE 2.0)
+## 7. Automatic Input Triage Engine (AITE 3.0)
 Classifies incoming user inputs.
 
 Recognized types:
@@ -156,7 +165,7 @@ Recognized types:
 - images/photos  
 - installers/applications  
 - documents  
-- **(v3.0.0) schoolwork** — academic content with priority bypass
+- **schoolwork (NEW)** — academic content with priority bypass  
 
 Responsibilities:
 
@@ -164,13 +173,14 @@ Responsibilities:
 - routing  
 - metadata generation  
 - integration with FS‑AGENT and CME‑MEM  
-- **bypassing FAMILY time limits for schoolwork (NEW)**  
+- **bypassing FAMILY time limits for schoolwork**  
+- SCHOOLWORK PRIORITY MODE  
 
-AITE ensures the system always knows **what kind of input it is handling** and gives **schoolwork absolute priority**.
+AITE ensures the system always knows **what kind of input it is handling**.
 
 ---
 
-## 8. Windows System Capabilities Layer (WIN‑CAP 2.0)
+## 8. Windows System Capabilities Layer (WIN‑CAP 3.0)
 Abstracted access to Windows 11 system functions.
 
 Submodules:
@@ -185,7 +195,7 @@ WIN‑CAP provides **safe, high‑level system actions**.
 
 ---
 
-## 9. Plugin System 2.0
+## 9. Plugin System 3.0
 A fully modular plugin ecosystem.
 
 Features:
@@ -196,25 +206,26 @@ Features:
 - workflows  
 - AI loop rules  
 - GUI elements  
+- SCHOOLWORK‑aware plugins  
 
-All official plugins are **v2‑ready**.
+All official plugins are **v3‑ready**.
 
 ---
 
-# 🔐 Future Core Module – SECURITY FAMILY (planned for v3.0.0)
+# 🔐 SECURITY FAMILY (NEW in v3.0.0)
 
-Although not active in **v2.0.0**, the architecture already reserves space for a new core module:
+A new core module providing identity‑based safety and family‑oriented restrictions.
 
-## SECURITY FAMILY (Behavior‑Based Identity & Family Safety Layer)
+## SECURITY FAMILY – Behavior‑Based Identity & Family Safety Layer
 
 Purpose:
 - behavior‑based recognition of **OWNER**, **FAMILY**, and **STRANGER**  
 - offline identity learning (no biometrics, no cloud)  
 - safe‑mode for unknown users  
-- restricted mode for children (games, multimedia, safe operations only)  
-- protection of sensitive operations and system‑level commands  
-- **time‑based limits for children (NEW)**  
-- **schoolwork bypass mode (NEW)**  
+- restricted mode for children  
+- protection of sensitive operations  
+- **time‑based limits for children**  
+- **schoolwork bypass mode**  
 
 Submodules:
 
@@ -226,11 +237,11 @@ Submodules:
 - `time_limits.py`  
 - `profile_store.json`  
 
-This module becomes a **core security layer** in version **3.0.0**.
+SECURITY FAMILY is now a **core security layer** in version **3.0.0**.
 
 ---
 
-# 🌟 Future Architecture Extensions (v3.0.0 – v4.0.0)
+# 🌟 New v3.0.0 Modules
 
 These modules expand SIRIUS from a system automation runtime into a **full offline household assistant**, while staying safe, predictable, and local‑only.
 
@@ -346,5 +357,5 @@ All communication is **explicit and controlled**.
 
 # 📌 Document Status
 
-Current version: **2.0.0 (Stable)**  
-Architecture is fully defined and ready for future expansions in v3.0.0 and v4.0.0.
+Current version: **3.0.0 (Stable)**  
+Architecture is fully defined and ready for future expansions in v4.0.0.
