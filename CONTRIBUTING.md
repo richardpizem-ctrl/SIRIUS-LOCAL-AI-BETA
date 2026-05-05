@@ -1,8 +1,8 @@
-# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v2.0.0)
+# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v3.0.0)
 
 Thank you for your interest in contributing to **SIRIUS LOCAL AI**.  
 This document defines the rules, processes, and expectations for all contributors.  
-The goal is to maintain a **clean, safe, modular, and predictable** local AI system built on the stable Runtime 2.0 architecture.
+The goal is to maintain a **clean, safe, modular, and predictable** local AI system built on the stable Runtime 3.0 architecture.
 
 All processing is fully local.  
 No data leaves your PC.
@@ -21,8 +21,8 @@ No data leaves your PC.
 - **No global mutable state**  
 - **No circular imports**  
 - **Deterministic, reversible behavior whenever possible**  
-- **Plugin System 2.0 rules must be followed**  
-- **Safety‑critical modules (SECURITY FAMILY) must never be weakened or bypassed**  
+- **Plugin System 3.0 rules must be followed**  
+- **Safety‑critical modules (SECURITY FAMILY, SCHOOLWORK PRIORITY MODE) must never be weakened or bypassed**  
 
 ---
 
@@ -58,8 +58,9 @@ Key rules:
 - no monolithic modules  
 - no deep nesting — prefer early returns  
 - imports grouped: standard → third‑party → internal  
-- plugin code must follow Plugin API 2.0  
+- plugin code must follow Plugin API 3.0  
 - SECURITY FAMILY code must follow safety‑first design  
+- SCHOOLWORK PRIORITY MODE must remain intact and non‑bypassable  
 
 ---
 
@@ -78,17 +79,18 @@ Every change must include:
 
 If your change affects:
 
-- **FS‑AGENT** → test path validation, safety prompts  
-- **NL Router 2.0** → test ambiguity handling and routing  
-- **Workflow Engine 2.0** → test state transitions  
-- **AI Loop 2.0** → test interval rule execution  
-- **WIN‑CAP 2.0** → test safe fallback behavior  
-- **Plugin System 2.0** → test manifest, NL commands, tasks, workflows, GUI elements  
+- **FS‑AGENT 3.0** → test path validation, safety prompts  
+- **NL Router 3.0** → test ambiguity handling and routing  
+- **Workflow Engine 3.0** → test state transitions  
+- **AI Loop 3.0** → test interval rule execution  
+- **WIN‑CAP 3.0** → test safe fallback behavior  
+- **Plugin System 3.0** → test manifest, NL commands, tasks, workflows, GUI elements  
 - **SECURITY FAMILY (v3.0.0)** →  
   - identity classification (OWNER / FAMILY / STRANGER)  
   - time‑limit enforcement  
   - schoolwork bypass logic  
   - safe‑mode restrictions  
+  - STRANGER‑mode protections  
 
 ---
 
@@ -110,6 +112,7 @@ Restrictions:
 - PRs must not break determinism or safety guarantees  
 - plugin PRs must include updated manifest if needed  
 - PRs must not weaken SECURITY FAMILY protections  
+- PRs must not interfere with SCHOOLWORK PRIORITY MODE  
 
 ---
 
@@ -125,8 +128,9 @@ Restrictions:
 - unsafe filesystem or system operations  
 - code that relies on OS‑specific hacks  
 - contributions that reduce clarity or predictability  
-- plugins that violate Plugin API 2.0  
+- plugins that violate Plugin API 3.0  
 - attempts to disable FAMILY mode, time limits, or schoolwork priority  
+- attempts to weaken STRANGER‑mode protections  
 
 ---
 
@@ -154,8 +158,9 @@ All contributions must respect:
 - **MODULE_MAP.md**  
 - **STYLEGUIDE.md**  
 - **SECURITY.md**  
-- **Plugin API 2.0**  
+- **Plugin API 3.0**  
 - **SECURITY FAMILY design rules (v3.0.0)**  
+- **Schoolwork Priority Mode rules**  
 
 Breaking architectural boundaries requires prior approval.
 
@@ -174,7 +179,7 @@ Avoid vague messages like “update”, “fix stuff”, “changes”.
 
 ---
 
-# 10. 🧒 Family Safety Requirements (NEW – v3.0.0)
+# 10. 🧒 Family Safety Requirements (v3.0.0)
 
 Contributors must respect the integrity of the **SECURITY FAMILY** module:
 
@@ -183,6 +188,7 @@ Contributors must respect the integrity of the **SECURITY FAMILY** module:
 - time‑limits must not be bypassable  
 - **schoolwork must always be allowed**  
 - stranger‑mode must remain locked down  
+- OWNER‑level actions must remain protected  
 - no PR may weaken or circumvent these protections  
 
 Any PR affecting SECURITY FAMILY must include **explicit safety tests**.
@@ -197,5 +203,5 @@ All contributions are accepted only in accordance with the project’s **MIT Lic
 
 # 📌 Document Status
 
-Current version: **2.0.0 (Stable)**  
-This document will evolve as new modules and capabilities are introduced in v3.0.0 and v4.0.0.
+Current version: **3.0.0 (Stable)**  
+This document will evolve as new modules and capabilities are introduced in v4.0.0.
