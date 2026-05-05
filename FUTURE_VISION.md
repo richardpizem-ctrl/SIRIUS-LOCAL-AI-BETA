@@ -1,4 +1,4 @@
-# 🌟 Future Vision – SIRIUS LOCAL AI (v3.0.0 → v4.0.0)
+# 🌟 Future Vision (v3.0.0 – v4.0.0)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household AI assistant**, while staying safe, predictable, and fully local.
 
@@ -193,6 +193,119 @@ Version 4.0.0 introduces the first generation of **safe, controlled self‑repai
 
 ---
 
+# 🚀 4.1 Offline Expansion – Version 4.0.0 (New)
+
+Version 4.0.0 expands SIRIUS into a **deep offline intelligence system**, adding new reasoning, diagnostics, vision, and knowledge capabilities — all without cloud, telemetry, or external dependencies.
+
+---
+
+## 🧩 Knowledge Packs 2.0  
+Advanced offline knowledge modules.
+
+**New capabilities:**
+- local embeddings  
+- offline vector search  
+- knowledge graphs  
+- pack‑to‑pack linking  
+- reasoning over knowledge packs  
+
+---
+
+## 🖼 Vision Engine v2  
+Expanded offline image understanding.
+
+**New capabilities:**
+- OCR 2.0  
+- object detection  
+- scene understanding  
+- reading device error codes  
+- diagram and math recognition  
+
+---
+
+## 🔧 Device Diagnostics 2.0  
+Deeper offline troubleshooting.
+
+**New capabilities:**
+- troubleshooting trees  
+- symptom‑to‑cause mapping  
+- safety advisor  
+- repair difficulty estimation  
+- offline manuals pack  
+
+---
+
+## 🧭 Context Router v4  
+Predictive offline routing.
+
+**New capabilities:**
+- multi‑intent detection  
+- context memory graph  
+- task prediction  
+- workflow suggestion engine  
+- priority resolver  
+
+---
+
+## 🔐 SECURITY FAMILY v4  
+Expanded identity and safety logic.
+
+**New capabilities:**
+- behavior fingerprinting  
+- offline risk scoring  
+- anomaly detection  
+- restricted‑content filter  
+- child‑safety advisor  
+
+---
+
+## 🎓 Schoolwork Priority Mode 2.0  
+Smarter offline schoolwork support.
+
+**New capabilities:**
+- offline math solver  
+- step‑by‑step reasoning engine  
+- exam mode  
+- handwriting recognition  
+- textbook knowledge packs  
+
+---
+
+## 🧠 Offline Reasoning Engine  
+Symbolic and rule‑based reasoning without LLMs.
+
+**Capabilities:**
+- rule‑based logic  
+- symbolic reasoning  
+- chain‑of‑thought trees  
+- decision engine  
+
+---
+
+## 🩺 Self‑Repair Layer 2.0  
+Deeper, safer, more autonomous offline repair.
+
+**Capabilities:**
+- module integrity hashing  
+- auto‑rollback  
+- crash analyzer  
+- dependency validator  
+- repair suggestions  
+
+---
+
+## 🧱 Runtime Core 4.0  
+New foundation for all v4 modules.
+
+**Capabilities:**
+- module sandboxing  
+- offline performance optimizer  
+- modular scheduler  
+- dependency graph  
+- self‑repair hooks  
+
+---
+
 # 🚀 5. Long‑Term Vision (Beyond v4.0.0)
 
 SIRIUS LOCAL AI aims to become the **first fully local, modular AI agent** capable of assisting with:
@@ -229,4 +342,3 @@ SIRIUS LOCAL AI aims to become the **first fully local, modular AI agent** capab
 All without cloud, telemetry, or external dependencies.
 
 A personal AI that works *with you*, safely and locally.
-
