@@ -1,7 +1,7 @@
 <!--
 SEO META BLOCK – improves GitHub search visibility
-Keywords: local AI, offline AI, Windows automation, AI runtime, workflow automation, modular AI, secure AI, natural language automation, Windows 11 tools, local assistant, AI agent, filesystem automation, command interpreter, context engine, workflow engine, plugin system, runtime core, family safety, behavior-based identity, schoolwork priority
-Description: SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11. It executes natural‑language commands, manages workflows, automates filesystem operations, and interacts with the OS through a secure capability layer — all without cloud dependencies.
+Keywords: local AI, offline AI, Windows automation, AI runtime, workflow automation, modular AI, secure AI, natural language automation, Windows 11 tools, local assistant, AI agent, filesystem automation, command interpreter, context engine, workflow engine, plugin system, runtime core, family safety, behavior-based identity, schoolwork priority, parental controls, offline safety AI
+Description: SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11. It executes natural‑language commands, manages workflows, automates filesystem operations, and interacts with the OS through a secure capability layer — all without cloud dependencies. Includes SECURITY FAMILY: offline identity engine, time‑limits, restricted modes, and schoolwork priority.
 -->
 
 # 🚀 SIRIUS LOCAL AI  
@@ -44,6 +44,41 @@ The system is distributed as clean Python source code and is built as a long‑t
 
 SIRIUS LOCAL AI aims to become a new category of software:  
 a **local AI runtime** that safely controls a Windows PC through natural language.
+
+---
+
+# 🛡 SECURITY FAMILY — Offline Family Safety Engine (v3.0.0+)
+
+**SECURITY FAMILY** is a unique, fully offline safety system designed for households, shared computers, and controlled environments.  
+It introduces identity‑based protection, time‑limits, restricted modes, and schoolwork priority — all without cloud services or biometrics.
+
+### 🔐 Core Capabilities
+- **Behavior‑Based Identity Engine**  
+  Recognizes users by behavior patterns.  
+  Identity levels: **OWNER / FAMILY / STRANGER**.
+
+- **Time‑Limits for Children**  
+  Intelligent time‑based restrictions with automatic mode switching.
+
+- **Restricted Mode for Unknown Users**  
+  Unknown users cannot perform sensitive or destructive operations.
+
+- **Schoolwork Priority Mode**  
+  Schoolwork is *always allowed*, even when time limits are exceeded.  
+  Automatically triggered by AITE (Automatic Input Triage Engine).
+
+- **Safe‑Mode for Sensitive Operations**  
+  High‑risk commands require explicit OWNER approval.
+
+### 🎯 Why It Matters
+SECURITY FAMILY makes SIRIUS LOCAL AI the **first fully local AI runtime** that combines:
+
+- OS‑level automation  
+- modular AI architecture  
+- natural‑language control  
+- **family‑safe offline protection**
+
+No cloud AI system offers this combination.
 
 ---
 
@@ -228,22 +263,6 @@ A new core module introducing:
 - safe‑mode for sensitive operations  
 
 This module becomes a core part of the intelligent runtime in v3.0.0.
-
----
-
-# 🔌 Module Interconnections
-
-- **NL Router → FS‑AGENT:** determines file operations  
-- **NL Router → Plugins:** routes NL commands  
-- **CME‑MEM → Workflow Engine:** provides context  
-- **AITE → FS‑AGENT:** routes inputs based on type  
-- **AITE → CME‑MEM:** stores metadata  
-- **AITE → SECURITY FAMILY:** schoolwork detection → bypass time limits  
-- **WIN‑CAP → Runtime Core:** privileged capability layer  
-- **Runtime Core → all modules:** initialization and security  
-- **Plugins → Runtime Core:** register capabilities  
-
-All communication is explicit and controlled.
 
 ---
 
