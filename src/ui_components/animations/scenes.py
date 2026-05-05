@@ -1,53 +1,53 @@
 class BaseScene:
-    """Základná scéna – všetky animácie budú z tohto dedičné."""
+    """Base scene – all animations will inherit from this."""
     def __init__(self):
-        self.objects = []  # zoznam grafických objektov v scéne
+        self.objects = []  # list of graphical objects in the scene
         self.active = False
 
     def start(self):
-        """Spustenie scény."""
+        """Start the scene."""
         self.active = True
 
     def stop(self):
-        """Zastavenie scény."""
+        """Stop the scene."""
         self.active = False
 
     def update(self, delta_time: float):
-        """Aktualizácia scény – implementuje sa v potomkoch."""
+        """Scene update – implemented in subclasses."""
         pass
 
 
 class MoveScene(BaseScene):
-    """Animácia pre presun súborov (poštár)."""
+    """Animation for moving files (postman)."""
     def __init__(self):
         super().__init__()
 
     def update(self, delta_time: float):
-        pass  # sem pôjde logika pohybu postavičky
+        pass  # movement logic will go here
 
 
 class CopyScene(BaseScene):
-    """Animácia pre kopírovanie (kopírka)."""
+    """Animation for copying (copy machine)."""
     def __init__(self):
         super().__init__()
 
     def update(self, delta_time: float):
-        pass  # sem pôjde logika kopírovania
+        pass  # copy animation logic will go here
 
 
 class DeleteScene(BaseScene):
-    """Animácia pre mazanie (skartovačka)."""
+    """Animation for deleting (shredder)."""
     def __init__(self):
         super().__init__()
 
     def update(self, delta_time: float):
-        pass  # sem pôjde logika skartovania
+        pass  # shredding animation logic will go here
 
 
 class CreateFolderScene(BaseScene):
-    """Animácia pre vytvorenie priečinka."""
+    """Animation for creating a folder."""
     def __init__(self):
         super().__init__()
 
     def update(self, delta_time: float):
-        pass  # sem pôjde animácia vytvárania priečinka
+        pass  # folder creation animation logic will go here
