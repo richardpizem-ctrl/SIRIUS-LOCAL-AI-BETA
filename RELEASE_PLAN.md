@@ -1,7 +1,7 @@
-# 🗓️ RELEASE PLAN – SIRIUS LOCAL AI (v2.0.0)
+# 🗓️ RELEASE PLAN – SIRIUS LOCAL AI (v3.0.0)
 
 This document defines the official release roadmap for the project.  
-SIRIUS LOCAL AI is now built on the stable Runtime 2.0 architecture, with a clear long‑term evolution path.
+SIRIUS LOCAL AI is now built on the stable Runtime 3.0 architecture, with a clear long‑term evolution path.
 
 ---
 
@@ -22,8 +22,8 @@ Included:
 
 ---
 
-# Version 2.0.0 – Extended Architecture (Current)
-**Status:** Stable  
+# Version 2.0.0 – Extended Architecture
+**Status:** Completed  
 **Goal:** Full Runtime 2.0 architecture + Plugin System 2.0
 
 Included:
@@ -42,16 +42,21 @@ Included:
 
 ---
 
-# Version 3.0.0 – Intelligent Runtime & Family Safety Layer
-**Focus:**
+# Version 3.0.0 – Intelligent Runtime & Family Safety Layer (Current Stable Release)
+**Status:** Stable  
+**Goal:** Intelligent Runtime + SECURITY FAMILY + Schoolwork Priority Mode
+
+### Focus:
 - AI‑assisted triage  
 - semantic workflows  
 - advanced GUI/tray/voice integration  
 - contextual automation  
 - expanded animation engine  
 - visual plugin extensions  
+- SCHOOLWORK‑aware routing  
+- identity‑aware runtime behavior  
 
-**NEW Core Module: SECURITY FAMILY**
+### NEW Core Module: SECURITY FAMILY
 - behavior‑based identity (OWNER / FAMILY / STRANGER)  
 - offline identity learning  
 - safe‑mode for unknown users  
@@ -60,7 +65,7 @@ Included:
 - **Schoolwork Priority Mode (schoolwork always allowed)**  
 - integration with NL Router, AITE, and WIN‑CAP  
 
-**Submodules:**
+### Submodules:
 - `identity_engine.py`  
 - `behavior_audit.py`  
 - `access_control.py`  
@@ -70,12 +75,24 @@ Included:
 - `schoolwork_detector.py`  
 - `profile_store.json`  
 
-This version introduces the first generation of **intelligent, behavior‑based runtime safety**.
+### New v3.0.0 Intelligent Runtime Modules:
+- HOME_ASSISTANT  
+- COOKING_ADVISOR  
+- DEVICE_DIAGNOSTICS  
+- SCHOOL_HELPER  
+- IMAGE_ANALYZER  
+- CONTEXT_ROUTER v3  
+- KNOWLEDGE_PACKS  
+
+This version introduces the first generation of **intelligent, behavior‑based runtime safety** and **household‑oriented offline AI modules**.
 
 ---
 
 # Version 4.0.0 – Self‑Repair & Health‑Check Layer
-**Focus:**
+**Status:** Planned  
+**Goal:** Autonomous diagnostics and safe self‑repair
+
+### Focus:
 - integrity checks for core modules  
 - detection of corrupted states, missing files, invalid configs  
 - safe automatic repairs (cache reset, index rebuild, default config restore)  
@@ -83,7 +100,7 @@ This version introduces the first generation of **intelligent, behavior‑based 
 - strict protection against uncontrolled source‑code modifications  
 - system‑wide health reporting to Runtime Core  
 
-**Submodules:**
+### Submodules:
 - `health_check_engine.py` — diagnostics  
 - `self_repair_safe.py` — safe automatic repairs  
 - `repair_suggestions.py` — patch proposals (non‑executing)  
@@ -92,7 +109,7 @@ This version introduces the first generation of **safe, controlled self‑repair
 
 ---
 
-# Long‑Term Vision
+# Long‑Term Vision (v5.0.0+)
 - advanced plugin ecosystem  
 - voice command layer  
 - UI automation layer  
@@ -101,8 +118,10 @@ This version introduces the first generation of **safe, controlled self‑repair
 - intelligent runtime behaviors  
 - deeper FAMILY safety automation  
 - adaptive identity learning  
+- autonomous household workflows  
 
 ---
 
 # Document Status
-Current version: **2.0.0 (Stable)**
+Current version: **3.0.0 (Stable)**  
+Future modules for **v4.0.0** and **v5.0.0** are defined as part of the long‑term vision.
