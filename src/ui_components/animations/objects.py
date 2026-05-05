@@ -2,14 +2,14 @@ from dataclasses import dataclass
 
 @dataclass
 class DrawableObject:
-    """Základný grafický objekt – všetky tvary budú z tohto dedičné."""
+    """Base graphical object – all shapes will inherit from this."""
     x: float
     y: float
     color: tuple
     visible: bool = True
 
     def draw(self):
-        """Metóda na vykreslenie objektu – implementuje sa v potomkoch."""
+        """Draw method – implemented in subclasses."""
         pass
 
 
@@ -19,7 +19,7 @@ class Circle(DrawableObject):
         self.radius = radius
 
     def draw(self):
-        pass  # sem pôjde DearPyGUI draw_circle
+        pass  # DearPyGUI draw_circle will go here
 
 
 class Rectangle(DrawableObject):
@@ -29,7 +29,7 @@ class Rectangle(DrawableObject):
         self.height = height
 
     def draw(self):
-        pass  # sem pôjde DearPyGUI draw_rectangle
+        pass  # DearPyGUI draw_rectangle will go here
 
 
 class Line(DrawableObject):
@@ -39,4 +39,4 @@ class Line(DrawableObject):
         self.y2 = y2
 
     def draw(self):
-        pass  # sem pôjde DearPyGUI draw_line
+        pass  # DearPyGUI draw_line will go here
