@@ -1,7 +1,7 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v2.0.0)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v3.0.0)
 
 This project follows a professional and respectful standard of behavior.  
-The goal is to maintain a **safe, friendly, and productive environment** for all contributors.
+The goal is to maintain a **safe, friendly, and productive environment** for all contributors and all users of SIRIUS LOCAL AI, including households and children.
 
 ---
 
@@ -17,6 +17,7 @@ The goal is to maintain a **safe, friendly, and productive environment** for all
 - focus on collaboration, not competition  
 - maintain clarity, professionalism, and transparency  
 - support safe and responsible use of AI technologies  
+- respect safety‑critical modules such as **SECURITY FAMILY**, **time limits**, and **Schoolwork Priority Mode**  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -34,7 +35,8 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - acknowledging mistakes and correcting them  
 - asking questions when unsure  
 - contributing improvements in good faith  
-- respecting safety‑critical modules such as SECURITY FAMILY  
+- respecting FAMILY‑safe design and identity‑based protections  
+- ensuring that SCHOOLWORK‑related features remain unrestricted and safe  
 
 ---
 
@@ -49,7 +51,9 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - dismissing others’ work without explanation  
 - intentionally misleading or deceptive behavior  
 - exploiting project features for harmful purposes  
-- attempting to bypass safety systems (e.g., FAMILY mode, time limits)  
+- attempting to bypass safety systems (e.g., FAMILY mode, time limits, STRANGER restrictions)  
+- disabling or weakening SCHOOLWORK PRIORITY MODE  
+- modifying SECURITY FAMILY logic to remove protections  
 
 Such behavior harms the community and will not be tolerated.
 
@@ -66,7 +70,8 @@ Project maintainers have the right and responsibility to:
 - clarify expectations when misunderstandings occur  
 - protect contributors from harassment or abuse  
 - preserve the integrity and stability of the project  
-- ensure that safety modules (e.g., SECURITY FAMILY) remain uncompromised  
+- ensure that safety modules (e.g., SECURITY FAMILY, SCHOOLWORK PRIORITY MODE) remain uncompromised  
+- prevent contributions that weaken identity‑based protections  
 
 Maintainers act to protect the long‑term health of the project.
 
@@ -103,6 +108,7 @@ The severity depends on:
 - the nature of the violation  
 - whether it was intentional  
 - whether it is a repeated offense  
+- whether it involved attempts to bypass FAMILY or SCHOOLWORK protections  
 
 Maintainers will always act in good faith and with fairness.
 
@@ -117,11 +123,15 @@ This Code of Conduct applies to:
 - discussions and comments  
 - project‑related communication outside GitHub  
 - any interaction representing the project  
-- all modules including safety‑critical components (SECURITY FAMILY, time limits, schoolwork priority mode)  
+- all modules including safety‑critical components  
+  - **SECURITY FAMILY**  
+  - **time limits**  
+  - **Schoolwork Priority Mode**  
+  - **identity‑based access control**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (NEW – v3.0.0)
+# 8. 🧒 Family & Safety Considerations (v3.0.0)
 
 SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY** module designed to:
 
@@ -130,16 +140,20 @@ SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY** module designed to:
 - prevent misuse of AI features  
 - ensure safe interaction with system capabilities  
 - guarantee that **schoolwork is always allowed** regardless of restrictions  
+- maintain STRANGER‑mode protections for unknown users  
+- ensure OWNER‑level actions remain restricted to authorized individuals  
 
 Contributors must **not** attempt to weaken, bypass, or disable these protections.
+
+Any contribution that undermines FAMILY safety will be rejected.
 
 ---
 
 # 9. 📝 Acknowledgment
 
 By contributing to this project, you agree to follow this **Code of Conduct**  
-and help maintain a respectful, safe, and productive environment.
+and help maintain a respectful, safe, and productive environment for all users — including families and children.
 
 ---
 
-**Document Status:** v2.0.0 (Stable)
+**Document Status:** v3.0.0 (Stable)
