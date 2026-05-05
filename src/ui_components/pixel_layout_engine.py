@@ -6,15 +6,15 @@ from typing import List, Dict, Any
 
 class PixelLayoutEngine:
     """
-    PixelLayoutEngine prijíma layout bloky od UI komponentov
-    a vykresľuje ich do cieľového výstupu (terminál, canvas, GUI, atď.)
+    PixelLayoutEngine receives layout blocks from UI components
+    and renders them into the target output (terminal, canvas, GUI, etc.)
 
-    V tejto fáze (Phase 4) ide o stabilný skeleton:
-        - render_blocks() prijíma list blokov
-        - validate_block() kontroluje správnosť formátu
-        - render() vykonáva samotné vykreslenie (placeholder)
-        - clear() resetuje buffer
-        - get_last_frame() vracia posledný render
+    In this phase (Phase 4) it is a stable skeleton:
+        - render_blocks() accepts a list of blocks
+        - validate_block() checks block format correctness
+        - render() performs the actual rendering (placeholder)
+        - clear() resets the buffer
+        - get_last_frame() returns the last rendered frame
     """
 
     def __init__(self):
@@ -39,7 +39,7 @@ class PixelLayoutEngine:
 
     def validate_block(self, block: Dict[str, Any]) -> bool:
         """
-        Overí, či blok obsahuje minimálne:
+        Verify that a block contains at minimum:
             - type
             - x, y
         """
@@ -52,18 +52,18 @@ class PixelLayoutEngine:
 
     def render_blocks(self, blocks: List[Dict[str, Any]]):
         """
-        Hlavná metóda – prijíma layout bloky z UI komponentu.
-        V Phase 4 vykonáva len bezpečné logovanie a kontrolu.
+        Main method – receives layout blocks from a UI component.
+        In Phase 4 it performs only safe logging and validation.
         """
         if not isinstance(blocks, list):
-            raise ValueError("render_blocks() očakáva list blokov")
+            raise ValueError("render_blocks() expects a list of blocks")
 
         validated = []
         for block in blocks:
             if self.validate_block(block):
                 validated.append(block)
             else:
-                print(f"[PixelLayoutEngine] Ignorujem nevalidný blok: {block}")
+                print(f"[PixelLayoutEngine] Ignoring invalid block: {block}")
 
         self._last_frame = validated
         self.render(validated)
@@ -71,11 +71,11 @@ class PixelLayoutEngine:
     def render(self, blocks: List[Dict[str, Any]]):
         """
         Placeholder renderer.
-        V budúcnosti sa tu napojí:
-            - terminálový renderer
+        In the future this will connect to:
+            - terminal renderer
             - GUI renderer
             - canvas renderer
-            - animácie
+            - animations
         """
         print("\n[PixelLayoutEngine] Rendering layout:")
         for block in blocks:
