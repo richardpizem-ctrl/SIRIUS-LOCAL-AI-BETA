@@ -1,6 +1,6 @@
 """
 SIRIUS LOCAL AI – Main Entry Point
-Spúšťa CLI parser a vykonáva commandy.
+Starts the CLI parser and executes commands.
 """
 
 import sys
