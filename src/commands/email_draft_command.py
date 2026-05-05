@@ -35,9 +35,15 @@ class EmailDraftCommand(BaseCommand):
         subject = args[1]
         body = " ".join(args[2:])
 
+        # -----------------------------
+        # SNAPSHOT BEFORE CREATION
+        # -----------------------------
         if hasattr(self.context, "snapshot"):
             self.context.snapshot()
 
+        # -----------------------------
+        # CREATE DRAFT
+        # -----------------------------
         draft = self.email_manager.create_draft(
             to=to,
             subject=subject,
@@ -48,6 +54,9 @@ class EmailDraftCommand(BaseCommand):
         if isinstance(draft, dict) and draft.get("status") == "error":
             return draft
 
+        # -----------------------------
+        # LOG INTO CONTEXT STATE
+        # -----------------------------
         self.context.merge({
             "last_email_draft_id": draft["id"],
             "last_email_draft_to": draft["to"],
