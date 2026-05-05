@@ -7,12 +7,12 @@ from .animation_scenes import (
 
 
 class AnimationManager:
-    """Riadič animácií – prepína scény podľa typu operácie."""
+    """Animation controller – switches scenes based on operation type."""
 
     def __init__(self):
         self.current_scene = None
 
-        # Predpripravené scény
+        # Preloaded scenes
         self.scenes = {
             "move": MoveScene(),
             "copy": CopyScene(),
@@ -21,7 +21,7 @@ class AnimationManager:
         }
 
     def play(self, scene_name: str):
-        """Spustí požadovanú scénu podľa názvu."""
+        """Start the requested scene by name."""
         if self.current_scene:
             self.current_scene.stop()
 
@@ -31,6 +31,6 @@ class AnimationManager:
             self.current_scene.start()
 
     def update(self, delta_time: float):
-        """Aktualizuje aktívnu scénu."""
+        """Update the active scene."""
         if self.current_scene and self.current_scene.active:
             self.current_scene.update(delta_time)
