@@ -1,7 +1,7 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v2.0.0)
+# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v3.0.0)
 
 This document describes the performance model, optimization rules, and runtime guarantees of the system.  
-SIRIUS LOCAL AI is built on the stable **Runtime 2.0 architecture**, ensuring deterministic, predictable, and safe execution.
+SIRIUS LOCAL AI is built on the stable **Runtime 3.0 architecture**, ensuring deterministic, predictable, and safe execution.
 
 All processing is fully local; no data leaves the user's PC.
 
@@ -16,11 +16,14 @@ All processing is fully local; no data leaves the user's PC.
 - deterministic behavior across all modules  
 - minimal overhead in all operations  
 - plugin execution must follow strict performance rules  
-- **safety modules (SECURITY FAMILY) must not introduce latency or blocking behavior**  
+- SCHOOLWORK workflows must remain instant  
+- **SECURITY FAMILY must not introduce latency or blocking behavior**  
+- identity checks must be constant‑time  
+- stranger‑mode restrictions must be lightweight  
 
 ---
 
-# 2. Runtime Guarantees (Runtime 2.0)
+# 2. Runtime Guarantees (Runtime 3.0)
 
 - no race conditions  
 - no parallel writes  
@@ -29,12 +32,14 @@ All processing is fully local; no data leaves the user's PC.
 - no unpredictable system modifications  
 - event routing is O(1)  
 - plugin loading is cached and isolated  
-- AI Loop 2.0 uses safe interval scheduling  
-- **identity checks (v3.0.0) must remain constant‑time**  
+- AI Loop 3.0 uses safe interval scheduling  
+- SCHOOLWORK PRIORITY MODE must not delay routing  
+- **identity checks must remain constant‑time (O(1))**  
+- **time‑limit checks must be instant**  
 
 ---
 
-# 3. Filesystem Performance (FS‑AGENT 2.0)
+# 3. Filesystem Performance (FS‑AGENT 3.0)
 
 Rules:
 - validate paths before performing operations  
@@ -43,11 +48,13 @@ Rules:
 - avoid repeated directory enumeration  
 - ensure rollback‑safe operations  
 - minimize disk I/O during workflows  
+- SCHOOLWORK files must route instantly  
 - **SECURITY FAMILY must not slow down FS‑AGENT operations**  
+- identity‑restricted file operations must remain O(1)  
 
 ---
 
-# 4. WIN‑CAP Performance (WIN‑CAP 2.0)
+# 4. WIN‑CAP Performance (WIN‑CAP 3.0)
 
 - window operations must be atomic  
 - app detection must be cached  
@@ -55,11 +62,13 @@ Rules:
 - system context must be lightweight  
 - avoid repeated OS queries  
 - capability wrappers must remain fast and predictable  
-- **identity‑restricted operations (v3.0.0) must not add overhead**  
+- SCHOOLWORK‑related system actions must bypass restrictions instantly  
+- **identity‑restricted operations must not add overhead**  
+- STRANGER‑mode checks must be constant‑time  
 
 ---
 
-# 5. UI Performance (GUI 2.0)
+# 5. UI Performance (GUI 3.0)
 
 - no heavy rendering  
 - animations must be lightweight and optional  
@@ -67,11 +76,12 @@ Rules:
 - avoid unnecessary redraws  
 - UI components must remain modular and efficient  
 - plugin‑driven UI elements must not block the main loop  
+- SCHOOLWORK indicators must be instant  
 - **FAMILY mode warnings must be non‑blocking and instant**  
 
 ---
 
-# 6. Workflow Performance (Workflow Engine 2.0)
+# 6. Workflow Performance (Workflow Engine 3.0)
 
 - workflows must not recompute state  
 - context memory must be minimal  
@@ -79,11 +89,12 @@ Rules:
 - plugin workflows must follow deterministic rules  
 - no long‑running tasks inside workflows  
 - avoid deep recursion or nested transitions  
-- **schoolwork workflows (v3.0.0) must bypass restrictions without extra overhead**  
+- SCHOOLWORK workflows must bypass restrictions without overhead  
+- **identity‑restricted workflows must remain lightweight**  
 
 ---
 
-# 7. AI Loop Performance (AI Loop 2.0)
+# 7. AI Loop Performance (AI Loop 3.0)
 
 - interval tasks must be short  
 - no blocking operations  
@@ -91,7 +102,8 @@ Rules:
 - plugin heartbeat rules must be optimized  
 - deterministic scheduling  
 - safe error handling without retry loops  
-- **time‑limit checks (v3.0.0) must be constant‑time and lightweight**  
+- SCHOOLWORK tasks must not delay the loop  
+- **time‑limit checks must be constant‑time and lightweight**  
 
 ---
 
@@ -103,11 +115,12 @@ Rules:
 - no timestamps unless needed  
 - avoid logging inside tight loops  
 - plugin logs must follow the same rules  
+- SCHOOLWORK events must not log academic content  
 - **SECURITY FAMILY must not log identity data or behavior patterns**  
 
 ---
 
-# 9. Plugin System Performance (Plugin System 2.0)
+# 9. Plugin System Performance (Plugin System 3.0)
 
 - plugin loading is cached  
 - NL command detection is O(1)  
@@ -115,40 +128,45 @@ Rules:
 - GUI elements must not block runtime  
 - AI tasks must be optimized  
 - plugins must not introduce heavy operations  
+- SCHOOLWORK‑aware plugins must remain instant  
 - **plugins must not bypass or slow down SECURITY FAMILY checks**  
 
 ---
 
 # 10. SECURITY FAMILY Performance (v3.0.0)
 
-Although introduced in v3.0.0, performance rules are defined now:
+Performance rules for the new intelligent safety layer:
 
 ### Identity Engine
 - identity classification must be constant‑time  
 - no heavy behavioral analysis  
 - no background training loops  
 - no scanning of large datasets  
+- STRANGER detection must be instant  
 
 ### Time‑Limits Engine
 - time checks must be O(1)  
 - no timers running in tight loops  
 - no blocking UI alerts  
 - no repeated disk writes  
+- FAMILY mode transitions must be instant  
 
 ### Schoolwork Priority Mode
 - schoolwork detection must be lightweight  
 - no semantic analysis loops  
 - no deep inspection of documents  
 - bypass logic must be instant  
+- SCHOOLWORK workflows must never be delayed  
 
 ### Family Mode
 - restrictions must not slow down NL routing  
 - safe‑mode must not block runtime operations  
 - warnings must be non‑blocking  
+- OWNER‑level overrides must be instant  
 
 ---
 
 # Document Status
 
-Current version: **2.0.0 (Stable)**  
-Performance rules are fully defined and ready for future enhancements in v3.0.0 and v4.0.0.
+Current version: **3.0.0 (Stable)**  
+Performance rules are fully updated for the Intelligent Runtime and ready for future enhancements in v4.0.0.
