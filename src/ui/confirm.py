@@ -1,8 +1,8 @@
 class ConfirmDialog:
     """
     Mock UI Confirm Dialog
-    Dočasná verzia – vždy vráti True.
-    Neskôr sa nahradí reálnym UI oknom.
+    Temporary version – always returns True.
+    Will be replaced by a real UI window later.
     """
 
     def __init__(self, title: str, message: str):
@@ -11,6 +11,6 @@ class ConfirmDialog:
 
     def get_user_confirmation(self) -> bool:
         """
-        Dočasne automaticky potvrdí operáciu.
+        Temporarily auto-confirms the operation.
         """
         return True
