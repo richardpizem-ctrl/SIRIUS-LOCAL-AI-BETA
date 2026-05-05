@@ -4,10 +4,10 @@ from runtime.runtime_manager import RuntimeManager
 
 class SiriusCLI:
     """
-    Jednoduché CLI rozhranie pre SIRIUS-LOCAL-AI
-    - podporuje NL príkazy
-    - podporuje AI tasky
-    - slúži ako terminálový vstup pre runtime
+    Simple CLI interface for SIRIUS-LOCAL-AI
+    - supports NL commands
+    - supports AI tasks
+    - serves as terminal input for the runtime
     """
 
     def __init__(self):
@@ -15,7 +15,7 @@ class SiriusCLI:
         self.rm.initialize()
 
     # --------------------------------------------------------
-    # HLAVNÝ VSTUP
+    # MAIN ENTRY
     # --------------------------------------------------------
     def run(self, argv):
         if len(argv) < 2:
@@ -25,8 +25,8 @@ class SiriusCLI:
         command = argv[1].lower()
 
         # ----------------------------------------------------
-        # PRIRODZENÝ JAZYK
-        # sirius nl "daj vs code doprava"
+        # NATURAL LANGUAGE
+        # sirius nl "move vs code to the right"
         # ----------------------------------------------------
         if command == "nl":
             text = " ".join(argv[2:])
@@ -35,12 +35,12 @@ class SiriusCLI:
             return
 
         # ----------------------------------------------------
-        # PRIAME AI TASKY
+        # DIRECT AI TASKS
         # sirius task snap_right app="vs code"
         # ----------------------------------------------------
         if command == "task":
             if len(argv) < 3:
-                print("Chýba názov tasku.")
+                print("Missing task name.")
                 return
 
             goal = argv[2]
@@ -50,7 +50,7 @@ class SiriusCLI:
             return
 
         # ----------------------------------------------------
-        # SYSTÉMOVÝ KONTEXT
+        # SYSTEM CONTEXT
         # sirius context
         # ----------------------------------------------------
         if command == "context":
@@ -65,16 +65,16 @@ class SiriusCLI:
             self._print_help()
             return
 
-        print(f"Neznámy príkaz: {command}")
+        print(f"Unknown command: {command}")
         self._print_help()
 
     # --------------------------------------------------------
-    # POMOCNÉ FUNKCIE
+    # HELPERS
     # --------------------------------------------------------
 
     def _parse_args(self, items):
         """
-        Prevedie argumenty vo forme key=value na dict.
+        Convert key=value arguments into a dict.
         """
         args = {}
         for item in items:
@@ -85,7 +85,7 @@ class SiriusCLI:
 
     def _print_result(self, result):
         """
-        Jednotné formátovanie výstupu.
+        Unified output formatting.
         """
         print("--------------------------------------------------")
         for k, v in result.items():
@@ -94,27 +94,26 @@ class SiriusCLI:
 
     def _print_help(self):
         print("""
-SIRIUS CLI – dostupné príkazy:
+SIRIUS CLI – available commands:
 
-  sirius nl "<prirodzená veta>"
-      - spracuje prirodzený jazyk cez NL Router
-      - napr. sirius nl "daj vs code doprava"
+  sirius nl "<natural sentence>"
+      - processes natural language through the NL Router
+      - e.g. sirius nl "move vs code to the right"
 
   sirius task <goal> key=value key=value
-      - priame volanie autonómneho runtime agenta
-      - napr. sirius task move_file source=a.txt target=data/
+      - direct call to the autonomous runtime agent
+      - e.g. sirius task move_file source=a.txt target=data/
 
   sirius context
-      - vráti systémový kontext
+      - returns system context
 
   sirius help
-      - zobrazí túto nápovedu
+      - shows this help
 """)
 
 
-
 # ------------------------------------------------------------
-# SPÚŠŤACÍ BOD
+# ENTRY POINT
 # ------------------------------------------------------------
 
 if __name__ == "__main__":
