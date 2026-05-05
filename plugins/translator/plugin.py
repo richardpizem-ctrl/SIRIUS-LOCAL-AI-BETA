@@ -1,7 +1,7 @@
 class Plugin:
     """
-    Translator plugin pre SIRIUS-LOCAL-AI.
-    Umožňuje prekladať texty pomocou ContextManager.translate().
+    Translator plugin for SIRIUS-LOCAL-AI.
+    Allows translating text using ContextManager.translate().
     """
 
     def __init__(self, runtime_manager):
@@ -9,35 +9,35 @@ class Plugin:
         self.ctx = runtime_manager.context
 
     # --------------------------------------------------------
-    # NL PRÍKAZY
+    # NL COMMANDS
     # --------------------------------------------------------
     def nl_commands(self):
         return {
-            "preloz do": self.nl_translate,
-            "translate to": self.nl_translate
+            "translate to": self.nl_translate,
+            "preloz do": self.nl_translate
         }
 
     def nl_translate(self, text):
         """
-        Formát:
+        Format:
         preloz do en Ahoj svet
         translate to de Hello world
         """
         parts = text.split(" ", 1)
         if len(parts) < 2:
-            return "Použitie: preloz do <lang> <text>"
+            return "Usage: translate to <lang> <text>"
 
         lang = parts[0].strip()
         sentence = parts[1].strip()
 
         try:
             result = self.ctx.translate(sentence, lang)
-            return f"Preklad ({lang}): {result}"
+            return f"Translation ({lang}): {result}"
         except Exception as e:
-            return f"Chyba pri preklade: {e}"
+            return f"Translation error: {e}"
 
     # --------------------------------------------------------
-    # AI TASKY
+    # AI TASKS
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -59,22 +59,22 @@ class Plugin:
         }
 
     # --------------------------------------------------------
-    # WORKFLOWY
+    # WORKFLOWS
     # --------------------------------------------------------
     def workflows(self):
         return [
             {
                 "name": "auto_translate_log",
                 "steps": [
-                    {"action": "log", "message": "Automatický preklad textu..."},
+                    {"action": "log", "message": "Automatic text translation..."},
                     {"action": "task", "task": "translate_text", "params": {"text": "Hello world", "lang": "sk"}},
-                    {"action": "return", "value": "Workflow prekladu dokončený."}
+                    {"action": "return", "value": "Translation workflow completed."}
                 ]
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP PRAVIDLÁ
+    # AI LOOP RULES
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -88,19 +88,19 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI PRVKY
+    # GUI ELEMENTS
     # --------------------------------------------------------
     def gui_elements(self):
         return [
             {
                 "type": "button",
-                "label": "Prelož do EN",
+                "label": "Translate to EN",
                 "action": "translate_text",
                 "params": {"lang": "en", "text": "Ahoj svet"}
             },
             {
                 "type": "button",
-                "label": "Prelož do DE",
+                "label": "Translate to DE",
                 "action": "translate_text",
                 "params": {"lang": "de", "text": "Ahoj svet"}
             }
