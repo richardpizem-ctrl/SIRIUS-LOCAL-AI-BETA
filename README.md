@@ -1,3 +1,93 @@
+<!-- ========================================================= -->
+<!-- 🔍 ANTI‑CONFUSION BLOCK (Google/Bing Entity Protection) -->
+<!-- ========================================================= -->
+
+# ❗ IMPORTANT — NOT RELATED TO ANY HARDWARE, ROBOTICS, OR “SIRIUS” DEVICES
+
+SIRIUS LOCAL AI (ALFA/BETA/GAMA) **is not a hardware product** and has **no connection** to:
+
+- Hengbot “Sirius” robotic dog  
+- any robotics hardware  
+- any commercial “Sirius” branded devices  
+- any IoT or consumer gadgets  
+
+Some search engines (Google/Bing) may incorrectly merge unrelated products  
+because they share the word **“Sirius”**.
+
+To avoid confusion:
+
+**SIRIUS LOCAL AI is 100% independent software — a fully local AI runtime for Windows 11.  
+It has no price, no hardware, no physical device, and no relation to Hengbot or robotics.**
+
+This project is part of the **SIRIUS LOCAL AI ecosystem**, created and maintained  
+as a standalone offline AI runtime, not a consumer device.
+
+---
+
+<!-- ========================================================= -->
+<!-- 🔍 SEO META BLOCK (Improves Google/Bing/GitHub Search) -->
+<!-- ========================================================= -->
+
+**SEO‑META:**  
+SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11.  
+It executes natural‑language commands, manages workflows, automates filesystem operations,  
+and interacts with the OS through a secure capability layer — all offline.  
+Includes SECURITY FAMILY: identity engine, time‑limits, restricted modes, schoolwork priority.
+
+**SEO‑KEYWORDS:**  
+local AI, offline AI, Windows automation, AI runtime, workflow automation,  
+modular AI, secure AI, natural language automation, Windows 11 tools,  
+local assistant, AI agent, filesystem automation, command interpreter,  
+context engine, workflow engine, plugin system, runtime core,  
+family safety, behavior‑based identity, schoolwork priority, parental controls,  
+offline safety AI, SIRIUS LOCAL AI, ALFA, BETA, GAMA, Windows 11 AI
+
+---
+
+<!-- ========================================================= -->
+<!-- 🔍 CANONICAL IDENTITY (Prevents Entity Merging) -->
+<!-- ========================================================= -->
+
+**Canonical Identity Statement:**  
+SIRIUS LOCAL AI is a standalone, Windows‑only offline AI runtime.  
+It is not affiliated with any hardware manufacturers, robotics companies,  
+or commercial “Sirius” branded devices.  
+It exists solely as software and is distributed as open‑source code on GitHub.
+
+---
+
+<!-- ========================================================= -->
+<!-- ℹ️ ABOUT BLOCK (Google AI Overview Extracts This First) -->
+<!-- ========================================================= -->
+
+# ℹ️ About SIRIUS LOCAL AI
+
+SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for  
+safe, deterministic automation on a single PC.  
+It interprets natural‑language commands, manages workflows, loads plugins,  
+and interacts with Windows through a secure capability layer — all offline.
+
+Unlike cloud AI agents, SIRIUS LOCAL AI performs every operation locally,  
+ensuring privacy, predictability, and full user control.
+
+**Core characteristics:**
+- 100% offline, no telemetry  
+- modular architecture with replaceable components  
+- deterministic behavior and strict safety boundaries  
+- plugin ecosystem for extending capabilities  
+- workflow automation and NL routing  
+- Windows 11 integration through a secure capability layer  
+- upcoming intelligent features (identity, time‑limits, schoolwork priority) in v3.0.0  
+
+SIRIUS LOCAL AI defines a new category of software:  
+a **local AI runtime** that safely controls a Windows PC through natural language.
+
+---
+
+<!-- ========================================================= -->
+<!-- ORIGINAL README CONTENT BELOW (UNMODIFIED) -->
+<!-- ========================================================= -->
+
 <!--
 SEO META BLOCK – improves GitHub search visibility
 Keywords: local AI, offline AI, Windows automation, AI runtime, workflow automation, modular AI, secure AI, natural language automation, Windows 11 tools, local assistant, AI agent, filesystem automation, command interpreter, context engine, workflow engine, plugin system, runtime core, family safety, behavior-based identity, schoolwork priority, parental controls, offline safety AI
