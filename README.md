@@ -1,53 +1,30 @@
-<!-- ========================================================= -->
-<!-- 🔍 ANTI‑CONFUSION BLOCK (Google/Bing Entity Protection) -->
-<!-- ========================================================= -->
+Modular Local AI Runtime for Windows 11
+Fully offline, deterministic, modular AI runtime for workflows, filesystem automation, and safe command execution.
+⚠ ANTI‑CONFUSION BLOCK
+SIRIUS LOCAL AI (ALFA/BETA/GAMA) nie je hardvér, nemá nič spoločné s:
 
-# ❗ IMPORTANT — NOT RELATED TO ANY HARDWARE, ROBOTICS, OR “SIRIUS” DEVICES
+Hengbot “Sirius” robotickým psom
 
-SIRIUS LOCAL AI (ALFA/BETA/GAMA) **is not a hardware product** and has **no connection** to:
+žiadnym robotickým zariadením
 
-- Hengbot “Sirius” robotic dog  
-- any robotics hardware  
-- any commercial “Sirius” branded devices  
-- any IoT or consumer gadgets  
+žiadnym komerčným produktom „Sirius“
 
-Some search engines (Google/Bing) may incorrectly merge unrelated products  
-because they share the word **“Sirius”**.
+IoT zariadeniami alebo spotrebnou elektronikou
 
-To avoid confusion:
+Je to čisto softvér, lokálny AI runtime pre Windows 11.
 
-**SIRIUS LOCAL AI is 100% independent software — a fully local AI runtime for Windows 11.  
-It has no price, no hardware, no physical device, and no relation to Hengbot or robotics.**
+🔍 SEO META BLOCK
+SEO‑META:  
+SIRIUS LOCAL AI je plne lokálny, modulárny AI runtime pre Windows 11.
+Vykonáva prirodzený jazyk, spravuje workflowy, automatizuje súborový systém,
+a komunikuje s OS cez bezpečnostnú capability vrstvu — komplet offline.
 
-This project is part of the **SIRIUS LOCAL AI ecosystem**, created and maintained  
-as a standalone offline AI runtime, not a consumer device.
-
----
-
-<!-- ========================================================= -->
-<!-- 🔍 SEO META BLOCK (Improves Google/Bing/GitHub Search) -->
-<!-- ========================================================= -->
-
-**SEO‑META:**  
-SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11.  
-It executes natural‑language commands, manages workflows, automates filesystem operations,  
-and interacts with the OS through a secure capability layer — all offline.  
-Includes SECURITY FAMILY: identity engine, time‑limits, restricted modes, schoolwork priority.
-
-**SEO‑KEYWORDS:**  
-local AI, offline AI, Windows automation, AI runtime, workflow automation,  
-modular AI, secure AI, natural language automation, Windows 11 tools,  
-local assistant, AI agent, filesystem automation, command interpreter,  
-context engine, workflow engine, plugin system, runtime core,  
-family safety, behavior‑based identity, schoolwork priority, parental controls,  
-offline safety AI, SIRIUS LOCAL AI, ALFA, BETA, GAMA, Windows 11 AI
-
----
-
-<!-- ========================================================= -->
-<!-- 🔍 JSON‑LD STRUCTURED DATA (Google LOVES this) -->
-<!-- ========================================================= -->
-<script type="application/ld+json">
+SEO‑KEYWORDS:  
+local AI, offline AI, Windows automation, AI runtime, workflow engine,
+modular AI, secure AI, natural language automation, Windows 11 tools,
+local assistant, AI agent, filesystem automation, plugin system,
+identity engine, time‑limits, restricted mode, schoolwork priority,
+SIRIUS LOCAL AI, ALFA, BETA, GAMA <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -102,123 +79,166 @@ offline safety AI, SIRIUS LOCAL AI, ALFA, BETA, GAMA, Windows 11 AI
   ]
 }
 </script>
+🔍 CANONICAL IDENTITY
+SIRIUS LOCAL AI je samostatný offline AI runtime pre Windows 11.
+Nie je spojený s hardvérom, robotikou ani komerčnými produktmi.
 
----
+ℹ️ ABOUT SIRIUS LOCAL AI
+SIRIUS LOCAL AI je lokálny AI runtime pre Windows 11, navrhnutý pre:
 
-<!-- ========================================================= -->
-<!-- 🔍 CANONICAL IDENTITY (Prevents Entity Merging) -->
-<!-- ========================================================= -->
+bezpečné vykonávanie príkazov
 
-**Canonical Identity Statement:**  
-SIRIUS LOCAL AI is a standalone, Windows‑only offline AI runtime.  
-It is not affiliated with any hardware manufacturers, robotics companies,  
-or commercial “Sirius” branded devices.  
-It exists solely as software and is distributed as open‑source code on GitHub.
+workflow automatizáciu
 
----
+modulárne rozširovanie
 
-<!-- ========================================================= -->
-<!-- ℹ️ ABOUT BLOCK (Google AI Overview Extracts This First) -->
-<!-- ========================================================= -->
+deterministické správanie
 
-# ℹ️ About SIRIUS LOCAL AI
+100 % offline prevádzku
 
-SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for  
-safe, deterministic automation on a single PC.  
-It interprets natural‑language commands, manages workflows, loads plugins,  
-and interacts with Windows through a secure capability layer — all offline.
+🧩 CORE PHILOSOPHY
+Local‑only AI
 
-Unlike cloud AI agents, SIRIUS LOCAL AI performs every operation locally,  
-ensuring privacy, predictability, and full user control.
+Modular architecture
 
-**Core characteristics:**
-- 100% offline, no telemetry  
-- modular architecture with replaceable components  
-- deterministic behavior and strict safety boundaries  
-- plugin ecosystem for extending capabilities  
-- workflow automation and NL routing  
-- Windows 11 integration through a secure capability layer  
-- upcoming intelligent features (identity, time‑limits, schoolwork priority) in v3.0.0  
+Predictable behavior
 
-SIRIUS LOCAL AI defines a new category of software:  
-a **local AI runtime** that safely controls a Windows PC through natural language.
+Human‑controlled
 
----
+Extensible
 
-<!-- ========================================================= -->
-<!-- ORIGINAL README CONTENT BELOW (UNMODIFIED) -->
-<!-- ========================================================= -->
+Deterministic
 
-# 🚀 SIRIUS LOCAL AI  
-### Modular Local AI Runtime for Windows 11  
-### Modular local AI runtime for file management, workflows, and safe command execution on a single PC.
+Family‑safe
 
-<p align="center">
-  <img src="https://img.shields.io/badge/version-2.0.0-blue">
-  <img src="https://img.shields.io/badge/license-MIT-green">
-  <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
-  <img src="https://img.shields.io/badge/architecture-modular-lightgrey">
-  <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
-</p>
+🏗 ARCHITECTURE OVERVIEW (Runtime 2.0)
+1. Runtime Core
+Zodpovedá za:
 
-SIRIUS LOCAL AI is a fully modular, local‑only AI runtime designed to safely execute user commands on a single PC.  
-It understands natural language, interprets tasks, manages workflows, loads plugins, and interacts with Windows 11 through a secure capability layer.
+NL parsing
 
-This project focuses on **safety**, **predictability**, **modularity**, and **full local control**.
+command routing
 
-All processing is fully offline — no cloud, no telemetry, no external dependencies.
+workflow execution
 
----
+plugin orchestration
 
-# ℹ️ About SIRIUS LOCAL AI
+safety boundaries
 
-SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for developers, testers, and power‑users who need safe, deterministic automation on a single PC.  
-It provides a complete runtime architecture (Runtime 2.0) with a plugin system, workflow engine, natural‑language routing, Windows capability layer, and advanced safety modules — all running fully offline.
+2. Capability Layer (WIN‑CAP)
+Bezpečný interface medzi AI a Windows 11:
 
-Unlike cloud‑based AI agents, SIRIUS LOCAL AI executes every operation locally, ensuring privacy, predictability, and full user control.  
-The system is distributed as clean Python source code and is built as a long‑term, extensible platform for local AI automation.
+FS operácie
 
-**Key characteristics:**
-- 100% offline, no telemetry  
-- modular architecture with replaceable components  
-- deterministic behavior and strict safety boundaries  
-- plugin ecosystem for extending capabilities  
-- workflow automation and NL command routing  
-- Windows 11 integration through a secure capability layer  
-- upcoming intelligent features (identity, time‑limits, schoolwork priority) in v3.0.0  
+procesy
 
-SIRIUS LOCAL AI aims to become a new category of software:  
-a **local AI runtime** that safely controls a Windows PC through natural language.
+clipboard
 
----
+okná
 
-# 🛡 SECURITY FAMILY — Offline Family Safety Engine (v3.0.0+)
+systémové informácie
 
-**SECURITY FAMILY** is a unique, fully offline safety system designed for households, shared computers, and controlled environments.  
-It introduces identity‑based protection, time‑limits, restricted modes, and schoolwork priority — all without cloud services or biometrics.
+Nikdy nevykonáva nič bez explicitného potvrdenia.
 
-### 🔐 Core Capabilities
-- Behavior‑Based Identity Engine  
-- Time‑Limits for Children  
-- Restricted Mode for Unknown Users  
-- Schoolwork Priority Mode  
-- Safe‑Mode for Sensitive Operations  
+3. FS‑AGENT
+Modul pre prácu so súborovým systémom:
 
----
+čítanie, zápis, presun, mazanie
 
-# 🧩 Core Philosophy
+bezpečnostné limity
 
-- Local‑only AI  
-- Modular architecture  
-- Predictable behavior  
-- Human‑controlled  
-- Extensible  
-- Deterministic  
-- Family‑safe  
+sandboxované operácie
 
----
+ochrana pred destruktívnymi príkazmi
 
-# 🏗 Architecture Overview (v2.0.0)
+⚠ VAROVANIE:  
+FS‑AGENT nikdy nesmie vykonávať operácie mimo povolených ciest.
 
-(… celý zvyšok README ostáva nezmenený …)
+4. Workflow Engine
+Umožňuje:
 
+viacstupňové úlohy
+
+podmienky
+
+vetvenie
+
+plánovanie
+
+NL‑definované procesy
+
+5. Plugin System
+Každý plugin je:
+
+izolovaný
+
+bezpečný
+
+podpisovaný
+
+voliteľný
+
+🛡 SECURITY FAMILY (v3.0.0+)
+Identity Engine
+Rozpoznáva používateľa podľa správania.
+
+Time‑Limits
+Pre deti a obmedzené účty.
+
+Restricted Mode
+Pre neznámych používateľov.
+
+Schoolwork Priority
+Zablokuje hry a rozptýlenia počas učenia.
+
+🧠 UPCOMING FEATURES (v3.0.0)
+Behavior‑based identity
+
+Intelligent routing
+
+Context memory
+
+Safety automation
+
+Parental control engine
+
+🗺 ROADMAP
+v2.1.0 – stabilizácia modulov
+
+v2.2.0 – workflow templates
+
+v3.0.0 – SECURITY FAMILY
+
+v3.1.0 – advanced NL routing
+
+v4.0.0 – full modular rebuild
+
+📦 INSTALLATION
+Python 3.11+
+Windows 11
+Lokálne dependency, žiadny cloud.
+
+▶ USAGE
+python sirius.py  
+Potom prirodzený jazyk:
+
+„Nájdi všetky PDF v Dokumentoch“
+
+„Presuň tieto súbory do archívu“
+
+„Spusti workflow čistenia projektu“
+
+📝 LICENSE
+MIT License.
+
+🔧 CONTRIBUTING
+Pull requesty vítané.
+Moduly musia byť:
+
+izolované
+
+bezpečné
+
+deterministické
+
+🔚 END OF README
