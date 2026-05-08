@@ -3,7 +3,7 @@
 ### Fully offline, deterministic, modular AI runtime for workflows, filesystem automation, and safe command execution.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2.0.0-blue">
+  <img src="https://img.shields.io/badge/version-3.0.0-blue">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
   <img src="https://img.shields.io/badge/architecture-modular-lightgrey">
@@ -44,12 +44,12 @@ SIRIUS LOCAL AI, ALFA, BETA, GAMA
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "SIRIUS LOCAL AI BETA",
-  "alternateName": "SIRIUS-LOCAL-AI-BETA",
+  "name": "SIRIUS LOCAL AI",
+  "alternateName": "SIRIUS-LOCAL-AI",
   "applicationCategory": "AI Runtime, Windows Automation, Local AI System",
   "operatingSystem": "Windows 11",
-  "softwareVersion": "2.0.0",
-  "description": "SIRIUS LOCAL AI BETA is a fully local, modular AI runtime for Windows 11. It executes natural-language commands, automates workflows, manages filesystem operations, and interacts with the OS through a secure capability layer — all offline, with no cloud dependencies.",
+  "softwareVersion": "3.0.0",
+  "description": "SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11. It executes natural-language commands, automates workflows, manages filesystem operations, and interacts with the OS through a secure capability layer — all offline, with no cloud dependencies.",
   "creator": {
     "@type": "Person",
     "name": "Richard Pizem",
@@ -130,7 +130,7 @@ a **local AI runtime** that safely controls a Windows PC through natural languag
 
 ---
 
-# 🏗 ARCHITECTURE OVERVIEW (Runtime 2.0)
+# 🏗 ARCHITECTURE OVERVIEW (Runtime 3.0.0)
 
 ## **1. Runtime Core**
 Responsible for:
@@ -216,10 +216,9 @@ Blocks distractions during study time.
 ---
 
 # 🗺 ROADMAP
-- **v2.1.0** – module stabilization  
-- **v2.2.0** – workflow templates  
-- **v3.0.0** – SECURITY FAMILY  
+- **v3.0.0** – SECURITY FAMILY release  
 - **v3.1.0** – advanced NL routing  
+- **v3.2.0** – plugin sandbox extensions  
 - **v4.0.0** – full modular rebuild  
 
 ---
