@@ -114,8 +114,20 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 - deterministic behavior  
 - 100% offline operation  
 
-It defines a new category of software:  
-a **local AI runtime** that safely controls a Windows PC through natural language.
+Version **3.0.0** introduces:
+
+- Runtime Core 3.0  
+- NL Router 3.0  
+- FS‑AGENT 3.0  
+- CME‑MEM 3.0  
+- Workflow Engine 3.0  
+- GUI Layer 3.0  
+- AITE 3.0  
+- WIN‑CAP 3.0  
+- Plugin System 3.0  
+- SECURITY FAMILY (NEW)  
+- SCHOOLWORK PRIORITY MODE  
+- new household‑oriented modules  
 
 ---
 
@@ -127,91 +139,119 @@ a **local AI runtime** that safely controls a Windows PC through natural languag
 - Extensible  
 - Deterministic  
 - Family‑safe  
+- Identity‑based access  
+- No hidden automation  
+- No network communication  
 
 ---
 
 # 🏗 ARCHITECTURE OVERVIEW (Runtime 3.0.0)
 
-## **1. Runtime Core**
-Responsible for:
-
-- natural‑language parsing  
-- command routing  
-- workflow execution  
-- plugin orchestration  
-- safety boundaries  
-
----
-
-## **2. Capability Layer (WIN‑CAP)**
-Secure interface between AI and Windows 11:
-
-- filesystem operations  
-- processes  
-- clipboard  
-- windows  
-- system information  
-
-**Never performs destructive actions without explicit confirmation.**
+## **1. Runtime Core 3.0**
+- module initialization  
+- lifecycle management  
+- plugin loading  
+- workflow dispatch  
+- enforcing security boundaries  
+- capability registration  
+- event routing  
+- integration with SECURITY FAMILY  
 
 ---
 
-## **3. FS‑AGENT**
-Filesystem automation module:
-
-- read, write, move, delete  
-- safety limits  
-- sandboxed operations  
-- protection against destructive commands  
-
-⚠ **WARNING:**  
-FS‑AGENT must never operate outside allowed paths.
+## **2. Natural Language Router (NL Router 3.0)**
+- command classification  
+- plugin NL detection  
+- routing  
+- fallback interpretation  
+- preventing unsafe actions  
+- FAMILY identity integration  
 
 ---
 
-## **4. Workflow Engine**
-Supports:
-
-- multi‑step tasks  
-- conditions  
-- branching  
-- scheduling  
-- natural‑language defined processes  
-
----
-
-## **5. Plugin System**
-Each plugin is:
-
-- isolated  
-- safe  
-- signed  
-- optional  
+## **3. Filesystem Agent (FS‑AGENT 3.0)**
+- move, copy, delete  
+- path validation  
+- safety checks  
+- conflict detection  
+- rollback‑safe operations  
+- SCHOOLWORK priority routing  
 
 ---
 
-# 🛡 SECURITY FAMILY (v3.0.0+)
-
-### **Identity Engine**  
-Behavior‑based user recognition.
-
-### **Time‑Limits**  
-For children and restricted accounts.
-
-### **Restricted Mode**  
-For unknown or untrusted users.
-
-### **Schoolwork Priority**  
-Blocks distractions during study time.
+## **4. Context Memory Engine (CME‑MEM 3.0)**
+- recent paths  
+- last actions  
+- contextual hints  
+- multi‑step workflow support  
+- SCHOOLWORK metadata tagging  
 
 ---
 
-# 🧠 UPCOMING FEATURES (v3.0.0)
+## **5. Workflow Engine 3.0**
+- workflow state machine  
+- plugin workflow execution  
+- transition validation  
+- deterministic behavior  
+- SCHOOLWORK prioritization  
+
+---
+
+## **6. GUI Layer 3.0**
+- plugin‑driven UI  
+- GUI actions  
+- RuntimeManager integration  
+- SCHOOLWORK indicators  
+
+---
+
+## **7. Automatic Input Triage Engine (AITE 3.0)**
+- text / images / installers / documents  
+- schoolwork detection  
+- metadata generation  
+- routing  
+- SCHOOLWORK PRIORITY MODE  
+
+---
+
+## **8. Windows System Capabilities Layer (WIN‑CAP 3.0)**
+- file_ops  
+- app_ops  
+- window_ops  
+- audio_ops  
+- system_context  
+
+---
+
+## **9. Plugin System 3.0**
+- manifest‑based plugins  
+- NL commands  
+- workflows  
+- AI tasks  
+- GUI elements  
+- SCHOOLWORK‑aware plugins  
+
+---
+
+# 🛡 SECURITY FAMILY (v3.0.0)
 - behavior‑based identity  
-- intelligent routing  
-- context memory  
-- safety automation  
-- parental control engine  
+- OWNER / FAMILY / STRANGER profiles  
+- safe‑mode for unknown users  
+- restricted mode for children  
+- time‑limits  
+- schoolwork bypass  
+- sensitive‑operation protection  
+
+---
+
+# 🌟 NEW MODULES (v3.0.0)
+- HOME_ASSISTANT  
+- COOKING_ADVISOR  
+- DEVICE_DIAGNOSTICS  
+- SCHOOL_HELPER  
+- IMAGE_ANALYZER  
+- CONTEXT_ROUTER v3  
+- KNOWLEDGE_PACKS  
 
 ---
 
@@ -226,13 +266,11 @@ Blocks distractions during study time.
 # 📦 INSTALLATION
 - Python 3.11+  
 - Windows 11  
-- Local dependencies only, no cloud  
+- Local dependencies only  
 
 ---
 
 # ▶ USAGE
-Run:
-
 ```
 python sirius.py
 ```
@@ -251,7 +289,6 @@ MIT License.
 ---
 
 # 🔧 CONTRIBUTING  
-Pull requests welcome.  
 Modules must be:
 
 - isolated  
