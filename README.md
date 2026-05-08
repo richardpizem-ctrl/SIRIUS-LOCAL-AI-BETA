@@ -2,6 +2,14 @@
 ### Modular Local AI Runtime for Windows 11  
 ### Fully offline, deterministic, modular AI runtime for workflows, filesystem automation, and safe command execution.
 
+<p align="center">
+  <img src="https://img.shields.io/badge/version-2.0.0-blue">
+  <img src="https://img.shields.io/badge/license-MIT-green">
+  <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
+  <img src="https://img.shields.io/badge/architecture-modular-lightgrey">
+  <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
+</p>
+
 ---
 
 ## ⚠ ANTI‑CONFUSION BLOCK  
