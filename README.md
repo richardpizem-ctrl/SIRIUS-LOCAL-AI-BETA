@@ -1,30 +1,37 @@
-Modular Local AI Runtime for Windows 11
-Fully offline, deterministic, modular AI runtime for workflows, filesystem automation, and safe command execution.
-⚠ ANTI‑CONFUSION BLOCK
+# 🚀 Modular Local AI Runtime for Windows 11
+### Fully offline, deterministic, modular AI runtime for workflows, filesystem automation, and safe command execution.
+
+---
+
+## ⚠ ANTI‑CONFUSION BLOCK
 SIRIUS LOCAL AI (ALFA/BETA/GAMA) nie je hardvér, nemá nič spoločné s:
 
-Hengbot “Sirius” robotickým psom
+- Hengbot “Sirius” robotickým psom
+- žiadnym robotickým zariadením
+- žiadnym komerčným produktom „Sirius“
+- IoT zariadeniami alebo spotrebnou elektronikou
 
-žiadnym robotickým zariadením
+Je to **čisto softvér**, lokálny AI runtime pre Windows 11.
 
-žiadnym komerčným produktom „Sirius“
+---
 
-IoT zariadeniami alebo spotrebnou elektronikou
-
-Je to čisto softvér, lokálny AI runtime pre Windows 11.
-
-🔍 SEO META BLOCK
-SEO‑META:  
-SIRIUS LOCAL AI je plne lokálny, modulárny AI runtime pre Windows 11.
-Vykonáva prirodzený jazyk, spravuje workflowy, automatizuje súborový systém,
+## 🔍 SEO META BLOCK
+**SEO‑META:**  
+SIRIUS LOCAL AI je plne lokálny, modulárny AI runtime pre Windows 11.  
+Vykonáva prirodzený jazyk, spravuje workflowy, automatizuje súborový systém,  
 a komunikuje s OS cez bezpečnostnú capability vrstvu — komplet offline.
 
-SEO‑KEYWORDS:  
-local AI, offline AI, Windows automation, AI runtime, workflow engine,
-modular AI, secure AI, natural language automation, Windows 11 tools,
-local assistant, AI agent, filesystem automation, plugin system,
-identity engine, time‑limits, restricted mode, schoolwork priority,
-SIRIUS LOCAL AI, ALFA, BETA, GAMA <script type="application/ld+json">
+**SEO‑KEYWORDS:**  
+local AI, offline AI, Windows automation, AI runtime, workflow engine,  
+modular AI, secure AI, natural language automation, Windows 11 tools,  
+local assistant, AI agent, filesystem automation, plugin system,  
+identity engine, time‑limits, restricted mode, schoolwork priority,  
+SIRIUS LOCAL AI, ALFA, BETA, GAMA
+
+---
+
+## 🔍 JSON‑LD STRUCTURED DATA
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -79,166 +86,162 @@ SIRIUS LOCAL AI, ALFA, BETA, GAMA <script type="application/ld+json">
   ]
 }
 </script>
-🔍 CANONICAL IDENTITY
-SIRIUS LOCAL AI je samostatný offline AI runtime pre Windows 11.
+
+---
+
+## 🔍 CANONICAL IDENTITY
+SIRIUS LOCAL AI je samostatný offline AI runtime pre Windows 11.  
 Nie je spojený s hardvérom, robotikou ani komerčnými produktmi.
 
-ℹ️ ABOUT SIRIUS LOCAL AI
+---
+
+# ℹ️ ABOUT SIRIUS LOCAL AI
 SIRIUS LOCAL AI je lokálny AI runtime pre Windows 11, navrhnutý pre:
 
-bezpečné vykonávanie príkazov
+- bezpečné vykonávanie príkazov  
+- workflow automatizáciu  
+- modulárne rozširovanie  
+- deterministické správanie  
+- 100 % offline prevádzku  
 
-workflow automatizáciu
+---
 
-modulárne rozširovanie
+# 🧩 CORE PHILOSOPHY
+- Local‑only AI  
+- Modular architecture  
+- Predictable behavior  
+- Human‑controlled  
+- Extensible  
+- Deterministic  
+- Family‑safe  
 
-deterministické správanie
+---
 
-100 % offline prevádzku
+# 🏗 ARCHITECTURE OVERVIEW (Runtime 2.0)
 
-🧩 CORE PHILOSOPHY
-Local‑only AI
-
-Modular architecture
-
-Predictable behavior
-
-Human‑controlled
-
-Extensible
-
-Deterministic
-
-Family‑safe
-
-🏗 ARCHITECTURE OVERVIEW (Runtime 2.0)
-1. Runtime Core
+## **1. Runtime Core**
 Zodpovedá za:
 
-NL parsing
+- NL parsing  
+- command routing  
+- workflow execution  
+- plugin orchestration  
+- safety boundaries  
 
-command routing
+---
 
-workflow execution
-
-plugin orchestration
-
-safety boundaries
-
-2. Capability Layer (WIN‑CAP)
+## **2. Capability Layer (WIN‑CAP)**
 Bezpečný interface medzi AI a Windows 11:
 
-FS operácie
+- FS operácie  
+- procesy  
+- clipboard  
+- okná  
+- systémové informácie  
 
-procesy
+**Nikdy nevykonáva nič bez explicitného potvrdenia.**
 
-clipboard
+---
 
-okná
-
-systémové informácie
-
-Nikdy nevykonáva nič bez explicitného potvrdenia.
-
-3. FS‑AGENT
+## **3. FS‑AGENT**
 Modul pre prácu so súborovým systémom:
 
-čítanie, zápis, presun, mazanie
+- čítanie, zápis, presun, mazanie  
+- bezpečnostné limity  
+- sandboxované operácie  
+- ochrana pred destruktívnymi príkazmi  
 
-bezpečnostné limity
-
-sandboxované operácie
-
-ochrana pred destruktívnymi príkazmi
-
-⚠ VAROVANIE:  
+⚠ **VAROVANIE:**  
 FS‑AGENT nikdy nesmie vykonávať operácie mimo povolených ciest.
 
-4. Workflow Engine
+---
+
+## **4. Workflow Engine**
 Umožňuje:
 
-viacstupňové úlohy
+- viacstupňové úlohy  
+- podmienky  
+- vetvenie  
+- plánovanie  
+- NL‑definované procesy  
 
-podmienky
+---
 
-vetvenie
-
-plánovanie
-
-NL‑definované procesy
-
-5. Plugin System
+## **5. Plugin System**
 Každý plugin je:
 
-izolovaný
+- izolovaný  
+- bezpečný  
+- podpisovaný  
+- voliteľný  
 
-bezpečný
+---
 
-podpisovaný
+# 🛡 SECURITY FAMILY (v3.0.0+)
 
-voliteľný
-
-🛡 SECURITY FAMILY (v3.0.0+)
-Identity Engine
+### **Identity Engine**
 Rozpoznáva používateľa podľa správania.
 
-Time‑Limits
+### **Time‑Limits**
 Pre deti a obmedzené účty.
 
-Restricted Mode
+### **Restricted Mode**
 Pre neznámych používateľov.
 
-Schoolwork Priority
+### **Schoolwork Priority**
 Zablokuje hry a rozptýlenia počas učenia.
 
-🧠 UPCOMING FEATURES (v3.0.0)
-Behavior‑based identity
+---
 
-Intelligent routing
+# 🧠 UPCOMING FEATURES (v3.0.0)
+- Behavior‑based identity  
+- Intelligent routing  
+- Context memory  
+- Safety automation  
+- Parental control engine  
 
-Context memory
+---
 
-Safety automation
+# 🗺 ROADMAP
+- **v2.1.0** – stabilizácia modulov  
+- **v2.2.0** – workflow templates  
+- **v3.0.0** – SECURITY FAMILY  
+- **v3.1.0** – advanced NL routing  
+- **v4.0.0** – full modular rebuild  
 
-Parental control engine
+---
 
-🗺 ROADMAP
-v2.1.0 – stabilizácia modulov
+# 📦 INSTALLATION
+- Python 3.11+  
+- Windows 11  
+- Lokálne dependency, žiadny cloud  
 
-v2.2.0 – workflow templates
+---
 
-v3.0.0 – SECURITY FAMILY
+# ▶ USAGE
+`python sirius.py`  
 
-v3.1.0 – advanced NL routing
+Príklady:
 
-v4.0.0 – full modular rebuild
+- „Nájdi všetky PDF v Dokumentoch“  
+- „Presuň tieto súbory do archívu“  
+- „Spusti workflow čistenia projektu“  
 
-📦 INSTALLATION
-Python 3.11+
-Windows 11
-Lokálne dependency, žiadny cloud.
+---
 
-▶ USAGE
-python sirius.py  
-Potom prirodzený jazyk:
-
-„Nájdi všetky PDF v Dokumentoch“
-
-„Presuň tieto súbory do archívu“
-
-„Spusti workflow čistenia projektu“
-
-📝 LICENSE
+# 📝 LICENSE
 MIT License.
 
-🔧 CONTRIBUTING
-Pull requesty vítané.
+---
+
+# 🔧 CONTRIBUTING
+Pull requesty vítané.  
 Moduly musia byť:
 
-izolované
+- izolované  
+- bezpečné  
+- deterministické  
 
-bezpečné
+---
 
-deterministické
-
-🔚 END OF README
+# 🔚 END OF README
