@@ -1,186 +1,191 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (v3.0.0 RELEASE)
+# 🏗 Architecture – SIRIUS LOCAL AI (v4.0.0 RELEASE)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-3.0.0-blue">
+  <img src="https://img.shields.io/badge/version-4.0.0-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
-  <img src="https://img.shields.io/badge/architecture-modular-lightgrey">
+  <img src="https://img.shields.io/badge/runtime-Intelligent%204.0-orange">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI is a fully modular, local‑only AI runtime designed to safely interpret user commands and interact with the Windows 11 environment through isolated capability modules.
+SIRIUS LOCAL AI v4.0.0 is a fully modular, **offline‑only intelligent runtime** designed to safely interpret user commands, automate workflows, and interact with Windows 11 through isolated capability modules.
 
-Version **3.0.0** introduces a major architectural expansion, new intelligent subsystems, SCHOOLWORK PRIORITY MODE, SECURITY FAMILY integration, and the first generation of household‑oriented modules.
+Version **4.0.0** introduces a new generation of intelligent subsystems, including:
 
-The architecture emphasizes **safety**, **predictability**, **modularity**, **identity‑based access**, and **full local control**.
+- **Runtime Core 4.0**
+- **Reasoning Engine 4.0**
+- **AITE 4.0 (Semantic Triage)**
+- **Security Family 4.0 (Identity Engine 2.0)**
+- **Self‑Repair & Health‑Check Layer**
+- **Knowledge Packs 4.0**
+- **PC Automation Runtime 4.0**
+- **SIRIUS ENVOY 4.0 (Safe Online Retrieval)**
 
----
-
-# 🛡 Stability Notice (v3.0.0)
-
-SIRIUS LOCAL AI now operates on the **stable Runtime 3.0 architecture**.
-
-- All modules are isolated and deterministic  
-- No cloud communication  
-- No background automation unless explicitly defined  
-- All processing is fully local  
-- All plugin interfaces are stable  
-- All core modules (runtime, context, filesystem, commands, security) are validated for v3.0.0  
-- SCHOOLWORK PRIORITY MODE is fully integrated  
-- SECURITY FAMILY is now an active core module  
-
-This version is production‑ready and forms the foundation for v4.0.0.
+The architecture emphasizes **safety**, **predictability**, **semantic intelligence**, **identity‑based access**, and **full local control**.
 
 ---
 
-# 🧩 Architectural Principles (v3.0.0)
+# 🛡 Stability Notice (v4.0.0)
+
+SIRIUS LOCAL AI now operates on the **Intelligent Runtime 4.0 architecture**, which guarantees:
+
+- deterministic, isolated modules  
+- zero cloud communication  
+- no hidden background automation  
+- semantic reasoning and triage  
+- stable plugin interfaces  
+- SCHOOLWORK ENGINE 4.0 fully integrated  
+- SECURITY FAMILY 4.0 as a core identity layer  
+- self‑repair and integrity monitoring  
+
+This version is production‑ready and forms the foundation for v4.x and v5.
+
+---
+
+# 🧩 Architectural Principles (v4.0.0)
 
 - strict modular separation  
 - deterministic behavior  
-- identity‑based access control  
+- semantic understanding of inputs  
+- identity‑aware access control  
 - FAMILY‑safe operation  
 - SCHOOLWORK always allowed  
 - no hidden automation  
-- no network communication  
-- predictable, reversible actions  
+- no direct network communication  
+- reversible, predictable actions  
 - capability‑based access to Windows functions  
-- explicit user intent for all operations  
 - plugin‑driven extensibility  
+- self‑repair and health monitoring  
 
 ---
 
 # 🖼 Architecture Diagram (Placeholder)
 
-> A high‑level architecture diagram will be added in a future update.
-
 <p align="center">
-  <img src="docs/architecture_diagram_placeholder.png" width="600">
+  <img src="docs/architecture_diagram_v4_placeholder.png" width="600">
 </p>
 
 ---
 
-# 🧱 Core Layers (v3.0.0)
+# 🧱 Core Layers (v4.0.0)
 
-## 1. Runtime Core 3.0
+## 1. Runtime Core 4.0
 Central orchestrator responsible for:
 
 - module initialization  
 - lifecycle management  
 - plugin loading  
 - task and workflow dispatch  
-- enforcing security boundaries  
-- capability registration  
+- enforcing capability boundaries  
 - event routing  
-- maintaining global system stability  
-- integration with SECURITY FAMILY  
+- global system stability  
+- integration with SECURITY FAMILY 4.0  
+- integration with Self‑Repair Layer  
 
-Runtime Core 3.0 is the **heart of the system**.
+Runtime Core 4.0 is the **heart of the system**.
 
 ---
 
-## 2. Natural Language Router (NL Router 3.0)
-Processes natural‑language commands.
+## 2. Natural Language Router (NL Router 4.0)
+Processes natural‑language commands with semantic understanding.
 
 Responsibilities:
 
 - command classification  
 - plugin NL command detection  
-- routing to modules  
+- semantic routing  
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
-- integration with FAMILY identity rules  
+- identity‑aware filtering  
 
-NL Router 3.0 ensures **clear intent and safe execution**.
+Ensures **clear intent and safe execution**.
 
 ---
 
-## 3. Filesystem Agent (FS‑AGENT 3.0)
-Safe filesystem operations.
+## 3. Filesystem Agent (FS‑AGENT 4.0)
+Safe, deterministic filesystem operations.
 
 Responsibilities:
 
 - move, copy, delete  
 - path validation  
-- safety checks  
-- conflict detection  
 - rollback‑safe operations  
-- SCHOOLWORK priority routing  
-
-FS‑AGENT 3.0 performs only **safe, validated actions**.
+- semantic routing (documents, code, schoolwork)  
+- SCHOOLWORK ENGINE integration  
 
 ---
 
-## 4. Context Memory Engine (CME‑MEM 3.0)
-Maintains short‑term workflow context.
+## 4. Context Memory Engine (CME‑MEM 4.0)
+Semantic workflow context.
 
 Responsibilities:
 
 - storing recent paths  
 - tracking last actions  
-- providing contextual hints  
-- supporting multi‑step workflows  
+- semantic tags (subject, difficulty, intent)  
+- multi‑step workflow support  
 - SCHOOLWORK metadata tagging  
 
-CME‑MEM stores **only workflow‑related context**, never personal data.
+Stores **only workflow‑related context**, never personal data.
 
 ---
 
-## 5. Workflow Engine 3.0
-Controls multi‑step logic.
+## 5. Workflow Engine 4.0
+Controls multi‑step logic with semantic transitions.
 
 Responsibilities:
 
 - workflow state machine  
-- executing plugin workflows  
-- validating transitions  
-- predictable behavior  
-- preventing invalid sequences  
-- SCHOOLWORK workflow prioritization  
-
-Workflow Engine 3.0 ensures **transparent, deterministic workflows**.
+- plugin workflow execution  
+- academic workflows  
+- code workflows  
+- automation workflows  
+- transition validation  
+- deterministic behavior  
 
 ---
 
-## 6. GUI Layer 3.0
-Plugin‑driven user interface.
+## 6. GUI Layer 4.0
+Modular user interface.
 
 Responsibilities:
 
-- rendering plugin buttons  
+- rendering plugin UI  
 - executing GUI actions  
-- integrating with RuntimeManager  
-- future expansion to tray/voice layers  
-- SCHOOLWORK visual indicators  
-
-GUI 3.0 is fully modular and extensible.
+- identity indicators  
+- SCHOOLWORK indicators  
+- future tray/voice expansion  
 
 ---
 
-## 7. Automatic Input Triage Engine (AITE 3.0)
-Classifies incoming user inputs.
+## 7. Automatic Input Triage Engine (AITE 4.0)
+Semantic triage engine.
 
 Recognized types:
 
 - text  
-- images/photos  
-- installers/applications  
+- images/photos/screenshots  
 - documents  
-- **schoolwork (NEW)** — academic content with priority bypass  
+- code  
+- installers  
+- **schoolwork (deep detection)**  
+- mixed content  
+- OCR‑extracted content  
 
 Responsibilities:
 
-- type detection  
+- type detection + semantic analysis  
 - routing  
 - metadata generation  
-- integration with FS‑AGENT and CME‑MEM  
-- **bypassing FAMILY time limits for schoolwork**  
-- SCHOOLWORK PRIORITY MODE  
-
-AITE ensures the system always knows **what kind of input it is handling**.
+- integration with FS‑AGENT, CME‑MEM  
+- **schoolwork bypass**  
+- integration with Reasoning Engine 4.0  
+- integration with Knowledge Packs 4.0  
+- integration with ENVOY 4.0  
 
 ---
 
-## 8. Windows System Capabilities Layer (WIN‑CAP 3.0)
+## 8. Windows System Capabilities Layer (WIN‑CAP 4.0)
 Abstracted access to Windows 11 system functions.
 
 Submodules:
@@ -190,166 +195,142 @@ Submodules:
 - `window_ops`  
 - `audio_ops`  
 - `system_context`  
+- `automation_ops`  
 
-WIN‑CAP provides **safe, high‑level system actions**.
+Provides **safe, high‑level system actions**.
 
 ---
 
-## 9. Plugin System 3.0
+## 9. Plugin System 4.0
 A fully modular plugin ecosystem.
 
 Features:
 
-- manifest‑based plugin definitions  
+- semantic plugin manifests  
 - NL commands  
 - AI tasks  
 - workflows  
-- AI loop rules  
 - GUI elements  
 - SCHOOLWORK‑aware plugins  
+- Reasoning Engine hooks  
 
-All official plugins are **v3‑ready**.
+All official plugins are **v4‑ready**.
 
 ---
 
-# 🔐 SECURITY FAMILY (NEW in v3.0.0)
-
-A new core module providing identity‑based safety and family‑oriented restrictions.
-
-## SECURITY FAMILY – Behavior‑Based Identity & Family Safety Layer
+# 🔐 SECURITY FAMILY 4.0 (Identity Engine 2.0)
 
 Purpose:
-- behavior‑based recognition of **OWNER**, **FAMILY**, and **STRANGER**  
-- offline identity learning (no biometrics, no cloud)  
+- behavior‑based recognition of **OWNER**, **FAMILY**, **STRANGER**  
+- offline identity learning  
 - safe‑mode for unknown users  
 - restricted mode for children  
 - protection of sensitive operations  
-- **time‑based limits for children**  
-- **schoolwork bypass mode**  
+- **time‑limits 2.0**  
+- **schoolwork bypass**  
 
 Submodules:
 
-- `identity_engine.py`  
-- `behavior_audit.py`  
-- `access_control.py`  
-- `family_mode.py`  
-- `stranger_mode.py`  
-- `time_limits.py`  
-- `profile_store.json`  
-
-SECURITY FAMILY is now a **core security layer** in version **3.0.0**.
+- `identity_engine_v2.py`  
+- `behavior_audit_v2.py`  
+- `access_control_v2.py`  
+- `family_mode_v2.py`  
+- `stranger_mode_v2.py`  
+- `time_limits_v2.py`  
+- `profile_store_v2.json`  
 
 ---
 
-# 🌟 New v3.0.0 Modules
+# 🌟 Intelligent Modules (v4.0.0)
 
-These modules expand SIRIUS from a system automation runtime into a **full offline household assistant**, while staying safe, predictable, and local‑only.
+## 🏠 HOME_ASSISTANT 4.0
+## 🍳 COOKING_ADVISOR 4.0
+## 🔧 DEVICE_DIAGNOSTICS 4.0
+## 🎓 SCHOOL_HELPER 4.0
+## 🖼 IMAGE_ANALYZER 4.0
+## 🧭 CONTEXT_ROUTER 4.0
+## 📚 KNOWLEDGE_PACKS 4.0
 
----
-
-## 🏠 HOME_ASSISTANT (v3.0.0)
-General household assistant.
-
-Responsibilities:
-- safe household recommendations  
-- cleaning tips  
-- organization workflows  
-- safety‑first guidance  
-- integration with IMAGE_ANALYZER  
+All upgraded for semantic routing and Reasoning Engine 4.0.
 
 ---
 
-## 🍳 COOKING_ADVISOR (v3.0.0)
-Offline cooking and recipe assistant.
+# 🧠 Reasoning Engine 4.0
+Structured reasoning layer.
 
-Responsibilities:
-- recipe generation  
-- suggestions based on available ingredients  
-- step‑by‑step cooking workflows  
-- dietary filters  
-- integration with Knowledge Packs  
+Capabilities:
 
----
-
-## 🔧 DEVICE_DIAGNOSTICS (v3.0.0)
-Safe troubleshooting for household devices.
-
-Responsibilities:
-- identifying common device issues  
-- providing safe repair suggestions  
-- detecting dangerous situations  
-- routing to OWNER‑only actions  
-- integration with SECURITY FAMILY  
-
----
-
-## 🎓 SCHOOL_HELPER (v3.0.0)
-Offline schoolwork assistant.
-
-Responsibilities:
-- math, language, science explanations  
 - step‑by‑step reasoning  
-- safe educational help  
-- image‑based homework recognition  
-- integration with SCHOOLWORK PRIORITY MODE  
+- academic explanations  
+- code analysis  
+- semantic breakdown  
+- integration with AITE 4.0  
+- integration with Knowledge Packs 4.0  
 
 ---
 
-## 🖼 IMAGE_ANALYZER (v3.0.0)
-Local image understanding engine.
+# 🛠 Self‑Repair & Health‑Check Layer (NEW)
+Ensures long‑term stability.
 
-Responsibilities:
-- reading homework from photos  
-- identifying household objects  
-- detecting device issues visually  
-- routing results to correct modules  
+Functions:
 
----
-
-## 🧭 CONTEXT_ROUTER v3 (v3.0.0)
-Smarter intent routing.
-
-Responsibilities:
-- detecting household tasks  
-- detecting cooking tasks  
-- detecting device issues  
-- detecting schoolwork  
-- routing to new v3 modules  
+- module integrity checks  
+- automatic repair routines  
+- fallback states  
+- corruption detection  
+- dependency validation  
 
 ---
 
-## 📚 KNOWLEDGE_PACKS (v3.0.0+)
-Modular offline knowledge expansions.
+# 🆕 PC Automation Runtime (v4.0.0)
 
-Responsibilities:
-- domain‑specific knowledge (kitchen, repairs, school subjects)  
-- safe curated datasets  
-- plug‑and‑play expansions  
-- no internet required  
+Developer‑level offline automation.
+
+Modules:
+
+- FS Module 4.0  
+- Editor Module 4.0  
+- Workflow Module 4.0  
+- Command Parser 4.0  
+- Command Router 4.0  
 
 ---
 
-# 🔌 Module Interconnections
+# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL
+
+Optional isolated agent.
+
+Pipeline:
+
+1. Envoy Client  
+2. Scraper Layer  
+3. Quarantine Sandbox  
+4. Validator & Filter  
+5. Safe Payload Delivery  
+
+Never sends local data outward.
+
+---
+
+# 🔌 Module Interconnections (v4.0.0)
 
 User Input  
 ↓  
-NL Router → AITE → FS‑AGENT  
+AITE 4.0 → FS‑AGENT 4.0 → CME‑MEM 4.0  
 ↓  
-CME‑MEM → Workflow Engine  
+Workflow Engine 4.0  
 ↓  
-Runtime Core → WIN‑CAP → Windows 11 APIs  
+Runtime Core 4.0 → WIN‑CAP 4.0  
 
-### Key relationships:
+Key relationships:
 
-- NL Router → Plugins  
-- Plugins → Runtime Core  
-- AITE → FS‑AGENT  
-- AITE → CME‑MEM  
-- Workflow Engine → Runtime Core  
-- WIN‑CAP → Runtime Core  
-- **AITE → SECURITY FAMILY (schoolwork bypass)**  
-- **IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT**  
-- **CONTEXT_ROUTER v3 → all v3 modules**  
+- AITE → Reasoning Engine  
+- AITE → Knowledge Packs  
+- AITE → Security Family  
+- IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT  
+- CONTEXT_ROUTER → all v4 modules  
+- PC Automation → Runtime Core  
+- ENVOY → Knowledge Packs / Reasoning  
 
 All communication is **explicit and controlled**.
 
@@ -357,5 +338,5 @@ All communication is **explicit and controlled**.
 
 # 📌 Document Status
 
-Current version: **3.0.0 (Stable)**  
-Architecture is fully defined and ready for future expansions in v4.0.0.
+Current version: **4.0.0 (Stable)**  
+Architecture is fully defined and ready for v4.x expansions.
