@@ -1,4 +1,3 @@
-# sandbox_validator.py
 """
 SIRIUS LOCAL AI – Runtime 4.0 Sandbox Validator
 
@@ -21,7 +20,9 @@ class SandboxValidator4:
     """
 
     def __init__(self, rules):
-        # rules = instance of SandboxRules4
+        # Basic safety check for rules object (duck-typing)
+        if rules is None or not hasattr(rules, "validate_operation"):
+            raise ValueError("Invalid rules object for SandboxValidator4.")
         self.rules = rules
 
     # ---------------------------------------------------------
@@ -30,10 +31,21 @@ class SandboxValidator4:
 
     def validate_context(self, context: Optional[dict]):
         """Checks if sandbox context is valid and active."""
+
+        # Context must exist
         if context is None:
             return {"allowed": False, "error": "context_missing"}
 
-        if not context.get("active", True):
+        # Context must be a dict
+        if not isinstance(context, dict):
+            return {"allowed": False, "error": "invalid_context_type"}
+
+        # Active flag
+        active = context.get("active", True)
+        if not isinstance(active, bool):
+            return {"allowed": False, "error": "invalid_active_flag"}
+
+        if not active:
             return {"allowed": False, "error": "context_inactive"}
 
         return {"allowed": True}
@@ -45,8 +57,24 @@ class SandboxValidator4:
     def validate_operation(self, module_name: str, operation: str):
         """
         Validates if a module is allowed to perform an operation.
-        Delegates to SandboxRules4.
+        Delegates to SandboxRules4 with safety checks.
         """
+
+        # Validate module_name
+        if not isinstance(module_name, str) or not module_name.strip():
+            return {
+                "allowed": False,
+                "error": "invalid_module_name"
+            }
+
+        # Validate operation
+        if not isinstance(operation, str) or not operation.strip():
+            return {
+                "allowed": False,
+                "error": "invalid_operation"
+            }
+
+        # Delegate to rules
         return self.rules.validate_operation(module_name, operation)
 
     # ---------------------------------------------------------
@@ -60,10 +88,13 @@ class SandboxValidator4:
         - capability check
         - forbidden operation check
         """
+
+        # Context validation
         ctx_check = self.validate_context(context)
         if not ctx_check["allowed"]:
             return ctx_check
 
+        # Operation validation
         op_check = self.validate_operation(module_name, operation)
         if not op_check["allowed"]:
             return op_check
