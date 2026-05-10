@@ -1,10 +1,13 @@
-# 🔐 Security – SIRIUS LOCAL AI (v3.0.0)
+# 🔐 Security – SIRIUS LOCAL AI (v4.0.0)
 
 Thank you for taking the time to help improve the security of **SIRIUS LOCAL AI**.  
-This document explains **how to report vulnerabilities**, what is considered a security issue, and how the project handles security‑related disclosures.
+This document defines the **official security policy**, **threat model**, and **reporting process** for the **Runtime 4.0 architecture**.
 
 All processing in SIRIUS LOCAL AI is fully local.  
-No data leaves the user’s PC.
+No data leaves the user’s PC.  
+No telemetry.  
+No cloud.  
+No remote execution.
 
 ---
 
@@ -34,9 +37,9 @@ Only the latest stable version receives security updates.
 
 | Version | Status |
 |--------|--------|
-| **v3.0.0** | Supported |
-| v2.x.x | Security fixes only for critical issues |
-| v1.x.x | No longer supported |
+| **v4.0.0** | Supported |
+| v3.x.x | Security fixes only for critical issues |
+| v2.x.x | No longer supported |
 
 ---
 
@@ -44,16 +47,39 @@ Only the latest stable version receives security updates.
 
 You should report:
 
+### **Identity & Access Control**
 - bypassing **SECURITY FAMILY** identity rules  
 - bypassing **time‑limits**  
 - bypassing **Schoolwork Priority Mode**  
 - unauthorized access to OWNER‑level actions  
+
+### **Runtime 4.0 Core**
+- unsafe scheduler execution  
+- priority escalation  
+- bypassing safe‑mode restrictions  
+- dependency graph corruption  
+- module loader accepting invalid or malicious modules  
+
+### **Sandbox 4.0**
+- sandbox escape  
+- unauthorized capability access  
+- execution of unsafe or unvalidated tasks  
+- context poisoning  
+
+### **ENVOY 4.0**
+- quarantine bypass  
+- unsafe payload accepted as valid  
+- malformed or active content passing through validator  
+
+### **Filesystem & Automation**
 - unsafe filesystem operations  
-- privilege escalation inside WIN‑CAP  
-- workflow execution that ignores safety boundaries  
-- plugin sandbox escape  
+- identity‑restricted deletes bypass  
 - unintended destructive actions  
+
+### **Determinism & Isolation**
 - any behavior that violates deterministic execution guarantees  
+- hidden background tasks  
+- unauthorized network communication  
 
 ---
 
@@ -70,11 +96,13 @@ You should report:
 
 ---
 
-# 5. 🔐 Security Architecture Summary (v3.0.0)
+# 5. 🔐 Security Architecture Summary (v4.0.0)
 
-SIRIUS LOCAL AI includes:
+SIRIUS LOCAL AI Runtime 4.0 includes:
 
-### ✔ SECURITY FAMILY  
+---
+
+## ✔ SECURITY FAMILY (Identity Layer)
 - OWNER / FAMILY / STRANGER identity  
 - offline behavior‑based recognition  
 - restricted mode for children  
@@ -82,74 +110,106 @@ SIRIUS LOCAL AI includes:
 - time‑limits engine  
 - Schoolwork Priority Mode  
 
-### ✔ Runtime Safety  
+---
+
+## ✔ RuntimeCore 4.0 (Deterministic Engine)
 - deterministic execution  
 - no network communication  
 - no telemetry  
 - no hidden background tasks  
 - capability‑based access to Windows APIs  
+- strict type validation  
+- defense‑in‑depth checks  
 
-### ✔ Filesystem Safety  
+---
+
+## ✔ Scheduler 4.0 (Task Safety)
+- priority validation  
+- queue overflow protection  
+- safe‑mode enforcement  
+- schoolwork priority bypass rules  
+- context validation  
+- no dynamic execution  
+
+---
+
+## ✔ Sandbox 4.0 (Execution Isolation)
+- isolated execution envelopes  
+- capability‑restricted tasks  
+- context validation  
+- no dynamic imports  
+- no eval/exec  
+- no remote code  
+
+---
+
+## ✔ DependencyGraph 4.0
+- cycle detection  
+- module integrity validation  
+- safe topological ordering  
+- strict naming rules  
+
+---
+
+## ✔ ModuleLoader 4.0
+- safe registration  
+- safe initialization  
+- module count limits  
+- strict type validation  
+
+---
+
+## ✔ Filesystem Safety
 - rollback‑safe operations  
 - path validation  
 - identity‑restricted deletes  
 
-### ✔ Workflow Safety  
-- validated transitions  
-- blocked unsafe sequences  
-
 ---
 
-# 🌐 5.1 SIRIUS ENVOY 4.0 — Internet Isolation & Quarantine Model  
-*(Introduced for SIRIUS 4.0 architecture)*
+# 🌐 5.1 SIRIUS ENVOY 4.0 — Internet Isolation & Quarantine Model
 
-Although SIRIUS LOCAL AI is fully offline, future versions introduce an **optional, isolated online retrieval agent** called **SIRIUS ENVOY 4.0**.
-
-ENVOY allows safe, controlled retrieval of external information **without exposing the local AI runtime to the internet**.
+Although SIRIUS LOCAL AI is fully offline, ENVOY 4.0 provides an **optional**, **isolated**, **one‑way retrieval agent** for external information.
 
 ### **Core Security Guarantees**
 - Local AI remains **100% offline**  
-- ENVOY is a **separate process** with no access to local memory  
-- All retrieved data passes through a **quarantine sandbox**  
-- Only sanitized, validated, text‑only data is delivered to SIRIUS  
-- No scripts, HTML, binaries, or active content are ever allowed  
+- ENVOY is a **separate process**  
+- No access to local memory  
+- All data passes through **quarantine**  
+- Only sanitized, validated, text‑only data is delivered  
+- No scripts, HTML, binaries, or active content  
 
 ### **ENVOY Security Pipeline**
 1. **Outbound‑Only Envoy Client**  
-   - performs external requests  
-   - cannot receive commands from outside  
-   - cannot access local AI internals  
-
 2. **Scraper Layer**  
-   - extracts text  
-   - removes scripts, trackers, active content  
-
 3. **Quarantine Sandbox**  
-   - isolates all incoming data  
-   - checks for unsafe patterns  
-   - strips unknown formats  
-
 4. **Validator & Policy Filter**  
-   - enforces domain rules  
-   - marks uncertainty  
-   - blocks unsafe or unverifiable content  
-
 5. **Safe Payload Delivery**  
-   - only clean, structured, offline‑safe text is passed to SIRIUS  
 
-### **Security Purpose**
-ENVOY exists to support:
-
-- health information lookups  
+### **Purpose**
 - educational content  
-- definitions and factual data  
+- definitions  
+- factual data  
 - dynamic updates for Knowledge Packs  
 
-ENVOY **never** sends local data outward and **never** interacts directly with the runtime core.
+ENVOY **never** sends local data outward.
 
 ---
 
-# 6. 🕒 Response Time
+# 6. 🧪 Diagnostics & Self‑Repair Hooks (Runtime 4.0)
+
+Runtime 4.0 includes internal diagnostic points:
+
+- graph integrity checks  
+- module initialization verification  
+- sandbox context validation  
+- scheduler queue health checks  
+- state consistency checks  
+
+These hooks do not send data anywhere — all diagnostics are local.
+
+---
+
+# 7. 🕒 Response Time
 
 You can expect:
 
@@ -161,7 +221,7 @@ Critical issues are handled with priority.
 
 ---
 
-# 7. 🤝 Responsible Disclosure
+# 8. 🤝 Responsible Disclosure
 
 Please:
 
@@ -172,7 +232,7 @@ Please:
 
 ---
 
-# 8. 📄 Document Status
+# 9. 📄 Document Status
 
-**Version:** 3.0.0 (Stable)  
-This SECURITY.md describes the official security reporting process for SIRIUS LOCAL AI.
+**Version:** 4.0.0 (Stable)  
+This SECURITY.md describes the official security policy for **SIRIUS LOCAL AI Runtime 4.0**.
