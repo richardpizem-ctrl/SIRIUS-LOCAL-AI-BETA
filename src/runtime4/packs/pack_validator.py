@@ -1,4 +1,3 @@
-# pack_validator.py
 """
 SIRIUS LOCAL AI – Knowledge Packs 2.0 Validator
 
@@ -31,6 +30,16 @@ class PackValidator4:
 
     def validate_structure(self, pack: dict):
         """Checks if pack contains required top-level fields."""
+
+        # Type check
+        if not isinstance(pack, dict):
+            return {
+                "valid": False,
+                "error": "invalid_pack_type",
+                "detail": "Pack must be a dictionary."
+            }
+
+        # Required fields
         for field in self.required_fields:
             if field not in pack:
                 return {
@@ -38,6 +47,23 @@ class PackValidator4:
                     "error": "missing_field",
                     "field": field
                 }
+
+        # Validate that data is dict
+        if not isinstance(pack["data"], dict):
+            return {
+                "valid": False,
+                "error": "invalid_data_type",
+                "detail": "Pack 'data' must be a dictionary."
+            }
+
+        # Validate that meta is dict
+        if not isinstance(pack["meta"], dict):
+            return {
+                "valid": False,
+                "error": "invalid_meta_type",
+                "detail": "Pack 'meta' must be a dictionary."
+            }
+
         return {"valid": True}
 
     # ---------------------------------------------------------
@@ -46,6 +72,8 @@ class PackValidator4:
 
     def validate_metadata(self, meta: dict):
         """Checks if metadata contains required keys."""
+
+        # Required metadata keys
         for key in self.required_meta:
             if key not in meta:
                 return {
@@ -53,6 +81,23 @@ class PackValidator4:
                     "error": "missing_meta_key",
                     "key": key
                 }
+
+        # Validate version type
+        if not isinstance(meta["version"], str):
+            return {
+                "valid": False,
+                "error": "invalid_version_type",
+                "detail": "Meta 'version' must be a string."
+            }
+
+        # Validate type field
+        if not isinstance(meta["type"], str):
+            return {
+                "valid": False,
+                "error": "invalid_type_field",
+                "detail": "Meta 'type' must be a string."
+            }
+
         return {"valid": True}
 
     # ---------------------------------------------------------
@@ -61,10 +106,13 @@ class PackValidator4:
 
     def validate(self, pack: dict):
         """Performs full validation of a pack."""
+
+        # Structure
         struct = self.validate_structure(pack)
         if not struct["valid"]:
             return struct
 
+        # Metadata
         meta = self.validate_metadata(pack["meta"])
         if not meta["valid"]:
             return meta
