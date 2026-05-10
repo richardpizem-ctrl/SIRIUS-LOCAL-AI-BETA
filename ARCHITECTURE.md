@@ -374,6 +374,51 @@ Enable SIRIUS to operate directly on the user’s PC as a safe, deterministic, o
 
 ---
 
+# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL LAYER  
+*(Introduced for SIRIUS 4.0 architecture)*
+
+SIRIUS ENVOY 4.0 is an **optional, isolated online retrieval agent** designed to safely fetch information from the internet **without exposing the local AI runtime to any network communication**.
+
+### **Key Principles**
+- Local AI remains **100% offline**  
+- Only the ENVOY process is allowed to access the internet  
+- All retrieved data passes through a **quarantine sandbox**  
+- Only validated, sanitized, text‑only information is delivered to SIRIUS  
+
+### **ENVOY Pipeline**
+1. **Envoy Client**  
+   - isolated process  
+   - performs outbound requests  
+   - no access to local AI memory or capabilities  
+
+2. **Scraper Layer**  
+   - extracts text  
+   - removes scripts, HTML, trackers, active content  
+
+3. **Quarantine Sandbox**  
+   - validates structure  
+   - checks for unsafe patterns  
+   - strips unknown formats  
+
+4. **Validator & Filter**  
+   - ensures data safety  
+   - marks uncertainty  
+   - enforces domain rules  
+
+5. **Safe Payload Delivery**  
+   - only clean, structured, offline‑safe text is passed to SIRIUS  
+
+### **Use Cases**
+- health information  
+- educational content  
+- definitions, facts, summaries  
+- dynamic updates for Knowledge Packs  
+- safe external lookups  
+
+ENVOY never sends local data outward and never interacts directly with the runtime core.
+
+---
+
 # 🔌 Module Interconnections
 
 User Input  
@@ -396,6 +441,7 @@ Runtime Core → WIN‑CAP → Windows 11 APIs
 - **IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT**  
 - **CONTEXT_ROUTER v3 → all v3 modules**  
 - **PC AUTOMATION LAYER → Runtime Core 4.0**  
+- **ENVOY 4.0 → Knowledge Packs / Reasoning Engine (v4.0.0)**  
 
 All communication is **explicit and controlled**.
 
