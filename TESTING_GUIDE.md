@@ -242,4 +242,3 @@ Examples:
 
 Current version: **3.0.0 (Stable)**  
 This guide evolves with new modules and capabilities.
-
