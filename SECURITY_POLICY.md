@@ -189,4 +189,3 @@ Only the **latest stable release** receives security updates.
 
 Current version: **3.0.0 (Stable)**  
 This policy evolves with new modules and capabilities.
-
