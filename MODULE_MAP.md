@@ -1,4 +1,4 @@
-# Module Map – SIRIUS LOCAL AI (v3.0.0)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v3.0.0)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
 It serves as an architectural orientation map for the stable Runtime 3.0 architecture.
