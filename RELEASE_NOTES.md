@@ -88,6 +88,7 @@ Official plugin suite updated for v3:
 ---
 
 ## 📁 Filesystem & Input Handling
+
 ### FS‑AGENT 3.0
 - path validation  
 - conflict detection  
