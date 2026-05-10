@@ -1,4 +1,3 @@
-# scheduler_router.py
 """
 SIRIUS LOCAL AI – Scheduler 4.0 Router
 
@@ -20,10 +19,15 @@ class SchedulerRouter4:
     """
 
     def __init__(self, module_loader, sandbox_manager):
-        # Module loader is used to resolve module names
-        self.module_loader = module_loader
+        # Validate module_loader
+        if module_loader is None or not hasattr(module_loader, "get_module"):
+            raise ValueError("Invalid module_loader: missing get_module() method.")
 
-        # Sandbox manager executes the actual module code
+        # Validate sandbox_manager
+        if sandbox_manager is None or not hasattr(sandbox_manager, "execute"):
+            raise ValueError("Invalid sandbox_manager: missing execute() method.")
+
+        self.module_loader = module_loader
         self.sandbox_manager = sandbox_manager
 
         # Task → module mapping table
@@ -36,14 +40,40 @@ class SchedulerRouter4:
     def register_route(self, task_name: str, module_name: str):
         """
         Registers a mapping: task_name → module_name.
+        Includes safety checks.
         """
+
+        # Validate task_name
+        if not isinstance(task_name, str) or not task_name.strip():
+            return {"error": "invalid_task_name"}
+
+        # Validate module_name
+        if not isinstance(module_name, str) or not module_name.strip():
+            return {"error": "invalid_module_name"}
+
+        # Validate module exists in loader
+        if self.module_loader.get_module(module_name) is None:
+            return {"error": "unknown_module"}
+
         self.routing_table[task_name] = module_name
+        return {"status": "route_registered"}
 
     def resolve_module(self, task_name: str) -> Optional[str]:
         """
         Returns the module responsible for the given task.
+        Includes safety checks.
         """
-        return self.routing_table.get(task_name)
+
+        if not isinstance(task_name, str) or not task_name.strip():
+            return None
+
+        module_name = self.routing_table.get(task_name)
+
+        # Validate module exists
+        if module_name and self.module_loader.get_module(module_name) is None:
+            return None
+
+        return module_name
 
     # ---------------------------------------------------------
     # ROUTING LOGIC
@@ -52,22 +82,37 @@ class SchedulerRouter4:
     def route(self, task: str, context: Optional[dict] = None) -> Dict[str, Any]:
         """
         Resolves the module and executes the task via sandbox manager.
+        Includes full Runtime 4.0 security validation.
         """
-        module_name = self.resolve_module(task)
 
+        # Validate task
+        if not isinstance(task, str) or not task.strip():
+            return {"error": "invalid_task"}
+
+        # Validate context
+        if context is not None and not isinstance(context, dict):
+            return {"error": "invalid_context_type"}
+
+        context = context or {}
+
+        # Resolve module
+        module_name = self.resolve_module(task)
         if module_name is None:
             return {
                 "error": "no_route_defined",
                 "task": task
             }
 
+        # Validate module exists
+        if self.module_loader.get_module(module_name) is None:
+            return {"error": "unknown_module"}
+
         # Prepare execution context
-        ctx = context or {}
-        ctx["module"] = module_name
+        context["module"] = module_name
 
         # Execute inside sandbox
         return self.sandbox_manager.execute(
             module_name=module_name,
             task=task,
-            context=ctx
+            context=context
         )
