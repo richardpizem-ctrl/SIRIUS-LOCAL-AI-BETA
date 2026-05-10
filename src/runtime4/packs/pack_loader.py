@@ -1,4 +1,3 @@
-# pack_loader.py
 """
 SIRIUS LOCAL AI – Knowledge Packs 2.0 Loader
 
@@ -32,11 +31,32 @@ class PackLoader4:
         """
         Loads a pack into memory.
         In real implementation, this will load from disk.
+        Includes safety checks.
         """
+
+        # Validate pack name
+        if not isinstance(name, str) or not name.strip():
+            return {"error": "invalid_pack_name"}
+
+        # Validate data
+        if not isinstance(data, dict):
+            return {"error": "invalid_pack_data"}
+
+        # Validate meta
+        if meta is not None and not isinstance(meta, dict):
+            return {"error": "invalid_pack_meta"}
+
+        # Prevent overwriting existing pack
+        if name in self.packs:
+            return {"error": "pack_already_loaded"}
+
+        # Store pack
         self.packs[name] = {
             "data": data,
             "meta": meta or {}
         }
+
+        return {"status": "loaded", "pack": name}
 
     # ---------------------------------------------------------
     # ACCESS
