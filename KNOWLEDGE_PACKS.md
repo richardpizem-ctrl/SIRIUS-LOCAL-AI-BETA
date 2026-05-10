@@ -225,11 +225,4 @@ This document defines the Knowledge Pack system for SIRIUS LOCAL AI v4.0.0.
 
 ---
 
-Ak chceš, môžem hneď spraviť aj:
 
-✅ **KNOWLEDGE_PACKS_API.md**  
-✅ **PACK_SCHEMA_REFERENCE.md**  
-✅ **PACK_CREATION_TUTORIAL.md**  
-✅ **PACK_VALIDATION_RULES.md**
-
-Stačí povedať názov.
