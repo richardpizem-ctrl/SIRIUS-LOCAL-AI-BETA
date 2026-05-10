@@ -1,174 +1,243 @@
-# 🚀 RELEASE NOTES – SIRIUS LOCAL AI v3.0.0
+# 🚀 RELEASE NOTES – SIRIUS LOCAL AI v4.0.0
 
-This document summarizes the key changes, features, and improvements included in the **third major stable release** of SIRIUS LOCAL AI.
+This document summarizes the key changes, features, and improvements included in the **fourth major stable release** of SIRIUS LOCAL AI.
 
 ---
 
 # 🎯 Overview
 
-SIRIUS LOCAL AI is a modular, offline‑only AI runtime designed for secure, predictable, and fully local execution of commands, workflows, and plugins on Windows 11.
+SIRIUS LOCAL AI is a modular, offline‑only AI runtime designed for secure, deterministic, and fully local execution of commands, workflows, reasoning, and plugins on Windows 11.
 
-Version **3.0.0** introduces the **Intelligent Runtime**, **SECURITY FAMILY**, **Schoolwork Priority Mode**, expanded triage intelligence, new household‑oriented modules, and deeper system integration.
+Version **4.0.0** introduces the **Intelligent Runtime 2.0**, **Reasoning Engine 4.0**, **AITE 4.0**, **Security Family 4.0**, **Schoolwork Engine 4.0**, **Self‑Repair Layer**, **Knowledge Packs 4.0**, and the **SIRIUS ENVOY 4.0** safe‑retrieval system.
 
 All processing is performed locally.  
 No data leaves the user’s PC.
 
 ---
 
-# ✅ New in v3.0.0 (Major Intelligent Runtime Release)
+# ✅ New in v4.0.0 (Intelligent Runtime 2.0)
 
-## 🧱 Core Architecture (Runtime 3.0)
-- upgraded Runtime Core 3.0  
-- deterministic execution model  
+## 🧱 Core Architecture (Runtime 4.0)
+- upgraded Runtime Core 4.0  
+- semantic execution model  
 - strict module isolation  
-- identity‑aware routing  
-- SCHOOLWORK‑aware workflows  
-- unified event routing  
+- identity‑aware routing 2.0  
+- SCHOOLWORK Engine integration  
+- unified semantic event routing  
+- deterministic behavior  
+- Self‑Repair Layer integration  
 - no hidden automation, no background tasks  
-- SECURITY FAMILY integrated directly into runtime  
 
 ---
 
-## 🔐 SECURITY FAMILY (NEW – v3.0.0)
-A new core module providing identity‑based safety and family‑oriented restrictions.
+## 🔐 SECURITY FAMILY 4.0 (Identity Engine 2.0)
+A fully upgraded identity and family‑safety layer.
 
 ### Features:
-- behavior‑based identity recognition  
 - OWNER / FAMILY / STRANGER identity levels  
+- behavior‑based identity recognition v2  
 - restricted mode for children  
 - safe‑mode for unknown users  
-- **time‑based limits for minors**  
-- **Schoolwork Priority Mode (schoolwork always allowed)**  
-- identity‑aware routing in NL Router and WIN‑CAP  
+- **time‑limits v2**  
+- **Schoolwork Engine integration**  
+- identity‑aware routing in NL Router, WIN‑CAP, AITE  
 - offline learning (no biometrics, no cloud)  
 
 ### Submodules:
-- identity_engine  
-- behavior_audit  
-- access_control  
-- family_mode  
-- stranger_mode  
-- time_limits  
-- schoolwork_detector  
-- profile_store  
+- identity_engine_v2  
+- behavior_audit_v2  
+- access_control_v2  
+- family_mode_v2  
+- stranger_mode_v2  
+- time_limits_v2  
+- schoolwork_engine  
+- profile_store_v2  
 
-SECURITY FAMILY is now a **core security layer**.
+Security Family 4.0 is a **core system layer**.
 
 ---
 
-## 🔌 Plugin System 3.0
+## 🧠 Reasoning Engine 4.0 (NEW)
+A new structured reasoning subsystem.
+
+### Capabilities:
+- step‑by‑step reasoning  
+- symbolic logic  
+- chain‑of‑thought trees  
+- subject‑aware schoolwork reasoning  
+- pack‑aware reasoning  
+- deterministic logic (bounded depth)  
+
+Integrated across:
+- NL Router  
+- Schoolwork Engine  
+- Device Diagnostics  
+- Cooking Advisor  
+- Knowledge Packs  
+
+---
+
+## 🔍 AITE 4.0 – Semantic Triage Engine
+A complete upgrade of the input triage system.
+
+### Features:
+- OCR extraction  
+- semantic analysis  
+- subject detection  
+- difficulty scoring  
+- identity‑aware triage  
+- schoolwork detection → Schoolwork Engine  
+- ENVOY 4.0 integration  
+- routing to Reasoning Engine  
+
+---
+
+## 🛠 Self‑Repair & Health‑Check Layer (NEW)
+A new diagnostic and recovery subsystem.
+
+### Features:
+- integrity checks  
+- corrupted state detection  
+- safe automatic repairs  
+- fallback states  
+- patch suggestions  
+- system‑wide health reporting  
+
+This ensures long‑term stability.
+
+---
+
+## 📚 Knowledge Packs 4.0 (NEW)
+A fully upgraded offline knowledge system.
+
+### Features:
+- curated offline datasets  
+- semantic linking  
+- pack‑aware reasoning  
+- subject‑aware schoolwork logic  
+- ENVOY‑assisted updates  
+- safe, static, validated content  
+
+Pack types:
+- household  
+- cooking  
+- device diagnostics  
+- schoolwork  
+- health & safety  
+- general knowledge  
+
+---
+
+## 🌐 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer (NEW)
+An optional isolated agent for safe external lookups.
+
+### Pipeline:
+1. Envoy Client (outbound‑only)  
+2. Scraper Layer  
+3. Quarantine Sandbox  
+4. Validator & Filter  
+5. Safe Payload Delivery  
+
+ENVOY never sends local data outward.
+
+---
+
+## 🧩 Plugin System 4.0
 - updated manifest format  
+- reasoning hooks  
 - SCHOOLWORK‑aware plugins  
 - identity‑aware plugin execution  
 - improved isolation  
 - GUI‑integrated plugin actions  
-- plugin workflows upgraded to v3  
-
-Official plugin suite updated for v3:
-- automation  
-- clipboard  
-- example  
-- file_manager  
-- notes  
-- system_tools  
-- translator  
+- plugin workflows upgraded to v4  
 
 ---
 
-## 🧠 Command & Workflow System (v3.0.0)
-- Natural Language Router 3.0  
-- identity‑aware routing  
-- SCHOOLWORK‑aware routing  
-- Workflow Engine 3.0  
+## 🧠 Command & Workflow System (v4.0.0)
+- Natural Language Router 4.0  
+- semantic routing  
+- identity‑aware filtering  
+- SCHOOLWORK Engine integration  
+- Workflow Engine 4.0  
 - deterministic multi‑step logic  
 - plugin workflow improvements  
-- improved ambiguity handling  
-- SCHOOLWORK workflow prioritization  
 
 ---
 
 ## 📁 Filesystem & Input Handling
 
-### FS‑AGENT 3.0
+### FS‑AGENT 4.0
+- semantic file classification  
 - path validation  
 - conflict detection  
 - rollback‑safe operations  
-- SCHOOLWORK priority routing  
+- SCHOOLWORK routing  
 - identity‑restricted operations  
 
-### AITE 3.0 (Automatic Input Triage Engine)
-- text, image, installer, document detection  
-- metadata generation  
-- safe routing  
-- **schoolwork detection → Schoolwork Priority Mode**  
-- identity‑aware triage  
-- integration with SECURITY FAMILY  
+### AITE 4.0
+- OCR  
+- semantic triage  
+- subject detection  
+- difficulty scoring  
+- identity‑aware routing  
+- schoolwork engine integration  
 
 ---
 
-## 🪟 Windows System Capabilities (WIN‑CAP 3.0)
-- window snapping and arrangement  
-- application launching and focusing  
-- audio device detection and switching  
-- system context awareness  
-- safe OS‑level wrappers  
+## 🪟 Windows System Capabilities (WIN‑CAP 4.0)
+- window management  
+- application control  
+- audio device handling  
+- system context  
+- automation operations  
 - identity‑restricted system actions  
 - deterministic capability access  
 
-All system‑level actions require explicit confirmation.
-
 ---
 
-# 🏠 New Household Modules (v3.0.0)
+# 🏠 Intelligent Modules (v4.0.0)
 
-## HOME_ASSISTANT
-- household recommendations  
-- cleaning workflows  
-- organization tips  
-- safety‑first guidance  
+## HOME_ASSISTANT 4.0
+- household workflows  
+- safety guidance  
+- pack‑aware reasoning  
 
-## COOKING_ADVISOR
-- recipe generation  
-- ingredient‑based suggestions  
-- step‑by‑step cooking workflows  
+## COOKING_ADVISOR 4.0
+- recipe reasoning  
+- ingredient logic  
+- step‑by‑step workflows  
 
-## DEVICE_DIAGNOSTICS
-- device issue detection  
-- safe troubleshooting  
-- OWNER‑only repair actions  
+## DEVICE_DIAGNOSTICS 2.0
+- symptom detection  
+- cause mapping  
+- safety warnings  
 
-## SCHOOL_HELPER
-- math, language, science explanations  
-- step‑by‑step reasoning  
-- SCHOOLWORK PRIORITY MODE integration  
-- homework recognition  
+## SCHOOL_HELPER 4.0
+- math, science, language reasoning  
+- step‑by‑step explanations  
+- SCHOOLWORK Engine integration  
 
-## IMAGE_ANALYZER
-- object recognition  
+## IMAGE_ANALYZER 4.0
+- OCR  
+- object detection  
 - homework reading  
-- device issue detection  
 
-## CONTEXT_ROUTER v3
-- detects household tasks  
-- detects cooking tasks  
-- detects device issues  
-- detects schoolwork  
-- routes to correct v3 modules  
+## CONTEXT_ROUTER 4.0
+- semantic intent detection  
+- routing to all v4 modules  
 
 ---
 
-# 🖥 GUI Layer 3.0
+# 🖥 GUI Layer 4.0
 - plugin‑driven UI  
-- dynamic button rendering  
-- workflow visualization  
+- identity indicators  
 - SCHOOLWORK indicators  
-- identity‑aware UI states  
 - modular UI components  
 - animation system upgraded  
 
 ---
 
-# 🔁 AI Loop 3.0
+# 🔁 AI Loop 4.0
 - safe interval‑based execution  
 - plugin heartbeat rules  
 - deterministic scheduling  
@@ -178,7 +247,7 @@ All system‑level actions require explicit confirmation.
 ---
 
 # 📚 Documentation (Complete & Updated)
-- INDEX.md  
+- README.md  
 - ARCHITECTURE.md  
 - MODULE_MAP.md  
 - STYLEGUIDE.md  
@@ -191,14 +260,16 @@ All system‑level actions require explicit confirmation.
 - CHANGELOG.md  
 - RELEASE_NOTES.md  
 - ROADMAP.md  
+- KNOWLEDGE_PACKS.md  
+- ENVOY_TUTORIAL.md  
 
-All documents updated for **v3.0.0**.
+All documents updated for **v4.0.0**.
 
 ---
 
 # 🔐 Security Highlights
-- strict no‑network policy  
-- no telemetry, no cloud access  
+- strict no‑network policy (runtime)  
+- ENVOY isolation  
 - deterministic behavior  
 - plugin sandboxing  
 - safe OS‑level capability wrappers  
@@ -217,21 +288,10 @@ All documents updated for **v3.0.0**.
 
 ---
 
-# 🛠 Planned for v4.0.0
-- self‑repair & health‑check layer  
-- integrity scanning  
-- safe automatic repairs  
-- patch suggestions  
-- system‑wide health reporting  
-- deeper semantic triage  
-- advanced automation  
-
----
-
 # 📌 Release Status
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Stage:** Stable  
-**Release Date:** 2026‑05‑05  
+**Release Date:** 2026‑06‑XX  
 
 ---
 
