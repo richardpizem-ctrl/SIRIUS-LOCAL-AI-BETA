@@ -1,4 +1,3 @@
-# sandbox_rules.py
 """
 SIRIUS LOCAL AI – Runtime 4.0 Sandbox Rules
 
@@ -36,11 +35,29 @@ class SandboxRules4:
     # ---------------------------------------------------------
 
     def set_capabilities(self, module_name: str, caps: list):
-        """Assigns capabilities to a module."""
+        """Assigns capabilities to a module with full safety checks."""
+
+        # Validate module name
+        if not isinstance(module_name, str) or not module_name.strip():
+            return {"error": "invalid_module_name"}
+
+        # Validate caps list
+        if not isinstance(caps, list):
+            return {"error": "invalid_capability_list"}
+
+        # Validate each capability
+        for cap in caps:
+            if not isinstance(cap, str) or not cap.strip():
+                return {"error": "invalid_capability_value"}
+
+        # Store capabilities
         self.capabilities[module_name] = caps
+        return {"status": "ok"}
 
     def get_capabilities(self, module_name: str):
         """Returns capabilities assigned to a module."""
+        if not isinstance(module_name, str):
+            return []
         return self.capabilities.get(module_name, [])
 
     # ---------------------------------------------------------
@@ -50,7 +67,17 @@ class SandboxRules4:
     def is_allowed(self, module_name: str, operation: str) -> bool:
         """
         Checks if a module is allowed to perform an operation.
+        Includes full validation and safety checks.
         """
+
+        # Validate module name
+        if not isinstance(module_name, str) or not module_name.strip():
+            return False
+
+        # Validate operation
+        if not isinstance(operation, str) or not operation.strip():
+            return False
+
         # Forbidden globally
         if operation in self.forbidden_ops:
             return False
@@ -63,6 +90,22 @@ class SandboxRules4:
         """
         Returns a structured validation result.
         """
+
+        # Validate module name
+        if not isinstance(module_name, str) or not module_name.strip():
+            return {
+                "allowed": False,
+                "error": "invalid_module_name"
+            }
+
+        # Validate operation
+        if not isinstance(operation, str) or not operation.strip():
+            return {
+                "allowed": False,
+                "error": "invalid_operation"
+            }
+
+        # Check permission
         if self.is_allowed(module_name, operation):
             return {"allowed": True}
 
