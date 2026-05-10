@@ -1,55 +1,63 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "3.0.0"
-date-released: 2026-05-05
+version: "4.0.0"
+date-released: 2026-05-10
 
 authors:
   - family-names: "Pizem"
     given-names: "Richard"
     affiliation: "Independent Researcher"
 
-repository-code: "https://github.com/SeeBus-Global/SIRIUS-LOCAL-AI-ALFA"
+repository-code: "https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA"
 
 keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "runtime 3.0 architecture"
-  - "plugin system 3.0"
-  - "workflow engine 3.0"
+  - "intelligent runtime 4.0"
+  - "runtime core 4.0"
+  - "plugin system 4.0"
+  - "workflow engine 4.0"
+  - "reasoning engine 4.0"
+  - "semantic triage"
+  - "AITE 4.0"
+  - "knowledge packs 4.0"
   - "secure local processing"
   - "Windows automation"
   - "context-aware automation"
   - "family safety"
-  - "behavior-based identity"
-  - "SECURITY FAMILY"
-  - "schoolwork priority mode"
-  - "time-limits engine"
-  - "identity engine"
-  - "AITE 3.0"
-  - "intelligent triage"
-  - "household assistant modules"
-  - "self-repair diagnostics"
+  - "identity engine 2.0"
+  - "SECURITY FAMILY 4.0"
+  - "schoolwork engine 4.0"
+  - "time-limits engine v2"
+  - "self-repair layer"
   - "health-check engine"
+  - "PC automation runtime 4.0"
+  - "ENVOY 4.0"
+  - "safe online retrieval"
+  - "household assistant modules"
+  - "semantic routing"
+  - "deterministic execution"
 
 abstract: >
-  SIRIUS LOCAL AI is a fully modular, offline AI runtime designed for secure,
-  local-only execution of commands, workflows, plugins, and context-aware automation.
-  Version 3.0.0 introduces the Intelligent Runtime architecture, including Runtime Core 3.0,
-  Plugin System 3.0, Workflow Engine 3.0, AI Loop 3.0, GUI 3.0, AITE 3.0, and expanded
-  household-oriented modules such as HOME_ASSISTANT, COOKING_ADVISOR, SCHOOL_HELPER,
-  DEVICE_DIAGNOSTICS, IMAGE_ANALYZER, and CONTEXT_ROUTER v3.
+  SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
+  deterministic execution of commands, workflows, plugins, and semantic automation.
+  Version 4.0.0 introduces the Intelligent Runtime architecture, including Runtime Core 4.0,
+  Plugin System 4.0, Workflow Engine 4.0, Reasoning Engine 4.0, GUI 4.0, AITE 4.0,
+  and upgraded household-oriented modules such as HOME_ASSISTANT 4.0, COOKING_ADVISOR 4.0,
+  SCHOOL_HELPER 4.0, DEVICE_DIAGNOSTICS 4.0, IMAGE_ANALYZER 4.0, and CONTEXT_ROUTER 4.0.
 
-  This version also introduces the SECURITY FAMILY module, a behavior-based identity
-  and family safety layer providing OWNER/FAMILY/STRANGER identity levels, time-limits
-  for children, safe-mode for unknown users, and a Schoolwork Priority Mode ensuring
-  unrestricted access to academic tasks.
+  This version also includes SECURITY FAMILY 4.0, an identity and family safety layer
+  providing OWNER/FAMILY/STRANGER identity levels, time-limits v2 for children,
+  safe-mode for unknown users, and a Schoolwork Engine ensuring unrestricted access
+  to academic tasks.
 
   The system operates entirely on the user's machine, without any cloud dependencies
   or external data transmission. All modules follow strict security boundaries,
-  deterministic behavior, and predictable execution rules.
+  deterministic behavior, semantic understanding, and predictable execution rules.
 
-  Future versions include the Self-Repair & Health-Check Layer (v4.0.0), which provides
+  Version 4.0.0 also introduces the Self-Repair & Health-Check Layer, providing
   integrity checks, safe automatic repairs, and diagnostic capabilities to maintain
-  long-term system stability.
+  long-term system stability, as well as ENVOY 4.0, an isolated safe online retrieval
+  layer for sanitized external information.
