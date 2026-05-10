@@ -1,17 +1,20 @@
-# 🌟 Future Vision (v3.0.0 – v4.0.0)
+# 🌟 Future Vision (v4.0.0 and Beyond)
 
-SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household AI assistant**, while staying safe, predictable, and fully local.
+SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, and fully local.
 
 This document describes:
-1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0)  
-2. **What is coming next** (v3.0.0 → v4.0.0)  
-3. **Long‑term direction**  
+1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0)  
+2. **What v4.0.0 introduces**  
+3. **Long‑term direction (v5.0.0 and beyond)**  
 
 All features remain:
 - 100% offline  
 - family‑safe  
 - deterministic  
 - under full user control  
+- modular and replaceable  
+- identity‑aware  
+- safe for households and children  
 
 ---
 
@@ -51,10 +54,7 @@ Delivered:
 
 ---
 
-# 🟦 3. Version 3.0.0 – Intelligent Runtime (Delivered)
-
-Version 3.0.0 transforms SIRIUS from a system automation engine into a **daily‑life offline assistant** with identity‑based safety and schoolwork‑aware intelligence.
-
+## 🟦 Version 3.0.0 – Intelligent Runtime
 Delivered:
 - Runtime Core 3.0  
 - Plugin System 3.0  
@@ -64,167 +64,179 @@ Delivered:
 - AITE 3.0 (schoolwork detection)  
 - WIN‑CAP 3.0  
 - SECURITY FAMILY (identity, time‑limits, schoolwork priority)  
-- new household modules  
-- new intelligent routing  
+- household modules  
+- intelligent routing  
+
+**Purpose:** Transform SIRIUS into a **daily‑life offline assistant**.
 
 ---
 
-# 🧠 2. Intelligent Assistant Modules (v3.0.0)
+# 🚀 2. Version 4.0.0 – Intelligent Runtime 2.0 (NEW)
 
-- HOME_ASSISTANT  
-- COOKING_ADVISOR  
-- DEVICE_DIAGNOSTICS  
-- SCHOOL_HELPER  
-- IMAGE_ANALYZER  
-- CONTEXT_ROUTER v3  
-- KNOWLEDGE_PACKS  
+Version 4.0.0 is the largest upgrade in the project’s history.  
+It introduces **semantic intelligence**, **self‑repair**, **offline reasoning**, and **safe online retrieval**.
 
-These modules expand SIRIUS into a **full household‑aware offline assistant**, while staying safe and deterministic.
+Delivered in v4.0.0:
+
+## 🧠 Reasoning Engine 4.0
+- step‑by‑step reasoning  
+- academic explanations  
+- code analysis  
+- semantic breakdown  
+- integration with AITE 4.0  
+- integration with Knowledge Packs 4.0  
 
 ---
 
-# 🛡 3. Core Identity & Safety Layer (v3.0.0)
+## 🧩 AITE 4.0 – Semantic Triage Engine
+- OCR  
+- semantic understanding  
+- subject detection  
+- difficulty scoring  
+- identity‑aware triage 2.0  
+- schoolwork engine integration  
+- ENVOY 4.0 integration  
+- reasoning‑aware routing  
 
-SECURITY FAMILY introduces:
+---
 
+## 🔐 Security Family 4.0 (Identity Engine 2.0)
 - OWNER / FAMILY / STRANGER identity  
 - behavior‑based recognition  
-- restricted mode for children  
+- time‑limits v2  
+- schoolwork engine  
 - safe‑mode for unknown users  
-- time‑limits  
-- Schoolwork Priority Mode  
+- restricted mode for children  
 - identity‑aware routing  
-- integration with NL Router, AITE, WIN‑CAP  
-
-This is the foundation of **family‑safe offline intelligence**.
+- integration with all v4 modules  
 
 ---
 
-# 🟦 3.5.0 – PC Automation Runtime (New)
+## 🧱 Self‑Repair & Health‑Check Layer
+- integrity checks  
+- corruption detection  
+- safe automatic repairs  
+- fallback states  
+- dependency validation  
+- system‑wide health reporting  
 
-A new layer enabling SIRIUS to operate directly on the user’s PC:
+Ensures long‑term stability.
 
+---
+
+## 📚 Knowledge Packs 4.0
+- offline knowledge expansions  
+- semantic linking  
+- subject‑aware routing  
+- reasoning‑ready datasets  
+- household, cooking, school, device, safety packs  
+
+---
+
+## 🧭 Context Router 4.0
+- detects household tasks  
+- detects schoolwork  
+- detects device issues  
+- detects developer tasks  
+- routes to correct v4 modules  
+
+---
+
+## 🧠 Schoolwork Engine 4.0
+- subject detection  
+- difficulty scoring  
+- reasoning integration  
+- schoolwork bypass  
+- identity‑aware academic logic  
+
+---
+
+## 🧰 PC Automation Runtime 4.0
 - filesystem automation  
-- VS Code integration  
-- developer workflows  
+- editor integration  
+- code workflows  
 - structured command parsing  
 - command routing  
-- RuntimeEngine 4.0 integration  
+- Runtime Core 4.0 integration  
 
-This transforms SIRIUS into a **developer‑level automation assistant**.
-
----
-
-# 🩺 4. Self‑Repair & Health‑Check Layer (v4.0.0)
-
-Version 4.0.0 introduces the first generation of **safe, controlled self‑repair**:
-
-- integrity checks  
-- detection of corrupted states  
-- safe automatic repairs  
-- patch suggestions  
-- system‑wide health reporting  
-- protection against uncontrolled source‑code modifications  
-
-This ensures long‑term stability.
+Transforms SIRIUS into a **developer‑level offline automation assistant**.
 
 ---
 
-# 🚀 4.1 Offline Expansion – Version 4.0.0 (New)
+## 🌐 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer
+Although SIRIUS remains a **100% offline AI runtime**, ENVOY provides:
 
-Version 4.0.0 expands SIRIUS into a **knowledge‑driven offline assistant**:
-
-- Knowledge Packs 4.0  
-- offline reasoning engine  
-- symbolic rule‑based logic  
-- subject‑aware schoolwork reasoning  
-- device diagnostics 2.0  
-- household knowledge expansions  
-- pack‑aware routing  
-
-This is the beginning of **offline intelligence at scale**.
-
----
-
-# 🌐 4.2 SIRIUS ENVOY 4.0 — Safe Online Retrieval Layer  
-*(New in v4.0.0)*
-
-Although SIRIUS remains a **100% offline AI runtime**, version 4.0.0 introduces an optional, isolated component called **SIRIUS ENVOY 4.0**.
-
-ENVOY allows SIRIUS to safely retrieve external information **without ever exposing the local AI to the internet**.
-
-### **Purpose**
-- provide safe access to health information  
-- fetch educational content  
-- retrieve definitions, facts, summaries  
-- update Knowledge Packs dynamically  
-- maintain strict offline boundaries  
-
-### **Core Principles**
-- Local AI stays **fully offline**  
-- ENVOY is a **separate process**  
-- ENVOY has **no access** to local memory or capabilities  
-- All data passes through a **quarantine sandbox**  
-- Only sanitized, validated text is delivered to SIRIUS  
-
-### **ENVOY Pipeline**
-1. **Envoy Client (Outbound‑Only)**  
-   - performs external requests  
-   - cannot receive external commands  
-   - cannot access local AI internals  
-
-2. **Scraper Layer**  
-   - extracts text  
-   - removes scripts, HTML, trackers, active content  
-
-3. **Quarantine Sandbox**  
-   - isolates incoming data  
-   - checks for unsafe patterns  
-   - strips unknown formats  
-
-4. **Validator & Policy Filter**  
-   - enforces domain rules  
-   - marks uncertainty  
-   - blocks unsafe or unverifiable content  
-
-5. **Safe Payload Delivery**  
-   - only clean, structured, offline‑safe text is passed to SIRIUS  
-
-### **Use Cases**
-- health advice (safe, curated)  
-- schoolwork explanations  
-- device troubleshooting references  
-- cooking and household knowledge  
+- safe access to educational content  
+- safe health information  
+- definitions, facts, summaries  
 - dynamic Knowledge Pack updates  
 
-ENVOY never sends local data outward and never interacts directly with the runtime core.
+### ENVOY Pipeline:
+1. Envoy Client (outbound‑only)  
+2. Scraper Layer  
+3. Quarantine Sandbox  
+4. Validator & Policy Filter  
+5. Safe Payload Delivery  
+
+ENVOY never sends local data outward.
 
 ---
 
-# 🚀 5. Long‑Term Vision (Beyond v4.0.0)
+# 🚀 3. Long‑Term Vision (Beyond v4.0.0)
 
 SIRIUS will evolve into:
 
-- a fully offline household AI  
-- a developer automation engine  
-- a self‑maintaining runtime  
-- a knowledge‑driven reasoning system  
-- a family‑safe assistant  
-- a modular, extensible AI platform  
-
-Future directions include:
-
-- semantic triage  
-- voice command layer  
-- UI automation  
-- advanced plugin ecosystem  
-- adaptive identity learning  
-- autonomous household workflows  
+## 🧠 5.0.0 – Offline Intelligence at Scale
+- advanced reasoning  
 - offline knowledge graphs  
 - pack‑to‑pack reasoning  
+- symbolic logic engine  
+- multi‑subject academic solver  
 
 ---
 
-# Document Status
-Current version: **v3.0.0 → v4.0.0 transition**  
+## 🏠 Household AI Evolution
+- autonomous household workflows  
+- multi‑step task planning  
+- safety‑aware automation  
+- deeper device diagnostics  
+- offline object recognition 2.0  
+
+---
+
+## 🧒 Family‑Safe AI
+- adaptive identity learning  
+- behavior‑based safety  
+- dynamic time‑limits  
+- child‑safe knowledge packs  
+- STRANGER‑mode hardening  
+
+---
+
+## 🧰 Developer Automation Expansion
+- UI automation  
+- IDE integration  
+- code refactoring engine  
+- offline documentation packs  
+- project scaffolding intelligence  
+
+---
+
+## 🎤 Voice & Interaction Layer
+- offline voice recognition  
+- household voice commands  
+- safe voice workflows  
+
+---
+
+## 🔌 Plugin Ecosystem 5.0
+- advanced plugin sandboxing  
+- semantic plugin manifests  
+- reasoning‑aware plugin APIs  
+
+---
+
+# 📄 Document Status
+
+Current version: **v4.0.0 (Stable)**  
 This document defines the long‑term evolution of SIRIUS LOCAL AI.
