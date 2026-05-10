@@ -34,23 +34,19 @@ They are the foundation of **SIRIUS 4.0 offline intelligence**.
 ---
 
 # 🏗 2. Structure of a Knowledge Pack
-
-Each pack follows a strict, safe structure:
-
-```
 pack_name/
- ├─ manifest.json
- ├─ data/
- │   ├─ facts.json
- │   ├─ rules.json
- │   ├─ glossary.json
- │   └─ examples.json
- ├─ embeddings/
- │   └─ vectors.bin   (optional, offline embeddings)
- └─ metadata/
-     ├─ version.json
-     └─ source_notes.txt
-```
+├─ manifest.json
+├─ data/
+│   ├─ facts.json
+│   ├─ rules.json
+│   ├─ glossary.json
+│   └─ examples.json
+├─ embeddings/
+│   └─ vectors.bin   (optional, offline embeddings)
+└─ metadata/
+├─ version.json
+└─ source_notes.txt
+Each pack follows a strict, safe structure:
 
 ### ✔ No scripts  
 ### ✔ No executables  
@@ -132,10 +128,7 @@ Knowledge Packs updated via ENVOY remain **fully local**.
 
 ## 6.1 Installation  
 Packs are placed into:
-
-```
 /sirius/packs/<pack_name>/
-```
 
 ## 6.2 Validation  
 Runtime Core 4.0 checks:
@@ -148,12 +141,12 @@ Runtime Core 4.0 checks:
 ## 6.3 Loading  
 Packs are loaded into:
 
-- Reasoning Engine  
-- Context Router  
-- Schoolwork Helper  
-- Device Diagnostics  
-- Cooking Advisor  
-- Home Assistant  
+- Reasoning Engine 4.0  
+- Context Router 4.0  
+- Schoolwork Engine 4.0  
+- Device Diagnostics 2.0  
+- Cooking Advisor 4.0  
+- Home Assistant 4.0  
 
 ## 6.4 Updating  
 Updates come from:
@@ -171,7 +164,7 @@ Packs can be removed safely without affecting runtime.
 
 Knowledge Packs integrate with:
 
-### ✔ Offline Reasoning Engine  
+### ✔ Offline Reasoning Engine 4.0  
 - symbolic reasoning  
 - rule‑based logic  
 - chain‑of‑thought trees  
@@ -180,8 +173,9 @@ Knowledge Packs integrate with:
 - multi‑intent detection  
 - pack‑aware routing  
 
-### ✔ Schoolwork Priority Mode 2.0  
-- subject‑aware reasoning  
+### ✔ Schoolwork Engine 4.0  
+- subject detection  
+- difficulty scoring  
 - step‑by‑step explanations  
 
 ### ✔ Device Diagnostics 2.0  
@@ -193,15 +187,12 @@ Knowledge Packs integrate with:
 # 🛠 8. Creating a Knowledge Pack
 
 A minimal pack:
-
-```
 my_pack/
- ├─ manifest.json
- ├─ data/
- │   └─ facts.json
- └─ metadata/
-     └─ version.json
-```
+├─ manifest.json
+├─ data/
+│   └─ facts.json
+└─ metadata/
+└─ version.json
 
 Example `manifest.json`:
 
@@ -213,24 +204,32 @@ Example `manifest.json`:
   "author": "Richard Pizem",
   "safe": true
 }
-```
-
----
-
-# 📌 9. Future Expansion (v4.1+)
-
+📌 9. Future Expansion (v4.1+)
 Planned features:
 
-- pack‑to‑pack linking  
-- offline semantic search  
-- knowledge graphs  
-- pack compression  
-- ENVOY-assisted pack generation  
-- domain‑specific reasoning modules  
+pack‑to‑pack linking
+
+offline semantic search
+
+knowledge graphs
+
+pack compression
+
+ENVOY‑assisted pack generation
+
+domain‑specific reasoning modules
+
+📄 Document Status
+Version: 1.0.0 (Initial Release)
+This document defines the Knowledge Pack system for SIRIUS LOCAL AI v4.0.0.
 
 ---
 
-# 📄 Document Status
+Ak chceš, môžem hneď spraviť aj:
 
-**Version:** 1.0.0 (Initial Release)  
-This document defines the Knowledge Pack system for SIRIUS LOCAL AI v4.0.0.
+✅ **KNOWLEDGE_PACKS_API.md**  
+✅ **PACK_SCHEMA_REFERENCE.md**  
+✅ **PACK_CREATION_TUTORIAL.md**  
+✅ **PACK_VALIDATION_RULES.md**
+
+Stačí povedať názov.
