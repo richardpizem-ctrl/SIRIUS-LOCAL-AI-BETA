@@ -1,4 +1,4 @@
-# 🧪 TESTING GUIDE – SIRIUS LOCAL AI (v3.0.0)
+# 🧪 TESTING GUIDE – SIRIUS LOCAL AI (v4.0.0)
 
 This document defines the testing strategy, procedures, and safety validation rules for the SIRIUS LOCAL AI project.  
 All tests are fully local and must be executed manually by the user.
@@ -164,7 +164,7 @@ Checklist:
 
 ---
 
-## H) SECURITY FAMILY Tests (v3.0.0)
+## H) SECURITY FAMILY Tests (v4.0.0)
 Validate:
 - identity classification (OWNER / FAMILY / STRANGER)  
 - behavior‑based recognition  
@@ -240,5 +240,5 @@ Examples:
 
 # 5. Document Status
 
-Current version: **3.0.0 (Stable)**  
+Current version: **4.0.0 (Stable)**  
 This guide evolves with new modules and capabilities.
