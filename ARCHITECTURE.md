@@ -329,6 +329,51 @@ Responsibilities:
 
 ---
 
+# 🆕 NEW: PC Automation Runtime (v3.5.0)
+
+Version 3.5.0 introduces a new automation layer that transforms SIRIUS into a **developer‑level PC automation assistant**, capable of manipulating files, code, and project structure — fully offline and under user control.
+
+## 🗂 FS MODULE  
+Local filesystem automation  
+- mkdir  
+- move  
+- copy  
+- delete  
+- read/write  
+- safe‑mode protections  
+
+## 📝 EDITOR MODULE  
+VS Code integration  
+- open file  
+- open folder  
+- jump to line  
+- highlight  
+
+## 🔧 WORKFLOW MODULE (PC)  
+Developer workflows  
+- project scaffolding  
+- refactoring tasks  
+- version preparation  
+- module generation  
+
+## 🧠 COMMAND PARSER  
+Parses structured commands like:  
+`fs.move("src/a.py", "modules/a.py")`
+
+## 🛰 COMMAND ROUTER  
+Routes parsed commands to correct modules  
+- fs  
+- editor  
+- workflow  
+
+## 🔌 Runtime Integration  
+All modules registered into **Runtime Core 4.0** with dependency‑aware startup.
+
+**Purpose:**  
+Enable SIRIUS to operate directly on the user’s PC as a safe, deterministic, offline automation engine.
+
+---
+
 # 🔌 Module Interconnections
 
 User Input  
@@ -350,6 +395,7 @@ Runtime Core → WIN‑CAP → Windows 11 APIs
 - **AITE → SECURITY FAMILY (schoolwork bypass)**  
 - **IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT**  
 - **CONTEXT_ROUTER v3 → all v3 modules**  
+- **PC AUTOMATION LAYER → Runtime Core 4.0**  
 
 All communication is **explicit and controlled**.
 
