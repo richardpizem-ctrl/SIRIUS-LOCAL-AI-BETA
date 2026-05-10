@@ -62,10 +62,6 @@ All processing is fully local; no data leaves the user’s PC.
 ---
 
 # 3. File & Folder Structure
-
-Each module has its own folder:
-
-```
 /runtime
 /filesystem
 /commands
@@ -82,8 +78,8 @@ Each module has its own folder:
 /device_diagnostics
 /school_helper
 /image_analyzer
-/context_router
-```
+/context_router 
+Each module has its own folder:
 
 Each folder contains:
 
@@ -194,22 +190,14 @@ Every module must include:
 - consistent import ordering:
 
 **standard library**  
-```
 import os
 import json
-```
 
 **third‑party**  
-```
 import win32api
-```
-
 **internal**  
-```
 from filesystem.agent import FilesystemAgent
-from security_family.time_limits import TimeLimitsEngine
-```
-
+from security_family.time_limits import TimeLimitsEngine 
 ---
 
 # 11. Module Boundaries
