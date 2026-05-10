@@ -1,7 +1,7 @@
-# 🗺️ Roadmap – SIRIUS LOCAL AI (v3.0.0)
+# 🗺️ Roadmap – SIRIUS LOCAL AI (v4.0.0)
 
 This document defines the long‑term development plan, milestones, and evolution of the SIRIUS LOCAL AI system.  
-The project is now built on the stable Runtime 3.0 architecture and continues toward intelligent automation, family‑safe behavior, and self‑repair capabilities.
+The project now operates on the **Intelligent Runtime 4.0 architecture**, introducing semantic reasoning, identity engine 2.0, self‑repair capabilities, and safe online retrieval via ENVOY 4.0.
 
 All processing is fully local; no data leaves the user's PC.
 
@@ -22,7 +22,8 @@ Delivered:
 - WIN‑CAP (early version)  
 - full documentation set  
 
-**Output:** A stable local AI runtime capable of executing simple and safe workflows.
+**Output:**  
+A stable local AI runtime capable of executing simple and safe workflows.
 
 ---
 
@@ -38,143 +39,173 @@ Delivered:
 - GUI Layer 2.0  
 - AITE 2.0  
 - WIN‑CAP 2.0  
-- deterministic execution model  
+- deterministic execution  
 - complete plugin suite  
 - updated documentation  
-- **foundation prepared for SECURITY FAMILY (identity, time‑limits, schoolwork priority)**  
+- foundation for SECURITY FAMILY  
 
-**Output:** A fully modular, extensible, plugin‑driven AI runtime.
+**Output:**  
+A fully modular, extensible, plugin‑driven AI runtime.
 
 ---
 
-# 3. Version 3.0.0 – Intelligent Runtime (Current Stable Release)
-**Focus:** Semantics, identity, household assistance, schoolwork, and advanced interaction
+# 3. Version 3.0.0 – Intelligent Runtime (Completed)
+**Focus:** Identity, semantics, household modules, schoolwork, advanced interaction
 
 Delivered:
 - Runtime Core 3.0  
-- AI‑assisted triage  
 - semantic workflows  
+- SCHOOLWORK Priority Mode  
+- SECURITY FAMILY (identity engine v1)  
+- household modules  
 - contextual automation  
-- advanced GUI/tray/voice integration  
-- expanded animation engine  
+- expanded GUI and animation engine  
 - plugin‑driven visual components  
-- SCHOOLWORK‑aware routing  
-- identity‑aware runtime behavior  
+
+**Output:**  
+The first generation of intelligent, identity‑aware, household‑oriented offline AI.
 
 ---
 
-## 🔐 New Core Module: SECURITY FAMILY (v3.0.0)
-Behavior‑based identity and access control.
+# 3.5.0 – PC Automation Runtime (Completed)
+**Focus:** Developer‑level automation and project‑aware workflows
 
+Delivered:
+- FS automation module  
+- VS Code integration  
+- structured command parser  
+- command router  
+- PC workflow engine  
+- RuntimeEngine 4.0 integration  
+
+**Output:**  
+SIRIUS becomes a true PC‑level automation assistant capable of manipulating files, code, and project structure.
+
+---
+
+# 4. Version 4.0.0 – Intelligent Runtime 2.0 (Current Stable Release)
+**Focus:** Semantic reasoning, identity engine 2.0, self‑repair, safe retrieval, knowledge expansion
+
+Delivered:
+- **Runtime Core 4.0**  
+- **Reasoning Engine 4.0**  
+- **AITE 4.0 (semantic triage + OCR)**  
+- **Security Family 4.0 (Identity Engine 2.0)**  
+- **Schoolwork Engine 4.0**  
+- **Knowledge Packs 4.0**  
+- **Self‑Repair & Health‑Check Layer**  
+- **SIRIUS ENVOY 4.0**  
+- deterministic semantic workflows  
+- pack‑aware reasoning  
+- identity‑aware routing 2.0  
+
+---
+
+## 🔐 Security Family 4.0 (Identity Engine 2.0)
 Capabilities:
-- **Owner Recognition** – AI learns the owner’s behavior, writing style, command patterns  
-- **Family Profiles** – recognizes children, applies safe‑mode for games and multimedia  
-- **Stranger Detection** – restricted safe‑mode for unknown users  
-- **Access Levels** – OWNER / FAMILY / STRANGER  
-- **Protection of sensitive operations** – deletion, system commands, configuration changes  
-- **Time‑Limits for Children** – configurable daily usage limits  
-- **Schoolwork Priority Mode** – schoolwork always allowed, bypasses time‑limits  
-- **Fully offline** – no biometrics, no cloud, pure behavior‑based identity  
+- OWNER / FAMILY / STRANGER identity  
+- behavior‑based recognition v2  
+- restricted mode for children  
+- safe‑mode for unknown users  
+- time‑limits v2  
+- schoolwork engine  
+- identity‑aware routing across all modules  
+- offline learning (no biometrics, no cloud)  
 
-**Output:** A more intelligent, context‑aware runtime with user‑level identity and family‑safe behavior.
-
----
-
-# 3.1 New Intelligent Modules (v3.0.0)
-
-## 🏠 HOME_ASSISTANT  
-## 🍳 COOKING_ADVISOR  
-## 🔧 DEVICE_DIAGNOSTICS  
-## 🎓 SCHOOL_HELPER  
-## 🖼 IMAGE_ANALYZER  
-## 🧭 CONTEXT_ROUTER v3  
-## 📚 KNOWLEDGE_PACKS  
-
-*(All unchanged — full descriptions preserved.)*
+**Output:**  
+A more intelligent, context‑aware, identity‑driven runtime with strong family‑safe behavior.
 
 ---
 
-# 3.5.0 – PC Automation Runtime (New)
-
-A new automation layer enabling SIRIUS to operate directly on the user’s PC as a **developer assistant and project‑aware automation engine**.
-
-### 🗂 FS MODULE  
-### 📝 EDITOR MODULE  
-### 🔧 WORKFLOW MODULE (PC)  
-### 🧠 COMMAND PARSER  
-### 🛰 COMMAND ROUTER  
-### 🔌 Runtime Integration  
-
-**Output:** SIRIUS becomes a true PC‑level automation assistant capable of manipulating files, code, and project structure.
+## 🧠 Reasoning Engine 4.0
+Capabilities:
+- symbolic logic  
+- chain‑of‑thought trees  
+- subject‑aware reasoning  
+- pack‑aware reasoning  
+- deterministic bounded depth  
+- integration with AITE, Schoolwork Engine, Device Diagnostics, Cooking Advisor  
 
 ---
 
-# 4. Version 4.0.0 – Self‑Repair & Health‑Check Layer
-**Focus:** Diagnostics and safe automatic recovery
+## 🧭 AITE 4.0 – Semantic Triage
+Capabilities:
+- OCR  
+- semantic analysis  
+- subject detection  
+- difficulty scoring  
+- ENVOY integration  
+- identity‑aware routing  
 
-Planned capabilities:
+---
+
+## 🛠 Self‑Repair & Health‑Check Layer
+Capabilities:
 - integrity checks  
-- detection of corrupted states  
+- corrupted state detection  
 - safe automatic repairs  
+- fallback states  
 - patch suggestions  
-- protection against uncontrolled source‑code modifications  
 - system‑wide health reporting  
 
-**Submodules:**
-- `health_check_engine.py`  
-- `self_repair_safe.py`  
-- `repair_suggestions.py`  
-
-**Output:** A self‑maintaining AI runtime with controlled repair logic.
-
 ---
 
-# 🌐 4.1 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer (New)
-
-Although SIRIUS remains a **100% offline AI runtime**, version 4.0.0 introduces an optional, isolated component called **SIRIUS ENVOY 4.0**.
-
-ENVOY allows SIRIUS to safely retrieve external information **without exposing the local AI runtime to the internet**.
-
-### Purpose
-- safe access to health information  
-- educational lookups  
+## 🌐 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer
+Purpose:
+- safe access to external information  
 - definitions, facts, summaries  
+- educational lookups  
 - dynamic Knowledge Pack updates  
 - household & troubleshooting references  
 
-### Core Principles
-- Local AI stays **fully offline**  
-- ENVOY is a **separate outbound‑only process**  
-- ENVOY cannot access local memory  
-- All data passes through a **quarantine sandbox**  
-- Only sanitized, validated text enters the system  
+Pipeline:
+1. Envoy Client  
+2. Scraper Layer  
+3. Quarantine Sandbox  
+4. Validator & Policy Filter  
+5. Safe Payload Delivery  
 
-### ENVOY Pipeline
-1. **Envoy Client** – performs external requests  
-2. **Scraper Layer** – extracts text, removes scripts  
-3. **Quarantine Sandbox** – isolates incoming data  
-4. **Validator & Policy Filter** – enforces safety rules  
-5. **Safe Payload Delivery** – clean text only  
-
-### Output
+**Output:**  
 A safe, controlled method for expanding offline knowledge without compromising security.
 
 ---
 
+# 4.1 Version 4.1.0 – Packaging & Distribution (Planned)
+**Focus:** User‑friendly installation and distribution
+
+Planned:
+- packaged Windows installer  
+- bundled Python environment  
+- plugin auto‑loader  
+- startup integrity checks  
+- identity‑aware initialization  
+
+---
+
+# 4.2 Version 4.2.0 – Semantic UI Automation (Planned)
+**Focus:** Extend SIRIUS into UI‑level automation
+
+Planned:
+- UI automation layer  
+- window graph reasoning  
+- semantic UI actions  
+- accessibility‑safe automation  
+
+---
+
 # 5. Long‑Term Vision (v5.0.0+)
+- offline knowledge graph  
 - advanced plugin ecosystem  
 - voice command layer  
-- UI automation layer  
-- system monitoring layer  
-- semantic triage  
-- intelligent runtime behaviors  
-- deep Windows integration  
-- adaptive identity learning  
-- expanded family‑safe automation  
 - autonomous household workflows  
+- adaptive identity learning  
+- deeper FAMILY safety automation  
+- semantic triage 2.0  
+- system monitoring layer  
+- advanced reasoning modules  
 
 ---
 
 # Roadmap Status
-Current version: **3.0.0 (Stable)**  
-The system is fully modular and ready for future intelligent, household‑aware, and self‑repairing capabilities.
+Current version: **4.0.0 (Stable)**  
+The system is fully modular and ready for future semantic, self‑repairing, and knowledge‑driven capabilities.
