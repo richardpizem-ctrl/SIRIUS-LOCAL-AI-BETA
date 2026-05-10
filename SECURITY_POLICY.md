@@ -152,7 +152,7 @@ Security tests must be reproducible and manual.
 
 ---
 
-# 8. 🛠️ Self‑Repair & Health‑Check Layer (v4.0.0)
+# 8. 🛠️ Self‑Repair & Health‑Check Layer (Future Module)
 
 A future security‑critical module designed to maintain long‑term system stability.
 
