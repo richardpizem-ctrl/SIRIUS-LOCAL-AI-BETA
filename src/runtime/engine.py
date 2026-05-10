@@ -1,6 +1,12 @@
 import logging
 import time
 
+from modules.fs_module import FSModule
+from modules.editor_module import EditorModule
+from modules.workflow_module import WorkflowModule
+from modules.command_parser import CommandParser
+from modules.command_router import CommandRouter
+
 log = logging.getLogger(__name__)
 
 
@@ -12,6 +18,7 @@ class RuntimeEngine:
     - Safe shutdown (reverse order)
     - Telemetry and health checks
     - Error isolation
+    - Command parsing + routing (NEW)
     - Compatible with RuntimeManager 4.0
     """
 
@@ -21,6 +28,10 @@ class RuntimeEngine:
         self.started = []        # modules that actually started
         self.start_time = None
         self.stop_time = None
+
+        # NEW: PC Automation Runtime
+        self.parser = CommandParser()
+        self.router = CommandRouter()
 
     # --------------------------------------------------------
     # MODULE REGISTRATION
@@ -70,6 +81,11 @@ class RuntimeEngine:
         log.info("RuntimeEngine starting...")
         self.start_time = time.time()
 
+        # Register PC Automation modules
+        self.register_module("fs", FSModule())
+        self.register_module("editor", EditorModule())
+        self.register_module("workflow", WorkflowModule())
+
         # Resolve dependency order
         self._resolve_order()
 
@@ -88,6 +104,27 @@ class RuntimeEngine:
 
         log.info("RuntimeEngine started in %.2f seconds.",
                  time.time() - self.start_time)
+
+    # --------------------------------------------------------
+    # EXECUTE COMMAND (NEW)
+    # --------------------------------------------------------
+    def execute(self, command: str):
+        """
+        Full pipeline:
+        1. Parse command
+        2. Route to module
+        3. Execute method
+        """
+
+        log.info("ENGINE: Executing command: %s", command)
+
+        parsed = self.parser.parse(command)
+        if not parsed:
+            log.error("ENGINE: Parsing failed.")
+            return None
+
+        result = self.router.route(parsed)
+        return result
 
     # --------------------------------------------------------
     # STOP ENGINE
