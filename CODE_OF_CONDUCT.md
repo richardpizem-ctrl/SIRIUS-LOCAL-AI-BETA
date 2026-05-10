@@ -123,7 +123,7 @@ This Code of Conduct applies to:
 - discussions and comments  
 - project‑related communication outside GitHub  
 - any interaction representing the project  
-- all modules including safety‑critical components  
+- all modules including safety‑critical components:  
   - **SECURITY FAMILY**  
   - **time limits**  
   - **Schoolwork Priority Mode**  
