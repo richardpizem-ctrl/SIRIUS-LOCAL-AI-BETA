@@ -8,28 +8,34 @@
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI is a fully modular, local‑only AI runtime designed to safely interpret user commands and interact with the Windows 11 environment through isolated capability modules.
+SIRIUS LOCAL AI is a fully modular, **offline‑only AI runtime** designed to safely interpret user commands and interact with Windows 11 through isolated capability modules.
 
 Version **3.0.0** introduces a major architectural expansion, new intelligent subsystems, SCHOOLWORK PRIORITY MODE, SECURITY FAMILY integration, and the first generation of household‑oriented modules.
 
-The architecture emphasizes **safety**, **predictability**, **modularity**, **identity‑based access**, and **full local control**.
+The architecture emphasizes:
+
+- **safety**
+- **predictability**
+- **strict modularity**
+- **identity‑based access**
+- **full local control**
 
 ---
 
 # 🛡 Stability Notice (v3.0.0)
 
-SIRIUS LOCAL AI now operates on the **stable Runtime 3.0 architecture**.
+SIRIUS LOCAL AI now operates on the **stable Runtime 3.0 architecture**, which guarantees:
 
-- All modules are isolated and deterministic  
-- No cloud communication  
-- No background automation unless explicitly defined  
-- All processing is fully local  
-- All plugin interfaces are stable  
-- All core modules (runtime, context, filesystem, commands, security) are validated for v3.0.0  
-- SCHOOLWORK PRIORITY MODE is fully integrated  
-- SECURITY FAMILY is now an active core module  
+- isolated, deterministic modules  
+- zero cloud communication  
+- no hidden background automation  
+- fully local processing  
+- stable plugin interfaces  
+- validated core modules (runtime, context, filesystem, commands, security)  
+- SCHOOLWORK PRIORITY MODE fully integrated  
+- SECURITY FAMILY as an active core module  
 
-This version is production‑ready and forms the foundation for v4.0.0.
+This version is **production‑ready** and forms the foundation for v4.0.0.
 
 ---
 
@@ -44,14 +50,14 @@ This version is production‑ready and forms the foundation for v4.0.0.
 - no network communication  
 - predictable, reversible actions  
 - capability‑based access to Windows functions  
-- explicit user intent for all operations  
+- explicit user intent required  
 - plugin‑driven extensibility  
 
 ---
 
 # 🖼 Architecture Diagram (Placeholder)
 
-> A high‑level architecture diagram will be added in a future update.
+A high‑level architecture diagram will be added in a future update.
 
 <p align="center">
   <img src="docs/architecture_diagram_placeholder.png" width="600">
@@ -62,7 +68,7 @@ This version is production‑ready and forms the foundation for v4.0.0.
 # 🧱 Core Layers (v3.0.0)
 
 ## 1. Runtime Core 3.0
-Central orchestrator responsible for:
+The central orchestrator responsible for:
 
 - module initialization  
 - lifecycle management  
@@ -71,8 +77,8 @@ Central orchestrator responsible for:
 - enforcing security boundaries  
 - capability registration  
 - event routing  
-- maintaining global system stability  
-- integration with SECURITY FAMILY  
+- global system stability  
+- SECURITY FAMILY integration  
 
 Runtime Core 3.0 is the **heart of the system**.
 
@@ -88,9 +94,9 @@ Responsibilities:
 - routing to modules  
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
-- integration with FAMILY identity rules  
+- FAMILY identity rule integration  
 
-NL Router 3.0 ensures **clear intent and safe execution**.
+Ensures **clear intent and safe execution**.
 
 ---
 
@@ -106,7 +112,7 @@ Responsibilities:
 - rollback‑safe operations  
 - SCHOOLWORK priority routing  
 
-FS‑AGENT 3.0 performs only **safe, validated actions**.
+Performs only **safe, validated actions**.
 
 ---
 
@@ -117,11 +123,11 @@ Responsibilities:
 
 - storing recent paths  
 - tracking last actions  
-- providing contextual hints  
-- supporting multi‑step workflows  
+- contextual hints  
+- multi‑step workflow support  
 - SCHOOLWORK metadata tagging  
 
-CME‑MEM stores **only workflow‑related context**, never personal data.
+Stores **only workflow‑related context**, never personal data.
 
 ---
 
@@ -131,13 +137,13 @@ Controls multi‑step logic.
 Responsibilities:
 
 - workflow state machine  
-- executing plugin workflows  
-- validating transitions  
+- plugin workflow execution  
+- transition validation  
 - predictable behavior  
 - preventing invalid sequences  
 - SCHOOLWORK workflow prioritization  
 
-Workflow Engine 3.0 ensures **transparent, deterministic workflows**.
+Ensures **transparent, deterministic workflows**.
 
 ---
 
@@ -148,11 +154,11 @@ Responsibilities:
 
 - rendering plugin buttons  
 - executing GUI actions  
-- integrating with RuntimeManager  
-- future expansion to tray/voice layers  
+- RuntimeManager integration  
+- future tray/voice expansion  
 - SCHOOLWORK visual indicators  
 
-GUI 3.0 is fully modular and extensible.
+Fully modular and extensible.
 
 ---
 
@@ -172,11 +178,11 @@ Responsibilities:
 - type detection  
 - routing  
 - metadata generation  
-- integration with FS‑AGENT and CME‑MEM  
+- FS‑AGENT + CME‑MEM integration  
 - **bypassing FAMILY time limits for schoolwork**  
 - SCHOOLWORK PRIORITY MODE  
 
-AITE ensures the system always knows **what kind of input it is handling**.
+Ensures the system always knows **what kind of input it is handling**.
 
 ---
 
@@ -191,7 +197,7 @@ Submodules:
 - `audio_ops`  
 - `system_context`  
 
-WIN‑CAP provides **safe, high‑level system actions**.
+Provides **safe, high‑level system actions**.
 
 ---
 
@@ -214,12 +220,10 @@ All official plugins are **v3‑ready**.
 
 # 🔐 SECURITY FAMILY (NEW in v3.0.0)
 
-A new core module providing identity‑based safety and family‑oriented restrictions.
+A core module providing identity‑based safety and family‑oriented restrictions.
 
-## SECURITY FAMILY – Behavior‑Based Identity & Family Safety Layer
-
-Purpose:
-- behavior‑based recognition of **OWNER**, **FAMILY**, and **STRANGER**  
+### Purpose:
+- behavior‑based recognition of **OWNER**, **FAMILY**, **STRANGER**  
 - offline identity learning (no biometrics, no cloud)  
 - safe‑mode for unknown users  
 - restricted mode for children  
@@ -227,8 +231,7 @@ Purpose:
 - **time‑based limits for children**  
 - **schoolwork bypass mode**  
 
-Submodules:
-
+### Submodules:
 - `identity_engine.py`  
 - `behavior_audit.py`  
 - `access_control.py`  
@@ -237,185 +240,132 @@ Submodules:
 - `time_limits.py`  
 - `profile_store.json`  
 
-SECURITY FAMILY is now a **core security layer** in version **3.0.0**.
+SECURITY FAMILY is a **core security layer** in v3.0.0.
 
 ---
 
-# 🌟 New v3.0.0 Modules
+# 🌟 New v3.0.0 Intelligent Modules
 
-These modules expand SIRIUS from a system automation runtime into a **full offline household assistant**, while staying safe, predictable, and local‑only.
+These modules expand SIRIUS into a **full offline household assistant**, while staying safe and predictable.
 
 ---
 
-## 🏠 HOME_ASSISTANT (v3.0.0)
-General household assistant.
-
-Responsibilities:
-- safe household recommendations  
+## 🏠 HOME_ASSISTANT
+- household recommendations  
 - cleaning tips  
 - organization workflows  
 - safety‑first guidance  
-- integration with IMAGE_ANALYZER  
+- IMAGE_ANALYZER integration  
 
 ---
 
-## 🍳 COOKING_ADVISOR (v3.0.0)
-Offline cooking and recipe assistant.
-
-Responsibilities:
+## 🍳 COOKING_ADVISOR
 - recipe generation  
-- suggestions based on available ingredients  
-- step‑by‑step cooking workflows  
+- ingredient‑based suggestions  
+- step‑by‑step workflows  
 - dietary filters  
-- integration with Knowledge Packs  
+- Knowledge Pack integration  
 
 ---
 
-## 🔧 DEVICE_DIAGNOSTICS (v3.0.0)
-Safe troubleshooting for household devices.
-
-Responsibilities:
-- identifying common device issues  
-- providing safe repair suggestions  
-- detecting dangerous situations  
-- routing to OWNER‑only actions  
-- integration with SECURITY FAMILY  
+## 🔧 DEVICE_DIAGNOSTICS
+- device issue detection  
+- safe troubleshooting  
+- dangerous‑situation detection  
+- OWNER‑only repair actions  
+- SECURITY FAMILY integration  
 
 ---
 
-## 🎓 SCHOOL_HELPER (v3.0.0)
-Offline schoolwork assistant.
-
-Responsibilities:
+## 🎓 SCHOOL_HELPER
 - math, language, science explanations  
 - step‑by‑step reasoning  
 - safe educational help  
-- image‑based homework recognition  
-- integration with SCHOOLWORK PRIORITY MODE  
+- SCHOOLWORK PRIORITY MODE integration  
+- homework recognition  
 
 ---
 
-## 🖼 IMAGE_ANALYZER (v3.0.0)
-Local image understanding engine.
-
-Responsibilities:
-- reading homework from photos  
-- identifying household objects  
-- detecting device issues visually  
-- routing results to correct modules  
+## 🖼 IMAGE_ANALYZER
+- homework reading  
+- object recognition  
+- device issue detection  
+- routing to correct modules  
 
 ---
 
-## 🧭 CONTEXT_ROUTER v3 (v3.0.0)
-Smarter intent routing.
-
-Responsibilities:
-- detecting household tasks  
-- detecting cooking tasks  
-- detecting device issues  
-- detecting schoolwork  
-- routing to new v3 modules  
+## 🧭 CONTEXT_ROUTER v3
+- detects household tasks  
+- cooking tasks  
+- device issues  
+- schoolwork  
+- routes to v3 modules  
 
 ---
 
-## 📚 KNOWLEDGE_PACKS (v3.0.0+)
-Modular offline knowledge expansions.
-
-Responsibilities:
-- domain‑specific knowledge (kitchen, repairs, school subjects)  
-- safe curated datasets  
-- plug‑and‑play expansions  
+## 📚 KNOWLEDGE_PACKS
+- offline knowledge expansions  
+- curated datasets  
+- plug‑and‑play modules  
 - no internet required  
 
 ---
 
-# 🆕 NEW: PC Automation Runtime (v3.5.0)
+# 🆕 PC Automation Runtime (v3.5.0)
 
-Version 3.5.0 introduces a new automation layer that transforms SIRIUS into a **developer‑level PC automation assistant**, capable of manipulating files, code, and project structure — fully offline and under user control.
+Transforms SIRIUS into a **developer‑level offline automation assistant**.
 
-## 🗂 FS MODULE  
-Local filesystem automation  
-- mkdir  
-- move  
-- copy  
-- delete  
-- read/write  
+### 🗂 FS MODULE  
+- mkdir, move, copy, delete  
 - safe‑mode protections  
 
-## 📝 EDITOR MODULE  
-VS Code integration  
-- open file  
-- open folder  
+### 📝 EDITOR MODULE  
+- open file/folder  
 - jump to line  
 - highlight  
 
-## 🔧 WORKFLOW MODULE (PC)  
-Developer workflows  
-- project scaffolding  
-- refactoring tasks  
-- version preparation  
+### 🔧 WORKFLOW MODULE (PC)  
+- scaffolding  
+- refactoring  
+- version prep  
 - module generation  
 
-## 🧠 COMMAND PARSER  
+### 🧠 COMMAND PARSER  
 Parses structured commands like:  
 `fs.move("src/a.py", "modules/a.py")`
 
-## 🛰 COMMAND ROUTER  
-Routes parsed commands to correct modules  
-- fs  
-- editor  
-- workflow  
+### 🛰 COMMAND ROUTER  
+Routes commands to FS / Editor / Workflow.
 
-## 🔌 Runtime Integration  
-All modules registered into **Runtime Core 4.0** with dependency‑aware startup.
-
-**Purpose:**  
-Enable SIRIUS to operate directly on the user’s PC as a safe, deterministic, offline automation engine.
+### 🔌 Runtime Integration  
+Registered into **Runtime Core 4.0**.
 
 ---
 
-# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL LAYER  
-*(Introduced for SIRIUS 4.0 architecture)*
+# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL LAYER
 
-SIRIUS ENVOY 4.0 is an **optional, isolated online retrieval agent** designed to safely fetch information from the internet **without exposing the local AI runtime to any network communication**.
+Optional isolated agent for safe external lookups.
 
-### **Key Principles**
-- Local AI remains **100% offline**  
-- Only the ENVOY process is allowed to access the internet  
-- All retrieved data passes through a **quarantine sandbox**  
-- Only validated, sanitized, text‑only information is delivered to SIRIUS  
+### Principles:
+- Local AI stays **100% offline**  
+- ENVOY is the only process allowed online  
+- All data passes through quarantine  
+- Only sanitized text enters SIRIUS  
 
-### **ENVOY Pipeline**
-1. **Envoy Client**  
-   - isolated process  
-   - performs outbound requests  
-   - no access to local AI memory or capabilities  
+### Pipeline:
+1. Envoy Client  
+2. Scraper Layer  
+3. Quarantine Sandbox  
+4. Validator & Filter  
+5. Safe Payload Delivery  
 
-2. **Scraper Layer**  
-   - extracts text  
-   - removes scripts, HTML, trackers, active content  
-
-3. **Quarantine Sandbox**  
-   - validates structure  
-   - checks for unsafe patterns  
-   - strips unknown formats  
-
-4. **Validator & Filter**  
-   - ensures data safety  
-   - marks uncertainty  
-   - enforces domain rules  
-
-5. **Safe Payload Delivery**  
-   - only clean, structured, offline‑safe text is passed to SIRIUS  
-
-### **Use Cases**
+### Use Cases:
 - health information  
 - educational content  
-- definitions, facts, summaries  
-- dynamic updates for Knowledge Packs  
-- safe external lookups  
+- definitions, facts  
+- Knowledge Pack updates  
 
-ENVOY never sends local data outward and never interacts directly with the runtime core.
+ENVOY never sends local data outward.
 
 ---
 
@@ -427,21 +377,16 @@ NL Router → AITE → FS‑AGENT
 ↓  
 CME‑MEM → Workflow Engine  
 ↓  
-Runtime Core → WIN‑CAP → Windows 11 APIs  
+Runtime Core → WIN‑CAP → Windows APIs  
 
 ### Key relationships:
-
 - NL Router → Plugins  
 - Plugins → Runtime Core  
-- AITE → FS‑AGENT  
-- AITE → CME‑MEM  
-- Workflow Engine → Runtime Core  
-- WIN‑CAP → Runtime Core  
-- **AITE → SECURITY FAMILY (schoolwork bypass)**  
-- **IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT**  
-- **CONTEXT_ROUTER v3 → all v3 modules**  
-- **PC AUTOMATION LAYER → Runtime Core 4.0**  
-- **ENVOY 4.0 → Knowledge Packs / Reasoning Engine (v4.0.0)**  
+- AITE → FS‑AGENT / CME‑MEM / SECURITY FAMILY  
+- IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT  
+- CONTEXT_ROUTER v3 → all v3 modules  
+- PC Automation Layer → Runtime Core 4.0  
+- ENVOY 4.0 → Knowledge Packs / Reasoning Engine  
 
 All communication is **explicit and controlled**.
 
@@ -450,4 +395,4 @@ All communication is **explicit and controlled**.
 # 📌 Document Status
 
 Current version: **3.0.0 (Stable)**  
-Architecture is fully defined and ready for future expansions in v4.0.0.
+Architecture is fully defined and ready for v4.0.0 expansions.
