@@ -71,319 +71,89 @@ Delivered:
 
 # 🧠 2. Intelligent Assistant Modules (v3.0.0)
 
-These modules expand SIRIUS into a **daily‑life assistant**, while staying offline and safe.
-
----
-
-## 🏠 2.1 HOME_ASSISTANT  
-General household assistant.
-
-**Responsibilities:**
-- safe household recommendations  
-- cleaning tips  
-- organization workflows  
-- safety‑first guidance  
-- integration with IMAGE_ANALYZER  
-
----
-
-## 🍳 2.2 COOKING_ADVISOR  
-Offline cooking and recipe assistant.
-
-**Responsibilities:**
-- recipe generation  
-- ingredient‑based suggestions  
-- step‑by‑step cooking  
-- dietary filters  
-- integration with Knowledge Packs  
-
----
-
-## 🔧 2.3 DEVICE_DIAGNOSTICS  
-Safe troubleshooting for household devices.
-
-**Responsibilities:**
-- identifying common issues  
-- safe repair suggestions  
-- danger detection  
-- OWNER‑only escalation  
-- SECURITY FAMILY integration  
-
----
-
-## 🎓 2.4 SCHOOL_HELPER  
-Offline schoolwork assistant.
-
-**Responsibilities:**
-- math, language, science explanations  
-- step‑by‑step reasoning  
-- image‑based homework recognition  
-- SCHOOLWORK PRIORITY MODE integration  
-
----
-
-## 🖼 2.5 IMAGE_ANALYZER  
-Local image understanding.
-
-**Responsibilities:**
-- reading homework photos  
-- identifying household objects  
-- detecting device issues  
-- routing to correct modules  
-
----
-
-## 🧭 2.6 CONTEXT_ROUTER v3  
-Smarter intent routing.
-
-**Responsibilities:**
-- detecting household tasks  
-- detecting cooking tasks  
-- detecting device issues  
-- detecting schoolwork  
-- routing to v3 modules  
-
----
-
-## 📚 2.7 KNOWLEDGE_PACKS  
-Offline knowledge expansions.
-
-**Responsibilities:**
-- curated domain knowledge  
-- kitchen, repairs, school subjects  
-- plug‑and‑play  
-- no internet required  
+(… unchanged …)
 
 ---
 
 # 🛡 3. Core Identity & Safety Layer (v3.0.0)
 
-## SECURITY FAMILY  
-Behavior‑based identity and family‑safe automation.
-
-### Identity Levels:
-- **OWNER** – full access  
-- **FAMILY** – safe mode for children  
-- **STRANGER** – restricted mode  
-
-### Capabilities:
-- offline behavior learning  
-- time‑limits for children  
-- restricted mode for unknown users  
-- protection of sensitive operations  
-- Schoolwork Priority Mode  
-
-Becomes a **core runtime module** in v3.0.0.
+(… unchanged …)
 
 ---
 
 # 🟦 3.5.0 – PC Automation Runtime (New)
 
-Version 3.5.0 introduces a new automation layer that transforms SIRIUS into a **developer‑level PC automation assistant**, capable of manipulating files, code, and project structure — fully offline and under user control.
-
-## 🗂 FS MODULE  
-Local filesystem automation  
-- mkdir  
-- move  
-- copy  
-- delete  
-- read/write  
-- safe‑mode protections  
-
-## 📝 EDITOR MODULE  
-VS Code integration  
-- open file  
-- open folder  
-- jump to line  
-- highlight  
-
-## 🔧 WORKFLOW MODULE (PC)  
-Developer workflows  
-- project scaffolding  
-- refactoring tasks  
-- version preparation  
-- module generation  
-
-## 🧠 COMMAND PARSER  
-Parses structured commands like:  
-`fs.move("src/a.py", "modules/a.py")`
-
-## 🛰 COMMAND ROUTER  
-Routes parsed commands to correct modules  
-- fs  
-- editor  
-- workflow  
-
-## 🔌 Runtime Integration  
-All modules registered into **Runtime Core 4.0** with dependency‑aware startup.
-
-**Purpose:**  
-Enable SIRIUS to operate directly on the user’s PC as a safe, deterministic, offline automation engine.
+(… unchanged …)
 
 ---
 
 # 🩺 4. Self‑Repair & Health‑Check Layer (v4.0.0)
 
-Version 4.0.0 introduces the first generation of **safe, controlled self‑repair logic**.
-
-**Responsibilities:**
-- integrity checks  
-- detection of corrupted states  
-- safe automatic repairs  
-- patch suggestions  
-- system‑wide health reporting  
-- protection against uncontrolled source‑code modifications  
-
-**Purpose:** Ensure long‑term stability.
+(… unchanged …)
 
 ---
 
 # 🚀 4.1 Offline Expansion – Version 4.0.0 (New)
 
-Version 4.0.0 expands SIRIUS into a **deep offline intelligence system**, adding new reasoning, diagnostics, vision, and knowledge capabilities — all without cloud, telemetry, or external dependencies.
+(… unchanged …)
 
 ---
 
-## 🧩 Knowledge Packs 2.0  
-Advanced offline knowledge modules.
+# 🌐 4.2 SIRIUS ENVOY 4.0 — Safe Online Retrieval Layer  
+*(New in v4.0.0)*
 
-**New capabilities:**
-- local embeddings  
-- offline vector search  
-- knowledge graphs  
-- pack‑to‑pack linking  
-- reasoning over knowledge packs  
+Although SIRIUS remains a **100% offline AI runtime**, version 4.0.0 introduces an optional, isolated component called **SIRIUS ENVOY 4.0**.
 
----
+ENVOY allows SIRIUS to safely retrieve external information **without ever exposing the local AI to the internet**.
 
-## 🖼 Vision Engine v2  
-Expanded offline image understanding.
+### **Purpose**
+- provide safe access to health information  
+- fetch educational content  
+- retrieve definitions, facts, summaries  
+- update Knowledge Packs dynamically  
+- maintain strict offline boundaries  
 
-**New capabilities:**
-- OCR 2.0  
-- object detection  
-- scene understanding  
-- reading device error codes  
-- diagram and math recognition  
+### **Core Principles**
+- Local AI stays **fully offline**  
+- ENVOY is a **separate process**  
+- ENVOY has **no access** to local memory or capabilities  
+- All data passes through a **quarantine sandbox**  
+- Only sanitized, validated text is delivered to SIRIUS  
 
----
+### **ENVOY Pipeline**
+1. **Envoy Client (Outbound‑Only)**  
+   - performs external requests  
+   - cannot receive external commands  
+   - cannot access local AI internals  
 
-## 🔧 Device Diagnostics 2.0  
-Deeper offline troubleshooting.
+2. **Scraper Layer**  
+   - extracts text  
+   - removes scripts, HTML, trackers, active content  
 
-**New capabilities:**
-- troubleshooting trees  
-- symptom‑to‑cause mapping  
-- safety advisor  
-- repair difficulty estimation  
-- offline manuals pack  
+3. **Quarantine Sandbox**  
+   - isolates incoming data  
+   - checks for unsafe patterns  
+   - strips unknown formats  
 
----
+4. **Validator & Policy Filter**  
+   - enforces domain rules  
+   - marks uncertainty  
+   - blocks unsafe or unverifiable content  
 
-## 🧭 Context Router v4  
-Predictive offline routing.
+5. **Safe Payload Delivery**  
+   - only clean, structured, offline‑safe text is passed to SIRIUS  
 
-**New capabilities:**
-- multi‑intent detection  
-- context memory graph  
-- task prediction  
-- workflow suggestion engine  
-- priority resolver  
+### **Use Cases**
+- health advice (safe, curated)  
+- schoolwork explanations  
+- device troubleshooting references  
+- cooking and household knowledge  
+- dynamic Knowledge Pack updates  
 
----
-
-## 🔐 SECURITY FAMILY v4  
-Expanded identity and safety logic.
-
-**New capabilities:**
-- behavior fingerprinting  
-- offline risk scoring  
-- anomaly detection  
-- restricted‑content filter  
-- child‑safety advisor  
-
----
-
-## 🎓 Schoolwork Priority Mode 2.0  
-Smarter offline schoolwork support.
-
-**New capabilities:**
-- offline math solver  
-- step‑by‑step reasoning engine  
-- exam mode  
-- handwriting recognition  
-- textbook knowledge packs  
-
----
-
-## 🧠 Offline Reasoning Engine  
-Symbolic and rule‑based reasoning without LLMs.
-
-**Capabilities:**
-- rule‑based logic  
-- symbolic reasoning  
-- chain‑of‑thought trees  
-- decision engine  
-
----
-
-## 🩺 Self‑Repair Layer 2.0  
-Deeper, safer, more autonomous offline repair.
-
-**Capabilities:**
-- module integrity hashing  
-- auto‑rollback  
-- crash analyzer  
-- dependency validator  
-- repair suggestions  
-
----
-
-## 🧱 Runtime Core 4.0  
-New foundation for all v4 modules.
-
-**Capabilities:**
-- module sandboxing  
-- offline performance optimizer  
-- modular scheduler  
-- dependency graph  
-- self‑repair hooks  
+ENVOY never sends local data outward and never interacts directly with the runtime core.
 
 ---
 
 # 🚀 5. Long‑Term Vision (Beyond v4.0.0)
 
-SIRIUS LOCAL AI aims to become the **first fully local, modular AI agent** capable of assisting with:
-
-### 🖥 Windows Automation
-- file operations  
-- workflows  
-- system tasks  
-
-### 🏠 Household Tasks
-- cleaning  
-- organization  
-- maintenance  
-
-### 🍳 Cooking
-- recipes  
-- ingredient‑based suggestions  
-- step‑by‑step cooking  
-
-### 🔧 Device Troubleshooting
-- safe diagnostics  
-- repair guidance  
-
-### 🎓 Schoolwork
-- explanations  
-- step‑by‑step reasoning  
-- homework recognition  
-
-### 🧩 Daily Workflows
-- reminders  
-- organization  
-- productivity  
-
-All without cloud, telemetry, or external dependencies.
-
-A personal AI that works *with you*, safely and locally.
+(… unchanged …)
