@@ -1,4 +1,3 @@
-# sandbox_process.py
 """
 SIRIUS LOCAL AI – Runtime 4.0 Sandbox Process
 
@@ -22,6 +21,10 @@ class SandboxProcess4:
     """
 
     def __init__(self, module_name: str):
+        # Validate module name
+        if not isinstance(module_name, str) or not module_name.strip():
+            raise ValueError("Invalid module_name: must be a non-empty string.")
+
         self.module_name = module_name
         self.context = {}
         self.active = True
@@ -31,11 +34,23 @@ class SandboxProcess4:
     # ---------------------------------------------------------
 
     def set_context(self, key: str, value):
-        """Stores a value inside the sandbox context."""
+        """Stores a value inside the sandbox context with safety checks."""
+
+        # Validate key
+        if not isinstance(key, str) or not key.strip():
+            return {"error": "invalid_context_key"}
+
+        # Prevent storing dangerous types (optional hardening)
+        if isinstance(value, (type(lambda: None), type(self.set_context))):
+            return {"error": "invalid_context_value_type"}
+
         self.context[key] = value
+        return {"status": "ok"}
 
     def get_context(self, key: str):
         """Retrieves a value from the sandbox context."""
+        if not isinstance(key, str):
+            return None
         return self.context.get(key)
 
     # ---------------------------------------------------------
@@ -47,8 +62,18 @@ class SandboxProcess4:
         Executes a task inside the sandbox.
         This is only a placeholder — logic will be added later.
         """
+
+        # Sandbox must be active
         if not self.active:
             return {"error": "sandbox_inactive"}
+
+        # Validate task
+        if not isinstance(task, str) or not task.strip():
+            return {"error": "invalid_task"}
+
+        # Validate payload
+        if payload is not None and not isinstance(payload, dict):
+            return {"error": "invalid_payload_type"}
 
         return {
             "status": "executed_in_sandbox",
@@ -64,3 +89,4 @@ class SandboxProcess4:
     def shutdown(self):
         """Shuts down the sandbox process."""
         self.active = False
+        return {"status": "sandbox_shutdown"}
