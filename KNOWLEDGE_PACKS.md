@@ -204,24 +204,6 @@ Example `manifest.json`:
   "author": "Richard Pizem",
   "safe": true
 }
-📌 9. Future Expansion (v4.1+)
-Planned features:
-
-pack‑to‑pack linking
-
-offline semantic search
-
-knowledge graphs
-
-pack compression
-
-ENVOY‑assisted pack generation
-
-domain‑specific reasoning modules
-
-📄 Document Status
-Version: 1.0.0 (Initial Release)
-This document defines the Knowledge Pack system for SIRIUS LOCAL AI v4.0.0.
 
 ---
 
