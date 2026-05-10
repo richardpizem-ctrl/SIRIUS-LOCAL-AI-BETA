@@ -71,31 +71,78 @@ Delivered:
 
 # 🧠 2. Intelligent Assistant Modules (v3.0.0)
 
-(… unchanged …)
+- HOME_ASSISTANT  
+- COOKING_ADVISOR  
+- DEVICE_DIAGNOSTICS  
+- SCHOOL_HELPER  
+- IMAGE_ANALYZER  
+- CONTEXT_ROUTER v3  
+- KNOWLEDGE_PACKS  
+
+These modules expand SIRIUS into a **full household‑aware offline assistant**, while staying safe and deterministic.
 
 ---
 
 # 🛡 3. Core Identity & Safety Layer (v3.0.0)
 
-(… unchanged …)
+SECURITY FAMILY introduces:
+
+- OWNER / FAMILY / STRANGER identity  
+- behavior‑based recognition  
+- restricted mode for children  
+- safe‑mode for unknown users  
+- time‑limits  
+- Schoolwork Priority Mode  
+- identity‑aware routing  
+- integration with NL Router, AITE, WIN‑CAP  
+
+This is the foundation of **family‑safe offline intelligence**.
 
 ---
 
 # 🟦 3.5.0 – PC Automation Runtime (New)
 
-(… unchanged …)
+A new layer enabling SIRIUS to operate directly on the user’s PC:
+
+- filesystem automation  
+- VS Code integration  
+- developer workflows  
+- structured command parsing  
+- command routing  
+- RuntimeEngine 4.0 integration  
+
+This transforms SIRIUS into a **developer‑level automation assistant**.
 
 ---
 
 # 🩺 4. Self‑Repair & Health‑Check Layer (v4.0.0)
 
-(… unchanged …)
+Version 4.0.0 introduces the first generation of **safe, controlled self‑repair**:
+
+- integrity checks  
+- detection of corrupted states  
+- safe automatic repairs  
+- patch suggestions  
+- system‑wide health reporting  
+- protection against uncontrolled source‑code modifications  
+
+This ensures long‑term stability.
 
 ---
 
 # 🚀 4.1 Offline Expansion – Version 4.0.0 (New)
 
-(… unchanged …)
+Version 4.0.0 expands SIRIUS into a **knowledge‑driven offline assistant**:
+
+- Knowledge Packs 4.0  
+- offline reasoning engine  
+- symbolic rule‑based logic  
+- subject‑aware schoolwork reasoning  
+- device diagnostics 2.0  
+- household knowledge expansions  
+- pack‑aware routing  
+
+This is the beginning of **offline intelligence at scale**.
 
 ---
 
@@ -156,4 +203,28 @@ ENVOY never sends local data outward and never interacts directly with the runti
 
 # 🚀 5. Long‑Term Vision (Beyond v4.0.0)
 
-(… unchanged …)
+SIRIUS will evolve into:
+
+- a fully offline household AI  
+- a developer automation engine  
+- a self‑maintaining runtime  
+- a knowledge‑driven reasoning system  
+- a family‑safe assistant  
+- a modular, extensible AI platform  
+
+Future directions include:
+
+- semantic triage  
+- voice command layer  
+- UI automation  
+- advanced plugin ecosystem  
+- adaptive identity learning  
+- autonomous household workflows  
+- offline knowledge graphs  
+- pack‑to‑pack reasoning  
+
+---
+
+# Document Status
+Current version: **v3.0.0 → v4.0.0 transition**  
+This document defines the long‑term evolution of SIRIUS LOCAL AI.
