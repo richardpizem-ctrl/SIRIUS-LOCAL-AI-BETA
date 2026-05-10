@@ -100,6 +100,55 @@ SIRIUS LOCAL AI includes:
 
 ---
 
+# 🌐 5.1 SIRIUS ENVOY 4.0 — Internet Isolation & Quarantine Model  
+*(Introduced for SIRIUS 4.0 architecture)*
+
+Although SIRIUS LOCAL AI is fully offline, future versions introduce an **optional, isolated online retrieval agent** called **SIRIUS ENVOY 4.0**.
+
+ENVOY allows safe, controlled retrieval of external information **without exposing the local AI runtime to the internet**.
+
+### **Core Security Guarantees**
+- Local AI remains **100% offline**  
+- ENVOY is a **separate process** with no access to local memory  
+- All retrieved data passes through a **quarantine sandbox**  
+- Only sanitized, validated, text‑only data is delivered to SIRIUS  
+- No scripts, HTML, binaries, or active content are ever allowed  
+
+### **ENVOY Security Pipeline**
+1. **Outbound‑Only Envoy Client**  
+   - performs external requests  
+   - cannot receive commands from outside  
+   - cannot access local AI internals  
+
+2. **Scraper Layer**  
+   - extracts text  
+   - removes scripts, trackers, active content  
+
+3. **Quarantine Sandbox**  
+   - isolates all incoming data  
+   - checks for unsafe patterns  
+   - strips unknown formats  
+
+4. **Validator & Policy Filter**  
+   - enforces domain rules  
+   - marks uncertainty  
+   - blocks unsafe or unverifiable content  
+
+5. **Safe Payload Delivery**  
+   - only clean, structured, offline‑safe text is passed to SIRIUS  
+
+### **Security Purpose**
+ENVOY exists to support:
+
+- health information lookups  
+- educational content  
+- definitions and factual data  
+- dynamic updates for Knowledge Packs  
+
+ENVOY **never** sends local data outward and **never** interacts directly with the runtime core.
+
+---
+
 # 6. 🕒 Response Time
 
 You can expect:
@@ -127,4 +176,3 @@ Please:
 
 **Version:** 3.0.0 (Stable)  
 This SECURITY.md describes the official security reporting process for SIRIUS LOCAL AI.
-
