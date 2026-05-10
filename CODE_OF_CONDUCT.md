@@ -1,15 +1,16 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v3.0.0)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v4.0.0)
 
-This project follows a professional and respectful standard of behavior.  
-The goal is to maintain a **safe, friendly, and productive environment** for all contributors and all users of SIRIUS LOCAL AI, including households and children.
+This project follows a professional, respectful, and safety‑oriented standard of behavior.  
+The goal is to maintain a **safe, friendly, and productive environment** for all contributors and all users of SIRIUS LOCAL AI — including households, families, and children.
+
+Version **4.0.0** expands the Code of Conduct to reflect new modules such as **SECURITY FAMILY 4.0**, **Schoolwork Engine 4.0**, **Identity Engine 2.0**, and the **Self‑Repair Layer**.
 
 ---
 
 # 1. 🌟 Core Principles
 
 - respect toward all participants  
-- no personal attacks  
-- no insults, mockery, or humiliation  
+- no personal attacks, insults, or humiliation  
 - no harassment of any kind  
 - constructive and technical communication  
 - disagreements handled calmly and professionally  
@@ -17,7 +18,12 @@ The goal is to maintain a **safe, friendly, and productive environment** for all
 - focus on collaboration, not competition  
 - maintain clarity, professionalism, and transparency  
 - support safe and responsible use of AI technologies  
-- respect safety‑critical modules such as **SECURITY FAMILY**, **time limits**, and **Schoolwork Priority Mode**  
+- respect safety‑critical modules such as:  
+  - **SECURITY FAMILY 4.0**  
+  - **Identity Engine 2.0**  
+  - **Schoolwork Engine 4.0**  
+  - **Time‑Limits Engine v2**  
+  - **Self‑Repair & Health‑Check Layer**  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -36,7 +42,8 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - asking questions when unsure  
 - contributing improvements in good faith  
 - respecting FAMILY‑safe design and identity‑based protections  
-- ensuring that SCHOOLWORK‑related features remain unrestricted and safe  
+- ensuring SCHOOLWORK‑related features remain unrestricted and safe  
+- preserving deterministic, safe, offline‑only behavior  
 
 ---
 
@@ -51,9 +58,14 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - dismissing others’ work without explanation  
 - intentionally misleading or deceptive behavior  
 - exploiting project features for harmful purposes  
-- attempting to bypass safety systems (e.g., FAMILY mode, time limits, STRANGER restrictions)  
-- disabling or weakening SCHOOLWORK PRIORITY MODE  
-- modifying SECURITY FAMILY logic to remove protections  
+- attempting to bypass safety systems, including:  
+  - FAMILY mode  
+  - time limits  
+  - STRANGER restrictions  
+  - identity‑based protections  
+  - Schoolwork Engine bypass  
+- modifying SECURITY FAMILY logic to weaken protections  
+- disabling or interfering with the Self‑Repair Layer  
 
 Such behavior harms the community and will not be tolerated.
 
@@ -70,8 +82,9 @@ Project maintainers have the right and responsibility to:
 - clarify expectations when misunderstandings occur  
 - protect contributors from harassment or abuse  
 - preserve the integrity and stability of the project  
-- ensure that safety modules (e.g., SECURITY FAMILY, SCHOOLWORK PRIORITY MODE) remain uncompromised  
-- prevent contributions that weaken identity‑based protections  
+- ensure that safety modules remain uncompromised  
+- reject contributions that weaken identity‑based protections  
+- prevent unsafe modifications to SCHOOLWORK ENGINE or SECURITY FAMILY  
 
 Maintainers act to protect the long‑term health of the project.
 
@@ -103,14 +116,15 @@ Violations of this Code of Conduct may result in:
 - temporary ban  
 - permanent ban from the project  
 
-The severity depends on:
+Severity depends on:
 
 - the nature of the violation  
 - whether it was intentional  
-- whether it is a repeated offense  
+- whether it is repeated  
 - whether it involved attempts to bypass FAMILY or SCHOOLWORK protections  
+- whether it attempted to weaken SECURITY FAMILY or Identity Engine 2.0  
 
-Maintainers will always act in good faith and with fairness.
+Maintainers will always act in good faith and fairness.
 
 ---
 
@@ -124,24 +138,26 @@ This Code of Conduct applies to:
 - project‑related communication outside GitHub  
 - any interaction representing the project  
 - all modules including safety‑critical components:  
-  - **SECURITY FAMILY**  
-  - **time limits**  
-  - **Schoolwork Priority Mode**  
-  - **identity‑based access control**  
+  - **SECURITY FAMILY 4.0**  
+  - **Identity Engine 2.0**  
+  - **Schoolwork Engine 4.0**  
+  - **Time‑Limits Engine v2**  
+  - **Self‑Repair & Health‑Check Layer**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (v3.0.0)
+# 8. 🧒 Family & Safety Considerations (v4.0.0)
 
-SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY** module designed to:
+SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 4.0** module designed to:
 
 - protect children using the system  
 - enforce time‑based limits for minors  
 - prevent misuse of AI features  
 - ensure safe interaction with system capabilities  
-- guarantee that **schoolwork is always allowed** regardless of restrictions  
+- guarantee that **schoolwork is always allowed**  
 - maintain STRANGER‑mode protections for unknown users  
-- ensure OWNER‑level actions remain restricted to authorized individuals  
+- ensure OWNER‑level actions remain restricted  
+- integrate with Identity Engine 2.0 for behavior‑based recognition  
 
 Contributors must **not** attempt to weaken, bypass, or disable these protections.
 
@@ -156,4 +172,4 @@ and help maintain a respectful, safe, and productive environment for all users �
 
 ---
 
-**Document Status:** v3.0.0 (Stable)
+**Document Status:** v4.0.0 (Stable)
