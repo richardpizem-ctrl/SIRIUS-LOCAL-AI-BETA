@@ -1,41 +1,40 @@
 # 🚀 SIRIUS LOCAL AI  
 ### Modular Local AI Runtime for Windows 11  
-### Fully offline, deterministic, modular AI runtime for workflows, filesystem automation, and safe command execution.
+### Fully offline, deterministic, semantic AI runtime for workflows, automation, reasoning, and safe command execution.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-3.0.0-blue">
+  <img src="https://img.shields.io/badge/version-4.0.0-blue">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
-  <img src="https://img.shields.io/badge/architecture-modular-lightgrey">
+  <img src="https://img.shields.io/badge/architecture-Intelligent%20Runtime%204.0-lightgrey">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
 ---
 
 ## ⚠ ANTI‑CONFUSION BLOCK  
-SIRIUS LOCAL AI (ALFA/BETA/GAMA) is **not hardware** and has no connection to:
+SIRIUS LOCAL AI (ALFA/BETA/GAMA) is **pure software** — a fully local AI runtime for Windows 11.  
+It has **no connection** to:
 
 - Hengbot “Sirius” robotic dog  
 - any robotics devices  
 - any commercial “Sirius” branded products  
 - IoT or consumer electronics  
 
-It is **pure software** — a fully local AI runtime for Windows 11.
-
 ---
 
 ## 🔍 SEO META BLOCK  
 **SEO‑META:**  
 SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11.  
-It executes natural‑language commands, manages workflows, automates filesystem operations,  
+It executes natural‑language commands, automates workflows, performs reasoning,  
 and interacts with the OS through a secure capability layer — fully offline.
 
 **SEO‑KEYWORDS:**  
 local AI, offline AI, Windows automation, AI runtime, workflow engine,  
 modular AI, secure AI, natural language automation, Windows 11 tools,  
 local assistant, AI agent, filesystem automation, plugin system,  
-identity engine, time‑limits, restricted mode, schoolwork priority,  
-SIRIUS LOCAL AI, ALFA, BETA, GAMA
+identity engine, time‑limits, restricted mode, schoolwork engine,  
+SIRIUS LOCAL AI, ALFA, BETA, GAMA, Reasoning Engine, AITE 4.0, Self‑Repair Layer
 
 ---
 
@@ -45,11 +44,10 @@ SIRIUS LOCAL AI, ALFA, BETA, GAMA
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "SIRIUS LOCAL AI",
-  "alternateName": "SIRIUS-LOCAL-AI",
   "applicationCategory": "AI Runtime, Windows Automation, Local AI System",
   "operatingSystem": "Windows 11",
-  "softwareVersion": "3.0.0",
-  "description": "SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11. It executes natural-language commands, automates workflows, manages filesystem operations, and interacts with the OS through a secure capability layer — all offline, with no cloud dependencies.",
+  "softwareVersion": "4.0.0",
+  "description": "SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11. It executes natural-language commands, automates workflows, performs offline reasoning, and interacts with the OS through a secure capability layer — all offline, with no cloud dependencies.",
   "creator": {
     "@type": "Person",
     "name": "Richard Pizem",
@@ -58,76 +56,45 @@ SIRIUS LOCAL AI, ALFA, BETA, GAMA
   "programmingLanguage": "Python",
   "license": "MIT",
   "url": "https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA",
-  "sameAs": [
-    "https://github.com/richardpizem-ctrl",
-    "https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA"
-  ],
   "isAccessibleForFree": true,
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD"
-  },
-  "keywords": [
-    "local AI",
-    "offline AI",
-    "Windows automation",
-    "AI runtime",
-    "workflow automation",
-    "modular AI",
-    "secure AI",
-    "natural language automation",
-    "Windows 11 tools",
-    "local assistant",
-    "AI agent",
-    "filesystem automation",
-    "command interpreter",
-    "context engine",
-    "workflow engine",
-    "plugin system",
-    "runtime core",
-    "family safety",
-    "offline safety AI",
-    "SIRIUS LOCAL AI",
-    "ALFA",
-    "BETA",
-    "GAMA"
-  ]
+  }
 }
 </script>
 
 ---
 
-## 🔍 CANONICAL IDENTITY  
-SIRIUS LOCAL AI is a standalone, Windows‑only offline AI runtime.  
-It is not affiliated with hardware manufacturers, robotics companies,  
-or any commercial “Sirius” branded devices.
+# ℹ️ ABOUT SIRIUS LOCAL AI (v4.0.0)
 
----
-
-# ℹ️ ABOUT SIRIUS LOCAL AI  
 SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for:
 
 - safe command execution  
 - workflow automation  
+- semantic reasoning  
 - modular extensibility  
 - deterministic behavior  
 - 100% offline operation  
 
-Version **3.0.0** introduces:
+Version **4.0.0** introduces:
 
-- Runtime Core 3.0  
-- NL Router 3.0  
-- FS‑AGENT 3.0  
-- CME‑MEM 3.0  
-- Workflow Engine 3.0  
-- GUI Layer 3.0  
-- AITE 3.0  
-- WIN‑CAP 3.0  
-- Plugin System 3.0  
-- SECURITY FAMILY (NEW)  
-- SCHOOLWORK PRIORITY MODE  
-- new household‑oriented modules  
+- **Runtime Core 4.0**  
+- **NL Router 4.0**  
+- **FS‑AGENT 4.0**  
+- **CME‑MEM 4.0**  
+- **Workflow Engine 4.0**  
+- **GUI Layer 4.0**  
+- **AITE 4.0 (semantic triage + OCR)**  
+- **WIN‑CAP 4.0**  
+- **Plugin System 4.0**  
+- **Security Family 4.0 (Identity Engine 2.0)**  
+- **Schoolwork Engine 4.0**  
+- **Reasoning Engine 4.0**  
+- **Self‑Repair & Health‑Check Layer**  
+- **Knowledge Packs 4.0**  
+- **SIRIUS ENVOY 4.0 (safe online retrieval)**  
 
 ---
 
@@ -142,169 +109,156 @@ Version **3.0.0** introduces:
 - Identity‑based access  
 - No hidden automation  
 - No network communication  
+- Semantic reasoning  
+- Self‑repair and integrity protection  
 
 ---
 
-# 🏗 ARCHITECTURE OVERVIEW (Runtime 3.0.0)
+# 🏗 ARCHITECTURE OVERVIEW (Runtime 4.0)
 
-## **1. Runtime Core 3.0**
+## **1. Runtime Core 4.0**
 - module initialization  
 - lifecycle management  
 - plugin loading  
 - workflow dispatch  
-- enforcing security boundaries  
-- capability registration  
+- enforcing capability boundaries  
 - event routing  
-- integration with SECURITY FAMILY  
+- identity‑aware logic  
+- self‑repair integration  
 
 ---
 
-## **2. Natural Language Router (NL Router 3.0)**
-- command classification  
+## **2. Natural Language Router (NL Router 4.0)**
+- semantic command classification  
 - plugin NL detection  
 - routing  
 - fallback interpretation  
 - preventing unsafe actions  
-- FAMILY identity integration  
+- identity‑aware filtering  
 
 ---
 
-## **3. Filesystem Agent (FS‑AGENT 3.0)**
+## **3. Filesystem Agent (FS‑AGENT 4.0)**
 - move, copy, delete  
 - path validation  
 - safety checks  
-- conflict detection  
 - rollback‑safe operations  
-- SCHOOLWORK priority routing  
+- semantic file classification  
+- SCHOOLWORK routing  
 
 ---
 
-## **4. Context Memory Engine (CME‑MEM 3.0)**
-- recent paths  
+## **4. Context Memory Engine (CME‑MEM 4.0)**
+- semantic context  
 - last actions  
-- contextual hints  
-- multi‑step workflow support  
-- SCHOOLWORK metadata tagging  
+- workflow hints  
+- subject/difficulty metadata  
+- SCHOOLWORK tagging  
 
 ---
 
-## **5. Workflow Engine 3.0**
-- workflow state machine  
-- plugin workflow execution  
-- transition validation  
+## **5. Workflow Engine 4.0**
+- semantic transitions  
+- plugin workflows  
 - deterministic behavior  
 - SCHOOLWORK prioritization  
 
 ---
 
-## **6. GUI Layer 3.0**
+## **6. GUI Layer 4.0**
 - plugin‑driven UI  
 - GUI actions  
-- RuntimeManager integration  
+- identity indicators  
 - SCHOOLWORK indicators  
 
 ---
 
-## **7. Automatic Input Triage Engine (AITE 3.0)**
-- text / images / installers / documents  
-- schoolwork detection  
-- metadata generation  
-- routing  
-- SCHOOLWORK PRIORITY MODE  
+## **7. Automatic Input Triage Engine (AITE 4.0)**
+- text / images / code / documents  
+- OCR  
+- semantic analysis  
+- subject detection  
+- difficulty scoring  
+- SCHOOLWORK ENGINE integration  
 
 ---
 
-## **8. Windows System Capabilities Layer (WIN‑CAP 3.0)**
+## **8. Windows System Capabilities Layer (WIN‑CAP 4.0)**
 - file_ops  
 - app_ops  
 - window_ops  
 - audio_ops  
 - system_context  
+- automation_ops  
 
 ---
 
-## **9. Plugin System 3.0**
+## **9. Plugin System 4.0**
 - manifest‑based plugins  
 - NL commands  
 - workflows  
-- AI tasks  
+- reasoning hooks  
 - GUI elements  
 - SCHOOLWORK‑aware plugins  
 
 ---
 
-# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL LAYER  
-*(Introduced for SIRIUS 4.0 architecture)*
-
-SIRIUS ENVOY 4.0 is an **optional, isolated online retrieval agent** designed to safely fetch information from the internet **without exposing the local AI runtime to any network communication**.
-
-### **Key Principles**
-- Local AI remains **100% offline**  
-- Only the ENVOY process is allowed to access the internet  
-- All retrieved data passes through a **quarantine sandbox**  
-- Only validated, sanitized, text‑only information is delivered to SIRIUS  
-
-### **ENVOY Pipeline**
-1. **Envoy Client**  
-   - isolated process  
-   - performs outbound requests  
-   - no access to local AI memory or capabilities  
-
-2. **Scraper Layer**  
-   - extracts text  
-   - removes scripts, HTML, trackers, active content  
-
-3. **Quarantine Sandbox**  
-   - validates structure  
-   - checks for unsafe patterns  
-   - strips unknown formats  
-
-4. **Validator & Filter**  
-   - ensures data safety  
-   - marks uncertainty  
-   - enforces domain rules  
-
-5. **Safe Payload Delivery**  
-   - only clean, structured, offline‑safe text is passed to SIRIUS  
-
-### **Use Cases**
-- health information  
-- educational content  
-- definitions, facts, summaries  
-- dynamic updates for Knowledge Packs  
-- safe external lookups  
-
-ENVOY never sends local data outward and never interacts directly with the runtime core.
+## **10. Reasoning Engine 4.0**
+- step‑by‑step reasoning  
+- symbolic logic  
+- pack‑aware reasoning  
+- deterministic chain‑of‑thought  
 
 ---
 
-# 🛡 SECURITY FAMILY (v3.0.0)
-- behavior‑based identity  
+## **11. Self‑Repair & Health‑Check Layer**
+- integrity checks  
+- corruption detection  
+- safe automatic repairs  
+- fallback states  
+- patch suggestions  
+
+---
+
+## **12. Knowledge Packs 4.0**
+- curated offline datasets  
+- semantic linking  
+- pack‑aware reasoning  
+- ENVOY‑assisted updates  
+
+---
+
+# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL LAYER
+
+ENVOY is an **optional**, isolated process that fetches external information **without exposing SIRIUS to the internet**.
+
+### Pipeline:
+1. Envoy Client  
+2. Scraper Layer  
+3. Quarantine Sandbox  
+4. Validator & Filter  
+5. Safe Payload Delivery  
+
+ENVOY never sends local data outward.
+
+---
+
+# 🛡 SECURITY FAMILY (v4.0.0)
+- Identity Engine 2.0  
 - OWNER / FAMILY / STRANGER profiles  
 - safe‑mode for unknown users  
 - restricted mode for children  
-- time‑limits  
-- schoolwork bypass  
-- sensitive‑operation protection  
-
----
-
-# 🌟 NEW MODULES (v3.0.0)
-- HOME_ASSISTANT  
-- COOKING_ADVISOR  
-- DEVICE_DIAGNOSTICS  
-- SCHOOL_HELPER  
-- IMAGE_ANALYZER  
-- CONTEXT_ROUTER v3  
-- KNOWLEDGE_PACKS  
+- time‑limits v2  
+- schoolwork engine  
+- identity‑aware routing  
 
 ---
 
 # 🗺 ROADMAP
-- **v3.0.0** – SECURITY FAMILY release  
-- **v3.1.0** – advanced NL routing  
-- **v3.2.0** – plugin sandbox extensions  
-- **v4.0.0** – full modular rebuild  
+- **v4.0.0** – Intelligent Runtime 2.0  
+- **v4.1.0** – packaging system  
+- **v4.2.0** – semantic UI automation  
+- **v5.0.0** – offline knowledge graph reasoning  
 
 ---
 
@@ -316,15 +270,13 @@ ENVOY never sends local data outward and never interacts directly with the runti
 ---
 
 # ▶ USAGE
-```
-python sirius.py
-```
-
+python sirius.py 
 Examples:
 
 - “Find all PDFs in Documents”  
-- “Move these files to archive”  
-- “Run the project cleanup workflow”  
+- “Explain this math problem”  
+- “Diagnose why my monitor is flickering”  
+- “Run the cleanup workflow”  
 
 ---
 
@@ -339,6 +291,8 @@ Modules must be:
 - isolated  
 - safe  
 - deterministic  
+- identity‑aware  
+- reasoning‑compatible  
 
 ---
 
