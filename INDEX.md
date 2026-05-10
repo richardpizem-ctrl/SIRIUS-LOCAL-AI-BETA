@@ -31,6 +31,7 @@ Each module is isolated and follows strict boundaries:
 - `triage/` – AITE 3.0  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
+- `ui_components/animations/` – animation engine  
 - `workflow/` – Workflow Engine 3.0  
 - `plugins/` – Plugin System 3.0  
 - `security_family/` – **NEW (v3.0.0): behavior‑based identity, family safety, time‑limits, schoolwork priority**
