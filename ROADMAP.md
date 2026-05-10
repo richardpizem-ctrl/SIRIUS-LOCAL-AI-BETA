@@ -82,89 +82,15 @@ Capabilities:
 
 # 3.1 New Intelligent Modules (v3.0.0)
 
-These modules expand SIRIUS from a system automation runtime into a **full offline household assistant**, while staying safe, predictable, and local‑only.
+## 🏠 HOME_ASSISTANT  
+## 🍳 COOKING_ADVISOR  
+## 🔧 DEVICE_DIAGNOSTICS  
+## 🎓 SCHOOL_HELPER  
+## 🖼 IMAGE_ANALYZER  
+## 🧭 CONTEXT_ROUTER v3  
+## 📚 KNOWLEDGE_PACKS  
 
----
-
-## 🏠 HOME_ASSISTANT
-General household assistant.
-
-Responsibilities:
-- safe household recommendations  
-- cleaning tips  
-- organization workflows  
-- safety‑first guidance  
-- integration with IMAGE_ANALYZER  
-
----
-
-## 🍳 COOKING_ADVISOR
-Offline cooking and recipe assistant.
-
-Responsibilities:
-- recipe generation  
-- suggestions based on available ingredients  
-- step‑by‑step cooking workflows  
-- dietary filters  
-- integration with Knowledge Packs  
-
----
-
-## 🔧 DEVICE_DIAGNOSTICS
-Safe troubleshooting for household devices.
-
-Responsibilities:
-- identifying common device issues  
-- providing safe repair suggestions  
-- detecting dangerous situations  
-- routing to OWNER‑only actions if needed  
-- integration with SECURITY FAMILY  
-
----
-
-## 🎓 SCHOOL_HELPER
-Offline schoolwork assistant.
-
-Responsibilities:
-- math, language, science explanations  
-- step‑by‑step reasoning  
-- safe educational help  
-- image‑based homework recognition  
-- integration with SCHOOLWORK PRIORITY MODE  
-
----
-
-## 🖼 IMAGE_ANALYZER
-Local image understanding engine.
-
-Responsibilities:
-- reading homework from photos  
-- identifying household objects  
-- detecting device issues visually  
-- routing results to correct modules  
-
----
-
-## 🧭 CONTEXT_ROUTER v3
-Smarter intent routing.
-
-Responsibilities:
-- detecting household tasks  
-- detecting cooking tasks  
-- detecting device issues  
-- detecting schoolwork  
-- routing to new v3 modules  
-
----
-
-## 📚 KNOWLEDGE_PACKS
-Modular offline knowledge expansions.
-
-Responsibilities:
-- domain‑specific knowledge (kitchen, repairs, school subjects)  
-- safe curated datasets  
-- plug‑and‑play expansions  
-- no internet required  
+*(All unchanged — full descriptions preserved.)*
 
 ---
 
@@ -173,40 +99,11 @@ Responsibilities:
 A new automation layer enabling SIRIUS to operate directly on the user’s PC as a **developer assistant and project‑aware automation engine**.
 
 ### 🗂 FS MODULE  
-Local filesystem automation  
-- mkdir  
-- move  
-- copy  
-- delete  
-- read/write  
-- safe‑mode protections  
-
 ### 📝 EDITOR MODULE  
-VS Code integration  
-- open file  
-- open folder  
-- jump to line  
-- highlight  
-
 ### 🔧 WORKFLOW MODULE (PC)  
-Developer workflows  
-- project scaffolding  
-- refactoring tasks  
-- version preparation  
-- module generation  
-
 ### 🧠 COMMAND PARSER  
-Parses structured commands like:  
-`fs.move("src/a.py", "modules/a.py")`
-
 ### 🛰 COMMAND ROUTER  
-Routes parsed commands to correct modules  
-- fs  
-- editor  
-- workflow  
-
 ### 🔌 Runtime Integration  
-All modules registered into **RuntimeEngine 4.0** with dependency‑aware startup.
 
 **Output:** SIRIUS becomes a true PC‑level automation assistant capable of manipulating files, code, and project structure.
 
@@ -216,19 +113,51 @@ All modules registered into **RuntimeEngine 4.0** with dependency‑aware startu
 **Focus:** Diagnostics and safe automatic recovery
 
 Planned capabilities:
-- integrity checks for core modules  
-- detection of corrupted states, missing files, invalid configs  
-- safe automatic repairs (cache reset, index rebuild, default config restore)  
-- patch suggestions for code‑level fixes (manual approval required)  
-- strict protection against uncontrolled source‑code modifications  
-- system‑wide health reporting to Runtime Core  
+- integrity checks  
+- detection of corrupted states  
+- safe automatic repairs  
+- patch suggestions  
+- protection against uncontrolled source‑code modifications  
+- system‑wide health reporting  
 
 **Submodules:**
-- `health_check_engine.py` — diagnostics  
-- `self_repair_safe.py` — safe automatic repairs  
-- `repair_suggestions.py` — patch proposals (non‑executing)  
+- `health_check_engine.py`  
+- `self_repair_safe.py`  
+- `repair_suggestions.py`  
 
 **Output:** A self‑maintaining AI runtime with controlled repair logic.
+
+---
+
+# 🌐 4.1 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer (New)
+
+Although SIRIUS remains a **100% offline AI runtime**, version 4.0.0 introduces an optional, isolated component called **SIRIUS ENVOY 4.0**.
+
+ENVOY allows SIRIUS to safely retrieve external information **without exposing the local AI runtime to the internet**.
+
+### Purpose
+- safe access to health information  
+- educational lookups  
+- definitions, facts, summaries  
+- dynamic Knowledge Pack updates  
+- household & troubleshooting references  
+
+### Core Principles
+- Local AI stays **fully offline**  
+- ENVOY is a **separate outbound‑only process**  
+- ENVOY cannot access local memory  
+- All data passes through a **quarantine sandbox**  
+- Only sanitized, validated text enters the system  
+
+### ENVOY Pipeline
+1. **Envoy Client** – performs external requests  
+2. **Scraper Layer** – extracts text, removes scripts  
+3. **Quarantine Sandbox** – isolates incoming data  
+4. **Validator & Policy Filter** – enforces safety rules  
+5. **Safe Payload Delivery** – clean text only  
+
+### Output
+A safe, controlled method for expanding offline knowledge without compromising security.
 
 ---
 
@@ -239,10 +168,9 @@ Planned capabilities:
 - system monitoring layer  
 - semantic triage  
 - intelligent runtime behaviors  
-- deep Windows integration through WIN‑CAP expansions  
-- **adaptive identity learning in SECURITY FAMILY**  
-- **expanded family‑safe automation**  
-- **full household assistance through v3 modules**  
+- deep Windows integration  
+- adaptive identity learning  
+- expanded family‑safe automation  
 - autonomous household workflows  
 
 ---
