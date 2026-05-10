@@ -1,4 +1,4 @@
-# 🌐 SIRIUS ENVOY 4.0 – Tutorial & Concept Guide  
+# 🌐 SIRIUS ENVOY 4.0 – Tutorial & Concept Guide
 ### Safe Online Retrieval Layer for SIRIUS LOCAL AI
 
 SIRIUS ENVOY 4.0 is an **isolated online retrieval agent** that allows SIRIUS LOCAL AI to safely obtain information from the internet **without exposing the local AI runtime to any network communication**.
@@ -98,13 +98,13 @@ Contains only:
 ## 3️⃣ ENVOY goes online  
 Retrieves information based on the task.
 
-## 4️⃣ Data passes through the Scraper Layer  
-Only clean text remains.
+## 4️⃣ Scraper Layer cleans the data  
+Only text remains.
 
-## 5️⃣ Data enters the Quarantine Sandbox  
-Everything is isolated.
+## 5️⃣ Quarantine Sandbox isolates the content  
+Everything is checked.
 
-## 6️⃣ Validator checks safety  
+## 6️⃣ Validator applies safety rules  
 Removes:
 - dangerous advice  
 - medical diagnoses  
@@ -113,7 +113,10 @@ Removes:
 - scripts, HTML, links  
 
 ## 7️⃣ Data is converted into Pack format  
-Examples: `facts.json`, `glossary.json`, `rules.json`.
+Examples:
+- `facts.json`  
+- `glossary.json`  
+- `rules.json`  
 
 ## 8️⃣ Local AI receives clean, safe content  
 Knowledge Pack is updated locally.
