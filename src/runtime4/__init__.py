@@ -13,9 +13,18 @@ It provides:
 
 All modules inside this package are fully isolated and designed for deterministic,
 safe, offline execution.
+
+Security Notes (Runtime 4.0):
+- Only static imports are allowed.
+- No dynamic loading, no eval, no reflection.
+- __all__ must contain only verified public namespaces.
+- This file must not contain executable logic.
 """
 
-# Expose top‑level namespaces for cleaner imports
+# ---------------------------------------------------------
+# SAFE EXPORT LIST (no imports here)
+# ---------------------------------------------------------
+
 __all__ = [
     "core",
     "sandbox",
@@ -25,4 +34,3 @@ __all__ = [
     "automation",
     "diagnostics",
 ]
-
