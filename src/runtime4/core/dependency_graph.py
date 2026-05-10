@@ -37,10 +37,13 @@ class DependencyGraph4:
     def add_dependency(self, module: str, depends_on: str):
         """
         Declares that `module` depends on `depends_on`.
+        Prevents duplicate dependencies.
         """
         if module not in self.graph:
             self.graph[module] = []
-        self.graph[module].append(depends_on)
+
+        if depends_on not in self.graph[module]:
+            self.graph[module].append(depends_on)
 
     def get_dependencies(self, module: str):
         """Returns all modules that the given module depends on."""
