@@ -20,6 +20,9 @@ Included:
 - full documentation set  
 - installation placeholder  
 
+**Output:**  
+A stable, predictable local AI runtime capable of executing simple workflows safely.
+
 ---
 
 # Version 2.0.0 – Extended Architecture
@@ -39,6 +42,9 @@ Included:
 - complete plugin suite  
 - deterministic execution model  
 - **foundation prepared for SECURITY FAMILY (identity, time‑limits, schoolwork priority)**  
+
+**Output:**  
+A fully modular, extensible, plugin‑driven AI runtime.
 
 ---
 
@@ -84,7 +90,8 @@ Included:
 - CONTEXT_ROUTER v3  
 - KNOWLEDGE_PACKS  
 
-This version introduces the first generation of **intelligent, behavior‑based runtime safety** and **household‑oriented offline AI modules**.
+**Output:**  
+The first generation of intelligent, behavior‑based runtime safety and household‑oriented offline AI modules.
 
 ---
 
@@ -153,7 +160,8 @@ SIRIUS becomes a true **PC‑level automation assistant**, capable of manipulati
 - `self_repair_safe.py` — safe automatic repairs  
 - `repair_suggestions.py` — patch proposals (non‑executing)  
 
-This version introduces the first generation of **safe, controlled self‑repair logic**.
+**Output:**  
+The first generation of **safe, controlled self‑repair logic**.
 
 ---
 
