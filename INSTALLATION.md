@@ -32,16 +32,21 @@ All modules operate offline, with strict safety boundaries and deterministic beh
 ## 🔧 How to Run (Developer Mode)
 
 1. Install **Python 3.10+**
+
 2. Clone the repository:
 ```
 git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-ALFA
 ```
-3. Open the project in VS Code or any terminal  
+
+3. Open the project in VS Code or any terminal
+
 4. Run the main entrypoint:
 ```
 python sirius.py
 ```
-5. Optional: run individual modules for testing (runtime, plugins, GUI, workflows)
+
+5. Optional: run individual modules for testing  
+   (runtime, plugins, GUI, workflows)
 
 Developer mode provides full access to:
 
@@ -65,6 +70,8 @@ Developer mode provides full access to:
 - plugin auto‑loader  
 - SECURITY FAMILY pre‑startup checks  
 
+---
+
 ### v4.0.0 – Intelligent Runtime Builds
 - optional UI/animation bundles  
 - performance‑optimized packaging  
@@ -74,6 +81,8 @@ Developer mode provides full access to:
   - identity learning  
   - behavior‑based restrictions  
   - schoolwork priority enforcement  
+
+---
 
 ### v5.0.0 – Self‑Repair & Health‑Check Layer
 The installation system will integrate with the diagnostic layer:
@@ -98,4 +107,3 @@ Architecture: **Stable (3.0.0)**
 SECURITY FAMILY: **Fully integrated (identity, time‑limits, schoolwork priority, stranger‑mode)**  
 AITE: **Upgraded to v3.0.0 with schoolwork detection**  
 WIN‑CAP: **Upgraded to v3.0.0**
-
