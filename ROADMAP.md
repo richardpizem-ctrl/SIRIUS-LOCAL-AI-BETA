@@ -168,6 +168,50 @@ Responsibilities:
 
 ---
 
+# 3.5.0 – PC Automation Runtime (New)
+
+A new automation layer enabling SIRIUS to operate directly on the user’s PC as a **developer assistant and project‑aware automation engine**.
+
+### 🗂 FS MODULE  
+Local filesystem automation  
+- mkdir  
+- move  
+- copy  
+- delete  
+- read/write  
+- safe‑mode protections  
+
+### 📝 EDITOR MODULE  
+VS Code integration  
+- open file  
+- open folder  
+- jump to line  
+- highlight  
+
+### 🔧 WORKFLOW MODULE (PC)  
+Developer workflows  
+- project scaffolding  
+- refactoring tasks  
+- version preparation  
+- module generation  
+
+### 🧠 COMMAND PARSER  
+Parses structured commands like:  
+`fs.move("src/a.py", "modules/a.py")`
+
+### 🛰 COMMAND ROUTER  
+Routes parsed commands to correct modules  
+- fs  
+- editor  
+- workflow  
+
+### 🔌 Runtime Integration  
+All modules registered into **RuntimeEngine 4.0** with dependency‑aware startup.
+
+**Output:** SIRIUS becomes a true PC‑level automation assistant capable of manipulating files, code, and project structure.
+
+---
+
 # 4. Version 4.0.0 – Self‑Repair & Health‑Check Layer
 **Focus:** Diagnostics and safe automatic recovery
 
