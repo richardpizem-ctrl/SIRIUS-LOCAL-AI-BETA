@@ -88,6 +88,54 @@ This version introduces the first generation of **intelligent, behavior‑based 
 
 ---
 
+# Version 3.5.0 – PC Automation Runtime (New)
+**Status:** In Development  
+**Goal:** Enable SIRIUS to operate directly on the user’s PC as a developer‑level automation engine.
+
+### Focus:
+- filesystem automation  
+- VS Code integration  
+- developer workflows  
+- command parsing and routing  
+- integration with RuntimeEngine 4.0  
+
+### Included Modules:
+
+#### 🗂 FS MODULE  
+- mkdir  
+- move  
+- copy  
+- delete  
+- read/write  
+- safe‑mode protections  
+
+#### 📝 EDITOR MODULE  
+- open file in VS Code  
+- open folder  
+- jump to line  
+- highlight  
+
+#### 🔧 WORKFLOW MODULE (PC)  
+- project scaffolding  
+- refactoring tasks  
+- version preparation  
+- module generation  
+
+#### 🧠 COMMAND PARSER  
+Parses structured commands like:  
+`fs.move("src/a.py", "modules/a.py")`
+
+#### 🛰 COMMAND ROUTER  
+Routes parsed commands to correct modules (fs, editor, workflow)
+
+#### 🔌 Runtime Integration  
+All modules registered into **RuntimeEngine 4.0** with dependency‑aware startup.
+
+**Output:**  
+SIRIUS becomes a true **PC‑level automation assistant**, capable of manipulating files, code, and project structure.
+
+---
+
 # Version 4.0.0 – Self‑Repair & Health‑Check Layer
 **Status:** Planned  
 **Goal:** Autonomous diagnostics and safe self‑repair
@@ -124,4 +172,4 @@ This version introduces the first generation of **safe, controlled self‑repair
 
 # Document Status
 Current version: **3.0.0 (Stable)**  
-Future modules for **v4.0.0** and **v5.0.0** are defined as part of the long‑term vision.
+Future modules for **v3.5.0**, **v4.0.0**, and **v5.0.0** are defined as part of the long‑term vision.
