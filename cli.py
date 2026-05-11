@@ -2,20 +2,26 @@ import sys
 from runtime.runtime_manager import RuntimeManager
 
 
+# ============================================================
+# SIRIUS CLI (v4.0.0)
+# ============================================================
 class SiriusCLI:
     """
-    Simple CLI interface for SIRIUS-LOCAL-AI
-    - supports NL commands
-    - supports AI tasks
-    - serves as terminal input for the runtime
+    SIRIUS LOCAL AI — Command Line Interface (v4.0.0)
+
+    Features:
+    - Natural language commands
+    - Direct AI task execution
+    - System context inspection
     """
 
     def __init__(self):
         self.rm = RuntimeManager()
         self.rm.initialize()
+        self.rm.logger.info("CLI initialized (v4.0.0)")
 
     # --------------------------------------------------------
-    # MAIN ENTRY
+    # MAIN ENTRY (v4)
     # --------------------------------------------------------
     def run(self, argv):
         if len(argv) < 2:
@@ -24,58 +30,60 @@ class SiriusCLI:
 
         command = argv[1].lower()
 
-        # ----------------------------------------------------
-        # NATURAL LANGUAGE
-        # sirius nl "move vs code to the right"
-        # ----------------------------------------------------
-        if command == "nl":
-            text = " ".join(argv[2:])
-            result = self.rm.handle_nl(text)
-            self._print_result(result)
-            return
-
-        # ----------------------------------------------------
-        # DIRECT AI TASKS
-        # sirius task snap_right app="vs code"
-        # ----------------------------------------------------
-        if command == "task":
-            if len(argv) < 3:
-                print("Missing task name.")
+        try:
+            # ----------------------------------------------------
+            # NATURAL LANGUAGE
+            # sirius nl "move vs code to the right"
+            # ----------------------------------------------------
+            if command == "nl":
+                text = " ".join(argv[2:])
+                result = self.rm.handle_nl(text)
+                self._print_result(result)
                 return
 
-            goal = argv[2]
-            args = self._parse_args(argv[3:])
-            result = self.rm.handle_ai_task(goal, args)
-            self._print_result(result)
-            return
+            # ----------------------------------------------------
+            # DIRECT AI TASKS
+            # sirius task snap_right app="vs code"
+            # ----------------------------------------------------
+            if command == "task":
+                if len(argv) < 3:
+                    print("Missing task name.")
+                    return
 
-        # ----------------------------------------------------
-        # SYSTEM CONTEXT
-        # sirius context
-        # ----------------------------------------------------
-        if command == "context":
-            result = self.rm.get_ai_context()
-            self._print_result(result)
-            return
+                goal = argv[2]
+                args = self._parse_args(argv[3:])
+                result = self.rm.handle_ai_task(goal, args)
+                self._print_result(result)
+                return
 
-        # ----------------------------------------------------
-        # HELP
-        # ----------------------------------------------------
-        if command == "help":
+            # ----------------------------------------------------
+            # SYSTEM CONTEXT
+            # sirius context
+            # ----------------------------------------------------
+            if command == "context":
+                result = self.rm.get_ai_context()
+                self._print_result(result)
+                return
+
+            # ----------------------------------------------------
+            # HELP
+            # ----------------------------------------------------
+            if command == "help":
+                self._print_help()
+                return
+
+            print(f"Unknown command: {command}")
             self._print_help()
-            return
 
-        print(f"Unknown command: {command}")
-        self._print_help()
+        except Exception as e:
+            self.rm.logger.error(f"CLI error: {e}")
+            print("An internal error occurred. Check logs for details.")
 
     # --------------------------------------------------------
-    # HELPERS
+    # HELPERS (v4)
     # --------------------------------------------------------
-
     def _parse_args(self, items):
-        """
-        Convert key=value arguments into a dict.
-        """
+        """Convert key=value arguments into a dict."""
         args = {}
         for item in items:
             if "=" in item:
@@ -84,17 +92,18 @@ class SiriusCLI:
         return args
 
     def _print_result(self, result):
-        """
-        Unified output formatting.
-        """
+        """Unified output formatting."""
         print("--------------------------------------------------")
-        for k, v in result.items():
-            print(f"{k}: {v}")
+        if isinstance(result, dict):
+            for k, v in result.items():
+                print(f"{k}: {v}")
+        else:
+            print(result)
         print("--------------------------------------------------")
 
     def _print_help(self):
         print("""
-SIRIUS CLI – available commands:
+SIRIUS CLI – available commands (v4.0.0):
 
   sirius nl "<natural sentence>"
       - processes natural language through the NL Router
@@ -112,10 +121,9 @@ SIRIUS CLI – available commands:
 """)
 
 
-# ------------------------------------------------------------
+# ============================================================
 # ENTRY POINT
-# ------------------------------------------------------------
-
+# ============================================================
 if __name__ == "__main__":
     cli = SiriusCLI()
     cli.run(sys.argv)
