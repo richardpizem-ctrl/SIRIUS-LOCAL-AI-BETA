@@ -78,6 +78,28 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 - deterministic behavior  
 - 100% offline operation  
 
+---
+
+> [!IMPORTANT]
+> # 🔔 GAMA PUBLIC PREVIEW — 24‑HODINOVÉ GLOBÁLNE OKNO
+> **Keď bude SIRIUS LOCAL AI — GAMA (mobilný runtime) dokončená, bude na 24 hodín globálne sprístupnená pre všetkých.**
+>
+> Počas tohto 24‑hodinového okna si bude môcť každý:
+> - 🔓 stiahnuť GAMA runtime  
+> - 📱 otestovať mobilnú architektúru  
+> - 🧪 preskúmať moduly a bezpečnostné vrstvy  
+> - 🔍 vidieť celý systém ešte pred uzamknutím architektúry (SUL)
+>
+> Tento verejný náhľad je určený na:
+> - transparentnosť  
+> - komunitné testovanie  
+> - spätnú väzbu  
+> - potvrdenie stability pred LOCKED verziou  
+>
+> Po skončení 24‑hodinového okna bude GAMA prejsť do **uzamknutej architektúry (LOCKED)** pod licenciou **SUL**.
+
+---
+
 Version **4.0.0** introduces:
 
 - **Runtime Core 4.0**  
@@ -270,7 +292,7 @@ ENVOY never sends local data outward.
 ---
 
 # ▶ USAGE
-python sirius.py 
+python sirius.py  
 Examples:
 
 - “Find all PDFs in Documents”  
