@@ -6,59 +6,78 @@ from runtime.plugin_loader import PluginLoader
 from runtime.nl_router import NaturalLanguageRouter
 
 
+# ============================================================
+# SIRIUS GUI (v4.0.0)
+# ============================================================
 class SiriusGUI:
     """
-    GUI front-end for SIRIUS LOCAL AI ALFA – v2.0.0
-    - connected to RuntimeManager 2.0
-    - uses NL Router 2.0
-    - supports AI tasks through plugins
+    SIRIUS LOCAL AI — Graphical User Interface (v4.0.0)
+
+    Features:
+    - Natural language input
+    - Direct AI task execution
+    - Plugin‑powered actions
+    - Unified logging and runtime integration
     """
 
     def __init__(self):
-        # --- BOOTSTRAP RUNTIME 2.0 ---
+        # ----------------------------------------------------
+        # BOOTSTRAP RUNTIME v4
+        # ----------------------------------------------------
         self.runtime = RuntimeManager()
         self.runtime.initialize()
 
-        # Plugins
+        # Plugins (v4)
         self.plugins = PluginLoader(self.runtime)
         self.plugins.load_all()
 
-        # NL Router 2.0
+        # NL Router (v4)
         self.router = NaturalLanguageRouter(self.runtime, self.plugins)
         self.router.initialize()
 
+        self.runtime.logger.info("GUI initialized (v4.0.0)")
+
     # --------------------------------------------------------
-    # GUI LOGIC
+    # GUI LOGIC (v4)
     # --------------------------------------------------------
     def send_nl(self, sender, data):
+        """Process natural language input."""
         text = get_value("##input")
         if not text.strip():
             return
 
-        result = self.router.route(text)
+        try:
+            result = self.router.route(text)
+            add_text(f"> {text}", parent="Log")
+            add_text(str(result), parent="Log")
+        except Exception as e:
+            self.runtime.logger.error(f"NL error: {e}")
+            add_text(f"Error: {e}", parent="Log")
 
-        add_text(f"> {text}", parent="Log")
-        add_text(str(result), parent="Log")
         set_value("##input", "")
 
     def run_ai_task(self, sender, data):
+        """Execute AI task from GUI button."""
         task_name = data.get("task")
         params = data.get("params", {})
 
         try:
             result = self.runtime.handle_ai_task(task_name, params)
         except Exception as e:
+            self.runtime.logger.error(f"AI task error: {e}")
             result = f"Error: {e}"
 
         add_text(str(result), parent="Log")
 
     # --------------------------------------------------------
-    # GUI WINDOW
+    # GUI WINDOW (v4)
     # --------------------------------------------------------
     def run(self):
-        with window("SIRIUS LOCAL AI – GUI", width=650, height=520):
+        self.runtime.logger.info("Starting GUI window")
 
-            add_text("SIRIUS – Local AI Runtime (v2.0.0)")
+        with window("SIRIUS LOCAL AI – GUI (v4.0.0)", width=650, height=520):
+
+            add_text("SIRIUS – Local AI Runtime (v4.0.0)")
             add_separator()
 
             add_input_text("##input", label="Command", width=450)
@@ -86,9 +105,9 @@ class SiriusGUI:
         start_dearpygui()
 
 
-# ------------------------------------------------------------
+# ============================================================
 # ENTRY POINT
-# ------------------------------------------------------------
+# ============================================================
 if __name__ == "__main__":
     gui = SiriusGUI()
     gui.run()
