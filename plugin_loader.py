@@ -3,13 +3,19 @@ import importlib
 import json
 
 
+# ============================================================
+# PLUGIN LOADER (v4.0.0)
+# ============================================================
 class PluginLoader:
     """
-    Plugin Loader for SIRIUS-LOCAL-AI
-    - loads plugins from /plugins directory
-    - registers them into the runtime
-    - supports manifest.json
-    - supports dynamic capabilities
+    SIRIUS LOCAL AI — Plugin Loader (v4.0.0)
+
+    Responsibilities:
+    - Load plugins from /plugins directory
+    - Validate manifest.json
+    - Dynamically import plugin modules
+    - Register NL commands, AI tasks, workflows, rules, GUI elements
+    - Unified logging through RuntimeManager
     """
 
     def __init__(self, runtime_manager):
@@ -17,12 +23,15 @@ class PluginLoader:
         self.plugins = {}
         self.plugin_dir = "plugins"
 
+        self.rm.logger.info("PluginLoader initialized (v4.0.0)")
+
     # --------------------------------------------------------
-    # MAIN FUNCTION
+    # MAIN LOADER (v4)
     # --------------------------------------------------------
     def load_plugins(self):
+        """Load all plugins from /plugins directory."""
         if not os.path.exists(self.plugin_dir):
-            print("[PLUGIN] No plugins/ directory found – skipping.")
+            self.rm.logger.warning("No plugins/ directory found — skipping.")
             return
 
         for folder in os.listdir(self.plugin_dir):
@@ -35,7 +44,7 @@ class PluginLoader:
             plugin_path = os.path.join(path, "plugin.py")
 
             if not os.path.exists(manifest_path) or not os.path.exists(plugin_path):
-                print(f"[PLUGIN] {folder} – missing manifest or plugin.py")
+                self.rm.logger.error(f"Plugin '{folder}' missing manifest or plugin.py")
                 continue
 
             try:
@@ -43,7 +52,7 @@ class PluginLoader:
                 module = self._load_module(folder)
 
                 if not hasattr(module, "Plugin"):
-                    print(f"[PLUGIN] {folder} – missing Plugin class")
+                    self.rm.logger.error(f"Plugin '{folder}' missing Plugin class")
                     continue
 
                 plugin_instance = module.Plugin(self.rm)
@@ -51,29 +60,37 @@ class PluginLoader:
 
                 self._register_plugin(plugin_instance, manifest)
 
-                print(f"[PLUGIN] Loaded plugin: {manifest.get('name')}")
+                self.rm.logger.info(f"Loaded plugin: {manifest.get('name')}")
 
             except Exception as e:
-                print(f"[PLUGIN] Error loading {folder}: {e}")
+                self.rm.logger.error(f"Error loading plugin '{folder}': {e}")
 
     # --------------------------------------------------------
-    # MANIFEST
+    # MANIFEST LOADING (v4)
     # --------------------------------------------------------
     def _load_manifest(self, path):
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        """Load and parse manifest.json."""
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            self.rm.logger.error(f"Manifest load error: {e}")
+            return {}
 
     # --------------------------------------------------------
-    # DYNAMIC MODULE LOADING
+    # DYNAMIC MODULE IMPORT (v4)
     # --------------------------------------------------------
     def _load_module(self, folder):
+        """Import plugin module dynamically."""
         module_name = f"plugins.{folder}.plugin"
         return importlib.import_module(module_name)
 
     # --------------------------------------------------------
-    # PLUGIN REGISTRATION INTO RUNTIME
+    # PLUGIN REGISTRATION (v4)
     # --------------------------------------------------------
     def _register_plugin(self, plugin, manifest):
+        """Register plugin capabilities into RuntimeManager."""
+
         # NL commands
         if hasattr(plugin, "nl_commands"):
             for cmd, fn in plugin.nl_commands().items():
@@ -99,4 +116,6 @@ class PluginLoader:
             for element in plugin.gui_elements():
                 self.rm.register_gui_element(element)
 
-        print(f"[PLUGIN] Plugin {manifest.get('name')} successfully registered.")
+        self.rm.logger.info(
+            f"Plugin '{manifest.get('name')}' successfully registered."
+        )
