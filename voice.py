@@ -5,24 +5,32 @@ from runtime.plugin_loader import PluginLoader
 from runtime.nl_router import NaturalLanguageRouter
 
 
+# ============================================================
+# SIRIUS VOICE CONTROL (v4.0.0)
+# ============================================================
 class SiriusVoice:
     """
-    Voice control for SIRIUS LOCAL AI – v2.0.0
-    - listens to the microphone
-    - recognizes speech
-    - sends text to NL Router 2.0
+    SIRIUS LOCAL AI — Voice Control (v4.0.0)
+
+    Features:
+    - Listens to microphone
+    - Recognizes Slovak speech
+    - Sends text to NL Router v4
+    - Unified logging and safe error handling
     """
 
     def __init__(self):
-        # --- BOOTSTRAP RUNTIME 2.0 ---
+        # ----------------------------------------------------
+        # BOOTSTRAP RUNTIME v4
+        # ----------------------------------------------------
         self.runtime = RuntimeManager()
         self.runtime.initialize()
 
         # Plugins
         self.plugins = PluginLoader(self.runtime)
-        self.plugins.load_all()
+        self.plugins.load_plugins()
 
-        # NL Router 2.0
+        # NL Router v4
         self.router = NaturalLanguageRouter(self.runtime, self.plugins)
         self.router.initialize()
 
@@ -30,66 +38,64 @@ class SiriusVoice:
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
 
+        self.runtime.logger.info("Voice engine initialized (v4.0.0)")
+
     # --------------------------------------------------------
-    # SPEECH RECOGNITION
+    # SPEECH RECOGNITION (v4)
     # --------------------------------------------------------
     def listen(self):
-        """
-        Listens to the microphone and returns recognized text.
-        """
-        with self.microphone as source:
-            print("🎤 Listening...")
-            self.recognizer.adjust_for_ambient_noise(source)
-            audio = self.recognizer.listen(source)
-
+        """Listen to microphone and return recognized text."""
         try:
+            with self.microphone as source:
+                self.recognizer.adjust_for_ambient_noise(source)
+                audio = self.recognizer.listen(source)
+
             text = self.recognizer.recognize_google(audio, language="sk-SK")
-            print(f"➡ Recognized: {text}")
+            self.runtime.logger.info(f"Recognized: {text}")
             return text
 
         except sr.UnknownValueError:
-            print("❗ I did not understand.")
+            self.runtime.logger.warning("Voice: Could not understand speech")
             return None
 
-        except sr.RequestError:
-            print("❗ Speech recognition service error.")
+        except sr.RequestError as e:
+            self.runtime.logger.error(f"Voice: Speech recognition service error: {e}")
+            return None
+
+        except Exception as e:
+            self.runtime.logger.error(f"Voice: Unexpected error: {e}")
             return None
 
     # --------------------------------------------------------
-    # PROCESS COMMAND
+    # PROCESS COMMAND (v4)
     # --------------------------------------------------------
     def process(self, text):
-        """
-        Sends recognized text to NL Router 2.0.
-        """
+        """Send recognized text to NL Router v4."""
         if not text:
             return
 
         try:
             result = self.router.route(text)
+            self.runtime.logger.info(f"Voice NL result: {result}")
         except Exception as e:
-            result = f"Error: {e}"
-
-        print("➡ Result:", result)
+            self.runtime.logger.error(f"Voice NL processing error: {e}")
 
     # --------------------------------------------------------
-    # MAIN LOOP
+    # MAIN LOOP (v4)
     # --------------------------------------------------------
     def run(self):
-        """
-        Infinite loop – listens to voice and processes commands.
-        """
-        print("🎙️ SIRIUS Voice Control – active")
-        print("Say a command...")
+        """Continuous voice listening loop."""
+        self.runtime.logger.info("SIRIUS Voice Control — active (v4.0.0)")
+        self.runtime.logger.info("Listening for commands...")
 
         while True:
             text = self.listen()
             self.process(text)
 
 
-# ------------------------------------------------------------
+# ============================================================
 # ENTRY POINT
-# ------------------------------------------------------------
+# ============================================================
 if __name__ == "__main__":
     voice = SiriusVoice()
     voice.run()
