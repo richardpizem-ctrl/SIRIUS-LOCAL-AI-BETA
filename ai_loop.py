@@ -6,10 +6,12 @@ from watchdog.events import FileSystemEventHandler
 from runtime.runtime_manager import RuntimeManager
 
 
-# ------------------------------------------------------------
-# FILESYSTEM MONITORING
-# ------------------------------------------------------------
+# ============================================================
+# FILESYSTEM HANDLER (v4)
+# ============================================================
 class FSHandler(FileSystemEventHandler):
+    """Filesystem event handler used by the AI Loop."""
+
     def __init__(self, loop):
         self.loop = loop
 
@@ -26,16 +28,18 @@ class FSHandler(FileSystemEventHandler):
             self.loop.handle_fs_event("deleted", event.src_path)
 
 
-# ------------------------------------------------------------
-# AI LOOP
-# ------------------------------------------------------------
+# ============================================================
+# SIRIUS AI LOOP (v4.0.0)
+# ============================================================
 class SiriusAILoop:
     """
-    ENTERPRISE AUTONOMOUS MODE
-    - FS monitoring
-    - system monitoring
-    - rules
-    - autonomous workflows
+    SIRIUS LOCAL AI — Autonomous Runtime Loop (v4.0.0)
+
+    Responsibilities:
+    - Filesystem monitoring
+    - System monitoring
+    - Rule-based autonomous actions
+    - RuntimeManager task dispatch
     """
 
     def __init__(self):
@@ -45,14 +49,14 @@ class SiriusAILoop:
         self.observer = Observer()
         self.rules = self._load_rules()
 
+        self._running = True
+        self.rm.logger.info("AI Loop initialized (v4.0.0)")
+
     # --------------------------------------------------------
-    # RULES
+    # RULES (v4)
     # --------------------------------------------------------
     def _load_rules(self):
-        """
-        Autonomous behavior rules.
-        Can be modified without restart.
-        """
+        """Autonomous behavior rules (modifiable without restart)."""
         return {
             "log_auto_archive": {
                 "enabled": True,
@@ -60,7 +64,7 @@ class SiriusAILoop:
                 "action": "cleanup_logs"
             },
             "auto_snap_code": {
-                "enabled": True,
+                "enabled": False,  # disabled by default in v4
                 "app": "code.exe",
                 "action": "snap_right"
             },
@@ -73,12 +77,11 @@ class SiriusAILoop:
         }
 
     # --------------------------------------------------------
-    # FILESYSTEM EVENTS
+    # FILESYSTEM EVENTS (v4)
     # --------------------------------------------------------
     def handle_fs_event(self, event_type, path):
-        print(f"[FS] {event_type}: {path}")
+        self.rm.logger.info(f"[FS] {event_type}: {path}")
 
-        # Auto-archive logs
         if self.rules["log_auto_archive"]["enabled"]:
             if path.endswith(".log"):
                 self.rm.handle_ai_task(
@@ -87,36 +90,51 @@ class SiriusAILoop:
                 )
 
     # --------------------------------------------------------
-    # SYSTEM MONITORING
+    # SYSTEM MONITORING (v4)
     # --------------------------------------------------------
     def monitor_system(self):
-        while True:
-            disk = psutil.disk_usage("/").percent
+        self.rm.logger.info("System monitor started")
 
-            if self.rules["disk_cleanup"]["enabled"]:
-                if disk > self.rules["disk_cleanup"]["threshold"]:
-                    print("[SYS] Disk threshold exceeded → cleanup logs")
-                    self.rm.handle_ai_task(
-                        "cleanup_logs",
-                        {"folder": self.rules["disk_cleanup"]["folder"]}
-                    )
+        while self._running:
+            try:
+                disk = psutil.disk_usage("/").percent
 
-            time.sleep(5)
+                if self.rules["disk_cleanup"]["enabled"]:
+                    if disk > self.rules["disk_cleanup"]["threshold"]:
+                        self.rm.logger.warning(
+                            f"[SYS] Disk usage {disk}% > threshold → cleanup"
+                        )
+                        self.rm.handle_ai_task(
+                            "cleanup_logs",
+                            {"folder": self.rules["disk_cleanup"]["folder"]}
+                        )
+
+                time.sleep(5)
+
+            except Exception as e:
+                self.rm.logger.error(f"System monitor error: {e}")
+                time.sleep(2)
 
     # --------------------------------------------------------
-    # FS MONITORING
+    # FILESYSTEM MONITORING (v4)
     # --------------------------------------------------------
     def monitor_fs(self):
-        handler = FSHandler(self)
-        self.observer.schedule(handler, ".", recursive=True)
-        self.observer.start()
+        self.rm.logger.info("Filesystem monitor started")
+
+        try:
+            handler = FSHandler(self)
+            self.observer.schedule(handler, ".", recursive=True)
+            self.observer.start()
+
+        except Exception as e:
+            self.rm.logger.error(f"FS monitor error: {e}")
 
     # --------------------------------------------------------
-    # MAIN LOOP
+    # MAIN LOOP (v4)
     # --------------------------------------------------------
     def run(self):
-        print("🤖 SIRIUS AI LOOP – ENTERPRISE MODE")
-        print("Autonomous mode running...")
+        self.rm.logger.info("🤖 SIRIUS AI LOOP — ENTERPRISE MODE (v4.0.0)")
+        self.rm.logger.info("Autonomous mode running")
 
         # Start FS monitoring
         threading.Thread(target=self.monitor_fs, daemon=True).start()
@@ -126,16 +144,37 @@ class SiriusAILoop:
 
         # Keep main thread alive
         try:
-            while True:
+            while self._running:
                 time.sleep(1)
+
         except KeyboardInterrupt:
+            self.rm.logger.info("Shutdown requested (KeyboardInterrupt)")
+            self.shutdown()
+
+        except Exception as e:
+            self.rm.logger.error(f"Main loop error: {e}")
+            self.shutdown()
+
+    # --------------------------------------------------------
+    # CLEAN SHUTDOWN (v4)
+    # --------------------------------------------------------
+    def shutdown(self):
+        self.rm.logger.info("Shutting down AI Loop...")
+
+        self._running = False
+
+        try:
             self.observer.stop()
             self.observer.join()
+        except Exception:
+            pass
+
+        self.rm.logger.info("AI Loop stopped cleanly")
 
 
-# ------------------------------------------------------------
+# ============================================================
 # ENTRY POINT
-# ------------------------------------------------------------
+# ============================================================
 if __name__ == "__main__":
     loop = SiriusAILoop()
     loop.run()
