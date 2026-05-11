@@ -2,85 +2,103 @@ import speech_recognition as sr
 from runtime.runtime_manager import RuntimeManager
 
 
+# ============================================================
+# SIRIUS HOTWORD ENGINE (v4.0.0)
+# ============================================================
 class SiriusHotword:
     """
-    HOTWORD mode for SIRIUS-LOCAL-AI
-    - waits for the word "sirius"
-    - after activation listens for a command
-    - sends the command to the NL Router
+    SIRIUS LOCAL AI — Hotword Listener (v4.0.0)
+
+    Features:
+    - Listens for activation word "sirius"
+    - After activation listens for a command
+    - Sends command to NL Router through RuntimeManager
+    - Unified logging and safe error handling
     """
 
     def __init__(self):
+        # Runtime v4
         self.rm = RuntimeManager()
         self.rm.initialize()
 
+        # Speech recognition
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
 
+        # Hotword
         self.hotword = "sirius"
 
+        self.rm.logger.info("Hotword engine initialized (v4.0.0)")
+
     # --------------------------------------------------------
-    # SPEECH RECOGNITION
+    # SPEECH RECOGNITION (v4)
     # --------------------------------------------------------
     def listen(self):
-        with self.microphone as source:
-            print("🎤 Listening for hotword...")
-            self.recognizer.adjust_for_ambient_noise(source)
-            audio = self.recognizer.listen(source)
-
+        """Listen for hotword."""
         try:
+            with self.microphone as source:
+                self.recognizer.adjust_for_ambient_noise(source)
+                audio = self.recognizer.listen(source)
+
             text = self.recognizer.recognize_google(audio, language="sk-SK").lower()
-            print(f"➡ Recognized: {text}")
+            self.rm.logger.info(f"Recognized: {text}")
             return text
-        except:
+
+        except Exception as e:
+            self.rm.logger.warning(f"Hotword listen error: {e}")
             return ""
 
     # --------------------------------------------------------
-    # LISTEN FOR COMMAND AFTER HOTWORD
+    # LISTEN FOR COMMAND (v4)
     # --------------------------------------------------------
     def listen_command(self):
-        with self.microphone as source:
-            print("🎤 Listening for command...")
-            self.recognizer.adjust_for_ambient_noise(source)
-            audio = self.recognizer.listen(source)
-
+        """Listen for command after hotword."""
         try:
+            with self.microphone as source:
+                self.recognizer.adjust_for_ambient_noise(source)
+                audio = self.recognizer.listen(source)
+
             text = self.recognizer.recognize_google(audio, language="sk-SK")
-            print(f"➡ Command: {text}")
+            self.rm.logger.info(f"Command recognized: {text}")
             return text
-        except:
-            print("❗ Could not understand the command.")
+
+        except Exception as e:
+            self.rm.logger.error(f"Command recognition error: {e}")
             return None
 
     # --------------------------------------------------------
-    # PROCESS COMMAND
+    # PROCESS COMMAND (v4)
     # --------------------------------------------------------
     def process(self, text):
+        """Send recognized text to NL Router."""
         if not text:
             return
 
-        result = self.rm.handle_nl(text)
-        print("➡ Result:", result)
+        try:
+            result = self.rm.handle_nl(text)
+            self.rm.logger.info(f"NL result: {result}")
+        except Exception as e:
+            self.rm.logger.error(f"NL processing error: {e}")
 
     # --------------------------------------------------------
-    # MAIN LOOP
+    # MAIN LOOP (v4)
     # --------------------------------------------------------
     def run(self):
-        print("🟢 SIRIUS HOTWORD MODE – active")
-        print("Say: 'Sirius'")
+        self.rm.logger.info("SIRIUS HOTWORD MODE — active (v4.0.0)")
+        self.rm.logger.info("Waiting for hotword: 'sirius'")
 
         while True:
             text = self.listen()
 
             if self.hotword in text:
-                print("🟡 Hotword detected → waiting for command...")
+                self.rm.logger.info("Hotword detected → listening for command")
                 command = self.listen_command()
                 self.process(command)
 
 
-# ------------------------------------------------------------
+# ============================================================
 # ENTRY POINT
-# ------------------------------------------------------------
+# ============================================================
 if __name__ == "__main__":
     hw = SiriusHotword()
     hw.run()
