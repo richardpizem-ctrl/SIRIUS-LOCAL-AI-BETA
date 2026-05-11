@@ -81,22 +81,23 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 ---
 
 > [!IMPORTANT]
-> # 🔔 GAMA PUBLIC PREVIEW — 24‑HODINOVÉ GLOBÁLNE OKNO
-> **Keď bude SIRIUS LOCAL AI — GAMA (mobilný runtime) dokončená, bude na 24 hodín globálne sprístupnená pre všetkých.**
+> # 🔔 GAMA PUBLIC PREVIEW — 24‑HOUR GLOBAL ACCESS WINDOW
+> **When SIRIUS LOCAL AI — GAMA (mobile runtime) is completed, it will be opened to the public for a 24‑hour global preview window.**
 >
-> Počas tohto 24‑hodinového okna si bude môcť každý:
-> - 🔓 stiahnuť GAMA runtime  
-> - 📱 otestovať mobilnú architektúru  
-> - 🧪 preskúmať moduly a bezpečnostné vrstvy  
-> - 🔍 vidieť celý systém ešte pred uzamknutím architektúry (SUL)
+> During this 24‑hour window, anyone will be able to:
+> - 🔓 download the full GAMA runtime  
+> - 📱 test the mobile architecture  
+> - 🧪 explore modules and security layers  
+> - 🔍 inspect the entire system before the architecture becomes locked (SUL)
 >
-> Tento verejný náhľad je určený na:
-> - transparentnosť  
-> - komunitné testovanie  
-> - spätnú väzbu  
-> - potvrdenie stability pred LOCKED verziou  
+> This public preview is designed for:
+> - transparency  
+> - community testing  
+> - feedback  
+> - stability verification before the LOCKED release  
 >
-> Po skončení 24‑hodinového okna bude GAMA prejsť do **uzamknutej architektúry (LOCKED)** pod licenciou **SUL**.
+> After the 24‑hour window ends, GAMA will transition into a **LOCKED architecture** under the **SUL license**.
+
 
 ---
 
