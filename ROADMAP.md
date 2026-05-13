@@ -1,4 +1,4 @@
-# 🗺️ Roadmap – SIRIUS LOCAL AI (v4.0.0)
+# 🗺️ Roadmap – SIRIUS LOCAL AI (v4.0.0 → v4.1.0 EXPANDED)
 
 This document defines the long‑term development plan, milestones, and evolution of the SIRIUS LOCAL AI system.  
 The project now operates on the **Intelligent Runtime 4.0 architecture**, introducing semantic reasoning, identity engine 2.0, self‑repair capabilities, and safe online retrieval via ENVOY 4.0.
@@ -19,7 +19,7 @@ Delivered:
 - Workflow Tracker  
 - UI Confirm module  
 - AITE (early version)  
-- WIN‑CAP (early version)  
+- WIN‑CAP (early early version)  
 - full documentation set  
 
 **Output:**  
@@ -112,9 +112,6 @@ Capabilities:
 - identity‑aware routing across all modules  
 - offline learning (no biometrics, no cloud)  
 
-**Output:**  
-A more intelligent, context‑aware, identity‑driven runtime with strong family‑safe behavior.
-
 ---
 
 ## 🧠 Reasoning Engine 4.0
@@ -165,20 +162,96 @@ Pipeline:
 4. Validator & Policy Filter  
 5. Safe Payload Delivery  
 
-**Output:**  
-A safe, controlled method for expanding offline knowledge without compromising security.
+---
+
+# ⭐ **4.1 Version 4.1.0 – Packaging, Distribution & System Intelligence Layer (EXPANDED)**  
+**Focus:** User‑friendly installation + full PC‑level intelligence + system optimization + driver management + task manager control + service control + education engine.
 
 ---
 
-# 4.1 Version 4.1.0 – Packaging & Distribution (Planned)
-**Focus:** User‑friendly installation and distribution
-
-Planned:
+## **A. Packaging & Distribution (original plan)**
 - packaged Windows installer  
 - bundled Python environment  
 - plugin auto‑loader  
 - startup integrity checks  
 - identity‑aware initialization  
+
+---
+
+## **B. NEW: System Health Engine 4.1**
+Capabilities:
+- continuous monitoring of CPU / RAM / DISK / NETWORK  
+- detection of frozen processes  
+- detection of system bottlenecks  
+- prediction of upcoming failures  
+- automatic safe repairs (via VYSLANEC)  
+- system‑wide optimization suggestions  
+- health scoring for the entire PC  
+
+---
+
+## **C. NEW: Driver Manager Engine 4.1**
+Capabilities:
+- detection of missing drivers  
+- detection of corrupted drivers  
+- detection of outdated drivers  
+- offline INF installation  
+- ZIP/EXE extraction and installation  
+- automatic detection of new files in Downloads  
+- safe navigation to official manufacturer websites  
+- driver‑level diagnostics  
+- friendly explanations for users  
+
+---
+
+## **D. NEW: Task Manager Engine 4.1**
+Capabilities:
+- restart Windows Explorer  
+- terminate unnecessary background processes  
+- CPU/RAM/DISK/NET analysis  
+- startup optimization  
+- background load reduction  
+- safe process classification (critical / safe / optional)  
+- human‑friendly explanations  
+
+---
+
+## **E. NEW: Service Manager Engine 4.1**
+Capabilities:
+- restart Windows Audio  
+- restart Windows Update  
+- restart networking services  
+- disable unnecessary services  
+- detect failing services  
+- safe service‑level optimization  
+
+---
+
+## **F. NEW: Education Engine 4.1**
+Purpose:  
+Teach the user **why** something is being done.
+
+Capabilities:
+- explain why a process is safe to terminate  
+- explain why a service is important  
+- explain why a driver is needed  
+- explain why a setting improves performance  
+- friendly, non‑technical language  
+- identity‑aware tone  
+
+---
+
+## **G. NEW: VYSLANEC 4.1 (Bridge Layer 2.0)**
+Purpose:  
+A safe, controlled bridge between SIRIUS and Windows.
+
+Capabilities:
+- all system actions routed through VYSLANEC  
+- Windows retains full control  
+- audit logging  
+- permission‑based execution  
+- safe sandbox for system‑level operations  
+- no direct access to kernel or privileged APIs  
 
 ---
 
@@ -208,4 +281,5 @@ Planned:
 
 # Roadmap Status
 Current version: **4.0.0 (Stable)**  
-The system is fully modular and ready for future semantic, self‑repairing, and knowledge‑driven capabilities.
+Next major release: **4.1.0 – System Intelligence Layer**  
+The system is fully modular and ready for deep PC‑level intelligence, optimization, and self‑repair.
