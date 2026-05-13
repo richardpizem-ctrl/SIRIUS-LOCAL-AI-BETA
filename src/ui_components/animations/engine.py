@@ -1,10 +1,12 @@
 # ============================================================
 # SIRIUS LOCAL AI – ui_components/animations
-# AnimationEngine 2.0 + OrbObject 2.0 + OrbRingObject 1.0
-# OrbGlowObject 1.0 + OrbStateController 1.0
+# AnimationEngine 2.0 + ORB 2.0 + Ring 1.0 + Glow 1.0 + State 1.0
+# + ThinkingEffect 1.0 + WarningFlash 1.0 + SuccessBurst 1.0
+# + EnergyFlow 1.0
 # ============================================================
 
 import math
+import random
 from typing import Protocol, List
 
 
@@ -56,16 +58,13 @@ class OrbObject:
     def __init__(self):
         self.scale = 1.0
         self.intensity = 1.0
-        self.color = (0.2, 0.6, 1.0)  # SIRIUS modro-tyrkysová
+        self.color = (0.2, 0.6, 1.0)
         self._time = 0.0
 
     def update(self, delta_time: float) -> None:
         self._time += delta_time
 
-        # Pulzovanie veľkosti (dýchanie)
         self.scale = 1.0 + 0.05 * math.sin(self._time * 2.0)
-
-        # Pulzovanie intenzity svetla
         self.intensity = 1.0 + 0.1 * math.sin(self._time * 3.0)
 
 
@@ -81,19 +80,13 @@ class OrbRingObject:
 
     def update(self, delta_time: float) -> None:
         self._time += delta_time
-
-        # Rotácia
         self.rotation = (self.rotation + delta_time * 40.0) % 360.0
-
-        # Pulzovanie hrúbky
         self.thickness = 1.0 + 0.05 * math.sin(self._time * 1.5)
-
-        # Pulzovanie intenzity
         self.intensity = 0.8 + 0.1 * math.sin(self._time * 2.0)
 
 
 # ------------------------------------------------------------
-# ORBGLOWOBJECT 1.0 – svetelná aura okolo ORBu
+# ORBGLOWOBJECT 1.0 – svetelná aura
 # ------------------------------------------------------------
 class OrbGlowObject:
     def __init__(self):
@@ -103,8 +96,6 @@ class OrbGlowObject:
 
     def update(self, delta_time: float) -> None:
         self._time += delta_time
-
-        # Jemné pulzovanie svetelnej aury
         self.radius = 1.5 + 0.1 * math.sin(self._time * 1.2)
         self.intensity = 0.5 + 0.1 * math.sin(self._time * 2.5)
 
@@ -113,40 +104,99 @@ class OrbGlowObject:
 # ORBSTATECONTROLLER 1.0 – farby podľa stavu agenta
 # ------------------------------------------------------------
 class OrbStateController:
-    """
-    Riadi farbu ORBu podľa stavu agenta.
-    Stavy:
-        idle
-        thinking
-        analyzing
-        warning
-        success
-    """
-
     STATE_COLORS = {
-        "idle":     (0.2, 0.6, 1.0),   # modrá
-        "thinking": (0.4, 0.8, 1.0),   # svetlejšia modrá
-        "analyzing":(0.1, 0.9, 0.9),   # tyrkysová
-        "warning":  (1.0, 0.3, 0.3),   # červená
-        "success":  (0.2, 1.0, 0.4),   # zelená
+        "idle":     (0.2, 0.6, 1.0),
+        "thinking": (0.4, 0.8, 1.0),
+        "analyzing":(0.1, 0.9, 0.9),
+        "warning":  (1.0, 0.3, 0.3),
+        "success":  (0.2, 1.0, 0.4),
     }
 
     def __init__(self, orb: OrbObject):
         self.orb = orb
         self.state = "idle"
-        self.transition_speed = 3.0  # rýchlosť prechodu farby
+        self.transition_speed = 3.0
 
     def set_state(self, new_state: str) -> None:
         if new_state in self.STATE_COLORS:
             self.state = new_state
 
     def update(self, delta_time: float) -> None:
-        target_color = self.STATE_COLORS[self.state]
+        target = self.STATE_COLORS[self.state]
         r, g, b = self.orb.color
-
-        # Plynulý prechod farby
         self.orb.color = (
-            r + (target_color[0] - r) * delta_time * self.transition_speed,
-            g + (target_color[1] - g) * delta_time * self.transition_speed,
-            b + (target_color[2] - b) * delta_time * self.transition_speed,
+            r + (target[0] - r) * delta_time * self.transition_speed,
+            g + (target[1] - g) * delta_time * self.transition_speed,
+            b + (target[2] - b) * delta_time * self.transition_speed,
         )
+
+
+# ------------------------------------------------------------
+# THINKING EFFECT 1.0 – iskry pri premýšľaní
+# ------------------------------------------------------------
+class OrbThinkingEffect:
+    def __init__(self):
+        self.sparks = []  # list of (angle, speed, life)
+
+    def update(self, delta_time: float) -> None:
+        # generovanie nových iskier
+        if random.random() < 0.15:
+            self.sparks.append([
+                random.uniform(0, 360),   # angle
+                random.uniform(20, 60),   # speed
+                1.0                       # life
+            ])
+
+        # aktualizácia iskier
+        for spark in self.sparks:
+            spark[2] -= delta_time * 1.5  # life decay
+
+        # odstránenie mŕtvych iskier
+        self.sparks = [s for s in self.sparks if s[2] > 0]
+
+
+# ------------------------------------------------------------
+# WARNING FLASH 1.0 – červený výstražný záblesk
+# ------------------------------------------------------------
+class OrbWarningFlash:
+    def __init__(self):
+        self.flash_intensity = 0.0
+
+    def trigger(self):
+        self.flash_intensity = 1.0
+
+    def update(self, delta_time: float) -> None:
+        if self.flash_intensity > 0:
+            self.flash_intensity -= delta_time * 2.5
+            if self.flash_intensity < 0:
+                self.flash_intensity = 0
+
+
+# ------------------------------------------------------------
+# SUCCESS BURST 1.0 – zelený energetický výbuch
+# ------------------------------------------------------------
+class OrbSuccessBurst:
+    def __init__(self):
+        self.radius = 0.0
+        self.active = False
+
+    def trigger(self):
+        self.radius = 0.0
+        self.active = True
+
+    def update(self, delta_time: float) -> None:
+        if self.active:
+            self.radius += delta_time * 4.0
+            if self.radius > 2.0:
+                self.active = False
+
+
+# ------------------------------------------------------------
+# ENERGY FLOW 1.0 – prúdenie energie okolo ORBu
+# ------------------------------------------------------------
+class OrbEnergyFlow:
+    def __init__(self):
+        self.offset = 0.0
+
+    def update(self, delta_time: float) -> None:
+        self.offset = (self.offset + delta_time * 0.8) % 1.0
