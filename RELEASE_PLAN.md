@@ -1,4 +1,4 @@
-# 🗓️ RELEASE PLAN – SIRIUS LOCAL AI (v4.0.0)
+# 🗓️ RELEASE PLAN – SIRIUS LOCAL AI (v4.0.0 → v4.1.0 EXPANDED)
 
 This document defines the official release roadmap for the project.  
 SIRIUS LOCAL AI now operates on the **Intelligent Runtime 4.0 architecture**, with a clear long‑term evolution path.
@@ -96,9 +96,9 @@ The first generation of intelligent, behavior‑based runtime safety and househo
 - RuntimeEngine 4.0 integration  
 
 ### Included Modules:
-- FS MODULE (mkdir, move, copy, delete, safe‑mode)  
-- EDITOR MODULE (open file/folder, jump to line, highlight)  
-- WORKFLOW MODULE (scaffolding, refactoring, version prep)  
+- FS MODULE  
+- EDITOR MODULE  
+- WORKFLOW MODULE  
 - COMMAND PARSER  
 - COMMAND ROUTER  
 
@@ -124,62 +124,77 @@ SIRIUS becomes a true **PC‑level automation assistant**, capable of manipulati
 - identity‑aware routing 2.0  
 
 ### NEW Core Modules (v4.0.0)
-
-#### 🧠 Reasoning Engine 4.0
-- symbolic logic  
-- chain‑of‑thought trees  
-- subject‑aware reasoning  
-- pack‑aware reasoning  
-- deterministic bounded depth  
-
-#### 🔍 AITE 4.0 (Semantic Triage)
-- OCR  
-- semantic analysis  
-- subject detection  
-- difficulty scoring  
-- ENVOY integration  
-
-#### 🔐 Security Family 4.0 (Identity Engine 2.0)
-- OWNER / FAMILY / STRANGER  
-- time‑limits v2  
-- schoolwork engine  
-- identity‑aware routing  
-
-#### 🛠 Self‑Repair Layer
-- integrity checks  
-- corrupted state detection  
-- safe automatic repairs  
-- fallback states  
-- patch suggestions  
-
-#### 📦 Knowledge Packs 4.0
-- curated offline datasets  
-- semantic linking  
-- pack‑aware reasoning  
-- ENVOY‑assisted updates  
-
-#### 🌐 SIRIUS ENVOY 4.0
-- outbound‑only retrieval  
-- scraper layer  
-- quarantine sandbox  
-- validator & filter  
-- safe payload delivery  
+- Reasoning Engine 4.0  
+- AITE 4.0  
+- Security Family 4.0  
+- Self‑Repair Layer  
+- Knowledge Packs 4.0  
+- SIRIUS ENVOY 4.0  
 
 **Output:**  
 The second generation of intelligent, semantic, self‑maintaining offline AI runtime.
 
 ---
 
-# Version 4.1.0 – Packaging & Distribution
-**Status:** Planned  
-**Goal:** Provide a clean, user‑friendly installation system.
+# Version 4.1.0 – System Intelligence Layer (EXPANDED)
+**Status:** In Development  
+**Goal:** Add deep PC‑level intelligence, diagnostics, optimization, and safe system actions.
 
 ### Focus:
-- packaged Windows installer  
-- bundled Python environment  
-- plugin auto‑loader  
-- startup integrity checks  
-- identity‑aware initialization  
+- System Health Engine 4.1  
+- Driver Manager Engine 4.1  
+- Task Manager Engine 4.1  
+- Service Manager Engine 4.1  
+- Education Engine 4.1  
+- VYSLANEC 4.1 (Bridge Layer 2.0)  
+- identity‑aware system actions  
+- safe, reversible system operations  
+- full transparency and user explanations  
+
+### NEW Modules (v4.1.0)
+
+#### 🩺 System Health Engine 4.1
+- CPU/RAM/DISK/NET monitoring  
+- bottleneck detection  
+- frozen process detection  
+- failing service detection  
+- driver integrity checks  
+- PC Health Score  
+- safe repair suggestions  
+
+#### 🧩 Driver Manager Engine 4.1
+- missing/corrupted driver detection  
+- INF installation  
+- ZIP/EXE extraction  
+- Downloads folder monitoring  
+- manufacturer‑safe navigation  
+
+#### ⚙️ Task Manager Engine 4.1
+- restart Explorer  
+- terminate safe processes  
+- startup optimization  
+- background load reduction  
+
+#### 🛠 Service Manager Engine 4.1
+- restart Audio  
+- restart Windows Update  
+- restart networking  
+- disable unnecessary services  
+
+#### 📘 Education Engine 4.1
+- explains every system action  
+- identity‑aware tone  
+- safe, friendly guidance  
+
+#### 🛰 VYSLANEC 4.1 (Bridge Layer 2.0)
+- executes all system actions  
+- enforces identity rules  
+- logs actions  
+- ensures reversibility  
+- prevents unsafe operations  
+
+**Output:**  
+SIRIUS evolves into a **PC‑aware intelligent assistant** capable of diagnosing, optimizing, and safely repairing Windows 11.
 
 ---
 
@@ -209,4 +224,4 @@ The second generation of intelligent, semantic, self‑maintaining offline AI ru
 
 # Document Status
 Current version: **4.0.0 (Stable)**  
-Future modules for **v4.1.0**, **v4.2.0**, and **v5.0.0+** are defined as part of the long‑term evolution of SIRIUS LOCAL AI.
+Next major release: **4.1.0 – System Intelligence Layer**
