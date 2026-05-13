@@ -3,6 +3,55 @@
 # Creates full SIRIUS ORB with all layers (1.0–12.0)
 # ============================================================
 
+from .engine import (
+    AnimationEngine,
+    OrbObject,
+    OrbRingObject,
+    OrbGlowObject,
+    OrbStateController,
+    OrbThinkingEffect,
+    OrbWarningFlash,
+    OrbSuccessBurst,
+    OrbEnergyFlow,
+    OrbBreathingEffect,
+    OrbIntelligencePulse,
+    OrbLinkEffect,
+    OrbEnergyField,
+    OrbNeuralPathways,
+    OrbDecisionMap,
+    OrbSynapseSparks,
+    OrbMemoryRings,
+    OrbLogicFlow,
+    OrbConsciousnessField,
+    OrbReasoningWaves,
+    OrbMetaThoughtLayers,
+    OrbSelfReflectionPulse,
+    OrbTemporalEchoes,
+    OrbPredictiveTrails,
+    OrbCognitiveMesh,
+    OrbFocusBeam,
+    OrbAwarenessBloom,
+    OrbQuantumFluctuations,
+    OrbSuperposition,
+    OrbProbabilityCloud,
+    OrbHyperFocus,
+    OrbDimensionalShift,
+    OrbRealityDistortion,
+    OrbEchoNetwork,
+    OrbDeepInsightBurst,
+    OrbEmergentThoughtLayers,
+    OrbCognitiveResonance,
+    OrbInsightConvergence,
+    OrbAwarenessHalo,
+    OrbDeepReflectionField,
+    OrbUnifiedCore,
+    OrbHarmonicFieldMatrix,
+    OrbInsightSingularity,
+    OrbCognitiveRipple,
+    OrbTotalityLayer
+)
+
+
 def create_sirius_orb():
     """
     Creates a fully assembled SIRIUS ORB:
