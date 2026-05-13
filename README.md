@@ -90,34 +90,45 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 > - 🧪 explore modules and security layers  
 > - 🔍 inspect the entire system before the architecture becomes locked (SUL)
 >
-> This public preview is designed for:
-> - transparency  
-> - community testing  
-> - feedback  
-> - stability verification before the LOCKED release  
->
 > After the 24‑hour window ends, GAMA will transition into a **LOCKED architecture** under the **SUL license**.
-
 
 ---
 
-Version **4.0.0** introduces:
+# 🆕 WHAT’S COMING IN VERSION 4.1.0 — SYSTEM INTELLIGENCE LAYER
 
-- **Runtime Core 4.0**  
-- **NL Router 4.0**  
-- **FS‑AGENT 4.0**  
-- **CME‑MEM 4.0**  
-- **Workflow Engine 4.0**  
-- **GUI Layer 4.0**  
-- **AITE 4.0 (semantic triage + OCR)**  
-- **WIN‑CAP 4.0**  
-- **Plugin System 4.0**  
-- **Security Family 4.0 (Identity Engine 2.0)**  
-- **Schoolwork Engine 4.0**  
-- **Reasoning Engine 4.0**  
-- **Self‑Repair & Health‑Check Layer**  
-- **Knowledge Packs 4.0**  
-- **SIRIUS ENVOY 4.0 (safe online retrieval)**  
+Version **4.1.0** is the next major upgrade and introduces a **brand‑new system layer** that transforms SIRIUS into a PC‑aware intelligent assistant.
+
+### **New Modules in v4.1.0**
+- 🩺 **System Health Engine 4.1**  
+  Continuous monitoring of CPU/RAM/DISK/NET, bottleneck detection, frozen process detection, failing service detection, PC Health Score.
+
+- 🧩 **Driver Manager Engine 4.1**  
+  Detects missing/corrupted drivers, installs INF packages, extracts ZIP/EXE installers, monitors Downloads folder, navigates to official manufacturer sites.
+
+- ⚙️ **Task Manager Engine 4.1**  
+  Restart Explorer, terminate safe processes, optimize startup, reduce background load.
+
+- 🛠 **Service Manager Engine 4.1**  
+  Restart Audio, Windows Update, networking services, disable unnecessary services.
+
+- 📘 **Education Engine 4.1**  
+  Explains every system action in friendly, identity‑aware language.
+
+- 🛰 **VYSLANEC 4.1 (Bridge Layer 2.0)**  
+  Executes all system actions safely, enforces identity rules, logs actions, ensures reversibility.
+
+### **Purpose of v4.1.0**
+To give SIRIUS the ability to:
+
+- understand the PC  
+- diagnose problems  
+- optimize performance  
+- safely repair issues  
+- educate the user  
+- maintain full transparency  
+- operate with strict identity‑aware safety  
+
+This is the largest system upgrade since Runtime 4.0.
 
 ---
 
@@ -279,9 +290,9 @@ ENVOY never sends local data outward.
 
 # 🗺 ROADMAP
 - **v4.0.0** – Intelligent Runtime 2.0  
-- **v4.1.0** – packaging system  
-- **v4.2.0** – semantic UI automation  
-- **v5.0.0** – offline knowledge graph reasoning  
+- **v4.1.0** – System Intelligence Layer (NEW)  
+- **v4.2.0** – Semantic UI automation  
+- **v5.0.0** – Offline knowledge graph reasoning  
 
 ---
 
