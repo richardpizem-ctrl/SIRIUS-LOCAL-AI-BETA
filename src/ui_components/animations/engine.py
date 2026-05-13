@@ -23,6 +23,8 @@ class AnimationEngine:
     def __init__(self) -> None:
         self._objects: List[Animatable] = []
         self._running: bool = True
+        # global toggle for all animations
+        self._animations_enabled: bool = True
 
     def add_object(self, obj: Animatable) -> None:
         if obj not in self._objects:
@@ -41,8 +43,11 @@ class AnimationEngine:
     def start(self) -> None:
         self._running = True
 
+    def set_animations_enabled(self, enabled: bool) -> None:
+        self._animations_enabled = enabled
+
     def update(self, delta_time: float) -> None:
-        if not self._running:
+        if not self._running or not self._animations_enabled:
             return
         for obj in list(self._objects):
             obj.update(delta_time)
@@ -428,7 +433,7 @@ class OrbCognitiveMesh:
         for _ in range(12):
             self.mesh_points.append([
                 random.uniform(0, 360),
-                random.uniform(1.0, 1.8),
+            random.uniform(1.0, 1.8),
                 1.0
             ])
 
