@@ -1,7 +1,7 @@
 # ============================================================
 # SIRIUS LOCAL AI – ui_components/animations
-# Animations 5.0 – Deep Breathing, Multi-Core, Intelligence Pulse,
-# Link Effect, Energy Field
+# Animations 6.0 – Neural Pathways, Decision Map, Synapse Sparks,
+# Memory Rings, Logic Flow
 # ============================================================
 
 import math
@@ -51,7 +51,7 @@ class AnimationEngine:
 
 
 # ------------------------------------------------------------
-# ORBOBJECT 3.0 – viacvrstvové jadro
+# ORBOBJECT 4.0 – neurónové jadro
 # ------------------------------------------------------------
 class OrbObject:
     def __init__(self):
@@ -67,83 +67,115 @@ class OrbObject:
     def update(self, delta_time: float) -> None:
         self._time += delta_time
 
-        # Inner core – rýchlejšie pulzovanie
-        self.inner_scale = 0.8 + 0.03 * math.sin(self._time * 3.5)
+        # Inner core – rýchle neurónové vibrácie
+        self.inner_scale = 0.8 + 0.04 * math.sin(self._time * 4.5)
 
-        # Mid core – stredné pulzovanie
-        self.mid_scale = 1.0 + 0.05 * math.sin(self._time * 2.0)
+        # Mid core – AI processing
+        self.mid_scale = 1.0 + 0.06 * math.sin(self._time * 2.2)
 
-        # Outer core – pomalé hlboké dýchanie
-        self.outer_scale = 1.2 + 0.07 * math.sin(self._time * 1.0)
+        # Outer core – hlboké AI dýchanie
+        self.outer_scale = 1.2 + 0.08 * math.sin(self._time * 1.1)
 
-        # Inteligentný pulz (AI heartbeat)
-        self.intensity = 1.0 + 0.15 * math.sin(self._time * 4.0)
-
-
-# ------------------------------------------------------------
-# ORB BREATHING 2.0 – hlboké AI dýchanie
-# ------------------------------------------------------------
-class OrbBreathingEffect:
-    def __init__(self, orb: OrbObject):
-        self.orb = orb
-        self._time = 0.0
-
-    def update(self, delta_time: float) -> None:
-        self._time += delta_time
-
-        # Hlboké dýchanie ovplyvňuje outer core
-        self.orb.outer_scale = 1.2 + 0.12 * math.sin(self._time * 0.7)
+        # Inteligentný pulz
+        self.intensity = 1.0 + 0.18 * math.sin(self._time * 5.0)
 
 
 # ------------------------------------------------------------
-# ORB INTELLIGENCE PULSE – AI heartbeat
+# NEURAL PATHWAYS – neurónové spojenia
 # ------------------------------------------------------------
-class OrbIntelligencePulse:
-    def __init__(self, orb: OrbObject):
-        self.orb = orb
-        self._time = 0.0
-
-    def update(self, delta_time: float) -> None:
-        self._time += delta_time
-
-        # Inteligentný pulz – rýchlejšie, jemné vibrácie
-        self.orb.intensity = 1.0 + 0.2 * math.sin(self._time * 6.0)
-
-
-# ------------------------------------------------------------
-# ORB LINK EFFECT – prepojenie s agentom
-# ------------------------------------------------------------
-class OrbLinkEffect:
+class OrbNeuralPathways:
     def __init__(self):
-        self.lines = []  # (angle, length, life)
+        self.paths = []  # (angle, length, life)
 
     def trigger(self):
-        # Vytvorenie energetických vlákien
-        for _ in range(5):
-            self.lines.append([
+        # Aktivácia neurónových spojení
+        for _ in range(8):
+            self.paths.append([
                 random.uniform(0, 360),
-                random.uniform(0.5, 1.5),
+                random.uniform(0.3, 1.0),
                 1.0
             ])
 
     def update(self, delta_time: float) -> None:
-        for line in self.lines:
-            line[2] -= delta_time * 1.2
+        for p in self.paths:
+            p[2] -= delta_time * 1.0
 
-        self.lines = [l for l in self.lines if l[2] > 0]
+        self.paths = [p for p in self.paths if p[2] > 0]
 
 
 # ------------------------------------------------------------
-# ORB ENERGY FIELD – dynamické pole okolo ORBu
+# DECISION MAP – vizualizácia rozhodovania
 # ------------------------------------------------------------
-class OrbEnergyField:
+class OrbDecisionMap:
     def __init__(self):
-        self.offset = 0.0
-        self.strength = 1.0
+        self.nodes = []  # (angle, radius, life)
+
+    def activate(self):
+        # Vytvorenie rozhodovacích uzlov
+        for _ in range(5):
+            self.nodes.append([
+                random.uniform(0, 360),
+                random.uniform(0.4, 1.2),
+                1.0
+            ])
 
     def update(self, delta_time: float) -> None:
-        # Plynulé prúdenie energie
-        self.offset = (self.offset + delta_time * 0.5) % 1.0
+        for n in self.nodes:
+            n[2] -= delta_time * 0.8
 
-        # Jemné pulzovanie sily poľa
-        self.strength = 1.0 + 0.1 * math.sin(self.offset * 6.28)
+        self.nodes = [n for n in self.nodes if n[2] > 0]
+
+
+# ------------------------------------------------------------
+# SYNAPSE SPARKS – synaptické výboje
+# ------------------------------------------------------------
+class OrbSynapseSparks:
+    def __init__(self):
+        self.sparks = []  # (angle, speed, life)
+
+    def update(self, delta_time: float) -> None:
+        # Náhodné synaptické výboje
+        if random.random() < 0.25:
+            self.sparks.append([
+                random.uniform(0, 360),
+                random.uniform(30, 80),
+                1.0
+            ])
+
+        for s in self.sparks:
+            s[2] -= delta_time * 1.8
+
+        self.sparks = [s for s in self.sparks if s[2] > 0]
+
+
+# ------------------------------------------------------------
+# MEMORY RINGS – pamäťové vrstvy
+# ------------------------------------------------------------
+class OrbMemoryRings:
+    def __init__(self):
+        self.rings = []  # (radius, life)
+
+    def store(self):
+        # Vytvorenie pamäťového kruhu
+        self.rings.append([
+            random.uniform(1.3, 1.8),
+            1.0
+        ])
+
+    def update(self, delta_time: float) -> None:
+        for r in self.rings:
+            r[1] -= delta_time * 0.5
+
+        self.rings = [r for r in self.rings if r[1] > 0]
+
+
+# ------------------------------------------------------------
+# LOGIC FLOW – tok logiky medzi vrstvami
+# ------------------------------------------------------------
+class OrbLogicFlow:
+    def __init__(self):
+        self.offset = 0.0
+        self.speed = 1.0
+
+    def update(self, delta_time: float) -> None:
+        self.offset = (self.offset + delta_time * self.speed) % 1.0
