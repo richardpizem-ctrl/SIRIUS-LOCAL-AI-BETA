@@ -1,7 +1,7 @@
 # ============================================================
 # SIRIUS LOCAL AI – ui_components/animations
-# Animations 9.0 – Quantum Fluctuations, Superposition,
-# Probability Cloud, Hyper-Focus Mode
+# Animations 10.0 – Dimensional Shift, Reality Distortion,
+# Multi-Orb Echo Network, Deep Insight Burst
 # ============================================================
 
 import math
@@ -18,97 +18,86 @@ class Animatable(Protocol):
 
 
 # ------------------------------------------------------------
-# QUANTUM FLUCTUATIONS – micro-vibrations of the quantum core
+# DIMENSIONAL SHIFT LAYERS – subtle dimensional offsets
 # ------------------------------------------------------------
-class OrbQuantumFluctuations:
+class OrbDimensionalShift:
     def __init__(self, orb):
         self.orb = orb
+        self.shift = 0.0
         self._time = 0.0
-        self.strength = 0.02  # subtle but visible
 
     def update(self, delta_time: float) -> None:
         self._time += delta_time
 
-        # micro jitter on all core layers
-        jitter = self.strength * math.sin(self._time * 50.0)
+        # dimensional oscillation
+        self.shift = 0.03 * math.sin(self._time * 3.3)
 
-        self.orb.inner_scale += jitter
-        self.orb.mid_scale += jitter * 0.7
-        self.orb.outer_scale += jitter * 0.4
+        # apply dimensional shift to core layers
+        self.orb.inner_scale += self.shift * 0.5
+        self.orb.mid_scale += self.shift * 0.3
+        self.orb.outer_scale += self.shift * 0.1
 
 
 # ------------------------------------------------------------
-# MULTI-STATE SUPERPOSITION – orb exists in multiple states
+# REALITY DISTORTION – bending space around the orb
 # ------------------------------------------------------------
-class OrbSuperposition:
+class OrbRealityDistortion:
     def __init__(self):
-        self.states = []  # (inner_scale, mid_scale, outer_scale, intensity, life)
+        self.distortion = 0.0
+        self._time = 0.0
 
-    def collapse(self, orb) -> None:
-        # capture current state as one branch of superposition
-        self.states.append([
-            orb.inner_scale,
-            orb.mid_scale,
+    def update(self, delta_time: float) -> None:
+        self._time += delta_time
+
+        # distortion wave
+        self.distortion = 0.1 * math.sin(self._time * 1.5)
+
+
+# ------------------------------------------------------------
+# MULTI-ORB ECHO NETWORK – echo copies of the orb
+# ------------------------------------------------------------
+class OrbEchoNetwork:
+    def __init__(self):
+        self.echoes = []  # (scale, intensity, life)
+
+    def spawn(self, orb) -> None:
+        self.echoes.append([
             orb.outer_scale,
             orb.intensity,
             1.0
         ])
 
     def update(self, delta_time: float) -> None:
-        for s in self.states:
-            s[4] -= delta_time * 0.5
-        self.states = [s for s in self.states if s[4] > 0]
+        for e in self.echoes:
+            e[0] += delta_time * 0.4     # echo expands
+            e[1] -= delta_time * 0.6     # intensity fades
+            e[2] -= delta_time * 0.7     # life fades
+
+        self.echoes = [e for e in self.echoes if e[2] > 0]
 
 
 # ------------------------------------------------------------
-# PROBABILITY CLOUD – probability distribution of AI reasoning
+# DEEP INSIGHT BURST – flash of deep understanding
 # ------------------------------------------------------------
-class OrbProbabilityCloud:
+class OrbDeepInsightBurst:
     def __init__(self):
-        self.points = []  # (angle, radius, probability, life)
-
-    def generate(self) -> None:
-        for _ in range(20):
-            self.points.append([
-                random.uniform(0, 360),
-                random.uniform(0.5, 2.0),
-                random.uniform(0.1, 1.0),  # probability weight
-                1.0
-            ])
-
-    def update(self, delta_time: float) -> None:
-        for p in self.points:
-            p[3] -= delta_time * 0.4
-        self.points = [p for p in self.points if p[3] > 0]
-
-
-# ------------------------------------------------------------
-# HYPER-FOCUS MODE – extreme AI concentration
-# ------------------------------------------------------------
-class OrbHyperFocus:
-    def __init__(self, orb):
-        self.orb = orb
-        self.active = False
+        self.radius = 0.0
         self.intensity = 0.0
-
-    def engage(self) -> None:
-        self.active = True
-        self.intensity = 1.0
-
-    def disengage(self) -> None:
         self.active = False
 
+    def trigger(self) -> None:
+        self.radius = 0.0
+        self.intensity = 1.0
+        self.active = True
+
     def update(self, delta_time: float) -> None:
-        if self.active:
-            # orb shrinks slightly and intensifies
-            self.orb.inner_scale *= 0.995
-            self.orb.mid_scale *= 0.997
-            self.orb.outer_scale *= 0.999
+        if not self.active:
+            return
 
-            self.orb.intensity = min(2.0, self.orb.intensity + delta_time * 1.5)
+        # burst expands rapidly
+        self.radius += delta_time * 3.0
+        self.intensity -= delta_time * 1.2
 
-            self.intensity = max(0.0, self.intensity - delta_time * 0.3)
-        else:
-            # return to normal
-            self.orb.intensity = max(1.0, self.orb.intensity - delta_time * 0.5)
-            self.intensity = max(0.0, self.intensity - delta_time * 1.0)
+        if self.intensity <= 0:
+            self.intensity = 0
+            self.active = False
