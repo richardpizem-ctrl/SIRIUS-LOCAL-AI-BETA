@@ -1,318 +1,252 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (v4.0.0 RELEASE)
+# 🏗 Architecture – SIRIUS LOCAL AI (v4.0.0 → v4.1.0 EXPANDED)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.0.0-purple">
+  <img src="https://img.shields.io/badge/version-4.1.0-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
   <img src="https://img.shields.io/badge/runtime-Intelligent%204.0-orange">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI v4.0.0 is a fully modular, **offline‑only intelligent runtime** designed to safely interpret user commands, automate workflows, and interact with Windows 11 through isolated capability modules.
+SIRIUS LOCAL AI v4.1.0 expands the Intelligent Runtime 4.0 architecture with **deep PC‑level intelligence**, including:
 
-Version **4.0.0** introduces a new generation of intelligent subsystems, including:
+- **System Health Engine 4.1**
+- **Driver Manager Engine 4.1**
+- **Task Manager Engine 4.1**
+- **Service Manager Engine 4.1**
+- **Education Engine 4.1**
+- **VYSLANEC 4.1 (Bridge Layer 2.0)**
 
-- **Runtime Core 4.0**
-- **Reasoning Engine 4.0**
-- **AITE 4.0 (Semantic Triage)**
-- **Security Family 4.0 (Identity Engine 2.0)**
-- **Self‑Repair & Health‑Check Layer**
-- **Knowledge Packs 4.0**
-- **PC Automation Runtime 4.0**
-- **SIRIUS ENVOY 4.0 (Safe Online Retrieval)**
+These modules allow SIRIUS to **understand, diagnose, optimize, and safely repair Windows 11**, while maintaining strict isolation, predictability, and identity‑aware access control.
 
-The architecture emphasizes **safety**, **predictability**, **semantic intelligence**, **identity‑based access**, and **full local control**.
+All processing remains fully local.
 
 ---
 
-# 🛡 Stability Notice (v4.0.0)
+# 🛡 Stability Notice (v4.1.0)
 
-SIRIUS LOCAL AI now operates on the **Intelligent Runtime 4.0 architecture**, which guarantees:
+SIRIUS LOCAL AI now includes **System Intelligence Layer 4.1**, which guarantees:
 
-- deterministic, isolated modules  
-- zero cloud communication  
-- no hidden background automation  
-- semantic reasoning and triage  
-- stable plugin interfaces  
-- SCHOOLWORK ENGINE 4.0 fully integrated  
-- SECURITY FAMILY 4.0 as a core identity layer  
-- self‑repair and integrity monitoring  
+- safe system‑level operations through VYSLANEC  
+- no direct kernel access  
+- identity‑aware system actions  
+- deterministic, reversible operations  
+- safe driver handling  
+- safe process and service control  
+- full transparency and user confirmation  
+- friendly education for every system action  
 
-This version is production‑ready and forms the foundation for v4.x and v5.
+This version introduces **PC‑level intelligence** while preserving the strict safety model of Runtime 4.0.
 
 ---
 
-# 🧩 Architectural Principles (v4.0.0)
+# 🧩 Architectural Principles (v4.1.0)
 
 - strict modular separation  
 - deterministic behavior  
-- semantic understanding of inputs  
 - identity‑aware access control  
 - FAMILY‑safe operation  
-- SCHOOLWORK always allowed  
 - no hidden automation  
 - no direct network communication  
 - reversible, predictable actions  
-- capability‑based access to Windows functions  
-- plugin‑driven extensibility  
-- self‑repair and health monitoring  
+- capability‑based access to Windows  
+- safe system operations via VYSLANEC  
+- semantic reasoning for system health  
+- friendly education for every action  
 
 ---
 
-# 🖼 Architecture Diagram (Placeholder)
+# 🧱 Core Layers (v4.1.0)
+
+## 1. Runtime Core 4.0 (unchanged)
+Still the heart of the system.
+
+Responsibilities:
+- module lifecycle  
+- plugin loading  
+- workflow dispatch  
+- capability enforcement  
+- identity integration  
+- self‑repair integration  
+
+---
+
+## 2. Natural Language Router 4.0 (unchanged)
+Semantic command routing.
+
+---
+
+## 3. Filesystem Agent 4.0 (unchanged)
+Deterministic FS operations.
+
+---
+
+## 4. Context Memory Engine 4.0 (unchanged)
+Workflow context.
+
+---
+
+## 5. Workflow Engine 4.0 (unchanged)
+Deterministic workflow logic.
+
+---
+
+## 6. GUI Layer 4.0 (unchanged)
+Modular UI.
+
+---
+
+## 7. AITE 4.0 (unchanged)
+Semantic triage.
+
+---
+
+## 8. WIN‑CAP 4.0 (unchanged)
+Safe Windows capability layer.
+
+---
+
+# 🆕 NEW SYSTEM INTELLIGENCE LAYER (v4.1.0)
+
+The following modules are **brand‑new** in version 4.1.0.
+
+---
+
+# 🔥 1. System Health Engine 4.1
+
+A continuous diagnostic and optimization engine.
+
+### Responsibilities:
+- monitor CPU / RAM / DISK / NETWORK  
+- detect frozen processes  
+- detect system bottlenecks  
+- detect failing services  
+- detect missing/corrupted drivers  
+- predict upcoming failures  
+- generate optimization suggestions  
+- trigger safe repairs via VYSLANEC  
+- produce a PC Health Score  
+
+### Safety:
+- no direct system access  
+- all actions routed through VYSLANEC  
+- identity‑aware restrictions  
+- full user confirmation  
+
+---
+
+# 🔥 2. Driver Manager Engine 4.1
+
+A safe offline driver management subsystem.
+
+### Responsibilities:
+- detect missing drivers  
+- detect corrupted drivers  
+- detect outdated drivers  
+- install INF packages  
+- extract ZIP/EXE installers  
+- detect new files in Downloads  
+- guide user to official manufacturer sites  
+- verify driver integrity  
+- provide friendly explanations  
+
+### Safety:
+- no direct driver installation  
+- all actions executed by VYSLANEC  
+- no unsigned drivers  
+- no kernel‑level access  
+
+---
+
+# 🔥 3. Task Manager Engine 4.1
+
+A safe process‑level optimization module.
+
+### Responsibilities:
+- restart Windows Explorer  
+- terminate unnecessary background processes  
+- classify processes (critical / safe / optional)  
+- analyze CPU/RAM/DISK/NET usage  
+- optimize startup applications  
+- reduce background load  
+
+### Safety:
+- no termination of critical system processes  
+- identity‑aware restrictions  
+- full user confirmation  
+- friendly education for each action  
+
+---
+
+# 🔥 4. Service Manager Engine 4.1
+
+A safe subsystem for Windows services.
+
+### Responsibilities:
+- restart Windows Audio  
+- restart Windows Update  
+- restart networking services  
+- detect failing services  
+- disable unnecessary services  
+- provide service explanations  
+
+### Safety:
+- no modification of critical services  
+- identity‑aware restrictions  
+- all actions routed through VYSLANEC  
+
+---
+
+# 🔥 5. Education Engine 4.1
+
+A human‑friendly explanation layer.
+
+### Responsibilities:
+- explain why a process is safe to terminate  
+- explain why a service is important  
+- explain why a driver is needed  
+- explain why a setting improves performance  
+- provide simple, friendly, non‑technical language  
+- adapt tone based on identity (OWNER / FAMILY / CHILD)  
+
+### Example outputs:
+- “Tento proces nič nerobí a len spomaľuje PC. Je bezpečné ho vypnúť.”  
+- “Toto je systémová služba, necháme ju zapnutú pre stabilitu.”  
+
+---
+
+# 🔥 6. VYSLANEC 4.1 (Bridge Layer 2.0)
+
+The most important safety module in the entire system.
+
+### Purpose:
+A controlled, auditable bridge between SIRIUS and Windows.
+
+### Responsibilities:
+- execute all system actions  
+- enforce identity‑aware permissions  
+- validate requests  
+- log actions  
+- sandbox dangerous operations  
+- prevent unauthorized access  
+- ensure reversibility  
+
+### Guarantees:
+- SIRIUS never touches the system directly  
+- Windows always has final control  
+- all actions are safe, predictable, reversible  
+
+---
+
+# 🖼 Architecture Diagram (v4.1.0 Placeholder)
 
 <p align="center">
-  <img src="docs/architecture_diagram_v4_placeholder.png" width="600">
+  <img src="docs/architecture_diagram_v4_1_placeholder.png" width="600">
 </p>
 
 ---
 
-# 🧱 Core Layers (v4.0.0)
-
-## 1. Runtime Core 4.0
-Central orchestrator responsible for:
-
-- module initialization  
-- lifecycle management  
-- plugin loading  
-- task and workflow dispatch  
-- enforcing capability boundaries  
-- event routing  
-- global system stability  
-- integration with SECURITY FAMILY 4.0  
-- integration with Self‑Repair Layer  
-
-Runtime Core 4.0 is the **heart of the system**.
-
----
-
-## 2. Natural Language Router (NL Router 4.0)
-Processes natural‑language commands with semantic understanding.
-
-Responsibilities:
-
-- command classification  
-- plugin NL command detection  
-- semantic routing  
-- fallback interpretation  
-- preventing ambiguous or unsafe actions  
-- identity‑aware filtering  
-
-Ensures **clear intent and safe execution**.
-
----
-
-## 3. Filesystem Agent (FS‑AGENT 4.0)
-Safe, deterministic filesystem operations.
-
-Responsibilities:
-
-- move, copy, delete  
-- path validation  
-- rollback‑safe operations  
-- semantic routing (documents, code, schoolwork)  
-- SCHOOLWORK ENGINE integration  
-
----
-
-## 4. Context Memory Engine (CME‑MEM 4.0)
-Semantic workflow context.
-
-Responsibilities:
-
-- storing recent paths  
-- tracking last actions  
-- semantic tags (subject, difficulty, intent)  
-- multi‑step workflow support  
-- SCHOOLWORK metadata tagging  
-
-Stores **only workflow‑related context**, never personal data.
-
----
-
-## 5. Workflow Engine 4.0
-Controls multi‑step logic with semantic transitions.
-
-Responsibilities:
-
-- workflow state machine  
-- plugin workflow execution  
-- academic workflows  
-- code workflows  
-- automation workflows  
-- transition validation  
-- deterministic behavior  
-
----
-
-## 6. GUI Layer 4.0
-Modular user interface.
-
-Responsibilities:
-
-- rendering plugin UI  
-- executing GUI actions  
-- identity indicators  
-- SCHOOLWORK indicators  
-- future tray/voice expansion  
-
----
-
-## 7. Automatic Input Triage Engine (AITE 4.0)
-Semantic triage engine.
-
-Recognized types:
-
-- text  
-- images/photos/screenshots  
-- documents  
-- code  
-- installers  
-- **schoolwork (deep detection)**  
-- mixed content  
-- OCR‑extracted content  
-
-Responsibilities:
-
-- type detection + semantic analysis  
-- routing  
-- metadata generation  
-- integration with FS‑AGENT, CME‑MEM  
-- **schoolwork bypass**  
-- integration with Reasoning Engine 4.0  
-- integration with Knowledge Packs 4.0  
-- integration with ENVOY 4.0  
-
----
-
-## 8. Windows System Capabilities Layer (WIN‑CAP 4.0)
-Abstracted access to Windows 11 system functions.
-
-Submodules:
-
-- `file_ops`  
-- `app_ops`  
-- `window_ops`  
-- `audio_ops`  
-- `system_context`  
-- `automation_ops`  
-
-Provides **safe, high‑level system actions**.
-
----
-
-## 9. Plugin System 4.0
-A fully modular plugin ecosystem.
-
-Features:
-
-- semantic plugin manifests  
-- NL commands  
-- AI tasks  
-- workflows  
-- GUI elements  
-- SCHOOLWORK‑aware plugins  
-- Reasoning Engine hooks  
-
-All official plugins are **v4‑ready**.
-
----
-
-# 🔐 SECURITY FAMILY 4.0 (Identity Engine 2.0)
-
-Purpose:
-- behavior‑based recognition of **OWNER**, **FAMILY**, **STRANGER**  
-- offline identity learning  
-- safe‑mode for unknown users  
-- restricted mode for children  
-- protection of sensitive operations  
-- **time‑limits 2.0**  
-- **schoolwork bypass**  
-
-Submodules:
-
-- `identity_engine_v2.py`  
-- `behavior_audit_v2.py`  
-- `access_control_v2.py`  
-- `family_mode_v2.py`  
-- `stranger_mode_v2.py`  
-- `time_limits_v2.py`  
-- `profile_store_v2.json`  
-
----
-
-# 🌟 Intelligent Modules (v4.0.0)
-
-## 🏠 HOME_ASSISTANT 4.0
-## 🍳 COOKING_ADVISOR 4.0
-## 🔧 DEVICE_DIAGNOSTICS 4.0
-## 🎓 SCHOOL_HELPER 4.0
-## 🖼 IMAGE_ANALYZER 4.0
-## 🧭 CONTEXT_ROUTER 4.0
-## 📚 KNOWLEDGE_PACKS 4.0
-
-All upgraded for semantic routing and Reasoning Engine 4.0.
-
----
-
-# 🧠 Reasoning Engine 4.0
-Structured reasoning layer.
-
-Capabilities:
-
-- step‑by‑step reasoning  
-- academic explanations  
-- code analysis  
-- semantic breakdown  
-- integration with AITE 4.0  
-- integration with Knowledge Packs 4.0  
-
----
-
-# 🛠 Self‑Repair & Health‑Check Layer (NEW)
-Ensures long‑term stability.
-
-Functions:
-
-- module integrity checks  
-- automatic repair routines  
-- fallback states  
-- corruption detection  
-- dependency validation  
-
----
-
-# 🆕 PC Automation Runtime (v4.0.0)
-
-Developer‑level offline automation.
-
-Modules:
-
-- FS Module 4.0  
-- Editor Module 4.0  
-- Workflow Module 4.0  
-- Command Parser 4.0  
-- Command Router 4.0  
-
----
-
-# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL
-
-Optional isolated agent.
-
-Pipeline:
-
-1. Envoy Client  
-2. Scraper Layer  
-3. Quarantine Sandbox  
-4. Validator & Filter  
-5. Safe Payload Delivery  
-
-Never sends local data outward.
-
----
-
-# 🔌 Module Interconnections (v4.0.0)
+# 🔌 Module Interconnections (v4.1.0)
 
 User Input  
 ↓  
@@ -320,23 +254,17 @@ AITE 4.0 → FS‑AGENT 4.0 → CME‑MEM 4.0
 ↓  
 Workflow Engine 4.0  
 ↓  
-Runtime Core 4.0 → WIN‑CAP 4.0  
-
-Key relationships:
-
-- AITE → Reasoning Engine  
-- AITE → Knowledge Packs  
-- AITE → Security Family  
-- IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT  
-- CONTEXT_ROUTER → all v4 modules  
-- PC Automation → Runtime Core  
-- ENVOY → Knowledge Packs / Reasoning  
-
-All communication is **explicit and controlled**.
+Runtime Core 4.0  
+↓  
+**System Intelligence Layer 4.1**  
+↓  
+**VYSLANEC 4.1**  
+↓  
+Windows 11 (safe, controlled)
 
 ---
 
 # 📌 Document Status
 
-Current version: **4.0.0 (Stable)**  
-Architecture is fully defined and ready for v4.x expansions.
+Current version: **4.1.0 (Expanded)**  
+Architecture is fully defined and ready for implementation of the System Intelligence Layer.
