@@ -1,7 +1,7 @@
 # ============================================================
 # SIRIUS LOCAL AI – ui_components/animations
-# Animations 10.0 – Dimensional Shift, Reality Distortion,
-# Multi-Orb Echo Network, Deep Insight Burst
+# Animations 11.0 – Emergent Thought Layers, Cognitive Resonance,
+# Insight Convergence, Awareness Halo, Deep Reflection Field
 # ============================================================
 
 import math
@@ -18,86 +18,102 @@ class Animatable(Protocol):
 
 
 # ------------------------------------------------------------
-# DIMENSIONAL SHIFT LAYERS – subtle dimensional offsets
+# EMERGENT THOUGHT LAYERS – appear only during complex reasoning
 # ------------------------------------------------------------
-class OrbDimensionalShift:
+class OrbEmergentThoughtLayers:
+    def __init__(self):
+        self.layers = []  # (radius, intensity, life)
+
+    def activate(self) -> None:
+        for _ in range(3):
+            self.layers.append([
+                random.uniform(1.0, 1.7),
+                random.uniform(0.4, 0.9),
+                1.0
+            ])
+
+    def update(self, delta_time: float) -> None:
+        for layer in self.layers:
+            layer[0] += delta_time * 0.3   # expand
+            layer[2] -= delta_time * 0.5   # fade
+        self.layers = [l for l in self.layers if l[2] > 0]
+
+
+# ------------------------------------------------------------
+# COGNITIVE RESONANCE – harmonic resonance between orb layers
+# ------------------------------------------------------------
+class OrbCognitiveResonance:
     def __init__(self, orb):
         self.orb = orb
-        self.shift = 0.0
-        self._time = 0.0
+        self.phase = 0.0
 
     def update(self, delta_time: float) -> None:
-        self._time += delta_time
+        self.phase += delta_time * 2.0
 
-        # dimensional oscillation
-        self.shift = 0.03 * math.sin(self._time * 3.3)
+        resonance = 0.03 * math.sin(self.phase * 3.0)
 
-        # apply dimensional shift to core layers
-        self.orb.inner_scale += self.shift * 0.5
-        self.orb.mid_scale += self.shift * 0.3
-        self.orb.outer_scale += self.shift * 0.1
+        # resonance affects all layers differently
+        self.orb.inner_scale += resonance * 1.0
+        self.orb.mid_scale += resonance * 0.6
+        self.orb.outer_scale += resonance * 0.3
 
 
 # ------------------------------------------------------------
-# REALITY DISTORTION – bending space around the orb
+# INSIGHT CONVERGENCE – merging multiple thought branches
 # ------------------------------------------------------------
-class OrbRealityDistortion:
+class OrbInsightConvergence:
     def __init__(self):
-        self.distortion = 0.0
-        self._time = 0.0
+        self.branches = []  # (angle, radius, life)
+
+    def converge(self) -> None:
+        for _ in range(6):
+            self.branches.append([
+                random.uniform(0, 360),
+                random.uniform(0.5, 1.5),
+                1.0
+            ])
 
     def update(self, delta_time: float) -> None:
-        self._time += delta_time
-
-        # distortion wave
-        self.distortion = 0.1 * math.sin(self._time * 1.5)
+        for b in self.branches:
+            b[1] -= delta_time * 0.4   # branches collapse inward
+            b[2] -= delta_time * 0.7
+        self.branches = [b for b in self.branches if b[2] > 0]
 
 
 # ------------------------------------------------------------
-# MULTI-ORB ECHO NETWORK – echo copies of the orb
+# AWARENESS HALO – subtle halo expanding with attention
 # ------------------------------------------------------------
-class OrbEchoNetwork:
+class OrbAwarenessHalo:
     def __init__(self):
-        self.echoes = []  # (scale, intensity, life)
-
-    def spawn(self, orb) -> None:
-        self.echoes.append([
-            orb.outer_scale,
-            orb.intensity,
-            1.0
-        ])
-
-    def update(self, delta_time: float) -> None:
-        for e in self.echoes:
-            e[0] += delta_time * 0.4     # echo expands
-            e[1] -= delta_time * 0.6     # intensity fades
-            e[2] -= delta_time * 0.7     # life fades
-
-        self.echoes = [e for e in self.echoes if e[2] > 0]
-
-
-# ------------------------------------------------------------
-# DEEP INSIGHT BURST – flash of deep understanding
-# ------------------------------------------------------------
-class OrbDeepInsightBurst:
-    def __init__(self):
-        self.radius = 0.0
+        self.radius = 1.5
         self.intensity = 0.0
+        self._time = 0.0
+
+    def update(self, delta_time: float) -> None:
+        self._time += delta_time
+
+        # halo pulses gently
+        self.radius = 1.5 + 0.1 * math.sin(self._time * 1.3)
+        self.intensity = 0.3 + 0.2 * math.sin(self._time * 2.0)
+
+
+# ------------------------------------------------------------
+# DEEP REFLECTION FIELD – activated during introspection
+# ------------------------------------------------------------
+class OrbDeepReflectionField:
+    def __init__(self):
+        self.strength = 0.0
         self.active = False
 
-    def trigger(self) -> None:
-        self.radius = 0.0
-        self.intensity = 1.0
+    def engage(self) -> None:
         self.active = True
+        self.strength = 1.0
+
+    def disengage(self) -> None:
+        self.active = False
 
     def update(self, delta_time: float) -> None:
-        if not self.active:
-            return
-
-        # burst expands rapidly
-        self.radius += delta_time * 3.0
-        self.intensity -= delta_time * 1.2
-
-        if self.intensity <= 0:
-            self.intensity = 0
-            self.active = False
+        if self.active:
+            self.strength = max(0.0, self.strength - delta_time * 0.3)
+        else:
+            self.strength = max(0.0, self.strength - delta_time * 0.8)
