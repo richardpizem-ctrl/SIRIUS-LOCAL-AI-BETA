@@ -8,6 +8,13 @@ from PySide6.QtGui import QPainter, QColor, QPen, QBrush
 from PySide6.QtCore import Qt, QTimer
 import math
 
+# Importujeme triedy, ktoré renderer rozpoznáva podľa mena
+from .engine import (
+    OrbAwarenessBloom,
+    OrbEchoNetwork,
+    OrbInsightSingularity
+)
+
 
 class OrbRenderer(QWidget):
     """
@@ -51,17 +58,13 @@ class OrbRenderer(QWidget):
         cx = w / 2
         cy = h / 2
 
-        # Base scale
         base = min(w, h) * 0.25
 
-        # --------------------------------------------------------
-        # DRAW ORB CORE
-        # --------------------------------------------------------
+        # ORB core
         r_inner = base * self.orb.inner_scale
         r_mid   = base * self.orb.mid_scale
         r_outer = base * self.orb.outer_scale
 
-        # ORB color
         r, g, b = self.orb.color
         core_color = QColor(int(r * 255), int(g * 255), int(b * 255))
 
@@ -78,9 +81,7 @@ class OrbRenderer(QWidget):
         painter.setBrush(QBrush(core_color.darker(150)))
         painter.drawEllipse(cx - r_inner, cy - r_inner, r_inner * 2, r_inner * 2)
 
-        # --------------------------------------------------------
-        # DRAW ALL EFFECT LAYERS
-        # --------------------------------------------------------
+        # Draw effects
         for obj in self.engine._objects:
             self._draw_effect(painter, obj, cx, cy, base)
 
@@ -90,15 +91,11 @@ class OrbRenderer(QWidget):
     # EFFECT RENDERING
     # ------------------------------------------------------------
     def _draw_effect(self, painter, obj, cx, cy, base):
-        """
-        Draws any effect object based on its attributes.
-        This renderer is generic and supports all ORB layers.
-        """
 
         # --------------------------------------------------------
         # TEMPORAL ECHOES
         # --------------------------------------------------------
-        if hasattr(obj, "echoes"):
+        if obj.__class__.__name__ == "OrbTemporalEchoes":
             pen = QPen(QColor(150, 200, 255, 120), 2)
             painter.setPen(pen)
             painter.setBrush(Qt.NoBrush)
@@ -113,7 +110,7 @@ class OrbRenderer(QWidget):
         # --------------------------------------------------------
         # PREDICTIVE TRAILS
         # --------------------------------------------------------
-        if hasattr(obj, "trails"):
+        if obj.__class__.__name__ == "OrbPredictiveTrails":
             pen = QPen(QColor(100, 255, 200, 180), 2)
             painter.setPen(pen)
 
@@ -127,7 +124,7 @@ class OrbRenderer(QWidget):
         # --------------------------------------------------------
         # COGNITIVE MESH
         # --------------------------------------------------------
-        if hasattr(obj, "mesh_points"):
+        if obj.__class__.__name__ == "OrbCognitiveMesh":
             pen = QPen(QColor(120, 180, 255, 150), 2)
             painter.setPen(pen)
 
@@ -141,7 +138,7 @@ class OrbRenderer(QWidget):
         # --------------------------------------------------------
         # AWARENESS BLOOM
         # --------------------------------------------------------
-        if hasattr(obj, "radius") and hasattr(obj, "life") and obj.__class__.__name__ == "OrbAwarenessBloom":
+        if isinstance(obj, OrbAwarenessBloom):
             alpha = int(obj.life * 255)
             pen = QPen(QColor(255, 255, 200, alpha), 3)
             painter.setPen(pen)
@@ -151,13 +148,16 @@ class OrbRenderer(QWidget):
         # --------------------------------------------------------
         # PROBABILITY CLOUD
         # --------------------------------------------------------
-        if hasattr(obj, "points"):
-            pen = QPen(QColor(255, 255, 255, 120), 2)
-            painter.setPen(pen)
-
+        if obj.__class__.__name__ == "OrbProbabilityCloud":
             for p in obj.points:
                 angle = math.radians(p[0])
                 r = base * p[1]
+                prob = p[2]
+                alpha = int(prob * 255)
+
+                pen = QPen(QColor(255, 255, 255, alpha), 2)
+                painter.setPen(pen)
+
                 x = cx + math.cos(angle) * r
                 y = cy + math.sin(angle) * r
                 painter.drawPoint(x, y)
@@ -165,7 +165,7 @@ class OrbRenderer(QWidget):
         # --------------------------------------------------------
         # ECHO NETWORK
         # --------------------------------------------------------
-        if hasattr(obj, "echoes") and obj.__class__.__name__ == "OrbEchoNetwork":
+        if isinstance(obj, OrbEchoNetwork):
             for e in obj.echoes:
                 alpha = int(e[2] * 255)
                 pen = QPen(QColor(200, 255, 255, alpha), 2)
@@ -176,7 +176,7 @@ class OrbRenderer(QWidget):
         # --------------------------------------------------------
         # RIPPLE WAVES
         # --------------------------------------------------------
-        if hasattr(obj, "ripples"):
+        if obj.__class__.__name__ == "OrbCognitiveRipple":
             for r in obj.ripples:
                 alpha = int(r[1] * 255)
                 pen = QPen(QColor(180, 220, 255, alpha), 2)
@@ -187,7 +187,7 @@ class OrbRenderer(QWidget):
         # --------------------------------------------------------
         # INSIGHT SINGULARITY
         # --------------------------------------------------------
-        if obj.__class__.__name__ == "OrbInsightSingularity" and obj.active:
+        if isinstance(obj, OrbInsightSingularity) and obj.active:
             alpha = int(obj.intensity * 255)
             pen = QPen(QColor(255, 255, 150, alpha), 4)
             painter.setPen(pen)
