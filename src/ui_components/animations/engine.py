@@ -1,27 +1,28 @@
-# SIRIUS LOCAL AI – ui_components/animations/engine.py
-# AnimationEngine 1.0 – minimal, čistý základ pre AI ORB a ďalšie animácie
+# ============================================================
+# SIRIUS LOCAL AI – ui_components/animations
+# AnimationEngine 1.0 + OrbObject 1.0 (kompletný základ)
+# ============================================================
 
+import math
 from typing import Protocol, List
 
 
+# ------------------------------------------------------------
+# PROTOKOL – všetko, čo sa má animovať, musí mať update()
+# ------------------------------------------------------------
 class Animatable(Protocol):
-    """
-    Všetko, čo sa má animovať (AI ORB, prstence, pulzy, UI prvky),
-    musí implementovať metódu update(delta_time).
-    """
     def update(self, delta_time: float) -> None:
         ...
 
 
+# ------------------------------------------------------------
+# ANIMATION ENGINE 1.0
+# - registry objektov
+# - add/remove
+# - update loop
+# ------------------------------------------------------------
 class AnimationEngine:
-    """
-    Jednoduchý 1.0 engine:
-    - drží zoznam animovateľných objektov
-    - pri každom frame volá update(delta_time) na všetkých
-    """
-
     def __init__(self) -> None:
-        # Registry všetkých animovateľných objektov
         self._objects: List[Animatable] = []
         self._running: bool = True
 
@@ -40,7 +41,7 @@ class AnimationEngine:
         self._objects.clear()
 
     def stop(self) -> None:
-        """Zastaví animácie (napr. pri vypnutí UI)."""
+        """Zastaví animácie."""
         self._running = False
 
     def start(self) -> None:
@@ -48,13 +49,36 @@ class AnimationEngine:
         self._running = True
 
     def update(self, delta_time: float) -> None:
-        """
-        Volá sa z hlavného UI loopu.
-        delta_time = čas od posledného frame (v sekundách).
-        """
+        """Volá sa z hlavného UI loopu."""
         if not self._running:
             return
 
-        # Prejdi všetky registrované objekty a aktualizuj ich stav
         for obj in list(self._objects):
             obj.update(delta_time)
+
+
+# ------------------------------------------------------------
+# ORBOBJECT 1.0 – základ AI ORB
+# - pulzovanie (dýchanie)
+# - intenzita svetla
+# - farba (statická zatiaľ)
+# ------------------------------------------------------------
+class OrbObject:
+    def __init__(self):
+        self.scale = 1.0
+        self.intensity = 1.0
+        self.color = (0.2, 0.6, 1.0)  # SIRIUS modro-tyrkysová
+        self._time = 0.0
+
+    def update(self, delta_time: float) -> None:
+        """Základné pulzovanie ORBu."""
+        self._time += delta_time
+
+        # Pulzovanie veľkosti (dýchanie)
+        self.scale = 1.0 + 0.05 * math.sin(self._time * 2.0)
+
+        # Pulzovanie intenzity svetla
+        self.intensity = 1.0 + 0.1 * math.sin(self._time * 3.0)
+
+        # Farba zatiaľ statická – verzia 1.0
+        # (v 2.0 bude reagovať na stavy agenta)
