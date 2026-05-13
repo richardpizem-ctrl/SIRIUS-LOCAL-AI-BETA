@@ -1,6 +1,6 @@
 # ============================================================
 # SIRIUS LOCAL AI – ui_components/animations
-# AnimationEngine 1.0 + OrbObject 1.0 (kompletný základ)
+# AnimationEngine 2.0 + OrbObject 2.0 + OrbRingObject 1.0
 # ============================================================
 
 import math
@@ -16,10 +16,11 @@ class Animatable(Protocol):
 
 
 # ------------------------------------------------------------
-# ANIMATION ENGINE 1.0
+# ANIMATION ENGINE 2.0
 # - registry objektov
 # - add/remove
 # - update loop
+# - podpora vrstiev (základ pre viac objektov)
 # ------------------------------------------------------------
 class AnimationEngine:
     def __init__(self) -> None:
@@ -27,29 +28,23 @@ class AnimationEngine:
         self._running: bool = True
 
     def add_object(self, obj: Animatable) -> None:
-        """Zaregistruje nový animovateľný objekt (napr. AI ORB)."""
         if obj not in self._objects:
             self._objects.append(obj)
 
     def remove_object(self, obj: Animatable) -> None:
-        """Odstráni objekt z animácií."""
         if obj in self._objects:
             self._objects.remove(obj)
 
     def clear(self) -> None:
-        """Vyčistí všetky animovateľné objekty."""
         self._objects.clear()
 
     def stop(self) -> None:
-        """Zastaví animácie."""
         self._running = False
 
     def start(self) -> None:
-        """Znovu spustí animácie."""
         self._running = True
 
     def update(self, delta_time: float) -> None:
-        """Volá sa z hlavného UI loopu."""
         if not self._running:
             return
 
@@ -58,10 +53,11 @@ class AnimationEngine:
 
 
 # ------------------------------------------------------------
-# ORBOBJECT 1.0 – základ AI ORB
+# ORBOBJECT 2.0 – AI ORB
 # - pulzovanie (dýchanie)
 # - intenzita svetla
-# - farba (statická zatiaľ)
+# - farba
+# - pripravené na reakcie agenta
 # ------------------------------------------------------------
 class OrbObject:
     def __init__(self):
@@ -71,7 +67,6 @@ class OrbObject:
         self._time = 0.0
 
     def update(self, delta_time: float) -> None:
-        """Základné pulzovanie ORBu."""
         self._time += delta_time
 
         # Pulzovanie veľkosti (dýchanie)
@@ -80,5 +75,30 @@ class OrbObject:
         # Pulzovanie intenzity svetla
         self.intensity = 1.0 + 0.1 * math.sin(self._time * 3.0)
 
-        # Farba zatiaľ statická – verzia 1.0
-        # (v 2.0 bude reagovať na stavy agenta)
+        # Farba zatiaľ statická – v 3.0 bude reagovať na stavy agenta
+
+
+# ------------------------------------------------------------
+# ORBRINGOBJECT 1.0 – rotujúci prstenec okolo ORBu
+# - rotácia
+# - zmena hrúbky
+# - zmena intenzity
+# ------------------------------------------------------------
+class OrbRingObject:
+    def __init__(self):
+        self.rotation = 0.0          # rotácia v stupňoch
+        self.thickness = 1.0         # hrúbka prstenca
+        self.intensity = 0.8         # svetelná intenzita
+        self._time = 0.0
+
+    def update(self, delta_time: float) -> None:
+        self._time += delta_time
+
+        # Rotácia prstenca
+        self.rotation = (self.rotation + delta_time * 40.0) % 360.0
+
+        # Jemné pulzovanie hrúbky
+        self.thickness = 1.0 + 0.05 * math.sin(self._time * 1.5)
+
+        # Pulzovanie intenzity
+        self.intensity = 0.8 + 0.1 * math.sin(self._time * 2.0)
