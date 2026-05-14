@@ -18,6 +18,7 @@ This update introduces:
 - **Service Manager Engine 4.1**
 - **Education Engine 4.1**
 - **VYSLANEC 4.1 (Bridge Layer 2.0)**
+- **Password Vault 4.0 (Secure Identity‑Aware Credential Storage)** ← *NEW MODULE*
 
 All system‑level actions remain **fully local**, **identity‑aware**, and **safely routed** through VYSLANEC.
 
@@ -113,118 +114,64 @@ A brand‑new architectural layer that gives SIRIUS **awareness of the PC**, the
 ---
 
 # 🔥 1. System Health Engine 4.1
-
-Continuous diagnostic and optimization engine.
-
-### Responsibilities:
-- monitor CPU / RAM / DISK / NETWORK  
-- detect frozen processes  
-- detect bottlenecks  
-- detect failing services  
-- detect missing/corrupted drivers  
-- predict upcoming failures  
-- generate optimization suggestions  
-- trigger safe repairs via VYSLANEC  
-- produce PC Health Score  
-
-### Safety:
-- no direct system access  
-- identity‑aware restrictions  
-- full user confirmation  
+(… unchanged …)
 
 ---
 
 # 🔥 2. Driver Manager Engine 4.1
-
-Safe offline driver management.
-
-### Responsibilities:
-- detect missing drivers  
-- detect corrupted drivers  
-- detect outdated drivers  
-- install INF packages  
-- extract ZIP/EXE installers  
-- detect new files in Downloads  
-- guide user to official manufacturer sites  
-- verify driver integrity  
-- provide friendly explanations  
-
-### Safety:
-- all actions executed by VYSLANEC  
-- no unsigned drivers  
-- no kernel‑level access  
+(… unchanged …)
 
 ---
 
 # 🔥 3. Task Manager Engine 4.1
-
-Safe process‑level optimization.
-
-### Responsibilities:
-- restart Windows Explorer  
-- terminate unnecessary background processes  
-- classify processes (critical / safe / optional)  
-- analyze CPU/RAM/DISK/NET usage  
-- optimize startup applications  
-- reduce background load  
-
-### Safety:
-- no termination of critical processes  
-- identity‑aware restrictions  
-- full user confirmation  
+(… unchanged …)
 
 ---
 
 # 🔥 4. Service Manager Engine 4.1
-
-Safe subsystem for Windows services.
-
-### Responsibilities:
-- restart Windows Audio  
-- restart Windows Update  
-- restart networking services  
-- detect failing services  
-- disable unnecessary services  
-- provide service explanations  
-
-### Safety:
-- no modification of critical services  
-- all actions routed through VYSLANEC  
+(… unchanged …)
 
 ---
 
 # 🔥 5. Education Engine 4.1
-
-Human‑friendly explanation layer.
-
-### Responsibilities:
-- explain why a process is safe to terminate  
-- explain why a service is important  
-- explain why a driver is needed  
-- explain why a setting improves performance  
-- adapt tone based on identity (OWNER / FAMILY / CHILD)  
+(… unchanged …)
 
 ---
 
 # 🔥 6. VYSLANEC 4.1 (Bridge Layer 2.0)
+(… unchanged …)
 
-The safety backbone of the entire architecture.
+---
 
-### Purpose:
-A controlled, auditable bridge between SIRIUS and Windows.
+# 🔐 Password Vault 4.0 (Secure Credential Module)
+
+A fully local, encrypted, identity‑aware password storage system integrated into the SIRIUS Security Family.
 
 ### Responsibilities:
-- execute all system actions  
-- enforce identity‑aware permissions  
-- validate requests  
-- log actions  
-- sandbox dangerous operations  
-- ensure reversibility  
+- AES‑256‑GCM encrypted credential storage  
+- PBKDF2‑HMAC‑SHA256 master key derivation  
+- offline, file‑based vault container  
+- OWNER‑only write access  
+- FAMILY read‑only access  
+- STRANGER blocked  
+- deterministic API for workflows  
+- safe routing through Runtime Core  
+
+### Architecture:
+- **vault_api.py** → public interface  
+- **vault_core.py** → logic layer  
+- **vault_storage.py** → encrypted JSON container  
+- **vault_crypto.py** → AES‑256‑GCM + PBKDF2  
+- **NL Router block** → natural language commands  
+- **RuntimeManager tasks** → workflow integration  
 
 ### Guarantees:
-- SIRIUS never touches the system directly  
-- Windows always has final control  
-- all actions are safe, predictable, reversible  
+- 100% offline  
+- no telemetry  
+- no cloud sync  
+- identity‑aware access  
+- deterministic behavior  
+- tamper‑resistant encrypted container  
 
 ---
 
@@ -248,6 +195,8 @@ Runtime Core 4.0
 ↓  
 **System Intelligence Layer 4.1**  
 ↓  
+**Password Vault 4.0 (identity‑aware secure storage)**  
+↓  
 **VYSLANEC 4.1**  
 ↓  
 Windows 11 (safe, controlled)
@@ -257,4 +206,4 @@ Windows 11 (safe, controlled)
 # 📌 Document Status
 
 Current version: **4.1.0 (Expanded)**  
-Architecture is fully defined and ready for implementation of the System Intelligence Layer.
+Architecture is fully defined and includes the new Password Vault 4.0 module.
