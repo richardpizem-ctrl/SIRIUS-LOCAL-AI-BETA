@@ -14,4 +14,15 @@ Security Family provides:
 
 Modules inside this package are dynamically loaded by the runtime.
 No imports are performed here to avoid side‑effects during initialization.
+
+New in Security Family 4.0:
+---------------------------
+Password Vault 4.0 (Security.PasswordVault)
+- offline encrypted password manager
+- AES‑256 encrypted vault file
+- domain‑aware password retrieval
+- phishing‑aware autofill protection
+- identity‑aware access (OWNER / FAMILY / STRANGER)
+- ready for Windows autofill integration
+- ready for LAN‑offline sync with SIRIUS GAMA
 """
