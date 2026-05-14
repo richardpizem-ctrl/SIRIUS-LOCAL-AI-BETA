@@ -1,34 +1,53 @@
 # Cryptographic helpers for Password Vault 4.0
-# NOTE: Placeholder — integrate with your existing crypto layer.
+# AES‑256‑GCM implementation (secure, production‑ready)
 
 import os
 from typing import Tuple
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.backends import default_backend
 
 
+# ------------------------------------------------------------
+# MASTER KEY DERIVATION (PBKDF2‑HMAC‑SHA256)
+# ------------------------------------------------------------
 def derive_master_key(master_secret: str) -> bytes:
     """
-    Derive a stable key from master secret (password / phrase).
-    Replace with proper KDF (PBKDF2, Argon2, etc.).
+    Derive a stable 256‑bit key from master secret.
+    PBKDF2‑HMAC‑SHA256, 200k iterations.
     """
-    return master_secret.encode("utf-8")[:32].ljust(32, b"\x00")
+    salt = b"SIRIUS_VAULT_SALT_v1"  # static salt for deterministic vault key
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=200_000,
+        backend=default_backend(),
+    )
+    return kdf.derive(master_secret.encode("utf-8"))
 
 
+# ------------------------------------------------------------
+# AES‑256‑GCM ENCRYPTION
+# ------------------------------------------------------------
 def encrypt_data(plaintext: bytes, key: bytes) -> Tuple[bytes, bytes]:
     """
-    Encrypt data with given key.
-    Returns (iv, ciphertext).
-    Placeholder — wire to real AES-256-GCM/CTR implementation.
+    Encrypt data using AES‑256‑GCM.
+    Returns (iv, ciphertext_with_tag).
     """
-    iv = os.urandom(12)
-    # TODO: replace with real AES encryption
-    ciphertext = plaintext  # placeholder
+    aes = AESGCM(key)
+    iv = os.urandom(12)  # recommended GCM IV size
+    ciphertext = aes.encrypt(iv, plaintext, None)
     return iv, ciphertext
 
 
+# ------------------------------------------------------------
+# AES‑256‑GCM DECRYPTION
+# ------------------------------------------------------------
 def decrypt_data(iv: bytes, ciphertext: bytes, key: bytes) -> bytes:
     """
-    Decrypt data with given key.
-    Placeholder — wire to real AES-256-GCM/CTR implementation.
+    Decrypt AES‑256‑GCM data.
     """
-    # TODO: replace with real AES decryption
-    return ciphertext
+    aes = AESGCM(key)
+    return aes.decrypt(iv, ciphertext, None)
