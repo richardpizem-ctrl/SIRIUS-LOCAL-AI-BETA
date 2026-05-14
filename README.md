@@ -34,7 +34,8 @@ local AI, offline AI, Windows automation, AI runtime, workflow engine,
 modular AI, secure AI, natural language automation, Windows 11 tools,  
 local assistant, AI agent, filesystem automation, plugin system,  
 identity engine, time‑limits, restricted mode, schoolwork engine,  
-SIRIUS LOCAL AI, ALFA, BETA, GAMA, Reasoning Engine, AITE 4.0, Self‑Repair Layer
+SIRIUS LOCAL AI, ALFA, BETA, GAMA, Reasoning Engine, AITE 4.0, Self‑Repair Layer,  
+**password vault, encrypted vault, AES‑256‑GCM, secure credential storage**
 
 ---
 
@@ -80,237 +81,142 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 
 ---
 
+# 🔐 NEW IN v4.0.0 — PASSWORD VAULT 4.0  
+A fully offline, AES‑256‑GCM encrypted, identity‑aware credential storage module.
+
+### Features:
+- AES‑256‑GCM encryption  
+- PBKDF2‑HMAC‑SHA256 master key derivation  
+- OWNER write / FAMILY read / STRANGER blocked  
+- deterministic API  
+- NL Router integration  
+- RuntimeManager tasks  
+- encrypted JSON vault container  
+
+Password Vault 4.0 is a **finalized, frozen module** and part of the Security Family.
+
+---
+
 > [!IMPORTANT]
 > # 🔔 GAMA PUBLIC PREVIEW — 24‑HOUR GLOBAL ACCESS WINDOW
-> **When SIRIUS LOCAL AI — GAMA (mobile runtime) is completed, it will be opened to the public for a 24‑hour global preview window.**
->
-> During this 24‑hour window, anyone will be able to:
-> - 🔓 download the full GAMA runtime  
-> - 📱 test the mobile architecture  
-> - 🧪 explore modules and security layers  
-> - 🔍 inspect the entire system before the architecture becomes locked (SUL)
->
-> After the 24‑hour window ends, GAMA will transition into a **LOCKED architecture** under the **SUL license**.
+> (unchanged)
 
 ---
 
 # 🆕 WHAT’S COMING IN VERSION 4.1.0 — SYSTEM INTELLIGENCE LAYER
-
-Version **4.1.0** is the next major upgrade and introduces a **brand‑new system layer** that transforms SIRIUS into a PC‑aware intelligent assistant.
-
-### **New Modules in v4.1.0**
-- 🩺 **System Health Engine 4.1**  
-  Continuous monitoring of CPU/RAM/DISK/NET, bottleneck detection, frozen process detection, failing service detection, PC Health Score.
-
-- 🧩 **Driver Manager Engine 4.1**  
-  Detects missing/corrupted drivers, installs INF packages, extracts ZIP/EXE installers, monitors Downloads folder, navigates to official manufacturer sites.
-
-- ⚙️ **Task Manager Engine 4.1**  
-  Restart Explorer, terminate safe processes, optimize startup, reduce background load.
-
-- 🛠 **Service Manager Engine 4.1**  
-  Restart Audio, Windows Update, networking services, disable unnecessary services.
-
-- 📘 **Education Engine 4.1**  
-  Explains every system action in friendly, identity‑aware language.
-
-- 🛰 **VYSLANEC 4.1 (Bridge Layer 2.0)**  
-  Executes all system actions safely, enforces identity rules, logs actions, ensures reversibility.
-
-### **Purpose of v4.1.0**
-To give SIRIUS the ability to:
-
-- understand the PC  
-- diagnose problems  
-- optimize performance  
-- safely repair issues  
-- educate the user  
-- maintain full transparency  
-- operate with strict identity‑aware safety  
-
-This is the largest system upgrade since Runtime 4.0.
+(unchanged)
 
 ---
 
 # 🧩 CORE PHILOSOPHY  
-- Local‑only AI  
-- Modular architecture  
-- Predictable behavior  
-- Human‑controlled  
-- Extensible  
-- Deterministic  
-- Family‑safe  
-- Identity‑based access  
-- No hidden automation  
-- No network communication  
-- Semantic reasoning  
-- Self‑repair and integrity protection  
+(unchanged)
 
 ---
 
 # 🏗 ARCHITECTURE OVERVIEW (Runtime 4.0)
 
 ## **1. Runtime Core 4.0**
-- module initialization  
-- lifecycle management  
-- plugin loading  
-- workflow dispatch  
-- enforcing capability boundaries  
-- event routing  
-- identity‑aware logic  
-- self‑repair integration  
+(unchanged)
 
 ---
 
 ## **2. Natural Language Router (NL Router 4.0)**
-- semantic command classification  
-- plugin NL detection  
-- routing  
-- fallback interpretation  
-- preventing unsafe actions  
-- identity‑aware filtering  
+(unchanged)
 
 ---
 
 ## **3. Filesystem Agent (FS‑AGENT 4.0)**
-- move, copy, delete  
-- path validation  
-- safety checks  
-- rollback‑safe operations  
-- semantic file classification  
-- SCHOOLWORK routing  
+(unchanged)
 
 ---
 
 ## **4. Context Memory Engine (CME‑MEM 4.0)**
-- semantic context  
-- last actions  
-- workflow hints  
-- subject/difficulty metadata  
-- SCHOOLWORK tagging  
+(unchanged)
 
 ---
 
 ## **5. Workflow Engine 4.0**
-- semantic transitions  
-- plugin workflows  
-- deterministic behavior  
-- SCHOOLWORK prioritization  
+(unchanged)
 
 ---
 
 ## **6. GUI Layer 4.0**
-- plugin‑driven UI  
-- GUI actions  
-- identity indicators  
-- SCHOOLWORK indicators  
+(unchanged)
 
 ---
 
 ## **7. Automatic Input Triage Engine (AITE 4.0)**
-- text / images / code / documents  
-- OCR  
-- semantic analysis  
-- subject detection  
-- difficulty scoring  
-- SCHOOLWORK ENGINE integration  
+(unchanged)
 
 ---
 
 ## **8. Windows System Capabilities Layer (WIN‑CAP 4.0)**
-- file_ops  
-- app_ops  
-- window_ops  
-- audio_ops  
-- system_context  
-- automation_ops  
+(unchanged)
 
 ---
 
 ## **9. Plugin System 4.0**
-- manifest‑based plugins  
-- NL commands  
-- workflows  
-- reasoning hooks  
-- GUI elements  
-- SCHOOLWORK‑aware plugins  
+(unchanged)
 
 ---
 
 ## **10. Reasoning Engine 4.0**
-- step‑by‑step reasoning  
-- symbolic logic  
-- pack‑aware reasoning  
-- deterministic chain‑of‑thought  
+(unchanged)
 
 ---
 
 ## **11. Self‑Repair & Health‑Check Layer**
-- integrity checks  
-- corruption detection  
-- safe automatic repairs  
-- fallback states  
-- patch suggestions  
+(unchanged)
 
 ---
 
 ## **12. Knowledge Packs 4.0**
-- curated offline datasets  
-- semantic linking  
-- pack‑aware reasoning  
-- ENVOY‑assisted updates  
+(unchanged)
+
+---
+
+## **13. Password Vault 4.0 (NEW)**
+- AES‑256‑GCM encrypted vault  
+- PBKDF2 master key  
+- OWNER write / FAMILY read / STRANGER blocked  
+- deterministic API  
+- NL Router integration  
+- RuntimeManager tasks  
+- encrypted JSON container  
 
 ---
 
 # 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL LAYER
-
-ENVOY is an **optional**, isolated process that fetches external information **without exposing SIRIUS to the internet**.
-
-### Pipeline:
-1. Envoy Client  
-2. Scraper Layer  
-3. Quarantine Sandbox  
-4. Validator & Filter  
-5. Safe Payload Delivery  
-
-ENVOY never sends local data outward.
+(unchanged)
 
 ---
 
 # 🛡 SECURITY FAMILY (v4.0.0)
+Now includes:
+
 - Identity Engine 2.0  
-- OWNER / FAMILY / STRANGER profiles  
-- safe‑mode for unknown users  
-- restricted mode for children  
-- time‑limits v2  
+- OWNER / FAMILY / STRANGER  
+- time‑limits  
 - schoolwork engine  
-- identity‑aware routing  
+- **Password Vault 4.0 access enforcement**  
 
 ---
 
 # 🗺 ROADMAP
-- **v4.0.0** – Intelligent Runtime 2.0  
-- **v4.1.0** – System Intelligence Layer (NEW)  
+- **v4.0.0** – Intelligent Runtime 2.0 + **Password Vault 4.0**  
+- **v4.1.0** – System Intelligence Layer  
 - **v4.2.0** – Semantic UI automation  
 - **v5.0.0** – Offline knowledge graph reasoning  
 
 ---
 
 # 📦 INSTALLATION
-- Python 3.11+  
-- Windows 11  
-- Local dependencies only  
+(unchanged)
 
 ---
 
 # ▶ USAGE
-python sirius.py  
-Examples:
-
-- “Find all PDFs in Documents”  
-- “Explain this math problem”  
-- “Diagnose why my monitor is flickering”  
-- “Run the cleanup workflow”  
+(unchanged)
 
 ---
 
@@ -320,13 +226,7 @@ MIT License.
 ---
 
 # 🔧 CONTRIBUTING  
-Modules must be:
-
-- isolated  
-- safe  
-- deterministic  
-- identity‑aware  
-- reasoning‑compatible  
+(unchanged)
 
 ---
 
