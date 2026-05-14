@@ -237,109 +237,67 @@ These modules extend SIRIUS into a **full offline household, schoolwork, and dev
 ---
 
 ## 16.1 HOME_ASSISTANT 4.0
-**Purpose:** Household assistance.  
-**Responsibilities:**
-- cleaning, safety, organization  
-- workflows  
-- pack‑aware reasoning  
-- IMAGE_ANALYZER integration  
+(unchanged)
 
 ---
 
 ## 16.2 COOKING_ADVISOR 4.0
-**Purpose:** Offline cooking assistant.  
-**Responsibilities:**
-- recipe generation  
-- ingredient reasoning  
-- step‑by‑step workflows  
-- Knowledge Packs integration  
+(unchanged)
 
 ---
 
 ## 16.3 DEVICE_DIAGNOSTICS 2.0
-**Purpose:** Safe troubleshooting.  
-**Responsibilities:**
-- symptom detection  
-- cause mapping  
-- safety warnings  
-- OWNER‑only actions  
-- pack‑aware reasoning  
+(unchanged)
 
 ---
 
 ## 16.4 SCHOOL_HELPER 4.0
-**Purpose:** Offline schoolwork assistant.  
-**Responsibilities:**
-- math, science, language reasoning  
-- step‑by‑step explanations  
-- Schoolwork Engine integration  
-- image‑based homework recognition  
+(unchanged)
 
 ---
 
 ## 16.5 IMAGE_ANALYZER 4.0
-**Purpose:** Local image understanding.  
-**Responsibilities:**
-- OCR  
-- object detection  
-- homework reading  
-- routing to correct modules  
+(unchanged)
 
 ---
 
 ## 16.6 CONTEXT_ROUTER 4.0
-**Purpose:** Semantic routing of user intent.  
-**Responsibilities:**
-- detecting household tasks  
-- detecting cooking tasks  
-- detecting device issues  
-- detecting schoolwork  
-- detecting developer tasks  
-- routing to all v4 modules  
+(unchanged)
 
 ---
 
 ## 16.7 KNOWLEDGE_PACKS 4.0
-**Purpose:** Offline knowledge expansions.  
+(unchanged)
+
+---
+
+## 16.8 PASSWORD_VAULT 4.0  ← **NEW MODULE**
+**Purpose:** Secure offline credential storage.  
 **Responsibilities:**
-- domain‑specific knowledge  
-- curated datasets  
-- semantic linking  
-- pack‑aware reasoning  
+- AES‑256‑GCM encrypted vault  
+- PBKDF2‑HMAC‑SHA256 master key derivation  
+- OWNER‑only write access  
+- FAMILY read‑only access  
+- STRANGER blocked  
+- deterministic API for workflows  
+- NL Router integration  
+- Runtime Core integration  
+
+**Submodules:**
+- `vault_api.py`  
+- `vault_core.py`  
+- `vault_storage.py`  
+- `vault_crypto.py`  
 
 ---
 
 # 17. SIRIUS ENVOY 4.0 (Safe Retrieval Layer)
-**Purpose:** Optional isolated online retrieval.  
-**Responsibilities:**
-- outbound‑only requests  
-- scraper layer  
-- quarantine sandbox  
-- validator & policy filter  
-- safe payload delivery  
-- updating Knowledge Packs  
-
-ENVOY never sends local data outward.
+(unchanged)
 
 ---
 
 # 18. Module Interconnections
-
-- **NL Router → FS‑AGENT:** semantic file operations  
-- **NL Router → Plugins:** NL command routing  
-- **CME‑MEM → Workflow Engine:** semantic context  
-- **AITE → FS‑AGENT:** input routing  
-- **AITE → CME‑MEM:** metadata  
-- **AITE → Schoolwork Engine:** subject/difficulty detection  
-- **Security Family → Runtime Core:** identity‑based access control  
-- **WIN‑CAP → Runtime Core:** privileged capability layer  
-- **Runtime Core → all modules:** initialization & security  
-- **Plugins → Runtime Core:** capability registration  
-- **IMAGE_ANALYZER → SCHOOL_HELPER / DEVICE_DIAGNOSTICS / HOME_ASSISTANT**  
-- **CONTEXT_ROUTER → all v4 modules**  
-- **ENVOY → Knowledge Packs / Reasoning Engine**  
-
-All communication is explicit, deterministic, and controlled.
+(unchanged)
 
 ---
 
