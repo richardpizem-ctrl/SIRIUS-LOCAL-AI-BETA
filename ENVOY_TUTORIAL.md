@@ -3,6 +3,8 @@
 
 SIRIUS ENVOY 4.0 is an **isolated online retrieval agent** that allows SIRIUS LOCAL AI to safely obtain information from the internet **without exposing the local AI runtime to any network communication**.
 
+This expanded v4.3.0 edition includes updated explanations reflecting the **4.2 → 4.3 transition**, the new **UI Automation Engine 4.3**, and the strengthened quarantine and validation pipeline.
+
 This document explains:
 - what ENVOY is  
 - why it exists  
@@ -10,6 +12,7 @@ This document explains:
 - how the quarantine system functions  
 - how data flows into the local AI  
 - what ENVOY is strictly forbidden from doing  
+- how ENVOY integrates with Runtime 4.3.0  
 
 ---
 
@@ -59,28 +62,33 @@ ENVOY consists of five layers:
 - cannot access local files  
 - cannot access runtime memory  
 - cannot receive external commands  
+- outbound‑only, no inbound channels  
 
 ## 3.2 Scraper Layer
 - extracts clean text  
 - removes HTML, scripts, ads, trackers  
 - normalizes content  
+- strips formatting and embedded objects  
 
 ## 3.3 Quarantine Sandbox
 - fully isolated environment  
 - checks structure and format  
 - detects unsafe patterns  
 - blocks unknown data types  
+- prevents any executable content  
 
 ## 3.4 Validator & Policy Filter
 - enforces safety rules  
 - flags uncertain information  
 - filters restricted topics  
 - ensures consistency  
+- removes dangerous or unverifiable content  
 
 ## 3.5 Safe Payload Delivery
 - produces **clean text**  
 - structured JSON  
 - ready for local AI modules  
+- compatible with Knowledge Packs 4.x  
 
 ---
 
@@ -125,13 +133,18 @@ Knowledge Pack is updated locally.
 
 # 🚫 5. What ENVOY Never Does
 
-- never sends local data outward  
-- never accesses user files  
-- never interacts directly with the runtime  
-- never stores data outside quarantine  
-- never executes code  
-- never returns HTML, scripts, or images  
-- never bypasses safety rules  
+ENVOY is strictly forbidden from:
+
+- sending local data outward  
+- accessing user files  
+- interacting directly with the runtime  
+- storing data outside quarantine  
+- executing code  
+- returning HTML, scripts, or images  
+- bypassing safety rules  
+- modifying Knowledge Packs directly  
+- performing UI automation  
+- interacting with the new **UI Automation Engine 4.3**  
 
 ENVOY is a **one‑directional, outbound‑only, isolated process**.
 
@@ -153,7 +166,26 @@ All of this happens **without putting SIRIUS online**.
 
 ---
 
-# 🔐 7. Security Guarantees
+# 🔗 7. Integration with Runtime 4.3.0
+
+With the introduction of **UI Automation Engine 4.3**, ENVOY’s role remains strictly informational.
+
+ENVOY **does not**:
+- trigger UI actions  
+- interact with UIParser 4.3  
+- influence UIWorkflow 4.3  
+- bypass identity rules  
+- modify system‑level automation  
+
+ENVOY **does**:
+- provide sanitized text for Reasoning Engine 4.x  
+- update Knowledge Packs 4.x  
+- support semantic workflows  
+- enrich academic and household modules  
+
+---
+
+# 🔐 8. Security Guarantees
 
 - 100% offline runtime  
 - ENVOY is isolated  
@@ -162,10 +194,12 @@ All of this happens **without putting SIRIUS online**.
 - no data passes without inspection  
 - no local data is ever transmitted  
 - everything is deterministic and auditable  
+- ENVOY cannot be used to bypass UI Automation Engine safety  
+- ENVOY cannot be used to bypass SECURITY FAMILY protections  
 
 ---
 
 # 📄 Document Status
 
-**Version:** 1.0.0  
-This tutorial explains the purpose and operation of SIRIUS ENVOY 4.0 for SIRIUS LOCAL AI.
+**Version:** 1.1.0 (Updated for Runtime 4.3.0)  
+This tutorial explains the purpose and operation of SIRIUS ENVOY 4.0 and its role in the expanded Runtime 4.3.0 architecture.
