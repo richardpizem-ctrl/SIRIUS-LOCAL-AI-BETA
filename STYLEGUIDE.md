@@ -1,7 +1,7 @@
-# 🎨 STYLEGUIDE – SIRIUS LOCAL AI (v3.0.0)
+# 🎨 STYLEGUIDE – SIRIUS LOCAL AI (v3.0.0 → 4.3.0 EXPANDED)
 
 This document defines the unified code style, naming conventions, module structure, and cleanliness rules for the SIRIUS LOCAL AI project.  
-The goal is to maintain consistency, readability, and a professional standard across the entire Runtime 3.0 architecture.
+Originally written for Runtime 3.0.0, it is now expanded to include the new architectural rules introduced in **Runtime 4.0.0**, **UI Automation Engine 4.2.0**, and **Semantic UI Automation Engine 4.3.0**.
 
 All processing is fully local; no data leaves the user’s PC.
 
@@ -22,6 +22,8 @@ All processing is fully local; no data leaves the user’s PC.
 - **safety‑critical modules (SECURITY FAMILY) must follow strict isolation rules**  
 - **no code may weaken time‑limits or Schoolwork Priority Mode**  
 - **identity‑restricted logic must be deterministic and constant‑time**  
+- **UI Automation Engine (4.2–4.3) must follow deterministic, sandbox‑safe execution rules** ← *NEW*  
+- **semantic UI actions must never bypass identity or sandbox rules** ← *NEW*  
 
 ---
 
@@ -52,6 +54,18 @@ All processing is fully local; no data leaves the user’s PC.
 `SecurityFamily`, `TimeLimitsEngine`, `SchoolworkDetector`,  
 `HomeAssistant`, `CookingAdvisor`, `DeviceDiagnostics`, `SchoolHelper`, `ImageAnalyzer`
 
+### NEW (4.2–4.3)
+UI Automation Engine modules must follow strict naming:
+
+- `UIGraph`  
+- `UIParser`  
+- `UIActions`  
+- `UISandbox`  
+- `UIWorkflow`  
+- `WinCapabilities`  
+
+These names are **reserved** and must not be repurposed.
+
 ## Constants
 - `UPPER_SNAKE_CASE`
 - must be descriptive
@@ -62,6 +76,8 @@ All processing is fully local; no data leaves the user’s PC.
 ---
 
 # 3. File & Folder Structure
+
+```
 /runtime
 /filesystem
 /commands
@@ -78,22 +94,26 @@ All processing is fully local; no data leaves the user’s PC.
 /device_diagnostics
 /school_helper
 /image_analyzer
-/context_router 
-Each module has its own folder:
+/context_router
+/ui_automation        ← NEW (4.2.0)
+/ui_automation/os     ← NEW (4.3.0)
+```
 
-Each folder contains:
+Each module has its own folder:
 
 - `__init__.py`
 - main module file
 - helper utilities (if needed)
 
-**Rules:**
+### Rules:
 - no cross‑module imports except through public interfaces  
 - Runtime Core is the only module allowed to initialize others  
 - no circular imports  
 - no global mutable state  
 - **SECURITY FAMILY must remain isolated from all other modules except Runtime Core, AITE, and WIN‑CAP**  
 - **SchoolworkDetector may not access filesystem or OS directly**  
+- **UI Automation Engine must remain isolated from SECURITY FAMILY except for identity checks** ← *NEW*  
+- **UIActions may only call OS functions through WinCapabilities** ← *NEW*  
 
 ---
 
@@ -105,28 +125,40 @@ Each folder contains:
 - avoid deeply nested logic  
 - prefer early returns over complex branching  
 
+### NEW (4.3.0)
+- fuzzy matching logic must be split into **strategy functions**  
+- fallback logic must be split into **deterministic stages**  
+- UI actions must not contain OS‑specific code directly  
+
 ---
 
 # 5. Comments
 
-- comments only where necessary  
 - comments explain **why**, not **what**  
-- avoid redundant comments  
 - document non‑obvious decisions  
 - document all SECURITY FAMILY logic clearly  
 - document SCHOOLWORK PRIORITY MODE triggers  
+- document UI Sandbox rules (4.2.0) ← *NEW*  
+- document fallback logic (4.3.0) ← *NEW*  
+- document fuzzy matching thresholds (4.3.0) ← *NEW*  
 
 ---
 
 # 6. Error Messages
 
 - clear, concise, informative  
-- never aggressive or vague  
 - must include a reason + recommendation  
 - avoid unnecessary technical jargon  
 
 **Example:**  
 `"Invalid path: target directory does not exist. Please choose a valid location."`
+
+### NEW (4.3.0)
+UI Automation Engine errors must follow:
+
+- `"UI target not found – confidence too low."`  
+- `"UI action blocked by sandbox policy."`  
+- `"OS‑level action requires OWNER identity."`  
 
 ---
 
@@ -146,6 +178,14 @@ Each folder contains:
 - **Schoolwork Priority Mode must always override restrictions**  
 - **STRANGER‑mode must block privileged actions**  
 
+### NEW (4.2–4.3)
+- UI actions must always pass through `UISandbox`  
+- OS‑level UI actions must always pass through `WinCapabilities`  
+- fuzzy matching must never auto‑execute without confidence threshold  
+- fallback logic must be deterministic and bounded  
+- UI workflows must never loop indefinitely  
+- no direct Win32/UIA calls allowed  
+
 ---
 
 # 8. Testing Requirements
@@ -162,6 +202,16 @@ Every module must include:
 - **Schoolwork Priority Mode tests**  
 - **STRANGER‑mode restriction tests**  
 
+### NEW (4.2–4.3)
+UI Automation Engine must include:
+
+- fuzzy matching tests  
+- confidence threshold tests  
+- fallback logic tests  
+- sandbox enforcement tests  
+- OS‑routing tests  
+- deterministic workflow tests  
+
 ---
 
 # 9. Logging Rules
@@ -173,11 +223,18 @@ Every module must include:
 **Example:**  
 `[FS-AGENT] move_file – confirmed`
 
-**SECURITY FAMILY logging rules:**
+### SECURITY FAMILY logging rules:
 - never log identity profiles  
 - never log behavior patterns  
 - never log child usage data  
-- only log high‑level events (e.g., “family_mode_enabled”)  
+- only log high‑level events  
+
+### NEW (4.3.0)
+UI Automation logging rules:
+- never log raw UI element text  
+- never log OS‑level handles  
+- log only semantic actions  
+- log confidence scores only when safe  
 
 ---
 
@@ -187,17 +244,8 @@ Every module must include:
 - max line width: **100 characters**  
 - blank line between logical blocks  
 - no trailing spaces  
-- consistent import ordering:
+- consistent import ordering  
 
-**standard library**  
-import os
-import json
-
-**third‑party**  
-import win32api
-**internal**  
-from filesystem.agent import FilesystemAgent
-from security_family.time_limits import TimeLimitsEngine 
 ---
 
 # 11. Module Boundaries
@@ -211,10 +259,12 @@ from security_family.time_limits import TimeLimitsEngine
 - **SECURITY FAMILY may only communicate with Runtime Core, AITE, and WIN‑CAP**  
 - **SchoolworkDetector may not access filesystem or OS directly**  
 - **household modules (v3) must remain sandboxed**  
+- **UI Automation Engine must remain isolated from OS except via WinCapabilities** ← *NEW*  
+- **UIParser may not access UIActions directly** ← *NEW*  
 
 ---
 
 # Document Status
 
-Current version: **3.0.0 (Stable)**  
+Current version: **3.0.0 (Expanded to include 4.2.0 and 4.3.0 rules)**  
 This styleguide evolves with new modules and capabilities.
