@@ -114,91 +114,7 @@ Password Vault 4.0 is a **finalized, frozen module** and part of the Security Fa
 ---
 
 # 🏗 ARCHITECTURE OVERVIEW (Runtime 4.0)
-
-## **1. Runtime Core 4.0**
 (unchanged)
-
----
-
-## **2. Natural Language Router (NL Router 4.0)**
-(unchanged)
-
----
-
-## **3. Filesystem Agent (FS‑AGENT 4.0)**
-(unchanged)
-
----
-
-## **4. Context Memory Engine (CME‑MEM 4.0)**
-(unchanged)
-
----
-
-## **5. Workflow Engine 4.0**
-(unchanged)
-
----
-
-## **6. GUI Layer 4.0**
-(unchanged)
-
----
-
-## **7. Automatic Input Triage Engine (AITE 4.0)**
-(unchanged)
-
----
-
-## **8. Windows System Capabilities Layer (WIN‑CAP 4.0)**
-(unchanged)
-
----
-
-## **9. Plugin System 4.0**
-(unchanged)
-
----
-
-## **10. Reasoning Engine 4.0**
-(unchanged)
-
----
-
-## **11. Self‑Repair & Health‑Check Layer**
-(unchanged)
-
----
-
-## **12. Knowledge Packs 4.0**
-(unchanged)
-
----
-
-## **13. Password Vault 4.0 (NEW)**
-- AES‑256‑GCM encrypted vault  
-- PBKDF2 master key  
-- OWNER write / FAMILY read / STRANGER blocked  
-- deterministic API  
-- NL Router integration  
-- RuntimeManager tasks  
-- encrypted JSON container  
-
----
-
-# 🌐 SIRIUS ENVOY 4.0 — SAFE ONLINE RETRIEVAL LAYER
-(unchanged)
-
----
-
-# 🛡 SECURITY FAMILY (v4.0.0)
-Now includes:
-
-- Identity Engine 2.0  
-- OWNER / FAMILY / STRANGER  
-- time‑limits  
-- schoolwork engine  
-- **Password Vault 4.0 access enforcement**  
 
 ---
 
@@ -210,12 +126,82 @@ Now includes:
 
 ---
 
-# 📦 INSTALLATION
+# 🚀 UI Automation Engine – Runtime 4.2.0 Released
+
+The UI Automation Engine has been officially released as part of **SIRIUS Runtime 4.2.0**.  
+This milestone completes the entire vertical slice of UI automation and prepares the system for the upcoming 4.3.0 upgrade.
+
+---
+
+## UI Automation Engine – Runtime 4.2.0
+
+This release introduces the complete UI Automation subsystem for SIRIUS Runtime.
+All modules are fully implemented, documented, and prepared for the upcoming 4.3.0 upgrade.
+
+---
+
+## ✔ Included Modules
+
+### • UI Graph
+- Window tree abstraction
+- Fake OS elements for workflow testing
+- Ready for WinCapabilities integration (4.3.0)
+
+### • UI Parser
+- Element extraction and normalization
+- Exact, case‑insensitive and partial matching
+- Prepared for fuzzy matching engine (4.3.0)
+
+### • UI Actions
+- Deterministic UI operations (click, write, select, semantic)
+- Unified audit logging
+- Sandbox‑aware execution
+- Ready for real OS UI control (4.3.0)
+
+### • UI Sandbox
+- Identity‑based permission model (OWNER / FAMILY / STRANGER / CHILD)
+- Deterministic security rules
+- Local audit trail
+- Ready for EventBus integration (4.3.0)
+
+### • UI Workflow
+- Deterministic step engine (scan → parse → find → act)
+- Clean target resolution
+- Demo workflow included
+- Ready for fallback logic (4.3.0)
+
+---
+
+## ✔ Highlights
+
+- Fully isolated module (does not modify runtime core)
+- 100% deterministic behavior
+- Full English documentation across all modules
+- Unified architecture and naming conventions
+- Complete vertical slice demo (`demo_ok_click_workflow`)
+- Fully prepared for 4.3.0 upgrades
+
+---
+
+## ✔ Next Milestone: Runtime 4.3.0
+
+- Fuzzy Matching Engine (Parser)
+- WinCapabilities OS UI control (Actions)
+- Workflow fallback engine
+- EventBus integration for audit logs
+
+---
+
+This release completes the entire UI Automation Engine 4.2.0 phase according to the roadmap.
+
+---
+
+# 📦 INSTALLATION  
 (unchanged)
 
 ---
 
-# ▶ USAGE
+# ▶ USAGE  
 (unchanged)
 
 ---
