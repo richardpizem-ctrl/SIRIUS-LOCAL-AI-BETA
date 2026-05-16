@@ -1,38 +1,45 @@
 """
 UI Parser Module – Runtime 4.2.0
 
-Zodpovedá za:
-- extrakciu UI prvkov z UI Graphu
-- normalizáciu názvov, typov a vlastností
-- prípravu dát pre UI Actions a UI Workflow
+Responsible for:
+- extracting UI elements from the UI Graph
+- normalizing names, types and properties
+- preparing structured data for UI Actions and UI Workflow
 
-Parser nepracuje s OS priamo – dostáva iba dáta z UIGraph.
+The parser does NOT interact with the OS directly.
+It receives only abstracted data from UIGraph.
 """
 
 class UIParser:
     def __init__(self):
         self.parsed_elements = []
 
+    # ------------------------------------------------------------
+    # GRAPH PARSING
+    # ------------------------------------------------------------
     def parse_graph(self, ui_graph):
         """
-        Prevezme UIGraph objekt a extrahuje z neho UI prvky.
+        Takes a UIGraph instance and extracts UI elements from it.
         """
         if not ui_graph:
             return
 
-        # Reset – parser musí byť čistý pri každom cykle workflowu
+        # Reset – parser must be clean for every workflow cycle
         self.parsed_elements = []
 
         for element in ui_graph.elements:
             normalized = self._normalize_element(element)
             self.parsed_elements.append(normalized)
 
+    # ------------------------------------------------------------
+    # ELEMENT NORMALIZATION
+    # ------------------------------------------------------------
     def _normalize_element(self, element):
         """
-        Normalizuje UI prvok do jednotnej štruktúry:
-        - názov
-        - typ
-        - vlastnosti
+        Normalizes a UI element into a unified structure:
+        - name
+        - type
+        - properties
         """
         return {
             "name": getattr(element, "name", None),
@@ -40,13 +47,19 @@ class UIParser:
             "properties": getattr(element, "properties", {}),
         }
 
+    # ------------------------------------------------------------
+    # ELEMENT SEARCH
+    # ------------------------------------------------------------
     def find(self, name=None, element_type=None):
         """
-        Vyhľadá UI prvok podľa názvu alebo typu.
-        Podporuje:
-        - presnú zhodu
-        - case-insensitive zhodu
-        - partial match (napr. 'Set' → 'Settings')
+        Searches for UI elements by name or type.
+
+        Supports:
+        - exact match
+        - case-insensitive match
+        - partial match (e.g., 'Set' → 'Settings')
+
+        Extended fuzzy matching will be added in Runtime 4.3.
         """
         if not self.parsed_elements:
             return []
@@ -57,12 +70,12 @@ class UIParser:
             el_name = el.get("name", "")
             el_type = el.get("type", "")
 
-            # 1. Presná zhoda mena
+            # 1. Exact name match
             if name and el_name == name:
                 results.append(el)
                 continue
 
-            # 2. Case-insensitive zhoda
+            # 2. Case-insensitive match
             if name and el_name.lower() == name.lower():
                 results.append(el)
                 continue
@@ -72,7 +85,7 @@ class UIParser:
                 results.append(el)
                 continue
 
-            # 4. Zhoda typu
+            # 4. Type match
             if element_type and el_type == element_type:
                 results.append(el)
 
