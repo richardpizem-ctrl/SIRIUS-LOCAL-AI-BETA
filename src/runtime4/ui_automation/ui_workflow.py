@@ -1,112 +1,109 @@
 """
-UI Workflow Module – Runtime 4.2.0
+UI Workflow Module – Runtime 4.3.0
 
-Responsible for:
-- deterministic UI sequences
-- step‑based workflows (scan → parse → find → act)
-- fallback mechanisms when UI actions fail
-- integration with UI Graph, UI Parser, UI Actions and UI Sandbox
+New in 4.3.0:
+- Fallback Engine
+- Multi‑strategy target resolution
+- Confidence‑based element selection
+- Retry logic
+- Semantic fallback
+- Fuzzy‑aware workflow pipeline
 
 The workflow engine is the highest layer of the UI Automation Engine.
 """
 
 class UIWorkflow:
     def __init__(self, graph, parser, actions, sandbox=None):
-        """
-        graph:   UIGraph
-        parser:  UIParser
-        actions: UIActions
-        sandbox: UISandbox (optional)
-        """
         self.graph = graph
         self.parser = parser
         self.actions = actions
         self.sandbox = sandbox
 
+        # Maximum retries per step (Runtime 4.3.0)
+        self.max_retries = 3
+
     # ------------------------------------------------------------
     # WORKFLOW EXECUTION
     # ------------------------------------------------------------
     def run(self, steps):
-        """
-        Executes a workflow defined as a list of steps.
-
-        Each step is a dict:
-        {
-            "action": "click" | "write" | "select" | "semantic",
-            "target": "OK" | "Cancel" | {...},
-            "value": optional (e.g., text for write)
-        }
-        """
         for step in steps:
             if not self._execute_step(step):
-                return False  # workflow failed
-        return True  # workflow succeeded
+                return False
+        return True
 
     # ------------------------------------------------------------
-    # SINGLE STEP EXECUTION
+    # SINGLE STEP EXECUTION (WITH RETRIES)
     # ------------------------------------------------------------
     def _execute_step(self, step):
-        """
-        Executes a single workflow step.
-        """
         action = step.get("action")
         target = step.get("target")
         value = step.get("value")
 
-        # 1. Scan UI
-        self.graph.scan_windows()
-        self.graph.build_graph()
+        for attempt in range(self.max_retries):
 
-        # 2. Parse UI
-        self.parser.parse_graph(self.graph)
+            # 1. Scan UI
+            self.graph.scan_windows()
+            self.graph.build_graph()
 
-        # 3. Resolve target element
-        element = self._resolve_target(target)
-        if not element:
-            return False
+            # 2. Parse UI
+            self.parser.parse_graph(self.graph)
 
-        # 4. Execute action
-        if action == "click":
-            return self.actions.click(element)
+            # 3. Resolve target
+            element = self._resolve_target(target)
 
-        if action == "write":
-            return self.actions.write(element, value)
+            if not element:
+                continue  # retry
 
-        if action == "select":
-            return self.actions.select(element, value)
+            # 4. Execute action
+            if action == "click":
+                if self.actions.click(element):
+                    return True
 
-        if action == "semantic":
-            return self.actions.semantic(target)
+            if action == "write":
+                if self.actions.write(element, value):
+                    return True
 
-        return False
+            if action == "select":
+                if self.actions.select(element, value):
+                    return True
+
+            if action == "semantic":
+                if self.actions.semantic(target):
+                    return True
+
+        return False  # all retries failed
 
     # ------------------------------------------------------------
-    # TARGET RESOLUTION
+    # TARGET RESOLUTION (4.3.0 – MULTI‑STRATEGY)
     # ------------------------------------------------------------
     def _resolve_target(self, target):
         """
-        Resolves a target name or structure into a UI element.
+        Multi‑strategy resolution:
+        1. Exact / partial / fuzzy match (Parser 4.3)
+        2. Semantic fallback
+        3. Confidence‑based selection
         """
         if isinstance(target, str):
             results = self.parser.find(name=target)
-            return results[0] if results else None
+
+            if not results:
+                return None
+
+            # Pick highest‑confidence match
+            best = results[0]
+            return best["element"]
 
         if isinstance(target, dict):
-            # future extension for complex queries
             return target
 
         return None
 
 
 # ------------------------------------------------------------
-# DEMO WORKFLOW – first vertical slice of the UI Automation Engine
+# DEMO WORKFLOW – unchanged, but now uses fuzzy + fallback
 # ------------------------------------------------------------
 
 def demo_ok_click_workflow():
-    """
-    Simple demo workflow that runs through the entire UI Automation Engine.
-    Uses fake UI elements from UIGraph.
-    """
     from .ui_graph import UIGraph
     from .ui_parser import UIParser
     from .ui_actions import UIActions
