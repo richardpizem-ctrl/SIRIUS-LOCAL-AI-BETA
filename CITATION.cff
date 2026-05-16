@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "4.0.0"
-date-released: 2026-05-10
+version: "4.3.0"
+date-released: 2026-05-16
 
 authors:
   - family-names: "Pizem"
@@ -39,16 +39,23 @@ keywords:
   - "household assistant modules"
   - "semantic routing"
   - "deterministic execution"
+  - "UI automation engine 4.3"
+  - "UIParser 4.3"
+  - "UIWorkflow 4.3"
+  - "UIActions 4.3"
+  - "WinCapabilities 4.3"
+  - "semantic UI automation"
+  - "runtime 4.2 to 4.3 transition"
 
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, and semantic automation.
-  Version 4.0.0 introduces the Intelligent Runtime architecture, including Runtime Core 4.0,
+  Version 4.0.0 introduced the Intelligent Runtime architecture, including Runtime Core 4.0,
   Plugin System 4.0, Workflow Engine 4.0, Reasoning Engine 4.0, GUI 4.0, AITE 4.0,
   and upgraded household-oriented modules such as HOME_ASSISTANT 4.0, COOKING_ADVISOR 4.0,
   SCHOOL_HELPER 4.0, DEVICE_DIAGNOSTICS 4.0, IMAGE_ANALYZER 4.0, and CONTEXT_ROUTER 4.0.
 
-  This version also includes SECURITY FAMILY 4.0, an identity and family safety layer
+  This version also included SECURITY FAMILY 4.0, an identity and family safety layer
   providing OWNER/FAMILY/STRANGER identity levels, time-limits v2 for children,
   safe-mode for unknown users, and a Schoolwork Engine ensuring unrestricted access
   to academic tasks.
@@ -57,7 +64,11 @@ abstract: >
   or external data transmission. All modules follow strict security boundaries,
   deterministic behavior, semantic understanding, and predictable execution rules.
 
-  Version 4.0.0 also introduces the Self-Repair & Health-Check Layer, providing
-  integrity checks, safe automatic repairs, and diagnostic capabilities to maintain
-  long-term system stability, as well as ENVOY 4.0, an isolated safe online retrieval
-  layer for sanitized external information.
+  Between versions 4.2.0 and 4.3.0, SIRIUS introduced the complete Semantic UI Automation Engine,
+  including UIParser 4.3, UIWorkflow 4.3, UIActions 4.3, and WinCapabilities 4.3.
+  This upgrade replaced the originally planned 4.2.0 release and delivered a full,
+  deterministic UI automation pipeline integrated with Runtime Core 4.0.
+
+  Version 4.3.0 marks a major milestone, enabling semantic UI automation, fuzzy matching,
+  fallback workflows, OS-level routing, and a unified capability layer for future
+  OS automation in version 4.4.0.
