@@ -1,8 +1,11 @@
 # SIRIUS‑LOCAL‑AI  
-**A fully modular, offline‑only AI runtime with intelligent reasoning, self‑repair, and a next‑generation capability architecture.**
+**A fully modular, offline‑only AI runtime with intelligent reasoning, self‑repair, semantic triage, and a next‑generation capability architecture.**
 
-SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, and full offline autonomy**.  
-Version **4.0.0** introduces the Intelligent Runtime 2.0, Reasoning Engine 4.0, AITE 4.0, Security Family 4.0, Schoolwork Engine 4.0, Self‑Repair Layer, Knowledge Packs 4.0, and the ENVOY safe‑retrieval system.
+SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, and full offline autonomy**.
+
+Version **4.0.0** introduced the Intelligent Runtime 2.0, Reasoning Engine 4.0, AITE 4.0, Security Family 4.0, Schoolwork Engine 4.0, Self‑Repair Layer, Knowledge Packs 4.0, and the ENVOY safe‑retrieval system.
+
+Version **4.3.0** delivers the **Semantic UI Automation Engine**, completing the originally planned 4.2.0 release and expanding the runtime with UIParser 4.3, UIWorkflow 4.3, UIActions 4.3, and WinCapabilities 4.3.
 
 The entire system runs **100% locally**, without external dependencies or cloud services.
 
@@ -20,12 +23,13 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 - [AITE 4.0](AITE.md)
 - [ENVOY 4.0](ENVOY_TUTORIAL.md)
 - [Future Vision](FUTURE_VISION.md)
+- [Password Vault 4.0](PASSWORD_VAULT.md)
 
 ---
 
-## 🚀 Key Features (v4.0.0)
+## 🚀 Key Features (v4.3.0)
 
-### **Intelligent Runtime 4.0**
+### **Intelligent Runtime 4.x**
 A fully upgraded runtime with:
 - deterministic execution  
 - semantic routing  
@@ -33,32 +37,34 @@ A fully upgraded runtime with:
 - self‑repair integration  
 - capability isolation  
 - safe fallback states  
+- UI automation integration (v4.3.0)  
 
 ---
 
-### **Modular Architecture (v4.0.0)**
+### **Modular Architecture (v4.x)**
 Each module is isolated and follows strict boundaries:
 
 - `commands/` – NL routing and command logic  
 - `context/` – semantic context engine  
 - `filesystem/` – safe file operations  
-- `runtime/` – Runtime Core 4.0  
+- `runtime/` – Runtime Core 4.x  
 - `triage/` – AITE 4.0 (semantic triage)  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
 - `ui_components/animations/` – animation engine  
-- `workflow/` – Workflow Engine 4.0  
-- `plugins/` – Plugin System 4.0  
+- `workflow/` – Workflow Engine 4.x  
+- `plugins/` – Plugin System 4.x  
 - `security_family/` – Identity Engine 2.0, time‑limits v2, schoolwork engine  
 - `self_repair/` – Self‑Repair & Health‑Check Layer  
-- `knowledge_packs/` – Knowledge Packs 4.0  
+- `knowledge_packs/` – Knowledge Packs 4.x  
 - `envoy/` – ENVOY 4.0 safe retrieval layer  
+- `ui_automation/` – **UI Automation Engine 4.3** (NEW)  
 
 The system is designed to be extended **without modifying the core**.
 
 ---
 
-### **Plugin System 4.0**
+### **Plugin System 4.x**
 Plugins can define:
 
 - NL commands  
@@ -68,7 +74,7 @@ Plugins can define:
 - GUI elements  
 - pack‑aware logic  
 
-All official plugins are fully prepared for v4.0.0.
+All official plugins are fully prepared for v4.x.
 
 ---
 
@@ -89,8 +95,8 @@ It ensures:
 
 ---
 
-### **Reasoning Engine 4.0**
-A new structured reasoning layer:
+### **Reasoning Engine 4.x**
+A structured reasoning layer:
 
 - step‑by‑step reasoning  
 - academic explanations  
@@ -113,7 +119,7 @@ Ensures long‑term stability:
 
 ---
 
-### **Knowledge Packs 4.0**
+### **Knowledge Packs 4.x**
 Offline knowledge expansions:
 
 - household  
@@ -141,7 +147,7 @@ ENVOY never sends local data outward.
 
 ---
 
-### **Workflow Engine 4.0**
+### **Workflow Engine 4.x**
 Manages:
 
 - multi‑step processes  
@@ -153,7 +159,7 @@ Manages:
 
 ---
 
-### **PC Automation Runtime 4.0**
+### **PC Automation Runtime 4.x**
 Developer‑level offline automation:
 
 - filesystem automation  
@@ -164,23 +170,39 @@ Developer‑level offline automation:
 
 ---
 
-## 📁 Project Structure (v4.0.0)
+### **UI Automation Engine 4.3 (NEW)**
+A major new capability introduced in v4.3.0:
+
+- fuzzy UI parsing  
+- semantic UI actions  
+- deterministic fallback logic  
+- OS‑level routing  
+- safe sandboxed execution  
+- WinCapabilities 4.3 integration  
+
+This engine replaces the originally planned v4.2.0 release.
+
+---
+
+## 📁 Project Structure (v4.3.0)
 src/
-├── commands/
-├── context/
-├── envoy/
-├── filesystem/
-├── knowledge_packs/
-├── runtime/
-├── security_family/
-├── self_repair/
-├── triage/
-├── ui/
-├── ui_components/
-│    └── animations/
-├── workflow/
-├── plugins/
-└── sirius.py 
+├── commands/  
+├── context/  
+├── envoy/  
+├── filesystem/  
+├── knowledge_packs/  
+├── runtime/  
+├── security_family/  
+├── self_repair/  
+├── triage/  
+├── ui/  
+├── ui_components/  
+│    └── animations/  
+├── ui_automation/  
+├── workflow/  
+├── plugins/  
+└── sirius.py  
+
 Each directory has a clear responsibility and is described in **MODULE_MAP.md**.
 
 ---
@@ -197,6 +219,7 @@ The project includes a complete testing plan:
 - SECURITY FAMILY identity tests  
 - SCHOOLWORK ENGINE tests  
 - self‑repair integrity tests  
+- UI Automation Engine 4.3 tests  
 
 Details are in **TESTING_GUIDE.md**.
 
@@ -218,21 +241,13 @@ More in **PERFORMANCE_GUIDE.md**.
 
 ## 🗓️ Release Plan
 
-### **v4.0.0 – Intelligent Runtime 2.0 (Current Stable Release)**
-- Runtime 4.0  
-- Plugin System 4.0  
-- Workflow Engine 4.0  
-- Reasoning Engine 4.0  
-- GUI 4.0  
-- AITE 4.0  
-- WIN‑CAP 4.0  
-- **SECURITY FAMILY 4.0 – identity engine 2.0**  
-- **time‑limits v2**  
-- **Schoolwork Engine 4.0**  
-- **Self‑Repair Layer**  
-- **Knowledge Packs 4.0**  
-- **ENVOY 4.0**  
-- expanded household modules  
+### **v4.0.0 – Intelligent Runtime 2.0 (Stable)**  
+### **v4.3.0 – Semantic UI Automation Engine (Current)**  
+- UIParser 4.3  
+- UIWorkflow 4.3  
+- UIActions 4.3  
+- WinCapabilities 4.3  
+- deterministic UI automation  
 
 ---
 
