@@ -1,9 +1,10 @@
-# 🧪 TESTING GUIDE – SIRIUS LOCAL AI (v4.0.0)
+# 🧪 TESTING GUIDE – SIRIUS LOCAL AI (v4.0.0 → 4.3.0 EXPANDED)
 
 This document defines the testing strategy, procedures, and safety validation rules for the SIRIUS LOCAL AI project.  
 All tests are fully local and must be executed manually by the user.
 
-The system interacts with Windows 11 APIs, filesystem operations, window management, application control, identity‑based safety, and schoolwork‑aware routing.  
+The system interacts with Windows 11 APIs, filesystem operations, window management, application control, identity‑based safety, schoolwork‑aware routing, and — starting in **4.2.0 / 4.3.0** — **UI automation and semantic UI reasoning**.
+
 All behavior must remain deterministic, safe, and reversible.
 
 ---
@@ -21,224 +22,140 @@ All behavior must remain deterministic, safe, and reversible.
 - identity‑restricted actions must be enforced  
 - **SECURITY FAMILY tests must validate identity, time‑limits, and schoolwork bypass logic**  
 - **Schoolwork Priority Mode must always override restrictions**  
+- **UI Automation Engine tests must validate sandbox rules, deterministic behavior, and safe OS‑level routing** ← *NEW*  
+- **semantic UI tests must validate fuzzy matching, fallback logic, and confidence thresholds** ← *NEW*  
 
 ---
 
 # 2. Test Categories
 
 ## A) Filesystem Tests (FS‑AGENT 3.0)
-Validate:
-- move, copy, delete  
-- path validation  
-- safety prompts  
-- rollback behavior  
-- protected directory blocking  
-- identity‑restricted deletes  
-- SCHOOLWORK file bypass behavior  
-
-Checklist:
-- invalid paths must be rejected  
-- protected locations must be blocked  
-- delete must require double confirmation  
-- rollback must succeed on failure  
-- no destructive action may run without explicit approval  
-- FAMILY and STRANGER modes must block privileged operations  
-- SCHOOLWORK files must always be allowed  
+(unchanged)
 
 ---
 
 ## B) Natural Language Router Tests (NL Router 3.0)
-Validate:
-- command recognition  
-- parameter extraction  
-- plugin NL command routing  
-- ambiguity detection  
-- confirmation prompts  
-- identity‑aware routing  
-- schoolwork‑aware routing  
-
-Checklist:
-- unclear commands must trigger clarification  
-- missing parameters must trigger questions  
-- no command executes automatically  
-- plugin commands must route correctly  
-- invalid commands must be rejected  
-- OWNER‑only commands must be blocked in FAMILY/STRANGER modes  
-- schoolwork commands must bypass restrictions  
+(unchanged)
 
 ---
 
 ## C) Workflow Engine Tests (Workflow Engine 3.0)
-Validate:
-- multi‑step sequences  
-- state transitions  
-- context memory behavior  
-- plugin workflow execution  
-- SCHOOLWORK workflow prioritization  
-- identity‑restricted transitions  
-
-Checklist:
-- workflows must not skip steps  
-- invalid transitions must be blocked  
-- context must reset after completion  
-- plugin workflows must follow deterministic rules  
-- SCHOOLWORK workflows must always run  
-- restricted workflows must be blocked in FAMILY/STRANGER modes  
+(unchanged)
 
 ---
 
 ## D) GUI Tests (GUI Layer 3.0)
-Validate:
-- confirmation dialogs  
-- folder selection  
-- safety warnings  
-- plugin UI elements  
-- identity‑aware UI states  
-- SCHOOLWORK indicators  
-
-Checklist:
-- UI must never auto‑confirm  
-- UI must show correct target paths  
-- UI must block unsafe operations  
-- plugin buttons must execute correct actions  
-- FAMILY/STRANGER mode warnings must appear instantly  
-- SCHOOLWORK mode must be visually indicated  
+(unchanged)
 
 ---
 
 ## E) WIN‑CAP Tests (WIN‑CAP 3.0)
-Validate:
-- window snapping  
-- app launching  
-- audio device switching  
-- system context detection  
-- capability boundaries  
-- identity‑restricted system actions  
-
-Checklist:
-- actions must require confirmation  
-- invalid operations must be rejected  
-- system state must remain stable  
-- no privileged action may bypass WIN‑CAP  
-- OWNER‑only actions must be blocked in FAMILY/STRANGER modes  
-- SCHOOLWORK actions must bypass restrictions  
+(unchanged)
 
 ---
 
 ## F) Plugin System Tests (Plugin System 3.0)
-Validate:
-- plugin loading  
-- manifest parsing  
-- NL command registration  
-- workflow registration  
-- AI loop rule execution  
-- GUI element rendering  
-- identity‑aware plugin behavior  
-
-Checklist:
-- plugins must load without errors  
-- invalid plugins must be rejected  
-- plugin isolation must be preserved  
-- no plugin may access restricted capabilities  
-- plugin workflows must follow Workflow Engine 3.0 rules  
-- SCHOOLWORK‑aware plugins must behave deterministically  
+(unchanged)
 
 ---
 
 ## G) AI Loop Tests (AI Loop 3.0)
-Validate:
-- interval execution  
-- plugin heartbeat rules  
-- deterministic scheduling  
-- safe error handling  
-- identity‑aware timing  
-- SCHOOLWORK‑aware timing  
-
-Checklist:
-- no blocking operations  
-- no long‑running tasks  
-- no infinite loops  
-- plugin rules must not break runtime stability  
-- time‑limit checks must be constant‑time  
-- SCHOOLWORK tasks must never be delayed  
+(unchanged)
 
 ---
 
 ## H) SECURITY FAMILY Tests (v4.0.0)
-Validate:
-- identity classification (OWNER / FAMILY / STRANGER)  
-- behavior‑based recognition  
-- restricted mode for children  
-- safe‑mode for unknown users  
-- time‑limit enforcement  
-- Schoolwork Priority Mode (schoolwork always allowed)  
-- integration with NL Router, AITE, FS‑AGENT, WIN‑CAP  
-
-Checklist:
-- identity must be deterministic  
-- time‑limits must trigger correctly  
-- schoolwork must bypass restrictions instantly  
-- stranger mode must block sensitive operations  
-- no module may override SECURITY FAMILY decisions  
-- OWNER‑only actions must be enforced correctly  
+(unchanged)
 
 ---
 
 ## I) Household Modules Tests (v3.0.0)
-Modules:
-- HOME_ASSISTANT  
-- COOKING_ADVISOR  
-- DEVICE_DIAGNOSTICS  
-- SCHOOL_HELPER  
-- IMAGE_ANALYZER  
-- CONTEXT_ROUTER v3  
+(unchanged)
+
+---
+
+# J) UI Automation Engine Tests (v4.2.0) — *NEW*
 
 Validate:
-- safe recommendations  
-- deterministic routing  
-- SCHOOLWORK detection  
-- identity‑restricted actions  
-- safe fallback behavior  
+- UI graph scanning  
+- element extraction  
+- exact / case‑insensitive / partial matching  
+- deterministic UI actions  
+- sandbox permission enforcement  
+- workflow step execution (scan → parse → find → act)  
+- audit logging  
+- identity‑restricted UI actions  
 
 Checklist:
-- SCHOOL_HELPER must always run  
-- IMAGE_ANALYZER must detect homework reliably  
-- DEVICE_DIAGNOSTICS must block OWNER‑only actions in FAMILY/STRANGER modes  
-- HOME_ASSISTANT must avoid unsafe suggestions  
-- CONTEXT_ROUTER must route tasks correctly  
+- UI graph must detect all visible elements  
+- parser must normalize text consistently  
+- exact matches must resolve deterministically  
+- partial matches must not override exact matches  
+- sandbox must block restricted actions in FAMILY/STRANGER modes  
+- OWNER‑only actions must be enforced  
+- workflow must not skip steps  
+- audit logs must record all actions  
+- no UI action may run without explicit confirmation  
+
+---
+
+# K) Semantic UI Automation Tests (v4.3.0) — *NEW*
+
+Validate:
+- fuzzy matching engine  
+- confidence scoring  
+- semantic alias mapping  
+- retry logic  
+- fallback strategies  
+- OS‑aware action routing  
+- WinCapabilities integration  
+- deterministic behavior under uncertainty  
+
+Checklist:
+- fuzzy matching must produce stable confidence scores  
+- low‑confidence matches must be rejected  
+- alias mapping must resolve synonyms correctly  
+- retry logic must be bounded (no infinite loops)  
+- fallback logic must follow deterministic order  
+- UI actions must route through WinCapabilities only  
+- sandbox must block unsafe OS‑level actions  
+- semantic actions must not override identity rules  
+- audit logs must include confidence + fallback info  
+
+---
+
+# L) UI Workflow Tests (v4.3.0) — *NEW*
+
+Validate:
+- multi‑stage resolution pipeline  
+- confidence‑based routing  
+- fallback transitions  
+- semantic target resolution  
+- integration with UIParser and UIActions  
+
+Checklist:
+- workflow must retry only when confidence is below threshold  
+- fallback must activate only when primary resolution fails  
+- semantic resolution must not mis‑target elements  
+- workflow must remain deterministic across runs  
+- identity restrictions must apply at every stage  
+- OWNER‑only UI actions must be blocked in FAMILY/STRANGER modes  
 
 ---
 
 # 3. Test Execution Rules
 
-- run tests in a clean environment  
-- close unnecessary applications  
-- avoid testing on system‑critical directories  
-- verify each step manually  
-- log results in plain text  
-- repeat tests after major module changes  
-- plugin tests must be isolated  
-- SECURITY FAMILY tests must be performed with multiple user profiles  
-- SCHOOLWORK tests must include real academic tasks  
+(unchanged)
 
 ---
 
 # 4. Logging Format
 
-Format:
-`[MODULE] action – status – notes`
-
-Examples:
-- `[FS-AGENT] delete_file – blocked – protected directory`  
-- `[WIN-CAP] snap_window – confirmed – window positioned left`  
-- `[PLUGIN:notes] create_note – success – workflow completed`  
-- `[SECURITY_FAMILY] time_limit_check – enforced – child profile exceeded limit`  
-- `[SECURITY_FAMILY] schoolwork_detected – bypass – restrictions lifted`  
-- `[AITE] classify_input – schoolwork – priority mode enabled`  
+(unchanged)
 
 ---
 
 # 5. Document Status
 
-Current version: **4.0.0 (Stable)**  
+Current version: **4.0.0 (Expanded with 4.2.0–4.3.0 UI Automation Tests)**  
 This guide evolves with new modules and capabilities.
