@@ -255,14 +255,27 @@ Capabilities:
 
 ---
 
-# 4.2 Version 4.2.0 – Semantic UI Automation (Planned)
-**Focus:** Extend SIRIUS into UI‑level automation
+# ⭐ **4.2 Version 4.2.0 – Semantic UI Automation (Replaced)**  
+**Status:** Replaced by **4.3.0**  
+**Reason:** The entire UI Automation Engine was implemented as a full release.
 
-Planned:
-- UI automation layer  
-- window graph reasoning  
+---
+
+# ⭐ **4.3 Version 4.3.0 – Semantic UI Automation Engine (Completed)**  
+**Focus:** Full UI automation pipeline with fuzzy matching, fallback logic, OS‑level hooks.
+
+Delivered:
+- **UIParser 4.3.0** (fuzzy matching engine)  
+- **UIWorkflow 4.3.0** (retry + fallback engine)  
+- **UIActions 4.3.0** (OS‑level routing + sandbox)  
+- **WinCapabilities 4.3.0** (OS UI control interface)  
+- deterministic UI automation  
 - semantic UI actions  
+- window graph reasoning  
 - accessibility‑safe automation  
+
+**Output:**  
+A complete UI Automation Engine integrated with Runtime 4.0.
 
 ---
 
