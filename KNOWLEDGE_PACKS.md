@@ -211,6 +211,4 @@ Example `manifest.json`:
   "author": "Richard Pizem",
   "safe": true
 }
-📄 Document Status
-Version: 4.3.0 (Expanded)
-Updated to reflect the 4.2 → 4.3 transition and the new UI Automation Engine 4.3.
+
