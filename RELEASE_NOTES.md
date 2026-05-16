@@ -15,9 +15,117 @@ No data leaves the user’s PC.
 
 ---
 
-# ✅ New in v4.0.0 (Intelligent Runtime 2.0)
+# 🆕 NEW MODULE RELEASES AFTER v4.0.0  
+Below are the officially released modules **after** Runtime 4.0.0, included here for clarity and historical completeness.
 
-## 🧱 Core Architecture (Runtime 4.0)
+---
+
+# 🚀 UI Automation Engine – Runtime 4.2.0 (Released)
+
+The UI Automation Engine was officially released as part of **SIRIUS Runtime 4.2.0**.  
+This milestone delivered the **entire vertical slice** of UI automation and prepared the system for the semantic upgrade in 4.3.0.
+
+## ✔ Included Modules (4.2.0)
+
+### • UI Graph
+- Window tree abstraction  
+- Fake OS elements for workflow testing  
+- Ready for WinCapabilities integration (4.3.0)
+
+### • UI Parser
+- Element extraction and normalization  
+- Exact, case‑insensitive and partial matching  
+- Prepared for fuzzy matching engine (4.3.0)
+
+### • UI Actions
+- Deterministic UI operations (click, write, select, semantic)  
+- Unified audit logging  
+- Sandbox‑aware execution  
+- Ready for real OS UI control (4.3.0)
+
+### • UI Sandbox
+- Identity‑based permission model (OWNER / FAMILY / STRANGER / CHILD)  
+- Deterministic security rules  
+- Local audit trail  
+- Ready for EventBus integration (4.3.0)
+
+### • UI Workflow
+- Deterministic step engine (scan → parse → find → act)  
+- Clean target resolution  
+- Demo workflow included  
+- Ready for fallback logic (4.3.0)
+
+## ✔ Highlights (4.2.0)
+- Fully isolated module  
+- 100% deterministic behavior  
+- Full English documentation  
+- Unified architecture  
+- Complete vertical slice demo  
+- Fully prepared for 4.3.0 upgrades  
+
+---
+
+# 🚀 SIRIUS Runtime 4.3.0 – Semantic UI Automation Engine (Released)
+
+Version 4.3.0 **replaced** the previously planned 4.2.0 as the mainline release and introduced a complete, deterministic, semantic UI automation pipeline fully integrated with Runtime 4.0.
+
+## 🔍 UIParser 4.3.0 – Fuzzy Matching Engine
+- multi‑strategy fuzzy matching  
+- confidence scoring  
+- semantic alias mapping  
+- deterministic element resolution  
+- ready for window graph reasoning  
+
+## 🔁 UIWorkflow 4.3.0 – Retry & Fallback Engine
+- confidence‑based action routing  
+- automatic retry logic  
+- fallback strategies  
+- multi‑stage resolution pipeline  
+- seamless integration with UIParser  
+
+## 🖱️ UIActions 4.3.0 – OS‑Aware Action Layer
+- unified action interface  
+- sandbox‑protected execution  
+- OS‑level routing via WinCapabilities  
+- deterministic fallback behavior  
+- extended audit logging  
+
+## 🪟 WinCapabilities 4.3.0 – OS UI Control Interface
+- safe adapter for OS‑level UI automation  
+- deterministic stubs  
+- ready for Win32/UIA/WinRT integration in 4.4.0  
+- unified logging and tracing  
+
+## 🎯 Summary (4.3.0)
+Version 4.3.0 completes the entire Semantic UI Automation Engine:
+- fuzzy UI parsing  
+- workflow fallback logic  
+- semantic UI actions  
+- OS‑level routing  
+- sandbox enforcement  
+- deterministic execution  
+
+This is the most advanced UI automation layer ever implemented in SIRIUS.
+
+---
+
+# 🔐 NEW IN v4.0.0 — PASSWORD VAULT 4.0  
+A fully offline, AES‑256‑GCM encrypted, identity‑aware credential storage module.
+
+### Features:
+- AES‑256‑GCM encryption  
+- PBKDF2‑HMAC‑SHA256 master key derivation  
+- OWNER write / FAMILY read / STRANGER blocked  
+- deterministic API  
+- NL Router integration  
+- RuntimeManager tasks  
+- encrypted JSON vault container  
+
+Password Vault 4.0 is a **finalized, frozen module** and part of the Security Family.
+
+---
+
+# 🧱 Core Architecture (Runtime 4.0)
 - upgraded Runtime Core 4.0  
 - semantic execution model  
 - strict module isolation  
@@ -30,7 +138,7 @@ No data leaves the user’s PC.
 
 ---
 
-## 🔐 SECURITY FAMILY 4.0 (Identity Engine 2.0)
+# 🔐 SECURITY FAMILY 4.0 (Identity Engine 2.0)
 A fully upgraded identity and family‑safety layer.
 
 ### Features:
@@ -43,24 +151,9 @@ A fully upgraded identity and family‑safety layer.
 - identity‑aware routing in NL Router, WIN‑CAP, AITE  
 - offline learning (no biometrics, no cloud)  
 
-### Submodules:
-- identity_engine_v2  
-- behavior_audit_v2  
-- access_control_v2  
-- family_mode_v2  
-- stranger_mode_v2  
-- time_limits_v2  
-- schoolwork_engine  
-- profile_store_v2  
-
-Security Family 4.0 is a **core system layer**.
-
 ---
 
-## 🧠 Reasoning Engine 4.0 (NEW)
-A new structured reasoning subsystem.
-
-### Capabilities:
+# 🧠 Reasoning Engine 4.0 (NEW)
 - step‑by‑step reasoning  
 - symbolic logic  
 - chain‑of‑thought trees  
@@ -68,34 +161,21 @@ A new structured reasoning subsystem.
 - pack‑aware reasoning  
 - deterministic logic (bounded depth)  
 
-Integrated across:
-- NL Router  
-- Schoolwork Engine  
-- Device Diagnostics  
-- Cooking Advisor  
-- Knowledge Packs  
-
 ---
 
-## 🔍 AITE 4.0 – Semantic Triage Engine
-A complete upgrade of the input triage system.
-
-### Features:
+# 🔍 AITE 4.0 – Semantic Triage Engine
 - OCR extraction  
 - semantic analysis  
 - subject detection  
 - difficulty scoring  
 - identity‑aware triage  
-- schoolwork detection → Schoolwork Engine  
+- schoolwork detection  
 - ENVOY 4.0 integration  
 - routing to Reasoning Engine  
 
 ---
 
-## 🛠 Self‑Repair & Health‑Check Layer (NEW)
-A new diagnostic and recovery subsystem.
-
-### Features:
+# 🛠 Self‑Repair & Health‑Check Layer (NEW)
 - integrity checks  
 - corrupted state detection  
 - safe automatic repairs  
@@ -103,14 +183,9 @@ A new diagnostic and recovery subsystem.
 - patch suggestions  
 - system‑wide health reporting  
 
-This ensures long‑term stability.
-
 ---
 
-## 📚 Knowledge Packs 4.0 (NEW)
-A fully upgraded offline knowledge system.
-
-### Features:
+# 📚 Knowledge Packs 4.0 (NEW)
 - curated offline datasets  
 - semantic linking  
 - pack‑aware reasoning  
@@ -118,31 +193,18 @@ A fully upgraded offline knowledge system.
 - ENVOY‑assisted updates  
 - safe, static, validated content  
 
-Pack types:
-- household  
-- cooking  
-- device diagnostics  
-- schoolwork  
-- health & safety  
-- general knowledge  
+---
+
+# 🌐 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer (NEW)
+- outbound‑only client  
+- scraper layer  
+- quarantine sandbox  
+- validator & filter  
+- safe payload delivery  
 
 ---
 
-## 🌐 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer (NEW)
-An optional isolated agent for safe external lookups.
-
-### Pipeline:
-1. Envoy Client (outbound‑only)  
-2. Scraper Layer  
-3. Quarantine Sandbox  
-4. Validator & Filter  
-5. Safe Payload Delivery  
-
-ENVOY never sends local data outward.
-
----
-
-## 🧩 Plugin System 4.0
+# 🧩 Plugin System 4.0
 - updated manifest format  
 - reasoning hooks  
 - SCHOOLWORK‑aware plugins  
@@ -150,141 +212,6 @@ ENVOY never sends local data outward.
 - improved isolation  
 - GUI‑integrated plugin actions  
 - plugin workflows upgraded to v4  
-
----
-
-## 🧠 Command & Workflow System (v4.0.0)
-- Natural Language Router 4.0  
-- semantic routing  
-- identity‑aware filtering  
-- SCHOOLWORK Engine integration  
-- Workflow Engine 4.0  
-- deterministic multi‑step logic  
-- plugin workflow improvements  
-
----
-
-## 📁 Filesystem & Input Handling
-
-### FS‑AGENT 4.0
-- semantic file classification  
-- path validation  
-- conflict detection  
-- rollback‑safe operations  
-- SCHOOLWORK routing  
-- identity‑restricted operations  
-
-### AITE 4.0
-- OCR  
-- semantic triage  
-- subject detection  
-- difficulty scoring  
-- identity‑aware routing  
-- schoolwork engine integration  
-
----
-
-## 🪟 Windows System Capabilities (WIN‑CAP 4.0)
-- window management  
-- application control  
-- audio device handling  
-- system context  
-- automation operations  
-- identity‑restricted system actions  
-- deterministic capability access  
-
----
-
-# 🏠 Intelligent Modules (v4.0.0)
-
-## HOME_ASSISTANT 4.0
-- household workflows  
-- safety guidance  
-- pack‑aware reasoning  
-
-## COOKING_ADVISOR 4.0
-- recipe reasoning  
-- ingredient logic  
-- step‑by‑step workflows  
-
-## DEVICE_DIAGNOSTICS 2.0
-- symptom detection  
-- cause mapping  
-- safety warnings  
-
-## SCHOOL_HELPER 4.0
-- math, science, language reasoning  
-- step‑by‑step explanations  
-- SCHOOLWORK Engine integration  
-
-## IMAGE_ANALYZER 4.0
-- OCR  
-- object detection  
-- homework reading  
-
-## CONTEXT_ROUTER 4.0
-- semantic intent detection  
-- routing to all v4 modules  
-
----
-
-# 🖥 GUI Layer 4.0
-- plugin‑driven UI  
-- identity indicators  
-- SCHOOLWORK indicators  
-- modular UI components  
-- animation system upgraded  
-
----
-
-# 🔁 AI Loop 4.0
-- safe interval‑based execution  
-- plugin heartbeat rules  
-- deterministic scheduling  
-- SCHOOLWORK‑aware timing  
-- identity‑aware loop restrictions  
-
----
-
-# 📚 Documentation (Complete & Updated)
-- README.md  
-- ARCHITECTURE.md  
-- MODULE_MAP.md  
-- STYLEGUIDE.md  
-- TESTING_GUIDE.md  
-- PERFORMANCE_GUIDE.md  
-- INSTALLATION.md  
-- SECURITY.md  
-- CONTRIBUTING.md  
-- CODE_OF_CONDUCT.md  
-- CHANGELOG.md  
-- RELEASE_NOTES.md  
-- ROADMAP.md  
-- KNOWLEDGE_PACKS.md  
-- ENVOY_TUTORIAL.md  
-
-All documents updated for **v4.0.0**.
-
----
-
-# 🔐 Security Highlights
-- strict no‑network policy (runtime)  
-- ENVOY isolation  
-- deterministic behavior  
-- plugin sandboxing  
-- safe OS‑level capability wrappers  
-- reversible operations where possible  
-- identity‑based access control  
-- SCHOOLWORK always allowed  
-- STRANGER‑mode restrictions  
-
----
-
-# ⚠️ Known Limitations
-- some Windows 11 APIs may require elevated permissions  
-- SmartScreen may classify the runtime as “Unknown App”  
-- antivirus tools may produce false positives  
-- accessibility APIs may be restricted on some systems  
 
 ---
 
