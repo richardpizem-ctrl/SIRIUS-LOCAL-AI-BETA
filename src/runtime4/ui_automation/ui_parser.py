@@ -20,7 +20,9 @@ class UIParser:
         if not ui_graph:
             return
 
-        # základná štruktúra – neskôr sa doplní o reálne UI prvky
+        # Reset – parser musí byť čistý pri každom cykle workflowu
+        self.parsed_elements = []
+
         for element in ui_graph.elements:
             normalized = self._normalize_element(element)
             self.parsed_elements.append(normalized)
@@ -41,13 +43,37 @@ class UIParser:
     def find(self, name=None, element_type=None):
         """
         Vyhľadá UI prvok podľa názvu alebo typu.
+        Podporuje:
+        - presnú zhodu
+        - case-insensitive zhodu
+        - partial match (napr. 'Set' → 'Settings')
         """
+        if not self.parsed_elements:
+            return []
+
         results = []
 
         for el in self.parsed_elements:
-            if name and el["name"] == name:
+            el_name = el.get("name", "")
+            el_type = el.get("type", "")
+
+            # 1. Presná zhoda mena
+            if name and el_name == name:
                 results.append(el)
-            if element_type and el["type"] == element_type:
+                continue
+
+            # 2. Case-insensitive zhoda
+            if name and el_name.lower() == name.lower():
+                results.append(el)
+                continue
+
+            # 3. Partial match
+            if name and name.lower() in el_name.lower():
+                results.append(el)
+                continue
+
+            # 4. Zhoda typu
+            if element_type and el_type == element_type:
                 results.append(el)
 
         return results
