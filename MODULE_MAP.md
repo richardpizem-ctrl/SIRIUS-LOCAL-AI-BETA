@@ -1,13 +1,15 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v4.0.0)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v4.3.0 EXPANDED)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the **Intelligent Runtime 4.0** architecture.
+It serves as an architectural orientation map for the **Intelligent Runtime 4.x** architecture.
+
+Version **4.3.0** expands the module map with the new **Semantic UI Automation Engine**, replacing the originally planned 4.2.0 release.
 
 All processing is fully local; no data leaves the user's PC.
 
 ---
 
-# 1. Runtime Core 4.0
+# 1. Runtime Core 4.x
 **Purpose:** Central orchestrator of the entire system.  
 **Responsibilities:**
 - module initialization  
@@ -20,10 +22,11 @@ All processing is fully local; no data leaves the user's PC.
 - integration with Security Family 4.0  
 - integration with Self‑Repair Layer  
 - deterministic execution  
+- UI Automation Engine 4.3 integration  
 
 ---
 
-# 2. Filesystem Agent (FS‑AGENT 4.0)
+# 2. Filesystem Agent (FS‑AGENT 4.x)
 **Purpose:** Safe, deterministic file operations.  
 **Responsibilities:**
 - moving, copying, deleting  
@@ -32,10 +35,11 @@ All processing is fully local; no data leaves the user's PC.
 - rollback‑safe operations  
 - semantic routing (documents, code, schoolwork)  
 - integration with Schoolwork Engine 4.0  
+- integration with UI Automation Engine 4.3 (file‑based workflows)  
 
 ---
 
-# 3. Natural Language Router (NL Router 4.0)
+# 3. Natural Language Router (NL Router 4.x)
 **Purpose:** Semantic interpretation and routing of user commands.  
 **Responsibilities:**
 - command classification  
@@ -45,10 +49,11 @@ All processing is fully local; no data leaves the user's PC.
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
 - identity‑aware filtering (OWNER / FAMILY / STRANGER)  
+- UI automation command routing (v4.3.0)  
 
 ---
 
-# 4. Context Memory Engine (CME‑MEM 4.0)
+# 4. Context Memory Engine (CME‑MEM 4.x)
 **Purpose:** Semantic workflow context.  
 **Responsibilities:**
 - tracking recent actions  
@@ -57,10 +62,11 @@ All processing is fully local; no data leaves the user's PC.
 - providing contextual hints  
 - subject/difficulty metadata  
 - integration with Schoolwork Engine 4.0  
+- integration with UI Automation Engine 4.3 (contextual UI hints)  
 
 ---
 
-# 5. Workflow Engine 4.0
+# 5. Workflow Engine 4.x
 **Purpose:** Deterministic multi‑step logic.  
 **Responsibilities:**
 - workflow state machine  
@@ -68,11 +74,12 @@ All processing is fully local; no data leaves the user's PC.
 - semantic transitions  
 - preventing invalid sequences  
 - SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 4.0  
+- integration with Reasoning Engine 4.x  
+- integration with UIWorkflow 4.3  
 
 ---
 
-# 6. GUI Layer 4.0
+# 6. GUI Layer 4.x
 **Purpose:** Modular user interface.  
 **Responsibilities:**
 - rendering plugin UI  
@@ -80,6 +87,7 @@ All processing is fully local; no data leaves the user's PC.
 - identity indicators  
 - SCHOOLWORK indicators  
 - future tray/voice integration  
+- UI automation visual feedback (v4.3.0)  
 
 ---
 
@@ -104,12 +112,13 @@ All processing is fully local; no data leaves the user's PC.
 - metadata generation  
 - integration with FS‑AGENT, CME‑MEM  
 - integration with Schoolwork Engine 4.0  
-- integration with Reasoning Engine 4.0  
+- integration with Reasoning Engine 4.x  
 - ENVOY 4.0 support  
+- UI automation intent detection (v4.3.0)  
 
 ---
 
-# 9. Windows System Capabilities Layer (WIN‑CAP 4.0)
+# 9. Windows System Capabilities Layer (WIN‑CAP 4.x)
 **Purpose:** Safe, abstracted access to Windows 11 system functions.  
 **Responsibilities:**
 - exposing high‑level system capabilities  
@@ -117,6 +126,7 @@ All processing is fully local; no data leaves the user's PC.
 - safe wrappers around OS operations  
 - multi‑step system actions  
 - identity‑aware restrictions  
+- UI automation OS‑level routing (v4.3.0)  
 
 **Submodules:**
 - `file_ops`  
@@ -125,6 +135,7 @@ All processing is fully local; no data leaves the user's PC.
 - `audio_ops`  
 - `system_context`  
 - `automation_ops`  
+- `ui_capabilities_4_3` (NEW)  
 
 ---
 
@@ -152,10 +163,11 @@ All processing is fully local; no data leaves the user's PC.
 - predictable behavior  
 - integrating CME, FS‑AGENT, GUI  
 - SCHOOLWORK workflow routing  
+- UI automation workflow integration (v4.3.0)  
 
 ---
 
-# 12. Plugin System 4.0
+# 12. Plugin System 4.x
 **Purpose:** Extensible plugin ecosystem.  
 **Responsibilities:**
 - loading plugin manifests  
@@ -166,6 +178,7 @@ All processing is fully local; no data leaves the user's PC.
 - registering GUI elements  
 - safe plugin isolation  
 - SCHOOLWORK‑aware plugin behavior  
+- UI automation plugin hooks (v4.3.0)  
 
 Official plugins include:
 - automation  
@@ -178,7 +191,7 @@ Official plugins include:
 
 ---
 
-# 13. AI Loop 4.0
+# 13. AI Loop 4.x
 **Purpose:** Autonomous interval‑based logic.  
 **Responsibilities:**
 - executing plugin heartbeat rules  
@@ -189,7 +202,7 @@ Official plugins include:
 
 ---
 
-# 14. Self‑Repair & Health‑Check Layer (v4.0.0)
+# 14. Self‑Repair & Health‑Check Layer (v4.x)
 **Purpose:** Diagnostics and safe automatic recovery.  
 **Responsibilities:**  
 - checking integrity of core modules  
@@ -198,6 +211,7 @@ Official plugins include:
 - generating patch suggestions  
 - preventing uncontrolled modifications  
 - reporting system health to Runtime Core  
+- validating UI automation modules (v4.3.0)  
 
 **Submodules:**  
 - `health_check_engine.py`  
@@ -217,6 +231,7 @@ Official plugins include:
 - Schoolwork Engine integration  
 - identity‑aware routing  
 - STRANGER‑mode restrictions  
+- UI automation identity gating (v4.3.0)  
 
 **Submodules:**
 - `identity_engine_v2.py`  
@@ -230,48 +245,19 @@ Official plugins include:
 
 ---
 
-# 16. Intelligent Runtime Modules (v4.0.0)
+# 16. Intelligent Runtime Modules (v4.x)
 
-These modules extend SIRIUS into a **full offline household, schoolwork, and developer assistant**.
-
----
-
-## 16.1 HOME_ASSISTANT 4.0
-(unchanged)
-
----
-
-## 16.2 COOKING_ADVISOR 4.0
-(unchanged)
+## 16.1 HOME_ASSISTANT 4.0  
+## 16.2 COOKING_ADVISOR 4.0  
+## 16.3 DEVICE_DIAGNOSTICS 2.0  
+## 16.4 SCHOOL_HELPER 4.0  
+## 16.5 IMAGE_ANALYZER 4.0  
+## 16.6 CONTEXT_ROUTER 4.0  
+## 16.7 KNOWLEDGE_PACKS 4.x  
 
 ---
 
-## 16.3 DEVICE_DIAGNOSTICS 2.0
-(unchanged)
-
----
-
-## 16.4 SCHOOL_HELPER 4.0
-(unchanged)
-
----
-
-## 16.5 IMAGE_ANALYZER 4.0
-(unchanged)
-
----
-
-## 16.6 CONTEXT_ROUTER 4.0
-(unchanged)
-
----
-
-## 16.7 KNOWLEDGE_PACKS 4.0
-(unchanged)
-
----
-
-## 16.8 PASSWORD_VAULT 4.0  ← **NEW MODULE**
+# 17. PASSWORD_VAULT 4.0 (NEW)
 **Purpose:** Secure offline credential storage.  
 **Responsibilities:**
 - AES‑256‑GCM encrypted vault  
@@ -291,16 +277,49 @@ These modules extend SIRIUS into a **full offline household, schoolwork, and dev
 
 ---
 
-# 17. SIRIUS ENVOY 4.0 (Safe Retrieval Layer)
-(unchanged)
+# 18. UI Automation Engine 4.3 (NEW)
+**Purpose:** Semantic, deterministic UI automation.  
+**Responsibilities:**
+- fuzzy UI parsing  
+- semantic alias mapping  
+- multi‑stage resolution pipeline  
+- deterministic fallback logic  
+- OS‑level routing  
+- safe sandboxed execution  
+- WIN‑CAP 4.3 integration  
+
+**Submodules:**
+- `ui_parser_4_3.py`  
+- `ui_workflow_4_3.py`  
+- `ui_actions_4_3.py`  
+- `win_capabilities_4_3.py`  
 
 ---
 
-# 18. Module Interconnections
-(unchanged)
+# 19. SIRIUS ENVOY 4.0 (Safe Retrieval Layer)
+**Purpose:** Safe, outbound‑only online retrieval.  
+**Responsibilities:**  
+- scraper layer  
+- quarantine sandbox  
+- validator & policy filter  
+- safe payload delivery  
+- Knowledge Pack updates  
+
+---
+
+# 20. Module Interconnections
+All modules communicate through:
+
+- Runtime Core 4.x  
+- NL Router 4.x  
+- Workflow Engine 4.x  
+- CME‑MEM 4.x  
+- Security Family 4.0  
+- WIN‑CAP 4.x  
+- UI Automation Engine 4.3  
 
 ---
 
 # Document Status
-Current version: **4.0.0 (Stable)**  
-This document defines the complete module map for SIRIUS LOCAL AI v4.0.0.
+**Version:** 4.3.0 (Expanded)  
+Updated to reflect the **4.2 → 4.3 transition** and the new **UI Automation Engine 4.3**.
