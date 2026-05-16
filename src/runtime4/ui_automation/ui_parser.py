@@ -1,18 +1,35 @@
 """
-UI Parser Module – Runtime 4.2.0
+UI Parser Module – Runtime 4.3.0
 
-Responsible for:
-- extracting UI elements from the UI Graph
-- normalizing names, types and properties
-- preparing structured data for UI Actions and UI Workflow
+New in 4.3.0:
+- Fuzzy Matching Engine
+- Multi‑strategy element resolution
+- Levenshtein distance scoring
+- Semantic alias map
+- Confidence levels
+- Deterministic fallback rules
 
-The parser does NOT interact with the OS directly.
+The parser still does NOT interact with the OS directly.
 It receives only abstracted data from UIGraph.
 """
+
+import difflib
+
 
 class UIParser:
     def __init__(self):
         self.parsed_elements = []
+
+        # ------------------------------------------------------------
+        # SEMANTIC ALIAS MAP (Runtime 4.3.0)
+        # ------------------------------------------------------------
+        # Allows matching synonyms or alternative names.
+        self.semantic_aliases = {
+            "ok": ["okay", "confirm", "accept"],
+            "cancel": ["close", "abort", "dismiss"],
+            "settings": ["preferences", "options", "config"],
+            "exit": ["quit", "close app"],
+        }
 
     # ------------------------------------------------------------
     # GRAPH PARSING
@@ -24,7 +41,6 @@ class UIParser:
         if not ui_graph:
             return
 
-        # Reset – parser must be clean for every workflow cycle
         self.parsed_elements = []
 
         for element in ui_graph.elements:
@@ -42,24 +58,48 @@ class UIParser:
         - properties
         """
         return {
-            "name": getattr(element, "name", None),
-            "type": getattr(element, "type", None),
-            "properties": getattr(element, "properties", {}),
+            "name": getattr(element, "name", "") or "",
+            "type": getattr(element, "type", "") or "",
+            "properties": getattr(element, "properties", {}) or {},
         }
 
     # ------------------------------------------------------------
-    # ELEMENT SEARCH
+    # FUZZY MATCHING ENGINE (Runtime 4.3.0)
     # ------------------------------------------------------------
-    def find(self, name=None, element_type=None):
-        """
-        Searches for UI elements by name or type.
+    def _levenshtein_ratio(self, a, b):
+        """Returns similarity ratio using difflib."""
+        return difflib.SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
-        Supports:
+    def _semantic_match(self, name, el_name):
+        """Checks semantic alias map."""
+        name = name.lower()
+        el_name = el_name.lower()
+
+        if name in self.semantic_aliases:
+            for alias in self.semantic_aliases[name]:
+                if alias in el_name:
+                    return True
+        return False
+
+    # ------------------------------------------------------------
+    # ELEMENT SEARCH (EXTENDED FOR 4.3.0)
+    # ------------------------------------------------------------
+    def find(self, name=None, element_type=None, min_confidence=0.55):
+        """
+        Searches for UI elements using:
         - exact match
         - case-insensitive match
-        - partial match (e.g., 'Set' → 'Settings')
+        - partial match
+        - semantic alias match
+        - fuzzy match (Levenshtein ratio)
+        - type match
 
-        Extended fuzzy matching will be added in Runtime 4.3.
+        Returns:
+            List of dicts with:
+            {
+                "element": <element>,
+                "confidence": <0.0 - 1.0>
+            }
         """
         if not self.parsed_elements:
             return []
@@ -70,23 +110,42 @@ class UIParser:
             el_name = el.get("name", "")
             el_type = el.get("type", "")
 
-            # 1. Exact name match
+            confidence = 0.0
+
+            # 1. Exact match
             if name and el_name == name:
-                results.append(el)
-                continue
+                confidence = 1.0
 
             # 2. Case-insensitive match
-            if name and el_name.lower() == name.lower():
-                results.append(el)
-                continue
+            elif name and el_name.lower() == name.lower():
+                confidence = 0.95
 
             # 3. Partial match
-            if name and name.lower() in el_name.lower():
-                results.append(el)
-                continue
+            elif name and name.lower() in el_name.lower():
+                confidence = 0.85
 
-            # 4. Type match
+            # 4. Semantic alias match
+            elif name and self._semantic_match(name, el_name):
+                confidence = 0.80
+
+            # 5. Fuzzy match (Levenshtein ratio)
+            elif name:
+                ratio = self._levenshtein_ratio(name, el_name)
+                if ratio >= min_confidence:
+                    confidence = ratio
+
+            # 6. Type match (fallback)
             if element_type and el_type == element_type:
-                results.append(el)
+                confidence = max(confidence, 0.75)
+
+            # Add only if confidence is acceptable
+            if confidence >= min_confidence:
+                results.append({
+                    "element": el,
+                    "confidence": round(confidence, 3)
+                })
+
+        # Sort by confidence (highest first)
+        results.sort(key=lambda x: x["confidence"], reverse=True)
 
         return results
