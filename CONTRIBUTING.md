@@ -1,11 +1,13 @@
-# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v4.0.0)
+# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v4.3.0 EXPANDED)
 
 Thank you for your interest in contributing to **SIRIUS LOCAL AI**.  
 This document defines the rules, processes, and expectations for all contributors.  
-The goal is to maintain a **clean, safe, modular, deterministic, and intelligent** local AI system built on the **Runtime 4.0 architecture**.
+The goal is to maintain a **clean, safe, modular, deterministic, and intelligent** local AI system built on the **Runtime 4.x architecture**.
 
 All processing is fully local.  
 No data leaves your PC.
+
+Version **4.3.0** expands these guidelines to include the new **UI Automation Engine 4.3**, the transition from **4.2 → 4.3**, and updated safety‑critical modules.
 
 ---
 
@@ -21,10 +23,15 @@ No data leaves your PC.
 - **No global mutable state**  
 - **No circular imports**  
 - **Deterministic, reversible behavior whenever possible**  
-- **Plugin System 4.0 rules must be followed**  
-- **Safety‑critical modules (SECURITY FAMILY 4.0, SCHOOLWORK ENGINE 4.0) must never be weakened or bypassed**  
-- **Self‑Repair & Health‑Check Layer must remain intact**  
-- **Reasoning Engine 4.0 must not be misused or extended unsafely**  
+- **Plugin System 4.x rules must be followed**  
+- **Safety‑critical modules must never be weakened or bypassed**, including:  
+  - SECURITY FAMILY 4.0  
+  - Identity Engine 2.0  
+  - Schoolwork Engine 4.0  
+  - Time‑Limits Engine v2  
+  - Self‑Repair & Health‑Check Layer  
+  - **UI Automation Engine 4.3 (NEW)**  
+- **Reasoning Engine 4.x must not be misused or extended unsafely**  
 
 ---
 
@@ -32,7 +39,7 @@ No data leaves your PC.
 
 1. **Fork** the repository  
 2. **Create a new branch** for your change  
-3. **Implement** the change according to the Runtime 4.0 architecture  
+3. **Implement** the change according to the Runtime 4.x architecture  
 4. **Test** it in your local environment  
 5. **Submit a Pull Request** with a clear description  
 
@@ -60,11 +67,12 @@ Key rules:
 - no monolithic modules  
 - no deep nesting — prefer early returns  
 - imports grouped: standard → third‑party → internal  
-- plugin code must follow Plugin API 4.0  
+- plugin code must follow Plugin API 4.x  
 - SECURITY FAMILY 4.0 code must follow safety‑first design  
 - SCHOOLWORK ENGINE 4.0 must remain intact and non‑bypassable  
-- Reasoning Engine 4.0 integrations must be deterministic and safe  
+- Reasoning Engine 4.x integrations must be deterministic and safe  
 - Self‑Repair Layer must not be disabled or bypassed  
+- **UI Automation Engine 4.3 integrations must follow deterministic fallback rules**  
 
 ---
 
@@ -83,12 +91,17 @@ Every change must include:
 
 If your change affects:
 
-- **FS‑AGENT 4.0** → test path validation, safety prompts  
-- **NL Router 4.0** → test semantic routing and ambiguity handling  
-- **Workflow Engine 4.0** → test semantic transitions  
-- **Reasoning Engine 4.0** → test deterministic reasoning behavior  
-- **WIN‑CAP 4.0** → test safe fallback behavior  
-- **Plugin System 4.0** → test manifest, NL commands, tasks, workflows, GUI elements  
+- **FS‑AGENT 4.x** → test path validation, safety prompts  
+- **NL Router 4.x** → test semantic routing and ambiguity handling  
+- **Workflow Engine 4.x** → test semantic transitions  
+- **Reasoning Engine 4.x** → test deterministic reasoning behavior  
+- **WIN‑CAP 4.x** → test safe fallback behavior  
+- **Plugin System 4.x** → test manifest, NL commands, tasks, workflows, GUI elements  
+- **UI Automation Engine 4.3** →  
+  - fuzzy matching behavior  
+  - fallback logic  
+  - deterministic retries  
+  - safe OS‑level routing  
 - **SECURITY FAMILY 4.0** →  
   - identity classification (OWNER / FAMILY / STRANGER)  
   - time‑limit enforcement v2  
@@ -125,7 +138,8 @@ Restrictions:
 - PRs must not weaken SECURITY FAMILY 4.0 protections  
 - PRs must not interfere with SCHOOLWORK ENGINE 4.0  
 - PRs must not disable or bypass the Self‑Repair Layer  
-- PRs must not misuse Reasoning Engine 4.0  
+- PRs must not misuse Reasoning Engine 4.x  
+- **PRs must not compromise UI Automation Engine 4.3 safety rules**  
 
 ---
 
@@ -141,12 +155,13 @@ Restrictions:
 - unsafe filesystem or system operations  
 - code that relies on OS‑specific hacks  
 - contributions that reduce clarity or predictability  
-- plugins that violate Plugin API 4.0  
+- plugins that violate Plugin API 4.x  
 - attempts to disable FAMILY mode, time limits, or schoolwork engine  
 - attempts to weaken STRANGER‑mode protections  
 - attempts to bypass Identity Engine 2.0  
 - attempts to disable Self‑Repair Layer  
 - unsafe Reasoning Engine extensions  
+- **unsafe or non‑deterministic UI automation behavior**  
 
 ---
 
@@ -170,14 +185,15 @@ Guidelines:
 
 All contributions must respect:
 
-- **ARCHITECTURE.md (v4.0.0)**  
+- **ARCHITECTURE.md (v4.3.0)**  
 - **MODULE_MAP.md**  
 - **STYLEGUIDE.md**  
 - **SECURITY.md**  
-- **Plugin API 4.0**  
+- **Plugin API 4.x**  
 - **SECURITY FAMILY 4.0 design rules**  
 - **Schoolwork Engine 4.0 rules**  
 - **Self‑Repair Layer requirements**  
+- **UI Automation Engine 4.3 specifications**  
 
 Breaking architectural boundaries requires prior approval.
 
@@ -196,7 +212,7 @@ Avoid vague messages like “update”, “fix stuff”, “changes”.
 
 ---
 
-# 10. 🧒 Family Safety Requirements (v4.0.0)
+# 10. 🧒 Family Safety Requirements (v4.3.0)
 
 Contributors must respect the integrity of the **SECURITY FAMILY 4.0** module:
 
@@ -208,9 +224,10 @@ Contributors must respect the integrity of the **SECURITY FAMILY 4.0** module:
 - OWNER‑level actions must remain protected  
 - Identity Engine 2.0 must not be weakened  
 - Schoolwork Engine 4.0 must remain intact  
+- UI Automation Engine 4.3 must not perform unsafe actions  
 - no PR may weaken or circumvent these protections  
 
-Any PR affecting SECURITY FAMILY or SCHOOLWORK ENGINE must include **explicit safety tests**.
+Any PR affecting SECURITY FAMILY, SCHOOLWORK ENGINE, or UI Automation Engine must include **explicit safety tests**.
 
 ---
 
@@ -222,5 +239,5 @@ All contributions are accepted only in accordance with the project’s **MIT Lic
 
 # 📌 Document Status
 
-Current version: **4.0.0 (Stable)**  
-This document will evolve as new modules and capabilities are introduced in v4.x and v5.
+Current version: **4.3.0 (Expanded)**  
+Updated to reflect the **4.2 → 4.3 transition** and the new **UI Automation Engine 4.3**.
