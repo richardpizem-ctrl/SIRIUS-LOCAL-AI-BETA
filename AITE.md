@@ -8,7 +8,7 @@ AITE v4 ensures that the system instantly understands *any* user‑provided inpu
 
 # 🚀 MODULE STATUS — v4.0.0 (MAJOR REWRITE)
 
-AITE v4 is a complete architectural upgrade over v3:
+AITE v4 is a complete architectural upgrade over v3.
 
 ## 🔥 What’s new in v4.0.0
 - **OCR Engine** — reads text from images, screenshots, documents  
@@ -101,35 +101,35 @@ AITE v4 determines:
 
 AITE v4 cooperates with:
 
-### 🔹 **FS‑AGENT 4.0**
+### 🔹 FS‑AGENT 4.0
 - safe file operations  
 - semantic folder routing  
 
-### 🔹 **CME‑MEM 4.0**
+### 🔹 CME‑MEM 4.0
 - semantic metadata graph  
 - subject tags  
 - difficulty tags  
 
-### 🔹 **Workflow Engine 4.0**
+### 🔹 Workflow Engine 4.0
 - multi‑step academic workflows  
 - code workflows  
 - automation workflows  
 
-### 🔹 **SECURITY FAMILY 4.0**
+### 🔹 SECURITY FAMILY 4.0
 - identity‑aware triage  
 - schoolwork bypass  
 - STRANGER restrictions  
 
-### 🔹 **Reasoning Engine 4.0**
+### 🔹 Reasoning Engine 4.0
 - structured analysis  
 - explanation generation  
 - step‑by‑step reasoning  
 
-### 🔹 **Knowledge Packs 4.0**
+### 🔹 Knowledge Packs 4.0
 - domain‑specific routing  
 - subject‑aware processing  
 
-### 🔹 **ENVOY 4.0**
+### 🔹 ENVOY 4.0
 - safe external lookup for academic terms  
 - sanitized text‑only payloads  
 
