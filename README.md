@@ -35,7 +35,7 @@ modular AI, secure AI, natural language automation, Windows 11 tools,
 local assistant, AI agent, filesystem automation, plugin system,  
 identity engine, time‑limits, restricted mode, schoolwork engine,  
 SIRIUS LOCAL AI, ALFA, BETA, GAMA, Reasoning Engine, AITE 4.0, Self‑Repair Layer,  
-**password vault, encrypted vault, AES‑256‑GCM, secure credential storage**
+password vault, encrypted vault, AES‑256‑GCM, secure credential storage
 
 ---
 
@@ -97,123 +97,124 @@ Password Vault 4.0 is a **finalized, frozen module** and part of the Security Fa
 
 ---
 
-> [!IMPORTANT]
-> # 🔔 GAMA PUBLIC PREVIEW — 24‑HOUR GLOBAL ACCESS WINDOW
-> (unchanged)
-
----
-
-# 🆕 WHAT’S COMING IN VERSION 4.1.0 — SYSTEM INTELLIGENCE LAYER
-(unchanged)
-
----
-
-# 🧩 CORE PHILOSOPHY  
-(unchanged)
-
----
-
-# 🏗 ARCHITECTURE OVERVIEW (Runtime 4.0)
-(unchanged)
-
----
-
-# 🗺 ROADMAP
-- **v4.0.0** – Intelligent Runtime 2.0 + **Password Vault 4.0**  
-- **v4.1.0** – System Intelligence Layer  
-- **v4.2.0** – Semantic UI automation  
-- **v5.0.0** – Offline knowledge graph reasoning  
-
----
-
-# 🚀 UI Automation Engine – Runtime 4.2.0 Released
+# 🚀 UI Automation Engine – Runtime 4.2.0 (Released)
 
 The UI Automation Engine has been officially released as part of **SIRIUS Runtime 4.2.0**.  
 This milestone completes the entire vertical slice of UI automation and prepares the system for the upcoming 4.3.0 upgrade.
 
 ---
 
-## UI Automation Engine – Runtime 4.2.0
-
-This release introduces the complete UI Automation subsystem for SIRIUS Runtime.
-All modules are fully implemented, documented, and prepared for the upcoming 4.3.0 upgrade.
-
----
-
-## ✔ Included Modules
+## ✔ Included Modules (4.2.0)
 
 ### • UI Graph
-- Window tree abstraction
-- Fake OS elements for workflow testing
+- Window tree abstraction  
+- Fake OS elements for workflow testing  
 - Ready for WinCapabilities integration (4.3.0)
 
 ### • UI Parser
-- Element extraction and normalization
-- Exact, case‑insensitive and partial matching
+- Element extraction and normalization  
+- Exact, case‑insensitive and partial matching  
 - Prepared for fuzzy matching engine (4.3.0)
 
 ### • UI Actions
-- Deterministic UI operations (click, write, select, semantic)
-- Unified audit logging
-- Sandbox‑aware execution
+- Deterministic UI operations (click, write, select, semantic)  
+- Unified audit logging  
+- Sandbox‑aware execution  
 - Ready for real OS UI control (4.3.0)
 
 ### • UI Sandbox
-- Identity‑based permission model (OWNER / FAMILY / STRANGER / CHILD)
-- Deterministic security rules
-- Local audit trail
+- Identity‑based permission model (OWNER / FAMILY / STRANGER / CHILD)  
+- Deterministic security rules  
+- Local audit trail  
 - Ready for EventBus integration (4.3.0)
 
 ### • UI Workflow
-- Deterministic step engine (scan → parse → find → act)
-- Clean target resolution
-- Demo workflow included
+- Deterministic step engine (scan → parse → find → act)  
+- Clean target resolution  
+- Demo workflow included  
 - Ready for fallback logic (4.3.0)
 
 ---
 
-## ✔ Highlights
+## ✔ Highlights (4.2.0)
 
-- Fully isolated module (does not modify runtime core)
-- 100% deterministic behavior
-- Full English documentation across all modules
-- Unified architecture and naming conventions
-- Complete vertical slice demo (`demo_ok_click_workflow`)
-- Fully prepared for 4.3.0 upgrades
-
----
-
-## ✔ Next Milestone: Runtime 4.3.0
-
-- Fuzzy Matching Engine (Parser)
-- WinCapabilities OS UI control (Actions)
-- Workflow fallback engine
-- EventBus integration for audit logs
+- Fully isolated module  
+- 100% deterministic behavior  
+- Full English documentation  
+- Unified architecture  
+- Complete vertical slice demo  
+- Fully prepared for 4.3.0 upgrades  
 
 ---
 
-This release completes the entire UI Automation Engine 4.2.0 phase according to the roadmap.
+# 🚀 SIRIUS Runtime 4.3.0 – Semantic UI Automation Engine (Released)
+
+Version 4.3.0 replaces the previously planned 4.2.0 and introduces a complete,
+deterministic, semantic UI automation pipeline fully integrated with Runtime 4.0.
+
+---
+
+## 🔍 UIParser 4.3.0 – Fuzzy Matching Engine
+- multi‑strategy fuzzy matching  
+- confidence scoring  
+- semantic alias mapping  
+- deterministic element resolution  
+- ready for window graph reasoning  
+
+## 🔁 UIWorkflow 4.3.0 – Retry & Fallback Engine
+- confidence‑based action routing  
+- automatic retry logic  
+- fallback strategies  
+- multi‑stage resolution pipeline  
+- seamless integration with UIParser  
+
+## 🖱️ UIActions 4.3.0 – OS‑Aware Action Layer
+- unified action interface  
+- sandbox‑protected execution  
+- OS‑level routing via WinCapabilities  
+- deterministic fallback behavior  
+- extended audit logging  
+
+## 🪟 WinCapabilities 4.3.0 – OS UI Control Interface
+- safe adapter for OS‑level UI automation  
+- deterministic stubs  
+- ready for Win32/UIA/WinRT integration in 4.4.0  
+- unified logging and tracing  
+
+---
+
+## 🎯 Summary (4.3.0)
+Version 4.3.0 completes the entire Semantic UI Automation Engine:
+- fuzzy UI parsing  
+- workflow fallback logic  
+- semantic UI actions  
+- OS‑level routing  
+- sandbox enforcement  
+- deterministic execution  
+
+This is the most advanced UI automation layer ever implemented in SIRIUS.
+
+---
+
+# 🗺 ROADMAP
+- **v4.0.0** – Intelligent Runtime 2.0 + Password Vault 4.0  
+- **v4.1.0** – System Intelligence Layer  
+- **v4.2.0** – UI Automation Engine (Released)  
+- **v4.3.0** – Semantic UI Automation Engine (Released)  
+- **v5.0.0** – Offline Knowledge Graph Reasoning  
 
 ---
 
 # 📦 INSTALLATION  
 (unchanged)
 
----
-
 # ▶ USAGE  
 (unchanged)
-
----
 
 # 📝 LICENSE  
 MIT License.
 
----
-
 # 🔧 CONTRIBUTING  
 (unchanged)
-
----
 
 # 🔚 END OF README
