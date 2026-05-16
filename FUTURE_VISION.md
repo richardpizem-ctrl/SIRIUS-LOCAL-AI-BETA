@@ -1,11 +1,14 @@
-# 🌟 Future Vision (v4.0.0 and Beyond)
+# 🌟 Future Vision (v4.3.0 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, and fully local.
 
+This expanded v4.3.0 edition includes the completed **UI Automation Engine 4.3**, the transition from **4.2 → 4.3**, and updated long‑term goals.
+
 This document describes:
-1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0)  
-2. **What v4.0.0 introduces**  
-3. **Long‑term direction (v5.0.0 and beyond)**  
+1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0 → v4.3.0)  
+2. **What v4.0.0 introduced**  
+3. **What v4.3.0 added**  
+4. **Long‑term direction (v5.0.0 and beyond)**  
 
 All features remain:
 - 100% offline  
@@ -71,7 +74,7 @@ Delivered:
 
 ---
 
-# 🚀 2. Version 4.0.0 – Intelligent Runtime 2.0 (NEW)
+# 🚀 2. Version 4.0.0 – Intelligent Runtime 2.0
 
 Version 4.0.0 is the largest upgrade in the project’s history.  
 It introduces **semantic intelligence**, **self‑repair**, **offline reasoning**, and **safe online retrieval**.
@@ -182,7 +185,44 @@ ENVOY never sends local data outward.
 
 ---
 
-# 🚀 3. Long‑Term Vision (Beyond v4.0.0)
+# 🚀 3. Version 4.3.0 – Semantic UI Automation Engine (NEW)
+
+The originally planned **4.2.0** release was replaced by a full, expanded version:
+
+> **Version 4.3.0 – Complete UI Automation Engine**
+
+Delivered:
+
+### 🔍 UIParser 4.3.0
+- fuzzy matching  
+- semantic alias mapping  
+- confidence scoring  
+- deterministic element resolution  
+
+### 🔁 UIWorkflow 4.3.0
+- retry engine  
+- fallback logic  
+- multi‑stage resolution pipeline  
+- confidence‑based routing  
+
+### 🖱️ UIActions 4.3.0
+- unified action interface  
+- sandbox‑protected execution  
+- OS‑level routing  
+- deterministic fallback behavior  
+
+### 🪟 WinCapabilities 4.3.0
+- safe OS adapter  
+- deterministic stubs  
+- unified logging  
+- ready for Win32/UIA/WinRT integration  
+
+**Purpose:**  
+Extend SIRIUS into semantic, deterministic UI automation while preserving safety and identity rules.
+
+---
+
+# 🚀 4. Long‑Term Vision (Beyond v4.3.0)
 
 SIRIUS will evolve into:
 
@@ -214,7 +254,7 @@ SIRIUS will evolve into:
 ---
 
 ## 🧰 Developer Automation Expansion
-- UI automation  
+- real OS‑level UI automation (4.4+)  
 - IDE integration  
 - code refactoring engine  
 - offline documentation packs  
@@ -238,5 +278,5 @@ SIRIUS will evolve into:
 
 # 📄 Document Status
 
-Current version: **v4.0.0 (Stable)**  
-This document defines the long‑term evolution of SIRIUS LOCAL AI.
+Current version: **v4.3.0 (Expanded)**  
+Updated to reflect the **4.2 → 4.3 transition** and the new **UI Automation Engine 4.3**.
