@@ -1,16 +1,20 @@
 """
 UI Graph Module – Runtime 4.2.0
 
-Zodpovedá za:
-- čítanie UI stromu (window tree)
-- mapovanie okien a prvkov
-- vytváranie grafovej reprezentácie UI
+Responsible for:
+- reading the UI window tree
+- mapping windows and UI elements
+- building a graph representation of the UI
+
+This module currently uses fake data for testing.
+In Runtime 4.3 it will be connected to WinCapabilities
+for real OS‑level UI enumeration.
 """
 
 class FakeElement:
     """
-    Jednoduchý placeholder UI prvku.
-    Slúži na testovanie workflowu bez OS.
+    Simple placeholder UI element.
+    Used for workflow testing without OS integration.
     """
     def __init__(self, name, type="button", properties=None):
         self.name = name
@@ -23,17 +27,24 @@ class UIGraph:
         self.windows = []
         self.elements = []
 
+    # ------------------------------------------------------------
+    # WINDOW SCANNING
+    # ------------------------------------------------------------
     def scan_windows(self):
         """
-        Naskenuje všetky viditeľné okná v systéme.
-        Zatiaľ fake dáta – neskôr sa napojí na WinCapabilities.
+        Scans all visible windows in the system.
+        Currently returns fake data – will be replaced by
+        WinCapabilities integration in Runtime 4.3.
         """
         self.windows = ["MainWindow"]
 
+    # ------------------------------------------------------------
+    # GRAPH BUILDING
+    # ------------------------------------------------------------
     def build_graph(self):
         """
-        Vytvorí graf UI prvkov a ich vzťahov.
-        Zatiaľ fake prvky pre workflow test.
+        Builds the UI element graph and relationships.
+        Currently uses fake elements for workflow testing.
         """
         self.elements = [
             FakeElement("OK"),
@@ -42,9 +53,14 @@ class UIGraph:
             FakeElement("SearchBox", type="input"),
         ]
 
+    # ------------------------------------------------------------
+    # ELEMENT SEARCH
+    # ------------------------------------------------------------
     def find_element(self, query):
         """
-        Vyhľadá UI prvok podľa názvu, typu alebo vlastností.
+        Finds a UI element by name, type, or properties.
+        Basic exact match for now – extended matching will be
+        implemented in Runtime 4.3.
         """
         for el in self.elements:
             if el.name == query:
