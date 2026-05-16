@@ -1,85 +1,111 @@
 """
 UI Sandbox Module – Runtime 4.2.0
 
-Zodpovedá za:
-- bezpečnostné pravidlá pre UI akcie
-- kontrolu identity (OWNER / FAMILY / STRANGER / CHILD)
-- auditovanie UI operácií
-- povolenia pre kliky, zápisy, výbery a semantické akcie
+Responsible for:
+- security rules for UI actions
+- identity-based permission control (OWNER / FAMILY / STRANGER / CHILD)
+- auditing UI operations
+- permissions for click, write, select and semantic actions
 
-UI Sandbox je jediná vrstva, ktorá rozhoduje,
-či UI akcia môže byť vykonaná.
+UI Sandbox is the ONLY layer that decides
+whether a UI action is allowed to execute.
 """
 
 class UISandbox:
     def __init__(self, identity="OWNER"):
         """
-        identity: aktuálna identita používateľa
-        - OWNER   = plné práva
-        - FAMILY  = obmedzené UI akcie
-        - STRANGER = minimálne UI akcie
-        - CHILD   = veľmi obmedzené akcie
+        identity: current user identity
+        - OWNER    = full access
+        - FAMILY   = limited UI actions
+        - STRANGER = minimal UI actions
+        - CHILD    = very restricted actions
         """
         self.identity = identity
+        self.audit_log = []  # audit trail
 
+    # ------------------------------------------------------------
+    # MAIN PERMISSION LOGIC
+    # ------------------------------------------------------------
     def check_permission(self, action_type, target):
         """
-        Overí, či je akcia povolená podľa identity.
+        Checks whether the action is allowed based on identity.
         action_type: "click", "write", "select", "semantic"
-        target: UI prvok alebo názov akcie
+        target: UI element or semantic action name
         """
-        # OWNER má plný prístup
+        allowed = False
+
         if self.identity == "OWNER":
-            return True
+            allowed = True
 
-        # FAMILY – povolené len neškodné akcie
-        if self.identity == "FAMILY":
-            return self._family_rules(action_type, target)
+        elif self.identity == "FAMILY":
+            allowed = self._family_rules(action_type, target)
 
-        # STRANGER – extrémne obmedzené akcie
-        if self.identity == "STRANGER":
-            return self._stranger_rules(action_type, target)
+        elif self.identity == "STRANGER":
+            allowed = self._stranger_rules(action_type, target)
 
-        # CHILD – iba bezpečné akcie
-        if self.identity == "CHILD":
-            return self._child_rules(action_type, target)
+        elif self.identity == "CHILD":
+            allowed = self._child_rules(action_type, target)
 
-        return False
+        # audit the decision
+        self.audit(action_type, target, allowed)
+        return allowed
 
+    # ------------------------------------------------------------
+    # FAMILY RULES
+    # ------------------------------------------------------------
     def _family_rules(self, action_type, target):
         """
-        FAMILY môže:
-        - kliknúť na neškodné prvky
-        - písať len do bezpečných polí
-        - nemôže meniť systémové nastavenia
+        FAMILY can:
+        - click harmless elements
+        - write only into safe fields
+        - cannot trigger system-level semantic actions
         """
         if action_type == "semantic":
-            # zakázať systémové akcie
             if isinstance(target, str) and "settings" in target.lower():
                 return False
         return True
 
+    # ------------------------------------------------------------
+    # STRANGER RULES
+    # ------------------------------------------------------------
     def _stranger_rules(self, action_type, target):
         """
-        STRANGER môže:
-        - len čítať UI (žiadne akcie)
+        STRANGER can:
+        - read UI only (no actions allowed)
         """
         return False
 
+    # ------------------------------------------------------------
+    # CHILD RULES
+    # ------------------------------------------------------------
     def _child_rules(self, action_type, target):
         """
-        CHILD môže:
-        - kliknúť len na UI prvky označené ako bezpečné
-        - nesmie písať text
-        - nesmie otvárať nové okná
+        CHILD can:
+        - click only on elements marked as safe
+        - cannot write text
+        - cannot execute semantic actions
         """
         if action_type in ("write", "semantic"):
             return False
+
+        if action_type == "click":
+            if hasattr(target, "properties"):
+                return target.properties.get("safe", False)
+            return False
+
         return True
 
+    # ------------------------------------------------------------
+    # AUDIT
+    # ------------------------------------------------------------
     def audit(self, action_type, target, allowed):
         """
-        Audit log pre UI akcie.
-        (Zatiaľ len placeholder – neskôr sa napojí na EventBus.)
+        Audit log for UI actions.
+        (Currently local only – will be connected to EventBus later.)
         """
-        pass
+        entry = {
+            "action": action_type,
+            "target": getattr(target, "name", target),
+            "allowed": allowed,
+        }
+        self.audit_log.append(entry)
