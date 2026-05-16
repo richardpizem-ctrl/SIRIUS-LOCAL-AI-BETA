@@ -87,6 +87,12 @@ class UIWorkflow:
             return target
 
         return None
+
+
+# ------------------------------------------------------------
+# DEMO WORKFLOW – prvý vertikálny rez UI Automation Engine
+# ------------------------------------------------------------
+
 def demo_ok_click_workflow():
     """
     Jednoduchý demo workflow, ktorý prejde celým UI Automation Engine.
