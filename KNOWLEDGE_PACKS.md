@@ -1,4 +1,4 @@
-# 📦 KNOWLEDGE PACKS – SIRIUS LOCAL AI (v4.0.0)
+# 📦 KNOWLEDGE PACKS – SIRIUS LOCAL AI (v4.3.0 EXPANDED)
 
 Knowledge Packs are **modular, offline knowledge modules** used by SIRIUS LOCAL AI to provide safe, deterministic, domain‑specific intelligence without internet access.
 
@@ -16,6 +16,8 @@ They allow SIRIUS to expand its understanding of:
 Knowledge Packs are **fully local**, **sandboxed**, and **curated**.  
 They never execute code and never contain active content.
 
+Version **4.3.0** expands the Knowledge Pack system with improved semantic routing, deeper integration with the new **UI Automation Engine 4.3**, and enhanced ENVOY validation rules introduced during the **4.2 → 4.3 transition**.
+
 ---
 
 # 🧩 1. Purpose of Knowledge Packs
@@ -29,11 +31,9 @@ Knowledge Packs exist to:
 - allow safe, controlled updates  
 - keep all intelligence local and deterministic  
 
-They are the foundation of **SIRIUS 4.0 offline intelligence**.
+They are the foundation of **SIRIUS 4.x offline intelligence**.
 
 ---
-
-# 🏗 2. Structure of a Knowledge Pack
 pack_name/
 ├─ manifest.json
 ├─ data/
@@ -46,6 +46,8 @@ pack_name/
 └─ metadata/
 ├─ version.json
 └─ source_notes.txt
+# 🏗 2. Structure of a Knowledge Pack
+
 Each pack follows a strict, safe structure:
 
 ### ✔ No scripts  
@@ -131,7 +133,7 @@ Packs are placed into:
 /sirius/packs/<pack_name>/
 
 ## 6.2 Validation  
-Runtime Core 4.0 checks:
+Runtime Core 4.x checks:
 
 - manifest integrity  
 - version compatibility  
@@ -141,12 +143,13 @@ Runtime Core 4.0 checks:
 ## 6.3 Loading  
 Packs are loaded into:
 
-- Reasoning Engine 4.0  
-- Context Router 4.0  
+- Reasoning Engine 4.x  
+- Context Router 4.x  
 - Schoolwork Engine 4.0  
 - Device Diagnostics 2.0  
 - Cooking Advisor 4.0  
 - Home Assistant 4.0  
+- **UI Automation Engine 4.3 (NEW semantic routing hooks)**  
 
 ## 6.4 Updating  
 Updates come from:
@@ -160,11 +163,11 @@ Packs can be removed safely without affecting runtime.
 
 ---
 
-# 🧠 7. Knowledge Reasoning (v4.0.0)
+# 🧠 7. Knowledge Reasoning (v4.3.0)
 
 Knowledge Packs integrate with:
 
-### ✔ Offline Reasoning Engine 4.0  
+### ✔ Offline Reasoning Engine 4.x  
 - symbolic reasoning  
 - rule‑based logic  
 - chain‑of‑thought trees  
@@ -182,6 +185,11 @@ Knowledge Packs integrate with:
 - symptom‑to‑cause mapping  
 - troubleshooting trees  
 
+### ✔ UI Automation Engine 4.3 (NEW)  
+- semantic UI hints  
+- domain‑aware UI actions  
+- contextual automation  
+
 ---
 
 # 🛠 8. Creating a Knowledge Pack
@@ -192,8 +200,7 @@ my_pack/
 ├─ data/
 │   └─ facts.json
 └─ metadata/
-└─ version.json
-
+└─ version.json 
 Example `manifest.json`:
 
 ```json
@@ -204,7 +211,6 @@ Example `manifest.json`:
   "author": "Richard Pizem",
   "safe": true
 }
-
----
-
-
+📄 Document Status
+Version: 4.3.0 (Expanded)
+Updated to reflect the 4.2 → 4.3 transition and the new UI Automation Engine 4.3.
