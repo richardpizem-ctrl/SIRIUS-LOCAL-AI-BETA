@@ -1,65 +1,71 @@
 """
 UI Workflow Module – Runtime 4.2.0
 
-Zodpovedá za:
-- deterministické UI sekvencie
-- krokové workflowy (scan → parse → find → act)
-- fallback mechanizmy pri zlyhaní UI akcie
-- integráciu s UI Graph, UI Parser, UI Actions a UI Sandbox
+Responsible for:
+- deterministic UI sequences
+- step‑based workflows (scan → parse → find → act)
+- fallback mechanisms when UI actions fail
+- integration with UI Graph, UI Parser, UI Actions and UI Sandbox
 
-Workflow je najvyššia vrstva UI Automation Engine.
+The workflow engine is the highest layer of the UI Automation Engine.
 """
 
 class UIWorkflow:
     def __init__(self, graph, parser, actions, sandbox=None):
         """
-        graph: UIGraph
-        parser: UIParser
+        graph:   UIGraph
+        parser:  UIParser
         actions: UIActions
-        sandbox: UISandbox (voliteľné)
+        sandbox: UISandbox (optional)
         """
         self.graph = graph
         self.parser = parser
         self.actions = actions
         self.sandbox = sandbox
 
+    # ------------------------------------------------------------
+    # WORKFLOW EXECUTION
+    # ------------------------------------------------------------
     def run(self, steps):
         """
-        Spustí workflow definovaný ako zoznam krokov.
-        Každý krok je dict:
+        Executes a workflow defined as a list of steps.
+
+        Each step is a dict:
         {
             "action": "click" | "write" | "select" | "semantic",
             "target": "OK" | "Cancel" | {...},
-            "value": voliteľné (napr. text pre write)
+            "value": optional (e.g., text for write)
         }
         """
         for step in steps:
             if not self._execute_step(step):
-                return False  # workflow zlyhal
-        return True  # workflow úspešný
+                return False  # workflow failed
+        return True  # workflow succeeded
 
+    # ------------------------------------------------------------
+    # SINGLE STEP EXECUTION
+    # ------------------------------------------------------------
     def _execute_step(self, step):
         """
-        Vykoná jeden krok workflowu.
+        Executes a single workflow step.
         """
         action = step.get("action")
         target = step.get("target")
         value = step.get("value")
 
-        # 1. Naskenovať UI
+        # 1. Scan UI
         self.graph.scan_windows()
         self.graph.build_graph()
 
-        # 2. Naparsovať UI
+        # 2. Parse UI
         self.parser.parse_graph(self.graph)
 
-        # 3. Nájsť cieľový prvok
+        # 3. Resolve target element
         element = self._resolve_target(target)
-
         if not element:
             return False
 
-        # 4. Vykonať akciu
+        # 4. Execute action
         if action == "click":
             return self.actions.click(element)
 
@@ -74,29 +80,32 @@ class UIWorkflow:
 
         return False
 
+    # ------------------------------------------------------------
+    # TARGET RESOLUTION
+    # ------------------------------------------------------------
     def _resolve_target(self, target):
         """
-        Preloží názov alebo štruktúru cieľa na UI prvok.
+        Resolves a target name or structure into a UI element.
         """
         if isinstance(target, str):
             results = self.parser.find(name=target)
             return results[0] if results else None
 
         if isinstance(target, dict):
-            # budúce rozšírenie pre komplexné dotazy
+            # future extension for complex queries
             return target
 
         return None
 
 
 # ------------------------------------------------------------
-# DEMO WORKFLOW – prvý vertikálny rez UI Automation Engine
+# DEMO WORKFLOW – first vertical slice of the UI Automation Engine
 # ------------------------------------------------------------
 
 def demo_ok_click_workflow():
     """
-    Jednoduchý demo workflow, ktorý prejde celým UI Automation Engine.
-    Používa fake UI strom z UIGraph.
+    Simple demo workflow that runs through the entire UI Automation Engine.
+    Uses fake UI elements from UIGraph.
     """
     from .ui_graph import UIGraph
     from .ui_parser import UIParser
