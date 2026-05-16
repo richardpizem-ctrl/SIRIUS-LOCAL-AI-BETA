@@ -87,3 +87,30 @@ class UIWorkflow:
             return target
 
         return None
+def demo_ok_click_workflow():
+    """
+    Jednoduchý demo workflow, ktorý prejde celým UI Automation Engine.
+    Používa fake UI strom z UIGraph.
+    """
+    from .ui_graph import UIGraph
+    from .ui_parser import UIParser
+    from .ui_actions import UIActions
+    from .ui_sandbox import UISandbox
+
+    graph = UIGraph()
+    parser = UIParser()
+    sandbox = UISandbox(identity="OWNER")
+    actions = UIActions(sandbox=sandbox)
+
+    workflow = UIWorkflow(
+        graph=graph,
+        parser=parser,
+        actions=actions,
+        sandbox=sandbox
+    )
+
+    steps = [
+        {"action": "click", "target": "OK"}
+    ]
+
+    return workflow.run(steps)
