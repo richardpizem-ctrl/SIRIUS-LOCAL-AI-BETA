@@ -1,23 +1,23 @@
 """
 UI Actions Module – Runtime 4.2.0
 
-Zodpovedá za:
-- vykonávanie UI akcií (klik, write, select…)
-- semantické akcie (open settings, confirm, cancel…)
-- bezpečné volanie cez UI Sandbox
-- integráciu s UI Parser a UI Graph
+Responsible for:
+- executing UI actions (click, write, select…)
+- semantic actions (open_settings, confirm, cancel…)
+- safe invocation through the UI Sandbox
+- integration with UI Parser and UI Graph
 
-Tento modul NEPRACUJE priamo s OS.
-Všetky akcie idú cez bezpečnostnú vrstvu (UI Sandbox).
+This module DOES NOT interact with the OS directly.
+All actions must pass through the security layer (UI Sandbox).
 """
 
 class UIActions:
     def __init__(self, sandbox=None):
         self.sandbox = sandbox
-        self.last_log = []  # jednoduchý audit trail
+        self.last_log = []  # simple audit trail
 
     # ------------------------------------------------------------
-    # INTERNÝ LOGOVACÍ MECHANIZMUS
+    # INTERNAL LOGGING MECHANISM
     # ------------------------------------------------------------
     def _log(self, action_type, element=None, value=None, result=True):
         entry = {
@@ -30,47 +30,47 @@ class UIActions:
         return entry
 
     # ------------------------------------------------------------
-    # HLAVNÉ UI AKCIE
+    # PRIMARY UI ACTIONS
     # ------------------------------------------------------------
     def click(self, element):
         """
-        Klikne na UI prvok.
+        Performs a click on a UI element.
         """
         if not self._allowed("click", element):
             self._log("click", element, result=False)
             return False
 
-        # TODO: implementovať cez VYSLANEC / WinCapabilities
+        # TODO: implement via ENVOY / WinCapabilities
         self._log("click", element, result=True)
         return True
 
     def write(self, element, text):
         """
-        Zapíše text do UI prvku.
+        Writes text into a UI element.
         """
         if not self._allowed("write", element):
             self._log("write", element, value=text, result=False)
             return False
 
-        # TODO: implementovať bezpečné zapisovanie
+        # TODO: implement safe text input
         self._log("write", element, value=text, result=True)
         return True
 
     def select(self, element, option):
         """
-        Vyberie položku z menu alebo zoznamu.
+        Selects an option from a menu or list.
         """
         if not self._allowed("select", element):
             self._log("select", element, value=option, result=False)
             return False
 
-        # TODO: implementovať výber položky
+        # TODO: implement option selection
         self._log("select", element, value=option, result=True)
         return True
 
     def semantic(self, action_name, context=None):
         """
-        Semantické akcie typu:
+        Executes a semantic UI action:
         - open_settings
         - confirm
         - cancel
@@ -81,7 +81,7 @@ class UIActions:
             self._log("semantic", action_name, result=False)
             return False
 
-        # TODO: implementovať mapovanie semantických akcií
+        # TODO: implement semantic action mapping
         self._log("semantic", action_name, result=True)
         return True
 
@@ -90,7 +90,7 @@ class UIActions:
     # ------------------------------------------------------------
     def _allowed(self, action_type, target):
         """
-        Overí, či je akcia povolená podľa UI Sandbox.
+        Checks whether the action is allowed by the UI Sandbox.
         """
         if self.sandbox:
             return self.sandbox.check_permission(action_type, target)
