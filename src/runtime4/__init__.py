@@ -33,4 +33,5 @@ __all__ = [
     "reasoning",
     "automation",
     "diagnostics",
+    "ui_automation",   # ← PRIDANÉ: UI Automation Engine 4.2.0
 ]
