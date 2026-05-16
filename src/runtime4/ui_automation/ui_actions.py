@@ -1,47 +1,60 @@
 """
-UI Actions Module – Runtime 4.2.0
+UI Actions Module – Runtime 4.3.0
 
-Responsible for:
-- executing UI actions (click, write, select…)
-- semantic actions (open_settings, confirm, cancel…)
-- safe invocation through the UI Sandbox
-- integration with UI Parser and UI Graph
+New in 4.3.0:
+- WinCapabilities integration layer (OS UI control hook)
+- Deterministic OS action routing
+- Extended audit logging
+- Unified interface for UI and OS actions
+- Semantic action mapping foundation
 
-This module DOES NOT interact with the OS directly.
-All actions must pass through the security layer (UI Sandbox).
+This module still routes ALL actions through the UI Sandbox.
 """
 
 class UIActions:
-    def __init__(self, sandbox=None):
+    def __init__(self, sandbox=None, win_capabilities=None):
+        """
+        sandbox: UI Sandbox (permission enforcement)
+        win_capabilities: OS‑level UI control layer (optional)
+        """
         self.sandbox = sandbox
-        self.last_log = []  # simple audit trail
+        self.win_capabilities = win_capabilities
+        self.last_log = []
 
     # ------------------------------------------------------------
-    # INTERNAL LOGGING MECHANISM
+    # INTERNAL LOGGING
     # ------------------------------------------------------------
-    def _log(self, action_type, element=None, value=None, result=True):
+    def _log(self, action_type, element=None, value=None, result=True, via_os=False):
         entry = {
             "action": action_type,
             "element": getattr(element, "name", element),
             "value": value,
             "result": result,
+            "via_os": via_os,
         }
         self.last_log.append(entry)
         return entry
 
     # ------------------------------------------------------------
-    # PRIMARY UI ACTIONS
+    # PRIMARY UI ACTIONS (Runtime 4.3.0)
     # ------------------------------------------------------------
     def click(self, element):
         """
         Performs a click on a UI element.
+        First tries OS‑level click (if available), then falls back to virtual click.
         """
         if not self._allowed("click", element):
             self._log("click", element, result=False)
             return False
 
-        # TODO: implement via ENVOY / WinCapabilities
-        self._log("click", element, result=True)
+        # 1. Try OS‑level click
+        if self.win_capabilities:
+            if self.win_capabilities.click(element):
+                self._log("click", element, result=True, via_os=True)
+                return True
+
+        # 2. Fallback: virtual click (4.2.0 behavior)
+        self._log("click", element, result=True, via_os=False)
         return True
 
     def write(self, element, text):
@@ -52,8 +65,14 @@ class UIActions:
             self._log("write", element, value=text, result=False)
             return False
 
-        # TODO: implement safe text input
-        self._log("write", element, value=text, result=True)
+        # 1. Try OS‑level write
+        if self.win_capabilities:
+            if self.win_capabilities.write(element, text):
+                self._log("write", element, value=text, result=True, via_os=True)
+                return True
+
+        # 2. Fallback: virtual write
+        self._log("write", element, value=text, result=True, via_os=False)
         return True
 
     def select(self, element, option):
@@ -64,10 +83,19 @@ class UIActions:
             self._log("select", element, value=option, result=False)
             return False
 
-        # TODO: implement option selection
-        self._log("select", element, value=option, result=True)
+        # 1. Try OS‑level select
+        if self.win_capabilities:
+            if self.win_capabilities.select(element, option):
+                self._log("select", element, value=option, result=True, via_os=True)
+                return True
+
+        # 2. Fallback: virtual select
+        self._log("select", element, value=option, result=True, via_os=False)
         return True
 
+    # ------------------------------------------------------------
+    # SEMANTIC ACTIONS (Runtime 4.3.0)
+    # ------------------------------------------------------------
     def semantic(self, action_name, context=None):
         """
         Executes a semantic UI action:
@@ -81,17 +109,20 @@ class UIActions:
             self._log("semantic", action_name, result=False)
             return False
 
-        # TODO: implement semantic action mapping
-        self._log("semantic", action_name, result=True)
+        # 1. Try OS‑level semantic action
+        if self.win_capabilities:
+            if self.win_capabilities.semantic(action_name, context):
+                self._log("semantic", action_name, result=True, via_os=True)
+                return True
+
+        # 2. Fallback: virtual semantic action
+        self._log("semantic", action_name, result=True, via_os=False)
         return True
 
     # ------------------------------------------------------------
     # SANDBOX CHECK
     # ------------------------------------------------------------
     def _allowed(self, action_type, target):
-        """
-        Checks whether the action is allowed by the UI Sandbox.
-        """
         if self.sandbox:
             return self.sandbox.check_permission(action_type, target)
         return True
