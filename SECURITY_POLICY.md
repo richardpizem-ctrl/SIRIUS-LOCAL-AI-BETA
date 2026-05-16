@@ -1,7 +1,8 @@
-# 🔐 SECURITY POLICY – SIRIUS LOCAL AI (v3.0.0)
+# 🔐 SECURITY POLICY – SIRIUS LOCAL AI (v3.0.0 → 4.3.0 EXPANDED)
 
 This document defines the **security rules, guarantees, and responsibilities** for users and contributors of **SIRIUS LOCAL AI**.  
-Version **3.0.0** introduces identity‑based protection, Schoolwork Priority Mode, and the SECURITY FAMILY module.
+Version **3.0.0** introduced identity‑based protection, Schoolwork Priority Mode, and the SECURITY FAMILY module.  
+Versions **4.2.0 and 4.3.0** expand the security model with **UI Sandbox**, **semantic UI safety**, and **OS‑aware action isolation**.
 
 All processing is fully local; no data leaves the user’s PC.
 
@@ -45,7 +46,7 @@ The SECURITY FAMILY module provides **identity‑based safety**.
 - integration with NL Router, AITE, FS‑AGENT, WIN‑CAP  
 - **time‑based limits for children**  
 - **Schoolwork Priority Mode (schoolwork always allowed)**  
-- **Password Vault 4.0 access enforcement** ← *NEW*  
+- **Password Vault 4.0 access enforcement**  
   - OWNER: full read/write/delete  
   - FAMILY: read‑only  
   - STRANGER: blocked  
@@ -105,12 +106,76 @@ Password Vault 4.0 is a **fully offline, encrypted, identity‑aware credential 
 
 ---
 
-# 10. 📄 Supported Versions
-(unchanged)
+# 10. 🛡 NEW SECURITY SURFACE (v4.2.0 → v4.3.0)
+
+Versions **4.2.0 and 4.3.0** introduce the **UI Automation Engine**, which adds a new security layer.  
+All UI‑level actions are strictly sandboxed, identity‑aware, and deterministic.
 
 ---
 
-# 11. 📌 Document Status
+## 🔐 10.1 UI Sandbox Security (v4.2.0)
 
-Current version: **3.0.0 (Stable)**  
-This policy evolves with new modules and capabilities, including the new **Password Vault 4.0**.
+The UI Sandbox enforces identity‑based restrictions for all UI automation tasks.
+
+### Guarantees:
+- OWNER / FAMILY / STRANGER / CHILD permission model  
+- deterministic allow/deny rules  
+- no direct OS UI access  
+- no elevated privileges  
+- no kernel‑level operations  
+- local audit trail for every UI action  
+
+### Threat Protections:
+- prevents uncontrolled UI interaction  
+- blocks unsafe click/write/select operations  
+- prevents UI automation from bypassing SECURITY FAMILY  
+- no persistent hooks or global listeners  
+
+---
+
+## 🔐 10.2 Semantic UI Automation Security (v4.3.0)
+
+Version 4.3.0 introduces **semantic UI safety**, ensuring that UI actions are predictable and safe.
+
+### UIParser 4.3.0 (Fuzzy Matching Engine)
+- prevents mis‑clicks via confidence scoring  
+- semantic alias mapping avoids ambiguous targets  
+- deterministic element resolution  
+
+### UIWorkflow 4.3.0 (Retry & Fallback Engine)
+- bounded retry logic  
+- deterministic fallback behavior  
+- no infinite loops  
+- no uncontrolled UI sequences  
+
+### UIActions 4.3.0 (OS‑Aware Action Layer)
+- routed through WinCapabilities (safe adapter)  
+- sandbox‑protected execution  
+- extended audit logging  
+- no raw Win32/UIA calls  
+
+### WinCapabilities 4.3.0
+- safe OS UI control interface  
+- deterministic stubs (no real OS interaction yet)  
+- unified logging and tracing  
+
+---
+
+## 🔐 10.3 Threat Protections Added in 4.2–4.3
+
+- no direct access to OS automation APIs  
+- no uncontrolled input injection  
+- no background UI scanning  
+- no persistent system hooks  
+- no global keyboard/mouse listeners  
+- no elevated or privileged UI operations  
+- all UI actions must pass identity checks  
+- all UI actions must pass sandbox rules  
+- all UI actions must be logged  
+
+---
+
+# 11. 📄 Document Status
+
+**Version:** 3.0.0 (Expanded with 4.2.0–4.3.0 security layers)  
+This policy now includes the new **Password Vault 4.0**, **UI Sandbox 4.2.0**, and **Semantic UI Automation Security 4.3.0**.
