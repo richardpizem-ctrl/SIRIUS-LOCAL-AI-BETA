@@ -1,13 +1,15 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.0 Converter
+SIRIUS LOCAL AI – ENVOY 4.3 Converter
 
 Responsible for:
 - converting validated ENVOY payloads into Knowledge Pack 2.0 format
 - extracting data and metadata
 - preparing packs for loading and linking
-- ensuring structural compatibility
+- enforcing Security Family 4.4 rules
+- ensuring structural and semantic compatibility
+- providing deterministic, safe conversion
 
-This is the conversion layer of ENVOY 4.0.
+This is the conversion layer of ENVOY 4.3.
 """
 
 from typing import Dict, Any
@@ -16,10 +18,17 @@ from typing import Dict, Any
 class EnvoyConverter4:
     """
     Converts ENVOY payloads into Knowledge Pack 2.0 structures.
+    Provides:
+    - strict validation
+    - structured error surface
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
     def __init__(self, max_content_size: int = 500_000):
         self.max_content_size = max_content_size
+        self.degraded_mode = False
+        self.safe_mode = False
 
     # ---------------------------------------------------------
     # INTERNAL SAFETY CHECKS
@@ -28,23 +37,16 @@ class EnvoyConverter4:
     def _is_safe_content(self, content: Any) -> bool:
         """Validates ENVOY content before conversion."""
 
-        # Content must be dict or string
         if not isinstance(content, (dict, str)):
             return False
 
-        # If dict, validate keys and values
         if isinstance(content, dict):
             for key, value in content.items():
-
-                # Keys must be strings
                 if not isinstance(key, str) or not key.strip():
                     return False
-
-                # Values must be safe types
                 if isinstance(value, (bytes, bytearray, type(lambda: None))):
                     return False
 
-        # If string, ensure it's not too large
         if isinstance(content, str) and len(content) > self.max_content_size:
             return False
 
@@ -56,7 +58,6 @@ class EnvoyConverter4:
         if not isinstance(meta, dict):
             return False
 
-        # Validate required fields
         source = meta.get("source")
         version = meta.get("version")
 
@@ -72,37 +73,56 @@ class EnvoyConverter4:
     # CONVERSION
     # ---------------------------------------------------------
 
-    def convert(self, payload: Dict[str, Any]):
+    def convert(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
         Converts an ENVOY payload into a Knowledge Pack 2.0 structure.
-        Includes full Runtime 4.0 security validation.
+        Includes full Runtime 4.3 security validation.
         """
 
-        # Validate payload type
-        if not isinstance(payload, dict):
-            return {"error": "invalid_payload_type"}
+        # SAFE MODE
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "ENVOY conversion disabled in safe-mode."
+            }
 
-        # Extract fields
+        # Validate payload
+        if not isinstance(payload, dict):
+            return {"status": "error", "code": "invalid_payload_type"}
+
         content = payload.get("content")
         meta = payload.get("meta", {})
         ptype = payload.get("type", "unknown")
 
         # Validate content
         if not self._is_safe_content(content):
-            return {"error": "invalid_or_unsafe_content"}
+            return {"status": "error", "code": "invalid_or_unsafe_content"}
 
         # Validate metadata
         if not self._is_safe_meta(meta):
-            return {"error": "invalid_or_unsafe_meta"}
+            return {"status": "error", "code": "invalid_or_unsafe_meta"}
 
-        # Build pack
-        pack = {
-            "data": content if isinstance(content, dict) else {"content": content},
-            "meta": {
-                "version": meta.get("version", "1.0"),
-                "type": ptype if isinstance(ptype, str) else "unknown",
-                "source": meta.get("source", "envoy")
+        try:
+            # Build Knowledge Pack 2.0 structure
+            pack = {
+                "data": content if isinstance(content, dict) else {"content": content},
+                "meta": {
+                    "version": meta.get("version", "1.0"),
+                    "type": ptype if isinstance(ptype, str) else "unknown",
+                    "source": meta.get("source", "envoy")
+                }
             }
-        }
 
-        return pack
+            return {
+                "status": "success",
+                "pack": pack,
+                "degraded_mode": self.degraded_mode
+            }
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "conversion_failed",
+                "exception": str(exc)
+            }
