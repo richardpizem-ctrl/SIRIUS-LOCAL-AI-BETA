@@ -1,15 +1,27 @@
 """
-SIRIUS LOCAL AI – Modules Package
----------------------------------
-This package contains all functional modules used by the SIRIUS runtime.
+SIRIUS LOCAL AI – Modules Package 4.3
+-------------------------------------
+This package contains all functional modules used by the
+SIRIUS Runtime 4.x.
 
 Modules in this package provide:
 - command parsing and routing
 - editor and filesystem operations
 - workflow automation
 - module-level capabilities for the runtime engine
+- deterministic behavior for Runtime4
+- Self‑Repair 4.4 compatibility
 
-All modules are dynamically discovered by runtime.loader and should not
-perform side-effects on import. Initialization is handled by module_base
-and runtime_manager.
+Notes:
+- All modules are dynamically discovered by runtime.loader.
+- No imports are performed here to avoid side-effects on import.
+- Initialization is handled by module_base and runtime_manager.
 """
+
+__all__ = [
+    "command_parser",
+    "command_router",
+    "editor_module",
+    "fs_module",
+    "workflow_module",
+]
