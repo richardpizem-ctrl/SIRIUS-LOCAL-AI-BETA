@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.0 Dependency Graph
+SIRIUS LOCAL AI – Runtime 4.3 Dependency Graph
 
 Responsible for:
 - module dependencies
@@ -9,7 +9,7 @@ Responsible for:
 - safe‑mode restrictions
 - schoolwork priority overrides
 
-This component ensures deterministic and safe execution flow.
+This component ensures deterministic, safe and Self‑Repair‑ready execution flow.
 """
 
 from typing import Any, Dict, List
@@ -17,18 +17,22 @@ from typing import Any, Dict, List
 
 class DependencyGraph4:
     """
-    Graph-based dependency manager for Runtime 4.0.
+    Graph-based dependency manager for Runtime 4.3.
     Tracks relationships between modules and tasks.
+    Provides:
+    - strict validation
+    - structured error surface
+    - deterministic topological sorting
+    - cycle diagnostics
+    - safe-mode compatibility
     """
 
     def __init__(self, max_modules: int = 300):
-        # Graph stored as adjacency list:
-        # { "module": ["depends_on_A", "depends_on_B"] }
         self.graph: Dict[str, List[str]] = {}
         self.max_modules = max_modules
 
     # ---------------------------------------------------------
-    # INTERNAL VALIDATION HELPERS
+    # VALIDATION HELPERS
     # ---------------------------------------------------------
 
     def _validate_name(self, name: Any) -> bool:
@@ -54,73 +58,73 @@ class DependencyGraph4:
     # GRAPH MANAGEMENT
     # ---------------------------------------------------------
 
-    def add_module(self, name: str):
+    def add_module(self, name: str) -> Dict[str, Any]:
         """Registers a module in the dependency graph with safety checks."""
 
         if not self._validate_name(name):
-            return {"error": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name"}
 
         if len(self.graph) >= self.max_modules:
-            return {"error": "module_limit_reached"}
+            return {"status": "error", "code": "module_limit_reached"}
 
         if name not in self.graph:
             self.graph[name] = []
 
-        return {"status": "module_added"}
+        return {"status": "success", "module": name}
 
-    def add_dependency(self, module: str, depends_on: str):
+    def add_dependency(self, module: str, depends_on: str) -> Dict[str, Any]:
         """
         Declares that `module` depends on `depends_on`.
         Prevents duplicate dependencies and invalid names.
         """
 
         if not self._validate_name(module):
-            return {"error": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name"}
 
         if not self._validate_dependency(depends_on):
-            return {"error": "invalid_dependency_name"}
+            return {"status": "error", "code": "invalid_dependency_name"}
 
-        # Prevent self-dependency
         if module == depends_on:
-            return {"error": "self_dependency_not_allowed"}
+            return {"status": "error", "code": "self_dependency_not_allowed"}
 
-        # Ensure module exists
         if module not in self.graph:
             self.graph[module] = []
 
-        # Ensure dependency exists
         if depends_on not in self.graph:
             self.graph[depends_on] = []
 
-        # Prevent duplicates
         if depends_on not in self.graph[module]:
             self.graph[module].append(depends_on)
 
-        return {"status": "dependency_added"}
+        return {"status": "success", "module": module, "depends_on": depends_on}
 
-    def get_dependencies(self, module: str):
-        """Returns all modules that the given module depends on."""
+    def get_dependencies(self, module: str) -> List[str]:
         if not self._validate_name(module):
             return []
         return self.graph.get(module, [])
 
     # ---------------------------------------------------------
-    # EXECUTION ORDER
+    # EXECUTION ORDER (TOPOLOGICAL SORT)
     # ---------------------------------------------------------
 
-    def resolve_order(self):
+    def resolve_order(self) -> Dict[str, Any]:
         """
         Performs a topological sort to determine safe execution order.
-        Includes cycle detection and graph integrity validation.
+        Returns structured result with telemetry and diagnostics.
         """
 
         # Validate graph structure
         if not self._validate_graph_integrity():
-            return {"error": "invalid_graph_structure"}
+            return {"status": "error", "code": "invalid_graph_structure"}
 
-        # Detect cycles first
-        if self.has_cycles():
-            return {"error": "cycle_detected"}
+        # Detect cycles
+        cycle_info = self._detect_cycle_path()
+        if cycle_info:
+            return {
+                "status": "error",
+                "code": "cycle_detected",
+                "cycle": cycle_info,
+            }
 
         visited = set()
         order = []
@@ -131,12 +135,7 @@ class DependencyGraph4:
             visited.add(node)
 
             deps = self.graph.get(node, [])
-            if not isinstance(deps, list):
-                raise ValueError("Invalid dependency list type")
-
             for dep in deps:
-                if not self._validate_dependency(dep):
-                    raise ValueError("Invalid dependency name")
                 visit(dep)
 
             order.append(node)
@@ -144,44 +143,47 @@ class DependencyGraph4:
         for module in list(self.graph.keys()):
             visit(module)
 
-        return order
+        return {
+            "status": "success",
+            "order": order,
+            "modules": len(order),
+        }
 
     # ---------------------------------------------------------
-    # VALIDATION
+    # CYCLE DETECTION WITH DIAGNOSTICS
     # ---------------------------------------------------------
 
-    def has_cycles(self) -> bool:
+    def _detect_cycle_path(self):
         """
-        Detects circular dependencies with full safety validation.
+        Returns the cycle path if a cycle exists, otherwise None.
         """
 
         visited = set()
-        stack = set()
+        stack = []
 
         def visit(node):
-            if not self._validate_name(node):
-                return True  # invalid node = unsafe
-
             if node in stack:
-                return True
+                # Return cycle path
+                cycle_start = stack.index(node)
+                return stack[cycle_start:] + [node]
 
             if node in visited:
-                return False
+                return None
 
             visited.add(node)
-            stack.add(node)
+            stack.append(node)
 
-            deps = self.graph.get(node, [])
-            if not isinstance(deps, list):
-                return True
+            for dep in self.graph.get(node, []):
+                result = visit(dep)
+                if result:
+                    return result
 
-            for dep in deps:
-                if not self._validate_dependency(dep):
-                    return True
-                if visit(dep):
-                    return True
+            stack.pop()
+            return None
 
-            stack.remove(node)
-            return False
+        for module in self.graph:
+            result = visit(module)
+            if result:
+                return result
 
-        return any(visit(m) for m in self.graph)
+        return None
