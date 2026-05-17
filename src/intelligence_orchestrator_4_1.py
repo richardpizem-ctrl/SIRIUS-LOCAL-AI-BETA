@@ -1,48 +1,43 @@
-"""
-Intelligence Orchestrator 4.1
------------------------------
-
-High-level intelligence layer for SIRIUS LOCAL AI v4.1.0.
-
-Purpose:
-- run all 4.1 diagnostic engines as a single pipeline
-- aggregate and prioritize issues across health / drivers / tasks / services
-- attach human-readable explanations from Education Engine 4.1
-- prepare a prioritized action plan for System Agent 4.1
-- optionally simulate execution via System Agent (dry-run by default)
-
-This module:
-- DOES NOT perform any direct OS operations
-- delegates all system-changing actions to SystemAgent41
-- is deterministic, offline, and fully isolated
-"""
+# intelligence_orchestrator_4_3.py
+# SIRIUS LOCAL AI – Intelligence Orchestrator 4.3.x
+# High-level, AI-aware orchestration layer (deterministic, safe-mode compatible)
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Dict, Any, Literal
+from typing import List, Dict, Any, Literal, Optional
 import time
 
-from system_health_engine_4_1 import SystemHealthEngine41, HealthIssue, HealthReport
-from driver_manager_engine_4_1 import DriverManagerEngine41, DriverIssue, DriverReport
-from task_manager_engine_4_1 import TaskManagerEngine41, TaskIssue, TaskReport
-from service_manager_engine_4_1 import ServiceManagerEngine41, ServiceIssue, ServiceReport
-from education_engine_4_1 import (
-    EducationEngine41,
+from system_health_engine_4_3 import SystemHealthEngine43, HealthIssue, HealthReport
+from driver_manager_engine_4_3 import DriverManagerEngine43, DriverIssue, DriverReport
+from task_manager_engine_4_3 import TaskManagerEngine43, TaskIssue, TaskReport
+from service_manager_engine_4_3 import ServiceManagerEngine43, ServiceIssue, ServiceReport
+from education_engine_4_3 import (
+    EducationEngine43,
     EducationBundle,
     ExplanationBlock,
     IdentityType,
 )
-from system_agent_4_1 import SystemAgent41, AgentAction, AgentResult, ActionType
+from system_agent_4_3 import (
+    SystemAgent43,
+    AgentAction,
+    AgentResult,
+    ActionType,
+)
 
 
 Severity = Literal["info", "warning", "critical"]
 
 
+# ---------------------------------------------------------
+# DATA STRUCTURES
+# ---------------------------------------------------------
+
 @dataclass
 class PrioritizedItem:
     """
     Unified representation of a problem across all diagnostic domains.
+    AI-aware priority model (4.3.x).
     """
     id: str
     domain: str  # "health" | "drivers" | "tasks" | "services"
@@ -52,6 +47,7 @@ class PrioritizedItem:
     priority_score: int
     explanation: str
     suggested_actions: List[str] = field(default_factory=list)
+    metadata: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -67,97 +63,145 @@ class OrchestrationPlan:
     issues: List[PrioritizedItem]
     actions: List[AgentAction]
     dry_run: bool
+    safe_mode: bool = False
+    degraded_mode: bool = False
 
 
-class IntelligenceOrchestrator41:
+# ---------------------------------------------------------
+# ORCHESTRATOR
+# ---------------------------------------------------------
+
+class IntelligenceOrchestrator43:
     """
-    Intelligence Orchestrator 4.1
+    Intelligence Orchestrator 4.3.x
 
-    - coordinates all 4.1 diagnostic engines
-    - aggregates and prioritizes issues
-    - prepares actions for SystemAgent41
-    - does not perform direct OS operations
+    Responsibilities:
+        - Run all 4.3 diagnostic engines as a single pipeline
+        - Aggregate and prioritize issues across domains
+        - Attach human-readable explanations from Education Engine 4.3
+        - Build AI-aware, identity-aware action plans for SystemAgent43
+        - Remain deterministic, offline, and fully isolated
+        - Support safe-mode and degraded-mode behavior
     """
 
     def __init__(self, dry_run: bool = True) -> None:
         # Engines
-        self.health_engine = SystemHealthEngine41()
-        self.driver_engine = DriverManagerEngine41()
-        self.task_engine = TaskManagerEngine41()
-        self.service_engine = ServiceManagerEngine41()
-        self.education_engine = EducationEngine41()
-        self.agent = SystemAgent41(dry_run=dry_run)
+        self.health_engine = SystemHealthEngine43()
+        self.driver_engine = DriverManagerEngine43()
+        self.task_engine = TaskManagerEngine43()
+        self.service_engine = ServiceManagerEngine43()
+        self.education_engine = EducationEngine43()
+        self.agent = SystemAgent43(dry_run=dry_run)
 
         self.dry_run = dry_run
+        self.safe_mode = False
+        self.degraded_mode = False
 
-        # Simple severity → base priority mapping
-        self._severity_weight = {
+        # Base severity weights
+        self._severity_weight: Dict[Severity, int] = {
             "critical": 100,
             "warning": 50,
             "info": 10,
         }
 
-    # -------------------------------------------------------------------------
+        # Domain importance (health > drivers > tasks > services)
+        self._domain_weight: Dict[str, int] = {
+            "health": 30,
+            "drivers": 25,
+            "tasks": 15,
+            "services": 10,
+        }
+
+    # ---------------------------------------------------------
     # PUBLIC API
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
 
     def build_plan(self, identity: IdentityType = "OWNER") -> OrchestrationPlan:
         """
         Run full diagnostics, build explanations, prioritize issues,
         and prepare a list of agent actions (not executed).
+        Deterministic, safe-mode aware, error-safe.
         """
 
-        # 1) Run diagnostics
-        health_report = self.health_engine.analyze()
-        driver_report = self.driver_engine.analyze()
-        task_report = self.task_engine.analyze()
-        service_report = self.service_engine.analyze()
+        if self.safe_mode:
+            return OrchestrationPlan(
+                identity=identity,
+                created_at=time.time(),
+                issues=[],
+                actions=[],
+                dry_run=self.dry_run,
+                safe_mode=True,
+                degraded_mode=False,
+            )
 
-        # 2) Build explanations
-        health_expl = self.education_engine.explain_system_health(identity, health_report)
-        driver_expl = self.education_engine.explain_drivers(identity, driver_report)
-        task_expl = self.education_engine.explain_tasks(identity, task_report)
-        service_expl = self.education_engine.explain_services(identity, service_report)
+        try:
+            # 1) Run diagnostics
+            health_report = self.health_engine.analyze()
+            driver_report = self.driver_engine.analyze()
+            task_report = self.task_engine.analyze()
+            service_report = self.service_engine.analyze()
 
-        # 3) Aggregate and prioritize issues
-        issues: List[PrioritizedItem] = []
-        issues.extend(
-            self._collect_health_issues(health_report, health_expl)
-        )
-        issues.extend(
-            self._collect_driver_issues(driver_report, driver_expl)
-        )
-        issues.extend(
-            self._collect_task_issues(task_report, task_expl)
-        )
-        issues.extend(
-            self._collect_service_issues(service_report, service_expl)
-        )
+            # 2) Build explanations
+            health_expl = self.education_engine.explain_system_health(identity, health_report)
+            driver_expl = self.education_engine.explain_drivers(identity, driver_report)
+            task_expl = self.education_engine.explain_tasks(identity, task_report)
+            service_expl = self.education_engine.explain_services(identity, service_report)
 
-        # Sort by priority_score descending
-        issues.sort(key=lambda x: x.priority_score, reverse=True)
+            # 3) Aggregate and prioritize issues
+            issues: List[PrioritizedItem] = []
+            issues.extend(self._collect_health_issues(health_report, health_expl))
+            issues.extend(self._collect_driver_issues(driver_report, driver_expl))
+            issues.extend(self._collect_task_issues(task_report, task_expl))
+            issues.extend(self._collect_service_issues(service_report, service_expl))
 
-        # 4) Build agent actions (not executed yet)
-        actions = self._build_agent_actions(driver_report, task_report, service_report)
+            # AI-aware normalization & sorting
+            issues = self._normalize_and_sort_issues(issues, identity)
 
-        return OrchestrationPlan(
-            identity=identity,
-            created_at=time.time(),
-            issues=issues,
-            actions=actions,
-            dry_run=self.dry_run,
-        )
+            # 4) Build agent actions (not executed yet)
+            actions = self._build_agent_actions(
+                identity=identity,
+                health_report=health_report,
+                driver_report=driver_report,
+                task_report=task_report,
+                service_report=service_report,
+                issues=issues,
+            )
+
+            return OrchestrationPlan(
+                identity=identity,
+                created_at=time.time(),
+                issues=issues,
+                actions=actions,
+                dry_run=self.dry_run,
+                safe_mode=False,
+                degraded_mode=self.degraded_mode,
+            )
+
+        except Exception:
+            self.degraded_mode = True
+            return OrchestrationPlan(
+                identity=identity,
+                created_at=time.time(),
+                issues=[],
+                actions=[],
+                dry_run=self.dry_run,
+                safe_mode=False,
+                degraded_mode=True,
+            )
 
     def execute_plan(
         self,
         identity: IdentityType,
         plan: OrchestrationPlan,
-        max_actions: int | None = None,
+        max_actions: Optional[int] = None,
     ) -> List[AgentResult]:
         """
-        Optionally execute part of the plan via SystemAgent41.
+        Optionally execute part of the plan via SystemAgent43.
         Respects identity and dry_run flag of the underlying agent.
         """
+        if self.safe_mode:
+            return []
+
         results: List[AgentResult] = []
         actions = plan.actions
 
@@ -165,14 +209,17 @@ class IntelligenceOrchestrator41:
             actions = actions[:max_actions]
 
         for action in actions:
-            result = self.agent.execute_action(identity, action)
-            results.append(result)
+            try:
+                result = self.agent.execute_action(identity, action)
+                results.append(result)
+            except Exception:
+                self.degraded_mode = True
 
         return results
 
-    # -------------------------------------------------------------------------
-    # ISSUE COLLECTION & PRIORITIZATION
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # ISSUE COLLECTION
+    # ---------------------------------------------------------
 
     def _collect_health_issues(
         self,
@@ -182,10 +229,10 @@ class IntelligenceOrchestrator41:
         items: List[PrioritizedItem] = []
         blocks_by_title = {b.title: b for b in bundle.blocks}
 
-        for issue in report.issues:
+        for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
             explanation = block.body if block else issue.description
-            score = self._compute_priority(issue.severity, domain="health")
+            score = self._compute_priority(issue.severity, "health", issue)
 
             items.append(
                 PrioritizedItem(
@@ -197,6 +244,9 @@ class IntelligenceOrchestrator41:
                     priority_score=score,
                     explanation=explanation,
                     suggested_actions=issue.suggested_actions,
+                    metadata={
+                        "health_score": getattr(report, "health_score", None),
+                    },
                 )
             )
 
@@ -210,10 +260,10 @@ class IntelligenceOrchestrator41:
         items: List[PrioritizedItem] = []
         blocks_by_title = {b.title: b for b in bundle.blocks}
 
-        for issue in report.issues:
+        for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
             explanation = block.body if block else issue.description
-            score = self._compute_priority(issue.severity, domain="drivers")
+            score = self._compute_priority(issue.severity, "drivers", issue)
 
             items.append(
                 PrioritizedItem(
@@ -225,6 +275,10 @@ class IntelligenceOrchestrator41:
                     priority_score=score,
                     explanation=explanation,
                     suggested_actions=issue.suggested_actions,
+                    metadata={
+                        "related_files": getattr(issue, "related_files", []),
+                        "related_devices": getattr(issue, "related_devices", []),
+                    },
                 )
             )
 
@@ -238,10 +292,10 @@ class IntelligenceOrchestrator41:
         items: List[PrioritizedItem] = []
         blocks_by_title = {b.title: b for b in bundle.blocks}
 
-        for issue in report.issues:
+        for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
             explanation = block.body if block else issue.description
-            score = self._compute_priority(issue.severity, domain="tasks")
+            score = self._compute_priority(issue.severity, "tasks", issue)
 
             items.append(
                 PrioritizedItem(
@@ -253,6 +307,9 @@ class IntelligenceOrchestrator41:
                     priority_score=score,
                     explanation=explanation,
                     suggested_actions=issue.suggested_actions,
+                    metadata={
+                        "related_pids": getattr(issue, "related_pids", []),
+                    },
                 )
             )
 
@@ -266,10 +323,10 @@ class IntelligenceOrchestrator41:
         items: List[PrioritizedItem] = []
         blocks_by_title = {b.title: b for b in bundle.blocks}
 
-        for issue in report.issues:
+        for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
             explanation = block.body if block else issue.description
-            score = self._compute_priority(issue.severity, domain="services")
+            score = self._compute_priority(issue.severity, "services", issue)
 
             items.append(
                 PrioritizedItem(
@@ -281,47 +338,128 @@ class IntelligenceOrchestrator41:
                     priority_score=score,
                     explanation=explanation,
                     suggested_actions=issue.suggested_actions,
+                    metadata={
+                        "related_services": getattr(issue, "related_services", []),
+                    },
                 )
             )
 
         return items
 
-    def _compute_priority(self, severity: Severity, domain: str) -> int:
+    # ---------------------------------------------------------
+    # AI-AWARE PRIORITY MODEL
+    # ---------------------------------------------------------
+
+    def _compute_priority(
+        self,
+        severity: Severity,
+        domain: str,
+        issue: Any,
+    ) -> int:
         """
-        Simple priority model:
-        - base on severity
-        - small domain-specific offsets (e.g. health > drivers > tasks > services)
+        AI-aware priority model (still deterministic):
+
+        - base severity weight
+        - domain importance
+        - impact hints from issue metadata (CPU, RAM, network, boot, etc.)
+        - quick-win bonus for easy, low-risk fixes
         """
+
         base = self._severity_weight.get(severity, 10)
+        domain_offset = self._domain_weight.get(domain, 0)
 
-        domain_offset = {
-            "health": 30,
-            "drivers": 20,
-            "tasks": 10,
-            "services": 5,
-        }.get(domain, 0)
+        impact_bonus = 0
+        quick_win_bonus = 0
 
-        return base + domain_offset
+        # Impact hints
+        impact = getattr(issue, "impact", None)
+        if impact == "system_stability":
+            impact_bonus += 25
+        elif impact == "performance":
+            impact_bonus += 15
+        elif impact == "security":
+            impact_bonus += 30
+        elif impact == "usability":
+            impact_bonus += 10
 
-    # -------------------------------------------------------------------------
-    # ACTION MAPPING
-    # -------------------------------------------------------------------------
+        # Quick-win hints
+        if getattr(issue, "quick_fix", False):
+            quick_win_bonus += 10
+
+        return base + domain_offset + impact_bonus + quick_win_bonus
+
+    def _normalize_and_sort_issues(
+        self,
+        issues: List[PrioritizedItem],
+        identity: IdentityType,
+    ) -> List[PrioritizedItem]:
+        """
+        Normalize scores and sort descending.
+        Identity-aware adjustment:
+        - OWNER: full priority
+        - FAMILY: slightly downscale destructive domains (tasks/services)
+        - STRANGER: strongly downscale everything except health info
+        """
+
+        if not issues:
+            return []
+
+        max_score = max(i.priority_score for i in issues) or 1
+
+        adjusted: List[PrioritizedItem] = []
+        for item in issues:
+            score = item.priority_score / max_score * 100
+
+            if identity == "FAMILY":
+                if item.domain in ("tasks", "services"):
+                    score *= 0.7
+            elif identity == "STRANGER":
+                if item.domain != "health":
+                    score *= 0.4
+
+            adjusted.append(
+                PrioritizedItem(
+                    id=item.id,
+                    domain=item.domain,
+                    title=item.title,
+                    description=item.description,
+                    severity=item.severity,
+                    priority_score=int(score),
+                    explanation=item.explanation,
+                    suggested_actions=item.suggested_actions,
+                    metadata=item.metadata,
+                )
+            )
+
+        adjusted.sort(key=lambda x: x.priority_score, reverse=True)
+        return adjusted
+
+    # ---------------------------------------------------------
+    # ACTION MAPPING (4.3.x)
+    # ---------------------------------------------------------
 
     def _build_agent_actions(
         self,
+        identity: IdentityType,
+        health_report: HealthReport,
         driver_report: DriverReport,
         task_report: TaskReport,
         service_report: ServiceReport,
+        issues: List[PrioritizedItem],
     ) -> List[AgentAction]:
+        """
+        Map prioritized issues to SystemAgent43 actions.
+        Identity-aware and AI-aware.
+        """
+
         actions: List[AgentAction] = []
 
         # DRIVER ISSUES → INSTALL DRIVER / OPEN VENDOR PAGE
         for issue in driver_report.issues:
             if issue.severity in ("warning", "critical"):
-                action_id = f"install_driver_{issue.id}"
                 actions.append(
                     AgentAction(
-                        id=action_id,
+                        id=f"install_driver_{issue.id}",
                         type="INSTALL_DRIVER",
                         label="Install missing or updated driver",
                         description=issue.description,
@@ -335,7 +473,7 @@ class IntelligenceOrchestrator41:
 
         # TASK ISSUES → KILL PROCESS / RESTART EXPLORER
         for issue in task_report.issues:
-            if issue.id == "explorer_restart_suggestion":
+            if getattr(issue, "id", "") == "explorer_restart_suggestion":
                 actions.append(
                     AgentAction(
                         id="restart_explorer",
@@ -347,7 +485,7 @@ class IntelligenceOrchestrator41:
                     )
                 )
 
-            if issue.id in ("high_cpu_processes", "high_ram_processes"):
+            if getattr(issue, "id", "") in ("high_cpu_processes", "high_ram_processes"):
                 for pid in getattr(issue, "related_pids", []):
                     actions.append(
                         AgentAction(
@@ -374,4 +512,28 @@ class IntelligenceOrchestrator41:
                     )
                 )
 
+        # HEALTH ISSUES → HIGH-LEVEL ACTIONS (e.g., CLEANUP, OPTIMIZE)
+        for issue in health_report.issues:
+            if getattr(issue, "id", "") == "disk_cleanup_recommended":
+                actions.append(
+                    AgentAction(
+                        id="run_disk_cleanup",
+                        type="RUN_DISK_CLEANUP",
+                        label="Run disk cleanup",
+                        description=issue.description,
+                        identity_required="OWNER",
+                        payload={},
+                    )
+                )
+
         return actions
+
+    # ---------------------------------------------------------
+    # SAFE-MODE CONTROL
+    # ---------------------------------------------------------
+
+    def enter_safe_mode(self):
+        self.safe_mode = True
+
+    def exit_safe_mode(self):
+        self.safe_mode = False
