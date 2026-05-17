@@ -1,24 +1,34 @@
 # timeline_ui_component.py
-# Wrapper component for TimelineUI to integrate with UIManager
-# SIRIUS LOCAL AI – ui_components (Phase 4)
+# SIRIUS LOCAL AI – Timeline UI Component 4.3.x
+# Phase‑4 deterministic wrapper for TimelineUI
 
 from .manager import UIComponent
-from timeline.timeline_ui import TimelineUI  # your existing TimelineUI
+from timeline.timeline_ui import TimelineUI
+
 
 class TimelineUIComponent(UIComponent):
     """
-    UI wrapper for TimelineUI.
-    Provides:
-        - mount / unmount lifecycle
-        - render() → returns layout blocks
-        - generate_layout() → prepares pixel blocks for PixelLayoutEngine
+    TimelineUIComponent 4.3.x
+
+    Responsibilities:
+        - Wrap TimelineUI for UIManager
+        - Provide safe-mode and degraded-mode behavior
+        - Provide deterministic layout blocks for PixelLayoutEngine
+        - Provide error-safe lifecycle and rendering
     """
 
     def __init__(self):
+        super().__init__()
         self.timeline = TimelineUI()
         self._mounted = False
 
+    # ---------------------------------------------------------
+    # Lifecycle
+    # ---------------------------------------------------------
+
     def mount(self):
+        if self.safe_mode:
+            return
         self._mounted = True
         print("TimelineUI mounted")
 
@@ -26,29 +36,62 @@ class TimelineUIComponent(UIComponent):
         self._mounted = False
         print("TimelineUI unmounted")
 
+    # ---------------------------------------------------------
+    # Layout generation
+    # ---------------------------------------------------------
+
     def generate_layout(self):
         """
         TimelineUI will later return real pixel blocks.
         For now this is a placeholder so PixelLayoutEngine
         always receives a consistent input.
         """
-        if hasattr(self.timeline, "generate_layout"):
-            return self.timeline.generate_layout()
 
-        # Fallback placeholder – safe for Phase 4
-        return [
-            {
-                "type": "text",
-                "x": 10,
-                "y": 10,
-                "content": "TimelineUI – layout placeholder",
-            }
-        ]
+        if self.safe_mode:
+            return [
+                {"type": "text", "x": 10, "y": 10, "value": "TimelineUI (SAFE MODE)"}
+            ]
+
+        if self.degraded_mode:
+            return [
+                {"type": "text", "x": 10, "y": 10, "value": "TimelineUI (DEGRADED MODE)"}
+            ]
+
+        try:
+            if hasattr(self.timeline, "generate_layout"):
+                blocks = self.timeline.generate_layout()
+
+                # Normalize block format (Phase‑4)
+                normalized = []
+                for b in blocks:
+                    block = {
+                        "type": b.get("type", "text"),
+                        "x": b.get("x", 0),
+                        "y": b.get("y", 0),
+                        "value": b.get("value") or b.get("content") or "",
+                    }
+                    normalized.append(block)
+
+                return normalized
+
+            # Fallback placeholder
+            return [
+                {"type": "text", "x": 10, "y": 10, "value": "TimelineUI – placeholder"}
+            ]
+
+        except Exception:
+            self.degraded_mode = True
+            return [
+                {"type": "text", "x": 10, "y": 10, "value": "TimelineUI Render Error"}
+            ]
+
+    # ---------------------------------------------------------
+    # Rendering
+    # ---------------------------------------------------------
 
     def render(self):
         """
-        UIManager calls render() → it must return layout blocks.
+        UIManager calls render() → must return layout blocks.
         PixelLayoutEngine will then render them.
         """
-        layout = self.generate_layout()
-        return layout
+        return self.generate_layout()
