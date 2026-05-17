@@ -4,34 +4,35 @@ from email.manager import EmailManager
 
 class EmailProfileCommand(BaseCommand):
     """
-    EmailProfileCommand 4.0
+    EmailProfileCommand 4.3
     Manages email sender profiles (create, list, delete, show).
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - OWNER-only execution
-    - structured JSON output
-    - safe profile management pipeline
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - context snapshot before mutation
+    - consistent return structure
+    - NL Router friendly action parsing
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "email-profile"
     description = "Manages email sender profiles."
     category = "email"
 
-    required_identity = "OWNER"     # Only OWNER can manage profiles
-    risk_level = 0.4                # Medium risk (writes to storage)
+    required_identity = "OWNER"
+    risk_level = 0.4
     capabilities = ["fs_read", "fs_write"]
 
     keywords = ["email", "profile", "sender", "identity"]
     examples = [
         "email-profile list",
-        "email-profile create myprofile John john@example.com",
-        "email-profile delete myprofile",
-        "email-profile show myprofile"
+        "email-profile show <name>",
+        "email-profile delete <name>",
+        "email-profile create <name> <display_name> <email>"
     ]
 
     # ---------------------------------------------------------
@@ -114,6 +115,7 @@ class EmailProfileCommand(BaseCommand):
 
             name = args[1]
 
+            # snapshot before mutation
             if hasattr(self.context, "snapshot"):
                 self.context.snapshot()
 
@@ -125,7 +127,9 @@ class EmailProfileCommand(BaseCommand):
                     "message": f"Profile '{name}' not found."
                 }
 
-            self.context.merge({"last_email_profile_deleted": name})
+            self.context.merge({
+                "last_email_profile_deleted": name
+            })
 
             return {
                 "status": "success",
@@ -148,6 +152,7 @@ class EmailProfileCommand(BaseCommand):
             display_name = args[2]
             email = args[3]
 
+            # snapshot before mutation
             if hasattr(self.context, "snapshot"):
                 self.context.snapshot()
 
