@@ -1,33 +1,32 @@
-from .base_command import BaseCommand
+from commands.base_command import BaseCommand
 
 
 class TriageTestCommand(BaseCommand):
     """
-    TriageTestCommand 4.0
-    Test command for AITE (Automatic Input Triage Engine).
+    TriageTestCommand 4.3
+    Tests AITE (Automatic Input Triage Engine) on a given file.
 
-    New in version 4.0:
-    - integration with BaseCommand lifecycle
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (filesystem read)
-    - NL Router metadata
-    - structured output for Workflow Engine 4.0
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - NL Router 4.x friendly
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "triage-test"
     description = "Tests AITE triage on a given file."
     category = "diagnostics"
 
     required_identity = "FAMILY"     # safe for everyone
-    risk_level = 0.1                 # low risk
+    risk_level = 0.1
     capabilities = ["fs_read"]
 
     keywords = ["triage", "detect", "file type", "analyze"]
-    examples = ["triage-test C:/path/file.png"]
+    examples = ["triage-test <path>"]
 
     # ---------------------------------------------------------
     # INIT
@@ -36,12 +35,18 @@ class TriageTestCommand(BaseCommand):
         self.runtime = runtime
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Tests AITE triage on a given file.
+        Usage:
+            triage-test <path>
         """
+
+        # -----------------------------
+        # INPUT VALIDATION
+        # -----------------------------
         if not args:
             return {
                 "status": "error",
@@ -50,6 +55,9 @@ class TriageTestCommand(BaseCommand):
 
         path = args[0]
 
+        # -----------------------------
+        # AITE PROCESSING
+        # -----------------------------
         try:
             result = self.runtime.aite.process(path)
         except Exception as e:
@@ -59,6 +67,9 @@ class TriageTestCommand(BaseCommand):
                 "exception": str(e)
             }
 
+        # -----------------------------
+        # SUCCESS RESPONSE
+        # -----------------------------
         return {
             "status": "success",
             "path": path,
