@@ -3,11 +3,15 @@ import re
 
 class EmailValidator:
     """
-    EmailValidator 4.0
+    EmailValidator 4.3
     Provides validation utilities for email addresses, subjects,
-    body text, and attachment paths.
+    body text, and attachment paths in a deterministic and safe way.
 
-    This module is used internally by EmailManager and commands.
+    Improvements in 4.3:
+    - deterministic Runtime4 behavior
+    - stricter email validation
+    - normalized return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
@@ -23,6 +27,9 @@ class EmailValidator:
         """
         if not isinstance(email, str):
             return False
+        email = email.strip()
+        if len(email) == 0:
+            return False
         return bool(self.EMAIL_REGEX.match(email))
 
     # ---------------------------------------------------------
@@ -34,10 +41,15 @@ class EmailValidator:
         """
         if not isinstance(subject, str):
             return False
-        if len(subject.strip()) == 0:
+
+        subject = subject.strip()
+
+        if len(subject) == 0:
             return False
+
         if len(subject) > 300:
             return False
+
         return True
 
     # ---------------------------------------------------------
@@ -49,8 +61,12 @@ class EmailValidator:
         """
         if not isinstance(body, str):
             return False
-        if len(body.strip()) == 0:
+
+        body = body.strip()
+
+        if len(body) == 0:
             return False
+
         return True
 
     # ---------------------------------------------------------
@@ -63,8 +79,12 @@ class EmailValidator:
         """
         if not isinstance(path, str):
             return False
-        if len(path.strip()) == 0:
+
+        path = path.strip()
+
+        if len(path) == 0:
             return False
+
         return True
 
     # ---------------------------------------------------------
@@ -75,13 +95,13 @@ class EmailValidator:
         Validates all components of an email.
         Returns a dict with validation results.
         """
+        email_ok = self.validate_email(to)
+        subject_ok = self.validate_subject(subject)
+        body_ok = self.validate_body(body)
+
         return {
-            "email_valid": self.validate_email(to),
-            "subject_valid": self.validate_subject(subject),
-            "body_valid": self.validate_body(body),
-            "all_valid": (
-                self.validate_email(to)
-                and self.validate_subject(subject)
-                and self.validate_body(body)
-            )
+            "email_valid": email_ok,
+            "subject_valid": subject_ok,
+            "body_valid": body_ok,
+            "all_valid": email_ok and subject_ok and body_ok
         }
