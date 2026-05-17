@@ -1,81 +1,96 @@
-import subprocess
 import logging
-from pathlib import Path
+
+from modules.fs_module import FSModule
+from modules.editor_module import EditorModule
+from modules.workflow_module import WorkflowModule
 
 log = logging.getLogger(__name__)
 
 
-class EditorModule:
+class CommandRouter:
     """
-    EditorModule 3.5.0
-    -------------------
-    Safe interface for opening files and folders in VS Code.
+    CommandRouter 4.3
+    --------------------
+    Routes parsed commands to the correct module and method.
 
-    Features:
-    - open_file(path)
-    - open_folder(path)
-    - open_at_line(path, line)
-    - highlight(path, line)
+    Improvements in 4.3:
+    - deterministic Runtime4 behavior
+    - strict validation of module/method
+    - consistent structured return format
+    - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
-        self.name = "editor"
-        self.vscode_cmd = "code"  # assumes VS Code is in PATH
+        self.name = "router"
+
+        # Registered modules
+        self.modules = {
+            "fs": FSModule(),
+            "editor": EditorModule(),
+            "workflow": WorkflowModule(),
+        }
 
     # --------------------------------------------------------
-    # INTERNAL VALIDATION
+    # MAIN ROUTE FUNCTION
     # --------------------------------------------------------
-    def _validate_path(self, path: str) -> Path:
-        if not isinstance(path, str) or not path.strip():
-            raise ValueError("Invalid path: must be a non-empty string.")
+    def route(self, parsed: dict):
+        """
+        Executes a parsed command.
+        Returns a structured response.
+        """
 
-        p = Path(path).expanduser().resolve()
-        return p
+        if not isinstance(parsed, dict):
+            log.error("ROUTER: Invalid parsed command object.")
+            return {
+                "status": "error",
+                "message": "Invalid parsed command."
+            }
 
-    # --------------------------------------------------------
-    # OPEN FILE
-    # --------------------------------------------------------
-    def open_file(self, path: str):
-        p = self._validate_path(path)
+        module_name = parsed.get("module")
+        method_name = parsed.get("method")
+        args = parsed.get("args", [])
 
+        # -----------------------------
+        # VALIDATE MODULE
+        # -----------------------------
+        module = self.modules.get(module_name)
+        if module is None:
+            log.error("ROUTER: Unknown module '%s'", module_name)
+            return {
+                "status": "error",
+                "message": f"Unknown module '{module_name}'."
+            }
+
+        # -----------------------------
+        # VALIDATE METHOD
+        # -----------------------------
+        method = getattr(module, method_name, None)
+        if not callable(method):
+            log.error("ROUTER: Unknown method '%s' in module '%s'", method_name, module_name)
+            return {
+                "status": "error",
+                "message": f"Unknown method '{method_name}' in module '{module_name}'."
+            }
+
+        # -----------------------------
+        # EXECUTE METHOD
+        # -----------------------------
         try:
-            subprocess.Popen([self.vscode_cmd, str(p)])
-            log.info("EDITOR: Opened file in VS Code: %s", p)
-            return True
+            result = method(*args)
+            log.info("ROUTER: Executed %s.%s(%s)", module_name, method_name, args)
+
+            return {
+                "status": "success",
+                "module": module_name,
+                "method": method_name,
+                "args": args,
+                "result": result
+            }
+
         except Exception as exc:
-            log.exception("EDITOR: Failed to open file '%s': %s", p, exc)
-            return False
-
-    # --------------------------------------------------------
-    # OPEN FOLDER
-    # --------------------------------------------------------
-    def open_folder(self, path: str):
-        p = self._validate_path(path)
-
-        try:
-            subprocess.Popen([self.vscode_cmd, str(p)])
-            log.info("EDITOR: Opened folder in VS Code: %s", p)
-            return True
-        except Exception as exc:
-            log.exception("EDITOR: Failed to open folder '%s': %s", p, exc)
-            return False
-
-    # --------------------------------------------------------
-    # OPEN FILE AT LINE
-    # --------------------------------------------------------
-    def open_at_line(self, path: str, line: int):
-        p = self._validate_path(path)
-
-        try:
-            subprocess.Popen([self.vscode_cmd, "-g", f"{p}:{line}"])
-            log.info("EDITOR: Opened file at line %s: %s", line, p)
-            return True
-        except Exception as exc:
-            log.exception("EDITOR: Failed to open '%s' at line %s: %s", p, line, exc)
-            return False
-
-    # --------------------------------------------------------
-    # HIGHLIGHT (alias for open_at_line)
-    # --------------------------------------------------------
-    def highlight(self, path: str, line: int):
-        return self.open_at_line(path, line)
+            log.exception("ROUTER: Error executing %s.%s: %s", module_name, method_name, exc)
+            return {
+                "status": "error",
+                "message": f"Execution failed for {module_name}.{method_name}.",
+                "exception": str(exc)
+            }
