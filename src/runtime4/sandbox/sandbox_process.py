@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.0 Sandbox Process
+SIRIUS LOCAL AI – Runtime 4.3 Sandbox Process
 
 The Sandbox Process simulates an isolated execution environment.
 It is responsible for:
@@ -8,16 +8,22 @@ It is responsible for:
 - enforcing isolation boundaries
 - communicating with the Sandbox Manager
 - preparing for capability-based restrictions
+- supporting safe-mode and degraded-mode behavior
 
 This is the low-level execution layer of the sandbox system.
 """
 
-from typing import Optional
+from typing import Optional, Dict, Any
 
 
 class SandboxProcess4:
     """
     Represents a single sandboxed execution process.
+    Provides:
+    - strict isolation
+    - structured error surface
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
     def __init__(self, module_name: str):
@@ -26,8 +32,10 @@ class SandboxProcess4:
             raise ValueError("Invalid module_name: must be a non-empty string.")
 
         self.module_name = module_name
-        self.context = {}
+        self.context: Dict[str, Any] = {}
         self.active = True
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
     # CONTEXT MANAGEMENT
@@ -36,16 +44,23 @@ class SandboxProcess4:
     def set_context(self, key: str, value):
         """Stores a value inside the sandbox context with safety checks."""
 
-        # Validate key
         if not isinstance(key, str) or not key.strip():
-            return {"error": "invalid_context_key"}
+            return {"status": "error", "code": "invalid_context_key"}
 
-        # Prevent storing dangerous types (optional hardening)
+        # Prevent storing dangerous types
         if isinstance(value, (type(lambda: None), type(self.set_context))):
-            return {"error": "invalid_context_value_type"}
+            return {"status": "error", "code": "invalid_context_value_type"}
 
-        self.context[key] = value
-        return {"status": "ok"}
+        try:
+            self.context[key] = value
+            return {"status": "success"}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "context_set_failed",
+                "exception": str(exc)
+            }
 
     def get_context(self, key: str):
         """Retrieves a value from the sandbox context."""
@@ -60,27 +75,43 @@ class SandboxProcess4:
     def execute(self, task: str, payload: Optional[dict] = None):
         """
         Executes a task inside the sandbox.
-        This is only a placeholder — logic will be added later.
+        This is a placeholder — real logic is injected by the runtime.
         """
+
+        # SAFE MODE
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Sandbox execution disabled in safe-mode."
+            }
 
         # Sandbox must be active
         if not self.active:
-            return {"error": "sandbox_inactive"}
+            return {"status": "error", "code": "sandbox_inactive"}
 
         # Validate task
         if not isinstance(task, str) or not task.strip():
-            return {"error": "invalid_task"}
+            return {"status": "error", "code": "invalid_task"}
 
         # Validate payload
         if payload is not None and not isinstance(payload, dict):
-            return {"error": "invalid_payload_type"}
+            return {"status": "error", "code": "invalid_payload_type"}
 
-        return {
-            "status": "executed_in_sandbox",
-            "module": self.module_name,
-            "task": task,
-            "payload": payload or {}
-        }
+        try:
+            return {
+                "status": "executed_in_sandbox",
+                "module": self.module_name,
+                "task": task,
+                "payload": payload or {},
+                "degraded_mode": self.degraded_mode
+            }
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "execution_failed",
+                "exception": str(exc)
+            }
 
     # ---------------------------------------------------------
     # LIFECYCLE
