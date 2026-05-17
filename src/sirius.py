@@ -1,21 +1,13 @@
-"""
-SIRIUS LOCAL AI ALFA – v2.0.0 entrypoint
+# sirius.py
+# SIRIUS LOCAL AI – Runtime Entry Point 4.3.x
+# Deterministic, safe-mode compatible bootstrap for Runtime 4.3
 
-This is the main entrypoint for the SIRIUS 2.0 runtime.
-– bootstrap RuntimeManager 2.0
-– load plugins via PluginLoader 2.0
-– initialize NL Router 2.0
-– start AI Loop 2.0 (autonomous mode)
-– CLI mode as the primary front-end
-– hooks for GUI / TRAY / VOICE (future modules)
-"""
+from __future__ import annotations
 
 import argparse
 import threading
 import sys
 from typing import Optional
-
-# --- CORE RUNTIME 2.0 ---
 
 from runtime.runtime_manager import RuntimeManager
 from runtime.plugin_loader import PluginLoader
@@ -25,10 +17,22 @@ from runtime.ai_loop import AILoop
 
 class SiriusApp:
     """
-    Main application class that orchestrates the entire SIRIUS runtime.
+    Main application class that orchestrates the entire SIRIUS runtime 4.3.x.
+
+    Responsibilities:
+        - bootstrap RuntimeManager 4.3
+        - load plugins via PluginLoader 4.3
+        - initialize NL Router 4.3
+        - start AI Loop 4.3 (autonomous mode)
+        - provide CLI as primary front-end
+        - expose hooks for GUI / TRAY / VOICE
+        - support safe-mode and degraded-mode
     """
 
     def __init__(self, enable_ai_loop: bool = True) -> None:
+        self.safe_mode = False
+        self.degraded_mode = False
+
         # Runtime core
         self.runtime = RuntimeManager()
 
@@ -52,33 +56,49 @@ class SiriusApp:
     def bootstrap(self) -> None:
         """
         Initializes the runtime, loads plugins, and prepares the system.
+        Deterministic, safe-mode aware.
         """
-        # 1) Initialize runtime
-        self.runtime.initialize()
+        if self.safe_mode:
+            return
 
-        # 2) Load plugins
-        self.plugin_loader.load_all()
+        try:
+            # 1) Initialize runtime
+            self.runtime.initialize()
 
-        # 3) Initialize NL router
-        self.nl_router.initialize()
+            # 2) Load plugins
+            self.plugin_loader.load_all()
 
-        # 4) Start AI loop (if enabled)
-        if self.ai_loop is not None:
-            self._start_ai_loop_background()
+            # 3) Initialize NL router
+            self.nl_router.initialize()
+
+            # 4) Start AI loop (if enabled)
+            if self.ai_loop is not None:
+                self._start_ai_loop_background()
+
+        except Exception as exc:
+            self.degraded_mode = True
+            try:
+                self.runtime.log_error(f"Bootstrap failed, entering degraded mode: {exc}")
+            except Exception:
+                print(f"[SIRIUS] Bootstrap failed: {exc}")
 
     def _start_ai_loop_background(self) -> None:
         """
         Starts the AI loop in a background thread (autonomous mode).
         """
-        if self.ai_loop is None:
+
+        if self.ai_loop is None or self.safe_mode:
             return
 
         def _runner() -> None:
             try:
                 self.ai_loop.run()
             except Exception as e:
-                # Runtime should have its own logging, this is just fallback
-                self.runtime.log_error(f"AI Loop crashed: {e}")
+                try:
+                    self.runtime.log_error(f"AI Loop crashed: {e}")
+                except Exception:
+                    print(f"[SIRIUS] AI Loop crashed: {e}")
+                self.degraded_mode = True
 
         self._ai_loop_thread = threading.Thread(
             target=_runner,
@@ -93,16 +113,23 @@ class SiriusApp:
 
     def handle_text(self, text: str) -> str:
         """
-        Processes text input (CLI, GUI, VOICE) through NL Router 2.0.
+        Processes text input (CLI, GUI, VOICE) through NL Router 4.3.
         """
         text = text.strip()
         if not text:
             return ""
 
+        if self.safe_mode:
+            return "SIRIUS is in SAFE MODE. Text processing is temporarily disabled."
+
         try:
             return self.nl_router.route(text)
         except Exception as e:
-            self.runtime.log_error(f"Error while handling input: {e}")
+            self.degraded_mode = True
+            try:
+                self.runtime.log_error(f"Error while handling input: {e}")
+            except Exception:
+                print(f"[SIRIUS] Error while handling input: {e}")
             return f"Error: {e}"
 
     # --------------------------------------------------------------------- #
@@ -111,9 +138,15 @@ class SiriusApp:
 
     def run_cli(self) -> None:
         """
-        Simple console mode – primary front-end for SIRIUS 2.0.
+        Simple console mode – primary front-end for SIRIUS 4.3.
         """
-        print("SIRIUS LOCAL AI ALFA – v2.0.0 (Runtime 2.0)")
+        header = "SIRIUS LOCAL AI – Runtime 4.3.x"
+        if self.safe_mode:
+            header += " [SAFE MODE]"
+        elif self.degraded_mode:
+            header += " [DEGRADED MODE]"
+
+        print(header)
         print("Type 'exit' to quit.\n")
 
         while True:
@@ -156,6 +189,16 @@ class SiriusApp:
         except Exception:
             pass
 
+    # --------------------------------------------------------------------- #
+    #  SAFE-MODE CONTROL
+    # --------------------------------------------------------------------- #
+
+    def enter_safe_mode(self) -> None:
+        self.safe_mode = True
+
+    def exit_safe_mode(self) -> None:
+        self.safe_mode = False
+
 
 # ------------------------------------------------------------------------- #
 #  ARGPARSE / MAIN
@@ -164,7 +207,7 @@ class SiriusApp:
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="sirius",
-        description="SIRIUS LOCAL AI ALFA – v2.0.0 runtime entrypoint",
+        description="SIRIUS LOCAL AI – Runtime 4.3.x entrypoint",
     )
 
     parser.add_argument(
@@ -177,6 +220,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--cli",
         action="store_true",
         help="Force CLI mode (no GUI/TRAY/VOICE front-end).",
+    )
+
+    parser.add_argument(
+        "--safe-mode",
+        action="store_true",
+        help="Start SIRIUS in SAFE MODE (diagnostics only, no autonomous actions).",
     )
 
     # Hooks for future modules – placeholders for now
@@ -207,15 +256,13 @@ def main(argv: Optional[list[str]] = None) -> None:
 
     app = SiriusApp(enable_ai_loop=not args.no_ai_loop)
 
+    if args.safe_mode:
+        app.enter_safe_mode()
+
     try:
         app.bootstrap()
-
         # For now we only have CLI – GUI/TRAY/VOICE will come later
-        # Logic:
-        # – if --cli → run CLI
-        # – when GUI/TRAY/VOICE exist, this will decide based on args
         app.run_cli()
-
     finally:
         app.shutdown()
 
