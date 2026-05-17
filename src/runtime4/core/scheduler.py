@@ -1,36 +1,38 @@
 """
-SIRIUS LOCAL AI – Runtime 4.0 Scheduler
+SIRIUS LOCAL AI – Runtime 4.3 Scheduler
 
-The Scheduler is responsible for:
+Responsible for:
 - task queue management
 - priority routing
 - safe‑mode restrictions
 - schoolwork priority bypass
-- parallel execution rules
-- integration with the dependency graph
-- deterministic offline execution
+- deterministic execution
+- structured telemetry
+- degraded‑mode detection
+- Self‑Repair 4.4 compatibility
 
-This is the execution engine of Runtime 4.0.
+This is the execution engine of Runtime 4.3.
 """
 
-from typing import Optional, Any, Dict
+from typing import Optional, Any, Dict, List
 
 
 class Scheduler4:
     """
-    Task scheduler for Runtime 4.0.
+    Task scheduler for Runtime 4.3.
     Handles task dispatching, prioritization, and execution flow.
     """
 
     def __init__(self, max_queue_size: int = 500):
-        self.task_queue = []
+        self.task_queue: List[Dict[str, Any]] = []
         self.running = False
         self.safe_mode = False
         self.schoolwork_priority = True
         self.max_queue_size = max_queue_size
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
-    # INTERNAL VALIDATION HELPERS
+    # VALIDATION HELPERS
     # ---------------------------------------------------------
 
     def _validate_task(self, task: Any) -> bool:
@@ -55,36 +57,38 @@ class Scheduler4:
     # TASK MANAGEMENT
     # ---------------------------------------------------------
 
-    def add_task(self, task: str, context: Optional[dict] = None, priority: int = 1):
+    def add_task(self, task: str, context: Optional[dict] = None, priority: int = 1) -> Dict[str, Any]:
         """
         Adds a task to the queue with full safety checks.
         Priority 0 = highest, 5 = lowest.
         """
 
-        # Validate task
         if not self._validate_task(task):
-            return {"error": "invalid_task"}
+            return {"status": "error", "code": "invalid_task"}
 
-        # Validate context
         if not self._validate_context(context):
-            return {"error": "invalid_context"}
+            return {"status": "error", "code": "invalid_context"}
 
-        # Validate priority
         if not self._validate_priority(priority):
-            return {"error": "invalid_priority"}
+            return {"status": "error", "code": "invalid_priority"}
 
-        # Queue size limit
         if len(self.task_queue) >= self.max_queue_size:
-            return {"error": "queue_overflow"}
+            return {"status": "error", "code": "queue_overflow"}
 
-        # Store task
-        self.task_queue.append({
+        entry = {
             "task": task,
             "context": context or {},
             "priority": priority
-        })
+        }
 
-        return {"status": "queued", "size": len(self.task_queue)}
+        self.task_queue.append(entry)
+
+        return {
+            "status": "queued",
+            "size": len(self.task_queue),
+            "task": task,
+            "priority": priority
+        }
 
     def get_next_task(self) -> Optional[Dict[str, Any]]:
         """
@@ -95,23 +99,25 @@ class Scheduler4:
         if not self.task_queue:
             return None
 
-        # Sort by priority (lower = higher priority)
         try:
             self.task_queue.sort(key=lambda t: t["priority"])
         except Exception:
-            return {"error": "invalid_queue_structure"}
+            self.degraded_mode = True
+            return {"status": "error", "code": "invalid_queue_structure"}
 
         entry = self.task_queue.pop(0)
 
-        # Validate entry structure
         if not isinstance(entry, dict):
-            return {"error": "invalid_queue_entry"}
+            self.degraded_mode = True
+            return {"status": "error", "code": "invalid_queue_entry"}
 
         if not self._validate_task(entry.get("task")):
-            return {"error": "invalid_task_in_queue"}
+            self.degraded_mode = True
+            return {"status": "error", "code": "invalid_task_in_queue"}
 
         if not self._validate_context(entry.get("context")):
-            return {"error": "invalid_context_in_queue"}
+            self.degraded_mode = True
+            return {"status": "error", "code": "invalid_context_in_queue"}
 
         return entry
 
@@ -119,42 +125,45 @@ class Scheduler4:
     # EXECUTION LOOP
     # ---------------------------------------------------------
 
-    def start(self):
-        """Starts the scheduler loop safely."""
+    def start(self) -> Dict[str, Any]:
         self.running = True
-        return {"status": "scheduler_started"}
+        return {"status": "success", "message": "scheduler_started"}
 
-    def stop(self):
-        """Stops the scheduler loop safely."""
+    def stop(self) -> Dict[str, Any]:
         self.running = False
-        return {"status": "scheduler_stopped"}
+        return {"status": "success", "message": "scheduler_stopped"}
 
-    def tick(self) -> Optional[Any]:
+    def tick(self) -> Optional[Dict[str, Any]]:
         """
         Executes a single scheduler cycle.
         Returns the result of the executed task.
         """
 
         if not self.running:
-            return {"error": "scheduler_not_running"}
+            return {"status": "error", "code": "scheduler_not_running"}
 
         task = self.get_next_task()
         if not task:
             return None
 
-        # Safe-mode restrictions
+        # SAFE MODE
         if self.safe_mode and task["priority"] > 1:
-            return {"error": "blocked_by_safe_mode", "task": task["task"]}
+            return {
+                "status": "blocked",
+                "code": "blocked_by_safe_mode",
+                "task": task["task"]
+            }
 
-        # Schoolwork priority bypass
+        # SCHOOLWORK PRIORITY BOOST
         if self.schoolwork_priority:
             ctx = task["context"]
             if isinstance(ctx, dict) and ctx.get("type") == "schoolwork":
                 task["priority"] = 0
 
-        # Placeholder for integration with RuntimeCore4
+        # Return safe execution envelope
         return {
             "status": "scheduled",
             "task": task["task"],
-            "context": task["context"]
+            "context": task["context"],
+            "priority": task["priority"]
         }
