@@ -1,25 +1,42 @@
 """
-SIRIUS LOCAL AI – Knowledge Packs 2.0 Graph
+SIRIUS LOCAL AI – Knowledge Packs 2.0 Graph (Runtime 4.3)
 
 Responsible for:
 - tracking dependencies between packs
 - resolving activation order
-- detecting cycles
+- detecting cycles with diagnostics
 - preparing packs for linking
+- enforcing Security Family 4.4 rules
+- supporting Self‑Repair 4.4 diagnostics
 
-This is the graph layer of Knowledge Packs 2.0.
+This is the graph layer of Knowledge Packs 2.0 (Runtime 4.3).
 """
 
 
 class PackGraph4:
     """
     Graph-based dependency manager for Knowledge Packs 2.0.
+    Provides:
+    - strict validation
+    - structured error surface
+    - deterministic topological sorting
+    - cycle diagnostics
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
-    def __init__(self):
-        # Graph stored as adjacency list:
-        # { "pack_name": ["depends_on_A", "depends_on_B"] }
+    def __init__(self, max_packs: int = 500):
         self.graph = {}
+        self.max_packs = max_packs
+        self.safe_mode = False
+        self.degraded_mode = False
+
+    # ---------------------------------------------------------
+    # VALIDATION HELPERS
+    # ---------------------------------------------------------
+
+    def _validate_name(self, name):
+        return isinstance(name, str) and name.strip()
 
     # ---------------------------------------------------------
     # GRAPH MANAGEMENT
@@ -28,63 +45,68 @@ class PackGraph4:
     def add_pack(self, name: str):
         """Registers a pack in the graph with safety checks."""
 
-        # Validate name
-        if not isinstance(name, str) or not name.strip():
-            return {"error": "invalid_pack_name"}
+        if not self._validate_name(name):
+            return {"status": "error", "code": "invalid_pack_name"}
+
+        if len(self.graph) >= self.max_packs:
+            return {"status": "error", "code": "pack_limit_reached"}
 
         if name not in self.graph:
             self.graph[name] = []
 
-        return {"status": "pack_added"}
+        return {"status": "success", "pack": name}
 
     def add_dependency(self, pack: str, depends_on: str):
         """Declares that `pack` depends on `depends_on` with safety checks."""
 
-        # Validate pack name
-        if not isinstance(pack, str) or not pack.strip():
-            return {"error": "invalid_pack_name"}
+        if not self._validate_name(pack):
+            return {"status": "error", "code": "invalid_pack_name"}
 
-        # Validate dependency name
-        if not isinstance(depends_on, str) or not depends_on.strip():
-            return {"error": "invalid_dependency_name"}
+        if not self._validate_name(depends_on):
+            return {"status": "error", "code": "invalid_dependency_name"}
 
-        # Prevent self-dependency
         if pack == depends_on:
-            return {"error": "self_dependency_not_allowed"}
+            return {"status": "error", "code": "self_dependency_not_allowed"}
 
-        # Ensure pack exists
         if pack not in self.graph:
             self.graph[pack] = []
 
-        # Ensure dependency exists
         if depends_on not in self.graph:
             self.graph[depends_on] = []
 
-        # Add dependency
-        self.graph[pack].append(depends_on)
+        if depends_on not in self.graph[pack]:
+            self.graph[pack].append(depends_on)
 
-        return {"status": "dependency_added"}
+        return {"status": "success", "pack": pack, "depends_on": depends_on}
 
     def get_dependencies(self, pack: str):
-        """Returns all packs that the given pack depends on."""
-        if not isinstance(pack, str):
+        if not self._validate_name(pack):
             return []
         return self.graph.get(pack, [])
 
     # ---------------------------------------------------------
-    # ORDER RESOLUTION
+    # ORDER RESOLUTION (TOPOLOGICAL SORT)
     # ---------------------------------------------------------
 
     def resolve_order(self):
         """
         Performs a topological sort to determine safe activation order.
-        Returns a list of packs in correct order.
-        Includes cycle detection and safety validation.
+        Returns structured result with diagnostics.
         """
 
-        # Detect cycles first
-        if self.has_cycles():
-            return {"error": "cycle_detected"}
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "PackGraph resolution disabled in safe-mode."
+            }
+
+        cycle = self._detect_cycle_path()
+        if cycle:
+            return {
+                "status": "error",
+                "code": "cycle_detected",
+                "cycle": cycle
+            }
 
         visited = set()
         order = []
@@ -95,57 +117,62 @@ class PackGraph4:
             visited.add(node)
 
             deps = self.graph.get(node, [])
-            if not isinstance(deps, list):
-                raise ValueError("Invalid dependency list type.")
-
             for dep in deps:
-                if not isinstance(dep, str) or not dep.strip():
-                    raise ValueError("Invalid dependency name.")
                 visit(dep)
 
             order.append(node)
 
-        # Visit all nodes
-        for pack in list(self.graph.keys()):
-            visit(pack)
+        try:
+            for pack in list(self.graph.keys()):
+                visit(pack)
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "resolution_failed",
+                "exception": str(exc)
+            }
 
-        return order
+        return {
+            "status": "success",
+            "order": order,
+            "count": len(order),
+            "degraded_mode": self.degraded_mode
+        }
 
     # ---------------------------------------------------------
-    # CYCLE DETECTION
+    # CYCLE DETECTION WITH DIAGNOSTICS
     # ---------------------------------------------------------
 
-    def has_cycles(self) -> bool:
-        """
-        Detects circular dependencies between packs.
-        Includes safety validation.
-        """
-
+    def _detect_cycle_path(self):
         visited = set()
-        stack = set()
+        stack = []
 
         def visit(node):
-            if not isinstance(node, str) or not node.strip():
-                return True  # invalid node = treat as unsafe
+            if not self._validate_name(node):
+                return ["invalid_node"]
 
             if node in stack:
-                return True
+                idx = stack.index(node)
+                return stack[idx:] + [node]
 
             if node in visited:
-                return False
+                return None
 
             visited.add(node)
-            stack.add(node)
+            stack.append(node)
 
-            deps = self.graph.get(node, [])
-            if not isinstance(deps, list):
-                return True  # invalid structure = unsafe
+            for dep in self.graph.get(node, []):
+                result = visit(dep)
+                if result:
+                    return result
 
-            for dep in deps:
-                if visit(dep):
-                    return True
+            stack.pop()
+            return None
 
-            stack.remove(node)
-            return False
+        for pack in self.graph:
+            result = visit(pack)
+            if result:
+                return result
 
-        return any(visit(p) for p in self.graph)
+        return None
