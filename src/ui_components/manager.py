@@ -1,6 +1,6 @@
 # manager.py
-# UI Manager – central registry and lifecycle controller for UI components
-# SIRIUS LOCAL AI – ui_components (Phase 4)
+# SIRIUS LOCAL AI – UI Manager 4.3.x
+# Phase‑4 deterministic UI component orchestrator
 
 from typing import Dict, Type, Optional
 from .pixel_layout_engine import PixelLayoutEngine
@@ -9,11 +9,18 @@ from .pixel_layout_engine import PixelLayoutEngine
 class UIComponent:
     """
     Base class for all UI components.
-    Every component must implement:
+
+    Phase‑4 requirements:
         - mount()
         - unmount()
         - render() → returns layout blocks
+        - safe-mode compatible
+        - degraded-mode compatible
     """
+
+    safe_mode: bool = False
+    degraded_mode: bool = False
+
     def mount(self):
         raise NotImplementedError
 
@@ -26,16 +33,22 @@ class UIComponent:
 
 class UIManager:
     """
-    Central orchestrator for all UI components.
-    Handles:
-        - component registration
-        - component lifecycle
-        - active component switching
-        - safe mounting/unmounting
-        - integration with PixelLayoutEngine
+    UIManager 4.3.x
+
+    Responsibilities:
+        - Component registration
+        - Component lifecycle (mount/unmount)
+        - Active component switching
+        - Safe-mode and degraded-mode behavior
+        - Integration with PixelLayoutEngine Phase‑4
+        - Deterministic, offline-only behavior
+        - Error-safe rendering
     """
 
     def __init__(self):
+        self.safe_mode = False
+        self.degraded_mode = False
+
         self._registry: Dict[str, Type[UIComponent]] = {}
         self._instances: Dict[str, UIComponent] = {}
         self._active: Optional[str] = None
@@ -44,134 +57,162 @@ class UIManager:
     # ---------------------------------------------------------
     # REGISTRATION
     # ---------------------------------------------------------
+
     def register(self, name: str, component_cls: Type[UIComponent]):
         """Register a UI component class under a unique name."""
         if name in self._registry:
             raise ValueError(f"UI component '{name}' already registered")
 
         self._registry[name] = component_cls
-        print(f"UIManager: registered '{name}'")
 
     def unregister(self, name: str):
         """Remove a component from registry."""
         if name in self._instances:
-            self._instances[name].unmount()
+            try:
+                self._instances[name].unmount()
+            except Exception:
+                pass
             del self._instances[name]
 
         self._registry.pop(name, None)
-        print(f"UIManager: unregistered '{name}'")
 
     # ---------------------------------------------------------
     # COMPONENT ACCESS
     # ---------------------------------------------------------
+
     def get(self, name: str) -> UIComponent:
         """Return an instance of a component, creating it if needed."""
         if name not in self._registry:
             raise KeyError(f"UI component '{name}' not found")
 
         if name not in self._instances:
-            self._instances[name] = self._registry[name]()
+            try:
+                self._instances[name] = self._registry[name]()
+            except Exception:
+                self.degraded_mode = True
+                raise
 
         return self._instances[name]
 
     # ---------------------------------------------------------
     # LIFECYCLE CONTROL
     # ---------------------------------------------------------
+
     def activate(self, name: str):
         """Activate a component and deactivate the previous one."""
+        if self.safe_mode:
+            return {"status": "safe_mode", "component": None}
+
         if name not in self._registry:
             raise KeyError(f"UI component '{name}' not found")
 
         # Unmount previous
         if self._active and self._active in self._instances:
-            self._instances[self._active].unmount()
+            try:
+                self._instances[self._active].unmount()
+            except Exception:
+                self.degraded_mode = True
 
         # Mount new
-        instance = self.get(name)
-        instance.mount()
-
-        self._active = name
-        print(f"UIManager: activated '{name}'")
+        try:
+            instance = self.get(name)
+            instance.mount()
+            self._active = name
+            return {"status": "ok", "component": name}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "component": name,
+                "exception": str(exc),
+                "degraded_mode": True,
+            }
 
     def deactivate(self):
         """Deactivate the currently active component."""
         if self._active and self._active in self._instances:
-            self._instances[self._active].unmount()
+            try:
+                self._instances[self._active].unmount()
+            except Exception:
+                self.degraded_mode = True
 
-        print(f"UIManager: deactivated '{self._active}'")
         self._active = None
 
     # ---------------------------------------------------------
     # LAYOUT ENGINE INTEGRATION
     # ---------------------------------------------------------
+
     def connect_layout_engine(self, engine: PixelLayoutEngine):
         """Attach PixelLayoutEngine instance."""
         self._layout_engine = engine
-        print("UIManager: PixelLayoutEngine connected")
 
     # ---------------------------------------------------------
     # RENDERING
     # ---------------------------------------------------------
+
     def render_active(self):
-        """Render the currently active component and forward to PixelLayoutEngine."""
+        """
+        Render the currently active component and forward to PixelLayoutEngine.
+        Deterministic, safe-mode aware, error-safe.
+        """
+
+        if self.safe_mode:
+            return {"status": "safe_mode", "layout": None}
+
         if not self._active:
-            print("UIManager: no active component to render")
-            return None
+            return {"status": "no_active_component", "layout": None}
 
         instance = self._instances.get(self._active)
         if not instance:
-            print("UIManager: active component instance missing")
-            return None
+            return {"status": "missing_instance", "layout": None}
 
-        # Component produces layout blocks
-        layout = instance.render()
+        try:
+            layout = instance.render()
 
-        # Forward to PixelLayoutEngine
-        if self._layout_engine:
-            self._layout_engine.render_blocks(layout)
+            if self._layout_engine:
+                try:
+                    self._layout_engine.render_blocks(layout)
+                except Exception:
+                    self.degraded_mode = True
 
-        return layout
+            return {"status": "ok", "layout": layout}
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "layout": None,
+                "exception": str(exc),
+                "degraded_mode": True,
+            }
 
     # ---------------------------------------------------------
     # DEBUG / INTROSPECTION
     # ---------------------------------------------------------
+
     def list_components(self):
-        """Return list of registered component names."""
         return list(self._registry.keys())
 
     def active_component(self):
-        """Return name of active component."""
         return self._active
 
+    # ---------------------------------------------------------
+    # SAFE-MODE
+    # ---------------------------------------------------------
 
-# ---------------------------------------------------------
-# TEMPORARY TEST BLOCK
-# ---------------------------------------------------------
-if __name__ == "__main__":
-    from panel import Panel
-    from window import Window
-    from toolbar import Toolbar
-    from timeline_ui_component import TimelineUIComponent
-    from pixel_layout_engine import PixelLayoutEngine
+    def enter_safe_mode(self):
+        self.safe_mode = True
+        if self._active and self._active in self._instances:
+            try:
+                self._instances[self._active].unmount()
+            except Exception:
+                pass
 
-    ui = UIManager()
-    ui.register("panel", Panel)
-    ui.register("window", Window)
-    ui.register("toolbar", Toolbar)
-    ui.register("timeline", TimelineUIComponent)
+    def exit_safe_mode(self):
+        self.safe_mode = False
 
-    # Connect PixelLayoutEngine
-    engine = PixelLayoutEngine()
-    ui.connect_layout_engine(engine)
+    def is_safe_mode(self):
+        return self.safe_mode
 
-    ui.activate("panel")
-    ui.render_active()
-
-    ui.activate("window")
-    ui.render_active()
-
-    ui.activate("toolbar")
-    ui.render_active()
-
-    ui.activate("timeline")
-    ui.render_active()
+    def is_degraded_mode(self):
+        return self.degraded_mode
