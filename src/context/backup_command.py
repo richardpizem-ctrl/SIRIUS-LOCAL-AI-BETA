@@ -7,27 +7,27 @@ from datetime import datetime
 
 class ContextBackupCommand(BaseCommand):
     """
-    ContextBackupCommand 4.0
+    ContextBackupCommand 4.3
     Creates a timestamped backup of the entire context into the backups/ folder.
 
-    New in version 4.0:
-    - metadata for NL Router 4.0
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (filesystem write)
-    - audit trail via BaseCommand lifecycle
-    - structured output for Workflow Engine 4.0
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - context validation before backup
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-backup"
     description = "Creates a timestamped backup of the entire context into the backups/ folder."
     category = "context"
 
-    required_identity = "OWNER"     # only OWNER may create backups
-    risk_level = 0.3                # moderate risk (file operations)
+    required_identity = "OWNER"
+    risk_level = 0.3
     capabilities = ["fs_write"]
 
     keywords = ["backup", "context", "save", "export"]
@@ -41,14 +41,15 @@ class ContextBackupCommand(BaseCommand):
         self.backup_dir = backup_dir
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Creates a timestamped context backup.
         """
+
         # -----------------------------
-        # CONTEXT VALIDATION
+        # VALIDATE CONTEXT
         # -----------------------------
         if hasattr(self.context, "validate"):
             if not self.context.validate():
@@ -96,6 +97,9 @@ class ContextBackupCommand(BaseCommand):
                 "exception": str(e)
             }
 
+        # -----------------------------
+        # SUCCESS RESPONSE
+        # -----------------------------
         return {
             "status": "success",
             "file": filepath,
