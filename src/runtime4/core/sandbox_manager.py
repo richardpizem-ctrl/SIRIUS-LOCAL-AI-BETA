@@ -1,176 +1,132 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Sandbox Manager
+SIRIUS LOCAL AI – Runtime 4.3 Module Loader
 
-The Sandbox Manager is responsible for:
-- creating isolated execution contexts
-- enforcing capability rules (Security Family 4.4)
-- validating inputs and outputs
-- preventing unsafe operations
-- routing tasks through sandboxed modules
-- integrating with scheduler and dependency graph
+Responsible for:
+- registering runtime modules
+- validating module integrity
+- initializing modules in deterministic order
+- preparing modules for sandbox isolation
+- exposing modules to the scheduler and dependency graph
 - Self‑Repair 4.4 degraded-mode detection
 
-This is the primary security layer of Runtime 4.3.
+This component acts as the boot manager of Runtime 4.3.
 """
 
-from typing import Optional, Dict, Any
+from typing import Any, Dict, List
 
 
-class SandboxManager4:
+class ModuleLoader4:
     """
-    Manages sandboxed execution environments for Runtime 4.3.
+    Handles loading, initialization, and validation of runtime modules.
     Provides:
     - strict validation
     - structured error surface
-    - capability enforcement
-    - safe-mode compatibility
+    - telemetry
     - degraded-mode detection
+    - safe-mode compatibility
     """
 
-    def __init__(self, max_contexts: int = 200):
-        self.contexts: Dict[str, Dict[str, Any]] = {}
-        self.max_contexts = max_contexts
+    def __init__(self, max_modules: int = 200):
+        self.modules: Dict[str, Any] = {}
+        self.max_modules = max_modules
         self.degraded_mode = False
-        self.safe_mode = False
 
     # ---------------------------------------------------------
     # VALIDATION HELPERS
     # ---------------------------------------------------------
 
-    def _validate_module_name(self, name: Any) -> bool:
+    def _validate_name(self, name: Any) -> bool:
         return isinstance(name, str) and name.strip()
 
-    def _validate_capabilities(self, caps: Any) -> bool:
-        if not isinstance(caps, list):
+    def _validate_module(self, module: Any) -> bool:
+        if module is None:
             return False
-        return all(isinstance(c, str) and c.strip() for c in caps)
-
-    def _validate_context(self, ctx: Any) -> bool:
-        if ctx is None:
-            return True
-        if not isinstance(ctx, dict):
+        if isinstance(module, (bytes, bytearray, type(lambda: None))):
             return False
-        for key, value in ctx.items():
-            if not isinstance(key, str) or not key.strip():
-                return False
-            if isinstance(value, (bytes, bytearray, type(lambda: None))):
-                return False
         return True
 
-    def _validate_task(self, task: Any) -> bool:
-        return isinstance(task, str) and task.strip()
-
     # ---------------------------------------------------------
-    # CONTEXT MANAGEMENT
+    # REGISTRATION
     # ---------------------------------------------------------
 
-    def create_context(self, module_name: str) -> Dict[str, Any]:
-        if not self._validate_module_name(module_name):
+    def register(self, name: str, module: Any) -> Dict[str, Any]:
+        """Registers a module under a given name with full safety checks."""
+
+        if not self._validate_name(name):
             return {"status": "error", "code": "invalid_module_name"}
 
-        if len(self.contexts) >= self.max_contexts:
-            return {"status": "error", "code": "context_limit_reached"}
+        if not self._validate_module(module):
+            return {"status": "error", "code": "invalid_module_object"}
 
-        self.contexts[module_name] = {
-            "capabilities": [],
-            "state": {},
-            "active": True
-        }
+        if len(self.modules) >= self.max_modules:
+            return {"status": "error", "code": "module_limit_reached"}
 
-        return {"status": "success", "module": module_name}
+        self.modules[name] = module
+        return {"status": "success", "module": name}
 
-    def destroy_context(self, module_name: str) -> Dict[str, Any]:
-        if not self._validate_module_name(module_name):
+    def unregister(self, name: str) -> Dict[str, Any]:
+        if not self._validate_name(name):
             return {"status": "error", "code": "invalid_module_name"}
 
-        if module_name in self.contexts:
-            del self.contexts[module_name]
-            return {"status": "success", "module": module_name}
+        if name in self.modules:
+            del self.modules[name]
+            return {"status": "success", "module": name}
 
-        return {"status": "error", "code": "context_not_found"}
-
-    def get_context(self, module_name: str) -> Optional[dict]:
-        if not self._validate_module_name(module_name):
-            return None
-        return self.contexts.get(module_name)
+        return {"status": "error", "code": "module_not_found"}
 
     # ---------------------------------------------------------
-    # CAPABILITY RULES
+    # INITIALIZATION
     # ---------------------------------------------------------
 
-    def set_capabilities(self, module_name: str, capabilities: list) -> Dict[str, Any]:
-        if not self._validate_module_name(module_name):
-            return {"status": "error", "code": "invalid_module_name"}
-
-        if not self._validate_capabilities(capabilities):
-            return {"status": "error", "code": "invalid_capabilities"}
-
-        if module_name not in self.contexts:
-            return {"status": "error", "code": "context_not_found"}
-
-        self.contexts[module_name]["capabilities"] = capabilities
-        return {"status": "success", "module": module_name}
-
-    def has_capability(self, module_name: str, capability: str) -> bool:
-        if not self._validate_module_name(module_name):
-            return False
-        if not isinstance(capability, str) or not capability.strip():
-            return False
-
-        ctx = self.contexts.get(module_name)
-        if not ctx:
-            return False
-
-        return capability in ctx["capabilities"]
-
-    # ---------------------------------------------------------
-    # EXECUTION
-    # ---------------------------------------------------------
-
-    def execute(self, module_name: str, task: str, context: Optional[dict] = None) -> Dict[str, Any]:
+    def initialize_all(self) -> Dict[str, Any]:
         """
-        Executes a task inside a sandboxed module.
-        Full Runtime 4.3 security validation.
+        Calls the initialization method on all registered modules.
+        Returns structured telemetry and degraded-mode status.
         """
 
-        # SAFE MODE (Self‑Repair)
-        if self.safe_mode:
-            return {
-                "status": "safe_mode",
-                "message": "Sandbox execution disabled in safe-mode."
-            }
+        results = {}
+        errors = []
 
-        # Validate module name
-        if not self._validate_module_name(module_name):
-            return {"status": "error", "code": "invalid_module_name"}
+        for name, module in self.modules.items():
 
-        # Validate task
-        if not self._validate_task(task):
-            return {"status": "error", "code": "invalid_task"}
+            # Defense in depth
+            if not self._validate_module(module):
+                results[name] = {"status": "error", "code": "invalid_module_object"}
+                errors.append(name)
+                continue
 
-        # Validate context
-        if not self._validate_context(context):
-            return {"status": "error", "code": "invalid_context"}
+            if hasattr(module, "initialize") and callable(module.initialize):
+                try:
+                    module.initialize()
+                    results[name] = {"status": "initialized"}
+                except Exception as exc:
+                    results[name] = {
+                        "status": "error",
+                        "code": "initialization_failed",
+                        "exception": str(exc),
+                    }
+                    errors.append(name)
+            else:
+                results[name] = {"status": "skipped", "reason": "no_initialize_method"}
 
-        # Check sandbox existence
-        if module_name not in self.contexts:
-            return {"status": "error", "code": "sandbox_not_initialized"}
+        self.degraded_mode = bool(errors)
 
-        ctx = self.contexts[module_name]
-
-        # Check sandbox active state
-        if not ctx.get("active", False):
-            return {"status": "error", "code": "sandbox_inactive"}
-
-        # Capability enforcement placeholder (Security Family 4.4)
-        # Example:
-        # if task == "compute" and not self.has_capability(module_name, "compute"):
-        #     return {"status": "error", "code": "capability_missing"}
-
-        # Return safe execution envelope
         return {
-            "status": "sandboxed",
-            "module": module_name,
-            "task": task,
-            "context": context or {},
+            "status": "degraded" if errors else "success",
+            "results": results,
+            "errors": errors,
+            "modules": list(self.modules.keys()),
+            "degraded_mode": self.degraded_mode,
         }
+
+    # ---------------------------------------------------------
+    # ACCESS
+    # ---------------------------------------------------------
+
+    def get(self, name: str):
+        if not self._validate_name(name):
+            return None
+        return self.modules.get(name)
+
+    def list_modules(self) -> List[str]:
+        return list(self.modules.keys())
