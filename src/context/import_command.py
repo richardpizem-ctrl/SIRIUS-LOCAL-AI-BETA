@@ -7,28 +7,28 @@ import copy
 
 class ContextImportCommand(BaseCommand):
     """
-    ContextImportCommand 4.0
+    ContextImportCommand 4.3
     Imports the context or selected sections from a JSON file.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_write, fs_read)
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
     - deep-copy safety
-    - structured output for Workflow Engine 4.0
-    - audit trail via BaseCommand lifecycle
+    - snapshot before mutation
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-import"
     description = "Imports the context or selected sections from a JSON file."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can import context
-    risk_level = 0.6                # Higher risk (overwrites memory)
+    required_identity = "OWNER"
+    risk_level = 0.6
     capabilities = ["context_write", "fs_read"]
 
     keywords = ["import", "context", "json", "load"]
@@ -44,7 +44,7 @@ class ContextImportCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -90,6 +90,12 @@ class ContextImportCommand(BaseCommand):
             }
 
         # -----------------------------
+        # SNAPSHOT BEFORE MUTATION
+        # -----------------------------
+        if hasattr(self.context, "snapshot"):
+            self.context.snapshot()
+
+        # -----------------------------
         # IMPORT BY SECTION
         # -----------------------------
         try:
@@ -97,7 +103,10 @@ class ContextImportCommand(BaseCommand):
                 if not isinstance(data, dict):
                     return {
                         "status": "error",
-                        "message": "JSON must contain an object with keys: session, persistent, state, history."
+                        "message": (
+                            "JSON must contain an object with keys: "
+                            "session, persistent, state, history."
+                        )
                     }
 
                 self.context.session_memory = copy.deepcopy(data.get("session", []))
@@ -136,7 +145,10 @@ class ContextImportCommand(BaseCommand):
             else:
                 return {
                     "status": "error",
-                    "message": f"Unknown section '{section}'. Use: all/session/persistent/state/history."
+                    "message": (
+                        f"Unknown section '{section}'. "
+                        "Use: all | session | persistent | state | history."
+                    )
                 }
 
         except Exception as e:
@@ -152,6 +164,8 @@ class ContextImportCommand(BaseCommand):
         if hasattr(self.context, "validate") and not self.context.validate():
             return {
                 "status": "warning",
+                "section": section,
+                "file": filename,
                 "message": "Import completed, but context is not in a consistent state."
             }
 
