@@ -2,34 +2,33 @@ from commands.base_command import BaseCommand
 from context.context_manager import ContextManager
 
 
-class TranslateCommand(BaseCommand):
+class ContextSetCommand(BaseCommand):
     """
-    TranslateCommand 4.0
-    Translates text using the placeholder translator in ContextManager.
+    ContextSetCommand 4.3
+    Sets a value in the system state with validation, snapshot,
+    diff reporting, and safe merge.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read, context_write)
-    - snapshot before translation
-    - structured output for Workflow Engine 4.0
-    - safe merge of translation metadata into state
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - snapshot before modification
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
-    name = "translate"
-    description = "Translates text into a target language with validation, snapshot, and state logging."
-    category = "language"
+    name = "context-set"
+    description = "Sets a value in the context state with validation, snapshot, and diff."
+    category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can run translation commands
-    risk_level = 0.3                # Low-medium risk (state modification)
-    capabilities = ["context_read", "context_write"]
+    required_identity = "OWNER"
+    risk_level = 0.4
+    capabilities = ["context_write"]
 
-    keywords = ["translate", "language", "text"]
-    examples = ["translate en Hello world"]
+    keywords = ["set", "context", "state", "update"]
+    examples = ["context-set mood happy"]
 
     # ---------------------------------------------------------
     # INIT
@@ -38,11 +37,11 @@ class TranslateCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
-        Translates text using the context's translation engine.
+        Sets a state variable with snapshot and diff reporting.
         """
 
         # -----------------------------
@@ -51,11 +50,10 @@ class TranslateCommand(BaseCommand):
         if len(args) < 2:
             return {
                 "status": "error",
-                "message": "Usage: translate <lang> <text>"
+                "message": "Usage: context-set <key> <value>"
             }
 
-        target_lang = args[0]
-        sentence = " ".join(args[1:])
+        key, value = args[0], args[1]
 
         # -----------------------------
         # CONTEXT VALIDATION
@@ -67,32 +65,36 @@ class TranslateCommand(BaseCommand):
             }
 
         # -----------------------------
-        # SNAPSHOT BEFORE TRANSLATION
+        # SNAPSHOT BEFORE CHANGE
         # -----------------------------
         if hasattr(self.context, "snapshot"):
             self.context.snapshot()
 
         # -----------------------------
-        # PERFORM TRANSLATION
+        # DIFF (old vs new)
         # -----------------------------
-        translated = self.context.translate(sentence, target_lang)
+        old_value = self.context.get_state(key)
+        diff = None
+
+        if old_value != value:
+            diff = {
+                "old": old_value,
+                "new": value
+            }
 
         # -----------------------------
-        # LOG TRANSLATION INTO STATE
+        # SAFE MERGE
         # -----------------------------
-        self.context.merge({
-            "last_translation": translated,
-            "last_translation_lang": target_lang,
-            "last_translation_source": sentence
-        })
+        if isinstance(key, str):
+            self.context.merge({key: value})
 
         # -----------------------------
         # SUCCESS RESPONSE
         # -----------------------------
         return {
             "status": "success",
-            "source_text": sentence,
-            "target_lang": target_lang,
-            "translated_text": translated,
-            "message": "Translation completed successfully."
+            "key": key,
+            "value": value,
+            "diff": diff,
+            "message": f"State variable '{key}' updated."
         }
