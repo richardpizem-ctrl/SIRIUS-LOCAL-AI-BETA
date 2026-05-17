@@ -4,10 +4,20 @@ from email.manager import EmailManager
 
 class EmailDeleteCommand(BaseCommand):
     """
-    EmailDeleteCommand 4.0
+    EmailDeleteCommand 4.3
     Deletes an email (draft or sent) by ID using EmailManager.
+
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - context snapshot before mutation
+    - consistent return structure
     """
 
+    # ---------------------------------------------------------
+    # METADATA (v4.3)
+    # ---------------------------------------------------------
     name = "email-delete"
     description = "Deletes an email draft or sent email by ID."
     category = "email"
@@ -17,13 +27,22 @@ class EmailDeleteCommand(BaseCommand):
     capabilities = ["fs_write"]
 
     keywords = ["email", "delete", "remove"]
-    examples = ["email-delete 20260424_112233"]
+    examples = ["email-delete <email_id>"]
 
+    # ---------------------------------------------------------
+    # INIT
+    # ---------------------------------------------------------
     def __init__(self, context, email_manager: EmailManager):
         self.context = context
         self.email_manager = email_manager
 
+    # ---------------------------------------------------------
+    # EXECUTION
+    # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
+        # -----------------------------
+        # INPUT VALIDATION
+        # -----------------------------
         if len(args) < 1:
             return {
                 "status": "error",
@@ -56,6 +75,9 @@ class EmailDeleteCommand(BaseCommand):
             "last_email_deleted_id": email_id
         })
 
+        # -----------------------------
+        # SUCCESS RESPONSE
+        # -----------------------------
         return {
             "status": "success",
             "message": f"Email '{email_id}' deleted successfully.",
