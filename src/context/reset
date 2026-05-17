@@ -4,27 +4,26 @@ from context.context_manager import ContextManager
 
 class ResetCommand(BaseCommand):
     """
-    ResetCommand 4.0
+    ResetCommand 4.3
     Completely wipes the entire context and restores a clean default state.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - high‑risk classification
-    - capability flags (context_write)
-    - post‑reset snapshot
-    - structured output for Workflow Engine 4.0
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - snapshot after reset
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-reset"
     description = "Fully resets session, persistent, state, and history to a clean context."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can perform a full reset
-    risk_level = 0.9                # Extremely high risk (total data wipe)
+    required_identity = "OWNER"
+    risk_level = 0.9
     capabilities = ["context_write"]
 
     keywords = ["reset", "context", "wipe", "clear"]
@@ -37,7 +36,7 @@ class ResetCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -51,6 +50,9 @@ class ResetCommand(BaseCommand):
         self.context.persistent_memory = {}
         self.context.state = {}
         self.context.history = []
+        self.context.profiles = {}
+        self.context.active_profile = None
+        self.context.last_integrity_hash = None
 
         # -----------------------------
         # SNAPSHOT AFTER RESET
