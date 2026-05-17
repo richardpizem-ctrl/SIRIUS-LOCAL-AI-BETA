@@ -4,28 +4,27 @@ from context.context_manager import ContextManager
 
 class ContextClearCommand(BaseCommand):
     """
-    ContextClearCommand 4.0
+    ContextClearCommand 4.3
     Clears the short‑term (session) memory with validation, snapshot creation,
     and state logging.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk‑aware execution
-    - capability flags (context_write)
-    - audit trail via BaseCommand lifecycle
-    - structured output for Workflow Engine 4.0
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-clear"
     description = "Clears the short‑term session memory with validation and snapshot."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can clear memory
-    risk_level = 0.4                # Medium risk (memory modification)
+    required_identity = "OWNER"
+    risk_level = 0.4
     capabilities = ["context_write"]
 
     keywords = ["clear", "context", "session", "memory"]
@@ -38,7 +37,7 @@ class ContextClearCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -57,7 +56,8 @@ class ContextClearCommand(BaseCommand):
         # -----------------------------
         # SNAPSHOT BEFORE CLEARING
         # -----------------------------
-        self.context.snapshot()
+        if hasattr(self.context, "snapshot"):
+            self.context.snapshot()
 
         # -----------------------------
         # CLEAR SESSION MEMORY
@@ -72,7 +72,7 @@ class ContextClearCommand(BaseCommand):
         self.context.set_state("last_clear_action", "session_memory")
 
         # -----------------------------
-        # STRUCTURED OUTPUT
+        # SUCCESS RESPONSE
         # -----------------------------
         return {
             "status": "success",
