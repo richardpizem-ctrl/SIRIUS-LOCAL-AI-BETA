@@ -4,28 +4,28 @@ from context.context_manager import ContextManager
 
 class MemoryLoadCommand(BaseCommand):
     """
-    MemoryLoadCommand 4.0
+    MemoryLoadCommand 4.3
     Loads a value from persistent memory and safely merges it into state.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read, context_write)
-    - diff reporting
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
     - snapshot before merge
-    - structured output for Workflow Engine 4.0
+    - diff reporting
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "memory-load"
     description = "Loads a value from persistent memory and merges it into state."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can load memory into state
-    risk_level = 0.4                # Medium risk (state modification)
+    required_identity = "OWNER"
+    risk_level = 0.4
     capabilities = ["context_read", "context_write"]
 
     keywords = ["memory", "load", "persistent", "state"]
@@ -38,7 +38,7 @@ class MemoryLoadCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
