@@ -1,45 +1,50 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.0 Receiver
+SIRIUS LOCAL AI – ENVOY 4.3 Receiver
 
 Responsible for:
 - receiving external ENVOY payloads
 - performing initial structural checks
 - routing payloads to quarantine or validator
+- enforcing Security Family 4.4 rules
 - preparing data for Knowledge Packs 2.0 conversion
+- supporting Self‑Repair 4.4 diagnostics
 
-This is the entry point of ENVOY 4.0.
+This is the entry point of ENVOY 4.3.
 """
 
 from typing import Optional, Dict, Any
+import json
 
 
 class EnvoyReceiver4:
     """
     Receives and preprocesses ENVOY payloads.
+    Provides:
+    - strict validation
+    - structured error surface
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
     def __init__(self, max_queue_size: int = 1000, max_payload_size: int = 500_000):
-        # Raw incoming payloads before validation
         self.incoming = []
-
-        # Security limits
         self.max_queue_size = max_queue_size
         self.max_payload_size = max_payload_size
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
-    # INTERNAL VALIDATION HELPERS
+    # INTERNAL SAFETY CHECKS
     # ---------------------------------------------------------
 
     def _is_safe_payload(self, payload: Any) -> bool:
         """Performs shallow safety validation before quarantine."""
 
-        # Must be dict
         if not isinstance(payload, dict):
             return False
 
-        # Payload must not be too large
+        # Size check
         try:
-            import json
             if len(json.dumps(payload)) > self.max_payload_size:
                 return False
         except Exception:
@@ -47,12 +52,8 @@ class EnvoyReceiver4:
 
         # Validate keys and values
         for key, value in payload.items():
-
-            # Keys must be strings
             if not isinstance(key, str) or not key.strip():
                 return False
-
-            # Values must be safe types
             if isinstance(value, (bytes, bytearray, type(lambda: None))):
                 return False
 
@@ -62,27 +63,33 @@ class EnvoyReceiver4:
     # RECEIVING
     # ---------------------------------------------------------
 
-    def receive(self, payload: Dict[str, Any]):
+    def receive(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
         Receives a raw ENVOY payload with full safety checks.
         """
 
-        # Validate payload type
+        # SAFE MODE
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "ENVOY receiver disabled in safe-mode."
+            }
+
         if not isinstance(payload, dict):
-            return {"error": "invalid_payload_type"}
+            return {"status": "error", "code": "invalid_payload_type"}
 
-        # Validate payload safety
         if not self._is_safe_payload(payload):
-            return {"error": "unsafe_payload"}
+            return {"status": "error", "code": "unsafe_payload"}
 
-        # Queue size limit
         if len(self.incoming) >= self.max_queue_size:
-            return {"error": "queue_overflow"}
+            return {"status": "error", "code": "queue_overflow"}
 
-        # Store payload
         self.incoming.append(payload)
 
-        return {"status": "received", "size": len(self.incoming)}
+        return {
+            "status": "received",
+            "size": len(self.incoming)
+        }
 
     # ---------------------------------------------------------
     # ACCESS
@@ -99,11 +106,14 @@ class EnvoyReceiver4:
 
         entry = self.incoming.pop(0)
 
-        # Validate entry again (defense in depth)
         if not isinstance(entry, dict):
-            return {"error": "invalid_queue_entry"}
+            self.degraded_mode = True
+            return {"status": "error", "code": "invalid_queue_entry"}
 
         if not self._is_safe_payload(entry):
-            return {"error": "unsafe_payload_in_queue"}
+            return {"status": "error", "code": "unsafe_payload_in_queue"}
 
-        return entry
+        return {
+            "status": "ready",
+            "payload": entry
+        }
