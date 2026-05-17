@@ -4,7 +4,7 @@ from context.context_manager import ContextManager
 
 class ContextInfoCommand(BaseCommand):
     """
-    ContextInfoCommand 4.0
+    ContextInfoCommand 4.3
     Displays diagnostic information about the AI context:
     - short‑term memory (session)
     - long‑term memory (persistent)
@@ -12,24 +12,23 @@ class ContextInfoCommand(BaseCommand):
     - snapshot history
     - consistency validation
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read)
-    - structured output for Workflow Engine 4.0
-    - audit trail via BaseCommand lifecycle
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-info"
     description = "Displays extended diagnostic information about the AI context."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can inspect full diagnostics
-    risk_level = 0.2                # Low risk (read-only)
+    required_identity = "OWNER"
+    risk_level = 0.2
     capabilities = ["context_read"]
 
     keywords = ["info", "context", "diagnostics", "memory", "state"]
@@ -42,7 +41,7 @@ class ContextInfoCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -61,7 +60,12 @@ class ContextInfoCommand(BaseCommand):
         # -----------------------------
         # COLLECT DATA
         # -----------------------------
-        session_items = list(self.context.get_recent(10)) if self.context.session_memory else []
+        session_items = (
+            list(self.context.get_recent(10))
+            if getattr(self.context, "session_memory", None)
+            else []
+        )
+
         persistent_items = dict(self.context.persistent_memory)
         state_items = dict(self.context.state)
 
