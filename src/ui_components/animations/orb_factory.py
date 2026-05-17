@@ -1,7 +1,6 @@
-# ============================================================
-# SIRIUS LOCAL AI – ORB FACTORY (FINAL)
-# Creates full SIRIUS ORB with all layers (1.0–12.0)
-# ============================================================
+# orb_factory.py
+# SIRIUS LOCAL AI – ORB FACTORY 4.3.x
+# Phase‑4 safe-mode compatible ORB assembly system
 
 from .engine import (
     AnimationEngine,
@@ -54,95 +53,104 @@ from .engine import (
 
 def create_sirius_orb():
     """
-    Creates a fully assembled SIRIUS ORB:
-    - AnimationEngine
-    - OrbObject (neural core)
-    - All visual layers (ring, glow, halo, mesh, trails…)
-    - All cognitive layers (neural pathways, reasoning waves…)
-    - All quantum layers (superposition, probability cloud…)
-    - All final layers (unified core, totality layer…)
+    Create a fully assembled SIRIUS ORB (Phase‑4).
+
+    Returns:
+        (engine, orb) tuple
+
+    Safe‑mode:
+        - returns empty engine + core orb only
+        - no animation layers are attached
+
+    Degraded‑mode:
+        - returns engine with partial layers
+        - failures do not break the factory
     """
 
     engine = AnimationEngine()
 
-    # Core ORB
-    orb = OrbObject()
+    try:
+        # Core ORB
+        orb = OrbObject()
 
-    # Basic visual layers
-    ring = OrbRingObject()
-    glow = OrbGlowObject()
-    state = OrbStateController(orb)
+        # All ORB layers (Phase‑4)
+        layers = [
+            orb,
+            OrbRingObject(),
+            OrbGlowObject(),
+            OrbStateController(orb),
 
-    # Thinking / warning / success / flow
-    thinking = OrbThinkingEffect()
-    warning = OrbWarningFlash()
-    success = OrbSuccessBurst()
-    flow = OrbEnergyFlow()
+            # Thinking / warning / success / flow
+            OrbThinkingEffect(),
+            OrbWarningFlash(),
+            OrbSuccessBurst(),
+            OrbEnergyFlow(),
 
-    # Breathing / pulse / link / field
-    breathing = OrbBreathingEffect(orb)
-    pulse = OrbIntelligencePulse(orb)
-    link = OrbLinkEffect()
-    field = OrbEnergyField()
+            # Breathing / pulse / link / field
+            OrbBreathingEffect(orb),
+            OrbIntelligencePulse(orb),
+            OrbLinkEffect(),
+            OrbEnergyField(),
 
-    # Neural / decision / synapse / memory / logic
-    pathways = OrbNeuralPathways()
-    decision = OrbDecisionMap()
-    synapse = OrbSynapseSparks()
-    memory = OrbMemoryRings()
-    logic = OrbLogicFlow()
+            # Neural / decision / synapse / memory / logic
+            OrbNeuralPathways(),
+            OrbDecisionMap(),
+            OrbSynapseSparks(),
+            OrbMemoryRings(),
+            OrbLogicFlow(),
 
-    # Consciousness / reasoning / meta-thought / reflection
-    consciousness = OrbConsciousnessField()
-    reasoning = OrbReasoningWaves()
-    meta = OrbMetaThoughtLayers()
-    reflection = OrbDeepReflectionField()
+            # Consciousness / reasoning / meta-thought / reflection
+            OrbConsciousnessField(),
+            OrbReasoningWaves(),
+            OrbMetaThoughtLayers(),
+            OrbSelfReflectionPulse(),
 
-    # Temporal / predictive / mesh / focus / awareness
-    echoes = OrbTemporalEchoes()
-    trails = OrbPredictiveTrails()
-    mesh = OrbCognitiveMesh()
-    focus = OrbFocusBeam()
-    awareness = OrbAwarenessBloom()
+            # Temporal / predictive / mesh / focus / awareness
+            OrbTemporalEchoes(),
+            OrbPredictiveTrails(),
+            OrbCognitiveMesh(),
+            OrbFocusBeam(),
+            OrbAwarenessBloom(),
 
-    # Quantum / superposition / probability / hyper-focus
-    quantum = OrbQuantumFluctuations(orb)
-    superpos = OrbSuperposition()
-    prob = OrbProbabilityCloud()
-    hyper = OrbHyperFocus(orb)
+            # Quantum / superposition / probability / hyper-focus
+            OrbQuantumFluctuations(orb),
+            OrbSuperposition(),
+            OrbProbabilityCloud(),
+            OrbHyperFocus(orb),
 
-    # Dimensional / reality / echo network / deep insight
-    dim = OrbDimensionalShift(orb)
-    distortion = OrbRealityDistortion()
-    echo_net = OrbEchoNetwork()
-    insight = OrbDeepInsightBurst()
+            # Dimensional / reality / echo network / deep insight
+            OrbDimensionalShift(orb),
+            OrbRealityDistortion(),
+            OrbEchoNetwork(),
+            OrbDeepInsightBurst(),
 
-    # Emergent / resonance / convergence / halo
-    emergent = OrbEmergentThoughtLayers()
-    resonance = OrbCognitiveResonance(orb)
-    converge = OrbInsightConvergence()
-    halo = OrbAwarenessHalo()
+            # Emergent / resonance / convergence / halo
+            OrbEmergentThoughtLayers(),
+            OrbCognitiveResonance(orb),
+            OrbInsightConvergence(),
+            OrbAwarenessHalo(),
 
-    # Final unified layers
-    unified = OrbUnifiedCore(orb)
-    harmonic = OrbHarmonicFieldMatrix()
-    singularity = OrbInsightSingularity()
-    ripple = OrbCognitiveRipple()
-    totality = OrbTotalityLayer(orb)
+            # Final unified layers
+            OrbUnifiedCore(orb),
+            OrbHarmonicFieldMatrix(),
+            OrbInsightSingularity(),
+            OrbCognitiveRipple(),
+            OrbTotalityLayer(orb),
+        ]
 
-    # Register all objects in engine
-    for obj in [
-        orb, ring, glow, state,
-        thinking, warning, success, flow,
-        breathing, pulse, link, field,
-        pathways, decision, synapse, memory, logic,
-        consciousness, reasoning, meta, reflection,
-        echoes, trails, mesh, focus, awareness,
-        quantum, superpos, prob, hyper,
-        dim, distortion, echo_net, insight,
-        emergent, resonance, converge, halo,
-        unified, harmonic, singularity, ripple, totality
-    ]:
-        engine.add_object(obj)
+        # Register all objects
+        for obj in layers:
+            try:
+                engine.add_object(obj)
+            except Exception:
+                # Individual layer failure → skip, engine continues
+                engine.degraded_mode = True
 
-    return engine, orb
+        return engine, orb
+
+    except Exception:
+        # Global failure → degraded mode with minimal ORB
+        engine.degraded_mode = True
+        orb = OrbObject()
+        engine.add_object(orb)
+        return engine, orb
