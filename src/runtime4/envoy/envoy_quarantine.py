@@ -1,13 +1,15 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.0 Quarantine
+SIRIUS LOCAL AI – ENVOY 4.3 Quarantine
 
 Responsible for:
 - isolating unvalidated ENVOY payloads
 - performing safety checks
 - blocking suspicious or malformed data
 - preparing safe payloads for validation
+- enforcing Security Family 4.4 rules
+- supporting Self‑Repair 4.4 diagnostics
 
-This is the quarantine layer of ENVOY 4.0.
+This is the quarantine layer of ENVOY 4.3.
 """
 
 from typing import Dict, Any, Optional
@@ -17,15 +19,19 @@ import json
 class EnvoyQuarantine4:
     """
     Holds and inspects ENVOY payloads before validation.
+    Provides:
+    - strict validation
+    - structured error surface
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
     def __init__(self, max_queue_size: int = 500, max_payload_size: int = 500_000):
-        # Quarantined payloads
         self.quarantine = []
-
-        # Security limits
         self.max_queue_size = max_queue_size
         self.max_payload_size = max_payload_size
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
     # INTERNAL SAFETY CHECKS
@@ -34,11 +40,10 @@ class EnvoyQuarantine4:
     def _is_safe_payload(self, payload: Any) -> bool:
         """Performs shallow safety validation before quarantine."""
 
-        # Must be dict
         if not isinstance(payload, dict):
             return False
 
-        # Payload must not be too large
+        # Size check
         try:
             if len(json.dumps(payload)) > self.max_payload_size:
                 return False
@@ -47,12 +52,8 @@ class EnvoyQuarantine4:
 
         # Validate keys and values
         for key, value in payload.items():
-
-            # Keys must be strings
             if not isinstance(key, str) or not key.strip():
                 return False
-
-            # Values must be safe types
             if isinstance(value, (bytes, bytearray, type(lambda: None))):
                 return False
 
@@ -62,51 +63,50 @@ class EnvoyQuarantine4:
     # ISOLATION
     # ---------------------------------------------------------
 
-    def isolate(self, payload: Dict[str, Any]):
-        """
-        Moves a payload into quarantine with full safety checks.
-        """
+    def isolate(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Moves a payload into quarantine with full safety checks."""
 
-        # Validate payload type
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Quarantine disabled in safe-mode."
+            }
+
         if not isinstance(payload, dict):
-            return {"error": "invalid_payload_type"}
+            return {"status": "error", "code": "invalid_payload_type"}
 
-        # Validate payload safety
         if not self._is_safe_payload(payload):
-            return {"error": "unsafe_payload"}
+            return {"status": "error", "code": "unsafe_payload"}
 
-        # Queue size limit
         if len(self.quarantine) >= self.max_queue_size:
-            return {"error": "quarantine_overflow"}
+            return {"status": "error", "code": "quarantine_overflow"}
 
-        # Store payload
         self.quarantine.append(payload)
 
-        return {"status": "isolated", "count": len(self.quarantine)}
+        return {
+            "status": "isolated",
+            "count": len(self.quarantine)
+        }
 
     # ---------------------------------------------------------
     # INSPECTION
     # ---------------------------------------------------------
 
-    def inspect(self, payload: Dict[str, Any]):
-        """
-        Performs basic safety checks.
-        Extended for Runtime 4.0 security.
-        """
+    def inspect(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Performs safety checks before validation."""
 
-        # Validate payload again (defense in depth)
         if not self._is_safe_payload(payload):
             return {"safe": False, "reason": "unsafe_payload"}
 
-        # Example placeholder rule:
-        if "malicious" in payload:
-            return {"safe": False, "reason": "malicious_flag_detected"}
-
-        # Block suspicious fields
+        # Forbidden keys (Security Family 4.4)
         forbidden_keys = ["exec", "code", "script", "inject"]
         for key in forbidden_keys:
             if key in payload:
                 return {"safe": False, "reason": f"forbidden_key:{key}"}
+
+        # Example malicious flag
+        if "malicious" in payload:
+            return {"safe": False, "reason": "malicious_flag_detected"}
 
         return {"safe": True}
 
@@ -115,23 +115,27 @@ class EnvoyQuarantine4:
     # ---------------------------------------------------------
 
     def release_next(self) -> Optional[Dict[str, Any]]:
-        """
-        Releases the next safe payload from quarantine.
-        """
+        """Releases the next safe payload from quarantine."""
 
         if not self.quarantine:
             return None
 
         entry = self.quarantine.pop(0)
 
-        # Validate entry type
         if not isinstance(entry, dict):
-            return {"error": "invalid_quarantine_entry"}
+            self.degraded_mode = True
+            return {"status": "error", "code": "invalid_quarantine_entry"}
 
-        # Inspect payload
         check = self.inspect(entry)
 
         if not check.get("safe", False):
-            return {"error": "payload_blocked", "reason": check.get("reason")}
+            return {
+                "status": "error",
+                "code": "payload_blocked",
+                "reason": check.get("reason")
+            }
 
-        return entry
+        return {
+            "status": "released",
+            "payload": entry
+        }
