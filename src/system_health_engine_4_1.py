@@ -1,34 +1,21 @@
-"""
-System Health Engine 4.1
-------------------------
-
-Continuous diagnostic and optimization engine for SIRIUS LOCAL AI 4.1.0.
-
-Responsibilities:
-- monitor CPU / RAM / DISK / NETWORK
-- detect frozen processes
-- detect bottlenecks
-- detect failing services (via integration hooks)
-- detect missing/corrupted drivers (via integration hooks)
-- compute PC Health Score
-- generate safe optimization / repair suggestions (to be executed via VYSLANEC)
-
-This module:
-- NEVYKONÁVA žiadne priame systémové zmeny
-- len ANALYZUJE a NAVRHUJE
-- všetky akcie musia ísť cez VYSLANEC 4.1
-"""
+# system_health_engine_4_3.py
+# SIRIUS LOCAL AI – System Health Engine 4.3.x
+# Deterministic, safe-mode compatible, AI-aware diagnostic engine
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Literal
 import time
-import psutil  # predpoklad: bude pridané do dependencies
+import psutil
 
 
 HealthSeverity = Literal["info", "warning", "critical"]
 
+
+# ---------------------------------------------------------
+# DATA STRUCTURES
+# ---------------------------------------------------------
 
 @dataclass
 class MetricSnapshot:
@@ -43,90 +30,139 @@ class MetricSnapshot:
 @dataclass
 class HealthIssue:
     id: str
-    category: str  # "cpu", "ram", "disk", "network", "process", "service", "driver", ...
+    category: str
     severity: HealthSeverity
     title: str
     description: str
     suggested_actions: List[str] = field(default_factory=list)
     related_pids: List[int] = field(default_factory=list)
+    impact: Optional[str] = None       # "performance" | "stability" | "security" | ...
+    quick_fix: bool = False            # hint for orchestrator
 
 
 @dataclass
 class HealthReport:
     snapshot: MetricSnapshot
-    health_score: int  # 0–100
+    health_score: int
     issues: List[HealthIssue] = field(default_factory=list)
+    safe_mode: bool = False
+    degraded_mode: bool = False
 
 
-class SystemHealthEngine41:
+# ---------------------------------------------------------
+# ENGINE
+# ---------------------------------------------------------
+
+class SystemHealthEngine43:
     """
-    System Health Engine 4.1
+    System Health Engine 4.3.x
 
-    - volá sa z Runtime Core 4.0 / Workflow Engine 4.0
-    - nepozná GUI, len vracia štruktúry
-    - nepozná VYSLANEC implementačne, len generuje návrhy akcií
+    Responsibilities:
+        - monitor CPU / RAM / DISK / NETWORK
+        - detect bottlenecks, frozen processes, resource spikes
+        - compute PC Health Score (AI-aware)
+        - generate safe optimization suggestions
+        - deterministic, offline, sandbox-friendly
+        - safe-mode and degraded-mode aware
     """
 
     def __init__(self) -> None:
         self._history: List[MetricSnapshot] = []
+        self.safe_mode = False
+        self.degraded_mode = False
 
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
     # PUBLIC API
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
 
     def collect_snapshot(self) -> MetricSnapshot:
         """
-        Odčíta aktuálny stav systému a vráti snapshot.
-        Nevykonáva žiadne zmeny.
+        Collect current system metrics.
+        Deterministic and safe.
         """
-        cpu = psutil.cpu_percent(interval=0.5)
-        ram = psutil.virtual_memory().percent
-        disk = psutil.disk_usage("/").percent
+        try:
+            cpu = psutil.cpu_percent(interval=0.3)
+            ram = psutil.virtual_memory().percent
+            disk = psutil.disk_usage("/").percent
+            net = psutil.net_io_counters()
 
-        net = psutil.net_io_counters()
-        snapshot = MetricSnapshot(
-            timestamp=time.time(),
-            cpu_percent=cpu,
-            ram_percent=ram,
-            disk_percent=disk,
-            net_bytes_sent=net.bytes_sent,
-            net_bytes_recv=net.bytes_recv,
-        )
-        self._history.append(snapshot)
-        return snapshot
+            snapshot = MetricSnapshot(
+                timestamp=time.time(),
+                cpu_percent=cpu,
+                ram_percent=ram,
+                disk_percent=disk,
+                net_bytes_sent=net.bytes_sent,
+                net_bytes_recv=net.bytes_recv,
+            )
+            self._history.append(snapshot)
+            return snapshot
+
+        except Exception:
+            self.degraded_mode = True
+            return MetricSnapshot(
+                timestamp=time.time(),
+                cpu_percent=0.0,
+                ram_percent=0.0,
+                disk_percent=0.0,
+                net_bytes_sent=0,
+                net_bytes_recv=0,
+            )
 
     def analyze(self) -> HealthReport:
         """
-        Hlavný vstupný bod:
-        - zoberie aktuálny snapshot
-        - analyzuje stav
-        - vygeneruje health score + issues
+        Main entry point for Runtime Manager 4.3.x.
+        Always returns a valid HealthReport.
         """
-        snapshot = self.collect_snapshot()
-        issues: List[HealthIssue] = []
 
-        issues.extend(self._analyze_cpu(snapshot))
-        issues.extend(self._analyze_ram(snapshot))
-        issues.extend(self._analyze_disk(snapshot))
-        # network zatiaľ len placeholder
-        # issues.extend(self._analyze_network(snapshot))
+        if self.safe_mode:
+            snapshot = self.collect_snapshot()
+            return HealthReport(
+                snapshot=snapshot,
+                health_score=100,
+                issues=[],
+                safe_mode=True,
+                degraded_mode=False,
+            )
 
-        score = self._compute_health_score(snapshot, issues)
+        try:
+            snapshot = self.collect_snapshot()
+            issues: List[HealthIssue] = []
 
-        return HealthReport(
-            snapshot=snapshot,
-            health_score=score,
-            issues=issues,
-        )
+            issues.extend(self._analyze_cpu(snapshot))
+            issues.extend(self._analyze_ram(snapshot))
+            issues.extend(self._analyze_disk(snapshot))
+            issues.extend(self._analyze_network(snapshot))
 
-    # -------------------------------------------------------------------------
+            score = self._compute_health_score(snapshot, issues)
+
+            return HealthReport(
+                snapshot=snapshot,
+                health_score=score,
+                issues=issues,
+                safe_mode=False,
+                degraded_mode=self.degraded_mode,
+            )
+
+        except Exception:
+            self.degraded_mode = True
+            snapshot = self.collect_snapshot()
+            return HealthReport(
+                snapshot=snapshot,
+                health_score=50,
+                issues=[],
+                safe_mode=False,
+                degraded_mode=True,
+            )
+
+    # ---------------------------------------------------------
     # INTERNAL ANALYSIS HELPERS
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
 
     def _analyze_cpu(self, snapshot: MetricSnapshot) -> List[HealthIssue]:
         issues: List[HealthIssue] = []
+        cpu = snapshot.cpu_percent
 
-        if snapshot.cpu_percent > 90:
+        if cpu > 90:
             issues.append(
                 HealthIssue(
                     id="cpu_high_usage",
@@ -134,17 +170,18 @@ class SystemHealthEngine41:
                     severity="critical",
                     title="Vysoké vyťaženie procesora",
                     description=(
-                        f"Procesor je aktuálne vyťažený na {snapshot.cpu_percent:.1f} %. "
-                        "To môže spôsobovať spomalenie systému, trhanie animácií a oneskorené reakcie."
+                        f"Procesor je vyťažený na {cpu:.1f} %. "
+                        "Systém môže byť výrazne spomalený."
                     ),
                     suggested_actions=[
                         "Identifikovať procesy s najvyšším CPU zaťažením.",
-                        "Navrhnúť ukončenie nepotrebných procesov (cez VYSLANEC).",
-                        "Skontrolovať, či neprebieha náročné pozadie (indexovanie, update, antivírus).",
+                        "Navrhnúť ukončenie nepotrebných procesov.",
                     ],
+                    impact="performance",
+                    quick_fix=True,
                 )
             )
-        elif snapshot.cpu_percent > 75:
+        elif cpu > 75:
             issues.append(
                 HealthIssue(
                     id="cpu_medium_usage",
@@ -152,13 +189,13 @@ class SystemHealthEngine41:
                     severity="warning",
                     title="Zvýšené vyťaženie procesora",
                     description=(
-                        f"Procesor je aktuálne vyťažený na {snapshot.cpu_percent:.1f} %. "
-                        "Systém môže byť mierne spomalený pri náročnejších úlohách."
+                        f"Procesor je vyťažený na {cpu:.1f} %. "
+                        "Systém môže byť mierne spomalený."
                     ),
                     suggested_actions=[
                         "Skontrolovať procesy s vyšším CPU zaťažením.",
-                        "Navrhnúť optimalizáciu aplikácií bežiacich na pozadí.",
                     ],
+                    impact="performance",
                 )
             )
 
@@ -166,8 +203,9 @@ class SystemHealthEngine41:
 
     def _analyze_ram(self, snapshot: MetricSnapshot) -> List[HealthIssue]:
         issues: List[HealthIssue] = []
+        ram = snapshot.ram_percent
 
-        if snapshot.ram_percent > 90:
+        if ram > 90:
             issues.append(
                 HealthIssue(
                     id="ram_critical",
@@ -175,31 +213,32 @@ class SystemHealthEngine41:
                     severity="critical",
                     title="Nedostatok pamäte RAM",
                     description=(
-                        f"Využitie pamäte RAM je {snapshot.ram_percent:.1f} %. "
-                        "Systém môže výrazne swapovať na disk, čo spôsobuje extrémne spomalenie."
+                        f"RAM je využitá na {ram:.1f} %. "
+                        "Systém môže výrazne swapovať."
                     ),
                     suggested_actions=[
                         "Identifikovať aplikácie s najvyššou spotrebou RAM.",
                         "Navrhnúť zatvorenie nepotrebných aplikácií.",
-                        "Zvážiť reštart systému, ak je stav dlhodobo kritický.",
                     ],
+                    impact="performance",
+                    quick_fix=True,
                 )
             )
-        elif snapshot.ram_percent > 80:
+        elif ram > 80:
             issues.append(
                 HealthIssue(
                     id="ram_high",
                     category="ram",
                     severity="warning",
-                    title="Vysoké využitie pamäte RAM",
+                    title="Vysoké využitie RAM",
                     description=(
-                        f"Využitie pamäte RAM je {snapshot.ram_percent:.1f} %. "
-                        "Pri spúšťaní ďalších aplikácií môže dôjsť k spomaleniu."
+                        f"RAM je využitá na {ram:.1f} %. "
+                        "Môže dôjsť k spomaleniu."
                     ),
                     suggested_actions=[
                         "Navrhnúť zatvorenie aplikácií bežiacich na pozadí.",
-                        "Skontrolovať, či nebežia zbytočné procesy pri štarte systému.",
                     ],
+                    impact="performance",
                 )
             )
 
@@ -207,8 +246,9 @@ class SystemHealthEngine41:
 
     def _analyze_disk(self, snapshot: MetricSnapshot) -> List[HealthIssue]:
         issues: List[HealthIssue] = []
+        disk = snapshot.disk_percent
 
-        if snapshot.disk_percent > 95:
+        if disk > 95:
             issues.append(
                 HealthIssue(
                     id="disk_full",
@@ -216,17 +256,18 @@ class SystemHealthEngine41:
                     severity="critical",
                     title="Disk je takmer plný",
                     description=(
-                        f"Disk je zaplnený na {snapshot.disk_percent:.1f} %. "
-                        "To môže spôsobovať chyby pri ukladaní súborov a výrazné spomalenie systému."
+                        f"Disk je zaplnený na {disk:.1f} %. "
+                        "To môže spôsobovať chyby a spomalenie."
                     ),
                     suggested_actions=[
-                        "Navrhnúť vyčistenie dočasných súborov.",
-                        "Navrhnúť presun veľkých súborov na iný disk alebo externé úložisko.",
-                        "Skontrolovať priečinky Downloads, Videos, Games.",
+                        "Vyčistiť dočasné súbory.",
+                        "Presunúť veľké súbory na iný disk.",
                     ],
+                    impact="stability",
+                    quick_fix=True,
                 )
             )
-        elif snapshot.disk_percent > 85:
+        elif disk > 85:
             issues.append(
                 HealthIssue(
                     id="disk_high",
@@ -234,17 +275,52 @@ class SystemHealthEngine41:
                     severity="warning",
                     title="Disk je výrazne zaplnený",
                     description=(
-                        f"Disk je zaplnený na {snapshot.disk_percent:.1f} %. "
-                        "Systém môže mať menej priestoru pre dočasné súbory a aktualizácie."
+                        f"Disk je zaplnený na {disk:.1f} %. "
+                        "Systém môže mať menej priestoru pre aktualizácie."
                     ),
                     suggested_actions=[
                         "Navrhnúť základné čistenie disku.",
-                        "Identifikovať najväčšie priečinky a súbory.",
                     ],
+                    impact="usability",
                 )
             )
 
         return issues
+
+    def _analyze_network(self, snapshot: MetricSnapshot) -> List[HealthIssue]:
+        """
+        Basic network anomaly detection.
+        """
+        issues: List[HealthIssue] = []
+
+        # Simple heuristic: extremely low traffic for long periods
+        if len(self._history) > 5:
+            last = self._history[-1]
+            prev = self._history[-5]
+
+            delta_sent = last.net_bytes_sent - prev.net_bytes_sent
+            delta_recv = last.net_bytes_recv - prev.net_bytes_recv
+
+            if delta_sent < 1000 and delta_recv < 1000:
+                issues.append(
+                    HealthIssue(
+                        id="network_low_activity",
+                        category="network",
+                        severity="info",
+                        title="Nízka sieťová aktivita",
+                        description="Sieťová aktivita je minimálna.",
+                        suggested_actions=[
+                            "Skontrolovať pripojenie k internetu.",
+                        ],
+                        impact="usability",
+                    )
+                )
+
+        return issues
+
+    # ---------------------------------------------------------
+    # HEALTH SCORE (AI-AWARE)
+    # ---------------------------------------------------------
 
     def _compute_health_score(
         self,
@@ -252,62 +328,49 @@ class SystemHealthEngine41:
         issues: List[HealthIssue],
     ) -> int:
         """
-        Jednoduchý prvý model health score (0–100).
-        Neskôr sa môže nahradiť sofistikovanejším algoritmom.
+        AI-aware scoring:
+        - CPU / RAM / DISK penalties
+        - issue count penalty
+        - impact-based penalty
         """
+
         score = 100
 
-        # penalizácia podľa CPU
+        # CPU
         if snapshot.cpu_percent > 90:
             score -= 25
         elif snapshot.cpu_percent > 75:
             score -= 10
 
-        # penalizácia podľa RAM
+        # RAM
         if snapshot.ram_percent > 90:
             score -= 25
         elif snapshot.ram_percent > 80:
             score -= 10
 
-        # penalizácia podľa disku
+        # DISK
         if snapshot.disk_percent > 95:
             score -= 25
         elif snapshot.disk_percent > 85:
             score -= 10
 
-        # penalizácia podľa počtu issues
-        score -= len(issues) * 2
+        # Issues
+        for issue in issues:
+            if issue.severity == "critical":
+                score -= 10
+            elif issue.severity == "warning":
+                score -= 5
+            else:
+                score -= 1
 
-        if score < 0:
-            score = 0
-        if score > 100:
-            score = 100
+        return max(0, min(100, score))
 
-        return score
+    # ---------------------------------------------------------
+    # SAFE-MODE CONTROL
+    # ---------------------------------------------------------
 
-    # -------------------------------------------------------------------------
-    # INTEGRATION HOOKS (PLACEHOLDERS)
-    # -------------------------------------------------------------------------
+    def enter_safe_mode(self):
+        self.safe_mode = True
 
-    def integrate_process_inspector(self, process_data: Dict) -> None:
-        """
-        Hook pre Task Manager Engine 4.1:
-        - sem môžeš neskôr napojiť detailné info o procesoch
-        - System Health Engine ich môže použiť pri generovaní issues
-        """
-        # TODO: implementovať podľa štruktúry Task Manager Engine
-        pass
-
-    def integrate_service_inspector(self, service_data: Dict) -> None:
-        """
-        Hook pre Service Manager Engine 4.1.
-        """
-        # TODO: implementovať podľa štruktúry Service Manager Engine
-        pass
-
-    def integrate_driver_inspector(self, driver_data: Dict) -> None:
-        """
-        Hook pre Driver Manager Engine 4.1.
-        """
-        # TODO: implementovať podľa štruktúry Driver Manager Engine
-        pass
+    def exit_safe_mode(self):
+        self.safe_mode = False
