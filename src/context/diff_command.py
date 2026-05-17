@@ -4,27 +4,26 @@ from context.context_manager import ContextManager
 
 class ContextDiffCommand(BaseCommand):
     """
-    ContextDiffCommand 4.0
+    ContextDiffCommand 4.3
     Compares the current context state with values stored in memory.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read)
-    - audit trail via BaseCommand lifecycle
-    - structured output for Workflow Engine 4.0
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-diff"
     description = "Shows differences between the current state and stored memory."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can inspect internal memory
-    risk_level = 0.2                # Low risk (read-only)
+    required_identity = "OWNER"
+    risk_level = 0.2
     capabilities = ["context_read"]
 
     keywords = ["diff", "context", "compare", "memory", "state"]
@@ -37,7 +36,7 @@ class ContextDiffCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -96,12 +95,13 @@ class ContextDiffCommand(BaseCommand):
                 "message": "State and memory are fully consistent."
             }
 
-        formatted = {}
-        for k, info in diff.items():
-            formatted[k] = {
+        formatted = {
+            k: {
                 "current": info["current"],
                 "memory": info["incoming"]
             }
+            for k, info in diff.items()
+        }
 
         return {
             "status": "diff",
