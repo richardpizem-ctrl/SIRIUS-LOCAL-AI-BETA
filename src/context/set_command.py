@@ -4,28 +4,27 @@ from context.context_manager import ContextManager
 
 class ContextSetCommand(BaseCommand):
     """
-    ContextSetCommand 4.0
+    ContextSetCommand 4.3
     Sets a value in the system state with validation, snapshot,
     diff reporting, and safe merge.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_write)
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
     - snapshot before modification
-    - structured output for Workflow Engine 4.0
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-set"
     description = "Sets a value in the context state with validation, snapshot, and diff."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can modify system state
-    risk_level = 0.4                # Medium risk (state modification)
+    required_identity = "OWNER"
+    risk_level = 0.4
     capabilities = ["context_write"]
 
     keywords = ["set", "context", "state", "update"]
@@ -38,7 +37,7 @@ class ContextSetCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -77,7 +76,7 @@ class ContextSetCommand(BaseCommand):
         old_value = self.context.get_state(key)
         diff = None
 
-        if old_value is not None and old_value != value:
+        if old_value != value:
             diff = {
                 "old": old_value,
                 "new": value
