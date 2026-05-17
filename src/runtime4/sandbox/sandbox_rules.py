@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.0 Sandbox Rules
+SIRIUS LOCAL AI – Runtime 4.3 Sandbox Rules
 
 Defines capability-based security rules for sandboxed modules.
 Responsible for:
@@ -7,6 +7,8 @@ Responsible for:
 - capability validation
 - rule enforcement
 - module security profiles
+- safe-mode and degraded-mode behavior
+- compatibility with Security Family 4.4
 
 This is the policy layer of the sandbox system.
 """
@@ -15,6 +17,11 @@ This is the policy layer of the sandbox system.
 class SandboxRules4:
     """
     Defines and validates sandbox capability rules.
+    Provides:
+    - strict capability validation
+    - structured error surface
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
     def __init__(self):
@@ -30,6 +37,9 @@ class SandboxRules4:
             "spawn_untrusted_process"
         ]
 
+        self.safe_mode = False
+        self.degraded_mode = False
+
     # ---------------------------------------------------------
     # CAPABILITY MANAGEMENT
     # ---------------------------------------------------------
@@ -37,22 +47,35 @@ class SandboxRules4:
     def set_capabilities(self, module_name: str, caps: list):
         """Assigns capabilities to a module with full safety checks."""
 
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Capability assignment disabled in safe-mode."
+            }
+
         # Validate module name
         if not isinstance(module_name, str) or not module_name.strip():
-            return {"error": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name"}
 
         # Validate caps list
         if not isinstance(caps, list):
-            return {"error": "invalid_capability_list"}
+            return {"status": "error", "code": "invalid_capability_list"}
 
         # Validate each capability
         for cap in caps:
             if not isinstance(cap, str) or not cap.strip():
-                return {"error": "invalid_capability_value"}
+                return {"status": "error", "code": "invalid_capability_value"}
 
-        # Store capabilities
-        self.capabilities[module_name] = caps
-        return {"status": "ok"}
+        try:
+            self.capabilities[module_name] = caps
+            return {"status": "success"}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "capability_assignment_failed",
+                "exception": str(exc)
+            }
 
     def get_capabilities(self, module_name: str):
         """Returns capabilities assigned to a module."""
@@ -91,6 +114,14 @@ class SandboxRules4:
         Returns a structured validation result.
         """
 
+        # SAFE MODE
+        if self.safe_mode:
+            return {
+                "allowed": False,
+                "error": "safe_mode",
+                "message": "Operation validation disabled in safe-mode."
+            }
+
         # Validate module name
         if not isinstance(module_name, str) or not module_name.strip():
             return {
@@ -107,11 +138,15 @@ class SandboxRules4:
 
         # Check permission
         if self.is_allowed(module_name, operation):
-            return {"allowed": True}
+            return {
+                "allowed": True,
+                "degraded_mode": self.degraded_mode
+            }
 
         return {
             "allowed": False,
             "error": "operation_not_permitted",
             "module": module_name,
-            "operation": operation
+            "operation": operation,
+            "degraded_mode": self.degraded_mode
         }
