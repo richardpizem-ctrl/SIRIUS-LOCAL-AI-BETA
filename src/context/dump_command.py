@@ -4,28 +4,27 @@ from context.context_manager import ContextManager
 
 class ContextDumpCommand(BaseCommand):
     """
-    ContextDumpCommand 4.0
+    ContextDumpCommand 4.3
     Dumps the entire context: session memory, persistent memory, state,
     snapshot history, and last snapshot diagnostics.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read)
-    - structured output for Workflow Engine 4.0
-    - audit trail via BaseCommand lifecycle
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-dump"
     description = "Dumps all context data: session, persistent, state, history."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can inspect full context
-    risk_level = 0.2                # Low risk (read-only)
+    required_identity = "OWNER"
+    risk_level = 0.2
     capabilities = ["context_read"]
 
     keywords = ["dump", "context", "memory", "state", "history"]
@@ -38,7 +37,7 @@ class ContextDumpCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
