@@ -1,49 +1,52 @@
-# SECURITY FAMILY – Identity Engine 4.0
-# Learns and recognizes OWNER and FAMILY behavior profiles.
-# Integrates with BehaviorAudit 4.0, AccessControl 4.0, and FamilyMode 4.0.
-#
-# Features:
-# - Behavior Vector 3.0 normalization
-# - Weighted similarity
-# - Adaptive learning (EMA + trend-aware)
-# - Multi-child profiles (FAMILY_x)
-# - Anomaly detection
-# - Short-term vs long-term trends
-# - Risk-aware identity scoring
-# - Stranger detection with penalties
+"""
+Security Family – Identity Engine 4.3.x
+---------------------------------------
+Learns and recognizes OWNER and FAMILY behavior profiles.
+
+Features:
+- Behavior Vector 3.0 normalization
+- weighted cosine similarity
+- adaptive learning (EMA)
+- multi-child FAMILY profiles (FAMILY_x)
+- short-term vs long-term trends
+- anomaly detection (similarity + behavior shift)
+- stranger detection with penalties
+- safe-mode and degraded-mode support
+"""
 
 import math
 from statistics import mean
+
 
 class IdentityEngine:
     def __init__(self, profile_store):
         self.profile_store = profile_store
 
-        # Váhy Behavior Vector 3.0
+        # Behavior Vector 3.0 weights
         self.weights = {
             "command_pattern": 0.40,
             "typing_speed": 0.25,
             "vocabulary": 0.15,
             "task_type": 0.10,
             "error_rate": 0.05,
-            "time_of_day": 0.05
+            "time_of_day": 0.05,
         }
 
-        # Normalizačné rozsahy
+        # Normalization ranges
         self.norm_ranges = {
             "typing_speed": (0, 300),
             "command_pattern": (0, 1),
             "vocabulary": (0, 1),
             "task_type": (0, 1),
             "time_of_day": (0, 24),
-            "error_rate": (0, 1)
+            "error_rate": (0, 1),
         }
 
-        # Behavior history for trends
+        # Behavior history
         self.history = {
             "OWNER": [],
             "FAMILY": [],
-            "GLOBAL": []
+            "GLOBAL": [],
         }
 
         self.max_short = 20
@@ -53,74 +56,113 @@ class IdentityEngine:
         self.anomaly_similarity_threshold = 0.35
         self.anomaly_shift_threshold = 0.25
 
-    # ---------------------------------------------------------
-    # LEARNING (Identity Engine 4.0)
-    # ---------------------------------------------------------
+        # Runtime flags
+        self.safe_mode = False
+        self.degraded_mode = False
 
+    # ---------------------------------------------------------
+    # LEARNING
+    # ---------------------------------------------------------
     def learn_owner(self, data):
-        """Adaptive learning for OWNER profile."""
-        vector = self._build_vector(data)
-        self._update_profile("OWNER", vector)
-        self._update_history("OWNER", vector)
+        if self.safe_mode:
+            return
+
+        try:
+            vector = self._build_vector(data)
+            self._update_profile("OWNER", vector)
+            self._update_history("OWNER", vector)
+        except Exception:
+            self.degraded_mode = True
 
     def learn_family_member(self, data, member_id="default"):
-        """Adaptive learning for individual FAMILY profiles."""
-        key = f"FAMILY_{member_id}"
-        vector = self._build_vector(data)
-        self._update_profile(key, vector)
-        self._update_history("FAMILY", vector)
+        if self.safe_mode:
+            return
+
+        try:
+            key = f"FAMILY_{member_id}"
+            vector = self._build_vector(data)
+            self._update_profile(key, vector)
+            self._update_history("FAMILY", vector)
+        except Exception:
+            self.degraded_mode = True
 
     # ---------------------------------------------------------
-    # IDENTIFICATION (Identity Engine 4.0)
+    # IDENTIFICATION
     # ---------------------------------------------------------
-
     def identify_user(self, data):
         """
-        Returns: identity, scores, anomaly
-        identity ∈ {OWNER, FAMILY, STRANGER}
+        Returns:
+        {
+            "identity": str,
+            "scores": {...},
+            "anomaly": {...},
+            "degraded_mode": bool
+        }
         """
 
-        vector = self._build_vector(data)
-        self._update_history("GLOBAL", vector)
+        if self.safe_mode:
+            return {
+                "identity": "STRANGER",
+                "scores": {"OWNER": 0, "FAMILY": 0, "STRANGER": 1},
+                "anomaly": {"is_anomaly": False, "reason": "safe_mode"},
+                "degraded_mode": self.degraded_mode,
+            }
 
-        scores = {}
+        try:
+            vector = self._build_vector(data)
+            self._update_history("GLOBAL", vector)
 
-        # OWNER similarity
-        owner_profile = self.profile_store.get("OWNER", {})
-        scores["OWNER"] = self._similarity(vector, owner_profile)
+            scores = {}
 
-        # FAMILY similarity (max across all children)
-        family_scores = []
-        for key, profile in self.profile_store.items():
-            if key.startswith("FAMILY_"):
-                family_scores.append(self._similarity(vector, profile))
+            # OWNER similarity
+            owner_profile = self.profile_store.get("OWNER", {})
+            scores["OWNER"] = self._similarity(vector, owner_profile)
 
-        scores["FAMILY"] = max(family_scores) if family_scores else 0.0
+            # FAMILY similarity (max across all children)
+            family_scores = [
+                self._similarity(vector, profile)
+                for key, profile in self.profile_store.items()
+                if key.startswith("FAMILY_")
+            ]
+            scores["FAMILY"] = max(family_scores) if family_scores else 0.0
 
-        # Stranger score
-        scores["STRANGER"] = 1 - max(scores["OWNER"], scores["FAMILY"])
+            # Stranger score
+            scores["STRANGER"] = 1 - max(scores["OWNER"], scores["FAMILY"])
 
-        # Trends
-        trends = self._compute_trends("GLOBAL")
+            # Trends
+            trends = self._compute_trends("GLOBAL")
 
-        # Anomaly detection
-        anomaly = self._detect_anomaly(scores, trends)
+            # Anomaly detection
+            anomaly = self._detect_anomaly(scores, trends)
 
-        # Penalize stranger score if anomaly detected
-        if anomaly["is_anomaly"]:
-            scores["STRANGER"] = min(1.0, scores["STRANGER"] + 0.25)
+            # Penalize stranger score if anomaly detected
+            if anomaly["is_anomaly"]:
+                scores["STRANGER"] = min(1.0, scores["STRANGER"] + 0.25)
 
-        # Final identity
-        identity = max(scores, key=scores.get)
+            # Final identity
+            identity = max(scores, key=scores.get)
 
-        return identity, scores, anomaly
+            return {
+                "identity": identity,
+                "scores": scores,
+                "anomaly": anomaly,
+                "degraded_mode": self.degraded_mode,
+            }
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "identity": "STRANGER",
+                "scores": {"OWNER": 0, "FAMILY": 0, "STRANGER": 1},
+                "anomaly": {"is_anomaly": True, "reason": "internal_error"},
+                "exception": str(exc),
+                "degraded_mode": True,
+            }
 
     # ---------------------------------------------------------
-    # INTERNAL METHODS – VECTOR BUILDING
+    # VECTOR BUILDING
     # ---------------------------------------------------------
-
     def _build_vector(self, data):
-        """Normalize raw behavior data into Behavior Vector 3.0."""
         vector = {}
         for k in self.weights.keys():
             if k in data:
@@ -128,23 +170,20 @@ class IdentityEngine:
         return vector
 
     def _normalize(self, key, value):
-        """Normalize to 0–1 range."""
         if key not in self.norm_ranges:
-            return value
+            return 0.0
 
         min_v, max_v = self.norm_ranges[key]
-        if max_v - min_v == 0:
-            return 0
+        if max_v == min_v:
+            return 0.0
 
         norm = (value - min_v) / (max_v - min_v)
-        return max(0, min(1, norm))
+        return max(0.0, min(1.0, norm))
 
     # ---------------------------------------------------------
-    # INTERNAL METHODS – PROFILE LEARNING
+    # PROFILE UPDATE
     # ---------------------------------------------------------
-
     def _update_profile(self, key, vector, learning_rate=0.2):
-        """Adaptive profile update using EMA."""
         existing = self.profile_store.get(key, {})
 
         updated = {}
@@ -157,11 +196,9 @@ class IdentityEngine:
         self.profile_store[key] = updated
 
     # ---------------------------------------------------------
-    # INTERNAL METHODS – SIMILARITY
+    # SIMILARITY
     # ---------------------------------------------------------
-
     def _similarity(self, v1, v2):
-        """Weighted cosine similarity."""
         if not v2:
             return 0.0
 
@@ -183,9 +220,8 @@ class IdentityEngine:
         return dot / (mag1 * mag2)
 
     # ---------------------------------------------------------
-    # INTERNAL METHODS – HISTORY & TRENDS
+    # HISTORY & TRENDS
     # ---------------------------------------------------------
-
     def _update_history(self, label, vector):
         if label not in self.history:
             self.history[label] = []
@@ -210,23 +246,17 @@ class IdentityEngine:
         short_avg = avg(short)
         long_avg = avg(long)
 
-        delta = {k: short_avg.get(k, 0) - long_avg.get(k, 0)
-                 for k in set(short_avg) | set(long_avg)}
+        delta = {
+            k: short_avg.get(k, 0) - long_avg.get(k, 0)
+            for k in set(short_avg) | set(long_avg)
+        }
 
         return {"short": short_avg, "long": long_avg, "delta": delta}
 
     # ---------------------------------------------------------
-    # INTERNAL METHODS – ANOMALY DETECTION
+    # ANOMALY DETECTION
     # ---------------------------------------------------------
-
     def _detect_anomaly(self, scores, trends):
-        """
-        Detects:
-        - low OWNER/FAMILY similarity
-        - high STRANGER similarity
-        - sudden behavior shift vs long-term trend
-        """
-
         owner_sim = scores.get("OWNER", 0)
         family_sim = scores.get("FAMILY", 0)
         stranger_sim = scores.get("STRANGER", 0)
@@ -259,6 +289,6 @@ class IdentityEngine:
             "similarity": {
                 "OWNER": owner_sim,
                 "FAMILY": family_sim,
-                "STRANGER": stranger_sim
-            }
+                "STRANGER": stranger_sim,
+            },
         }
