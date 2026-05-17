@@ -1,10 +1,27 @@
 {
     "name": "notes",
-    "version": "1.0.0",
-    "description": "Plugin for writing, reading, listing, and deleting notes.",
+    "version": "4.3.0",
+    "description": "Notes plugin for SIRIUS LOCAL AI 4.3.x — create, list, read, and delete notes safely.",
     "author": "Richard Pizem",
     "entry": "plugin.py",
     "enabled": true,
+
+    "architecture": {
+        "phase": "4.3",
+        "self_repair_ready": true,
+        "deterministic": true,
+        "safe_mode_aware": true,
+        "degraded_mode_aware": true
+    },
+
+    "compatibility": {
+        "runtime": "4.3.x",
+        "plugin_loader": "4.3.x",
+        "nl_router": "4.3.x",
+        "system_agent": "4.3.x",
+        "workflow_engine": "4.3.x",
+        "ai_loop": "4.3.x"
+    },
 
     "capabilities": {
         "nl_commands": true,
@@ -12,5 +29,12 @@
         "workflows": true,
         "ai_loop_rules": true,
         "gui_elements": true
+    },
+
+    "health": {
+        "sandboxed": true,
+        "side_effect_free_import": true,
+        "requires_network": false,
+        "requires_admin": false
     }
 }
