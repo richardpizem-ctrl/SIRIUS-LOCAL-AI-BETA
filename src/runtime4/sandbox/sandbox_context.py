@@ -1,6 +1,5 @@
-# sandbox_context.py
 """
-SIRIUS LOCAL AI – Runtime 4.0 Sandbox Context
+SIRIUS LOCAL AI – Runtime 4.3 Sandbox Context
 
 The Sandbox Context stores:
 - isolated module state
@@ -8,6 +7,7 @@ The Sandbox Context stores:
 - runtime metadata
 - execution flags
 - links to sandbox process
+- safe-mode and degraded-mode indicators
 
 This is the contextual memory layer of the sandbox system.
 """
@@ -16,9 +16,19 @@ This is the contextual memory layer of the sandbox system.
 class SandboxContext4:
     """
     Holds isolated state and metadata for a sandboxed module.
+    Provides:
+    - strict state isolation
+    - capability enforcement
+    - structured metadata
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
     def __init__(self, module_name: str):
+        # Validate module name
+        if not isinstance(module_name, str) or not module_name.strip():
+            raise ValueError("Invalid module name for SandboxContext4.")
+
         self.module_name = module_name
 
         # Isolated state for the module
@@ -30,7 +40,9 @@ class SandboxContext4:
         # Metadata (timestamps, flags, etc.)
         self.metadata = {
             "active": True,
-            "initialized": False
+            "initialized": False,
+            "safe_mode": False,
+            "degraded_mode": False,
         }
 
     # ---------------------------------------------------------
@@ -39,10 +51,20 @@ class SandboxContext4:
 
     def set_state(self, key: str, value):
         """Stores a value in the sandbox state."""
-        self.state[key] = value
+        if not isinstance(key, str) or not key.strip():
+            return {"status": "error", "code": "invalid_state_key"}
+
+        try:
+            self.state[key] = value
+            return {"status": "success"}
+        except Exception as exc:
+            self.metadata["degraded_mode"] = True
+            return {"status": "error", "code": "state_set_failed", "exception": str(exc)}
 
     def get_state(self, key: str):
         """Retrieves a value from the sandbox state."""
+        if not isinstance(key, str):
+            return None
         return self.state.get(key)
 
     # ---------------------------------------------------------
@@ -51,11 +73,15 @@ class SandboxContext4:
 
     def set_capabilities(self, caps: list):
         """Assigns capabilities to this sandbox context."""
+        if not isinstance(caps, list):
+            return {"status": "error", "code": "invalid_capability_list"}
+
         self.capabilities = caps
+        return {"status": "success"}
 
     def has_capability(self, cap: str) -> bool:
         """Checks if the module has a specific capability."""
-        return cap in self.capabilities
+        return isinstance(cap, str) and cap in self.capabilities
 
     # ---------------------------------------------------------
     # METADATA
@@ -63,8 +89,18 @@ class SandboxContext4:
 
     def set_metadata(self, key: str, value):
         """Stores metadata value."""
-        self.metadata[key] = value
+        if not isinstance(key, str) or not key.strip():
+            return {"status": "error", "code": "invalid_metadata_key"}
+
+        try:
+            self.metadata[key] = value
+            return {"status": "success"}
+        except Exception as exc:
+            self.metadata["degraded_mode"] = True
+            return {"status": "error", "code": "metadata_set_failed", "exception": str(exc)}
 
     def get_metadata(self, key: str):
         """Retrieves metadata value."""
+        if not isinstance(key, str):
+            return None
         return self.metadata.get(key)
