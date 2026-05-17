@@ -7,9 +7,16 @@ log = logging.getLogger(__name__)
 
 class FSAgent:
     """
-    Filesystem Agent (FS‑AGENT) 4.0
-    Bezpečné operácie so súbormi: presun, kopírovanie, mazanie,
-    čítanie, zapisovanie, kontrola ciest, veľkosti súborov.
+    Filesystem Agent (FS‑AGENT) 4.3
+    Safe file operations: move, copy, delete, read, write,
+    path validation, size checks, and directory scanning.
+
+    Improvements in 4.3:
+    - deterministic Runtime4 behavior
+    - strict path‑safety enforcement
+    - safe file operations with error handling
+    - consistent return values for workflow engine
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
@@ -20,8 +27,13 @@ class FSAgent:
         return os.path.exists(path)
 
     @staticmethod
-    def ensure_folder(path: str) -> None:
-        os.makedirs(path, exist_ok=True)
+    def ensure_folder(path: str) -> bool:
+        try:
+            os.makedirs(path, exist_ok=True)
+            return True
+        except Exception as exc:
+            log.exception("Failed to ensure folder '%s': %s", path, exc)
+            return False
 
     @staticmethod
     def safe_join(base: str, *paths: str) -> str:
@@ -48,14 +60,18 @@ class FSAgent:
             return []
 
         files = []
-        for f in os.listdir(folder):
-            full = os.path.join(folder, f)
-            if os.path.isfile(full):
-                if extension:
-                    if f.lower().endswith(extension.lower()):
+        try:
+            for f in os.listdir(folder):
+                full = os.path.join(folder, f)
+                if os.path.isfile(full):
+                    if extension:
+                        if f.lower().endswith(extension.lower()):
+                            files.append(full)
+                    else:
                         files.append(full)
-                else:
-                    files.append(full)
+        except Exception as exc:
+            log.exception("Failed to list files in '%s': %s", folder, exc)
+
         return files
 
     # ---------------------------------------------------------
@@ -221,14 +237,20 @@ class FSAgent:
     def get_file_size(path: str) -> int:
         if not os.path.isfile(path):
             return 0
-        return os.path.getsize(path)
+        try:
+            return os.path.getsize(path)
+        except Exception:
+            return 0
 
     @staticmethod
     def get_folder_size(folder: str) -> int:
         total = 0
-        for root, _, files in os.walk(folder):
-            for f in files:
-                fp = os.path.join(root, f)
-                if os.path.isfile(fp):
-                    total += os.path.getsize(fp)
+        try:
+            for root, _, files in os.walk(folder):
+                for f in files:
+                    fp = os.path.join(root, f)
+                    if os.path.isfile(fp):
+                        total += os.path.getsize(fp)
+        except Exception as exc:
+            log.exception("Failed to calculate folder size '%s': %s", folder, exc)
         return total
