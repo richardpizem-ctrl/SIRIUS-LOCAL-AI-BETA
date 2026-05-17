@@ -6,13 +6,15 @@ log = logging.getLogger(__name__)
 
 class ModuleBase:
     """
-    ModuleBase 4.0
+    ModuleBase 4.3
+    ----------------
     - Unified lifecycle for all runtime modules
-    - Telemetry (init/start/stop times)
-    - Error isolation
-    - Health checks
+    - Deterministic structured telemetry
+    - Error isolation (never crashes RuntimeEngine)
+    - Health checks (health() 2.0)
     - Dependency declaration
-    - Security metadata
+    - Security metadata (risk, identity, capabilities)
+    - Self‑Repair 4.4 ready (safe-mode, degraded mode)
     """
 
     # --------------------------------------------------------
@@ -26,7 +28,7 @@ class ModuleBase:
     # Security metadata
     risk_level = 0.0
     required_identity = None
-    capabilities = []
+    capabilities = []  # e.g. ["fs.read", "net.http", "exec.subprocess"]
 
     # Dependencies (module names)
     depends_on = []
@@ -43,6 +45,37 @@ class ModuleBase:
         self.stop_time = None
         self.error_count = 0
 
+        # Self‑Repair flags
+        self.safe_mode = False
+        self.degraded_mode = False
+
+    # --------------------------------------------------------
+    # INTERNAL SAFE EXECUTOR
+    # --------------------------------------------------------
+    def _safe(self, action_name, func):
+        """
+        Executes a module lifecycle action safely.
+        Returns structured result.
+        """
+        t0 = time.time()
+        try:
+            func()
+            return {
+                "status": "success",
+                "action": action_name,
+                "duration": time.time() - t0,
+            }
+        except Exception as exc:
+            self.failed = True
+            self.error_count += 1
+            log.exception("%s failed for module '%s': %s", action_name, self.name, exc)
+            return {
+                "status": "error",
+                "action": action_name,
+                "duration": time.time() - t0,
+                "exception": str(exc),
+            }
+
     # --------------------------------------------------------
     # INITIALIZE
     # --------------------------------------------------------
@@ -51,15 +84,12 @@ class ModuleBase:
         Prepare module resources.
         Override in subclasses.
         """
-        try:
+        def _do():
             log.info("Initializing module: %s", self.name)
             self.init_time = time.time()
             self.initialized = True
 
-        except Exception as exc:
-            self.failed = True
-            self.error_count += 1
-            log.exception("Initialization failed for module '%s': %s", self.name, exc)
+        return self._safe("initialize", _do)
 
     # --------------------------------------------------------
     # START
@@ -70,21 +100,25 @@ class ModuleBase:
         Override in subclasses.
         """
         if not self.initialized:
-            self.initialize()
+            init_res = self.initialize()
+            if init_res["status"] == "error":
+                return init_res
 
         if self.failed:
-            log.error("Module '%s' cannot start (failed during init).", self.name)
-            return
+            msg = f"Module '{self.name}' cannot start (failed during init)."
+            log.error(msg)
+            return {
+                "status": "error",
+                "action": "start",
+                "message": msg,
+            }
 
-        try:
+        def _do():
             log.info("Starting module: %s", self.name)
             self.start_time = time.time()
             self.running = True
 
-        except Exception as exc:
-            self.failed = True
-            self.error_count += 1
-            log.exception("Start failed for module '%s': %s", self.name, exc)
+        return self._safe("start", _do)
 
     # --------------------------------------------------------
     # STOP
@@ -95,17 +129,18 @@ class ModuleBase:
         Override in subclasses.
         """
         if not self.running:
-            return
+            return {
+                "status": "skipped",
+                "action": "stop",
+                "message": "Module not running.",
+            }
 
-        try:
+        def _do():
             log.info("Stopping module: %s", self.name)
             self.stop_time = time.time()
             self.running = False
 
-        except Exception as exc:
-            self.failed = True
-            self.error_count += 1
-            log.exception("Stop failed for module '%s': %s", self.name, exc)
+        return self._safe("stop", _do)
 
     # --------------------------------------------------------
     # SHUTDOWN
@@ -115,21 +150,18 @@ class ModuleBase:
         Cleanup module resources.
         Override in subclasses.
         """
-        try:
+        def _do():
             log.info("Shutting down module: %s", self.name)
             self.initialized = False
 
-        except Exception as exc:
-            self.failed = True
-            self.error_count += 1
-            log.exception("Shutdown failed for module '%s': %s", self.name, exc)
+        return self._safe("shutdown", _do)
 
     # --------------------------------------------------------
-    # HEALTH CHECK
+    # HEALTH CHECK 2.0
     # --------------------------------------------------------
     def health(self):
         """
-        Returns module health information.
+        Returns structured module health information.
         """
         return {
             "name": self.name,
@@ -138,6 +170,17 @@ class ModuleBase:
             "initialized": self.initialized,
             "failed": self.failed,
             "errors": self.error_count,
-            "last_start": self.start_time,
-            "last_stop": self.stop_time,
+            "safe_mode": self.safe_mode,
+            "degraded_mode": self.degraded_mode,
+            "telemetry": {
+                "init_time": self.init_time,
+                "start_time": self.start_time,
+                "stop_time": self.stop_time,
+            },
+            "security": {
+                "risk_level": self.risk_level,
+                "required_identity": self.required_identity,
+                "capabilities": self.capabilities,
+            },
+            "depends_on": self.depends_on,
         }
