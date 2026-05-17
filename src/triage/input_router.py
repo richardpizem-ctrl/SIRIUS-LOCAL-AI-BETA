@@ -1,25 +1,30 @@
 # input_router.py
-# Automatic Input Triage Engine – InputRouter
-# SIRIUS LOCAL AI – v2.1.0 (Extended English Version)
+# Automatic Input Triage Engine – InputRouter 4.3.x
+# SIRIUS LOCAL AI – deterministic, offline-only routing engine
 
 from typing import Dict
 
 
 class InputRouter:
     """
-    InputRouter 2.1 (Extended)
+    InputRouter 4.3.x
 
     Responsibilities:
-        - Map input types to target storage directories
-        - Provide deterministic routing for AITEController
-        - Allow dynamic route overrides (Phase 4+)
-        - Provide safety fallback for unknown types
+        - Deterministic mapping of input types to storage directories
+        - Safe fallback routing for unknown types
+        - Dynamic route overrides (Phase‑4)
+        - Restricted-path detection (Phase‑4)
+        - Sandbox & quarantine routing hooks
+        - Safe‑mode and degraded‑mode compatible
 
     Used by:
         AITEController.process()
     """
 
     def __init__(self):
+        self.safe_mode = False
+        self.degraded_mode = False
+
         # Base routing table (type → target directory)
         self.routes: Dict[str, str] = {
             "log": "storage/logs/",
@@ -34,6 +39,16 @@ class InputRouter:
             "unknown": "storage/unknown/",
         }
 
+        # Phase‑4 restricted directories
+        self.restricted_paths = {
+            "storage/system/",
+            "storage/runtime/",
+            "storage/security/",
+        }
+
+        # Phase‑4 quarantine directory
+        self.quarantine_path = "storage/quarantine/"
+
     # ---------------------------------------------------------
     # Public API
     # ---------------------------------------------------------
@@ -41,24 +56,38 @@ class InputRouter:
     def route(self, input_type: str) -> str:
         """
         Return the target directory for the given input type.
-
-        Unknown types always fall back to:
-            storage/unknown/
+        Deterministic, safe-mode aware, degraded-mode safe.
         """
-        return self.routes.get(input_type, "storage/unknown/")
+
+        if self.safe_mode:
+            return "storage/unknown/"
+
+        try:
+            # Normal routing
+            target = self.routes.get(input_type, "storage/unknown/")
+
+            # Restricted-path protection
+            if self._is_restricted(target):
+                return self.quarantine_path
+
+            return target
+
+        except Exception:
+            self.degraded_mode = True
+            return "storage/unknown/"
 
     def override_route(self, input_type: str, new_path: str) -> None:
         """
         Dynamically override a route at runtime.
-
-        Example:
-            router.override_route("audio", "storage/custom_audio/")
-
-        This is useful for:
+        Useful for:
             - user-defined routing rules
             - plugin-based routing
             - experimental pipelines
         """
+
+        if self.safe_mode:
+            return
+
         if not isinstance(input_type, str):
             raise TypeError("input_type must be a string")
 
@@ -68,32 +97,38 @@ class InputRouter:
         if new_path.strip() == "":
             raise ValueError("new_path cannot be empty")
 
-        self.routes[input_type] = new_path.rstrip("/") + "/"
+        # Normalize path
+        new_path = new_path.rstrip("/") + "/"
+
+        # Restricted-path protection
+        if self._is_restricted(new_path):
+            raise ValueError("Cannot override route to a restricted directory")
+
+        self.routes[input_type] = new_path
 
     def reset_routes(self) -> None:
-        """
-        Reset routing table to default values.
-        Useful for testing or sandbox mode.
-        """
+        """Reset routing table to default values."""
         self.__init__()
 
     def get_all_routes(self) -> Dict[str, str]:
-        """
-        Return a copy of the routing table.
-        """
+        """Return a copy of the routing table."""
         return dict(self.routes)
 
     # ---------------------------------------------------------
-    # Future expansion hooks (Phase 5)
+    # Phase‑4 Security Hooks
     # ---------------------------------------------------------
 
-    def is_restricted_path(self, path: str) -> bool:
+    def _is_restricted(self, path: str) -> bool:
         """
-        Placeholder for future security rules:
-            - restricted directories
-            - sandbox isolation
-            - quarantine routing
-
-        Currently unused, reserved for Architecture 4.0.
+        Detect restricted directories (sandbox isolation).
         """
+        for restricted in self.restricted_paths:
+            if path.startswith(restricted):
+                return True
         return False
+
+    def quarantine(self, input_type: str) -> str:
+        """
+        Explicit quarantine routing (Phase‑4).
+        """
+        return self.quarantine_path
