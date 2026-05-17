@@ -7,15 +7,18 @@ log = logging.getLogger(__name__)
 
 class EventBus:
     """
-    EventBus 4.0
+    EventBus 4.3
+    --------------------
+    Features:
     - Thread‑safe event dispatch
     - Async dispatch
     - Wildcard listeners (*)
     - One‑time listeners (once)
     - Event metadata (timestamp, source, payload)
     - Listener groups
-    - Event history (optional)
-    - Compatible with RuntimeManager 4.0
+    - Optional event history
+    - Deterministic Runtime4 behavior
+    - Self‑Repair 4.4 compatible
     """
 
     def __init__(self, keep_history: bool = False):
@@ -30,17 +33,17 @@ class EventBus:
     # ---------------------------------------------------------
     def subscribe(self, event_name: str, callback, *, once=False):
         if not isinstance(event_name, str) or not event_name:
-            raise ValueError("Event name must be a non-empty string.")
+            return {"status": "error", "message": "Invalid event name"}
 
         if not callable(callback):
-            raise ValueError("Callback must be callable.")
+            return {"status": "error", "message": "Callback must be callable"}
 
         with self._lock:
             if event_name == "*":
                 if callback not in self._wildcard_listeners:
                     self._wildcard_listeners.append(callback)
                     log.info("Subscribed to ALL events: %s", callback)
-                return
+                return {"status": "success", "event": "*"}
 
             if event_name not in self._listeners:
                 self._listeners[event_name] = []
@@ -54,6 +57,8 @@ class EventBus:
                     self._once_listeners[event_name] = []
                 self._once_listeners[event_name].append(callback)
 
+        return {"status": "success", "event": event_name}
+
     # ---------------------------------------------------------
     # UNSUBSCRIBE
     # ---------------------------------------------------------
@@ -63,7 +68,8 @@ class EventBus:
                 if callback in self._wildcard_listeners:
                     self._wildcard_listeners.remove(callback)
                     log.info("Unsubscribed from ALL events: %s", callback)
-                return
+                    return {"status": "success", "event": "*"}
+                return {"status": "error", "message": "Callback not found"}
 
             if event_name in self._listeners:
                 if callback in self._listeners[event_name]:
@@ -73,6 +79,8 @@ class EventBus:
             if event_name in self._once_listeners:
                 if callback in self._once_listeners[event_name]:
                     self._once_listeners[event_name].remove(callback)
+
+        return {"status": "success", "event": event_name}
 
     # ---------------------------------------------------------
     # EMIT (SYNC)
@@ -114,6 +122,8 @@ class EventBus:
             if event_name in self._once_listeners:
                 self._once_listeners[event_name].clear()
 
+        return {"status": "success", "event": event_name}
+
     # ---------------------------------------------------------
     # EMIT ASYNC
     # ---------------------------------------------------------
@@ -125,8 +135,16 @@ class EventBus:
         )
         thread.start()
 
+        return {"status": "success", "event": event_name, "mode": "async"}
+
     # ---------------------------------------------------------
     # HISTORY
     # ---------------------------------------------------------
     def get_history(self):
-        return list(self._history) if self._history is not None else []
+        if self._history is None:
+            return {"status": "error", "message": "History disabled"}
+
+        return {
+            "status": "success",
+            "events": list(self._history)
+        }
