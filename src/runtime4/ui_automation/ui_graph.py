@@ -1,15 +1,17 @@
 """
-UI Graph Module – Runtime 4.2.0
+UI Graph Module – Runtime 4.3.0
 
 Responsible for:
 - reading the UI window tree
 - mapping windows and UI elements
 - building a graph representation of the UI
+- safe-mode and degraded-mode behavior
+- WinCapabilities integration for real OS-level enumeration (4.3+)
 
 This module currently uses fake data for testing.
-In Runtime 4.3 it will be connected to WinCapabilities
-for real OS‑level UI enumeration.
+In Runtime 4.3 it supports optional WinCapabilities injection.
 """
+
 
 class FakeElement:
     """
@@ -23,9 +25,17 @@ class FakeElement:
 
 
 class UIGraph:
-    def __init__(self):
+    def __init__(self, win_capabilities=None):
+        """
+        win_capabilities: optional OS-level UI enumeration layer
+        """
+        self.win_capabilities = win_capabilities
+
         self.windows = []
         self.elements = []
+
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ------------------------------------------------------------
     # WINDOW SCANNING
@@ -33,10 +43,39 @@ class UIGraph:
     def scan_windows(self):
         """
         Scans all visible windows in the system.
-        Currently returns fake data – will be replaced by
-        WinCapabilities integration in Runtime 4.3.
+        If WinCapabilities is available, uses real OS enumeration.
+        Otherwise returns deterministic fake data.
         """
+
+        if self.safe_mode:
+            self.windows = []
+            return {
+                "status": "safe_mode",
+                "windows": [],
+                "degraded_mode": self.degraded_mode
+            }
+
+        # 1. Try OS-level enumeration
+        if self.win_capabilities and hasattr(self.win_capabilities, "enumerate_windows"):
+            try:
+                self.windows = self.win_capabilities.enumerate_windows()
+                return {
+                    "status": "ok",
+                    "windows": self.windows,
+                    "via_os": True,
+                    "degraded_mode": self.degraded_mode
+                }
+            except Exception:
+                self.degraded_mode = True
+
+        # 2. Fallback: deterministic fake window list
         self.windows = ["MainWindow"]
+        return {
+            "status": "ok",
+            "windows": self.windows,
+            "via_os": False,
+            "degraded_mode": self.degraded_mode
+        }
 
     # ------------------------------------------------------------
     # GRAPH BUILDING
@@ -44,14 +83,45 @@ class UIGraph:
     def build_graph(self):
         """
         Builds the UI element graph and relationships.
-        Currently uses fake elements for workflow testing.
+        If WinCapabilities is available, uses real OS enumeration.
+        Otherwise uses deterministic fake elements.
         """
+
+        if self.safe_mode:
+            self.elements = []
+            return {
+                "status": "safe_mode",
+                "elements": [],
+                "degraded_mode": self.degraded_mode
+            }
+
+        # 1. Try OS-level element enumeration
+        if self.win_capabilities and hasattr(self.win_capabilities, "enumerate_elements"):
+            try:
+                self.elements = self.win_capabilities.enumerate_elements()
+                return {
+                    "status": "ok",
+                    "elements": self.elements,
+                    "via_os": True,
+                    "degraded_mode": self.degraded_mode
+                }
+            except Exception:
+                self.degraded_mode = True
+
+        # 2. Fallback: deterministic fake elements
         self.elements = [
             FakeElement("OK"),
             FakeElement("Cancel"),
             FakeElement("Settings"),
             FakeElement("SearchBox", type="input"),
         ]
+
+        return {
+            "status": "ok",
+            "elements": self.elements,
+            "via_os": False,
+            "degraded_mode": self.degraded_mode
+        }
 
     # ------------------------------------------------------------
     # ELEMENT SEARCH
@@ -62,7 +132,12 @@ class UIGraph:
         Basic exact match for now – extended matching will be
         implemented in Runtime 4.3.
         """
+
+        if not isinstance(query, str) or not query.strip():
+            return None
+
         for el in self.elements:
             if el.name == query:
                 return el
+
         return None
