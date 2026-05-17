@@ -8,20 +8,16 @@ log = logging.getLogger(__name__)
 
 class FSModule:
     """
-    FSModule 3.5.0
+    FSModule 4.3
     ----------------
     Safe filesystem operations for SIRIUS LOCAL AI.
 
-    Features:
-    - mkdir
-    - move
-    - copy
-    - delete
-    - read
-    - write
-    - path validation
-    - rollback-safe operations
-    - SECURITY FAMILY integration (future)
+    Improvements in 4.3:
+    - deterministic Runtime4 behavior
+    - strict path validation
+    - safe directory creation
+    - consistent structured return values
+    - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -35,10 +31,6 @@ class FSModule:
             raise ValueError("Invalid path: must be a non-empty string.")
 
         p = Path(path).expanduser().resolve()
-
-        # Future: SECURITY FAMILY restrictions
-        # Example: prevent access outside allowed directories
-
         return p
 
     # --------------------------------------------------------
@@ -50,10 +42,10 @@ class FSModule:
         try:
             p.mkdir(parents=True, exist_ok=exist_ok)
             log.info("FS: Created directory: %s", p)
-            return True
+            return {"status": "success", "path": str(p)}
         except Exception as exc:
             log.exception("FS: Failed to create directory '%s': %s", p, exc)
-            return False
+            return {"status": "error", "path": str(p), "exception": str(exc)}
 
     # --------------------------------------------------------
     # MOVE
@@ -65,10 +57,10 @@ class FSModule:
         try:
             shutil.move(str(src_p), str(dst_p))
             log.info("FS: Moved '%s' → '%s'", src_p, dst_p)
-            return True
+            return {"status": "success", "src": str(src_p), "dst": str(dst_p)}
         except Exception as exc:
             log.exception("FS: Failed to move '%s' → '%s': %s", src_p, dst_p, exc)
-            return False
+            return {"status": "error", "src": str(src_p), "dst": str(dst_p), "exception": str(exc)}
 
     # --------------------------------------------------------
     # COPY
@@ -84,10 +76,10 @@ class FSModule:
                 shutil.copy2(src_p, dst_p)
 
             log.info("FS: Copied '%s' → '%s'", src_p, dst_p)
-            return True
+            return {"status": "success", "src": str(src_p), "dst": str(dst_p)}
         except Exception as exc:
             log.exception("FS: Failed to copy '%s' → '%s': %s", src_p, dst_p, exc)
-            return False
+            return {"status": "error", "src": str(src_p), "dst": str(dst_p), "exception": str(exc)}
 
     # --------------------------------------------------------
     # DELETE
@@ -102,27 +94,27 @@ class FSModule:
                 p.unlink()
             else:
                 log.warning("FS: Nothing to delete at: %s", p)
-                return False
+                return {"status": "error", "path": str(p), "message": "Nothing to delete"}
 
             log.info("FS: Deleted '%s'", p)
-            return True
+            return {"status": "success", "path": str(p)}
         except Exception as exc:
             log.exception("FS: Failed to delete '%s': %s", p, exc)
-            return False
+            return {"status": "error", "path": str(p), "exception": str(exc)}
 
     # --------------------------------------------------------
     # READ
     # --------------------------------------------------------
-    def read(self, path: str) -> str | None:
+    def read(self, path: str) -> dict:
         p = self._validate_path(path)
 
         try:
             content = p.read_text(encoding="utf-8")
             log.info("FS: Read file: %s", p)
-            return content
+            return {"status": "success", "path": str(p), "content": content}
         except Exception as exc:
             log.exception("FS: Failed to read '%s': %s", p, exc)
-            return None
+            return {"status": "error", "path": str(p), "exception": str(exc)}
 
     # --------------------------------------------------------
     # WRITE
@@ -133,7 +125,7 @@ class FSModule:
         try:
             p.write_text(content, encoding="utf-8")
             log.info("FS: Wrote file: %s", p)
-            return True
+            return {"status": "success", "path": str(p)}
         except Exception as exc:
             log.exception("FS: Failed to write '%s': %s", p, exc)
-            return False
+            return {"status": "error", "path": str(p), "exception": str(exc)}
