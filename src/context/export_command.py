@@ -6,27 +6,26 @@ import os
 
 class ContextExportCommand(BaseCommand):
     """
-    ContextExportCommand 4.0
+    ContextExportCommand 4.3
     Exports the context or selected sections into a JSON file.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read, fs_write)
-    - structured output for Workflow Engine 4.0
-    - audit trail via BaseCommand lifecycle
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-export"
     description = "Exports the context or selected sections into a JSON file."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can export context
-    risk_level = 0.4                # Medium risk (filesystem write)
+    required_identity = "OWNER"
+    risk_level = 0.4
     capabilities = ["context_read", "fs_write"]
 
     keywords = ["export", "context", "json", "save"]
@@ -42,7 +41,7 @@ class ContextExportCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -103,7 +102,10 @@ class ContextExportCommand(BaseCommand):
         else:
             return {
                 "status": "error",
-                "message": f"Unknown section '{section}'. Use: all/session/persistent/state/history."
+                "message": (
+                    f"Unknown section '{section}'. "
+                    "Use: all | session | persistent | state | history."
+                )
             }
 
         # -----------------------------
