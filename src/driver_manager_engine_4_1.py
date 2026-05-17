@@ -1,24 +1,6 @@
-"""
-Driver Manager Engine 4.1
--------------------------
-
-Safe offline driver diagnostics module for SIRIUS LOCAL AI v4.1.0.
-
-Účel:
-- detekcia chýbajúcich ovládačov
-- detekcia poškodených ovládačov
-- detekcia zastaraných ovládačov
-- čítanie INF súborov (bez inštalácie)
-- extrakcia ZIP/EXE balíkov (bez spúšťania)
-- monitorovanie priečinka Downloads
-- generovanie návrhov pre VYSLANEC 4.1 (Bridge Layer)
-
-Tento modul:
-- NEINŠTALUJE ovládače
-- NESPÚŠŤA EXE
-- NEZASAHUJE do systému
-- len analyzuje a navrhuje bezpečné akcie
-"""
+# driver_manager_engine_4_3.py
+# SIRIUS LOCAL AI – Driver Manager Engine 4.3.x
+# Safe, deterministic, sandboxed driver diagnostics module
 
 from __future__ import annotations
 
@@ -34,6 +16,10 @@ import winreg
 
 DriverSeverity = Literal["info", "warning", "critical"]
 
+
+# ---------------------------------------------------------
+# DATA STRUCTURES
+# ---------------------------------------------------------
 
 @dataclass
 class DriverIssue:
@@ -51,84 +37,121 @@ class DriverReport:
     issues: List[DriverIssue] = field(default_factory=list)
     detected_inf_files: List[str] = field(default_factory=list)
     detected_packages: List[str] = field(default_factory=list)
+    safe_mode: bool = False
+    degraded_mode: bool = False
 
 
-class DriverManagerEngine41:
+# ---------------------------------------------------------
+# ENGINE
+# ---------------------------------------------------------
+
+class DriverManagerEngine43:
     """
-    Driver Manager Engine 4.1
+    Driver Manager Engine 4.3.x
 
-    - bezpečný diagnostický modul
-    - žiadne priame zásahy do systému
-    - všetky akcie musia ísť cez VYSLANEC 4.1
+    - Safe, deterministic diagnostics
+    - No installation, no system modification
+    - Registry scanning sandbox
+    - ZIP/EXE preview sandbox
+    - Structured fallback behavior
+    - Safe-mode and degraded-mode support
+    - Self-Repair 4.4 ready
     """
 
     def __init__(self):
+        self.safe_mode = False
+        self.degraded_mode = False
         self.downloads_path = os.path.join(os.path.expanduser("~"), "Downloads")
 
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
     # PUBLIC API
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
 
     def analyze(self) -> DriverReport:
         """
-        Hlavný vstupný bod pre Runtime Core 4.0.
+        Main entry point for Runtime Manager 4.3.x.
+        Always returns a valid DriverReport.
         """
-        issues: List[DriverIssue] = []
 
-        inf_files = self._scan_downloads_for_inf()
-        packages = self._scan_downloads_for_packages()
+        if self.safe_mode:
+            return DriverReport(
+                timestamp=time.time(),
+                issues=[],
+                detected_inf_files=[],
+                detected_packages=[],
+                safe_mode=True,
+                degraded_mode=False,
+            )
 
-        issues.extend(self._detect_missing_drivers())
-        issues.extend(self._detect_corrupted_drivers())
-        issues.extend(self._detect_outdated_drivers())
+        try:
+            inf_files = self._scan_downloads_for_inf()
+            packages = self._scan_downloads_for_packages()
 
-        return DriverReport(
-            timestamp=time.time(),
-            issues=issues,
-            detected_inf_files=inf_files,
-            detected_packages=packages,
-        )
+            issues = []
+            issues.extend(self._detect_missing_drivers())
+            issues.extend(self._detect_corrupted_drivers())
+            issues.extend(self._detect_outdated_drivers())
 
-    # -------------------------------------------------------------------------
-    # DOWNLOADS SCANNING
-    # -------------------------------------------------------------------------
+            return DriverReport(
+                timestamp=time.time(),
+                issues=issues,
+                detected_inf_files=inf_files,
+                detected_packages=packages,
+                safe_mode=False,
+                degraded_mode=self.degraded_mode,
+            )
+
+        except Exception:
+            self.degraded_mode = True
+            return DriverReport(
+                timestamp=time.time(),
+                issues=[],
+                detected_inf_files=[],
+                detected_packages=[],
+                safe_mode=False,
+                degraded_mode=True,
+            )
+
+    # ---------------------------------------------------------
+    # DOWNLOADS SCANNING (SANDBOXED)
+    # ---------------------------------------------------------
 
     def _scan_downloads_for_inf(self) -> List[str]:
-        """
-        Nájde INF súbory v Downloads.
-        """
-        found = []
-        if not os.path.exists(self.downloads_path):
-            return found
+        """Find INF files in Downloads (safe, deterministic)."""
+        try:
+            if not os.path.exists(self.downloads_path):
+                return []
 
-        for file in os.listdir(self.downloads_path):
-            if file.lower().endswith(".inf"):
-                found.append(os.path.join(self.downloads_path, file))
-
-        return found
+            return [
+                os.path.join(self.downloads_path, f)
+                for f in os.listdir(self.downloads_path)
+                if f.lower().endswith(".inf")
+            ]
+        except Exception:
+            self.degraded_mode = True
+            return []
 
     def _scan_downloads_for_packages(self) -> List[str]:
-        """
-        Nájde ZIP/EXE balíky ovládačov v Downloads.
-        """
-        found = []
-        if not os.path.exists(self.downloads_path):
-            return found
+        """Find ZIP/EXE driver packages in Downloads."""
+        try:
+            if not os.path.exists(self.downloads_path):
+                return []
 
-        for file in os.listdir(self.downloads_path):
-            if file.lower().endswith(".zip") or file.lower().endswith(".exe"):
-                found.append(os.path.join(self.downloads_path, file))
+            return [
+                os.path.join(self.downloads_path, f)
+                for f in os.listdir(self.downloads_path)
+                if f.lower().endswith(".zip") or f.lower().endswith(".exe")
+            ]
+        except Exception:
+            self.degraded_mode = True
+            return []
 
-        return found
-
-    # -------------------------------------------------------------------------
-    # DRIVER DIAGNOSTICS
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # DRIVER DIAGNOSTICS (SANDBOXED)
+    # ---------------------------------------------------------
 
     def _detect_missing_drivers(self) -> List[DriverIssue]:
-        """
-        Detekcia chýbajúcich ovládačov cez Windows registry.
-        """
+        """Detect missing drivers via registry (safe, isolated)."""
         issues = []
 
         try:
@@ -139,81 +162,112 @@ class DriverManagerEngine41:
         except Exception:
             return issues
 
-        # Prechádzame zariadenia
         try:
             i = 0
             while True:
-                device = winreg.EnumKey(key, i)
-                device_key = winreg.OpenKey(key, device)
+                try:
+                    device = winreg.EnumKey(key, i)
+                except OSError:
+                    break
+
+                try:
+                    device_key = winreg.OpenKey(key, device)
+                except Exception:
+                    i += 1
+                    continue
+
                 j = 0
                 while True:
                     try:
                         sub = winreg.EnumKey(device_key, j)
-                        subkey = winreg.OpenKey(device_key, sub)
-                        try:
-                            winreg.QueryValueEx(subkey, "Driver")
-                        except FileNotFoundError:
-                            issues.append(
-                                DriverIssue(
-                                    id=f"missing_driver_{device}_{sub}",
-                                    severity="critical",
-                                    title="Chýbajúci ovládač zariadenia",
-                                    description=(
-                                        f"Zariadenie {device}/{sub} nemá priradený ovládač. "
-                                        "Systém môže mať obmedzenú funkcionalitu."
-                                    ),
-                                    suggested_actions=[
-                                        "Vyhľadať INF súbor v Downloads.",
-                                        "Navrhnúť inštaláciu cez VYSLANEC 4.1.",
-                                        "Navrhnúť otvorenie oficiálnej stránky výrobcu.",
-                                    ],
-                                )
-                            )
-                        j += 1
                     except OSError:
                         break
+
+                    try:
+                        subkey = winreg.OpenKey(device_key, sub)
+                        winreg.QueryValueEx(subkey, "Driver")
+                    except FileNotFoundError:
+                        issues.append(
+                            DriverIssue(
+                                id=f"missing_driver_{device}_{sub}",
+                                severity="critical",
+                                title="Chýbajúci ovládač zariadenia",
+                                description=(
+                                    f"Zariadenie {device}/{sub} nemá priradený ovládač. "
+                                    "Systém môže mať obmedzenú funkcionalitu."
+                                ),
+                                suggested_actions=[
+                                    "Vyhľadať INF súbor v Downloads.",
+                                    "Navrhnúť inštaláciu cez VYSLANEC 4.3.",
+                                    "Navrhnúť otvorenie oficiálnej stránky výrobcu.",
+                                ],
+                            )
+                        )
+                    except Exception:
+                        self.degraded_mode = True
+
+                    j += 1
+
                 i += 1
-        except OSError:
-            pass
+
+        except Exception:
+            self.degraded_mode = True
 
         return issues
 
     def _detect_corrupted_drivers(self) -> List[DriverIssue]:
-        """
-        Placeholder – neskôr doplníme kontrolu podpisov a integrity.
-        """
+        """Placeholder for signature/integrity checks."""
         return []
 
     def _detect_outdated_drivers(self) -> List[DriverIssue]:
-        """
-        Placeholder – neskôr doplníme porovnávanie verzií.
-        """
+        """Placeholder for version comparison."""
         return []
 
-    # -------------------------------------------------------------------------
-    # SAFE PACKAGE EXTRACTION
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # SAFE PACKAGE PREVIEW
+    # ---------------------------------------------------------
 
     def extract_zip_preview(self, path: str) -> List[str]:
-        """
-        Bezpečne zobrazí obsah ZIP súboru bez extrakcie.
-        """
-        if not zipfile.is_zipfile(path):
+        """Safely preview ZIP contents without extraction."""
+        try:
+            if not zipfile.is_zipfile(path):
+                return []
+            with zipfile.ZipFile(path, "r") as z:
+                return z.namelist()
+        except Exception:
+            self.degraded_mode = True
             return []
 
-        with zipfile.ZipFile(path, "r") as z:
-            return z.namelist()
-
-    # -------------------------------------------------------------------------
-    # HOOKS FOR SYSTEM HEALTH ENGINE
-    # -------------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # SYSTEM HEALTH HOOK
+    # ---------------------------------------------------------
 
     def get_driver_summary(self) -> dict:
-        """
-        Poskytne System Health Engine 4.1 základné info o ovládačoch.
-        """
-        return {
-            "missing": len(self._detect_missing_drivers()),
-            "corrupted": 0,
-            "outdated": 0,
-        }
+        """Provide System Health Engine 4.3.x with basic driver info."""
+        try:
+            return {
+                "missing": len(self._detect_missing_drivers()),
+                "corrupted": 0,
+                "outdated": 0,
+                "safe_mode": self.safe_mode,
+                "degraded_mode": self.degraded_mode,
+            }
+        except Exception:
+            self.degraded_mode = True
+            return {
+                "missing": 0,
+                "corrupted": 0,
+                "outdated": 0,
+                "safe_mode": self.safe_mode,
+                "degraded_mode": True,
+            }
+
+    # ---------------------------------------------------------
+    # SAFE-MODE
+    # ---------------------------------------------------------
+
+    def enter_safe_mode(self):
+        self.safe_mode = True
+
+    def exit_safe_mode(self):
+        self.safe_mode = False
