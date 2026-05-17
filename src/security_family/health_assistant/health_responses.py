@@ -1,6 +1,6 @@
 """
-Health Responses – Safe Recommendation Generator
-------------------------------------------------
+Health Responses – Safe Recommendation Generator 4.3.x
+------------------------------------------------------
 Generates non-medical, offline, identity-aware recommendations based on
 classified categories from health_rules.py.
 
@@ -39,17 +39,46 @@ def build_response(category: str, context) -> Dict[str, str]:
 
     Returns:
     {
+        "status": "ok" | "safe_mode" | "error",
         "category": str,
         "message": str,
-        "safety_note": str
+        "safety_note": str,
+        "degraded_mode": bool
     }
     """
 
-    message = BASE_RESPONSES.get(category, BASE_RESPONSES["unknown"])
-    safety_note = IDENTITY_NOTES.get(context.identity, IDENTITY_NOTES["STRANGER"])
+    # Safe-mode → only safe fallback
+    if getattr(context, "safe_mode", False):
+        return {
+            "status": "safe_mode",
+            "category": "unknown",
+            "message": BASE_RESPONSES["unknown"],
+            "safety_note": context.default_safety_note,
+            "degraded_mode": getattr(context, "degraded_mode", False),
+        }
 
-    return {
-        "category": category,
-        "message": message,
-        "safety_note": safety_note,
-    }
+    try:
+        message = BASE_RESPONSES.get(category, BASE_RESPONSES["unknown"])
+        safety_note = IDENTITY_NOTES.get(context.identity, IDENTITY_NOTES["STRANGER"])
+
+        return {
+            "status": "ok",
+            "category": category,
+            "message": message,
+            "safety_note": safety_note,
+            "degraded_mode": getattr(context, "degraded_mode", False),
+        }
+
+    except Exception as exc:
+        # Any unexpected error → degraded mode
+        if hasattr(context, "mark_degraded"):
+            context.mark_degraded()
+
+        return {
+            "status": "error",
+            "category": "unknown",
+            "message": BASE_RESPONSES["unknown"],
+            "safety_note": context.default_safety_note,
+            "exception": str(exc),
+            "degraded_mode": True,
+        }
