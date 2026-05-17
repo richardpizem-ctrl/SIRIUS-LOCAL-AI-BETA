@@ -4,11 +4,21 @@ from email.manager import EmailManager
 
 class EmailDraftCommand(BaseCommand):
     """
-    EmailDraftCommand 4.0
+    EmailDraftCommand 4.3
     Creates a new email draft using EmailManager with validation,
     snapshot, and structured JSON output.
+
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - context snapshot before mutation
+    - consistent return structure
     """
 
+    # ---------------------------------------------------------
+    # METADATA (v4.3)
+    # ---------------------------------------------------------
     name = "email-draft"
     description = "Creates a new email draft."
     category = "email"
@@ -18,13 +28,22 @@ class EmailDraftCommand(BaseCommand):
     capabilities = ["context_read", "context_write", "fs_write"]
 
     keywords = ["email", "draft", "compose"]
-    examples = ["email-draft someone@example.com \"Subject\" \"Body text\""]
+    examples = ["email-draft <to> <subject> <body>"]
 
+    # ---------------------------------------------------------
+    # INIT
+    # ---------------------------------------------------------
     def __init__(self, context, email_manager: EmailManager):
         self.context = context
         self.email_manager = email_manager
 
+    # ---------------------------------------------------------
+    # EXECUTION
+    # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
+        # -----------------------------
+        # INPUT VALIDATION
+        # -----------------------------
         if len(args) < 3:
             return {
                 "status": "error",
@@ -50,7 +69,7 @@ class EmailDraftCommand(BaseCommand):
             body=body
         )
 
-        # Handle validation errors from EmailManager
+        # EmailManager may return an error dict
         if isinstance(draft, dict) and draft.get("status") == "error":
             return draft
 
@@ -63,6 +82,9 @@ class EmailDraftCommand(BaseCommand):
             "last_email_draft_subject": draft["subject"]
         })
 
+        # -----------------------------
+        # SUCCESS RESPONSE
+        # -----------------------------
         return {
             "status": "success",
             "message": "Draft created successfully.",
