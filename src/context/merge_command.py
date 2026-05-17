@@ -7,28 +7,27 @@ import copy
 
 class ContextMergeCommand(BaseCommand):
     """
-    ContextMergeCommand 4.0
+    ContextMergeCommand 4.3
     Merges an external JSON context file into the current context.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - high‑risk classification
-    - capability flags (context_write, fs_read)
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
     - snapshot before merge
-    - deep‑copy safety
-    - structured output for Workflow Engine 4.0
+    - deep-copy safety
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-merge"
     description = "Merges an external JSON context file into the current context."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can merge external context
-    risk_level = 0.8                # High risk (massive context modification)
+    required_identity = "OWNER"
+    risk_level = 0.8
     capabilities = ["context_write", "fs_read"]
 
     keywords = ["merge", "context", "import", "combine"]
@@ -41,7 +40,7 @@ class ContextMergeCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -112,13 +111,13 @@ class ContextMergeCommand(BaseCommand):
                 # PERSISTENT
                 if isinstance(incoming.get("persistent"), dict):
                     for k, v in incoming["persistent"].items():
-                        if isinstance(k, str) and isinstance(v, str):
+                        if isinstance(k, str):
                             self.context.persistent_memory[k] = v
 
                 # STATE
                 if isinstance(incoming.get("state"), dict):
                     for k, v in incoming["state"].items():
-                        if isinstance(k, str) and isinstance(v, str):
+                        if isinstance(k, str):
                             self.context.state[k] = v
 
                 # HISTORY
@@ -127,7 +126,6 @@ class ContextMergeCommand(BaseCommand):
                         if isinstance(snap, dict):
                             self.context.history.append(copy.deepcopy(snap))
 
-                    # enforce max_history
                     self.context.history = self.context.history[-self.context.max_history:]
 
             elif section == "session":
@@ -141,14 +139,14 @@ class ContextMergeCommand(BaseCommand):
                 if not isinstance(incoming, dict):
                     return {"status": "error", "message": "Persistent must be an object."}
                 for k, v in incoming.items():
-                    if isinstance(k, str) and isinstance(v, str):
+                    if isinstance(k, str):
                         self.context.persistent_memory[k] = v
 
             elif section == "state":
                 if not isinstance(incoming, dict):
                     return {"status": "error", "message": "State must be an object."}
                 for k, v in incoming.items():
-                    if isinstance(k, str) and isinstance(v, str):
+                    if isinstance(k, str):
                         self.context.state[k] = v
 
             elif section == "history":
