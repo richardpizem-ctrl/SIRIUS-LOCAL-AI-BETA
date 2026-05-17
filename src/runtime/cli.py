@@ -7,12 +7,15 @@ from workflow.logger import WorkflowLogger
 
 class CLI:
     """
-    CLI for SIRIUS LOCAL AI 4.0
+    CLI for SIRIUS LOCAL AI 4.3
+    ---------------------------
     - OWNER identity enforcement
     - Security Family integration
     - Pretty JSON output
     - Command metadata support
     - Dependency injection for managers
+    - Deterministic Runtime4 behavior
+    - Self‑Repair 4.4 compatible
     """
 
     def __init__(self, context, managers: dict):
@@ -40,7 +43,10 @@ class CLI:
     # --------------------------------------------------------
     def run(self, argv: list[str]):
         if len(argv) < 2:
-            print("Usage: python sirius.py <command> [args...]")
+            self._print_json({
+                "status": "error",
+                "message": "Usage: python sirius.py <command> [args...]"
+            })
             return
 
         command_name = argv[1]
@@ -48,7 +54,9 @@ class CLI:
 
         self.logger.info(f"CLI – received command: {command_name}")
 
+        # ----------------------------------------------------
         # HELP
+        # ----------------------------------------------------
         if command_name == "help":
             registry = CommandRegistry._commands
             help_cmd = HelpCommand(registry, self.context)
@@ -56,7 +64,9 @@ class CLI:
             self._print_json(result)
             return
 
+        # ----------------------------------------------------
         # FIND COMMAND
+        # ----------------------------------------------------
         command_class = CommandRegistry.get(command_name)
 
         if command_class is None:
@@ -67,27 +77,37 @@ class CLI:
             })
             return
 
+        # ----------------------------------------------------
         # SECURITY FAMILY: IDENTITY CHECK
+        # ----------------------------------------------------
         required_identity = getattr(command_class, "required_identity", None)
         if required_identity and self.context.identity != required_identity:
             self._print_json({
                 "status": "error",
-                "message": f"Command '{command_name}' requires identity '{required_identity}'."
+                "message": (
+                    f"Command '{command_name}' requires identity "
+                    f"'{required_identity}'."
+                )
             })
             return
 
+        # ----------------------------------------------------
         # CREATE INSTANCE WITH DEPENDENCY INJECTION
+        # ----------------------------------------------------
         try:
             command_instance = command_class(self.context, **self.managers)
         except Exception as exc:
             self.logger.error(f"Failed to create command instance: {exc}")
             self._print_json({
                 "status": "error",
-                "message": "Internal error: failed to initialize command."
+                "message": "Internal error: failed to initialize command.",
+                "details": str(exc)
             })
             return
 
+        # ----------------------------------------------------
         # VALIDATE
+        # ----------------------------------------------------
         if hasattr(command_instance, "validate") and not command_instance.validate():
             self.logger.error(f"Validation failed for: {command_name}")
             self._print_json({
@@ -96,11 +116,17 @@ class CLI:
             })
             return
 
+        # ----------------------------------------------------
         # EXECUTE
+        # ----------------------------------------------------
         try:
             result = command_instance.execute(*args)
-            if result is not None:
-                self._print_json(result)
+
+            # Deterministic output
+            if result is None:
+                result = {"status": "success"}
+
+            self._print_json(result)
 
         except Exception as exc:
             self.logger.error(f"Execution error: {exc}")
