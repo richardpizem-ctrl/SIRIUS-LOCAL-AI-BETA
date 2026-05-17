@@ -4,29 +4,29 @@ from context.context_manager import ContextManager
 
 class MemorySaveCommand(BaseCommand):
     """
-    MemorySaveCommand 4.0
+    MemorySaveCommand 4.3
     Saves a key-value pair into persistent memory with validation,
     snapshot creation, diff reporting, and safe merge into state.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_write)
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
     - snapshot before modification
     - diff reporting
-    - structured output for Workflow Engine 4.0
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "memory-save"
     description = "Saves a value into persistent memory and merges it into state."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can modify persistent memory
-    risk_level = 0.5                # Medium risk (persistent + state modification)
+    required_identity = "OWNER"
+    risk_level = 0.5
     capabilities = ["context_write"]
 
     keywords = ["memory", "save", "persistent", "store"]
@@ -39,7 +39,7 @@ class MemorySaveCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
