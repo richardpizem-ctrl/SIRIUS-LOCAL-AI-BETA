@@ -1,28 +1,34 @@
 """
-SIRIUS LOCAL AI – Knowledge Packs 2.0 Validator
+SIRIUS LOCAL AI – Knowledge Packs 2.0 Validator (Runtime 4.3)
 
 Responsible for:
 - validating pack structure
 - checking required fields
-- enforcing safety rules
-- ensuring compatibility with Runtime 4.0
+- enforcing Security Family 4.4 rules
+- ensuring compatibility with Knowledge Packs 2.0
 - preparing packs for graph/linker stages
+- supporting Self‑Repair 4.4 diagnostics
 
-This is the validation layer for Knowledge Packs 2.0.
+This is the validation layer for Knowledge Packs 2.0 (Runtime 4.3).
 """
 
 
 class PackValidator4:
     """
     Validates the structure and metadata of Knowledge Packs 2.0.
+    Provides:
+    - strict structural validation
+    - metadata validation
+    - safe-mode compatibility
+    - degraded-mode detection
+    - structured error surface
     """
 
     def __init__(self):
-        # Required fields for every pack
         self.required_fields = ["data", "meta"]
-
-        # Required metadata keys
         self.required_meta = ["version", "type"]
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
     # STRUCTURE VALIDATION
@@ -31,7 +37,6 @@ class PackValidator4:
     def validate_structure(self, pack: dict):
         """Checks if pack contains required top-level fields."""
 
-        # Type check
         if not isinstance(pack, dict):
             return {
                 "valid": False,
@@ -39,7 +44,6 @@ class PackValidator4:
                 "detail": "Pack must be a dictionary."
             }
 
-        # Required fields
         for field in self.required_fields:
             if field not in pack:
                 return {
@@ -48,7 +52,6 @@ class PackValidator4:
                     "field": field
                 }
 
-        # Validate that data is dict
         if not isinstance(pack["data"], dict):
             return {
                 "valid": False,
@@ -56,7 +59,6 @@ class PackValidator4:
                 "detail": "Pack 'data' must be a dictionary."
             }
 
-        # Validate that meta is dict
         if not isinstance(pack["meta"], dict):
             return {
                 "valid": False,
@@ -73,7 +75,6 @@ class PackValidator4:
     def validate_metadata(self, meta: dict):
         """Checks if metadata contains required keys."""
 
-        # Required metadata keys
         for key in self.required_meta:
             if key not in meta:
                 return {
@@ -82,20 +83,18 @@ class PackValidator4:
                     "key": key
                 }
 
-        # Validate version type
-        if not isinstance(meta["version"], str):
+        if not isinstance(meta["version"], str) or not meta["version"].strip():
             return {
                 "valid": False,
                 "error": "invalid_version_type",
-                "detail": "Meta 'version' must be a string."
+                "detail": "Meta 'version' must be a non-empty string."
             }
 
-        # Validate type field
-        if not isinstance(meta["type"], str):
+        if not isinstance(meta["type"], str) or not meta["type"].strip():
             return {
                 "valid": False,
                 "error": "invalid_type_field",
-                "detail": "Meta 'type' must be a string."
+                "detail": "Meta 'type' must be a non-empty string."
             }
 
         return {"valid": True}
@@ -107,14 +106,23 @@ class PackValidator4:
     def validate(self, pack: dict):
         """Performs full validation of a pack."""
 
-        # Structure
+        # SAFE MODE
+        if self.safe_mode:
+            return {
+                "valid": False,
+                "error": "safe_mode",
+                "message": "Pack validation disabled in safe-mode."
+            }
+
         struct = self.validate_structure(pack)
         if not struct["valid"]:
             return struct
 
-        # Metadata
         meta = self.validate_metadata(pack["meta"])
         if not meta["valid"]:
             return meta
 
-        return {"valid": True}
+        return {
+            "valid": True,
+            "degraded_mode": self.degraded_mode
+        }
