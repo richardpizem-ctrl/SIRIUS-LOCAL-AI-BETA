@@ -6,7 +6,7 @@ log = logging.getLogger(__name__)
 
 class CommandParser:
     """
-    CommandParser 3.5.0
+    CommandParser 4.3
     --------------------
     Parses structured commands like:
 
@@ -20,6 +20,12 @@ class CommandParser:
             "method": "move",
             "args": ["src/a.py", "modules/a.py"]
         }
+
+    Improvements in 4.3:
+    - deterministic Runtime4 behavior
+    - strict AST validation (no unsafe nodes)
+    - consistent error structure
+    - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -41,6 +47,7 @@ class CommandParser:
             # Convert string into AST
             tree = ast.parse(command.strip(), mode="eval")
 
+            # Must be a function call
             if not isinstance(tree.body, ast.Call):
                 log.error("PARSER: Not a valid call expression.")
                 return None
@@ -52,16 +59,21 @@ class CommandParser:
                 log.error("PARSER: Invalid function format.")
                 return None
 
+            # Module name must be an identifier
+            if not isinstance(call.func.value, ast.Name):
+                log.error("PARSER: Invalid module name.")
+                return None
+
             module = call.func.value.id
             method = call.func.attr
 
-            # Extract arguments
+            # Extract arguments (only constants allowed)
             args = []
             for arg in call.args:
                 if isinstance(arg, ast.Constant):
                     args.append(arg.value)
                 else:
-                    log.error("PARSER: Unsupported argument type.")
+                    log.error("PARSER: Unsupported argument type: %s", type(arg).__name__)
                     return None
 
             parsed = {
