@@ -4,27 +4,26 @@ from context.context_manager import ContextManager
 
 class ContextHistoryCommand(BaseCommand):
     """
-    ContextHistoryCommand 4.0
+    ContextHistoryCommand 4.3
     Displays the snapshot history of the context with optional limit.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read)
-    - structured output for Workflow Engine 4.0
-    - audit trail via BaseCommand lifecycle
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-history"
     description = "Displays the snapshot history of the context."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can inspect snapshot history
-    risk_level = 0.2                # Low risk (read-only)
+    required_identity = "OWNER"
+    risk_level = 0.2
     capabilities = ["context_read"]
 
     keywords = ["history", "context", "snapshots", "memory"]
@@ -37,7 +36,7 @@ class ContextHistoryCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
