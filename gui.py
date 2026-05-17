@@ -1,47 +1,69 @@
+# gui_4_3.py
+# SIRIUS LOCAL AI – Graphical User Interface (v4.3.x)
+# Deterministic, safe-mode compatible GUI front-end
+
+from __future__ import annotations
+
 from dearpygui.core import *
 from dearpygui.simple import *
 
 from runtime.runtime_manager import RuntimeManager
-from runtime.plugin_loader import PluginLoader
-from runtime.nl_router import NaturalLanguageRouter
+from runtime.plugin_loader_4_3 import PluginLoader43
+from runtime.nl_router_4_3 import NaturalLanguageRouter43
 
 
-# ============================================================
-# SIRIUS GUI (v4.0.0)
-# ============================================================
-class SiriusGUI:
+class SiriusGUI43:
     """
-    SIRIUS LOCAL AI — Graphical User Interface (v4.0.0)
+    SIRIUS LOCAL AI — Graphical User Interface (v4.3.x)
 
     Features:
-    - Natural language input
-    - Direct AI task execution
-    - Plugin‑powered actions
-    - Unified logging and runtime integration
+        - Natural language input
+        - Direct AI task execution
+        - Plugin-powered actions
+        - Safe-mode + degraded-mode support
+        - Deterministic, isolated error handling
+        - Self‑Repair 4.4 ready
     """
 
     def __init__(self):
-        # ----------------------------------------------------
-        # BOOTSTRAP RUNTIME v4
-        # ----------------------------------------------------
-        self.runtime = RuntimeManager()
-        self.runtime.initialize()
+        self.safe_mode = False
+        self.degraded_mode = False
 
-        # Plugins (v4)
-        self.plugins = PluginLoader(self.runtime)
-        self.plugins.load_all()
+        # Runtime bootstrap
+        try:
+            self.runtime = RuntimeManager()
+            self.runtime.initialize()
+        except Exception as exc:
+            self.degraded_mode = True
+            print(f"[GUI] Runtime init failed: {exc}")
 
-        # NL Router (v4)
-        self.router = NaturalLanguageRouter(self.runtime, self.plugins)
-        self.router.initialize()
+        # Plugins
+        try:
+            self.plugins = PluginLoader43(self.runtime)
+            self.plugins.load_all()
+        except Exception as exc:
+            self.degraded_mode = True
+            self.runtime.logger.error(f"[GUI] Plugin load error: {exc}")
 
-        self.runtime.logger.info("GUI initialized (v4.0.0)")
+        # NL Router
+        try:
+            self.router = NaturalLanguageRouter43(self.runtime, self.plugins)
+            self.router.initialize()
+        except Exception as exc:
+            self.degraded_mode = True
+            self.runtime.logger.error(f"[GUI] NL Router init error: {exc}")
+
+        self.runtime.logger.info("GUI initialized (v4.3.x)")
 
     # --------------------------------------------------------
-    # GUI LOGIC (v4)
+    # GUI LOGIC (4.3.x)
     # --------------------------------------------------------
     def send_nl(self, sender, data):
         """Process natural language input."""
+        if self.safe_mode:
+            add_text("[SAFE MODE] NL routing disabled", parent="Log")
+            return
+
         text = get_value("##input")
         if not text.strip():
             return
@@ -51,33 +73,45 @@ class SiriusGUI:
             add_text(f"> {text}", parent="Log")
             add_text(str(result), parent="Log")
         except Exception as e:
-            self.runtime.logger.error(f"NL error: {e}")
+            self.degraded_mode = True
+            self.runtime.logger.error(f"[GUI] NL error: {e}")
             add_text(f"Error: {e}", parent="Log")
 
         set_value("##input", "")
 
     def run_ai_task(self, sender, data):
         """Execute AI task from GUI button."""
+        if self.safe_mode:
+            add_text("[SAFE MODE] AI tasks disabled", parent="Log")
+            return
+
         task_name = data.get("task")
         params = data.get("params", {})
 
         try:
             result = self.runtime.handle_ai_task(task_name, params)
         except Exception as e:
-            self.runtime.logger.error(f"AI task error: {e}")
+            self.degraded_mode = True
+            self.runtime.logger.error(f"[GUI] AI task error: {e}")
             result = f"Error: {e}"
 
         add_text(str(result), parent="Log")
 
     # --------------------------------------------------------
-    # GUI WINDOW (v4)
+    # GUI WINDOW (4.3.x)
     # --------------------------------------------------------
     def run(self):
+        header = "SIRIUS LOCAL AI – GUI (v4.3.x)"
+        if self.safe_mode:
+            header += " [SAFE MODE]"
+        elif self.degraded_mode:
+            header += " [DEGRADED MODE]"
+
         self.runtime.logger.info("Starting GUI window")
 
-        with window("SIRIUS LOCAL AI – GUI (v4.0.0)", width=650, height=520):
+        with window(header, width=650, height=520):
 
-            add_text("SIRIUS – Local AI Runtime (v4.0.0)")
+            add_text(header)
             add_separator()
 
             add_input_text("##input", label="Command", width=450)
@@ -104,10 +138,19 @@ class SiriusGUI:
 
         start_dearpygui()
 
+    # --------------------------------------------------------
+    # SAFE-MODE CONTROL
+    # --------------------------------------------------------
+    def enter_safe_mode(self):
+        self.safe_mode = True
+
+    def exit_safe_mode(self):
+        self.safe_mode = False
+
 
 # ============================================================
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    gui = SiriusGUI()
+    gui = SiriusGUI43()
     gui.run()
