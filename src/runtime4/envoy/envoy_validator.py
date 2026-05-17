@@ -1,28 +1,34 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.0 Validator
+SIRIUS LOCAL AI – ENVOY 4.3 Validator
 
 Responsible for:
 - validating ENVOY payload structure
 - checking required fields
-- enforcing safety rules
+- enforcing Security Family 4.4 rules
 - ensuring compatibility with Knowledge Packs 2.0
 - preparing payloads for conversion
+- supporting Self‑Repair 4.4 diagnostics
 
-This is the validation layer of ENVOY 4.0.
+This is the validation layer of ENVOY 4.3.
 """
 
 
 class EnvoyValidator4:
     """
     Validates ENVOY payloads before they enter the runtime.
+    Provides:
+    - strict structural validation
+    - metadata validation
+    - content validation
+    - safe-mode compatibility
+    - degraded-mode detection
     """
 
     def __init__(self):
-        # Required top-level fields
         self.required_fields = ["type", "content", "meta"]
-
-        # Required metadata keys
         self.required_meta = ["source", "version"]
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
     # STRUCTURE VALIDATION
@@ -31,11 +37,9 @@ class EnvoyValidator4:
     def validate_structure(self, payload: dict):
         """Checks if payload contains required fields."""
 
-        # Validate payload type
         if not isinstance(payload, dict):
             return {"valid": False, "error": "invalid_payload_type"}
 
-        # Required fields
         for field in self.required_fields:
             if field not in payload:
                 return {
@@ -53,11 +57,9 @@ class EnvoyValidator4:
     def validate_metadata(self, meta: dict):
         """Checks if metadata contains required keys."""
 
-        # Validate meta type
         if not isinstance(meta, dict):
             return {"valid": False, "error": "invalid_meta_type"}
 
-        # Required metadata keys
         for key in self.required_meta:
             if key not in meta:
                 return {
@@ -66,12 +68,10 @@ class EnvoyValidator4:
                     "key": key
                 }
 
-        # Validate meta.source
         source = meta.get("source")
         if not isinstance(source, str) or not source.strip():
             return {"valid": False, "error": "invalid_meta_source"}
 
-        # Validate meta.version
         version = meta.get("version")
         if not isinstance(version, str) or not version.strip():
             return {"valid": False, "error": "invalid_meta_version"}
@@ -85,14 +85,12 @@ class EnvoyValidator4:
     def validate_content(self, content):
         """Validates ENVOY content field."""
 
-        # Content must be dict or string depending on ENVOY type
         if not isinstance(content, (dict, str)):
             return {"valid": False, "error": "invalid_content_type"}
 
-        # If dict, ensure no dangerous types
         if isinstance(content, dict):
             for key, value in content.items():
-                if not isinstance(key, str):
+                if not isinstance(key, str) or not key.strip():
                     return {"valid": False, "error": "invalid_content_key"}
                 if isinstance(value, (bytes, bytearray, type(lambda: None))):
                     return {"valid": False, "error": "invalid_content_value"}
@@ -115,6 +113,14 @@ class EnvoyValidator4:
 
     def validate(self, payload: dict):
         """Performs full validation of an ENVOY payload."""
+
+        # SAFE MODE
+        if self.safe_mode:
+            return {
+                "valid": False,
+                "error": "safe_mode",
+                "message": "Validation disabled in safe-mode."
+            }
 
         # STRUCTURE
         struct = self.validate_structure(payload)
