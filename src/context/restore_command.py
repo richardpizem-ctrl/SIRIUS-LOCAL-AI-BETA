@@ -7,29 +7,28 @@ import copy
 
 class RestoreCommand(BaseCommand):
     """
-    RestoreCommand 4.0
+    RestoreCommand 4.3
     Restores the entire context from a backup JSON file created by context-backup.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - high-risk classification
-    - capability flags (context_write, fs_read)
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
     - strict backup validation
     - deep-copy restoration
-    - post-restore snapshot
-    - structured output for Workflow Engine 4.0
+    - snapshot after restore
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-restore"
     description = "Restores the entire context from a backup JSON file."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can restore full context
-    risk_level = 0.9                # Extremely high risk (full overwrite)
+    required_identity = "OWNER"
+    risk_level = 0.9
     capabilities = ["context_write", "fs_read"]
 
     keywords = ["restore", "backup", "context", "load"]
@@ -43,7 +42,7 @@ class RestoreCommand(BaseCommand):
         self.backup_dir = backup_dir
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -76,7 +75,10 @@ class RestoreCommand(BaseCommand):
             else:
                 return {
                     "status": "error",
-                    "message": f"File '{filename}' does not exist in current directory or '{self.backup_dir}/'."
+                    "message": (
+                        f"File '{filename}' does not exist in current directory "
+                        f"or '{self.backup_dir}/'."
+                    )
                 }
 
         # -----------------------------
@@ -100,7 +102,10 @@ class RestoreCommand(BaseCommand):
         if not isinstance(data, dict) or not all(k in data for k in required_keys):
             return {
                 "status": "error",
-                "message": "Backup file has invalid structure. Required keys: session, persistent, state, history."
+                "message": (
+                    "Backup file has invalid structure. Required keys: "
+                    "session, persistent, state, history."
+                )
             }
 
         if not isinstance(data["session"], list):
