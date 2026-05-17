@@ -1,22 +1,19 @@
 """
-Command: move_text_files (v4.0)
-Description:
-    High-level filesystem automation command.
-    Creates a target folder (if missing), finds all .txt files in the source folder,
-    asks for confirmation, and then performs a safe cut → paste operation using FS-Agent.
+MoveTextFilesCommand 4.3
+High-level filesystem automation command for moving all .txt files
+from a source folder into a target folder using FS-Agent.
 
-New in v4.0:
-    - integrated with BaseCommand 4.0 lifecycle
-    - risk-aware execution
-    - SECURITY FAMILY enforcement
-    - NL Router metadata
-    - capability flags for WIN-CAP / FS-AGENT
-    - structured validation
-    - audit trail via WorkflowLogger
+Improvements in 4.3:
+- unified metadata contract
+- deterministic behavior for Runtime4
+- safe error handling (via BaseCommand.run)
+- context snapshot before mutation
+- consistent return structure
+- audit-ready logging via WorkflowLogger
 """
 
 from typing import List
-from core.command_base import BaseCommand
+from commands.base_command import BaseCommand
 from ui.confirm import ConfirmDialog
 from filesystem.fs_agent import FSAgent
 from workflow.logger import WorkflowLogger
@@ -29,7 +26,7 @@ class MoveTextFilesCommand(BaseCommand):
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "move_text_files"
     description = "Moves all .txt files from source to target folder."
@@ -40,7 +37,7 @@ class MoveTextFilesCommand(BaseCommand):
     capabilities = ["fs_write", "fs_move"]
 
     keywords = ["move", "text files", "txt", "folder", "transfer"]
-    examples = ["move all text files from X to Y"]
+    examples = ["move_text_files <source> <target>"]
 
     # ---------------------------------------------------------
     # INIT
@@ -51,7 +48,7 @@ class MoveTextFilesCommand(BaseCommand):
         self.logger = WorkflowLogger()
 
     # ---------------------------------------------------------
-    # VALIDATION (v4.0)
+    # VALIDATION (v4.3)
     # ---------------------------------------------------------
     def validate(self) -> bool:
         """
@@ -64,7 +61,7 @@ class MoveTextFilesCommand(BaseCommand):
         return True
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self) -> dict:
         """
@@ -77,24 +74,39 @@ class MoveTextFilesCommand(BaseCommand):
 
         self.logger.info("MoveTextFilesCommand – start")
 
+        # -----------------------------
+        # VALIDATE INPUT
+        # -----------------------------
         if not self.validate():
-            return {"status": "invalid"}
+            return {"status": "error", "message": "Source folder does not exist."}
 
         self.logger.info(f"Source: {self.source_path}")
         self.logger.info(f"Target: {self.target_path}")
 
-        # Step 1: Ensure target folder exists
+        # -----------------------------
+        # SNAPSHOT BEFORE MUTATION
+        # -----------------------------
+        if hasattr(self, "context") and hasattr(self.context, "snapshot"):
+            self.context.snapshot()
+
+        # -----------------------------
+        # ENSURE TARGET FOLDER EXISTS
+        # -----------------------------
         FSAgent.ensure_folder(self.target_path)
         self.logger.info(f"ensure_folder – {self.target_path}")
 
-        # Step 2: Find .txt files
+        # -----------------------------
+        # FIND .TXT FILES
+        # -----------------------------
         txt_files: List[str] = FSAgent.list_files(self.source_path, extension=".txt")
 
         if not txt_files:
             self.logger.info("no .txt files found – abort")
-            return {"status": "no_files"}
+            return {"status": "no_files", "message": "No .txt files found."}
 
-        # Step 3: Confirmation dialog
+        # -----------------------------
+        # CONFIRMATION DIALOG
+        # -----------------------------
         confirm = ConfirmDialog(
             title="Move Text Files",
             message=(
@@ -106,9 +118,11 @@ class MoveTextFilesCommand(BaseCommand):
 
         if not confirm.get_user_confirmation():
             self.logger.info("user cancelled")
-            return {"status": "cancelled"}
+            return {"status": "cancelled", "message": "Operation cancelled by user."}
 
-        # Step 4: Move files (cut → paste)
+        # -----------------------------
+        # MOVE FILES
+        # -----------------------------
         try:
             success = FSAgent.move_files(txt_files, self.target_path)
         except Exception as e:
@@ -118,8 +132,13 @@ class MoveTextFilesCommand(BaseCommand):
         if success:
             self.logger.info(f"move_files – {len(txt_files)} items moved")
             self.logger.info("completed")
-            return {"status": "success", "moved": len(txt_files)}
+            return {
+                "status": "success",
+                "moved": len(txt_files),
+                "source": self.source_path,
+                "target": self.target_path
+            }
 
         else:
             self.logger.error("move_files – operation failed")
-            return {"status": "failed"}
+            return {"status": "failed", "message": "Move operation failed."}
