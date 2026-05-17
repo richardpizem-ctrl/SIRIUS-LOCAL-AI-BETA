@@ -1,18 +1,36 @@
 """
-SIRIUS LOCAL AI – Notes Plugin
-------------------------------
-This package contains the Notes plugin, providing local note storage and
-management for SIRIUS LOCAL AI.
+SIRIUS LOCAL AI – Notes Plugin (v4.3.x)
+---------------------------------------
 
-The Notes plugin supports:
-- creating notes
-- listing notes
-- reading notes
-- deleting notes
-- natural language note commands
-- AI task integration
-- workflow and UI bindings
+This package provides the Notes Plugin for SIRIUS Runtime 4.3.x.
 
-The plugin is loaded dynamically through manifest.json and the plugin loader.
-No imports are performed here to avoid side-effects during initialization.
+Capabilities:
+    - Create notes
+    - List notes
+    - Read notes
+    - Delete notes
+    - Natural language note commands
+    - AI task bindings
+    - Workflow integration
+    - GUI elements for note management
+    - Safe-mode + degraded-mode support
+    - Deterministic, offline-only behavior
+    - Self‑Repair 4.4 ready
+
+Architecture Notes:
+    - The plugin is dynamically loaded through PluginLoader 4.3.x.
+    - No imports are performed at package level to avoid side-effects.
+    - The actual implementation resides in plugin.py.
+    - Manifest.json defines plugin metadata and capabilities.
+    - This __init__.py file must remain side‑effect free.
+
+Compatibility:
+    - RuntimeManager 4.3.x
+    - PluginLoader 4.3.x
+    - NL Router 4.3.x
+    - SystemAgent 4.3.x
+    - Workflow Engine 4.3.x
+    - AI Loop 4.3.x
+
+This file intentionally contains no executable code.
 """
