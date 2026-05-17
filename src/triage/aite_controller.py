@@ -1,3 +1,8 @@
+# aite_controller.py
+# SIRIUS LOCAL AI – Automatic Input Triage Engine (AITE) 4.3.x
+# Deterministic, offline-only triage controller with safe-mode and degraded-mode support.
+
+from typing import Dict, Any
 from .input_classifier import InputClassifier
 from .input_router import InputRouter
 from .metadata_builder import MetadataBuilder
@@ -5,16 +10,19 @@ from .metadata_builder import MetadataBuilder
 
 class AITEController:
     """
-    Automatic Input Triage Engine (AITE)
+    Automatic Input Triage Engine (AITE) – 4.3.x
 
     Responsibilities:
+        - Validate input path
         - Detect input type (text, image, audio, application, unknown)
         - Determine the correct target storage path
         - Generate metadata for the file
-        - Provide a unified triage result for FS-AGENT
+        - Provide a unified triage result for FS‑AGENT
+        - Safe-mode and degraded-mode compatible
+        - Deterministic, offline-only behavior
 
     This controller does NOT move files.
-    FS-AGENT performs the actual filesystem operations.
+    FS‑AGENT performs the actual filesystem operations.
     """
 
     def __init__(self):
@@ -22,11 +30,14 @@ class AITEController:
         self.router = InputRouter()
         self.metadata = MetadataBuilder()
 
+        self.safe_mode = False
+        self.degraded_mode = False
+
     # ---------------------------------------------------------
     # Public API
     # ---------------------------------------------------------
 
-    def process(self, input_path: str) -> dict:
+    def process(self, input_path: str) -> Dict[str, Any]:
         """
         Process an input file and return a triage package.
 
@@ -36,26 +47,45 @@ class AITEController:
             3. Determine target storage path
             4. Build metadata dictionary
             5. Return unified triage result
-
-        FS-AGENT will later:
-            - move the file
-            - rename if needed
-            - apply metadata
         """
 
-        self._validate_input(input_path)
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "input": input_path,
+                "type": "unknown",
+                "target": None,
+                "metadata": {},
+                "degraded_mode": self.degraded_mode,
+            }
 
-        input_type = self.classifier.classify(input_path)
-        target = self.router.route(input_type)
-        meta = self.metadata.build(input_path, input_type)
+        try:
+            self._validate_input(input_path)
 
-        return {
-            "input": input_path,
-            "type": input_type,
-            "target": target,
-            "metadata": meta,
-            "status": "triage_complete"
-        }
+            input_type = self.classifier.classify(input_path)
+            target = self.router.route(input_type)
+            meta = self.metadata.build(input_path, input_type)
+
+            return {
+                "status": "triage_complete",
+                "input": input_path,
+                "type": input_type,
+                "target": target,
+                "metadata": meta,
+                "degraded_mode": self.degraded_mode,
+            }
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "input": input_path,
+                "type": "unknown",
+                "target": None,
+                "metadata": {},
+                "exception": str(exc),
+                "degraded_mode": True,
+            }
 
     # ---------------------------------------------------------
     # Internal helpers
@@ -73,9 +103,8 @@ class AITEController:
         if input_path.strip() == "":
             raise ValueError("input_path cannot be empty")
 
-        # Additional safety checks for future versions:
+        # Phase‑5 reserved:
         # - forbidden extensions
         # - sandbox rules
         # - path traversal protection
         # - quarantine rules
-        # (Phase 5)
