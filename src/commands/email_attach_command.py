@@ -5,10 +5,20 @@ import os
 
 class EmailAttachCommand(BaseCommand):
     """
-    EmailAttachCommand 4.0
+    EmailAttachCommand 4.3
     Adds an attachment to an existing email draft.
+
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - context snapshot before mutation
+    - consistent return structure
     """
 
+    # ---------------------------------------------------------
+    # METADATA (v4.3)
+    # ---------------------------------------------------------
     name = "email-attach"
     description = "Adds an attachment to an email draft."
     category = "email"
@@ -18,13 +28,22 @@ class EmailAttachCommand(BaseCommand):
     capabilities = ["fs_read", "fs_write"]
 
     keywords = ["email", "attach", "file", "draft"]
-    examples = ["email-attach 20260424_112233 ./docs/file.pdf"]
+    examples = ["email-attach <draft_id> <file_path>"]
 
+    # ---------------------------------------------------------
+    # INIT
+    # ---------------------------------------------------------
     def __init__(self, context, email_manager: EmailManager):
         self.context = context
         self.email_manager = email_manager
 
+    # ---------------------------------------------------------
+    # EXECUTION
+    # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
+        # -----------------------------
+        # INPUT VALIDATION
+        # -----------------------------
         if len(args) < 2:
             return {
                 "status": "error",
@@ -82,7 +101,7 @@ class EmailAttachCommand(BaseCommand):
         draft["attachments"] = attachments
 
         # -----------------------------
-        # SAVE UPDATED DRAFT (via storage)
+        # SAVE UPDATED DRAFT
         # -----------------------------
         self.email_manager.storage.save(draft, prefix="draft")
 
@@ -94,6 +113,9 @@ class EmailAttachCommand(BaseCommand):
             "last_email_attachment_draft": draft_id
         })
 
+        # -----------------------------
+        # SUCCESS RESPONSE
+        # -----------------------------
         return {
             "status": "success",
             "message": "Attachment added successfully.",
