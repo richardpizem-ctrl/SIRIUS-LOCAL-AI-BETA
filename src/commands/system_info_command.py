@@ -1,43 +1,41 @@
 import platform
 import os
-from .base_command import BaseCommand
+from commands.base_command import BaseCommand
 
 
 class SystemInfoCommand(BaseCommand):
     """
-    SystemInfoCommand 4.0
+    SystemInfoCommand 4.3
     Returns basic information about the system, platform, and environment.
 
-    New in version 4.0:
-    - metadata for NL Router 4.0
-    - SECURITY FAMILY integration
-    - risk-aware execution
-    - capability flags (WIN-CAP)
-    - audit trail via BaseCommand lifecycle
-    - structured output for Workflow Engine 4.0
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic output for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent structure for CLI, NL Router, and GUI
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "system-info"
     description = "Displays information about the system, platform, and environment."
     category = "system"
 
     required_identity = "FAMILY"     # safe for everyone
-    risk_level = 0.0                 # no risk
+    risk_level = 0.0
     capabilities = ["system_read"]
 
     keywords = ["system", "info", "platform", "os", "environment"]
     examples = ["system-info", "show system info"]
 
     # ---------------------------------------------------------
-    # EXECUTION
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Returns an overview of basic system information.
-        Output is structured for Workflow Engine 4.0.
+        Output is structured for Workflow Engine 4.3.
         """
 
         info = {
