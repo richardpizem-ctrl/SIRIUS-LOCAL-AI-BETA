@@ -1,28 +1,46 @@
-"""
-SIRIUS LOCAL AI – Main Entry Point (v4.0.0)
-Bootstraps the CLI interface and executes commands.
-"""
+# sirius_4_3.py
+# SIRIUS LOCAL AI – Main Entry Point (v4.3.x)
+# Deterministic, safe-mode compatible bootstrap
+
+from __future__ import annotations
 
 import sys
-from runtime.cli import SiriusCLI
+from runtime.cli_4_3 import SiriusCLI43
 from runtime.runtime_manager import RuntimeManager
 
 
 # ============================================================
-# MAIN ENTRY (v4.0.0)
+# MAIN ENTRY (v4.3.x)
 # ============================================================
 def main():
     # Initialize runtime first (global logger, config, env)
     rm = RuntimeManager()
-    rm.initialize()
 
-    rm.logger.info("SIRIUS LOCAL AI – Entry point started (v4.0.0)")
+    safe_mode = False
+    degraded_mode = False
 
-    # Start CLI
-    cli = SiriusCLI()
-    cli.run(sys.argv)
+    try:
+        rm.initialize()
+        rm.logger.info("SIRIUS LOCAL AI – Entry point started (v4.3.x)")
+    except Exception as exc:
+        degraded_mode = True
+        print(f"[ENTRY] Runtime initialization failed: {exc}")
 
-    rm.logger.info("SIRIUS LOCAL AI – Execution finished")
+    # Start CLI (safe-mode aware)
+    try:
+        cli = SiriusCLI43()
+        if safe_mode:
+            cli.safe_mode = True
+        cli.run(sys.argv)
+    except Exception as exc:
+        degraded_mode = True
+        rm.logger.error(f"[ENTRY] CLI startup error: {exc}")
+
+    # Final log
+    if degraded_mode:
+        rm.logger.warning("SIRIUS LOCAL AI – Execution finished in DEGRADED MODE")
+    else:
+        rm.logger.info("SIRIUS LOCAL AI – Execution finished cleanly")
 
 
 # ============================================================
