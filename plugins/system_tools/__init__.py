@@ -1,19 +1,36 @@
 """
-SIRIUS LOCAL AI – System Tools Plugin
--------------------------------------
-This package contains the System Tools plugin, providing system-level
-diagnostics and hardware information for SIRIUS LOCAL AI.
+SIRIUS LOCAL AI – System Tools Plugin (v4.3.x)
+----------------------------------------------
 
-The System Tools plugin supports:
-- CPU usage monitoring
-- RAM usage monitoring
-- disk usage reporting
-- OS information retrieval
-- natural language system info commands
-- AI tasks for system diagnostics
-- workflow integration (system_diagnostics workflow)
-- GUI buttons for quick system checks
+This package provides the System Tools Plugin for SIRIUS Runtime 4.3.x.
 
-The plugin is loaded dynamically through manifest.json and the plugin loader.
-No imports are performed here to avoid side-effects during initialization.
+Capabilities:
+    - CPU usage monitoring
+    - RAM usage monitoring
+    - Disk usage reporting
+    - OS information retrieval
+    - Natural language system info commands
+    - AI task bindings for diagnostics
+    - Workflow integration (system_diagnostics workflow)
+    - GUI elements for quick system checks
+    - Safe-mode + degraded-mode support
+    - Deterministic, offline-only behavior
+    - Self‑Repair 4.4 ready
+
+Architecture Notes:
+    - The plugin is dynamically loaded through PluginLoader 4.3.x.
+    - No imports are performed at package level to avoid side-effects.
+    - The actual implementation resides in plugin.py.
+    - Manifest.json defines plugin metadata and capabilities.
+    - This __init__.py file must remain side‑effect free.
+
+Compatibility:
+    - RuntimeManager 4.3.x
+    - PluginLoader 4.3.x
+    - NL Router 4.3.x
+    - SystemAgent 4.3.x
+    - Workflow Engine 4.3.x
+    - AI Loop 4.3.x
+
+This file intentionally contains no executable code.
 """
