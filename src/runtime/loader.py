@@ -9,7 +9,8 @@ log = logging.getLogger(__name__)
 
 class PluginLoader:
     """
-    PluginLoader 4.0
+    PluginLoader 4.3
+    ----------------
     - Loads plugins from /plugins
     - Validates manifest.json
     - Imports plugin.py safely
@@ -18,6 +19,8 @@ class PluginLoader:
     - Plugin lifecycle (load → init → register → start)
     - Error isolation
     - Telemetry
+    - Deterministic Runtime4 behavior
+    - Self‑Repair 4.4 compatible
     """
 
     def __init__(self, plugins_dir: str = "plugins"):
@@ -31,13 +34,34 @@ class PluginLoader:
     def load_all(self, runtime_manager):
         if not os.path.exists(self.plugins_dir):
             log.warning("Plugins directory not found: %s", self.plugins_dir)
-            return
+            return {
+                "status": "error",
+                "message": f"Plugins directory not found: {self.plugins_dir}",
+            }
+
+        start_time = time.time()
 
         # First pass: load manifests
         manifests = self._load_all_manifests()
+        if not manifests:
+            return {
+                "status": "error",
+                "message": "No valid plugin manifests found.",
+            }
 
         # Resolve dependencies
-        order = self._resolve_dependencies(manifests)
+        try:
+            order = self._resolve_dependencies(manifests)
+        except Exception as exc:
+            log.exception("Failed to resolve plugin dependencies: %s", exc)
+            return {
+                "status": "error",
+                "message": "Failed to resolve plugin dependencies.",
+                "exception": str(exc),
+            }
+
+        loaded = []
+        started = []
 
         # Load plugins in dependency order
         for name in order:
@@ -47,6 +71,7 @@ class PluginLoader:
             if instance:
                 self.instances[name] = instance
                 self.metadata[name] = manifest
+                loaded.append(name)
                 log.info("Plugin loaded: %s", name)
 
         # Start plugins
@@ -54,15 +79,29 @@ class PluginLoader:
             try:
                 if hasattr(instance, "start"):
                     instance.start()
+                started.append(name)
                 log.info("Plugin started: %s", name)
             except Exception as exc:
                 log.exception("Failed to start plugin '%s': %s", name, exc)
+
+        duration = time.time() - start_time
+
+        return {
+            "status": "success",
+            "loaded": loaded,
+            "started": started,
+            "duration": duration,
+        }
 
     # --------------------------------------------------------
     # LOAD ALL MANIFESTS
     # --------------------------------------------------------
     def _load_all_manifests(self):
         manifests = {}
+
+        if not os.path.isdir(self.plugins_dir):
+            log.warning("Plugins directory is not a folder: %s", self.plugins_dir)
+            return manifests
 
         for folder in os.listdir(self.plugins_dir):
             plugin_path = os.path.join(self.plugins_dir, folder)
@@ -129,7 +168,7 @@ class PluginLoader:
 
         # Security Family: risk check
         risk = manifest.get("risk_level", 0)
-        if risk > runtime_manager.security.max_plugin_risk:
+        if risk > getattr(runtime_manager.security, "max_plugin_risk", 0):
             log.warning("Plugin '%s' blocked due to high risk.", name)
             return None
 
@@ -183,6 +222,7 @@ class PluginLoader:
                 manifest["name"], plugin_file
             )
             module = importlib.util.module_from_spec(spec)
+            assert spec.loader is not None
             spec.loader.exec_module(module)
 
             if not hasattr(module, "Plugin"):
