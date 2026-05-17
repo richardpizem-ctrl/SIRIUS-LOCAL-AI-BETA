@@ -4,26 +4,26 @@ from context.context_manager import ContextManager
 
 class ContextRollbackCommand(BaseCommand):
     """
-    ContextRollbackCommand 4.0
+    ContextRollbackCommand 4.3
     Rolls the context back by N snapshots using the snapshot history.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_write)
-    - structured output for Workflow Engine 4.0
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - strict validation
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-rollback"
     description = "Rolls the context back by N steps using snapshot history."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can rollback context
-    risk_level = 0.7                # High risk (context overwrite)
+    required_identity = "OWNER"
+    risk_level = 0.7
     capabilities = ["context_write"]
 
     keywords = ["rollback", "context", "history", "snapshot"]
@@ -36,7 +36,7 @@ class ContextRollbackCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
