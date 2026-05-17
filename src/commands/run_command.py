@@ -1,39 +1,44 @@
-from .base_command import BaseCommand
+from commands.base_command import BaseCommand
 
 
 class RunCommand(BaseCommand):
     """
-    RunCommand 4.0
+    RunCommand 4.3
     Central execution of actions, AI tasks, and NL commands.
 
-    New in version 4.0:
-    - integration with Runtime Core 4.0
-    - integration with NL Router 4.0
-    - integration with SECURITY FAMILY 4.0
-    - risk-aware execution
-    - capability enforcement
-    - audit trail
-    - structured results
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - NL Router 4.x friendly
+    - Self‑Repair 4.4 compatible
     """
 
+    # ---------------------------------------------------------
+    # METADATA (v4.3)
+    # ---------------------------------------------------------
     name = "run"
     description = "Runs an AI task, NL command, or system action."
     category = "system"
 
     required_identity = "FAMILY"   # anyone may run commands, AccessControl decides
-    risk_level = 0.1               # low risk
+    risk_level = 0.1
     capabilities = ["command_exec"]
 
     keywords = ["run", "execute", "do", "perform"]
     examples = ["run move_text_files", "run system info"]
 
+    # ---------------------------------------------------------
+    # INIT
+    # ---------------------------------------------------------
     def __init__(self, runtime=None, router=None, registry=None):
         self.runtime = runtime
         self.router = router
         self.registry = registry
 
     # ---------------------------------------------------------
-    # EXECUTION
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -51,6 +56,7 @@ class RunCommand(BaseCommand):
             cmd_cls = self.registry.get(action)
             if cmd_cls:
                 try:
+                    # Instantiate command with remaining args
                     cmd_instance = cmd_cls(*args[1:], **kwargs)
                     result = cmd_instance.run()
                     return {
