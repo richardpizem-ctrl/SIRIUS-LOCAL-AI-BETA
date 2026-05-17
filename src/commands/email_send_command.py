@@ -4,13 +4,20 @@ from email.manager import EmailManager
 
 class EmailSendCommand(BaseCommand):
     """
-    EmailSendCommand 4.0
+    EmailSendCommand 4.3
     Sends an email using EmailManager with validation, snapshot,
     profile loading, and structured JSON output.
+
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - context snapshot before mutation
+    - consistent return structure
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "email-send"
     description = "Sends an email using EmailManager."
@@ -21,7 +28,7 @@ class EmailSendCommand(BaseCommand):
     capabilities = ["context_read", "context_write", "fs_read", "fs_write"]
 
     keywords = ["email", "send", "mail"]
-    examples = ["email-send profile_name draft_id"]
+    examples = ["email-send <profile> <draft_id>"]
 
     # ---------------------------------------------------------
     # INIT
