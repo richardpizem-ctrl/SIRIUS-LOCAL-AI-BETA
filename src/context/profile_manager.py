@@ -6,15 +6,18 @@ import re
 
 class ProfileManager:
     """
-    ProfileManager 4.0
+    ProfileManager 4.3
     Handles saving, loading, listing, deleting, and inspecting
     context profiles for SIRIUS LOCAL AI.
 
-    Features:
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
     - strict filename validation
     - deep-copy safety
     - snapshot-compatible structure
     - max_history enforcement
+    - consistent return structure for commands
     """
 
     VALID_NAME = re.compile(r"^[A-Za-z0-9_\-]+$")
@@ -55,8 +58,11 @@ class ProfileManager:
             "history": copy.deepcopy(self.context.history),
         }
 
-        with open(self._profile_path(name), "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+        try:
+            with open(self._profile_path(name), "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+        except Exception:
+            return False
 
         return True
 
@@ -69,8 +75,11 @@ class ProfileManager:
         if not self._exists(name):
             return None
 
-        with open(self._profile_path(name), "r", encoding="utf-8") as f:
-            data = json.load(f)
+        try:
+            with open(self._profile_path(name), "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            return None
 
         # Validate structure
         if not isinstance(data, dict):
@@ -106,9 +115,13 @@ class ProfileManager:
 
     def list_profiles(self):
         """Return a list of all saved profile names."""
-        files = os.listdir(self.base_path)
+        try:
+            files = os.listdir(self.base_path)
+        except Exception:
+            return []
+
         profiles = [f.replace(".json", "") for f in files if f.endswith(".json")]
-        return profiles
+        return sorted(profiles)
 
     # ============================================================
     #  DELETE PROFILE
@@ -119,7 +132,11 @@ class ProfileManager:
         if not self._exists(name):
             return False
 
-        os.remove(self._profile_path(name))
+        try:
+            os.remove(self._profile_path(name))
+        except Exception:
+            return False
+
         return True
 
     # ============================================================
@@ -131,8 +148,11 @@ class ProfileManager:
         if not self._exists(name):
             return None
 
-        with open(self._profile_path(name), "r", encoding="utf-8") as f:
-            data = json.load(f)
+        try:
+            with open(self._profile_path(name), "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            return None
 
         return {
             "session_items": len(data.get("session", [])),
