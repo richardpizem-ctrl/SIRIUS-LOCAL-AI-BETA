@@ -1,165 +1,119 @@
-from typing import Dict, Any, List
 import logging
 import time
+from typing import Dict, Any, Callable
 
 log = logging.getLogger(__name__)
 
 
-class WorkflowEngine:
+class SiriusAgent:
     """
-    Workflow Engine 4.0
-    - Plugin-defined workflows
-    - Step types: log, task, workflow, condition, return
-    - Full workflow context
-    - Error isolation
-    - Telemetry
-    - Security Family integration
-    - EventBus integration
+    SiriusAgent 4.3+
+    ----------------
+    - Unified AI task registry
+    - Security Family enforcement (risk, identity, capabilities)
+    - Workflow integration
+    - Plugin task support
+    - Telemetry and error isolation
+    - Deterministic structured returns
+    - Self‑Repair 4.4 ready (degraded mode)
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
-        self.workflows: Dict[str, Dict[str, Any]] = {}
+        self.tasks: Dict[str, Callable] = {}
+        self.task_meta: Dict[str, Dict[str, Any]] = {}
+        self.degraded_mode = False
 
     # --------------------------------------------------------
-    # REGISTER WORKFLOW
+    # REGISTER TASK
     # --------------------------------------------------------
-    def register(self, wf: dict):
+    def register_task(self, name: str, fn: Callable, meta: Dict[str, Any] = None):
         """
-        Expected format:
-        {
-            "name": "auto_cleanup",
+        Register an AI task.
+        meta = {
             "description": "...",
-            "steps": [
-                {"action": "log", "message": "..."},
-                {"action": "task", "task": "run_command", "params": {...}},
-                {"action": "workflow", "name": "other_workflow"},
-                {"action": "if", "condition": fn, "then": [...], "else": [...]},
-                {"action": "return", "value": "..."}
-            ]
+            "risk_level": 0.2,
+            "required_identity": "OWNER",
+            "capabilities": ["fs.read", "net.http"],
+            "params": {...}
         }
         """
-        name = wf.get("name")
-        steps = wf.get("steps", [])
+        name = name.lower().strip()
+        self.tasks[name] = fn
+        self.task_meta[name] = meta or {}
 
-        if not name or not steps:
-            log.error("Invalid workflow registration: missing name or steps")
-            return
-
-        self.workflows[name] = {
-            "name": name,
-            "description": wf.get("description", ""),
-            "steps": steps
-        }
-
-        log.info("Workflow registered: %s", name)
+        log.info("AI task registered: %s", name)
 
     # --------------------------------------------------------
-    # RUN WORKFLOW
+    # RUN TASK
     # --------------------------------------------------------
-    def run(self, name: str, params: Dict[str, Any]) -> Dict[str, Any]:
-        if name not in self.workflows:
-            return {"status": "error", "message": f"Workflow '{name}' does not exist."}
+    def run_task(self, name: str, args: Dict[str, Any]) -> Dict[str, Any]:
+        name = name.lower().strip()
 
-        wf = self.workflows[name]
-        steps = wf["steps"]
+        if name not in self.tasks:
+            return {
+                "status": "error",
+                "message": f"Unknown AI task: {name}"
+            }
 
-        context = {
-            "params": params,
-            "runtime": self.rm,
-            "workflow": name,
-            "last_result": None,
-            "start_time": time.time(),
-            "variables": {}
-        }
+        meta = self.task_meta.get(name, {})
 
-        log.info("Workflow started: %s", name)
+        # ----------------------------------------------------
+        # SECURITY FAMILY: IDENTITY CHECK
+        # ----------------------------------------------------
+        required_identity = meta.get("required_identity")
+        if required_identity and self.rm.security.identity != required_identity:
+            return {
+                "status": "error",
+                "message": f"Task '{name}' requires identity '{required_identity}'."
+            }
 
-        for step in steps:
-            action = step.get("action")
+        # ----------------------------------------------------
+        # SECURITY FAMILY: RISK CHECK
+        # ----------------------------------------------------
+        risk = meta.get("risk_level", 0)
+        if risk > self.rm.security.max_task_risk:
+            return {
+                "status": "error",
+                "message": f"Task '{name}' blocked due to high risk."
+            }
 
-            # ----------------------------------------------------
-            # LOG
-            # ----------------------------------------------------
-            if action == "log":
-                msg = step.get("message", "")
-                log.info("[WORKFLOW %s] %s", name, msg)
-                continue
+        # ----------------------------------------------------
+        # SECURITY FAMILY: CAPABILITY CHECK
+        # ----------------------------------------------------
+        required_caps = meta.get("capabilities", [])
+        missing_caps = [
+            cap for cap in required_caps
+            if cap not in self.rm.security.capabilities
+        ]
 
-            # ----------------------------------------------------
-            # TASK
-            # ----------------------------------------------------
-            if action == "task":
-                task_name = step.get("task")
-                task_params = step.get("params", {})
+        if missing_caps:
+            return {
+                "status": "error",
+                "message": f"Missing required capabilities: {missing_caps}"
+            }
 
-                result = self.rm.handle_ai_task(task_name, task_params)
-                context["last_result"] = result
-                continue
+        # ----------------------------------------------------
+        # EXECUTION
+        # ----------------------------------------------------
+        fn = self.tasks[name]
+        start = time.time()
 
-            # ----------------------------------------------------
-            # WORKFLOW CALL
-            # ----------------------------------------------------
-            if action == "workflow":
-                sub_name = step.get("name")
-                result = self.run(sub_name, params)
-                context["last_result"] = result
-                continue
+        try:
+            result = fn(args, self.rm)
 
-            # ----------------------------------------------------
-            # CONDITIONAL
-            # ----------------------------------------------------
-            if action == "if":
-                condition_fn = step.get("condition")
-                if callable(condition_fn) and condition_fn(context):
-                    branch = step.get("then", [])
-                else:
-                    branch = step.get("else", [])
+            return {
+                "status": "ok",
+                "task": name,
+                "duration": round(time.time() - start, 4),
+                "result": result
+            }
 
-                for sub_step in branch:
-                    sub_action = sub_step.get("action")
-
-                    if sub_action == "task":
-                        result = self.rm.handle_ai_task(
-                            sub_step.get("task"),
-                            sub_step.get("params", {})
-                        )
-                        context["last_result"] = result
-
-                    elif sub_action == "log":
-                        log.info("[WORKFLOW %s] %s", name, sub_step.get("message"))
-
-                    elif sub_action == "workflow":
-                        result = self.run(sub_step.get("name"), params)
-                        context["last_result"] = result
-
-                    elif sub_action == "return":
-                        return {
-                            "status": "ok",
-                            "workflow": name,
-                            "result": sub_step.get("value"),
-                            "context": context
-                        }
-
-                continue
-
-            # ----------------------------------------------------
-            # RETURN
-            # ----------------------------------------------------
-            if action == "return":
-                return {
-                    "status": "ok",
-                    "workflow": name,
-                    "result": step.get("value"),
-                    "context": context
-                }
-
-        # --------------------------------------------------------
-        # DEFAULT END
-        # --------------------------------------------------------
-        return {
-            "status": "ok",
-            "workflow": name,
-            "result": "Workflow completed.",
-            "context": context
-        }
+        except Exception as exc:
+            self.degraded_mode = True
+            log.exception("AI task error (%s): %s", name, exc)
+            return {
+                "status": "error",
+                "task": name,
+                "message": str(exc)
+            }
