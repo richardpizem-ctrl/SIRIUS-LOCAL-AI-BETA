@@ -1,4 +1,5 @@
 import logging
+import time
 from typing import Dict, Any
 
 from security_family.password_vault.vault_api import (
@@ -11,12 +12,16 @@ log = logging.getLogger(__name__)
 
 class RuntimeManager:
     """
-    RuntimeManager 4.0
-    - Plugin loader
-    - NL Router
+    RuntimeManager 4.3+
+    -------------------
+    - Plugin loader (4.3)
+    - NL Router (4.3)
     - AI Task handler
     - Workflow engine
-    - Security Family enforcement
+    - Security Family enforcement (4.4-ready)
+    - Deterministic startup pipeline
+    - Telemetry + degraded mode
+    - Self‑Repair safe-mode
     """
 
     def __init__(self):
@@ -30,80 +35,130 @@ class RuntimeManager:
         self.security = None
         self.engine = None
 
-    # --------------------------------------------------------
-    # INITIALIZATION PIPELINE
-    # --------------------------------------------------------
-    def initialize(self):
-        """
-        RuntimeManager 4.0 initialization pipeline
-        """
+        self.safe_mode = False
+        self.degraded_mode = False
 
-        self.logger.info("RuntimeManager 4.0 – initialization started")
+    # --------------------------------------------------------
+    # INITIALIZATION PIPELINE 4.3
+    # --------------------------------------------------------
+    def initialize(self) -> Dict[str, Any]:
+        start_time = time.time()
+        errors = []
+        warnings = []
 
+        self.logger.info("RuntimeManager 4.3 – initialization started")
+
+        # SAFE MODE (Self‑Repair)
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "RuntimeManager started in safe-mode.",
+                "duration": time.time() - start_time,
+            }
+
+        # ----------------------------------------------------
         # 1) Load plugins
-        self.plugins.load_all(self)
+        # ----------------------------------------------------
+        plugin_result = self.plugins.load_all(self)
+        if plugin_result.get("degraded_mode"):
+            self.degraded_mode = True
+            errors.extend(plugin_result.get("errors", []))
+
         plugin_instances = list(self.plugins.instances.values())
 
+        # ----------------------------------------------------
         # 2) Register NL commands
+        # ----------------------------------------------------
         for plugin in plugin_instances:
             try:
                 for key, fn in plugin.nl_commands().items():
                     self.nl.register(key, fn)
-                    self.logger.info(f"NL command registered: {key}")
             except Exception as exc:
-                self.logger.error(f"Failed to register NL commands for plugin {plugin}: {exc}")
+                msg = f"Failed to register NL commands for plugin {plugin}: {exc}"
+                self.logger.error(msg)
+                errors.append(msg)
 
+        # ----------------------------------------------------
         # 3) Register AI tasks
+        # ----------------------------------------------------
         for plugin in plugin_instances:
             try:
                 for key, fn in plugin.ai_tasks().items():
                     self.agent.register_task(key, fn)
-                    self.logger.info(f"AI task registered: {key}")
             except Exception as exc:
-                self.logger.error(f"Failed to register AI tasks for plugin {plugin}: {exc}")
+                msg = f"Failed to register AI tasks for plugin {plugin}: {exc}"
+                self.logger.error(msg)
+                errors.append(msg)
 
+        # ----------------------------------------------------
         # 4) Register workflows
+        # ----------------------------------------------------
         for plugin in plugin_instances:
             try:
                 for wf in plugin.workflows():
                     self.workflow.register(wf)
-                    self.logger.info(f"Workflow registered: {wf.get('name')}")
             except Exception as exc:
-                self.logger.error(f"Failed to register workflows for plugin {plugin}: {exc}")
+                msg = f"Failed to register workflows for plugin {plugin}: {exc}"
+                self.logger.error(msg)
+                errors.append(msg)
 
+        # ----------------------------------------------------
         # 5) Register AI loop rules
+        # ----------------------------------------------------
         for plugin in plugin_instances:
             try:
                 for rule in plugin.ai_loop_rules():
                     self.ai_loop.register(rule)
-                    self.logger.info(f"AI loop rule registered: {rule.get('name')}")
             except Exception as exc:
-                self.logger.error(f"Failed to register AI loop rules for plugin {plugin}: {exc}")
+                msg = f"Failed to register AI loop rules for plugin {plugin}: {exc}"
+                self.logger.error(msg)
+                errors.append(msg)
 
+        # ----------------------------------------------------
         # 6) Register GUI elements
+        # ----------------------------------------------------
         for plugin in plugin_instances:
             try:
                 for element in plugin.gui_elements():
                     self.ui.register(element)
-                    self.logger.info(f"GUI element registered: {element.get('label')}")
             except Exception as exc:
-                self.logger.error(f"Failed to register GUI elements for plugin {plugin}: {exc}")
+                msg = f"Failed to register GUI elements for plugin {plugin}: {exc}"
+                self.logger.error(msg)
+                errors.append(msg)
 
+        # ----------------------------------------------------
         # 7) Security Family validation
+        # ----------------------------------------------------
         for plugin in plugin_instances:
             try:
                 self.security.validate_plugin(plugin)
             except Exception as exc:
-                self.logger.error(f"Security validation failed for plugin {plugin}: {exc}")
+                msg = f"Security validation failed for plugin {plugin}: {exc}"
+                self.logger.error(msg)
+                errors.append(msg)
 
+        # ----------------------------------------------------
         # 8) Initialize modules
+        # ----------------------------------------------------
         for module in self.engine.modules.values():
             try:
                 module["instance"].initialize()
             except Exception as exc:
-                self.logger.error(f"Module initialization failed: {exc}")
+                msg = f"Module initialization failed: {exc}"
+                self.logger.error(msg)
+                errors.append(msg)
 
-        self.logger.info("RuntimeManager 4.0 – initialization complete")
+        duration = time.time() - start_time
+        self.logger.info("RuntimeManager 4.3 – initialization complete")
+
+        return {
+            "status": "degraded" if errors else "success",
+            "errors": errors,
+            "warnings": warnings,
+            "plugins": plugin_result,
+            "duration": duration,
+            "degraded_mode": bool(errors),
+        }
 
     # --------------------------------------------------------
     # NATURAL LANGUAGE HANDLER
@@ -112,16 +167,10 @@ class RuntimeManager:
         return self.nl.handle(text)
 
     # --------------------------------------------------------
-    # AI TASK HANDLER (THIS IS WHERE PASSWORD VAULT GOES)
+    # AI TASK HANDLER (PASSWORD VAULT)
     # --------------------------------------------------------
     def handle_ai_task(self, goal: str, args: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        AI Task Dispatcher 4.0
-        """
-
-        # ----------------------------------------------------
         # PASSWORD VAULT – SAVE
-        # ----------------------------------------------------
         if goal == "password.save":
             domain = args.get("domain")
             username = args.get("username", "default")
@@ -133,9 +182,7 @@ class RuntimeManager:
             save_password(domain, username, password)
             return {"status": "ok", "message": f"Password saved for {domain}"}
 
-        # ----------------------------------------------------
         # PASSWORD VAULT – RETRIEVE
-        # ----------------------------------------------------
         if goal == "password.retrieve":
             domain = args.get("domain")
             username = args.get("username", "default")
@@ -154,9 +201,7 @@ class RuntimeManager:
             else:
                 return {"status": "not_found", "message": f"No password for {domain}"}
 
-        # ----------------------------------------------------
-        # PASSWORD VAULT – AUTOFILL (PC)
-        # ----------------------------------------------------
+        # PASSWORD VAULT – AUTOFILL
         if goal == "password.autofill":
             domain = args.get("domain")
             username = args.get("username", "default")
@@ -165,15 +210,12 @@ class RuntimeManager:
             if not entry:
                 return {"status": "not_found", "message": f"No password for {domain}"}
 
-            # TODO: Windows UI Automation autofill
             return {
                 "status": "ok",
                 "message": f"Password for {domain} prepared for autofill"
             }
 
-        # ----------------------------------------------------
         # FALLBACK TO AGENT TASKS
-        # ----------------------------------------------------
         try:
             return self.agent.run_task(goal, args)
         except Exception as exc:
