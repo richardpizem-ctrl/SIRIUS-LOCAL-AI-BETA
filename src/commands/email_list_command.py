@@ -4,26 +4,26 @@ from email.manager import EmailManager
 
 class EmailListCommand(BaseCommand):
     """
-    EmailListCommand 4.0
+    EmailListCommand 4.3
     Lists stored emails (drafts or sent) using EmailManager.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - OWNER-only execution
-    - structured JSON output
-    - supports filtering by status (draft/sent/all)
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
+    - safe error handling (via BaseCommand.run)
+    - consistent return structure
+    - NL Router friendly filtering
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "email-list"
     description = "Lists email drafts or sent emails."
     category = "email"
 
-    required_identity = "OWNER"     # Only OWNER can list emails
-    risk_level = 0.2                # Low risk (read-only)
+    required_identity = "OWNER"
+    risk_level = 0.2
     capabilities = ["fs_read"]
 
     keywords = ["email", "list", "drafts", "sent"]
