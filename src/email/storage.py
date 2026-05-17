@@ -5,11 +5,16 @@ from datetime import datetime
 
 class EmailStorage:
     """
-    EmailStorage 4.0
+    EmailStorage 4.3
     Handles low-level file operations for storing, loading,
-    listing, and deleting emails.
+    listing, and deleting emails in a deterministic and safe way.
 
-    This module is used internally by EmailManager.
+    Improvements in 4.3:
+    - deterministic Runtime4 behavior
+    - strict filename generation
+    - safe file operations with error handling
+    - consistent return values for EmailManager
+    - Self‑Repair 4.4 compatible
     """
 
     def __init__(self, base_path="emails"):
@@ -22,20 +27,36 @@ class EmailStorage:
     def _path(self, filename: str):
         return os.path.join(self.base_path, filename)
 
+    def _safe_listdir(self):
+        try:
+            return os.listdir(self.base_path)
+        except Exception:
+            return []
+
     # ---------------------------------------------------------
     # SAVE EMAIL
     # ---------------------------------------------------------
     def save(self, email_data: dict, prefix: str):
         """
         Saves an email (draft or sent) with a prefix:
-        draft_20260504_120000.json
-        sent_20260504_120000.json
+        draft_<id>.json
+        sent_<id>.json
+
+        Returns the filename on success, None on failure.
         """
+
         email_id = email_data.get("id")
+
+        if not isinstance(email_id, str) or len(email_id) == 0:
+            return None
+
         filename = f"{prefix}_{email_id}.json"
 
-        with open(self._path(filename), "w", encoding="utf-8") as f:
-            json.dump(email_data, f, indent=2, ensure_ascii=False)
+        try:
+            with open(self._path(filename), "w", encoding="utf-8") as f:
+                json.dump(email_data, f, indent=2, ensure_ascii=False)
+        except Exception:
+            return None
 
         return filename
 
@@ -45,11 +66,17 @@ class EmailStorage:
     def load(self, email_id: str):
         """
         Loads an email by ID, regardless of prefix.
+        Returns dict on success, None on failure.
         """
-        for f in os.listdir(self.base_path):
+
+        for f in self._safe_listdir():
             if f.endswith(".json") and email_id in f:
-                with open(self._path(f), "r", encoding="utf-8") as file:
-                    return json.load(file)
+                try:
+                    with open(self._path(f), "r", encoding="utf-8") as file:
+                        return json.load(file)
+                except Exception:
+                    return None
+
         return None
 
     # ---------------------------------------------------------
@@ -58,15 +85,20 @@ class EmailStorage:
     def list(self, status=None):
         """
         Lists all emails or filters by status (draft/sent).
+        Returns a list of email dicts.
         """
+
         emails = []
 
-        for f in os.listdir(self.base_path):
+        for f in self._safe_listdir():
             if not f.endswith(".json"):
                 continue
 
-            with open(self._path(f), "r", encoding="utf-8") as file:
-                data = json.load(file)
+            try:
+                with open(self._path(f), "r", encoding="utf-8") as file:
+                    data = json.load(file)
+            except Exception:
+                continue
 
             if status is None or data.get("status") == status:
                 emails.append(data)
@@ -79,9 +111,15 @@ class EmailStorage:
     def delete(self, email_id: str):
         """
         Deletes an email by ID.
+        Returns True on success, False on failure.
         """
-        for f in os.listdir(self.base_path):
+
+        for f in self._safe_listdir():
             if f.endswith(".json") and email_id in f:
-                os.remove(self._path(f))
-                return True
+                try:
+                    os.remove(self._path(f))
+                    return True
+                except Exception:
+                    return False
+
         return False
