@@ -1,27 +1,39 @@
+# cli_4_3.py
+# SIRIUS LOCAL AI – Command Line Interface (v4.3.x)
+# Deterministic, safe-mode compatible CLI front-end
+
+from __future__ import annotations
+
 import sys
 from runtime.runtime_manager import RuntimeManager
 
 
-# ============================================================
-# SIRIUS CLI (v4.0.0)
-# ============================================================
-class SiriusCLI:
+class SiriusCLI43:
     """
-    SIRIUS LOCAL AI — Command Line Interface (v4.0.0)
+    SIRIUS LOCAL AI — Command Line Interface (v4.3.x)
 
     Features:
-    - Natural language commands
-    - Direct AI task execution
-    - System context inspection
+        - Natural language commands
+        - Direct AI task execution
+        - System context inspection
+        - Safe-mode + degraded-mode support
+        - Deterministic, offline-only behavior
     """
 
     def __init__(self):
         self.rm = RuntimeManager()
-        self.rm.initialize()
-        self.rm.logger.info("CLI initialized (v4.0.0)")
+        self.safe_mode = False
+        self.degraded_mode = False
+
+        try:
+            self.rm.initialize()
+            self.rm.logger.info("CLI initialized (v4.3.x)")
+        except Exception as exc:
+            self.degraded_mode = True
+            print(f"[CLI] Initialization failed: {exc}")
 
     # --------------------------------------------------------
-    # MAIN ENTRY (v4)
+    # MAIN ENTRY (4.3.x)
     # --------------------------------------------------------
     def run(self, argv):
         if len(argv) < 2:
@@ -29,6 +41,11 @@ class SiriusCLI:
             return
 
         command = argv[1].lower()
+
+        if self.safe_mode:
+            print("SIRIUS CLI is in SAFE MODE. Only 'context' and 'help' are available.")
+            if command not in {"context", "help"}:
+                return
 
         try:
             # ----------------------------------------------------
@@ -66,6 +83,26 @@ class SiriusCLI:
                 return
 
             # ----------------------------------------------------
+            # SAFE MODE
+            # sirius safemode on/off
+            # ----------------------------------------------------
+            if command == "safemode":
+                if len(argv) < 3:
+                    print("Usage: sirius safemode on|off")
+                    return
+
+                mode = argv[2].lower()
+                if mode == "on":
+                    self.safe_mode = True
+                    print("SAFE MODE enabled.")
+                elif mode == "off":
+                    self.safe_mode = False
+                    print("SAFE MODE disabled.")
+                else:
+                    print("Usage: sirius safemode on|off")
+                return
+
+            # ----------------------------------------------------
             # HELP
             # ----------------------------------------------------
             if command == "help":
@@ -76,11 +113,12 @@ class SiriusCLI:
             self._print_help()
 
         except Exception as e:
+            self.degraded_mode = True
             self.rm.logger.error(f"CLI error: {e}")
             print("An internal error occurred. Check logs for details.")
 
     # --------------------------------------------------------
-    # HELPERS (v4)
+    # HELPERS (4.3.x)
     # --------------------------------------------------------
     def _parse_args(self, items):
         """Convert key=value arguments into a dict."""
@@ -103,10 +141,10 @@ class SiriusCLI:
 
     def _print_help(self):
         print("""
-SIRIUS CLI – available commands (v4.0.0):
+SIRIUS CLI – available commands (v4.3.x):
 
   sirius nl "<natural sentence>"
-      - processes natural language through the NL Router
+      - processes natural language through the NL Router 4.3
       - e.g. sirius nl "move vs code to the right"
 
   sirius task <goal> key=value key=value
@@ -116,14 +154,16 @@ SIRIUS CLI – available commands (v4.0.0):
   sirius context
       - returns system context
 
+  sirius safemode on|off
+      - enables or disables SAFE MODE
+
   sirius help
       - shows this help
 """)
-
 
 # ============================================================
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    cli = SiriusCLI()
+    cli = SiriusCLI43()
     cli.run(sys.argv)
