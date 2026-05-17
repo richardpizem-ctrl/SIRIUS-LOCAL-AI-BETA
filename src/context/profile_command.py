@@ -5,27 +5,26 @@ from context.context_manager import ContextManager
 
 class ContextProfileCommand(BaseCommand):
     """
-    ContextProfileCommand 4.0
+    ContextProfileCommand 4.3
     Manages context profiles: save, load, delete, list, info.
 
-    New in v4.0:
-    - NL Router metadata
-    - SECURITY FAMILY enforcement
-    - risk-aware execution
-    - capability flags (context_read, context_write, fs_read, fs_write)
+    Improvements in 4.3:
+    - unified metadata contract
+    - deterministic behavior for Runtime4
     - snapshot before save/load/delete
-    - structured output for Workflow Engine 4.0
+    - consistent return structure
+    - Self‑Repair 4.4 compatible
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.0)
+    # METADATA (v4.3)
     # ---------------------------------------------------------
     name = "context-profile"
     description = "Manages context profiles (save/load/delete/list/info)."
     category = "context"
 
-    required_identity = "OWNER"     # Only OWNER can manage profiles
-    risk_level = 0.6                # Medium-high risk (context overwrite)
+    required_identity = "OWNER"
+    risk_level = 0.6
     capabilities = ["context_read", "context_write", "fs_read", "fs_write"]
 
     keywords = ["profile", "context", "save", "load", "delete", "list", "info"]
@@ -38,7 +37,7 @@ class ContextProfileCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.0)
+    # EXECUTION (v4.3)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -131,6 +130,7 @@ class ContextProfileCommand(BaseCommand):
                     "message": "Usage: context-profile delete <name>"
                 }
 
+            self.context.snapshot()
             result = profiles.delete_profile(name)
 
             if not result:
