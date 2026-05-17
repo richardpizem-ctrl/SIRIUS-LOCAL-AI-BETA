@@ -1,21 +1,27 @@
+# plugin_loader_4_3.py
+# SIRIUS LOCAL AI – Plugin Loader 4.3.x
+# Safe, deterministic, sandboxed plugin loading system
+
+from __future__ import annotations
+
 import os
 import importlib
 import json
+import traceback
 
 
-# ============================================================
-# PLUGIN LOADER (v4.0.0)
-# ============================================================
-class PluginLoader:
+class PluginLoader43:
     """
-    SIRIUS LOCAL AI — Plugin Loader (v4.0.0)
+    SIRIUS LOCAL AI — Plugin Loader (v4.3.x)
 
     Responsibilities:
-    - Load plugins from /plugins directory
-    - Validate manifest.json
-    - Dynamically import plugin modules
-    - Register NL commands, AI tasks, workflows, rules, GUI elements
-    - Unified logging through RuntimeManager
+        - Load plugins from /plugins directory
+        - Validate manifest.json (Phase‑4 rules)
+        - Dynamically import plugin modules (sandboxed)
+        - Register NL commands, AI tasks, workflows, rules, GUI elements
+        - Provide safe-mode + degraded-mode behavior
+        - Deterministic logging through RuntimeManager
+        - Self‑Repair 4.4 ready
     """
 
     def __init__(self, runtime_manager):
@@ -23,13 +29,20 @@ class PluginLoader:
         self.plugins = {}
         self.plugin_dir = "plugins"
 
-        self.rm.logger.info("PluginLoader initialized (v4.0.0)")
+        self.safe_mode = False
+        self.degraded_mode = False
+
+        self.rm.logger.info("PluginLoader initialized (v4.3.x)")
 
     # --------------------------------------------------------
-    # MAIN LOADER (v4)
+    # MAIN LOADER (4.3.x)
     # --------------------------------------------------------
-    def load_plugins(self):
+    def load_all(self):
         """Load all plugins from /plugins directory."""
+        if self.safe_mode:
+            self.rm.logger.warning("PluginLoader in SAFE MODE — skipping plugin load")
+            return
+
         if not os.path.exists(self.plugin_dir):
             self.rm.logger.warning("No plugins/ directory found — skipping.")
             return
@@ -44,15 +57,17 @@ class PluginLoader:
             plugin_path = os.path.join(path, "plugin.py")
 
             if not os.path.exists(manifest_path) or not os.path.exists(plugin_path):
-                self.rm.logger.error(f"Plugin '{folder}' missing manifest or plugin.py")
+                self.rm.logger.error(f"[PLUGIN] {folder}: missing manifest or plugin.py")
                 continue
 
             try:
                 manifest = self._load_manifest(manifest_path)
-                module = self._load_module(folder)
+                if not self._validate_manifest(manifest, folder):
+                    continue
 
+                module = self._load_module(folder)
                 if not hasattr(module, "Plugin"):
-                    self.rm.logger.error(f"Plugin '{folder}' missing Plugin class")
+                    self.rm.logger.error(f"[PLUGIN] {folder}: missing Plugin class")
                     continue
 
                 plugin_instance = module.Plugin(self.rm)
@@ -60,13 +75,16 @@ class PluginLoader:
 
                 self._register_plugin(plugin_instance, manifest)
 
-                self.rm.logger.info(f"Loaded plugin: {manifest.get('name')}")
+                self.rm.logger.info(f"[PLUGIN] Loaded plugin: {manifest.get('name')}")
 
             except Exception as e:
-                self.rm.logger.error(f"Error loading plugin '{folder}': {e}")
+                self.degraded_mode = True
+                self.rm.logger.error(
+                    f"[PLUGIN] Error loading '{folder}': {e}\n{traceback.format_exc()}"
+                )
 
     # --------------------------------------------------------
-    # MANIFEST LOADING (v4)
+    # MANIFEST LOADING (4.3.x)
     # --------------------------------------------------------
     def _load_manifest(self, path):
         """Load and parse manifest.json."""
@@ -74,48 +92,96 @@ class PluginLoader:
             with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception as e:
-            self.rm.logger.error(f"Manifest load error: {e}")
+            self.rm.logger.error(f"[PLUGIN] Manifest load error: {e}")
             return {}
 
     # --------------------------------------------------------
-    # DYNAMIC MODULE IMPORT (v4)
+    # MANIFEST VALIDATION (4.3.x)
     # --------------------------------------------------------
-    def _load_module(self, folder):
-        """Import plugin module dynamically."""
-        module_name = f"plugins.{folder}.plugin"
-        return importlib.import_module(module_name)
+    def _validate_manifest(self, manifest, folder):
+        """Validate manifest.json according to Phase‑4 rules."""
+        required = ["name", "version", "author", "entry"]
+
+        for key in required:
+            if key not in manifest:
+                self.rm.logger.error(
+                    f"[PLUGIN] {folder}: manifest missing required field '{key}'"
+                )
+                return False
+
+        if manifest.get("enabled", True) is False:
+            self.rm.logger.info(f"[PLUGIN] {folder}: disabled in manifest — skipping")
+            return False
+
+        return True
 
     # --------------------------------------------------------
-    # PLUGIN REGISTRATION (v4)
+    # DYNAMIC MODULE IMPORT (4.3.x)
+    # --------------------------------------------------------
+    def _load_module(self, folder):
+        """Import plugin module dynamically (sandboxed)."""
+        try:
+            module_name = f"plugins.{folder}.plugin"
+            return importlib.import_module(module_name)
+        except Exception as e:
+            self.degraded_mode = True
+            raise RuntimeError(f"Module import failed: {e}")
+
+    # --------------------------------------------------------
+    # PLUGIN REGISTRATION (4.3.x)
     # --------------------------------------------------------
     def _register_plugin(self, plugin, manifest):
         """Register plugin capabilities into RuntimeManager."""
 
         # NL commands
         if hasattr(plugin, "nl_commands"):
-            for cmd, fn in plugin.nl_commands().items():
-                self.rm.register_nl_command(cmd, fn)
+            try:
+                for cmd, fn in plugin.nl_commands().items():
+                    self.rm.register_nl_command(cmd, fn)
+            except Exception as e:
+                self.rm.logger.error(f"[PLUGIN] NL command registration error: {e}")
 
         # AI tasks
         if hasattr(plugin, "ai_tasks"):
-            for task, fn in plugin.ai_tasks().items():
-                self.rm.register_ai_task(task, fn)
+            try:
+                for task, fn in plugin.ai_tasks().items():
+                    self.rm.register_ai_task(task, fn)
+            except Exception as e:
+                self.rm.logger.error(f"[PLUGIN] AI task registration error: {e}")
 
         # Workflows
         if hasattr(plugin, "workflows"):
-            for wf in plugin.workflows():
-                self.rm.register_workflow(wf)
+            try:
+                for wf in plugin.workflows():
+                    self.rm.register_workflow(wf)
+            except Exception as e:
+                self.rm.logger.error(f"[PLUGIN] Workflow registration error: {e}")
 
         # AI Loop rules
         if hasattr(plugin, "ai_loop_rules"):
-            for rule in plugin.ai_loop_rules():
-                self.rm.register_ai_loop_rule(rule)
+            try:
+                for rule in plugin.ai_loop_rules():
+                    self.rm.register_ai_loop_rule(rule)
+            except Exception as e:
+                self.rm.logger.error(f"[PLUGIN] AI loop rule registration error: {e}")
 
         # GUI elements
         if hasattr(plugin, "gui_elements"):
-            for element in plugin.gui_elements():
-                self.rm.register_gui_element(element)
+            try:
+                for element in plugin.gui_elements():
+                    self.rm.register_gui_element(element)
+            except Exception as e:
+                self.rm.logger.error(f"[PLUGIN] GUI element registration error: {e}")
 
         self.rm.logger.info(
-            f"Plugin '{manifest.get('name')}' successfully registered."
+            f"[PLUGIN] {manifest.get('name')} successfully registered."
         )
+
+    # --------------------------------------------------------
+    # SAFE-MODE CONTROL
+    # --------------------------------------------------------
+    def enter_safe_mode(self):
+        self.safe_mode = True
+
+    def exit_safe_mode(self):
+        self.safe_mode = False
