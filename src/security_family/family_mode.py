@@ -1,8 +1,19 @@
-# SECURITY FAMILY – Family Mode 4.0
-# Safe environment for children of the owner.
-# Integrates with AccessControl 4.0, BehaviorAudit 4.0, Time Limits, and Trend Engine.
+"""
+Security Family – Family Mode 4.3.x
+-----------------------------------
+Safe environment for children of the owner.
+
+Features:
+- behavior-based risk scoring
+- anomaly-aware safety mode
+- time-limit enforcement
+- schoolwork priority mode
+- deterministic, offline-only behavior
+- safe-mode and degraded-mode support
+"""
 
 import math
+
 
 class FamilyMode:
     def __init__(self, access_control, behavior_audit, time_limits):
@@ -19,97 +30,137 @@ class FamilyMode:
         self.max_long = 200
 
         # Thresholds
-        self.safe_mode_threshold = 0.65   # stranger score threshold
-        self.anomaly_penalty = 0.25       # extra risk added when anomaly detected
+        self.safe_mode_threshold = 0.65
+        self.anomaly_penalty = 0.25
+
+        # Runtime flags
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
     # MAIN ACTIVATION
     # ---------------------------------------------------------
     def activate(self, behavior_data=None):
         """
-        Enable safe games, multimedia, and non-destructive actions.
-        Automatically adjusts based on:
-            - behavior confidence
-            - time limits
-            - school mode
-            - anomaly detection
-            - behavior trends
+        Returns:
+        {
+            "status": "ok" | "safe_mode" | "error",
+            "mode": "FAMILY_MODE" | "SAFE_MODE",
+            "school_mode": bool,
+            "risk_score": float,
+            "anomaly": dict,
+            "time_limit_exceeded": bool,
+            "permissions": list,
+            "degraded_mode": bool
+        }
         """
 
-        self.active = True
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "mode": "SAFE_MODE",
+                "school_mode": self.school_mode,
+                "risk_score": 1.0,
+                "anomaly": {"is_anomaly": False, "reason": "safe_mode"},
+                "time_limit_exceeded": False,
+                "permissions": ["restricted_mode", "no_sensitive_actions"],
+                "degraded_mode": self.degraded_mode,
+            }
 
-        # 1. Behavior audit → risk score
-        risk, audit_scores, anomaly = self._calculate_risk(behavior_data)
+        try:
+            self.active = True
 
-        # 2. Time limit enforcement
-        time_exceeded = self.time_limits.exceeded("FAMILY")
+            # 1. Behavior audit → risk score
+            risk, audit_scores, anomaly = self._calculate_risk(behavior_data)
 
-        # 3. Build context for AccessControl 4.0
-        context = {
-            "risk_score": risk,
-            "school_mode": self.school_mode,
-            "time_limit_exceeded": time_exceeded,
-            "behavior_vector": behavior_data,
-            "owner_similarity": audit_scores.get("OWNER", 0),
-            "family_similarity": audit_scores.get("FAMILY", 0)
-        }
+            # 2. Time limit enforcement
+            time_exceeded = self.time_limits.exceeded("FAMILY")
 
-        # 4. Get dynamic permissions
-        permissions = self.access_control.get_permissions("FAMILY", context)
+            # 3. Build context for AccessControl 4.3.x
+            context = {
+                "risk_score": risk,
+                "school_mode": self.school_mode,
+                "time_limit_exceeded": time_exceeded,
+                "behavior_vector": behavior_data or {},
+                "owner_similarity": audit_scores.get("OWNER", 0),
+                "family_similarity": audit_scores.get("FAMILY", 0),
+            }
 
-        # 5. Determine mode (FAMILY_MODE vs SAFE_MODE)
-        mode = "SAFE_MODE" if risk > self.safe_mode_threshold else "FAMILY_MODE"
+            # 4. Get dynamic permissions
+            permissions = self.access_control.get_permissions("FAMILY", context)
 
-        return {
-            "mode": mode,
-            "school_mode": self.school_mode,
-            "risk_score": risk,
-            "anomaly": anomaly,
-            "time_limit_exceeded": time_exceeded,
-            "permissions": permissions
-        }
+            # 5. Determine mode
+            mode = "SAFE_MODE" if risk > self.safe_mode_threshold else "FAMILY_MODE"
+
+            return {
+                "status": "ok",
+                "mode": mode,
+                "school_mode": self.school_mode,
+                "risk_score": risk,
+                "anomaly": anomaly,
+                "time_limit_exceeded": time_exceeded,
+                "permissions": permissions,
+                "degraded_mode": self.degraded_mode,
+            }
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "mode": "SAFE_MODE",
+                "school_mode": self.school_mode,
+                "risk_score": 1.0,
+                "anomaly": {"is_anomaly": True, "reason": "internal_error"},
+                "time_limit_exceeded": False,
+                "permissions": ["restricted_mode", "no_sensitive_actions"],
+                "exception": str(exc),
+                "degraded_mode": True,
+            }
 
     # ---------------------------------------------------------
     # SCHOOL MODE
     # ---------------------------------------------------------
     def enable_school_mode(self):
-        """Prioritize homework, disable games, allow school tools."""
         self.school_mode = True
 
     def disable_school_mode(self):
         self.school_mode = False
 
     # ---------------------------------------------------------
-    # INTERNAL RISK CALCULATION (Family Mode 4.0)
+    # INTERNAL RISK CALCULATION
     # ---------------------------------------------------------
     def _calculate_risk(self, behavior_data):
-        """Convert behavior audit into a risk score with anomaly detection and trends."""
         if not behavior_data:
-            return 0.0, {}, {"is_anomaly": False}
+            return 0.0, {}, {"is_anomaly": False, "reason": "no_data"}
 
-        # 1. Behavior audit
-        audit_scores = self.behavior_audit.audit(behavior_data)
-        family_score = audit_scores.get("FAMILY", 0)
-        stranger_score = audit_scores.get("STRANGER", 0)
+        try:
+            # 1. Behavior audit
+            audit_scores = self.behavior_audit.audit(behavior_data)
+            family_score = audit_scores.get("FAMILY", 0)
+            stranger_score = audit_scores.get("STRANGER", 0)
 
-        # 2. Update history for trends
-        self._update_history(behavior_data)
-        trends = self._compute_trends()
+            # 2. Update history
+            self._update_history(behavior_data)
+            trends = self._compute_trends()
 
-        # 3. Detect anomaly
-        anomaly = self._detect_anomaly(audit_scores, trends)
+            # 3. Detect anomaly
+            anomaly = self._detect_anomaly(audit_scores, trends)
 
-        # 4. Base risk = stranger score
-        risk = stranger_score
+            # 4. Base risk = stranger score
+            risk = stranger_score
 
-        # 5. Add anomaly penalty
-        if anomaly["is_anomaly"]:
-            risk += self.anomaly_penalty
+            # 5. Add anomaly penalty
+            if anomaly["is_anomaly"]:
+                risk += self.anomaly_penalty
 
-        # 6. Clamp to 0–1
-        risk = max(0, min(1, risk))
+            # 6. Clamp
+            risk = max(0.0, min(1.0, risk))
 
-        return risk, audit_scores, anomaly
+            return risk, audit_scores, anomaly
+
+        except Exception:
+            self.degraded_mode = True
+            return 1.0, {}, {"is_anomaly": True, "reason": "internal_error"}
 
     # ---------------------------------------------------------
     # HISTORY & TRENDS
@@ -133,22 +184,17 @@ class FamilyMode:
         short_avg = avg(short)
         long_avg = avg(long)
 
-        delta = {k: short_avg.get(k, 0) - long_avg.get(k, 0)
-                 for k in set(short_avg) | set(long_avg)}
+        delta = {
+            k: short_avg.get(k, 0) - long_avg.get(k, 0)
+            for k in set(short_avg) | set(long_avg)
+        }
 
         return {"short": short_avg, "long": long_avg, "delta": delta}
 
     # ---------------------------------------------------------
-    # ANOMALY DETECTION (Family Mode 4.0)
+    # ANOMALY DETECTION
     # ---------------------------------------------------------
     def _detect_anomaly(self, audit_scores, trends):
-        """
-        Detects:
-        - low FAMILY similarity
-        - high STRANGER similarity
-        - sudden behavior shift vs long-term trend
-        """
-
         family_sim = audit_scores.get("FAMILY", 0)
         stranger_sim = audit_scores.get("STRANGER", 0)
 
@@ -179,6 +225,6 @@ class FamilyMode:
             "trend_delta": delta,
             "similarity": {
                 "FAMILY": family_sim,
-                "STRANGER": stranger_sim
-            }
+                "STRANGER": stranger_sim,
+            },
         }
