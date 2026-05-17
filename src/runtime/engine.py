@@ -12,14 +12,16 @@ log = logging.getLogger(__name__)
 
 class RuntimeEngine:
     """
-    RuntimeEngine 4.0
+    RuntimeEngine 4.3
+    -----------------
     - Manages module lifecycle
-    - Dependency‑aware startup
+    - Dependency-aware startup
     - Safe shutdown (reverse order)
     - Telemetry and health checks
     - Error isolation
-    - Command parsing + routing (NEW)
-    - Compatible with RuntimeManager 4.0
+    - Command parsing + routing
+    - Deterministic Runtime4 behavior
+    - Self-Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -29,7 +31,7 @@ class RuntimeEngine:
         self.start_time = None
         self.stop_time = None
 
-        # NEW: PC Automation Runtime
+        # PC Automation Runtime
         self.parser = CommandParser()
         self.router = CommandRouter()
 
@@ -49,6 +51,11 @@ class RuntimeEngine:
         }
 
         log.info("Module registered: %s", name)
+
+        return {
+            "status": "success",
+            "module": name
+        }
 
     # --------------------------------------------------------
     # RESOLVE STARTUP ORDER
@@ -87,7 +94,15 @@ class RuntimeEngine:
         self.register_module("workflow", WorkflowModule())
 
         # Resolve dependency order
-        self._resolve_order()
+        try:
+            self._resolve_order()
+        except Exception as exc:
+            log.exception("Failed to resolve startup order: %s", exc)
+            return {
+                "status": "error",
+                "message": "Failed to resolve startup order.",
+                "exception": str(exc)
+            }
 
         for name in self.order:
             module = self.modules[name]["instance"]
@@ -102,11 +117,17 @@ class RuntimeEngine:
             except Exception as exc:
                 log.exception("Failed to start module '%s': %s", name, exc)
 
-        log.info("RuntimeEngine started in %.2f seconds.",
-                 time.time() - self.start_time)
+        duration = time.time() - self.start_time
+        log.info("RuntimeEngine started in %.2f seconds.", duration)
+
+        return {
+            "status": "success",
+            "started_modules": self.started,
+            "duration": duration
+        }
 
     # --------------------------------------------------------
-    # EXECUTE COMMAND (NEW)
+    # EXECUTE COMMAND
     # --------------------------------------------------------
     def execute(self, command: str):
         """
@@ -121,7 +142,10 @@ class RuntimeEngine:
         parsed = self.parser.parse(command)
         if not parsed:
             log.error("ENGINE: Parsing failed.")
-            return None
+            return {
+                "status": "error",
+                "message": "Parsing failed."
+            }
 
         result = self.router.route(parsed)
         return result
@@ -146,5 +170,11 @@ class RuntimeEngine:
             except Exception as exc:
                 log.exception("Failed to stop module '%s': %s", name, exc)
 
-        log.info("RuntimeEngine stopped in %.2f seconds.",
-                 time.time() - self.stop_time)
+        duration = time.time() - self.stop_time
+        log.info("RuntimeEngine stopped in %.2f seconds.", duration)
+
+        return {
+            "status": "success",
+            "stopped_modules": list(reversed(self.started)),
+            "duration": duration
+        }
