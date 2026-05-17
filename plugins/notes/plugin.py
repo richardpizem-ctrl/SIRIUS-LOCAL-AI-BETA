@@ -1,95 +1,197 @@
-import os
+# plugin.py
+# SIRIUS LOCAL AI – Notes Plugin 4.3.x
+# Safe, deterministic, sandboxed note storage module
+
+from __future__ import annotations
+
 import datetime
+
 
 class Plugin:
     """
-    Notes plugin for SIRIUS-LOCAL-AI.
-    Allows writing, reading, listing, and deleting notes.
+    Notes Plugin 4.3.x
+
+    Responsibilities:
+        - Provide NL commands for note operations
+        - Provide AI tasks for note operations
+        - Provide workflows
+        - Provide AI Loop rules
+        - Provide GUI elements
+        - Delegate ALL filesystem actions to SystemAgent 4.3
+        - Deterministic, safe-mode aware, degraded-mode aware
+        - Self‑Repair 4.4 ready
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
+        self.agent = runtime_manager.get_system_agent()
+
+        self.safe_mode = False
+        self.degraded_mode = False
+
         self.storage = "notes_storage"
-        os.makedirs(self.storage, exist_ok=True)
+
+        self.rm.logger.info("[PLUGIN:notes] Initialized (v4.3.x)")
 
     # --------------------------------------------------------
-    # NL COMMANDS
+    # NL COMMANDS (4.3.x)
     # --------------------------------------------------------
     def nl_commands(self):
         return {
-            "write note": self.nl_write_note,
-            "show notes": self.nl_list_notes,
-            "read note": self.nl_read_note,
-            "delete note": self.nl_delete_note
+            "write note": self._nl_write_note,
+            "show notes": self._nl_list_notes,
+            "read note": self._nl_read_note,
+            "delete note": self._nl_delete_note,
         }
 
-    def nl_write_note(self, text):
+    def _nl_write_note(self, text):
+        if self.safe_mode:
+            return "SAFE MODE: Note writing disabled."
+
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"{self.storage}/note_{timestamp}.txt"
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(text)
-        return f"Note saved: {filename}"
+        filename = f"note_{timestamp}.txt"
 
-    def nl_list_notes(self, text):
-        files = os.listdir(self.storage)
-        if not files:
-            return "No notes."
-        return "\n".join(files)
+        action = {
+            "id": "notes_write",
+            "type": "WRITE_FILE",
+            "identity_required": "OWNER",
+            "payload": {
+                "folder": self.storage,
+                "filename": filename,
+                "content": text,
+            },
+        }
 
-    def nl_read_note(self, text):
-        filename = f"{self.storage}/{text.strip()}"
-        if not os.path.exists(filename):
-            return "Note does not exist."
-        with open(filename, "r", encoding="utf-8") as f:
-            return f.read()
+        result = self.agent.execute_action("OWNER", action)
+        return result.message
 
-    def nl_delete_note(self, text):
-        filename = f"{self.storage}/{text.strip()}"
-        if not os.path.exists(filename):
-            return "Note does not exist."
-        os.remove(filename)
-        return f"Note deleted: {filename}"
+    def _nl_list_notes(self, text):
+        action = {
+            "id": "notes_list",
+            "type": "LIST_DIRECTORY",
+            "identity_required": "OWNER",
+            "payload": {"path": self.storage},
+        }
+
+        result = self.agent.execute_action("OWNER", action)
+        return result.message
+
+    def _nl_read_note(self, text):
+        filename = text.strip()
+
+        action = {
+            "id": "notes_read",
+            "type": "READ_FILE",
+            "identity_required": "OWNER",
+            "payload": {
+                "folder": self.storage,
+                "filename": filename,
+            },
+        }
+
+        result = self.agent.execute_action("OWNER", action)
+        return result.message
+
+    def _nl_delete_note(self, text):
+        if self.safe_mode:
+            return "SAFE MODE: Note deletion disabled."
+
+        filename = text.strip()
+
+        action = {
+            "id": "notes_delete",
+            "type": "DELETE_FILE",
+            "identity_required": "OWNER",
+            "payload": {
+                "folder": self.storage,
+                "filename": filename,
+            },
+        }
+
+        result = self.agent.execute_action("OWNER", action)
+        return result.message
 
     # --------------------------------------------------------
-    # AI TASKS
+    # AI TASKS (4.3.x)
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
-            "write_note": self.ai_write_note,
-            "read_note": self.ai_read_note,
-            "list_notes": self.ai_list_notes,
-            "delete_note": self.ai_delete_note
+            "write_note": self._ai_write_note,
+            "read_note": self._ai_read_note,
+            "list_notes": self._ai_list_notes,
+            "delete_note": self._ai_delete_note,
         }
 
-    def ai_write_note(self, params):
+    def _ai_write_note(self, params):
+        if self.safe_mode:
+            return {"error": "SAFE MODE"}
+
         text = params.get("text", "")
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"{self.storage}/note_{timestamp}.txt"
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(text)
-        return {"status": "OK", "file": filename}
+        filename = f"note_{timestamp}.txt"
 
-    def ai_read_note(self, params):
-        name = params.get("name")
-        filename = f"{self.storage}/{name}"
-        if not os.path.exists(filename):
-            return {"error": "Note not found"}
-        with open(filename, "r", encoding="utf-8") as f:
-            return {"content": f.read()}
+        action = {
+            "id": "notes_ai_write",
+            "type": "WRITE_FILE",
+            "identity_required": "OWNER",
+            "payload": {
+                "folder": self.storage,
+                "filename": filename,
+                "content": text,
+            },
+        }
 
-    def ai_list_notes(self, params):
-        return {"notes": os.listdir(self.storage)}
+        result = self.agent.execute_action("OWNER", action)
+        return {"success": result.success, "message": result.message}
 
-    def ai_delete_note(self, params):
-        name = params.get("name")
-        filename = f"{self.storage}/{name}"
-        if not os.path.exists(filename):
-            return {"error": "Note not found"}
-        os.remove(filename)
-        return {"status": "OK", "deleted": name}
+    def _ai_read_note(self, params):
+        filename = params.get("name")
+
+        action = {
+            "id": "notes_ai_read",
+            "type": "READ_FILE",
+            "identity_required": "OWNER",
+            "payload": {
+                "folder": self.storage,
+                "filename": filename,
+            },
+        }
+
+        result = self.agent.execute_action("OWNER", action)
+        return {"success": result.success, "message": result.message}
+
+    def _ai_list_notes(self, params):
+        action = {
+            "id": "notes_ai_list",
+            "type": "LIST_DIRECTORY",
+            "identity_required": "OWNER",
+            "payload": {"path": self.storage},
+        }
+
+        result = self.agent.execute_action("OWNER", action)
+        return {"success": result.success, "message": result.message}
+
+    def _ai_delete_note(self, params):
+        if self.safe_mode:
+            return {"error": "SAFE MODE"}
+
+        filename = params.get("name")
+
+        action = {
+            "id": "notes_ai_delete",
+            "type": "DELETE_FILE",
+            "identity_required": "OWNER",
+            "payload": {
+                "folder": self.storage,
+                "filename": filename,
+            },
+        }
+
+        result = self.agent.execute_action("OWNER", action)
+        return {"success": result.success, "message": result.message}
 
     # --------------------------------------------------------
-    # WORKFLOWS
+    # WORKFLOWS (4.3.x)
     # --------------------------------------------------------
     def workflows(self):
         return [
@@ -97,14 +199,18 @@ class Plugin:
                 "name": "daily_note",
                 "steps": [
                     {"action": "log", "message": "Writing daily note..."},
-                    {"action": "task", "task": "write_note", "params": {"text": "Daily entry."}},
-                    {"action": "return", "value": "Daily note saved."}
-                ]
+                    {
+                        "action": "task",
+                        "task": "write_note",
+                        "params": {"text": "Daily entry."},
+                    },
+                    {"action": "return", "value": "Daily note saved."},
+                ],
             }
         ]
 
     # --------------------------------------------------------
-    # AI LOOP RULES
+    # AI LOOP RULES (4.3.x)
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -113,24 +219,33 @@ class Plugin:
                 "trigger": "interval",
                 "interval": 300,
                 "action": "list_notes",
-                "params": {}
+                "params": {},
             }
         ]
 
     # --------------------------------------------------------
-    # GUI ELEMENTS
+    # GUI ELEMENTS (4.3.x)
     # --------------------------------------------------------
     def gui_elements(self):
         return [
             {
                 "type": "button",
                 "label": "Show notes",
-                "action": "list_notes"
+                "action": "list_notes",
             },
             {
                 "type": "button",
                 "label": "Write quick note",
                 "action": "write_note",
-                "params": {"text": "Quick note."}
-            }
+                "params": {"text": "Quick note."},
+            },
         ]
+
+    # --------------------------------------------------------
+    # SAFE-MODE CONTROL
+    # --------------------------------------------------------
+    def enter_safe_mode(self):
+        self.safe_mode = True
+
+    def exit_safe_mode(self):
+        self.safe_mode = False
