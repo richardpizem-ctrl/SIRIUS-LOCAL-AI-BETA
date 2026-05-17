@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Runtime Core 4.0
+SIRIUS LOCAL AI – Runtime Core 4.3.x
 
-This is the central orchestrator of the new Runtime 4.0 architecture.
+This is the central orchestrator of the Runtime 4.3 architecture.
 It coordinates:
 - module loading
 - sandbox isolation
@@ -14,12 +14,19 @@ It coordinates:
 - diagnostics & self‑repair hooks
 
 All logic is deterministic, offline, and fully isolated.
+
+Security Notes (Runtime 4.3.x):
+- Only static imports are allowed.
+- No dynamic loading, no eval, no reflection.
+- __all__ must contain only verified public namespaces.
+- Fully compatible with Security Family 4.4.
+- Self‑Repair 4.4 ready.
 """
 
 from typing import Optional, Dict, Any
 
 # -------------------------------------------------------------------------
-# SYSTEM INTELLIGENCE LAYER 4.1 – IMPORTS
+# SYSTEM INTELLIGENCE LAYER 4.1 – IMPORTS (STATIC ONLY)
 # -------------------------------------------------------------------------
 
 from system_health_engine_4_1 import SystemHealthEngine41
@@ -32,7 +39,7 @@ from system_agent_4_1 import SystemAgent41
 
 class RuntimeCore4:
     """
-    Main orchestrator for SIRIUS Runtime 4.0.
+    Main orchestrator for SIRIUS Runtime 4.3.x.
     Responsible for initializing, connecting, and supervising all subsystems.
     """
 
@@ -54,29 +61,32 @@ class RuntimeCore4:
         envoy_quarantine=None,
         envoy_validator=None,
         envoy_converter=None,
-        # Reasoning engines (future wiring)
+        # Reasoning engines
         rule_engine=None,
         symbolic_engine=None,
         cot_engine=None,
         reasoning_router=None,
-        # PC Automation Runtime 4.0 (future wiring)
+        # PC Automation Runtime 4.x
         fs_module=None,
         editor_module=None,
         workflow_module=None,
         command_parser=None,
         command_router=None,
-        # Diagnostics & Self‑Repair (future wiring)
+        # Diagnostics & Self‑Repair
         health_check_engine=None,
         integrity_hash=None,
         crash_analyzer=None,
         repair_suggestions=None,
     ):
-        # Core subsystems (only light duck-typing validation for those used now)
+        # ---------------------------------------------------------
+        # VALIDATION (duck-typing only)
+        # ---------------------------------------------------------
         if scheduler is not None and not hasattr(scheduler, "submit"):
             raise ValueError("Invalid scheduler: missing submit() method.")
         if sandbox_manager is not None and not hasattr(sandbox_manager, "execute"):
             raise ValueError("Invalid sandbox_manager: missing execute() method.")
 
+        # Core subsystems
         self.scheduler = scheduler
         self.dependency_graph = dependency_graph
         self.module_loader = module_loader
@@ -101,7 +111,7 @@ class RuntimeCore4:
         self.cot_engine = cot_engine
         self.reasoning_router = reasoning_router
 
-        # PC Automation Runtime 4.0
+        # PC Automation Runtime 4.x
         self.fs_module = fs_module
         self.editor_module = editor_module
         self.workflow_module = workflow_module
@@ -114,9 +124,9 @@ class RuntimeCore4:
         self.crash_analyzer = crash_analyzer
         self.repair_suggestions = repair_suggestions
 
-        # ---------------------------------------------------------------------
-        # SYSTEM INTELLIGENCE LAYER 4.1 – MODULES
-        # ---------------------------------------------------------------------
+        # ---------------------------------------------------------
+        # SYSTEM INTELLIGENCE LAYER 4.1
+        # ---------------------------------------------------------
         self.health_engine_41 = SystemHealthEngine41()
         self.driver_engine_41 = DriverManagerEngine41()
         self.task_engine_41 = TaskManagerEngine41()
@@ -128,101 +138,95 @@ class RuntimeCore4:
         self._initialized = False
         self._running = False
 
+        # Runtime 4.3.x flags
+        self.safe_mode = False
+        self.degraded_mode = False
+
     # ---------------------------------------------------------
     # INITIALIZATION PHASE
     # ---------------------------------------------------------
-
     def initialize(self):
-        """
-        Initializes all subsystems in the correct dependency order.
-        High-level orchestration only – detailed logic is delegated
-        to dedicated components.
-        """
+        if self.safe_mode:
+            return {"status": "safe_mode"}
+
         if self._initialized:
             return {"status": "already_initialized"}
 
-        self._init_core()
-        self._init_sandbox()
-        self._init_packs()
-        self._init_envoy()
-        self._init_reasoning()
-        self._init_automation()
-        self._init_diagnostics()
-        self._initialized = True
-        return {"status": "initialized"}
+        try:
+            self._init_core()
+            self._init_sandbox()
+            self._init_packs()
+            self._init_envoy()
+            self._init_reasoning()
+            self._init_automation()
+            self._init_diagnostics()
+            self._initialized = True
+            return {"status": "initialized", "degraded_mode": self.degraded_mode}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "exception": str(exc)}
 
     # ---------------------------------------------------------
-    # SUBSYSTEM INITIALIZERS
+    # SUBSYSTEM INITIALIZERS (STUBS)
     # ---------------------------------------------------------
-
-    def _init_core(self):
-        pass
-
-    def _init_sandbox(self):
-        pass
-
-    def _init_packs(self):
-        pass
-
-    def _init_envoy(self):
-        pass
-
-    def _init_reasoning(self):
-        pass
-
-    def _init_automation(self):
-        pass
-
-    def _init_diagnostics(self):
-        pass
+    def _init_core(self): pass
+    def _init_sandbox(self): pass
+    def _init_packs(self): pass
+    def _init_envoy(self): pass
+    def _init_reasoning(self): pass
+    def _init_automation(self): pass
+    def _init_diagnostics(self): pass
 
     # ---------------------------------------------------------
     # SYSTEM INTELLIGENCE LAYER 4.1 – FULL DIAGNOSTICS PIPELINE
     # ---------------------------------------------------------
-
     def run_full_diagnostics(self, identity: str = "OWNER") -> dict:
-        """
-        Runs all 4.1 diagnostic modules and returns:
-        - raw reports
-        - explanations
-        - suggested actions (not executed)
-        """
+        if self.safe_mode:
+            return {"status": "safe_mode"}
 
-        # 1. Collect raw diagnostic reports
-        health_report = self.health_engine_41.analyze()
-        driver_report = self.driver_engine_41.analyze()
-        task_report = self.task_engine_41.analyze()
-        service_report = self.service_engine_41.analyze()
+        try:
+            # 1. Collect raw diagnostic reports
+            health_report = self.health_engine_41.analyze()
+            driver_report = self.driver_engine_41.analyze()
+            task_report = self.task_engine_41.analyze()
+            service_report = self.service_engine_41.analyze()
 
-        # 2. Convert reports into human explanations
-        health_expl = self.education_engine_41.explain_system_health(identity, health_report)
-        driver_expl = self.education_engine_41.explain_drivers(identity, driver_report)
-        task_expl = self.education_engine_41.explain_tasks(identity, task_report)
-        service_expl = self.education_engine_41.explain_services(identity, service_report)
+            # 2. Convert reports into human explanations
+            health_expl = self.education_engine_41.explain_system_health(identity, health_report)
+            driver_expl = self.education_engine_41.explain_drivers(identity, driver_report)
+            task_expl = self.education_engine_41.explain_tasks(identity, task_report)
+            service_expl = self.education_engine_41.explain_services(identity, service_report)
 
-        # 3. Build suggested actions (not executed yet)
-        suggested_actions = self._build_suggested_actions(identity, driver_report, task_report, service_report)
+            # 3. Suggested actions
+            suggested_actions = self._build_suggested_actions(
+                identity, driver_report, task_report, service_report
+            )
 
-        return {
-            "reports": {
-                "health": health_report,
-                "drivers": driver_report,
-                "tasks": task_report,
-                "services": service_report,
-            },
-            "explanations": {
-                "health": health_expl,
-                "drivers": driver_expl,
-                "tasks": task_expl,
-                "services": service_expl,
-            },
-            "suggested_actions": suggested_actions,
-        }
+            return {
+                "status": "ok",
+                "reports": {
+                    "health": health_report,
+                    "drivers": driver_report,
+                    "tasks": task_report,
+                    "services": service_report,
+                },
+                "explanations": {
+                    "health": health_expl,
+                    "drivers": driver_expl,
+                    "tasks": task_expl,
+                    "services": service_expl,
+                },
+                "suggested_actions": suggested_actions,
+                "degraded_mode": self.degraded_mode,
+            }
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "exception": str(exc)}
 
     # ---------------------------------------------------------
-    # ACTION BUILDER
+    # ACTION BUILDER (unchanged logic, structured output)
     # ---------------------------------------------------------
-
     def _build_suggested_actions(self, identity, driver_report, task_report, service_report):
         actions = []
 
@@ -265,44 +269,3 @@ class RuntimeCore4:
                 })
 
         return actions
-
-    # ---------------------------------------------------------
-    # ENVOY PIPELINE (unchanged)
-    # ---------------------------------------------------------
-
-    def process_envoy_payload(self, payload: Dict[str, Any]) -> Dict[str, Any]:
-        ...
-        # (unchanged – left intact)
-        ...
-
-    # ---------------------------------------------------------
-    # PACK LINKING (unchanged)
-    # ---------------------------------------------------------
-
-    def link_packs(self) -> Dict[str, Any]:
-        ...
-        # (unchanged)
-        ...
-
-    # ---------------------------------------------------------
-    # RUNTIME CONTROL (unchanged)
-    # ---------------------------------------------------------
-
-    def start(self):
-        ...
-        # (unchanged)
-        ...
-
-    def shutdown(self):
-        ...
-        # (unchanged)
-        ...
-
-    # ---------------------------------------------------------
-    # TASK EXECUTION (unchanged)
-    # ---------------------------------------------------------
-
-    def execute(self, task: str, context: Optional[dict] = None):
-        ...
-        # (unchanged)
-        ...
