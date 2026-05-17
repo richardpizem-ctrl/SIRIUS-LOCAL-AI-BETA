@@ -1,24 +1,32 @@
 # pixel_layout_engine.py
-# PixelLayoutEngine – central renderer for UI layout blocks
-# SIRIUS LOCAL AI – ui_components (Phase 4)
+# PixelLayoutEngine – deterministic Phase‑4 layout renderer
+# SIRIUS LOCAL AI – ui_components (4.3.x)
 
 from typing import List, Dict, Any
 
+
 class PixelLayoutEngine:
     """
-    PixelLayoutEngine receives layout blocks from UI components
-    and renders them into the target output (terminal, canvas, GUI, etc.)
+    PixelLayoutEngine 4.3.x
 
-    In this phase (Phase 4) it is a stable skeleton:
-        - render_blocks() accepts a list of blocks
-        - validate_block() checks block format correctness
-        - render() performs the actual rendering (placeholder)
-        - clear() resets the buffer
-        - get_last_frame() returns the last rendered frame
+    Responsibilities:
+        - Receive layout blocks from UI components
+        - Validate and sanitize blocks
+        - Provide safe-mode and degraded-mode behavior
+        - Maintain deterministic last-frame buffer
+        - Provide error-safe rendering pipeline
+        - Offline-only, no side-effects
+
+    Phase‑4 guarantees:
+        - No crashes from invalid blocks
+        - No crashes from component errors
+        - Structured fallback behavior
     """
 
     def __init__(self):
-        self._last_frame = None
+        self._last_frame: List[Dict[str, Any]] = []
+        self.safe_mode = False
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
     # Buffer management
@@ -26,7 +34,7 @@ class PixelLayoutEngine:
 
     def clear(self):
         """Clear the current frame buffer."""
-        self._last_frame = None
+        self._last_frame = []
         print("PixelLayoutEngine: cleared")
 
     def get_last_frame(self):
@@ -46,6 +54,14 @@ class PixelLayoutEngine:
         required = ["type", "x", "y"]
         return all(key in block for key in required)
 
+    def sanitize_block(self, block: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Ensure block contains only safe keys.
+        Phase‑4: remove unknown keys silently.
+        """
+        allowed = {"type", "x", "y", "value", "color", "width", "height"}
+        return {k: v for k, v in block.items() if k in allowed}
+
     # ---------------------------------------------------------
     # Rendering pipeline
     # ---------------------------------------------------------
@@ -53,25 +69,57 @@ class PixelLayoutEngine:
     def render_blocks(self, blocks: List[Dict[str, Any]]):
         """
         Main method – receives layout blocks from a UI component.
-        In Phase 4 it performs only safe logging and validation.
+        Phase‑4:
+            - safe-mode bypass
+            - degraded-mode fallback
+            - validation + sanitization
+            - error-safe rendering
         """
+
+        if self.safe_mode:
+            self._last_frame = [
+                {"type": "text", "x": 0, "y": 0, "value": "SAFE MODE – UI DISABLED"}
+            ]
+            self.render(self._last_frame)
+            return
+
         if not isinstance(blocks, list):
-            raise ValueError("render_blocks() expects a list of blocks")
+            self.degraded_mode = True
+            self._last_frame = [
+                {"type": "text", "x": 0, "y": 0, "value": "INVALID BLOCK LIST"}
+            ]
+            self.render(self._last_frame)
+            return
 
         validated = []
         for block in blocks:
-            if self.validate_block(block):
-                validated.append(block)
-            else:
-                print(f"[PixelLayoutEngine] Ignoring invalid block: {block}")
+            try:
+                if self.validate_block(block):
+                    validated.append(self.sanitize_block(block))
+                else:
+                    print(f"[PixelLayoutEngine] Ignoring invalid block: {block}")
+            except Exception:
+                self.degraded_mode = True
 
         self._last_frame = validated
-        self.render(validated)
+
+        try:
+            self.render(validated)
+        except Exception:
+            self.degraded_mode = True
+            self._last_frame = [
+                {"type": "text", "x": 0, "y": 0, "value": "RENDER ERROR – DEGRADED MODE"}
+            ]
+            self.render(self._last_frame)
+
+    # ---------------------------------------------------------
+    # Placeholder renderer
+    # ---------------------------------------------------------
 
     def render(self, blocks: List[Dict[str, Any]]):
         """
         Placeholder renderer.
-        In the future this will connect to:
+        Future versions will connect to:
             - terminal renderer
             - GUI renderer
             - canvas renderer
