@@ -1,14 +1,15 @@
 """
-SIRIUS LOCAL AI – Runtime 4.0 Module Loader
+SIRIUS LOCAL AI – Runtime 4.3 Module Loader
 
 Responsible for:
 - registering runtime modules
 - validating module integrity
-- initializing modules in correct order
+- initializing modules in deterministic order
 - preparing modules for sandbox isolation
 - exposing modules to the scheduler and dependency graph
+- Self‑Repair 4.4 degraded-mode detection
 
-This component acts as the boot manager of Runtime 4.0.
+This component acts as the boot manager of Runtime 4.3.
 """
 
 from typing import Any, Dict, List
@@ -17,119 +18,115 @@ from typing import Any, Dict, List
 class ModuleLoader4:
     """
     Handles loading, initialization, and validation of runtime modules.
+    Provides:
+    - strict validation
+    - structured error surface
+    - telemetry
+    - degraded-mode detection
+    - safe-mode compatibility
     """
 
     def __init__(self, max_modules: int = 200):
-        # Registered modules stored as:
-        # { "module_name": module_instance }
         self.modules: Dict[str, Any] = {}
         self.max_modules = max_modules
+        self.degraded_mode = False
 
     # ---------------------------------------------------------
-    # INTERNAL VALIDATION HELPERS
+    # VALIDATION HELPERS
     # ---------------------------------------------------------
 
     def _validate_name(self, name: Any) -> bool:
         return isinstance(name, str) and name.strip()
 
     def _validate_module(self, module: Any) -> bool:
-        # Module must be an object (class instance)
         if module is None:
             return False
-
-        # Prevent dangerous types
         if isinstance(module, (bytes, bytearray, type(lambda: None))):
             return False
-
         return True
 
     # ---------------------------------------------------------
     # REGISTRATION
     # ---------------------------------------------------------
 
-    def register(self, name: str, module: Any):
-        """
-        Registers a module under a given name with full safety checks.
-        """
+    def register(self, name: str, module: Any) -> Dict[str, Any]:
+        """Registers a module under a given name with full safety checks."""
 
-        # Validate name
         if not self._validate_name(name):
-            return {"error": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name"}
 
-        # Validate module object
         if not self._validate_module(module):
-            return {"error": "invalid_module_object"}
+            return {"status": "error", "code": "invalid_module_object"}
 
-        # Prevent registry overflow
         if len(self.modules) >= self.max_modules:
-            return {"error": "module_limit_reached"}
+            return {"status": "error", "code": "module_limit_reached"}
 
-        # Register module
         self.modules[name] = module
-        return {"status": "module_registered", "module": name}
+        return {"status": "success", "module": name}
 
-    def unregister(self, name: str):
-        """
-        Removes a module from the registry safely.
-        """
-
+    def unregister(self, name: str) -> Dict[str, Any]:
         if not self._validate_name(name):
-            return {"error": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name"}
 
         if name in self.modules:
             del self.modules[name]
-            return {"status": "module_unregistered"}
+            return {"status": "success", "module": name}
 
-        return {"error": "module_not_found"}
+        return {"status": "error", "code": "module_not_found"}
 
     # ---------------------------------------------------------
     # INITIALIZATION
     # ---------------------------------------------------------
 
-    def initialize_all(self):
+    def initialize_all(self) -> Dict[str, Any]:
         """
         Calls the initialization method on all registered modules.
-        Includes safety checks.
+        Returns structured telemetry and degraded-mode status.
         """
 
         results = {}
+        errors = []
 
         for name, module in self.modules.items():
 
-            # Validate module again (defense in depth)
+            # Defense in depth
             if not self._validate_module(module):
-                results[name] = {"error": "invalid_module_object"}
+                results[name] = {"status": "error", "code": "invalid_module_object"}
+                errors.append(name)
                 continue
 
-            # Initialize if supported
             if hasattr(module, "initialize") and callable(module.initialize):
                 try:
                     module.initialize()
                     results[name] = {"status": "initialized"}
                 except Exception as exc:
-                    results[name] = {"error": "initialization_failed", "details": str(exc)}
+                    results[name] = {
+                        "status": "error",
+                        "code": "initialization_failed",
+                        "exception": str(exc),
+                    }
+                    errors.append(name)
             else:
-                results[name] = {"status": "no_initialize_method"}
+                results[name] = {"status": "skipped", "reason": "no_initialize_method"}
 
-        return results
+        self.degraded_mode = bool(errors)
+
+        return {
+            "status": "degraded" if errors else "success",
+            "results": results,
+            "errors": errors,
+            "modules": list(self.modules.keys()),
+            "degraded_mode": self.degraded_mode,
+        }
 
     # ---------------------------------------------------------
     # ACCESS
     # ---------------------------------------------------------
 
     def get(self, name: str):
-        """
-        Retrieves a module by name safely.
-        """
-
         if not self._validate_name(name):
             return None
-
         return self.modules.get(name)
 
     def list_modules(self) -> List[str]:
-        """
-        Returns a list of all registered module names.
-        """
-
         return list(self.modules.keys())
