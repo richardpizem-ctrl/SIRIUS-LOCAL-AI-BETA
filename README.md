@@ -195,15 +195,15 @@ This is the most advanced UI automation layer ever implemented in SIRIUS.
 
 ---
 
-# 📊 MARKETINGOVÁ POROVNÁVACIA TABUĽKA (GitHub‑Ready)
+# 📊 COMPARISON TABLE (ENGLISH, GITHUB‑READY)
 
-| Framework | Offline | Workflow Automation | Platform | Resource Usage | Best For |
-|----------|----------|----------------------|----------|----------------|----------|
-| **SIRIUS LOCAL AI (v4.3.0)** | ✅ Full offline | ✅ Semantic + deterministic | Windows 11 | ⚖️ Stredné | Windows UI automation, secure workflows |
-| **Lemon AI** | ✅ Full offline | ✅ Multi‑step research | Cross‑platform | 🔥 Vysoké | Research, multi‑model reasoning |
-| **Nanobrowser** | ⚠ Local only | ❌ Browser‑only | Chrome | 🟢 Nízke | Beginner automation |
-| **Browser‑Use + CrewAI** | ✅ Full offline | ✅ Enterprise multi‑agent | Cross‑platform | 🔥🔥 Veľmi vysoké | Enterprise workflows |
-| **Ollama / LocalAI** | ✅ Full offline | ⚠ Basic scripting | Cross‑platform | ⚖️ Stredné–vysoké | Self‑hosted LLM inference |
+| Framework | Offline Capability | Workflow Automation | Platform | Resource Usage | Best For |
+|----------|--------------------|----------------------|----------|----------------|----------|
+| **SIRIUS LOCAL AI (v4.3.0)** | ✅ Full offline | ✅ Semantic + deterministic | Windows 11 | ⚖️ Moderate | Windows UI automation, secure deterministic workflows |
+| **Lemon AI** | ✅ Full offline | ✅ Multi‑step research & reasoning | Cross‑platform | 🔥 High | Research, multi‑model orchestration, autonomous reasoning |
+| **Nanobrowser** | ⚠ Local only (browser sandbox) | ❌ Browser‑only automation | Chrome/Chromium | 🟢 Very low | Beginners, quick browser automations |
+| **Browser‑Use + CrewAI** | ✅ Full offline | ✅ Enterprise multi‑agent workflows | Cross‑platform | 🔥🔥 Very high | Enterprise automation, complex multi‑agent pipelines |
+| **Ollama / LocalAI** | ✅ Full offline | ⚠ Basic scripting workflows | Cross‑platform | ⚖️ Moderate–High | Self‑hosted LLM inference, privacy‑focused deployments |
 
 ---
 
