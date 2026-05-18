@@ -3,7 +3,7 @@
 ### Fully offline, deterministic, semantic AI runtime for workflows, automation, reasoning, and safe command execution.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.0.0-blue">
+  <img src="https://img.shields.io/badge/version-4.3.0-blue">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
   <img src="https://img.shields.io/badge/architecture-Intelligent%20Runtime%204.0-lightgrey">
@@ -12,7 +12,7 @@
 
 ---
 
-## ⚠ ANTI‑CONFUSION BLOCK  
+# ⚠ ANTI‑CONFUSION BLOCK  
 SIRIUS LOCAL AI (ALFA/BETA/GAMA) is **pure software** — a fully local AI runtime for Windows 11.  
 It has **no connection** to:
 
@@ -23,7 +23,7 @@ It has **no connection** to:
 
 ---
 
-## 🔍 SEO META BLOCK  
+# 🔍 SEO META BLOCK  
 **SEO‑META:**  
 SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11.  
 It executes natural‑language commands, automates workflows, performs reasoning,  
@@ -39,7 +39,7 @@ password vault, encrypted vault, AES‑256‑GCM, secure credential storage
 
 ---
 
-## 🔍 JSON‑LD STRUCTURED DATA  
+# 🔍 JSON‑LD STRUCTURED DATA  
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,7 +47,7 @@ password vault, encrypted vault, AES‑256‑GCM, secure credential storage
   "name": "SIRIUS LOCAL AI",
   "applicationCategory": "AI Runtime, Windows Automation, Local AI System",
   "operatingSystem": "Windows 11",
-  "softwareVersion": "4.0.0",
+  "softwareVersion": "4.3.0",
   "description": "SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11. It executes natural-language commands, automates workflows, performs offline reasoning, and interacts with the OS through a secure capability layer — all offline, with no cloud dependencies.",
   "creator": {
     "@type": "Person",
@@ -68,7 +68,7 @@ password vault, encrypted vault, AES‑256‑GCM, secure credential storage
 
 ---
 
-# ℹ️ ABOUT SIRIUS LOCAL AI (v4.0.0)
+# ℹ️ ABOUT SIRIUS LOCAL AI (v4.3.0)
 
 SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for:
 
@@ -81,7 +81,7 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 
 ---
 
-# 🔐 NEW IN v4.0.0 — PASSWORD VAULT 4.0  
+# 🔐 PASSWORD VAULT 4.0  
 A fully offline, AES‑256‑GCM encrypted, identity‑aware credential storage module.
 
 ### Features:
@@ -149,8 +149,7 @@ This milestone completes the entire vertical slice of UI automation and prepares
 
 # 🚀 SIRIUS Runtime 4.3.0 – Semantic UI Automation Engine (Released)
 
-Version 4.3.0 replaces the previously planned 4.2.0 and introduces a complete,
-deterministic, semantic UI automation pipeline fully integrated with Runtime 4.0.
+Version 4.3.0 introduces a complete, deterministic, semantic UI automation pipeline fully integrated with Runtime 4.0.
 
 ---
 
@@ -193,6 +192,18 @@ Version 4.3.0 completes the entire Semantic UI Automation Engine:
 - deterministic execution  
 
 This is the most advanced UI automation layer ever implemented in SIRIUS.
+
+---
+
+# 📊 MARKETINGOVÁ POROVNÁVACIA TABUĽKA (GitHub‑Ready)
+
+| Framework | Offline | Workflow Automation | Platform | Resource Usage | Best For |
+|----------|----------|----------------------|----------|----------------|----------|
+| **SIRIUS LOCAL AI (v4.3.0)** | ✅ Full offline | ✅ Semantic + deterministic | Windows 11 | ⚖️ Stredné | Windows UI automation, secure workflows |
+| **Lemon AI** | ✅ Full offline | ✅ Multi‑step research | Cross‑platform | 🔥 Vysoké | Research, multi‑model reasoning |
+| **Nanobrowser** | ⚠ Local only | ❌ Browser‑only | Chrome | 🟢 Nízke | Beginner automation |
+| **Browser‑Use + CrewAI** | ✅ Full offline | ✅ Enterprise multi‑agent | Cross‑platform | 🔥🔥 Veľmi vysoké | Enterprise workflows |
+| **Ollama / LocalAI** | ✅ Full offline | ⚠ Basic scripting | Cross‑platform | ⚖️ Stredné–vysoké | Self‑hosted LLM inference |
 
 ---
 
