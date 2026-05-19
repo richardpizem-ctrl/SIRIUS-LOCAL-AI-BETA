@@ -1,32 +1,39 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (v4.0.0 → v4.1.0 EXPANDED)
+# 🏗 Architecture – SIRIUS LOCAL AI (v4.1.0 → v4.3.0 EXPANDED)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.1.0-purple">
+  <img src="https://img.shields.io/badge/version-4.3.0-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
-  <img src="https://img.shields.io/badge/runtime-Intelligent%204.0-orange">
+  <img src="https://img.shields.io/badge/runtime-Intelligent%204.3-orange">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI v4.1.0 expands the Intelligent Runtime 4.0 architecture with a **new System Intelligence Layer**, enabling deep PC‑level diagnostics, optimization, driver management, service control, safe system actions, and human‑friendly education.
+SIRIUS LOCAL AI v4.3.0 expands the Intelligent Runtime 4.x architecture with a **fully upgraded System Intelligence Layer**, deeper semantic routing, improved identity‑aware safety, and new modules aligned with Runtime 4.3.
 
 This update introduces:
 
-- **System Health Engine 4.1**
-- **Driver Manager Engine 4.1**
-- **Task Manager Engine 4.1**
-- **Service Manager Engine 4.1**
-- **Education Engine 4.1**
-- **VYSLANEC 4.1 (Bridge Layer 2.0)**
-- **Password Vault 4.0 (Secure Identity‑Aware Credential Storage)** ← *NEW MODULE*
+- **System Health Engine 4.3**
+- **Driver Manager Engine 4.3**
+- **Task Manager Engine 4.3**
+- **Service Manager Engine 4.3**
+- **Education Engine 4.3**
+- **VYSLANEC 4.3 (Bridge Layer 3.0)**
+- **Password Vault 4.0 (Secure Identity‑Aware Credential Storage)**
+- **System Agent 4.1 (Safe Action Execution Layer)** ← *NEW IN 4.3*
+- **AITE 4.3 (Multimodal Triage Engine)** ← *UPGRADED*
+- **Reasoning Engine 4.3**
+- **Knowledge Packs 4.3**
+- **Workflow Engine 4.3**
+- **FS‑AGENT 4.3**
+- **CME‑MEM 4.3**
 
-All system‑level actions remain **fully local**, **identity‑aware**, and **safely routed** through VYSLANEC.
+All system‑level actions remain **fully local**, **identity‑aware**, and **safely routed** through VYSLANEC and System Agent.
 
 ---
 
-# 🛡 Stability Notice (v4.1.0)
+# 🛡 Stability Notice (v4.3.0)
 
-The new System Intelligence Layer guarantees:
+The System Intelligence Layer 4.3 guarantees:
 
 - safe system operations  
 - identity‑aware permissions  
@@ -36,12 +43,13 @@ The new System Intelligence Layer guarantees:
 - transparent explanations  
 - strict FAMILY‑safe behavior  
 - deterministic, predictable execution  
+- System Agent 4.1 validation for every action  
 
-This version elevates SIRIUS from a semantic runtime to a **PC‑aware intelligent assistant**.
+This version elevates SIRIUS into a **PC‑aware intelligent runtime** with safe, explainable system control.
 
 ---
 
-# 🧩 Architectural Principles (v4.1.0)
+# 🧩 Architectural Principles (v4.3.0)
 
 - strict modular separation  
 - deterministic behavior  
@@ -49,17 +57,18 @@ This version elevates SIRIUS from a semantic runtime to a **PC‑aware intellige
 - FAMILY‑safe operation  
 - SCHOOLWORK always allowed  
 - no direct network communication  
-- no direct system access (VYSLANEC required)  
+- no direct system access (VYSLANEC + System Agent required)  
 - reversible, predictable actions  
 - semantic understanding of system state  
 - friendly education for every system action  
 - capability‑based access to Windows functions  
+- safe action execution pipeline (System Agent 4.1)  
 
 ---
 
-# 🧱 Core Layers (v4.1.0)
+# 🧱 Core Layers (v4.3.0)
 
-## 1. Runtime Core 4.0
+## 1. Runtime Core 4.3
 Central orchestrator.
 
 Responsibilities:
@@ -69,77 +78,112 @@ Responsibilities:
 - capability enforcement  
 - identity integration  
 - self‑repair integration  
+- System Agent 4.1 routing  
 
 ---
 
-## 2. Natural Language Router 4.0
-Semantic command routing.
+## 2. Natural Language Router 4.3
+Semantic command routing with improved intent detection.
 
 ---
 
-## 3. Filesystem Agent 4.0
-Deterministic FS operations.
+## 3. Filesystem Agent 4.3
+Deterministic FS operations with semantic routing.
 
 ---
 
-## 4. Context Memory Engine 4.0
-Workflow context.
+## 4. Context Memory Engine 4.3
+Workflow context + semantic metadata.
 
 ---
 
-## 5. Workflow Engine 4.0
-Deterministic workflow logic.
+## 5. Workflow Engine 4.3
+Deterministic workflow logic with new automation triggers.
 
 ---
 
-## 6. GUI Layer 4.0
-Modular UI.
+## 6. GUI Layer 4.3
+Modular UI with dynamic panels.
 
 ---
 
-## 7. AITE 4.0
-Semantic triage.
+## 7. AITE 4.3
+Multimodal semantic triage (text, images, OCR, documents, code).
 
 ---
 
-## 8. WIN‑CAP 4.0
-Safe Windows capability layer.
+## 8. WIN‑CAP 4.3
+Safe Windows capability layer with identity‑aware restrictions.
 
 ---
 
-# 🆕 SYSTEM INTELLIGENCE LAYER (v4.1.0)
+# 🆕 SYSTEM INTELLIGENCE LAYER (v4.3.0)
 
-A brand‑new architectural layer that gives SIRIUS **awareness of the PC**, the ability to **diagnose**, **optimize**, and **repair**, while maintaining strict safety.
-
----
-
-# 🔥 1. System Health Engine 4.1
-(… unchanged …)
+A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, the ability to **diagnose**, **optimize**, **repair**, and **educate**, while maintaining strict safety.
 
 ---
 
-# 🔥 2. Driver Manager Engine 4.1
-(… unchanged …)
+# 🔥 1. System Health Engine 4.3
+- hardware diagnostics  
+- thermal analysis  
+- storage health  
+- RAM/CPU load  
+- bottleneck detection  
+- safe optimization suggestions  
 
 ---
 
-# 🔥 3. Task Manager Engine 4.1
-(… unchanged …)
+# 🔥 2. Driver Manager Engine 4.3
+- driver inventory  
+- version comparison  
+- missing/outdated driver detection  
+- safe update workflows (via VYSLANEC)  
 
 ---
 
-# 🔥 4. Service Manager Engine 4.1
-(… unchanged …)
+# 🔥 3. Task Manager Engine 4.3
+- process analysis  
+- CPU/RAM usage  
+- identity‑aware termination rules  
+- FAMILY‑safe restrictions  
 
 ---
 
-# 🔥 5. Education Engine 4.1
-(… unchanged …)
+# 🔥 4. Service Manager Engine 4.3
+- service state analysis  
+- safe start/stop/restart  
+- SYSTEM AGENT validation  
 
 ---
 
-# 🔥 6. VYSLANEC 4.1 (Bridge Layer 2.0)
-(… unchanged …)
+# 🔥 5. Education Engine 4.3
+- explains every system action  
+- teaches Windows concepts  
+- provides safe alternatives  
+- FAMILY‑friendly mode  
+
+---
+
+# 🔥 6. VYSLANEC 4.3 (Bridge Layer 3.0)
+- safe bridge between runtime and Windows  
+- sanitization layer  
+- identity‑aware filtering  
+- no direct system access allowed  
+
+---
+
+# 🔥 7. System Agent 4.1 (Safe Action Execution Layer)
+A new module introduced in Runtime 4.3.
+
+Responsibilities:
+- validates every system action  
+- checks identity (OWNER/FAMILY/STRANGER)  
+- enforces safety rules  
+- logs all actions  
+- blocks unsafe operations  
+- ensures deterministic behavior  
+
+System Agent is the **final gatekeeper** before any Windows action.
 
 ---
 
@@ -175,29 +219,31 @@ A fully local, encrypted, identity‑aware password storage system integrated in
 
 ---
 
-# 🖼 Architecture Diagram (v4.1.0 Placeholder)
+# 🖼 Architecture Diagram (v4.3.0 Placeholder)
 
 <p align="center">
-  <img src="docs/architecture_diagram_v4_1_placeholder.png" width="600">
+  <img src="docs/architecture_diagram_v4_3_placeholder.png" width="600">
 </p>
 
 ---
 
-# 🔌 Module Interconnections (v4.1.0)
+# 🔌 Module Interconnections (v4.3.0)
 
 User Input  
 ↓  
-AITE 4.0 → FS‑AGENT 4.0 → CME‑MEM 4.0  
+AITE 4.3 → FS‑AGENT 4.3 → CME‑MEM 4.3  
 ↓  
-Workflow Engine 4.0  
+Workflow Engine 4.3  
 ↓  
-Runtime Core 4.0  
+Runtime Core 4.3  
 ↓  
-**System Intelligence Layer 4.1**  
+**System Intelligence Layer 4.3**  
+↓  
+**System Agent 4.1 (safe action execution)**  
 ↓  
 **Password Vault 4.0 (identity‑aware secure storage)**  
 ↓  
-**VYSLANEC 4.1**  
+**VYSLANEC 4.3**  
 ↓  
 Windows 11 (safe, controlled)
 
@@ -205,5 +251,5 @@ Windows 11 (safe, controlled)
 
 # 📌 Document Status
 
-Current version: **4.1.0 (Expanded)**  
-Architecture is fully defined and includes the new Password Vault 4.0 module.
+Current version: **4.3.0 (Expanded)**  
+Architecture is fully updated and aligned with Runtime 4.3.0.
