@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.3 Validator
+SIRIUS LOCAL AI – ENVOY 4.4 Validator
 
 Responsible for:
 - validating ENVOY payload structure
@@ -9,19 +9,20 @@ Responsible for:
 - preparing payloads for conversion
 - supporting Self‑Repair 4.4 diagnostics
 
-This is the validation layer of ENVOY 4.3.
+This is the validation layer of ENVOY 4.4.
 """
 
 
 class EnvoyValidator4:
     """
-    Validates ENVOY payloads before they enter the runtime.
+    Deterministic ENVOY payload validator for Runtime 4.4.
     Provides:
     - strict structural validation
     - metadata validation
     - content validation
     - safe-mode compatibility
     - degraded-mode detection
+    - Security Family 4.4 enforcement
     """
 
     def __init__(self):
@@ -45,7 +46,7 @@ class EnvoyValidator4:
                 return {
                     "valid": False,
                     "error": "missing_field",
-                    "field": field
+                    "field": field,
                 }
 
         return {"valid": True}
@@ -65,7 +66,7 @@ class EnvoyValidator4:
                 return {
                     "valid": False,
                     "error": "missing_meta_key",
-                    "key": key
+                    "key": key,
                 }
 
         source = meta.get("source")
@@ -108,6 +109,25 @@ class EnvoyValidator4:
         return {"valid": True}
 
     # ---------------------------------------------------------
+    # SECURITY FAMILY 4.4 CHECKS
+    # ---------------------------------------------------------
+
+    def validate_security(self, payload: dict):
+        """Checks forbidden keys and unsafe patterns."""
+
+        forbidden_keys = ["exec", "code", "script", "inject", "malicious"]
+
+        for key in forbidden_keys:
+            if key in payload:
+                return {
+                    "valid": False,
+                    "error": "forbidden_key",
+                    "key": key,
+                }
+
+        return {"valid": True}
+
+    # ---------------------------------------------------------
     # FULL VALIDATION
     # ---------------------------------------------------------
 
@@ -119,7 +139,7 @@ class EnvoyValidator4:
             return {
                 "valid": False,
                 "error": "safe_mode",
-                "message": "Validation disabled in safe-mode."
+                "message": "Validation disabled in safe-mode.",
             }
 
         # STRUCTURE
@@ -141,5 +161,10 @@ class EnvoyValidator4:
         meta_check = self.validate_metadata(payload["meta"])
         if not meta_check["valid"]:
             return meta_check
+
+        # SECURITY FAMILY 4.4
+        sec_check = self.validate_security(payload)
+        if not sec_check["valid"]:
+            return sec_check
 
         return {"valid": True}
