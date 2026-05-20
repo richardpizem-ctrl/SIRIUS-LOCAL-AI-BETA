@@ -1,22 +1,14 @@
-# reasoning_4_4/reasoning_graph_builder_4_4.py
 """
-SIRIUS LOCAL AI – Reasoning Graph Builder 4.4.0
+SIRIUS LOCAL AI – Reasoning Graph Builder 4.4.0 (PRO)
 
 Deterministic graph builder for Reasoning Engine 4.4.
 
 Účel:
 - vytvára reasoning grafy z kontextu
-- uzly = fakty, packy, pravidlá, symbolické výrazy
+- uzly = fakty, packy, pravidlá, symbolické výrazy, intermediate kroky
 - hrany = závislosti, referencie, odvodenia
 - 100 % offline, deterministické, bez AI heuristiky
-- žiadne dynamické importy, eval, exec
-
-Používa:
-- KP Registry 4.4
-- KP Query Engine 4.4
-- Context Builder 4.4
-- Rule Engine 4.4
-- Symbolic Solver 4.4 (ak treba)
+- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
 """
 
 from typing import Dict, Any, List
@@ -24,7 +16,7 @@ from typing import Dict, Any, List
 
 class ReasoningGraphBuilder44:
     """
-    Vytvára reasoning graf pre dotaz.
+    Deterministic reasoning graph builder (PRO).
     """
 
     def __init__(
@@ -41,6 +33,7 @@ class ReasoningGraphBuilder44:
 
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
@@ -50,94 +43,174 @@ class ReasoningGraphBuilder44:
             return {"status": "already_initialized"}
 
         try:
-            if self.registry:
-                self.registry.initialize()
-            if self.query_engine:
-                self.query_engine.initialize()
-            if self.rule_engine:
-                self.rule_engine.initialize()
-            if self.symbolic_solver:
-                self.symbolic_solver.initialize()
+            modules = [
+                self.registry,
+                self.query_engine,
+                self.rule_engine,
+                self.symbolic_solver,
+            ]
+
+            for m in modules:
+                if m and hasattr(m, "initialize"):
+                    res = m.initialize()
+                    if isinstance(res, dict) and res.get("status") == "error":
+                        self.degraded_mode = True
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "details": res,
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # BUILD GRAPH
     # ------------------------------------------------------------------
     def build_graph(self, query: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Vytvorí reasoning graf:
-        - uzly: fakty, packy, pravidlá, symbolické výrazy
-        - hrany: závislosti medzi nimi
+        Vytvorí reasoning graf pre dotaz.
         """
 
-        try:
-            graph = {
-                "nodes": [],
-                "edges": [],
-                "query": query,
-            }
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Graph builder disabled in safe-mode."}
 
-            # 1. Pack nodes
-            for pack_name in context.get("packs", []):
-                graph["nodes"].append({
-                    "id": f"pack:{pack_name}",
-                    "type": "pack",
-                    "name": pack_name,
+        if not isinstance(query, str):
+            return {"status": "error", "code": "invalid_query_type"}
+
+        if not isinstance(context, dict):
+            return {"status": "error", "code": "invalid_context_type"}
+
+        try:
+            nodes: List[Dict[str, Any]] = []
+            edges: List[Dict[str, Any]] = []
+
+            # ----------------------------------------------------------
+            # 1. Query node
+            # ----------------------------------------------------------
+            nodes.append({
+                "id": "query",
+                "type": "query",
+                "value": query,
+            })
+
+            # ----------------------------------------------------------
+            # 2. Subject nodes
+            # ----------------------------------------------------------
+            for s in context.get("subjects", []):
+                nodes.append({
+                    "id": f"subject:{s}",
+                    "type": "subject",
+                    "value": s,
+                })
+                edges.append({
+                    "from": "query",
+                    "to": f"subject:{s}",
+                    "type": "subject_relation",
                 })
 
-            # 2. Fact nodes
+            # ----------------------------------------------------------
+            # 3. Pack nodes
+            # ----------------------------------------------------------
+            for p in context.get("packs", []):
+                nodes.append({
+                    "id": f"pack:{p}",
+                    "type": "pack",
+                    "value": p,
+                })
+                edges.append({
+                    "from": "query",
+                    "to": f"pack:{p}",
+                    "type": "pack_usage",
+                })
+
+            # ----------------------------------------------------------
+            # 4. Fact nodes
+            # ----------------------------------------------------------
             for fact in context.get("facts", []):
-                graph["nodes"].append({
-                    "id": f"fact:{fact['key']}",
+                fid = f"fact:{fact['pack']}:{fact['key']}"
+                nodes.append({
+                    "id": fid,
                     "type": "fact",
+                    "pack": fact["pack"],
                     "key": fact["key"],
                     "value": fact["value"],
-                    "pack": fact["pack"],
                 })
-                graph["edges"].append({
+                edges.append({
                     "from": f"pack:{fact['pack']}",
-                    "to": f"fact:{fact['key']}",
-                    "type": "contains",
+                    "to": fid,
+                    "type": "fact_belongs_to_pack",
                 })
 
-            # 3. Rule nodes
-            if self.rule_engine:
-                rules = self.rule_engine.extract_rules(context)
-                for r in rules:
-                    rid = f"rule:{r['id']}"
-                    graph["nodes"].append({
-                        "id": rid,
-                        "type": "rule",
-                        "rule": r,
-                    })
-                    # Link rule to facts it uses
-                    for dep in r.get("depends_on", []):
-                        graph["edges"].append({
-                            "from": f"fact:{dep}",
-                            "to": rid,
-                            "type": "rule_depends",
-                        })
+            # ----------------------------------------------------------
+            # 5. Rule nodes
+            # ----------------------------------------------------------
+            for rule in context.get("rules", []):
+                rid = f"rule:{rule.get('id', 'unknown')}"
+                nodes.append({
+                    "id": rid,
+                    "type": "rule",
+                    "rule": rule,
+                })
 
-            # 4. Symbolic nodes (if math)
-            if self.symbolic_solver and context.get("symbolic"):
-                parsed = self.symbolic_solver.parse(context["symbolic"])
-                if parsed.get("status") == "ok":
-                    graph["nodes"].append({
-                        "id": "symbolic:expr",
-                        "type": "symbolic",
-                        "ast": repr(parsed["ast"]),
+                # Rule dependencies
+                for cond in rule.get("if", []):
+                    fkey = f"fact:{cond['pack']}:{cond['key']}"
+                    edges.append({
+                        "from": fkey,
+                        "to": rid,
+                        "type": "rule_condition",
                     })
 
-            return {"status": "ok", "graph": graph}
+            # ----------------------------------------------------------
+            # 6. Symbolic nodes
+            # ----------------------------------------------------------
+            for expr in context.get("symbolic", []):
+                sid = f"symbolic:{expr}"
+                nodes.append({
+                    "id": sid,
+                    "type": "symbolic",
+                    "expr": expr,
+                })
+                edges.append({
+                    "from": "query",
+                    "to": sid,
+                    "type": "symbolic_relation",
+                })
+
+            # ----------------------------------------------------------
+            # 7. Intermediate nodes
+            # ----------------------------------------------------------
+            for idx, step in enumerate(context.get("intermediate", [])):
+                iid = f"intermediate:{idx}"
+                nodes.append({
+                    "id": iid,
+                    "type": "intermediate",
+                    "label": step.get("label"),
+                    "data": step.get("data"),
+                })
+                edges.append({
+                    "from": "query",
+                    "to": iid,
+                    "type": "intermediate_step",
+                })
+
+            return {
+                "status": "ok",
+                "graph": {
+                    "nodes": nodes,
+                    "edges": edges,
+                },
+                "degraded_mode": self.degraded_mode,
+            }
 
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            self.degraded_mode = True
+            return {"status": "error", "code": "graph_build_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # STATUS
@@ -146,5 +219,6 @@ class ReasoningGraphBuilder44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
