@@ -1,6 +1,5 @@
-# reasoning_4_4/re_chain_executor_4_4.py
 """
-SIRIUS LOCAL AI – Reasoning Chain Executor 4.4.0
+SIRIUS LOCAL AI – Reasoning Chain Executor 4.4.0 (PRO)
 
 Deterministic chain executor pre Reasoning Engine 4.4.
 
@@ -9,12 +8,7 @@ Deterministic chain executor pre Reasoning Engine 4.4.
 - každý krok je čistá funkcia nad kontextom
 - žiadne AI, žiadne heuristiky, žiadny eval/exec
 - 100 % offline, deterministické
-
-Typický chain:
-1. výber relevantných faktov
-2. aplikácia pravidiel
-3. voliteľne symbolické výpočty
-4. agregácia výsledkov
+- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
 """
 
 from typing import Dict, Any, List, Callable
@@ -25,7 +19,7 @@ ChainStep44 = Callable[[Dict[str, Any]], Dict[str, Any]]
 
 class ReasoningChainExecutor44:
     """
-    Deterministic chain executor.
+    Deterministic chain executor (PRO).
     """
 
     def __init__(self, rule_engine=None, symbolic_solver=None):
@@ -34,6 +28,7 @@ class ReasoningChainExecutor44:
 
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
         # Preddefinované chainy podľa typu dotazu
         self.named_chains: Dict[str, List[ChainStep44]] = {}
@@ -50,16 +45,23 @@ class ReasoningChainExecutor44:
 
         try:
             if self.rule_engine:
-                self.rule_engine.initialize()
+                res = self.rule_engine.initialize()
+                if res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "rule_engine_init_failed", "details": res}
+
             if self.symbolic_solver:
-                self.symbolic_solver.initialize()
+                res = self.symbolic_solver.initialize()
+                if res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "symbolic_init_failed", "details": res}
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # DEFAULT CHAINS
@@ -69,14 +71,12 @@ class ReasoningChainExecutor44:
         Zaregistruje základné chainy.
         """
 
-        # General chain – fakty + pravidlá
         self.named_chains["general"] = [
             self._step_collect_facts,
             self._step_apply_rules,
             self._step_aggregate,
         ]
 
-        # Math chain – fakty + symbolika
         self.named_chains["math"] = [
             self._step_collect_facts,
             self._step_symbolic_if_present,
@@ -89,12 +89,27 @@ class ReasoningChainExecutor44:
     def execute(self, query: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Vykoná chain podľa tém v kontexte.
+        Deterministické, bezpečné, PRO.
         """
+
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Chain execution disabled in safe-mode."}
+
+        if not isinstance(query, str):
+            return {"status": "error", "code": "invalid_query_type"}
+
+        if not isinstance(context, dict):
+            return {"status": "error", "code": "invalid_context_type"}
 
         try:
             subjects = context.get("subjects", ["general"])
             chain_name = "math" if "math" in subjects else "general"
             steps = self.named_chains.get(chain_name, [])
+
+            # Validate steps
+            for step in steps:
+                if not callable(step):
+                    return {"status": "error", "code": "invalid_chain_step", "step": str(step)}
 
             state: Dict[str, Any] = {
                 "query": query,
@@ -109,21 +124,24 @@ class ReasoningChainExecutor44:
 
             for step in steps:
                 state = step(state)
+                if not isinstance(state, dict):
+                    return {"status": "error", "code": "invalid_step_return", "step": step.__name__}
 
             return {
                 "status": "ok",
                 "chain": chain_name,
                 "state": state,
+                "degraded_mode": self.degraded_mode,
             }
 
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            self.degraded_mode = True
+            return {"status": "error", "code": "execution_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
-    # STEP: COLLECT FACTS (tu už sú v kontexte, len ich môžeme filtrovať)
+    # STEP: COLLECT FACTS
     # ------------------------------------------------------------------
     def _step_collect_facts(self, state: Dict[str, Any]) -> Dict[str, Any]:
-        # Tu môžeš neskôr pridať filtráciu podľa query/subjects
         state["intermediate"].append({
             "step": "collect_facts",
             "facts_count": len(state.get("facts", [])),
@@ -154,7 +172,7 @@ class ReasoningChainExecutor44:
         return state
 
     # ------------------------------------------------------------------
-    # STEP: SYMBOLIC (ak je prítomný výraz)
+    # STEP: SYMBOLIC
     # ------------------------------------------------------------------
     def _step_symbolic_if_present(self, state: Dict[str, Any]) -> Dict[str, Any]:
         if not self.symbolic_solver or not state.get("symbolic"):
@@ -179,11 +197,6 @@ class ReasoningChainExecutor44:
     # STEP: AGGREGATE
     # ------------------------------------------------------------------
     def _step_aggregate(self, state: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Jednoduchá agregácia – v tejto verzii len nechá posledný result.
-        Neskôr môžeš pridať kombináciu viacerých zdrojov.
-        """
-
         state["intermediate"].append({
             "step": "aggregate",
             "status": "done",
@@ -197,6 +210,7 @@ class ReasoningChainExecutor44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "chains": list(self.named_chains.keys()),
         }
