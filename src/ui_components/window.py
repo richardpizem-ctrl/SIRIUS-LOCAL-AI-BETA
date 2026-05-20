@@ -1,19 +1,21 @@
-# window.py
-# SIRIUS LOCAL AI – UI Window Component 4.3.x
-# Deterministic, safe-mode compatible UI component
+# window_4_4.py
+# SIRIUS LOCAL AI – UI Window Component 4.4.0 PRO
+# Deterministic, safe-mode compatible UI component (Phase‑4/5 ready)
 
-from .manager import UIComponent
+from .manager_4_4 import UIComponent44
 
 
-class Window(UIComponent):
+class Window44(UIComponent44):
     """
-    Window 4.3.x
+    Window 4.4.0 PRO
 
     Responsibilities:
         - Provide a simple window UI component
         - Demonstrate Phase‑4 lifecycle behavior
         - Produce deterministic layout blocks
-        - Support safe-mode and degraded-mode
+        - Support safe-mode and degraded-mode (Security Family 4.4)
+        - Offline-only, no side-effects
+        - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -28,11 +30,9 @@ class Window(UIComponent):
         if self.safe_mode:
             return
         self.mounted = True
-        print("Window mounted")
 
     def unmount(self):
         self.mounted = False
-        print("Window unmounted")
 
     # ---------------------------------------------------------
     # Rendering
@@ -40,7 +40,7 @@ class Window(UIComponent):
 
     def render(self):
         """
-        Return layout blocks for PixelLayoutEngine.
+        Return layout blocks for PixelLayoutEngine44.
         Phase‑4 requires deterministic, structured output.
         """
 
