@@ -1,20 +1,22 @@
-# timeline_ui_component.py
-# SIRIUS LOCAL AI – Timeline UI Component 4.3.x
-# Phase‑4 deterministic wrapper for TimelineUI
+# timeline_ui_component_4_4.py
+# SIRIUS LOCAL AI – Timeline UI Component 4.4.0 PRO
+# Phase‑4 deterministic wrapper for TimelineUI (Phase‑5 ready)
 
-from .manager import UIComponent
+from .manager_4_4 import UIComponent44
 from timeline.timeline_ui import TimelineUI
 
 
-class TimelineUIComponent(UIComponent):
+class TimelineUIComponent44(UIComponent44):
     """
-    TimelineUIComponent 4.3.x
+    TimelineUIComponent 4.4.0 PRO
 
     Responsibilities:
-        - Wrap TimelineUI for UIManager
-        - Provide safe-mode and degraded-mode behavior
-        - Provide deterministic layout blocks for PixelLayoutEngine
+        - Wrap TimelineUI for UIManager44
+        - Provide safe-mode and degraded-mode behavior (Security Family 4.4)
+        - Provide deterministic layout blocks for PixelLayoutEngine44
         - Provide error-safe lifecycle and rendering
+        - Offline-only, no side-effects
+        - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -30,11 +32,9 @@ class TimelineUIComponent(UIComponent):
         if self.safe_mode:
             return
         self._mounted = True
-        print("TimelineUI mounted")
 
     def unmount(self):
         self._mounted = False
-        print("TimelineUI unmounted")
 
     # ---------------------------------------------------------
     # Layout generation
@@ -43,7 +43,7 @@ class TimelineUIComponent(UIComponent):
     def generate_layout(self):
         """
         TimelineUI will later return real pixel blocks.
-        For now this is a placeholder so PixelLayoutEngine
+        For now this is a placeholder so PixelLayoutEngine44
         always receives a consistent input.
         """
 
@@ -91,7 +91,7 @@ class TimelineUIComponent(UIComponent):
 
     def render(self):
         """
-        UIManager calls render() → must return layout blocks.
-        PixelLayoutEngine will then render them.
+        UIManager44 calls render() → must return layout blocks.
+        PixelLayoutEngine44 will then render them.
         """
         return self.generate_layout()
