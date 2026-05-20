@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.3 Quarantine
+SIRIUS LOCAL AI – ENVOY 4.4 Quarantine
 
 Responsible for:
 - isolating unvalidated ENVOY payloads
@@ -9,7 +9,7 @@ Responsible for:
 - enforcing Security Family 4.4 rules
 - supporting Self‑Repair 4.4 diagnostics
 
-This is the quarantine layer of ENVOY 4.3.
+This is the quarantine layer of ENVOY 4.4.
 """
 
 from typing import Dict, Any, Optional
@@ -18,12 +18,13 @@ import json
 
 class EnvoyQuarantine4:
     """
-    Holds and inspects ENVOY payloads before validation.
+    Deterministic quarantine layer for ENVOY 4.4.
     Provides:
     - strict validation
     - structured error surface
     - safe-mode compatibility
     - degraded-mode detection
+    - Security Family 4.4 enforcement
     """
 
     def __init__(self, max_queue_size: int = 500, max_payload_size: int = 500_000):
@@ -43,9 +44,9 @@ class EnvoyQuarantine4:
         if not isinstance(payload, dict):
             return False
 
-        # Size check
+        # Size check (deterministic)
         try:
-            if len(json.dumps(payload)) > self.max_payload_size:
+            if len(json.dumps(payload, ensure_ascii=False)) > self.max_payload_size:
                 return False
         except Exception:
             return False
@@ -54,6 +55,8 @@ class EnvoyQuarantine4:
         for key, value in payload.items():
             if not isinstance(key, str) or not key.strip():
                 return False
+
+            # Forbidden types
             if isinstance(value, (bytes, bytearray, type(lambda: None))):
                 return False
 
@@ -69,7 +72,8 @@ class EnvoyQuarantine4:
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Quarantine disabled in safe-mode."
+                "message": "Quarantine disabled in safe-mode.",
+                "degraded_mode": self.degraded_mode,
             }
 
         if not isinstance(payload, dict):
@@ -85,7 +89,8 @@ class EnvoyQuarantine4:
 
         return {
             "status": "isolated",
-            "count": len(self.quarantine)
+            "count": len(self.quarantine),
+            "degraded_mode": self.degraded_mode,
         }
 
     # ---------------------------------------------------------
@@ -124,7 +129,11 @@ class EnvoyQuarantine4:
 
         if not isinstance(entry, dict):
             self.degraded_mode = True
-            return {"status": "error", "code": "invalid_quarantine_entry"}
+            return {
+                "status": "error",
+                "code": "invalid_quarantine_entry",
+                "degraded_mode": True,
+            }
 
         check = self.inspect(entry)
 
@@ -132,10 +141,12 @@ class EnvoyQuarantine4:
             return {
                 "status": "error",
                 "code": "payload_blocked",
-                "reason": check.get("reason")
+                "reason": check.get("reason"),
+                "degraded_mode": self.degraded_mode,
             }
 
         return {
             "status": "released",
-            "payload": entry
+            "payload": entry,
+            "degraded_mode": self.degraded_mode,
         }
