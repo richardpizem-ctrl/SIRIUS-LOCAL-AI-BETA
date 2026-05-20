@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Scheduler 4.3 Queue
+SIRIUS LOCAL AI – Scheduler 4.3 Queue (PRO)
 
 Responsible for:
 - deterministic FIFO task ordering
@@ -8,7 +8,11 @@ Responsible for:
 - safe enqueue/dequeue operations
 - safe-mode and degraded-mode behavior
 
-This is the queue layer of Scheduler 4.3.
+Security Family 4.4 Compliance:
+- No eval, exec, reflection, dynamic imports
+- Strict input validation
+- Deterministic behavior
+- Self‑Repair 4.4 ready
 """
 
 from typing import Optional, Dict, Any
@@ -16,7 +20,7 @@ from typing import Optional, Dict, Any
 
 class SchedulerQueue4:
     """
-    Simple deterministic FIFO queue for Scheduler 4.3.
+    Deterministic FIFO queue for Scheduler 4.3 (PRO).
     Provides:
     - strict validation
     - structured error surface
@@ -34,14 +38,12 @@ class SchedulerQueue4:
     # ---------------------------------------------------------
 
     def push(self, task: str, context: Optional[dict] = None):
-        """
-        Adds a task to the end of the queue with full safety checks.
-        """
+        """Adds a task to the end of the queue with full safety checks."""
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Queue push disabled in safe-mode."
+                "message": "Queue push disabled in safe-mode.",
             }
 
         # Validate task
@@ -56,39 +58,32 @@ class SchedulerQueue4:
 
         # Validate module name if present
         module_name = context.get("module")
-        if module_name is not None and (
-            not isinstance(module_name, str) or not module_name.strip()
-        ):
-            return {"status": "error", "code": "invalid_module_name"}
+        if module_name is not None:
+            if not isinstance(module_name, str) or not module_name.strip():
+                return {"status": "error", "code": "invalid_module_name"}
 
         try:
-            self._queue.append({
-                "task": task,
-                "context": context
-            })
+            self._queue.append({"task": task, "context": context})
             return {
                 "status": "queued",
                 "size": len(self._queue),
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "queue_push_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     def pop(self) -> Optional[Dict[str, Any]]:
-        """
-        Removes and returns the next task from the queue.
-        Includes safety checks.
-        """
+        """Removes and returns the next task from the queue."""
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Queue pop disabled in safe-mode."
+                "message": "Queue pop disabled in safe-mode.",
             }
 
         if not self._queue:
@@ -101,7 +96,7 @@ class SchedulerQueue4:
             return {
                 "status": "error",
                 "code": "queue_pop_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
         # Validate entry
@@ -121,18 +116,14 @@ class SchedulerQueue4:
 
         # Validate module name
         module_name = context.get("module")
-        if module_name is not None and (
-            not isinstance(module_name, str) or not module_name.strip()
-        ):
-            return {"status": "error", "code": "invalid_module_name"}
+        if module_name is not None:
+            if not isinstance(module_name, str) or not module_name.strip():
+                return {"status": "error", "code": "invalid_module_name"}
 
         return entry
 
     def peek(self) -> Optional[Dict[str, Any]]:
-        """
-        Returns the next task without removing it.
-        Includes safety checks.
-        """
+        """Returns the next task without removing it."""
 
         if not self._queue:
             return None
@@ -154,4 +145,13 @@ class SchedulerQueue4:
 
     def clear(self):
         """Clears all tasks from the queue."""
-        self._queue.clear()
+        try:
+            self._queue.clear()
+            return {"status": "ok"}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "queue_clear_failed",
+                "exception": str(exc),
+            }
