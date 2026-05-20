@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Sandbox Rules
+SIRIUS LOCAL AI – Runtime 4.3 Sandbox Rules (PRO)
 
 Defines capability-based security rules for sandboxed modules.
 Responsible for:
@@ -16,7 +16,7 @@ This is the policy layer of the sandbox system.
 
 class SandboxRules4:
     """
-    Defines and validates sandbox capability rules.
+    Deterministic capability rule engine (PRO).
     Provides:
     - strict capability validation
     - structured error surface
@@ -34,7 +34,7 @@ class SandboxRules4:
             "network_access",
             "filesystem_write_outside_scope",
             "execute_external_code",
-            "spawn_untrusted_process"
+            "spawn_untrusted_process",
         ]
 
         self.safe_mode = False
@@ -50,7 +50,7 @@ class SandboxRules4:
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Capability assignment disabled in safe-mode."
+                "message": "Capability assignment disabled in safe-mode.",
             }
 
         # Validate module name
@@ -68,13 +68,13 @@ class SandboxRules4:
 
         try:
             self.capabilities[module_name] = caps
-            return {"status": "success"}
+            return {"status": "ok"}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "capability_assignment_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     def get_capabilities(self, module_name: str):
@@ -119,28 +119,22 @@ class SandboxRules4:
             return {
                 "allowed": False,
                 "error": "safe_mode",
-                "message": "Operation validation disabled in safe-mode."
+                "message": "Operation validation disabled in safe-mode.",
             }
 
         # Validate module name
         if not isinstance(module_name, str) or not module_name.strip():
-            return {
-                "allowed": False,
-                "error": "invalid_module_name"
-            }
+            return {"allowed": False, "error": "invalid_module_name"}
 
         # Validate operation
         if not isinstance(operation, str) or not operation.strip():
-            return {
-                "allowed": False,
-                "error": "invalid_operation"
-            }
+            return {"allowed": False, "error": "invalid_operation"}
 
         # Check permission
         if self.is_allowed(module_name, operation):
             return {
                 "allowed": True,
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
 
         return {
@@ -148,5 +142,5 @@ class SandboxRules4:
             "error": "operation_not_permitted",
             "module": module_name,
             "operation": operation,
-            "degraded_mode": self.degraded_mode
+            "degraded_mode": self.degraded_mode,
         }
