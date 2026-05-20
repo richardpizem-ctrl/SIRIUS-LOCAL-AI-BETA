@@ -1,6 +1,6 @@
-# intelligence_orchestrator_4_3.py
-# SIRIUS LOCAL AI – Intelligence Orchestrator 4.3.x
-# High-level, AI-aware orchestration layer (deterministic, safe-mode compatible)
+# intelligence_orchestrator_4_4.py
+# SIRIUS LOCAL AI – Intelligence Orchestrator 4.4.0 PRO
+# High-level, AI-aware orchestration layer (deterministic, safe-mode compatible, Phase‑5 ready)
 
 from __future__ import annotations
 
@@ -8,21 +8,21 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Any, Literal, Optional
 import time
 
-from system_health_engine_4_3 import SystemHealthEngine43, HealthIssue, HealthReport
-from driver_manager_engine_4_3 import DriverManagerEngine43, DriverIssue, DriverReport
-from task_manager_engine_4_3 import TaskManagerEngine43, TaskIssue, TaskReport
-from service_manager_engine_4_3 import ServiceManagerEngine43, ServiceIssue, ServiceReport
-from education_engine_4_3 import (
-    EducationEngine43,
-    EducationBundle,
-    ExplanationBlock,
+from system_health_engine_4_4 import SystemHealthEngine44, HealthIssue44, HealthReport44
+from driver_manager_engine_4_4 import DriverManagerEngine44, DriverIssue44, DriverReport44
+from task_manager_engine_4_4 import TaskManagerEngine44, TaskIssue44, TaskReport44
+from service_manager_engine_4_4 import ServiceManagerEngine44, ServiceIssue44, ServiceReport44
+from education_engine_4_4 import (
+    EducationEngine44,
+    EducationBundle44,
+    ExplanationBlock44,
     IdentityType,
 )
-from system_agent_4_3 import (
-    SystemAgent43,
-    AgentAction,
-    AgentResult,
-    ActionType,
+from system_agent_4_4 import (
+    SystemAgent44,
+    AgentAction44,
+    AgentResult44,
+    ActionType44,
 )
 
 
@@ -34,10 +34,10 @@ Severity = Literal["info", "warning", "critical"]
 # ---------------------------------------------------------
 
 @dataclass
-class PrioritizedItem:
+class PrioritizedItem44:
     """
     Unified representation of a problem across all diagnostic domains.
-    AI-aware priority model (4.3.x).
+    AI-aware priority model (4.4.0 PRO).
     """
     id: str
     domain: str  # "health" | "drivers" | "tasks" | "services"
@@ -51,7 +51,7 @@ class PrioritizedItem:
 
 
 @dataclass
-class OrchestrationPlan:
+class OrchestrationPlan44:
     """
     Final orchestration result:
     - prioritized issues
@@ -60,8 +60,8 @@ class OrchestrationPlan:
     """
     identity: IdentityType
     created_at: float
-    issues: List[PrioritizedItem]
-    actions: List[AgentAction]
+    issues: List[PrioritizedItem44]
+    actions: List[AgentAction44]
     dry_run: bool
     safe_mode: bool = False
     degraded_mode: bool = False
@@ -71,27 +71,28 @@ class OrchestrationPlan:
 # ORCHESTRATOR
 # ---------------------------------------------------------
 
-class IntelligenceOrchestrator43:
+class IntelligenceOrchestrator44:
     """
-    Intelligence Orchestrator 4.3.x
+    Intelligence Orchestrator 4.4.0 PRO
 
     Responsibilities:
-        - Run all 4.3 diagnostic engines as a single pipeline
+        - Run all 4.4 diagnostic engines as a single pipeline
         - Aggregate and prioritize issues across domains
-        - Attach human-readable explanations from Education Engine 4.3
-        - Build AI-aware, identity-aware action plans for SystemAgent43
+        - Attach human-readable explanations from Education Engine 4.4
+        - Build AI-aware, identity-aware action plans for SystemAgent44
         - Remain deterministic, offline, and fully isolated
-        - Support safe-mode and degraded-mode behavior
+        - Support safe-mode and degraded-mode behavior (Security Family 4.4)
+        - Phase‑5 ready (extended identity, restricted-mode hooks)
     """
 
     def __init__(self, dry_run: bool = True) -> None:
         # Engines
-        self.health_engine = SystemHealthEngine43()
-        self.driver_engine = DriverManagerEngine43()
-        self.task_engine = TaskManagerEngine43()
-        self.service_engine = ServiceManagerEngine43()
-        self.education_engine = EducationEngine43()
-        self.agent = SystemAgent43(dry_run=dry_run)
+        self.health_engine = SystemHealthEngine44()
+        self.driver_engine = DriverManagerEngine44()
+        self.task_engine = TaskManagerEngine44()
+        self.service_engine = ServiceManagerEngine44()
+        self.education_engine = EducationEngine44()
+        self.agent = SystemAgent44(dry_run=dry_run)
 
         self.dry_run = dry_run
         self.safe_mode = False
@@ -116,7 +117,7 @@ class IntelligenceOrchestrator43:
     # PUBLIC API
     # ---------------------------------------------------------
 
-    def build_plan(self, identity: IdentityType = "OWNER") -> OrchestrationPlan:
+    def build_plan(self, identity: IdentityType = "OWNER") -> OrchestrationPlan44:
         """
         Run full diagnostics, build explanations, prioritize issues,
         and prepare a list of agent actions (not executed).
@@ -124,7 +125,7 @@ class IntelligenceOrchestrator43:
         """
 
         if self.safe_mode:
-            return OrchestrationPlan(
+            return OrchestrationPlan44(
                 identity=identity,
                 created_at=time.time(),
                 issues=[],
@@ -136,19 +137,19 @@ class IntelligenceOrchestrator43:
 
         try:
             # 1) Run diagnostics
-            health_report = self.health_engine.analyze()
-            driver_report = self.driver_engine.analyze()
-            task_report = self.task_engine.analyze()
-            service_report = self.service_engine.analyze()
+            health_report: HealthReport44 = self.health_engine.analyze()
+            driver_report: DriverReport44 = self.driver_engine.analyze()
+            task_report: TaskReport44 = self.task_engine.analyze()
+            service_report: ServiceReport44 = self.service_engine.analyze()
 
             # 2) Build explanations
-            health_expl = self.education_engine.explain_system_health(identity, health_report)
-            driver_expl = self.education_engine.explain_drivers(identity, driver_report)
-            task_expl = self.education_engine.explain_tasks(identity, task_report)
-            service_expl = self.education_engine.explain_services(identity, service_report)
+            health_expl: EducationBundle44 = self.education_engine.explain_system_health(identity, health_report)
+            driver_expl: EducationBundle44 = self.education_engine.explain_drivers(identity, driver_report)
+            task_expl: EducationBundle44 = self.education_engine.explain_tasks(identity, task_report)
+            service_expl: EducationBundle44 = self.education_engine.explain_services(identity, service_report)
 
             # 3) Aggregate and prioritize issues
-            issues: List[PrioritizedItem] = []
+            issues: List[PrioritizedItem44] = []
             issues.extend(self._collect_health_issues(health_report, health_expl))
             issues.extend(self._collect_driver_issues(driver_report, driver_expl))
             issues.extend(self._collect_task_issues(task_report, task_expl))
@@ -167,7 +168,7 @@ class IntelligenceOrchestrator43:
                 issues=issues,
             )
 
-            return OrchestrationPlan(
+            return OrchestrationPlan44(
                 identity=identity,
                 created_at=time.time(),
                 issues=issues,
@@ -179,7 +180,7 @@ class IntelligenceOrchestrator43:
 
         except Exception:
             self.degraded_mode = True
-            return OrchestrationPlan(
+            return OrchestrationPlan44(
                 identity=identity,
                 created_at=time.time(),
                 issues=[],
@@ -192,17 +193,17 @@ class IntelligenceOrchestrator43:
     def execute_plan(
         self,
         identity: IdentityType,
-        plan: OrchestrationPlan,
+        plan: OrchestrationPlan44,
         max_actions: Optional[int] = None,
-    ) -> List[AgentResult]:
+    ) -> List[AgentResult44]:
         """
-        Optionally execute part of the plan via SystemAgent43.
+        Optionally execute part of the plan via SystemAgent44.
         Respects identity and dry_run flag of the underlying agent.
         """
         if self.safe_mode:
             return []
 
-        results: List[AgentResult] = []
+        results: List[AgentResult44] = []
         actions = plan.actions
 
         if max_actions is not None:
@@ -223,11 +224,11 @@ class IntelligenceOrchestrator43:
 
     def _collect_health_issues(
         self,
-        report: HealthReport,
-        bundle: EducationBundle,
-    ) -> List[PrioritizedItem]:
-        items: List[PrioritizedItem] = []
-        blocks_by_title = {b.title: b for b in bundle.blocks}
+        report: HealthReport44,
+        bundle: EducationBundle44,
+    ) -> List[PrioritizedItem44]:
+        items: List[PrioritizedItem44] = []
+        blocks_by_title: Dict[str, ExplanationBlock44] = {b.title: b for b in bundle.blocks}
 
         for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
@@ -235,7 +236,7 @@ class IntelligenceOrchestrator43:
             score = self._compute_priority(issue.severity, "health", issue)
 
             items.append(
-                PrioritizedItem(
+                PrioritizedItem44(
                     id=issue.id,
                     domain="health",
                     title=issue.title,
@@ -254,11 +255,11 @@ class IntelligenceOrchestrator43:
 
     def _collect_driver_issues(
         self,
-        report: DriverReport,
-        bundle: EducationBundle,
-    ) -> List[PrioritizedItem]:
-        items: List[PrioritizedItem] = []
-        blocks_by_title = {b.title: b for b in bundle.blocks}
+        report: DriverReport44,
+        bundle: EducationBundle44,
+    ) -> List[PrioritizedItem44]:
+        items: List[PrioritizedItem44] = []
+        blocks_by_title: Dict[str, ExplanationBlock44] = {b.title: b for b in bundle.blocks}
 
         for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
@@ -266,7 +267,7 @@ class IntelligenceOrchestrator43:
             score = self._compute_priority(issue.severity, "drivers", issue)
 
             items.append(
-                PrioritizedItem(
+                PrioritizedItem44(
                     id=issue.id,
                     domain="drivers",
                     title=issue.title,
@@ -286,11 +287,11 @@ class IntelligenceOrchestrator43:
 
     def _collect_task_issues(
         self,
-        report: TaskReport,
-        bundle: EducationBundle,
-    ) -> List[PrioritizedItem]:
-        items: List[PrioritizedItem] = []
-        blocks_by_title = {b.title: b for b in bundle.blocks}
+        report: TaskReport44,
+        bundle: EducationBundle44,
+    ) -> List[PrioritizedItem44]:
+        items: List[PrioritizedItem44] = []
+        blocks_by_title: Dict[str, ExplanationBlock44] = {b.title: b for b in bundle.blocks}
 
         for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
@@ -298,7 +299,7 @@ class IntelligenceOrchestrator43:
             score = self._compute_priority(issue.severity, "tasks", issue)
 
             items.append(
-                PrioritizedItem(
+                PrioritizedItem44(
                     id=issue.id,
                     domain="tasks",
                     title=issue.title,
@@ -317,11 +318,11 @@ class IntelligenceOrchestrator43:
 
     def _collect_service_issues(
         self,
-        report: ServiceReport,
-        bundle: EducationBundle,
-    ) -> List[PrioritizedItem]:
-        items: List[PrioritizedItem] = []
-        blocks_by_title = {b.title: b for b in bundle.blocks}
+        report: ServiceReport44,
+        bundle: EducationBundle44,
+    ) -> List[PrioritizedItem44]:
+        items: List[PrioritizedItem44] = []
+        blocks_by_title: Dict[str, ExplanationBlock44] = {b.title: b for b in bundle.blocks}
 
         for issue in getattr(report, "issues", []):
             block = blocks_by_title.get(issue.title)
@@ -329,7 +330,7 @@ class IntelligenceOrchestrator43:
             score = self._compute_priority(issue.severity, "services", issue)
 
             items.append(
-                PrioritizedItem(
+                PrioritizedItem44(
                     id=issue.id,
                     domain="services",
                     title=issue.title,
@@ -390,9 +391,9 @@ class IntelligenceOrchestrator43:
 
     def _normalize_and_sort_issues(
         self,
-        issues: List[PrioritizedItem],
+        issues: List[PrioritizedItem44],
         identity: IdentityType,
-    ) -> List[PrioritizedItem]:
+    ) -> List[PrioritizedItem44]:
         """
         Normalize scores and sort descending.
         Identity-aware adjustment:
@@ -406,7 +407,7 @@ class IntelligenceOrchestrator43:
 
         max_score = max(i.priority_score for i in issues) or 1
 
-        adjusted: List[PrioritizedItem] = []
+        adjusted: List[PrioritizedItem44] = []
         for item in issues:
             score = item.priority_score / max_score * 100
 
@@ -418,7 +419,7 @@ class IntelligenceOrchestrator43:
                     score *= 0.4
 
             adjusted.append(
-                PrioritizedItem(
+                PrioritizedItem44(
                     id=item.id,
                     domain=item.domain,
                     title=item.title,
@@ -435,30 +436,30 @@ class IntelligenceOrchestrator43:
         return adjusted
 
     # ---------------------------------------------------------
-    # ACTION MAPPING (4.3.x)
+    # ACTION MAPPING (4.4.0 PRO)
     # ---------------------------------------------------------
 
     def _build_agent_actions(
         self,
         identity: IdentityType,
-        health_report: HealthReport,
-        driver_report: DriverReport,
-        task_report: TaskReport,
-        service_report: ServiceReport,
-        issues: List[PrioritizedItem],
-    ) -> List[AgentAction]:
+        health_report: HealthReport44,
+        driver_report: DriverReport44,
+        task_report: TaskReport44,
+        service_report: ServiceReport44,
+        issues: List[PrioritizedItem44],
+    ) -> List[AgentAction44]:
         """
-        Map prioritized issues to SystemAgent43 actions.
+        Map prioritized issues to SystemAgent44 actions.
         Identity-aware and AI-aware.
         """
 
-        actions: List[AgentAction] = []
+        actions: List[AgentAction44] = []
 
         # DRIVER ISSUES → INSTALL DRIVER / OPEN VENDOR PAGE
         for issue in driver_report.issues:
             if issue.severity in ("warning", "critical"):
                 actions.append(
-                    AgentAction(
+                    AgentAction44(
                         id=f"install_driver_{issue.id}",
                         type="INSTALL_DRIVER",
                         label="Install missing or updated driver",
@@ -475,7 +476,7 @@ class IntelligenceOrchestrator43:
         for issue in task_report.issues:
             if getattr(issue, "id", "") == "explorer_restart_suggestion":
                 actions.append(
-                    AgentAction(
+                    AgentAction44(
                         id="restart_explorer",
                         type="RESTART_EXPLORER",
                         label="Restart Windows Explorer",
@@ -488,7 +489,7 @@ class IntelligenceOrchestrator43:
             if getattr(issue, "id", "") in ("high_cpu_processes", "high_ram_processes"):
                 for pid in getattr(issue, "related_pids", []):
                     actions.append(
-                        AgentAction(
+                        AgentAction44(
                             id=f"kill_process_{pid}",
                             type="KILL_PROCESS",
                             label=f"Terminate process {pid}",
@@ -502,7 +503,7 @@ class IntelligenceOrchestrator43:
         for issue in service_report.issues:
             for svc in getattr(issue, "related_services", []):
                 actions.append(
-                    AgentAction(
+                    AgentAction44(
                         id=f"restart_service_{svc}",
                         type="RESTART_SERVICE",
                         label=f"Restart service {svc}",
@@ -516,7 +517,7 @@ class IntelligenceOrchestrator43:
         for issue in health_report.issues:
             if getattr(issue, "id", "") == "disk_cleanup_recommended":
                 actions.append(
-                    AgentAction(
+                    AgentAction44(
                         id="run_disk_cleanup",
                         type="RUN_DISK_CLEANUP",
                         label="Run disk cleanup",
