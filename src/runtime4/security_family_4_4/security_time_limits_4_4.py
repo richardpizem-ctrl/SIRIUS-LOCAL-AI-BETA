@@ -1,20 +1,16 @@
-security_family_4_4/security_time_limits_4_4.py
 """
-SIRIUS LOCAL AI – Time Limits 4.4.0
+SIRIUS LOCAL AI – Time Limits 4.4.0 (PRO)
 
 TimeLimits 4.4 is the deterministic, offline‑safe time and quota
 enforcement system inside Security Family 4.4.
 
 It provides:
-
 - Per‑identity usage quotas (OWNER / FAMILY / STRANGER)
 - Session length limits
 - Daily usage limits
 - Cooldown enforcement
 - Behavior‑aware adjustments (safe subset)
 - Integration with Behavior Monitor 4.4 and Security Policy Core 4.4
-
-All logic is deterministic, offline, and fully isolated.
 
 Security Notes:
 - No real‑time clocks used (logical counters only)
@@ -28,12 +24,14 @@ from typing import Dict, Any
 
 class TimeLimits44:
     """
-    Deterministic time & quota enforcement for Runtime 4.4.
+    Deterministic time & quota enforcement for Runtime 4.4 (PRO).
     """
+
+    VALID_IDENTITIES = {"OWNER", "FAMILY", "STRANGER"}
 
     DEFAULT_LIMITS = {
         "OWNER": {
-            "session_max": 999999,   # practically unlimited
+            "session_max": 999999,
             "daily_max": 999999,
             "cooldown": 0,
         },
@@ -51,6 +49,7 @@ class TimeLimits44:
 
     def __init__(self):
         self.initialized = False
+        self.safe_mode = False
         self.degraded_mode = False
 
         # Logical counters (no real time)
@@ -61,16 +60,20 @@ class TimeLimits44:
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – CHECK LIMITS
@@ -80,8 +83,15 @@ class TimeLimits44:
         Checks whether the identity is allowed to perform an action
         based on session, daily, and cooldown limits.
         """
-        if identity not in self.DEFAULT_LIMITS:
-            return {"status": "error", "reason": "invalid_identity"}
+
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Time limit checks disabled in safe-mode.",
+            }
+
+        if identity not in self.VALID_IDENTITIES:
+            return {"status": "error", "code": "invalid_identity"}
 
         limits = self.DEFAULT_LIMITS[identity]
 
@@ -89,6 +99,7 @@ class TimeLimits44:
         if self.cooldown_remaining[identity] > 0:
             return {
                 "status": "blocked",
+                "layer": "time_limits",
                 "reason": "cooldown_active",
                 "remaining": self.cooldown_remaining[identity],
             }
@@ -98,6 +109,7 @@ class TimeLimits44:
             self.cooldown_remaining[identity] = limits["cooldown"]
             return {
                 "status": "blocked",
+                "layer": "time_limits",
                 "reason": "session_limit_reached",
                 "cooldown": limits["cooldown"],
             }
@@ -106,37 +118,57 @@ class TimeLimits44:
         if self.daily_usage[identity] >= limits["daily_max"]:
             return {
                 "status": "blocked",
+                "layer": "time_limits",
                 "reason": "daily_limit_reached",
             }
 
-        return {"status": "allowed"}
+        return {"status": "allowed", "layer": "time_limits"}
 
     # ------------------------------------------------------------------
     # PUBLIC API – CONSUME TIME
     # ------------------------------------------------------------------
-    def consume(self, identity: str, amount: int = 1):
+    def consume(self, identity: str, amount: int = 1) -> Dict[str, Any]:
         """
         Consumes logical time units.
         """
-        if identity not in self.DEFAULT_LIMITS:
-            return {"status": "error", "reason": "invalid_identity"}
 
-        self.session_usage[identity] += amount
-        self.daily_usage[identity] += amount
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Time consumption disabled in safe-mode.",
+            }
 
-        # Reduce cooldowns for all identities
-        for key in self.cooldown_remaining:
-            if self.cooldown_remaining[key] > 0:
-                self.cooldown_remaining[key] -= 1
+        if identity not in self.VALID_IDENTITIES:
+            return {"status": "error", "code": "invalid_identity"}
 
-        return {"status": "ok"}
+        if not isinstance(amount, int) or amount <= 0:
+            return {"status": "error", "code": "invalid_amount"}
+
+        try:
+            self.session_usage[identity] += amount
+            self.daily_usage[identity] += amount
+
+            # Reduce cooldowns for all identities
+            for key in self.cooldown_remaining:
+                if self.cooldown_remaining[key] > 0:
+                    self.cooldown_remaining[key] -= 1
+
+            return {"status": "ok"}
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "consume_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – RESET SESSION
     # ------------------------------------------------------------------
-    def reset_session(self, identity: str):
-        if identity not in self.DEFAULT_LIMITS:
-            return {"status": "error", "reason": "invalid_identity"}
+    def reset_session(self, identity: str) -> Dict[str, Any]:
+        if identity not in self.VALID_IDENTITIES:
+            return {"status": "error", "code": "invalid_identity"}
 
         self.session_usage[identity] = 0
         return {"status": "ok"}
@@ -144,9 +176,9 @@ class TimeLimits44:
     # ------------------------------------------------------------------
     # PUBLIC API – RESET DAILY
     # ------------------------------------------------------------------
-    def reset_daily(self, identity: str):
-        if identity not in self.DEFAULT_LIMITS:
-            return {"status": "error", "reason": "invalid_identity"}
+    def reset_daily(self, identity: str) -> Dict[str, Any]:
+        if identity not in self.VALID_IDENTITIES:
+            return {"status": "error", "code": "invalid_identity"}
 
         self.daily_usage[identity] = 0
         return {"status": "ok"}
@@ -155,8 +187,8 @@ class TimeLimits44:
     # PUBLIC API – GET STATUS
     # ------------------------------------------------------------------
     def get_status(self, identity: str) -> Dict[str, Any]:
-        if identity not in self.DEFAULT_LIMITS:
-            return {"status": "error", "reason": "invalid_identity"}
+        if identity not in self.VALID_IDENTITIES:
+            return {"status": "error", "code": "invalid_identity"}
 
         return {
             "status": "ok",
@@ -165,4 +197,6 @@ class TimeLimits44:
             "daily_used": self.daily_usage[identity],
             "cooldown_remaining": self.cooldown_remaining[identity],
             "limits": self.DEFAULT_LIMITS[identity],
+            "safe_mode": self.safe_mode,
+            "degraded_mode": self.degraded_mode,
         }
