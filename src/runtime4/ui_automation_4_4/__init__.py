@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – UI Automation Engine 4.4.0
+SIRIUS LOCAL AI – UI Automation Engine 4.4.0 (PRO)
 
 This package contains the next‑generation UI Automation Engine for Runtime 4.4.
 It extends the 4.3.x UI Automation stack with:
@@ -22,12 +22,12 @@ Security Notes (UI Automation 4.4.0):
 """
 
 # -------------------------------------------------------------------------
-# PACKAGE METADATA
+# PACKAGE METADATA (Runtime 4.4)
 # -------------------------------------------------------------------------
 
-UI_AUTOMATION_VERSION_4_4 = "4.4.0"
-UI_AUTOMATION_SECURITY_FAMILY = "4.4"
-UI_AUTOMATION_OS_LEVEL = True
+UI_AUTOMATION_VERSION_4_4: str = "4.4.0"
+UI_AUTOMATION_SECURITY_FAMILY: str = "4.4"
+UI_AUTOMATION_OS_LEVEL: bool = True
 
 # -------------------------------------------------------------------------
 # SAFE EXPORT LIST (no imports here)
