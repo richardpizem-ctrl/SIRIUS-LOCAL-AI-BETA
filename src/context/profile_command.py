@@ -5,19 +5,21 @@ from context.context_manager import ContextManager
 
 class ContextProfileCommand(BaseCommand):
     """
-    ContextProfileCommand 4.3
+    ContextProfileCommand 4.4
     Manages context profiles: save, load, delete, list, info.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - snapshot before save/load/delete
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic profile operations
+        - Snapshot before save/load/delete
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Stable output for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-profile"
     description = "Manages context profiles (save/load/delete/list/info)."
@@ -37,11 +39,12 @@ class ContextProfileCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Executes profile management operations.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
