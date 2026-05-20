@@ -4,20 +4,21 @@ from email.manager import EmailManager
 
 class EmailProfileCommand(BaseCommand):
     """
-    EmailProfileCommand 4.3
+    EmailProfileCommand 4.4
     Manages email sender profiles (create, list, delete, show).
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - context snapshot before mutation
-    - consistent return structure
-    - NL Router friendly action parsing
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic execution contract
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - NL Router friendly action parsing preserved
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "email-profile"
     description = "Manages email sender profiles."
@@ -43,7 +44,7 @@ class EmailProfileCommand(BaseCommand):
         self.email_manager = email_manager
 
     # ---------------------------------------------------------
-    # EXECUTION
+    # EXECUTION (deterministic)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
