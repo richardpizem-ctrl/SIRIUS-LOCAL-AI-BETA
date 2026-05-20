@@ -1,28 +1,23 @@
 """
-SIRIUS LOCAL AI – Knowledge Packs 2.0 Linker (Runtime 4.3)
+SIRIUS LOCAL AI – Knowledge Packs Linker 4.4.0 (PRO)
 
 Responsible for:
 - linking validated packs into a unified structure
-- resolving dependencies using PackGraph4
+- resolving dependencies using PackGraph44
 - merging pack data and metadata
 - preparing packs for runtime reasoning
 - enforcing Security Family 4.4 rules
 - supporting Self‑Repair 4.4 diagnostics
 
-This is the linking layer of Knowledge Packs 2.0 (Runtime 4.3).
+This is the linking layer of Knowledge Packs 4.4.
 """
 
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 
-class PackLinker4:
+class PackLinker44:
     """
-    Links Knowledge Packs 2.0 into a final runtime structure.
-    Provides:
-    - strict validation
-    - structured error surface
-    - safe-mode compatibility
-    - degraded-mode detection
+    Deterministic linker for Knowledge Packs 4.4.
     """
 
     def __init__(self, graph):
@@ -33,14 +28,27 @@ class PackLinker4:
         self.safe_mode = False
         self.degraded_mode = False
 
-    # ---------------------------------------------------------
-    # LINKING
-    # ---------------------------------------------------------
+    # ------------------------------------------------------------------
+    # INTERNAL HELPERS
+    # ------------------------------------------------------------------
+    def _validate_pack_dict(self, pack: Any) -> bool:
+        if not isinstance(pack, dict):
+            return False
+        if "data" not in pack or "metadata" not in pack:
+            return False
+        if not isinstance(pack["data"], dict):
+            return False
+        if not isinstance(pack["metadata"], dict):
+            return False
+        return True
 
+    # ------------------------------------------------------------------
+    # LINKING
+    # ------------------------------------------------------------------
     def link(self, packs: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
         """
         Links all packs according to dependency order.
-        Returns a merged structure with full Runtime 4.3 validation.
+        Returns a merged structure with full Runtime 4.4 validation.
         """
 
         # SAFE MODE
@@ -57,7 +65,7 @@ class PackLinker4:
         # Resolve dependency order
         order_result = self.graph.resolve_order()
 
-        if not isinstance(order_result, dict) or order_result.get("status") != "success":
+        if not isinstance(order_result, dict) or order_result.get("status") != "ok":
             return {
                 "status": "error",
                 "code": "graph_resolution_failed",
@@ -69,7 +77,7 @@ class PackLinker4:
         merged = {
             "packs": {},
             "merged_data": {},
-            "meta": {},
+            "merged_metadata": {},
             "order": order,
         }
 
@@ -87,33 +95,23 @@ class PackLinker4:
                     continue
 
                 # Validate pack structure
-                if not isinstance(pack, dict):
+                if not self._validate_pack_dict(pack):
                     return {"status": "error", "code": "invalid_pack_structure", "pack": pack_name}
 
-                data = pack.get("data")
-                meta = pack.get("meta")
-
-                # Validate data
-                if data is not None and not isinstance(data, dict):
-                    return {"status": "error", "code": "invalid_pack_data", "pack": pack_name}
-
-                # Validate metadata
-                if meta is not None and not isinstance(meta, dict):
-                    return {"status": "error", "code": "invalid_pack_meta", "pack": pack_name}
+                data = pack["data"]
+                meta = pack["metadata"]
 
                 # Store pack
                 merged["packs"][pack_name] = pack
 
                 # Merge data
-                if isinstance(data, dict):
-                    merged["merged_data"][pack_name] = data
+                merged["merged_data"][pack_name] = data
 
                 # Merge metadata
-                if isinstance(meta, dict):
-                    merged["meta"][pack_name] = meta
+                merged["merged_metadata"][pack_name] = meta
 
             return {
-                "status": "success",
+                "status": "ok",
                 "merged": merged,
                 "degraded_mode": self.degraded_mode
             }
