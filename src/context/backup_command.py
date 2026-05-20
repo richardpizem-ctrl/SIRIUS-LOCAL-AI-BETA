@@ -7,20 +7,21 @@ from datetime import datetime
 
 class ContextBackupCommand(BaseCommand):
     """
-    ContextBackupCommand 4.3
+    ContextBackupCommand 4.4
     Creates a timestamped backup of the entire context into the backups/ folder.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - context validation before backup
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic timestamping
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - Stable backup structure for Runtime4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-backup"
     description = "Creates a timestamped backup of the entire context into the backups/ folder."
@@ -41,11 +42,12 @@ class ContextBackupCommand(BaseCommand):
         self.backup_dir = backup_dir
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Creates a timestamped context backup.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
