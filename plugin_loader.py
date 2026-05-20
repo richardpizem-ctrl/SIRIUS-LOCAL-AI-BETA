@@ -1,6 +1,6 @@
-# plugin_loader_4_3.py
-# SIRIUS LOCAL AI – Plugin Loader 4.3.x
-# Safe, deterministic, sandboxed plugin loading system
+# plugin_loader_4_4.py
+# SIRIUS LOCAL AI – Plugin Loader 4.4.0 PRO
+# Deterministic, safe-mode compatible, Phase‑5 ready plugin loading system
 
 from __future__ import annotations
 
@@ -10,18 +10,18 @@ import json
 import traceback
 
 
-class PluginLoader43:
+class PluginLoader44:
     """
-    SIRIUS LOCAL AI — Plugin Loader (v4.3.x)
+    SIRIUS LOCAL AI — Plugin Loader (v4.4.0 PRO)
 
     Responsibilities:
         - Load plugins from /plugins directory
-        - Validate manifest.json (Phase‑4 rules)
+        - Validate manifest.json (Phase‑5 rules)
         - Dynamically import plugin modules (sandboxed)
         - Register NL commands, AI tasks, workflows, rules, GUI elements
         - Provide safe-mode + degraded-mode behavior
-        - Deterministic logging through RuntimeManager
-        - Self‑Repair 4.4 ready
+        - Deterministic logging through RuntimeManager44
+        - Self‑Repair Layer 4.4 compatible
     """
 
     def __init__(self, runtime_manager):
@@ -32,10 +32,10 @@ class PluginLoader43:
         self.safe_mode = False
         self.degraded_mode = False
 
-        self.rm.logger.info("PluginLoader initialized (v4.3.x)")
+        self.rm.logger.info("PluginLoader initialized (v4.4.0 PRO)")
 
     # --------------------------------------------------------
-    # MAIN LOADER (4.3.x)
+    # MAIN LOADER (4.4.0 PRO)
     # --------------------------------------------------------
     def load_all(self):
         """Load all plugins from /plugins directory."""
@@ -84,7 +84,7 @@ class PluginLoader43:
                 )
 
     # --------------------------------------------------------
-    # MANIFEST LOADING (4.3.x)
+    # MANIFEST LOADING (4.4.0 PRO)
     # --------------------------------------------------------
     def _load_manifest(self, path):
         """Load and parse manifest.json."""
@@ -96,10 +96,10 @@ class PluginLoader43:
             return {}
 
     # --------------------------------------------------------
-    # MANIFEST VALIDATION (4.3.x)
+    # MANIFEST VALIDATION (4.4.0 PRO)
     # --------------------------------------------------------
     def _validate_manifest(self, manifest, folder):
-        """Validate manifest.json according to Phase‑4 rules."""
+        """Validate manifest.json according to Phase‑5 rules."""
         required = ["name", "version", "author", "entry"]
 
         for key in required:
@@ -113,10 +113,18 @@ class PluginLoader43:
             self.rm.logger.info(f"[PLUGIN] {folder}: disabled in manifest — skipping")
             return False
 
+        # Phase‑5: optional integrity hash
+        if "integrity" in manifest:
+            if not isinstance(manifest["integrity"], str):
+                self.rm.logger.error(
+                    f"[PLUGIN] {folder}: invalid integrity field (must be string)"
+                )
+                return False
+
         return True
 
     # --------------------------------------------------------
-    # DYNAMIC MODULE IMPORT (4.3.x)
+    # DYNAMIC MODULE IMPORT (4.4.0 PRO)
     # --------------------------------------------------------
     def _load_module(self, folder):
         """Import plugin module dynamically (sandboxed)."""
@@ -128,10 +136,10 @@ class PluginLoader43:
             raise RuntimeError(f"Module import failed: {e}")
 
     # --------------------------------------------------------
-    # PLUGIN REGISTRATION (4.3.x)
+    # PLUGIN REGISTRATION (4.4.0 PRO)
     # --------------------------------------------------------
     def _register_plugin(self, plugin, manifest):
-        """Register plugin capabilities into RuntimeManager."""
+        """Register plugin capabilities into RuntimeManager44."""
 
         # NL commands
         if hasattr(plugin, "nl_commands"):
