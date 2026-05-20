@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 class RuntimeEngine:
     """
-    RuntimeEngine 4.3
+    RuntimeEngine 4.4
     -----------------
     - Manages module lifecycle
     - Dependency-aware startup
@@ -20,8 +20,9 @@ class RuntimeEngine:
     - Telemetry and health checks
     - Error isolation
     - Command parsing + routing
-    - Deterministic Runtime4 behavior
-    - Self-Repair 4.4 compatible
+    - Deterministic Runtime4.4 behavior
+    - Self‑Repair Layer 4.4 compatible
+    - Stable structured return values
     """
 
     def __init__(self):
