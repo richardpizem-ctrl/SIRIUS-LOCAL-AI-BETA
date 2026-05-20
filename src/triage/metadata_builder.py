@@ -1,6 +1,6 @@
-# metadata_builder.py
-# Automatic Input Triage Engine – MetadataBuilder 4.3.x
-# SIRIUS LOCAL AI – deterministic, offline-only metadata generator
+# metadata_builder_4_4.py
+# SIRIUS LOCAL AI – MetadataBuilder 4.4.0 PRO
+# Deterministic, offline-only metadata generator with Phase‑5 security hooks.
 
 import os
 import time
@@ -8,16 +8,17 @@ import hashlib
 from typing import Dict, Any, Optional
 
 
-class MetadataBuilder:
+class MetadataBuilder44:
     """
-    MetadataBuilder 4.3.x
+    MetadataBuilder 4.4.0 PRO
 
     Responsibilities:
         - Build deterministic metadata for input files
         - Provide safe fallback metadata in degraded-mode
-        - Provide sandbox/quarantine metadata hooks (Phase‑4)
-        - Provide file integrity metadata (hashes)
-        - Fully compatible with AITEController 4.3.x
+        - Provide sandbox/quarantine metadata hooks (Phase‑5 ready)
+        - Provide file integrity metadata (SHA‑256)
+        - Extended category mapping (document, archive)
+        - Fully compatible with AITEController44
         - Deterministic, offline-only behavior
     """
 
@@ -111,7 +112,7 @@ class MetadataBuilder:
     def _resolve_category(self, input_type: str) -> str:
         """
         Map input types to metadata categories.
-        Deterministic and Phase‑4 compatible.
+        Deterministic and Phase‑5 compatible.
         """
         if input_type == "audio":
             return "media"
@@ -129,6 +130,10 @@ class MetadataBuilder:
             return "project"
         if input_type == "text":
             return "document"
+        if input_type == "document":
+            return "document"
+        if input_type == "archive":
+            return "archive"
         if input_type == "binary":
             return "binary"
         return "unknown"
