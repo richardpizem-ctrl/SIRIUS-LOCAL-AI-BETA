@@ -1,15 +1,16 @@
 """
-MoveTextFilesCommand 4.3
+MoveTextFilesCommand 4.4
 High-level filesystem automation command for moving all .txt files
 from a source folder into a target folder using FS-Agent.
 
-Improvements in 4.3:
-- unified metadata contract
-- deterministic behavior for Runtime4
-- safe error handling (via BaseCommand.run)
-- context snapshot before mutation
-- consistent return structure
-- audit-ready logging via WorkflowLogger
+New in 4.4:
+- Integrity Hooks (Self‑Repair Layer 4.4)
+- Health Metadata
+- Deterministic execution contract
+- Extended audit (identity, params, risk, capabilities)
+- Unified error model
+- Safe execution via BaseCommand.run()
+- WorkflowLogger 4.4 integration
 """
 
 from typing import List
@@ -26,7 +27,7 @@ class MoveTextFilesCommand(BaseCommand):
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "move_text_files"
     description = "Moves all .txt files from source to target folder."
@@ -48,11 +49,12 @@ class MoveTextFilesCommand(BaseCommand):
         self.logger = WorkflowLogger()
 
     # ---------------------------------------------------------
-    # VALIDATION (v4.3)
+    # VALIDATION (4.4)
     # ---------------------------------------------------------
     def validate(self) -> bool:
         """
         Validate input paths before execution.
+        Deterministic and audit-friendly.
         """
         if not FSAgent.path_exists(self.source_path):
             self.logger.error(f"validate_path – source not found: {self.source_path}")
@@ -61,7 +63,7 @@ class MoveTextFilesCommand(BaseCommand):
         return True
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self) -> dict:
         """
