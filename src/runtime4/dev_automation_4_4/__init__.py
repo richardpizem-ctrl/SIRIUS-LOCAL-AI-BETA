@@ -1,4 +1,3 @@
-dev_automation_4_4/__init__.py
 """
 SIRIUS LOCAL AI – Developer Automation 4.4.0
 
@@ -27,6 +26,8 @@ Security Notes (Developer Automation 4.4.0):
 DEV_AUTOMATION_VERSION_4_4 = "4.4.0"
 DEV_AUTOMATION_SECURITY_FAMILY = "4.4"
 DEV_AUTOMATION_OFFLINE = True
+DEV_AUTOMATION_DETERMINISTIC = True
+DEV_AUTOMATION_SELF_REPAIR_READY = True
 
 # -------------------------------------------------------------------------
 # SAFE EXPORT LIST (no imports here)
@@ -40,4 +41,6 @@ __all__ = [
     "DEV_AUTOMATION_VERSION_4_4",
     "DEV_AUTOMATION_SECURITY_FAMILY",
     "DEV_AUTOMATION_OFFLINE",
+    "DEV_AUTOMATION_DETERMINISTIC",
+    "DEV_AUTOMATION_SELF_REPAIR_READY",
 ]
