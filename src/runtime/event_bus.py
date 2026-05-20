@@ -7,18 +7,19 @@ log = logging.getLogger(__name__)
 
 class EventBus:
     """
-    EventBus 4.3
+    EventBus 4.4
     --------------------
     Features:
-    - Thread‑safe event dispatch
-    - Async dispatch
-    - Wildcard listeners (*)
-    - One‑time listeners (once)
-    - Event metadata (timestamp, source, payload)
-    - Listener groups
-    - Optional event history
-    - Deterministic Runtime4 behavior
-    - Self‑Repair 4.4 compatible
+        - Thread‑safe event dispatch
+        - Async dispatch
+        - Wildcard listeners (*)
+        - One‑time listeners (once)
+        - Event metadata (timestamp, source, payload)
+        - Listener groups
+        - Optional event history
+        - Deterministic Runtime4.4 behavior
+        - Self‑Repair Layer 4.4 compatible
+        - Stable structured return values
     """
 
     def __init__(self, keep_history: bool = False):
