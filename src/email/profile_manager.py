@@ -4,16 +4,17 @@ import json
 
 class EmailProfileManager:
     """
-    EmailProfileManager 4.3
+    EmailProfileManager 4.4
     Handles creation, loading, listing, and deletion of
     email sender profiles for SIRIUS LOCAL AI.
 
-    Improvements in 4.3:
-    - deterministic Runtime4 behavior
-    - strict validation of profile names
-    - safe file operations with error handling
-    - consistent return structure for EmailManager and commands
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Deterministic Runtime4.4 behavior
+        - Strict profile name validation
+        - Stable file operations with safe error handling
+        - Deep-copy isolation for all operations
+        - Stable output contract for EmailManager 4.4
+        - Self‑Repair Layer 4.4 compatible metadata
     """
 
     VALID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
@@ -45,6 +46,7 @@ class EmailProfileManager:
         """
         Saves a profile to disk.
         Returns True on success, False on failure.
+        Deterministic, safe, and audit‑friendly.
         """
         if not self._valid_name(name):
             return False
@@ -70,9 +72,15 @@ class EmailProfileManager:
 
         try:
             with open(self._path(name), "r", encoding="utf-8") as f:
-                return json.load(f)
+                data = json.load(f)
         except Exception:
             return None
+
+        # Validate structure
+        if not isinstance(data, dict):
+            return None
+
+        return data
 
     # ---------------------------------------------------------
     # LIST PROFILES
@@ -80,6 +88,7 @@ class EmailProfileManager:
     def list_profiles(self):
         """
         Returns a sorted list of all profile names.
+        Deterministic ordering.
         """
         try:
             files = os.listdir(self.base_path)
