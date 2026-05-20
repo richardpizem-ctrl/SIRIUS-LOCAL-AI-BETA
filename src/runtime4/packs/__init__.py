@@ -1,38 +1,60 @@
 """
-SIRIUS LOCAL AI – PACKS 4.3 Package
+SIRIUS LOCAL AI – PACKS 4.4 Package (PRO)
 
 Provides:
-- PackGraph4
-- PackLinker4
-- PackLoader4
-- PackValidator4
+- PackGraphExpander44
+- PackLinker44
+- KnowledgePackLoader44
+- KnowledgePackValidator44
+- PackDeltaUpdater44
+- PackDynamicLoader44
 
 This package manages:
-- knowledge pack structure
-- dependency linking
-- validation
-- loading and registration into Runtime 4.3
+- Knowledge Pack structure
+- Dependency linking
+- Validation
+- Loading and registration into Runtime 4.4
+- Deterministic graph expansion
+- Safe delta updates
+- Dynamic (non-executing) pack loading
 
-Security Notes (Runtime 4.3):
-- Only static imports are allowed.
+Security Notes (Runtime 4.4 PRO):
+- Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - __all__ must contain only verified public symbols.
-- Compatible with Security Family 4.4.
+- All modules must be deterministic, offline, and isolated.
+- Fully compatible with Security Family 4.4.
 """
 
-from .pack_graph import PackGraph4
-from .pack_linker import PackLinker4
-from .pack_loader import PackLoader4
-from .pack_validator import PackValidator4
+# -------------------------------------------------------------------------
+# PACKAGE METADATA
+# -------------------------------------------------------------------------
 
-PACKS_VERSION = "4.3"
+PACKS_VERSION = "4.4"
 SECURITY_FAMILY_COMPAT = "4.4"
 
+# -------------------------------------------------------------------------
+# SAFE STATIC IMPORTS
+# -------------------------------------------------------------------------
+
+from .pack_graph_expander_4_4 import PackGraphExpander44
+from .pack_linker_4_4 import PackLinker44
+from .kp_loader_4_4 import KnowledgePackLoader44
+from .kp_validator_4_4 import KnowledgePackValidator44
+from .pack_delta_updater_4_4 import PackDeltaUpdater44
+from .pack_dynamic_loader_4_4 import PackDynamicLoader44
+
+# -------------------------------------------------------------------------
+# SAFE EXPORT LIST
+# -------------------------------------------------------------------------
+
 __all__ = [
-    "PackGraph4",
-    "PackLinker4",
-    "PackLoader4",
-    "PackValidator4",
+    "PackGraphExpander44",
+    "PackLinker44",
+    "KnowledgePackLoader44",
+    "KnowledgePackValidator44",
+    "PackDeltaUpdater44",
+    "PackDynamicLoader44",
     "PACKS_VERSION",
     "SECURITY_FAMILY_COMPAT",
 ]
