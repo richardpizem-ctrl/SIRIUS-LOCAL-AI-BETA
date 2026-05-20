@@ -9,21 +9,23 @@ log = logging.getLogger(__name__)
 
 class CommandRouter:
     """
-    CommandRouter 4.3
+    CommandRouter 4.4
     --------------------
     Routes parsed commands to the correct module and method.
 
-    Improvements in 4.3:
-    - deterministic Runtime4 behavior
-    - strict validation of module/method
-    - consistent structured return format
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Deterministic routing contract
+        - Stable error model for Runtime4.4
+        - Strict module/method validation
+        - Self‑Repair Layer 4.4 compatible output
+        - Guaranteed structured response
+        - No side-effects outside module execution
     """
 
     def __init__(self):
         self.name = "router"
 
-        # Registered modules
+        # Registered modules (deterministic order)
         self.modules = {
             "fs": FSModule(),
             "editor": EditorModule(),
@@ -36,9 +38,12 @@ class CommandRouter:
     def route(self, parsed: dict):
         """
         Executes a parsed command.
-        Returns a structured response.
+        Deterministic, safe, and audit‑friendly.
         """
 
+        # -----------------------------
+        # VALIDATE PARSED OBJECT
+        # -----------------------------
         if not isinstance(parsed, dict):
             log.error("ROUTER: Invalid parsed command object.")
             return {
