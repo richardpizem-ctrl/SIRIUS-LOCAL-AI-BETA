@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime Package 4.3
+SIRIUS LOCAL AI – Runtime Package 4.4
 -------------------------------------
 This package contains the core runtime components of the
 SIRIUS system.
@@ -11,12 +11,14 @@ The runtime subsystem provides:
 - natural language routing
 - runtime manager and agent orchestration
 - deterministic behavior for Runtime4
-- Self‑Repair 4.4 compatibility
+- Self‑Repair Layer 4.4 compatibility
+- stable metadata contract for NL Router 4.4
 
 Notes:
 - Modules inside this package are dynamically loaded by the system.
-- No imports are performed here to avoid side‑effects during initialization.
+- No imports are performed here to avoid side-effects during initialization.
 - Initialization is handled by runtime_manager and module_base.
+- All modules must follow the Runtime4.4 deterministic execution model.
 """
 
 __all__ = [
