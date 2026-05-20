@@ -1,24 +1,25 @@
-# input_router.py
-# Automatic Input Triage Engine – InputRouter 4.3.x
-# SIRIUS LOCAL AI – deterministic, offline-only routing engine
+# input_router_4_4.py
+# SIRIUS LOCAL AI – InputRouter 4.4.0 PRO
+# Deterministic, offline-only routing engine with Phase‑5 security hooks.
 
 from typing import Dict
 
 
-class InputRouter:
+class InputRouter44:
     """
-    InputRouter 4.3.x
+    InputRouter 4.4.0 PRO
 
     Responsibilities:
         - Deterministic mapping of input types to storage directories
         - Safe fallback routing for unknown types
-        - Dynamic route overrides (Phase‑4)
-        - Restricted-path detection (Phase‑4)
-        - Sandbox & quarantine routing hooks
+        - Dynamic route overrides (Phase‑4/5)
+        - Restricted-path detection (sandbox isolation)
+        - Quarantine routing (Phase‑4/5)
         - Safe‑mode and degraded‑mode compatible
+        - Offline-only behavior
 
     Used by:
-        AITEController.process()
+        AITEController44.process()
     """
 
     def __init__(self):
@@ -35,18 +36,21 @@ class InputRouter:
             "image": "storage/images/",
             "video": "storage/video/",
             "text": "storage/text/",
+            "document": "storage/documents/",
+            "archive": "storage/archives/",
             "binary": "storage/bin/",
             "unknown": "storage/unknown/",
         }
 
-        # Phase‑4 restricted directories
+        # Phase‑4/5 restricted directories
         self.restricted_paths = {
             "storage/system/",
             "storage/runtime/",
             "storage/security/",
+            "storage/kernel/",
         }
 
-        # Phase‑4 quarantine directory
+        # Phase‑4/5 quarantine directory
         self.quarantine_path = "storage/quarantine/"
 
     # ---------------------------------------------------------
@@ -115,7 +119,7 @@ class InputRouter:
         return dict(self.routes)
 
     # ---------------------------------------------------------
-    # Phase‑4 Security Hooks
+    # Phase‑4/5 Security Hooks
     # ---------------------------------------------------------
 
     def _is_restricted(self, path: str) -> bool:
@@ -129,6 +133,6 @@ class InputRouter:
 
     def quarantine(self, input_type: str) -> str:
         """
-        Explicit quarantine routing (Phase‑4).
+        Explicit quarantine routing (Phase‑4/5).
         """
         return self.quarantine_path
