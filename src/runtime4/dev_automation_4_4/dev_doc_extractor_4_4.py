@@ -1,17 +1,14 @@
-dev_automation_4_4/dev_doc_extractor_4_4.py
 """
 SIRIUS LOCAL AI – Developer Documentation Extractor 4.4.0
 
-This module provides deterministic, offline‑safe documentation extraction
-for Developer Automation 4.4. It supports:
+Deterministic, offline‑safe documentation extraction for Developer Automation 4.4.
 
-- Extracting docstrings from Python modules
+Features:
+- Extracting module docstrings
+- Extracting class/function docstrings
 - Extracting inline comments
 - Building structured documentation trees
-- Generating summaries and metadata
 - Security‑aware extraction (Security Family 4.4)
-
-All logic is deterministic, offline, and fully isolated.
 
 Security Notes:
 - Only static imports allowed.
@@ -26,6 +23,7 @@ from typing import Dict, Any, List, Optional
 class DevDocExtractor44:
     """
     Deterministic documentation extractor for Runtime 4.4.
+    Fully isolated, offline‑safe, and Self‑Repair 4.4 compatible.
     """
 
     def __init__(self, analyzer=None, security_policy=None):
@@ -44,10 +42,16 @@ class DevDocExtractor44:
 
         try:
             if self.analyzer:
-                self.analyzer.initialize()
+                res = self.analyzer.initialize()
+                if isinstance(res, dict) and res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": res}
 
             if self.security_policy:
-                self.security_policy.initialize()
+                sec = self.security_policy.initialize()
+                if isinstance(sec, dict) and sec.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": sec}
 
             self.initialized = True
             return {"status": "initialized"}
@@ -68,34 +72,33 @@ class DevDocExtractor44:
         - class docstrings
         - function docstrings
         - inline comments (# ...)
-        - metadata summary
-
-        Returns:
-        {
-            "status": "ok",
-            "documentation": {...},
-        }
         """
+
+        # Ensure initialized
         if not self.initialized:
             init_result = self.initialize()
             if init_result.get("status") not in ("initialized", "already_initialized"):
-                return {"status": "error", "reason": "extractor_not_initialized", "details": init_result}
+                return {
+                    "status": "error",
+                    "reason": "extractor_not_initialized",
+                    "details": init_result,
+                }
 
-        # 1. Security policy check
+        # Security policy check
         if self.security_policy:
             sec = self.security_policy.check_doc_extraction(options)
             if sec.get("status") != "allowed":
                 return {"status": "blocked", "policy": sec}
 
         try:
-            doc = {
+            documentation = {
                 "module_doc": self._extract_module_doc(source_code),
                 "classes": self._extract_class_docs(source_code),
                 "functions": self._extract_function_docs(source_code),
                 "comments": self._extract_inline_comments(source_code),
             }
 
-            return {"status": "ok", "documentation": doc}
+            return {"status": "ok", "documentation": documentation}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -109,13 +112,14 @@ class DevDocExtractor44:
         if not lines:
             return None
 
-        if lines[0].startswith('"""') or lines[0].startswith("'''"):
+        first = lines[0].strip()
+        if first.startswith('"""') or first.startswith("'''"):
             doc = []
-            quote = lines[0][:3]
+            quote = first[:3]
             for line in lines[1:]:
-                if line.startswith(quote):
+                if line.strip().startswith(quote):
                     break
-                doc.append(line)
+                doc.append(line.rstrip())
             return "\n".join(doc).strip()
 
         return None
@@ -128,8 +132,9 @@ class DevDocExtractor44:
         lines = code.splitlines()
 
         for i, line in enumerate(lines):
-            if line.strip().startswith("class "):
-                name = line.strip().split()[1].split("(")[0].replace(":", "")
+            stripped = line.strip()
+            if stripped.startswith("class "):
+                name = stripped.split()[1].split("(")[0].replace(":", "")
                 doc = self._extract_following_docstring(lines, i + 1)
                 classes.append({"name": name, "doc": doc})
 
@@ -138,13 +143,14 @@ class DevDocExtractor44:
     # ------------------------------------------------------------------
     # INTERNAL – FUNCTION DOCSTRINGS
     # ------------------------------------------------------------------
-    def _extract_function_docs(self, code: str) -> List[Dict[str, Any]]:
+    def _extract_function_docs(self, code: str) -> List[Dict[str,Any]]:
         funcs = []
         lines = code.splitlines()
 
         for i, line in enumerate(lines):
-            if line.strip().startswith("def "):
-                name = line.strip().split()[1].split("(")[0]
+            stripped = line.strip()
+            if stripped.startswith("def "):
+                name = stripped.split()[1].split("(")[0]
                 doc = self._extract_following_docstring(lines, i + 1)
                 funcs.append({"name": name, "doc": doc})
 
