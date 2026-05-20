@@ -1,26 +1,15 @@
-# household_4_4/home_security_bridge_4_4.py
 """
-SIRIUS LOCAL AI – Home Security Bridge 4.4.0
+SIRIUS LOCAL AI – Home Security Bridge 4.4.0 (PRO)
 
 Účel:
 - deterministický most medzi Household Automation 4.4 a bezpečnostnými režimami
-- prepína domáce správanie podľa security módu:
-    - HOME
-    - AWAY
-    - NIGHT
-    - VACATION
-    - SCHOOL_MODE
-    - STRANGER_MODE
-- 100 % offline, žiadne AI heuristiky, žiadne dynamické importy
+- prepína domáce správanie podľa security módu
+- 100 % offline, žiadne AI heuristiky
 
-Príklady:
-- pri AWAY:
-    - vypnúť svetlá
-    - zamknúť dvere (ak sú mapované ako zariadenia)
-- pri NIGHT:
-    - vypnúť väčšinu svetiel, nechať chodbu
-- pri STRANGER_MODE:
-    - sprísniť safety guard (napr. len OWNER/FAMILY)
+Security Family 4.4:
+- safe‑mode kompatibilita
+- sprísnené pravidlá pre STRANGER_MODE a VACATION
+- Self‑Repair 4.4 ready
 """
 
 from typing import Dict, Any, List, Optional
@@ -34,6 +23,7 @@ class HomeSecurityBridge44:
     def __init__(self, state_manager=None, safety_guard=None, event_bus=None):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
         self.state_manager = state_manager
         self.safety_guard = safety_guard
@@ -42,7 +32,7 @@ class HomeSecurityBridge44:
         # aktuálny security mód
         self.current_mode: str = "HOME"
 
-        # jednoduché mapovanie módov na akcie
+        # deterministické mapovanie módov na akcie
         self.mode_actions = {
             "HOME": [],
             "AWAY": [
@@ -59,20 +49,39 @@ class HomeSecurityBridge44:
             "STRANGER_MODE": [],
         }
 
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # INTERNAL VALIDATION
+    # ---------------------------------------------------------
+    def _validate_str(self, value: Any) -> bool:
+        return isinstance(value, str) and value.strip()
+
+    def _validate_actions(self, actions: Any) -> bool:
+        if not isinstance(actions, list):
+            return False
+        for a in actions:
+            if not isinstance(a, dict):
+                return False
+            if not self._validate_str(a.get("type")):
+                return False
+            if not self._validate_str(a.get("action")):
+                return False
+        return True
+
+    # ---------------------------------------------------------
     # INITIALIZATION
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
-            if self.state_manager:
-                self.state_manager.initialize()
-            if self.safety_guard:
-                self.safety_guard.initialize()
-            if self.event_bus:
-                self.event_bus.initialize()
+            modules = [self.state_manager, self.safety_guard, self.event_bus]
+            for m in modules:
+                if m:
+                    res = m.initialize()
+                    if isinstance(res, dict) and res.get("status") == "error":
+                        self.degraded_mode = True
+                        return {"status": "error", "code": "module_init_failed"}
 
             self.initialized = True
             return {"status": "initialized"}
@@ -81,100 +90,118 @@ class HomeSecurityBridge44:
             self.degraded_mode = True
             return {"status": "error", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     # SET SECURITY MODE
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def set_mode(self, mode: str) -> Dict[str, Any]:
+        if not self._validate_str(mode):
+            return {"status": "error", "code": "invalid_mode"}
+
         mode = mode.upper().strip()
         if mode not in self.mode_actions:
-            return {"status": "error", "reason": "unknown_mode"}
+            return {"status": "error", "code": "unknown_mode"}
 
-        old_mode = self.current_mode
-        self.current_mode = mode
+        try:
+            old_mode = self.current_mode
+            self.current_mode = mode
 
-        # aplikuj akcie módu
-        actions = self.mode_actions.get(mode, [])
-        results: List[Dict[str, Any]] = []
+            actions = self.mode_actions.get(mode, [])
+            results: List[Dict[str, Any]] = []
 
-        if self.state_manager:
-            for act in actions:
-                t = act.get("type")
-                action = act.get("action")
-                value = act.get("value")
+            if self.state_manager:
+                for act in actions:
+                    t = act.get("type")
+                    action = act.get("action")
+                    value = act.get("value")
 
-                if t == "room":
-                    room = act.get("room")
-                    if room == "all":
+                    if t == "room":
+                        room = act.get("room")
+                        if not self._validate_str(room):
+                            results.append({"status": "error", "code": "invalid_room"})
+                            continue
+
                         # špeciálny prípad – všetky miestnosti
-                        # tu predpokladáme, že state_manager vie pracovať s "all"
-                        res = self.state_manager.set_state_for_room("all", action, value)
+                        if room == "all":
+                            res = self.state_manager.set_state_for_room("all", action, value)
+                        else:
+                            res = self.state_manager.set_state_for_room(room, action, value)
+
                         results.append(res)
-                    else:
-                        res = self.state_manager.set_state_for_room(room, action, value)
-                        results.append(res)
 
-        if self.event_bus:
-            self.event_bus.emit("security_mode_changed", {
-                "old_mode": old_mode,
-                "new_mode": mode,
-                "results": results,
-            })
+            if self.event_bus:
+                try:
+                    self.event_bus.emit("security_mode_changed", {
+                        "old_mode": old_mode,
+                        "new_mode": mode,
+                        "results": results,
+                    })
+                except Exception:
+                    self.degraded_mode = True
 
-        return {"status": "ok", "mode": mode, "results": results}
+            return {"status": "ok", "mode": mode, "results": results}
 
-    # ------------------------------------------------------------------
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "set_mode_failed", "exception": str(exc)}
+
+    # ---------------------------------------------------------
     # GET CURRENT MODE
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def get_mode(self) -> Dict[str, Any]:
         return {"status": "ok", "mode": self.current_mode}
 
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     # CHECK COMMAND AGAINST SECURITY MODE
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def check_command(self, command: str, identity: str) -> Dict[str, Any]:
-        """
-        Voliteľná vrstva nad safety guardom – môže sprísniť pravidlá
-        podľa aktuálneho security módu.
-        """
+        if not self._validate_str(command):
+            return {"status": "error", "code": "invalid_command"}
 
-        # najprv klasický safety guard
-        if self.safety_guard:
-            base = self.safety_guard.check_command(command, identity)
-            if base.get("status") == "blocked":
-                return base
+        if not self._validate_str(identity):
+            return {"status": "error", "code": "invalid_identity"}
 
-        # dodatočné obmedzenia podľa módu
-        mode = self.current_mode
+        try:
+            # 1. základná bezpečnostná vrstva
+            if self.safety_guard:
+                base = self.safety_guard.check_command(command, identity)
+                if base.get("status") == "blocked":
+                    return base
 
-        if mode == "STRANGER_MODE":
-            # v tomto móde blokujeme všetko okrem OWNER
-            if identity.upper().strip() != "OWNER":
-                return {
-                    "status": "blocked",
-                    "reason": "stranger_mode_restriction",
-                    "mode": mode,
-                }
-
-        if mode == "VACATION":
-            # počas dovolenky blokujeme "otvor", "open", "unlock"
+            # 2. dodatočné obmedzenia podľa módu
+            mode = self.current_mode
             lowered = command.lower()
-            risky = ["otvor", "open", "unlock", "odomkni"]
-            if any(w in lowered for w in risky):
-                return {
-                    "status": "blocked",
-                    "reason": "vacation_mode_restriction",
-                    "mode": mode,
-                }
 
-        return {"status": "ok", "mode": mode}
+            if mode == "STRANGER_MODE":
+                if identity.upper().strip() != "OWNER":
+                    return {
+                        "status": "blocked",
+                        "code": "stranger_mode_restriction",
+                        "mode": mode,
+                    }
 
-    # ------------------------------------------------------------------
+            if mode == "VACATION":
+                risky = ["open", "unlock", "otvor", "odomkni"]
+                if any(w in lowered for w in risky):
+                    return {
+                        "status": "blocked",
+                        "code": "vacation_mode_restriction",
+                        "mode": mode,
+                    }
+
+            return {"status": "ok", "mode": mode}
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "check_failed", "exception": str(exc)}
+
+    # ---------------------------------------------------------
     # STATUS
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def get_status(self) -> Dict[str, Any]:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "current_mode": self.current_mode,
         }
