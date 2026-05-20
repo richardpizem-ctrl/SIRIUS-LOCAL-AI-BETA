@@ -1,6 +1,5 @@
-# reasoning_4_4/re_rule_engine_4_4.py
 """
-SIRIUS LOCAL AI – Reasoning Rule Engine 4.4.0
+SIRIUS LOCAL AI – Reasoning Rule Engine 4.4.0 (PRO)
 
 Deterministic rule engine pre Reasoning Engine 4.4.
 
@@ -9,6 +8,7 @@ Deterministic rule engine pre Reasoning Engine 4.4.
 - žiadne AI, žiadne heuristiky
 - 100 % offline, deterministické
 - pravidlá sú čisté JSON/dict štruktúry
+- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
 
 Pravidlo má formát:
 {
@@ -19,24 +19,24 @@ Pravidlo má formát:
     "then": {
         "conclusion": "napoleon_is_emperor",
         "value": True
-    },
-    "depends_on": ["napoleon"]
+    }
 }
 """
 
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Tuple
 
 
 class ReasoningRuleEngine44:
     """
-    Deterministic rule engine.
+    Deterministic rule engine (PRO).
     """
 
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
-        # Tu môžeš neskôr pridať dynamické pravidlá
+        # Registered rules (pure JSON/dict)
         self.registered_rules: List[Dict[str, Any]] = []
 
     # ------------------------------------------------------------------
@@ -48,17 +48,54 @@ class ReasoningRuleEngine44:
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+
+    # ------------------------------------------------------------------
+    # RULE VALIDATION
+    # ------------------------------------------------------------------
+    def _validate_rule(self, rule: Dict[str, Any]) -> Dict[str, Any]:
+        if not isinstance(rule, dict):
+            return {"status": "error", "code": "invalid_rule_type"}
+
+        if "id" not in rule or not isinstance(rule["id"], str):
+            return {"status": "error", "code": "invalid_rule_id"}
+
+        if "if" not in rule or not isinstance(rule["if"], list):
+            return {"status": "error", "code": "invalid_rule_if"}
+
+        if "then" not in rule or not isinstance(rule["then"], dict):
+            return {"status": "error", "code": "invalid_rule_then"}
+
+        for cond in rule["if"]:
+            if not isinstance(cond, dict):
+                return {"status": "error", "code": "invalid_condition_type"}
+
+            if "pack" not in cond or "key" not in cond or "equals" not in cond:
+                return {"status": "error", "code": "invalid_condition_fields"}
+
+        return {"status": "ok"}
 
     # ------------------------------------------------------------------
     # REGISTER RULE
     # ------------------------------------------------------------------
-    def register_rule(self, rule: Dict[str, Any]) -> None:
+    def register_rule(self, rule: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Registruje deterministické pravidlo.
+        """
+
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Rule registration disabled in safe-mode."}
+
+        valid = self._validate_rule(rule)
+        if valid.get("status") != "ok":
+            return valid
+
         self.registered_rules.append(rule)
+        return {"status": "ok", "rule_id": rule["id"]}
 
     # ------------------------------------------------------------------
     # EXTRACT RULES (from context)
@@ -66,7 +103,6 @@ class ReasoningRuleEngine44:
     def extract_rules(self, context: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
         V tejto verzii vracia len ručne registrované pravidlá.
-        Neskôr môžeš pridať pack-based rules.
         """
         return list(self.registered_rules)
 
@@ -76,26 +112,42 @@ class ReasoningRuleEngine44:
     def apply_rules(self, query: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Aplikuje všetky pravidlá nad faktami v kontexte.
+        Deterministické, bez AI heuristiky.
         """
+
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Rule engine disabled in safe-mode."}
+
+        if not isinstance(context, dict):
+            return {"status": "error", "code": "invalid_context_type"}
 
         try:
             facts = context.get("facts", [])
-            fact_map = {(f["pack"], f["key"]): f["value"] for f in facts}
+            fact_map: Dict[Tuple[str, str], Any] = {}
+
+            # Build fact map
+            for f in facts:
+                if isinstance(f, dict) and "pack" in f and "key" in f and "value" in f:
+                    fact_map[(f["pack"], f["key"])] = f["value"]
 
             conclusions = []
+            applied_rules = 0
 
             for rule in self.registered_rules:
                 if self._rule_matches(rule, fact_map):
+                    applied_rules += 1
                     conclusions.append(rule["then"])
 
             return {
                 "status": "ok",
+                "type": "rules",
+                "rules_applied": applied_rules,
                 "conclusions": conclusions,
-                "rules_applied": len(conclusions),
             }
 
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            self.degraded_mode = True
+            return {"status": "error", "code": "apply_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # RULE MATCHING
@@ -105,8 +157,7 @@ class ReasoningRuleEngine44:
         Overí, či všetky IF podmienky pravidla sú splnené.
         """
 
-        conditions = rule.get("if", [])
-        for cond in conditions:
+        for cond in rule.get("if", []):
             pack = cond.get("pack")
             key = cond.get("key")
             expected = cond.get("equals")
@@ -126,6 +177,7 @@ class ReasoningRuleEngine44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "registered_rules": len(self.registered_rules),
         }
