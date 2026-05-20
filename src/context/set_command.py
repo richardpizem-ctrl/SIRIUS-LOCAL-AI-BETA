@@ -4,20 +4,21 @@ from context.context_manager import ContextManager
 
 class ContextSetCommand(BaseCommand):
     """
-    ContextSetCommand 4.3
+    ContextSetCommand 4.4
     Sets a value in the system state with validation, snapshot,
     diff reporting, and safe merge.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - snapshot before modification
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Deterministic diff structure
+        - Snapshot before modification
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Stable output for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-set"
     description = "Sets a value in the context state with validation, snapshot, and diff."
@@ -37,11 +38,12 @@ class ContextSetCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Sets a state variable with snapshot and diff reporting.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
