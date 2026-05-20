@@ -1,19 +1,21 @@
-# panel.py
-# SIRIUS LOCAL AI – UI Panel Component 4.3.x
-# Deterministic, safe-mode compatible UI component
+# panel_4_4.py
+# SIRIUS LOCAL AI – UI Panel Component 4.4.0 PRO
+# Deterministic, safe-mode compatible UI component (Phase‑4/5 ready)
 
-from .manager import UIComponent
+from .manager_4_4 import UIComponent44
 
 
-class Panel(UIComponent):
+class Panel44(UIComponent44):
     """
-    Panel 4.3.x
+    Panel 4.4.0 PRO
 
     Responsibilities:
         - Provide a simple UI component for testing
         - Demonstrate Phase‑4 lifecycle behavior
         - Produce deterministic layout blocks
-        - Support safe-mode and degraded-mode
+        - Support safe-mode and degraded-mode (Security Family 4.4)
+        - Offline-only, no side-effects
+        - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -28,11 +30,9 @@ class Panel(UIComponent):
         if self.safe_mode:
             return
         self.mounted = True
-        print("Panel mounted")
 
     def unmount(self):
         self.mounted = False
-        print("Panel unmounted")
 
     # ---------------------------------------------------------
     # Rendering
@@ -40,7 +40,7 @@ class Panel(UIComponent):
 
     def render(self):
         """
-        Return layout blocks for PixelLayoutEngine.
+        Return layout blocks for PixelLayoutEngine44.
         Phase‑4 requires deterministic, structured output.
         """
 
