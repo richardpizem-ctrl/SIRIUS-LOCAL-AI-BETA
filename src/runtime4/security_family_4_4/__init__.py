@@ -1,6 +1,5 @@
-security_family_4_4/__init__.py
 """
-SIRIUS LOCAL AI – Security Family 4.4.0
+SIRIUS LOCAL AI – Security Family 4.4.0 (PRO)
 
 This package contains the full Security Family subsystem for Runtime 4.4.
 It provides:
@@ -25,15 +24,15 @@ Security Notes (Security Family 4.4.0):
 """
 
 # -------------------------------------------------------------------------
-# PACKAGE METADATA
+# PACKAGE METADATA (DETERMINISTIC, READ‑ONLY)
 # -------------------------------------------------------------------------
 
-SECURITY_FAMILY_VERSION_4_4 = "4.4.0"
-SECURITY_FAMILY_RUNTIME = "4.4"
-SECURITY_FAMILY_OFFLINE = True
+SECURITY_FAMILY_VERSION_4_4: str = "4.4.0"
+SECURITY_FAMILY_RUNTIME: str = "4.4"
+SECURITY_FAMILY_OFFLINE: bool = True
 
 # -------------------------------------------------------------------------
-# SAFE EXPORT LIST
+# SAFE EXPORT LIST (NAMESPACES ONLY)
 # -------------------------------------------------------------------------
 
 __all__ = [
