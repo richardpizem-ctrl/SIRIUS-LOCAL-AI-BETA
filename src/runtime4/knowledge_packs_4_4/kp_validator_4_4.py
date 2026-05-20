@@ -1,6 +1,5 @@
-knowledge_packs_4_4/kp_validator_4_4.py
 """
-SIRIUS LOCAL AI – Knowledge Pack Validator 4.4.0
+SIRIUS LOCAL AI – Knowledge Pack Validator 4.4.0 (PRO)
 
 KP Validator 4.4 performs deterministic, offline‑safe validation of
 Knowledge Packs. It ensures:
@@ -13,7 +12,7 @@ Knowledge Packs. It ensures:
 - No invalid metadata
 - Compatibility with KP Core 4.4
 
-Security Notes:
+Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
 - Packs must be pure JSON or Python dicts.
 - Fully offline, deterministic, isolated.
@@ -50,6 +49,23 @@ class KnowledgePackValidator44:
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
+
+    # ------------------------------------------------------------------
+    # INTERNAL VALIDATION HELPERS
+    # ------------------------------------------------------------------
+    def _validate_str(self, value: Any) -> bool:
+        return isinstance(value, str) and value.strip()
+
+    def _validate_metadata(self, meta: Any) -> bool:
+        if not isinstance(meta, dict):
+            return False
+        for k, v in meta.items():
+            if not isinstance(k, str):
+                return False
+            if not isinstance(v, self.SAFE_TYPES):
+                return False
+        return True
 
     # ------------------------------------------------------------------
     # INITIALIZATION
@@ -64,7 +80,7 @@ class KnowledgePackValidator44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # VALIDATE PACK STRUCTURE
@@ -72,26 +88,34 @@ class KnowledgePackValidator44:
     def validate(self, raw: Dict[str, Any]) -> Dict[str, Any]:
         """
         Validates the raw JSON/dict structure of a Knowledge Pack.
+        Deterministic, strict, offline-safe.
         """
+
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Validator disabled in safe-mode."}
 
         # Must be dict
         if not isinstance(raw, dict):
-            return {"status": "error", "reason": "not_a_dict"}
+            return {"status": "error", "code": "not_a_dict"}
 
-        # Check required fields
+        # Required fields
         missing = self.REQUIRED_FIELDS - set(raw.keys())
         if missing:
             return {
                 "status": "error",
-                "reason": "missing_fields",
-                "missing": list(missing),
+                "code": "missing_fields",
+                "missing": sorted(list(missing)),
             }
+
+        # Validate name
+        if not self._validate_str(raw.get("name")):
+            return {"status": "error", "code": "invalid_name"}
 
         # Validate version
         if raw.get("version") != self.VERSION:
             return {
                 "status": "error",
-                "reason": "invalid_version",
+                "code": "invalid_version",
                 "expected": self.VERSION,
                 "found": raw.get("version"),
             }
@@ -100,26 +124,21 @@ class KnowledgePackValidator44:
         if raw.get("pack_type") not in self.ALLOWED_PACK_TYPES:
             return {
                 "status": "error",
-                "reason": "invalid_pack_type",
-                "allowed": list(self.ALLOWED_PACK_TYPES),
+                "code": "invalid_pack_type",
+                "allowed": sorted(self.ALLOWED_PACK_TYPES),
             }
 
         # Validate data
-        if not isinstance(raw.get("data"), dict):
-            return {
-                "status": "error",
-                "reason": "data_must_be_dict",
-            }
+        data = raw.get("data")
+        if not isinstance(data, dict):
+            return {"status": "error", "code": "data_must_be_dict"}
 
         # Validate metadata
         metadata = raw.get("metadata", {})
-        if not isinstance(metadata, dict):
-            return {
-                "status": "error",
-                "reason": "metadata_must_be_dict",
-            }
+        if not self._validate_metadata(metadata):
+            return {"status": "error", "code": "invalid_metadata"}
 
-        # Validate safe types recursively
+        # Recursive safe type check
         safe_check = self._validate_safe_types(raw)
         if safe_check.get("status") != "ok":
             return safe_check
@@ -132,18 +151,27 @@ class KnowledgePackValidator44:
     def _validate_safe_types(self, value: Any, path: str = "") -> Dict[str, Any]:
         """
         Ensures no executable code or unsafe types exist in the pack.
+        Deterministic, recursive, strict.
         """
 
         # Basic safe types
         if isinstance(value, self.SAFE_TYPES):
-            # Recurse into dict
+            # Dict recursion
             if isinstance(value, dict):
                 for k, v in value.items():
+                    if not isinstance(k, str):
+                        return {
+                            "status": "error",
+                            "code": "invalid_key_type",
+                            "path": path,
+                            "key": k,
+                            "type": str(type(k)),
+                        }
                     result = self._validate_safe_types(v, f"{path}.{k}")
                     if result.get("status") != "ok":
                         return result
 
-            # Recurse into list
+            # List recursion
             if isinstance(value, list):
                 for i, item in enumerate(value):
                     result = self._validate_safe_types(item, f"{path}[{i}]")
@@ -152,20 +180,21 @@ class KnowledgePackValidator44:
 
             return {"status": "ok"}
 
-        # Unsafe type detected
+        # Callable or unsafe type detected
         return {
             "status": "error",
-            "reason": "unsafe_type_detected",
+            "code": "unsafe_type_detected",
             "path": path,
             "type": str(type(value)),
         }
 
     # ------------------------------------------------------------------
-    # GET STATUS
+    # STATUS
     # ------------------------------------------------------------------
     def get_status(self) -> Dict[str, Any]:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
