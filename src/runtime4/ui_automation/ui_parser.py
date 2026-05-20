@@ -1,34 +1,42 @@
 """
-UI Parser Module – Runtime 4.3.x
+UI Parser Module – Runtime 4.3.x (PRO)
 
-New in 4.3.x:
-- Fuzzy Matching Engine
+Provides:
+- Deterministic UI element normalization
 - Multi‑strategy element resolution
-- Levenshtein distance scoring
-- Semantic alias map
-- Confidence levels
+- Fuzzy Matching Engine (Levenshtein)
+- Semantic alias matching
+- Confidence scoring
 - Deterministic fallback rules
 - Safe‑mode and degraded‑mode behavior
 - Structured result surface
 
-The parser does NOT interact with the OS directly.
-It receives only abstracted data from UIGraph.
+Security Notes:
+- No OS interaction
+- No dynamic imports, no eval, no reflection
+- Fully offline‑safe
+- Compatible with Security Family 4.4
 """
 
 import difflib
+from typing import Any, Dict, List, Optional
 
 
 class UIParser:
-    def __init__(self):
-        self.parsed_elements = []
+    """
+    Deterministic UI Parser for Runtime 4.3.x (PRO).
+    """
 
-        self.safe_mode = False
-        self.degraded_mode = False
+    def __init__(self):
+        self.parsed_elements: List[Dict[str, Any]] = []
+
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
         # ------------------------------------------------------------
         # SEMANTIC ALIAS MAP (Runtime 4.3.x)
         # ------------------------------------------------------------
-        self.semantic_aliases = {
+        self.semantic_aliases: Dict[str, List[str]] = {
             "ok": ["okay", "confirm", "accept"],
             "cancel": ["close", "abort", "dismiss"],
             "settings": ["preferences", "options", "config"],
@@ -38,7 +46,7 @@ class UIParser:
     # ------------------------------------------------------------
     # GRAPH PARSING
     # ------------------------------------------------------------
-    def parse_graph(self, ui_graph):
+    def parse_graph(self, ui_graph: Any) -> Dict[str, Any]:
         """
         Takes a UIGraph instance and extracts UI elements from it.
         """
@@ -48,13 +56,13 @@ class UIParser:
             return {
                 "status": "safe_mode",
                 "elements": [],
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
 
         if not ui_graph or not hasattr(ui_graph, "elements"):
             return {
                 "status": "error",
-                "code": "invalid_graph"
+                "code": "invalid_graph",
             }
 
         try:
@@ -62,39 +70,46 @@ class UIParser:
                 self._normalize_element(el)
                 for el in ui_graph.elements
             ]
+
             return {
                 "status": "ok",
                 "count": len(self.parsed_elements),
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
+
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "parse_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     # ------------------------------------------------------------
     # ELEMENT NORMALIZATION
     # ------------------------------------------------------------
-    def _normalize_element(self, element):
+    def _normalize_element(self, element: Any) -> Dict[str, Any]:
         """
         Normalizes a UI element into a unified structure:
         - name
         - type
         - properties
         """
-        return {
-            "name": getattr(element, "name", "") or "",
-            "type": getattr(element, "type", "") or "",
-            "properties": getattr(element, "properties", {}) or {},
-        }
+
+        try:
+            return {
+                "name": getattr(element, "name", "") or "",
+                "type": getattr(element, "type", "") or "",
+                "properties": getattr(element, "properties", {}) or {},
+            }
+        except Exception:
+            self.degraded_mode = True
+            return {"name": "", "type": "", "properties": {}}
 
     # ------------------------------------------------------------
-    # FUZZY MATCHING ENGINE (Runtime 4.3.x)
+    # FUZZY MATCHING ENGINE
     # ------------------------------------------------------------
-    def _levenshtein_ratio(self, a, b):
+    def _levenshtein_ratio(self, a: str, b: str) -> float:
         """Returns similarity ratio using difflib."""
         try:
             return difflib.SequenceMatcher(None, a.lower(), b.lower()).ratio()
@@ -102,58 +117,57 @@ class UIParser:
             self.degraded_mode = True
             return 0.0
 
-    def _semantic_match(self, name, el_name):
+    def _semantic_match(self, name: str, el_name: str) -> bool:
         """Checks semantic alias map."""
-        name = name.lower()
-        el_name = el_name.lower()
+        try:
+            name = name.lower()
+            el_name = el_name.lower()
 
-        if name in self.semantic_aliases:
-            for alias in self.semantic_aliases[name]:
-                if alias in el_name:
-                    return True
-        return False
+            if name in self.semantic_aliases:
+                for alias in self.semantic_aliases[name]:
+                    if alias in el_name:
+                        return True
+            return False
+        except Exception:
+            self.degraded_mode = True
+            return False
 
     # ------------------------------------------------------------
-    # ELEMENT SEARCH (EXTENDED FOR 4.3.x)
+    # ELEMENT SEARCH (PRO)
     # ------------------------------------------------------------
-    def find(self, name=None, element_type=None, min_confidence=0.55):
+    def find(
+        self,
+        name: Optional[str] = None,
+        element_type: Optional[str] = None,
+        min_confidence: float = 0.55,
+    ) -> Dict[str, Any]:
         """
-        Searches for UI elements using:
+        Multi‑strategy deterministic element search.
+
+        Strategies:
         - exact match
         - case-insensitive match
         - partial match
         - semantic alias match
-        - fuzzy match (Levenshtein ratio)
-        - type match
-
-        Returns:
-            {
-                "status": "ok",
-                "results": [
-                    {
-                        "element": <element>,
-                        "confidence": <0.0 - 1.0>
-                    }
-                ],
-                "degraded_mode": bool
-            }
+        - fuzzy match (Levenshtein)
+        - type match (fallback)
         """
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
                 "results": [],
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
 
         if not self.parsed_elements:
             return {
                 "status": "ok",
                 "results": [],
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
 
-        results = []
+        results: List[Dict[str, Any]] = []
 
         for el in self.parsed_elements:
             el_name = el.get("name", "")
@@ -177,20 +191,20 @@ class UIParser:
             elif name and self._semantic_match(name, el_name):
                 confidence = 0.80
 
-            # 5. Fuzzy match (Levenshtein ratio)
+            # 5. Fuzzy match
             elif name:
                 ratio = self._levenshtein_ratio(name, el_name)
                 if ratio >= min_confidence:
                     confidence = ratio
 
-            # 6. Type match (fallback)
+            # 6. Type match fallback
             if element_type and el_type == element_type:
                 confidence = max(confidence, 0.75)
 
             if confidence >= min_confidence:
                 results.append({
                     "element": el,
-                    "confidence": round(confidence, 3)
+                    "confidence": round(confidence, 3),
                 })
 
         results.sort(key=lambda x: x["confidence"], reverse=True)
@@ -198,5 +212,5 @@ class UIParser:
         return {
             "status": "ok",
             "results": results,
-            "degraded_mode": self.degraded_mode
+            "degraded_mode": self.degraded_mode,
         }
