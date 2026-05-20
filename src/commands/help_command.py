@@ -4,18 +4,21 @@ from commands.base_command import BaseCommand
 
 class HelpCommand(BaseCommand):
     """
-    HelpCommand 4.3
+    HelpCommand 4.4
     Provides detailed command introspection for CLI, NL Router, and GUI.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic output for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - consistent structure for all help responses
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic introspection output
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - Stable structure for all help responses
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "help"
     description = "Displays a list of commands or detailed information about a specific command."
@@ -38,7 +41,7 @@ class HelpCommand(BaseCommand):
         self.command_registry = command_registry
 
     # ---------------------------------------------------------
-    # EXECUTION
+    # EXECUTION (deterministic)
     # ---------------------------------------------------------
     def execute(self, command_name: str = None):
         """
@@ -56,10 +59,13 @@ class HelpCommand(BaseCommand):
     def _list_commands(self):
         """
         Returns a list of all registered commands with basic metadata.
+        Deterministic ordering for Runtime 4.4.
         """
         output = []
 
-        for name, cmd in self.command_registry.items():
+        # Sort alphabetically for deterministic output
+        for name in sorted(self.command_registry.keys()):
+            cmd = self.command_registry[name]
             output.append({
                 "name": cmd.name,
                 "description": cmd.description,
@@ -80,6 +86,7 @@ class HelpCommand(BaseCommand):
     def _describe_command(self, name):
         """
         Returns detailed metadata for a single command.
+        Deterministic, stable structure for NL Router 4.4.
         """
         cmd = self.command_registry.get(name)
 
@@ -99,5 +106,6 @@ class HelpCommand(BaseCommand):
             "capabilities": cmd.capabilities,
             "keywords": cmd.keywords,
             "examples": cmd.examples,
-            "parameters": cmd.get_parameters()
+            "parameters": cmd.get_parameters(),
+            "command_hash": cmd.compute_hash()
         }
