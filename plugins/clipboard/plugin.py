@@ -1,15 +1,16 @@
 # plugin.py
-# SIRIUS LOCAL AI – Clipboard Plugin 4.3.x
-# Safe, deterministic, sandboxed clipboard module
+# SIRIUS LOCAL AI – Clipboard Plugin 4.4.0
+# Safe, deterministic, sandboxed clipboard module with integrity + health support
 
 from __future__ import annotations
 
 import pyperclip
+import os
 
 
 class Plugin:
     """
-    Clipboard Plugin 4.3.x
+    Clipboard Plugin 4.4.0
 
     Responsibilities:
         - Provide NL commands for clipboard operations
@@ -18,18 +19,60 @@ class Plugin:
         - Provide AI Loop rules
         - Provide GUI elements
         - Deterministic, safe-mode aware, degraded-mode aware
-        - Self‑Repair 4.4 ready
+        - Provide integrity hooks (4.4)
+        - Provide health metadata (4.4)
+        - Support Self‑Repair Layer 4.4
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
+
+        # Runtime 4.4 modes
         self.safe_mode = False
         self.degraded_mode = False
 
-        self.rm.logger.info("[PLUGIN:clipboard] Initialized (v4.3.x)")
+        # 4.4 integrity + health
+        self.integrity_ok = True
+        self.health_status = "OK"
+
+        self.rm.logger.info("[PLUGIN:clipboard] Initialized (v4.4.0)")
 
     # --------------------------------------------------------
-    # NL COMMANDS (4.3.x)
+    # INTEGRITY HOOKS (4.4)
+    # --------------------------------------------------------
+    def integrity_check(self):
+        """
+        Called by PluginLoader 4.4.
+        Must return True/False.
+        """
+        try:
+            return os.path.exists(__file__)
+        except Exception:
+            return False
+
+    def integrity_repair(self):
+        """
+        Called by Self‑Repair Layer 4.4.
+        Plugin may reload, reset state, or fallback.
+        """
+        self.rm.logger.warn("[PLUGIN:clipboard] Integrity repair triggered.")
+        self.integrity_ok = False
+        self.degraded_mode = True
+        return True
+
+    # --------------------------------------------------------
+    # HEALTH METADATA (4.4)
+    # --------------------------------------------------------
+    def health(self):
+        return {
+            "status": self.health_status,
+            "safe_mode": self.safe_mode,
+            "degraded_mode": self.degraded_mode,
+            "integrity_ok": self.integrity_ok,
+        }
+
+    # --------------------------------------------------------
+    # NL COMMANDS (4.4)
     # --------------------------------------------------------
     def nl_commands(self):
         return {
@@ -46,8 +89,7 @@ class Plugin:
             pyperclip.copy(text)
             return f"Copied to clipboard: {text}"
         except Exception as e:
-            self.degraded_mode = True
-            self.rm.logger.error(f"[CLIPBOARD] Copy error: {e}")
+            self._handle_error("Copy", e)
             return "Clipboard error."
 
     def _nl_paste(self, text):
@@ -55,8 +97,7 @@ class Plugin:
             content = pyperclip.paste()
             return f"From clipboard: {content}"
         except Exception as e:
-            self.degraded_mode = True
-            self.rm.logger.error(f"[CLIPBOARD] Paste error: {e}")
+            self._handle_error("Paste", e)
             return "Clipboard error."
 
     def _nl_read(self, text):
@@ -64,12 +105,11 @@ class Plugin:
             content = pyperclip.paste()
             return f"Clipboard contains: {content}"
         except Exception as e:
-            self.degraded_mode = True
-            self.rm.logger.error(f"[CLIPBOARD] Read error: {e}")
+            self._handle_error("Read", e)
             return "Clipboard error."
 
     # --------------------------------------------------------
-    # AI TASKS (4.3.x)
+    # AI TASKS (4.4)
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -87,8 +127,7 @@ class Plugin:
             pyperclip.copy(text)
             return {"status": "OK", "copied": text}
         except Exception as e:
-            self.degraded_mode = True
-            self.rm.logger.error(f"[CLIPBOARD] AI copy error: {e}")
+            self._handle_error("AI copy", e)
             return {"error": "Clipboard error"}
 
     def _ai_paste(self, params):
@@ -96,8 +135,7 @@ class Plugin:
             content = pyperclip.paste()
             return {"status": "OK", "content": content}
         except Exception as e:
-            self.degraded_mode = True
-            self.rm.logger.error(f"[CLIPBOARD] AI paste error: {e}")
+            self._handle_error("AI paste", e)
             return {"error": "Clipboard error"}
 
     def _ai_read(self, params):
@@ -105,12 +143,11 @@ class Plugin:
             content = pyperclip.paste()
             return {"clipboard": content}
         except Exception as e:
-            self.degraded_mode = True
-            self.rm.logger.error(f"[CLIPBOARD] AI read error: {e}")
+            self._handle_error("AI read", e)
             return {"error": "Clipboard error"}
 
     # --------------------------------------------------------
-    # WORKFLOWS (4.3.x)
+    # WORKFLOWS (4.4)
     # --------------------------------------------------------
     def workflows(self):
         return [
@@ -125,7 +162,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # AI LOOP RULES (4.3.x)
+    # AI LOOP RULES (4.4)
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -139,7 +176,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI ELEMENTS (4.3.x)
+    # GUI ELEMENTS (4.4)
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -162,10 +199,20 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # SAFE-MODE CONTROL
+    # INTERNAL ERROR HANDLER (4.4)
+    # --------------------------------------------------------
+    def _handle_error(self, label, exception):
+        self.degraded_mode = True
+        self.health_status = "DEGRADED"
+        self.rm.logger.error(f"[CLIPBOARD] {label} error: {exception}")
+
+    # --------------------------------------------------------
+    # SAFE-MODE CONTROL (4.4)
     # --------------------------------------------------------
     def enter_safe_mode(self):
         self.safe_mode = True
+        self.rm.logger.warn("[PLUGIN:clipboard] Entered SAFE MODE.")
 
     def exit_safe_mode(self):
         self.safe_mode = False
+        self.rm.logger.info("[PLUGIN:clipboard] Exited SAFE MODE.")
