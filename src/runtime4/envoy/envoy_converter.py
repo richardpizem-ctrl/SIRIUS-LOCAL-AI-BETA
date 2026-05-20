@@ -1,15 +1,16 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.3 Converter
+SIRIUS LOCAL AI – ENVOY 4.4 Converter
 
 Responsible for:
 - converting validated ENVOY payloads into Knowledge Pack 2.0 format
 - extracting data and metadata
-- preparing packs for loading and linking
 - enforcing Security Family 4.4 rules
-- ensuring structural and semantic compatibility
-- providing deterministic, safe conversion
+- deterministic, offline‑safe conversion
+- degraded‑mode propagation
+- safe‑mode compatibility
+- Self‑Repair 4.4 diagnostics
 
-This is the conversion layer of ENVOY 4.3.
+This is the conversion layer of ENVOY 4.4.
 """
 
 from typing import Dict, Any
@@ -17,12 +18,8 @@ from typing import Dict, Any
 
 class EnvoyConverter4:
     """
-    Converts ENVOY payloads into Knowledge Pack 2.0 structures.
-    Provides:
-    - strict validation
-    - structured error surface
-    - safe-mode compatibility
-    - degraded-mode detection
+    Deterministic ENVOY → Knowledge Pack 2.0 converter.
+    Fully isolated, offline‑safe, and Security Family 4.4 compliant.
     """
 
     def __init__(self, max_content_size: int = 500_000):
@@ -76,14 +73,15 @@ class EnvoyConverter4:
     def convert(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
         Converts an ENVOY payload into a Knowledge Pack 2.0 structure.
-        Includes full Runtime 4.3 security validation.
+        Includes full Runtime 4.4 security validation.
         """
 
         # SAFE MODE
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "ENVOY conversion disabled in safe-mode."
+                "message": "ENVOY conversion disabled in safe-mode.",
+                "degraded_mode": self.degraded_mode,
             }
 
         # Validate payload
@@ -109,14 +107,14 @@ class EnvoyConverter4:
                 "meta": {
                     "version": meta.get("version", "1.0"),
                     "type": ptype if isinstance(ptype, str) else "unknown",
-                    "source": meta.get("source", "envoy")
-                }
+                    "source": meta.get("source", "envoy"),
+                },
             }
 
             return {
                 "status": "success",
                 "pack": pack,
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
 
         except Exception as exc:
@@ -124,5 +122,5 @@ class EnvoyConverter4:
             return {
                 "status": "error",
                 "code": "conversion_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
