@@ -5,16 +5,17 @@ from datetime import datetime
 
 class EmailStorage:
     """
-    EmailStorage 4.3
+    EmailStorage 4.4
     Handles low-level file operations for storing, loading,
     listing, and deleting emails in a deterministic and safe way.
 
-    Improvements in 4.3:
-    - deterministic Runtime4 behavior
-    - strict filename generation
-    - safe file operations with error handling
-    - consistent return values for EmailManager
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Deterministic Runtime4.4 behavior
+        - Strict filename contract
+        - Stable list ordering
+        - Safe JSON loading with structure validation
+        - Self‑Repair Layer 4.4 compatible metadata
+        - Guaranteed return types (never throws)
     """
 
     def __init__(self, base_path="emails"):
@@ -29,7 +30,7 @@ class EmailStorage:
 
     def _safe_listdir(self):
         try:
-            return os.listdir(self.base_path)
+            return sorted(os.listdir(self.base_path))
         except Exception:
             return []
 
@@ -43,6 +44,7 @@ class EmailStorage:
         sent_<id>.json
 
         Returns the filename on success, None on failure.
+        Deterministic and safe.
         """
 
         email_id = email_data.get("id")
@@ -67,15 +69,22 @@ class EmailStorage:
         """
         Loads an email by ID, regardless of prefix.
         Returns dict on success, None on failure.
+        Deterministic and safe.
         """
 
         for f in self._safe_listdir():
             if f.endswith(".json") and email_id in f:
                 try:
                     with open(self._path(f), "r", encoding="utf-8") as file:
-                        return json.load(file)
+                        data = json.load(file)
                 except Exception:
                     return None
+
+                # Validate structure
+                if not isinstance(data, dict):
+                    return None
+
+                return data
 
         return None
 
@@ -86,6 +95,7 @@ class EmailStorage:
         """
         Lists all emails or filters by status (draft/sent).
         Returns a list of email dicts.
+        Deterministic ordering.
         """
 
         emails = []
@@ -100,6 +110,9 @@ class EmailStorage:
             except Exception:
                 continue
 
+            if not isinstance(data, dict):
+                continue
+
             if status is None or data.get("status") == status:
                 emails.append(data)
 
@@ -112,6 +125,7 @@ class EmailStorage:
         """
         Deletes an email by ID.
         Returns True on success, False on failure.
+        Deterministic and safe.
         """
 
         for f in self._safe_listdir():
