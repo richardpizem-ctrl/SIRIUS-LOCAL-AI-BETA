@@ -1,28 +1,29 @@
 """
-Security Family – Stranger Mode 4.3.x
--------------------------------------
+Security Family – Stranger Mode 4.4.0 (PRO)
+-------------------------------------------
 Activated when behavior does not match OWNER or FAMILY.
 
 Provides:
-- full isolation mode
+- full isolation mode (4.4 hardened)
 - safe-mode enforcement
 - restricted permissions
 - risk-aware activation
 - anomaly-aware escalation
 - deterministic, offline-only behavior
 - safe-mode and degraded-mode support
+- Security Family 4.4 compliant
 """
 
-class StrangerMode:
+class StrangerMode44:
     def __init__(self, access_control, behavior_audit):
-        self.access_control = access_control
-        self.behavior_audit = behavior_audit
+        self.access_control = access_control      # AccessControl44
+        self.behavior_audit = behavior_audit      # BehaviorAudit44
 
         self.active = False
         self.safe_mode = False
         self.degraded_mode = False
 
-        # Thresholds
+        # Thresholds (4.4)
         self.high_risk_threshold = 0.65
         self.anomaly_penalty = 0.25
 
@@ -60,7 +61,7 @@ class StrangerMode:
             # 1. Calculate risk score
             risk, anomaly = self._calculate_risk(behavior_data)
 
-            # 2. Build context for AccessControl 4.3.x
+            # 2. Build context for AccessControl44
             context = {
                 "risk_score": risk,
                 "school_mode": False,
@@ -123,7 +124,7 @@ class StrangerMode:
             return 1.0, {"is_anomaly": True, "reason": "internal_error"}
 
     # ---------------------------------------------------------
-    # ISOLATION STATE
+    # ISOLATION STATE (4.4 hardened)
     # ---------------------------------------------------------
     def _isolation_state(self):
         return {
@@ -133,5 +134,8 @@ class StrangerMode:
             "plugins": True,
             "network": True,
             "vault_access": False,
-            "system_settings": False
+            "system_settings": False,
+            "ui_automation": False,
+            "clipboard": False,
+            "local_storage": False
         }
