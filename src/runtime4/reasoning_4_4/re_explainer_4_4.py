@@ -1,6 +1,5 @@
-# reasoning_4_4/re_explainer_4_4.py
 """
-SIRIUS LOCAL AI – Reasoning Explainer 4.4.0
+SIRIUS LOCAL AI – Reasoning Explainer 4.4.0 (PRO)
 
 Účel:
 - vytvára vysvetliteľný reasoning trace
@@ -12,6 +11,7 @@ SIRIUS LOCAL AI – Reasoning Explainer 4.4.0
     - chain kroky a intermediate stavy
     - reasoning graf (ak je k dispozícii)
 - 100 % offline, deterministické, bez AI heuristiky
+- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
 """
 
 from typing import Dict, Any, List, Optional
@@ -19,12 +19,13 @@ from typing import Dict, Any, List, Optional
 
 class ReasoningExplainer44:
     """
-    Deterministic explainer pre Reasoning Engine 4.4.
+    Deterministic explainer pre Reasoning Engine 4.4 (PRO).
     """
 
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
@@ -35,43 +36,48 @@ class ReasoningExplainer44:
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
+
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
-    # BUILD EXPLANATION
+    # PUBLIC API – EXPLAIN
     # ------------------------------------------------------------------
-    def explain(
-        self,
-        core_result: Dict[str, Any],
-    ) -> Dict[str, Any]:
+    def explain(self, core_result: Dict[str, Any]) -> Dict[str, Any]:
         """
         Vytvorí vysvetlenie z výsledku ReasoningCore44.reason().
+
         Očakáva štruktúru:
         {
             "status": "ok",
             "query": ...,
             "subjects": [...],
-            "routing": {...},
             "context": {...},
+            "chain": {...},
             "graph": {...} alebo None
         }
         """
 
-        try:
-            if core_result.get("status") != "ok":
-                return {
-                    "status": "error",
-                    "reason": "core_not_ok",
-                    "core_status": core_result.get("status"),
-                }
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Explainer disabled in safe-mode."}
 
+        if not isinstance(core_result, dict):
+            return {"status": "error", "code": "invalid_core_result_type"}
+
+        if core_result.get("status") != "ok":
+            return {
+                "status": "error",
+                "code": "core_not_ok",
+                "core_status": core_result.get("status"),
+            }
+
+        try:
             query = core_result.get("query", "")
             subjects = core_result.get("subjects", [])
-            routing = core_result.get("routing", {})
             context = core_result.get("context", {})
+            chain = core_result.get("chain", {})
             graph = core_result.get("graph")
 
             explanation: Dict[str, Any] = {
@@ -79,37 +85,39 @@ class ReasoningExplainer44:
                 "query": query,
                 "subjects": subjects,
                 "steps": [],
+                "degraded_mode": self.degraded_mode,
             }
 
             # 1. Základný kontext
-            explanation["steps"].append(self._step_query_context(query, subjects, context))
+            explanation["steps"].append(
+                self._step_query_context(query, subjects, context)
+            )
 
-            # 2. Routing rozhodnutie
-            explanation["steps"].append(self._step_routing(routing))
+            # 2. Chain trace (ak existuje)
+            chain_step = self._extract_chain_trace(chain)
+            if chain_step is not None:
+                explanation["steps"].append(chain_step)
 
-            # 3. Chain trace (ak existuje)
-            chain_trace = self._extract_chain_trace(routing)
-            if chain_trace is not None:
-                explanation["steps"].append(chain_trace)
-
-            # 4. Pravidlá (ak existujú)
-            rules_step = self._extract_rules_step(routing)
+            # 3. Pravidlá (ak existujú)
+            rules_step = self._extract_rules_step(chain)
             if rules_step is not None:
                 explanation["steps"].append(rules_step)
 
-            # 5. Symbolic (ak existuje)
-            symbolic_step = self._extract_symbolic_step(routing)
+            # 4. Symbolic (ak existuje)
+            symbolic_step = self._extract_symbolic_step(chain)
             if symbolic_step is not None:
                 explanation["steps"].append(symbolic_step)
 
-            # 6. Graf (ak existuje)
-            if graph is not None and graph.get("status", "ok") == "ok":
-                explanation["steps"].append(self._step_graph(graph))
+            # 5. Reasoning graf (ak existuje)
+            if graph is not None and isinstance(graph, dict):
+                if graph.get("status") == "ok":
+                    explanation["steps"].append(self._step_graph(graph))
 
             return explanation
 
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            self.degraded_mode = True
+            return {"status": "error", "code": "explain_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # STEP BUILDERS
@@ -130,30 +138,22 @@ class ReasoningExplainer44:
             "symbolic_count": len(context.get("symbolic", [])),
         }
 
-    def _step_routing(self, routing: Dict[str, Any]) -> Dict[str, Any]:
-        return {
-            "type": "routing",
-            "routing_type": routing.get("type"),
-            "routing_status": routing.get("status"),
-            "routing_subjects": routing.get("subjects"),
-        }
-
-    def _extract_chain_trace(self, routing: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        if routing.get("type") != "chain":
+    def _extract_chain_trace(self, chain: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        if chain.get("status") != "ok":
             return None
 
-        state = routing.get("result", {}).get("state", {})
+        state = chain.get("state", {})
         return {
             "type": "chain_trace",
-            "chain": routing.get("result", {}).get("chain"),
+            "chain": chain.get("chain"),
             "intermediate": state.get("intermediate", []),
         }
 
-    def _extract_rules_step(self, routing: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        if routing.get("type") != "rules":
+    def _extract_rules_step(self, chain: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        result = chain.get("result", {})
+        if result.get("type") != "rules":
             return None
 
-        result = routing.get("result", {})
         return {
             "type": "rules",
             "status": result.get("status"),
@@ -161,11 +161,11 @@ class ReasoningExplainer44:
             "conclusions": result.get("conclusions"),
         }
 
-    def _extract_symbolic_step(self, routing: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        if routing.get("type") != "symbolic":
+    def _extract_symbolic_step(self, chain: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        result = chain.get("result", {})
+        if result.get("type") != "symbolic":
             return None
 
-        result = routing.get("result", {})
         return {
             "type": "symbolic",
             "status": result.get("status"),
@@ -188,5 +188,6 @@ class ReasoningExplainer44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
