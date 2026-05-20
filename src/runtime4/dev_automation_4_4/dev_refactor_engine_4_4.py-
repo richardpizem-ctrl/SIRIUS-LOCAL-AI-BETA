@@ -1,18 +1,15 @@
-dev_automation_4_4/dev_refactor_engine_4_4.py
 """
 SIRIUS LOCAL AI – Developer Refactor Engine 4.4.0
 
-This module provides deterministic, offline‑safe code refactoring for
-Developer Automation 4.4. It supports:
+Deterministic, offline‑safe code refactoring for Developer Automation 4.4.
 
+Features:
 - Structural code transformations
 - Safe renaming (variables, functions, classes)
 - Import cleanup
 - Dead‑code detection
 - Deterministic formatting rules
 - Security‑aware refactoring (Security Family 4.4)
-
-All logic is deterministic, offline, and fully isolated.
 
 Security Notes:
 - Only static imports allowed.
@@ -28,6 +25,7 @@ class DevRefactorEngine44:
     """
     Deterministic refactoring engine for Runtime 4.4.
     Performs safe, structural code transformations without executing code.
+    Fully isolated, offline‑safe, and Self‑Repair 4.4 compatible.
     """
 
     def __init__(self, analyzer=None, formatter=None, security_policy=None):
@@ -47,13 +45,22 @@ class DevRefactorEngine44:
 
         try:
             if self.analyzer:
-                self.analyzer.initialize()
+                res = self.analyzer.initialize()
+                if isinstance(res, dict) and res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": res}
 
             if self.formatter:
-                self.formatter.initialize()
+                fmt = self.formatter.initialize()
+                if isinstance(fmt, dict) and fmt.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": fmt}
 
             if self.security_policy:
-                self.security_policy.initialize()
+                sec = self.security_policy.initialize()
+                if isinstance(sec, dict) and sec.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": sec}
 
             self.initialized = True
             return {"status": "initialized"}
@@ -74,30 +81,29 @@ class DevRefactorEngine44:
         - remove_dead_code: {"type": "remove_dead_code"}
         - cleanup_imports: {"type": "cleanup_imports"}
         - format: {"type": "format"}
-
-        Returns:
-        {
-            "status": "ok",
-            "refactored_code": "...",
-            "changes": [...],
-        }
         """
+
+        # Ensure initialized
         if not self.initialized:
             init_result = self.initialize()
             if init_result.get("status") not in ("initialized", "already_initialized"):
-                return {"status": "error", "reason": "engine_not_initialized", "details": init_result}
+                return {
+                    "status": "error",
+                    "reason": "engine_not_initialized",
+                    "details": init_result,
+                }
 
         try:
             changes = []
             code = source_code
 
-            # 1. Security policy check
+            # Security policy check
             if self.security_policy:
                 sec = self.security_policy.check_refactor_rules(rules)
                 if sec.get("status") != "allowed":
                     return {"status": "blocked", "policy": sec}
 
-            # 2. Apply rules deterministically
+            # Deterministic rule application
             for rule in rules.get("steps", []):
                 rule_type = rule.get("type")
 
@@ -118,7 +124,11 @@ class DevRefactorEngine44:
                     changes.append(change)
 
                 else:
-                    changes.append({"rule": rule, "status": "ignored"})
+                    changes.append({
+                        "status": "ignored",
+                        "rule": rule,
+                        "reason": "unknown_rule_type",
+                    })
 
             return {
                 "status": "ok",
@@ -138,9 +148,13 @@ class DevRefactorEngine44:
         new_name = rule.get("new_name")
 
         if not target or not new_name:
-            return code, {"status": "error", "reason": "invalid_rename_rule"}
+            return code, {
+                "status": "error",
+                "action": "rename",
+                "reason": "invalid_rename_rule",
+            }
 
-        # Deterministic string‑based rename (safe subset)
+        # Deterministic safe rename (string‑based)
         updated = code.replace(target, new_name)
 
         return updated, {
@@ -155,21 +169,40 @@ class DevRefactorEngine44:
     # ------------------------------------------------------------------
     def _remove_dead_code(self, code: str):
         # Placeholder deterministic logic
-        # (real implementation would use static analyzer)
-        return code, {"status": "ok", "action": "remove_dead_code"}
+        return code, {
+            "status": "ok",
+            "action": "remove_dead_code",
+            "note": "static placeholder",
+        }
 
     # ------------------------------------------------------------------
     # INTERNAL – IMPORT CLEANUP
     # ------------------------------------------------------------------
     def _cleanup_imports(self, code: str):
         # Placeholder deterministic logic
-        return code, {"status": "ok", "action": "cleanup_imports"}
+        return code, {
+            "status": "ok",
+            "action": "cleanup_imports",
+            "note": "static placeholder",
+        }
 
     # ------------------------------------------------------------------
     # INTERNAL – FORMATTING
     # ------------------------------------------------------------------
     def _apply_formatting(self, code: str):
         if self.formatter:
-            formatted = self.formatter.format(code)
-            return formatted, {"status": "ok", "action": "format"}
-        return code, {"status": "ok", "action": "format", "note": "no_formatter"}
+            try:
+                formatted = self.formatter.format(code)
+                return formatted, {"status": "ok", "action": "format"}
+            except Exception as exc:
+                return code, {
+                    "status": "error",
+                    "action": "format",
+                    "exception": str(exc),
+                }
+
+        return code, {
+            "status": "ok",
+            "action": "format",
+            "note": "no_formatter",
+        }
