@@ -8,41 +8,49 @@ log = logging.getLogger(__name__)
 
 class NaturalLanguageRouter:
     """
-    NL Router 4.3
+    NL Router 4.4
     ----------------
     - Plugin dynamic NL commands (regex + parameters)
     - Security Family enforcement (identity, capabilities, risk)
     - Telemetry (duration, matched_command, source)
     - Deterministic structured returns
-    - Rule-based commands (Password Vault 4.0)
+    - Rule-based commands (Password Vault 4.x)
     - AITE fallback
     - SiriusAgent interpret fallback
-    - Self‑Repair 4.4 ready (safe-mode, degraded mode)
+    - Self‑Repair Layer 4.4 ready (safe-mode, degraded mode)
+    - Stable error model for Runtime4.4
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
         self.agent = runtime_manager.agent
-        self.dynamic_commands: Dict[str, Callable] = {}
+        self.dynamic_commands: Dict[str, Callable[[str, Any], Any]] = {}
         self.safe_mode = False
         self.degraded_mode = False
 
     # --------------------------------------------------------
     # REGISTER PLUGIN COMMAND
     # --------------------------------------------------------
-    def register(self, phrase: str, fn):
+    def register(self, phrase: str, fn: Callable[[str, Any], Any]):
         """
         Register NL command from plugin.
         Supports regex patterns.
         """
-        self.dynamic_commands[phrase.lower()] = fn
+        key = phrase.lower()
+        self.dynamic_commands[key] = fn
         log.info("NL Router registered plugin command: '%s'", phrase)
+
+        return {
+            "status": "success",
+            "command": key
+        }
 
     # --------------------------------------------------------
     # MAIN HANDLER
     # --------------------------------------------------------
     def handle(self, text: str) -> Dict[str, Any]:
         t0 = time.time()
+        original_text = text
         text = text.lower().strip()
         log.info("NL Router received: %s", text)
 
@@ -70,7 +78,7 @@ class NaturalLanguageRouter:
                             "duration": time.time() - t0,
                         }
 
-                    result = fn(text, self.rm)
+                    result = fn(original_text, self.rm)
                     return {
                         "status": "plugin",
                         "command": pattern,
@@ -79,6 +87,7 @@ class NaturalLanguageRouter:
                     }
                 except Exception as e:
                     self.degraded_mode = True
+                    log.exception("NL Router plugin error (%s): %s", pattern, e)
                     return {
                         "status": "error",
                         "source": "plugin",
@@ -102,7 +111,7 @@ class NaturalLanguageRouter:
         # 3) AITE fallback
         # ----------------------------------------------------
         try:
-            aite_result = self.rm.aite.process(text)
+            aite_result = self.rm.aite.process(original_text)
             if aite_result is not None:
                 return {
                     "status": "aite",
@@ -116,7 +125,7 @@ class NaturalLanguageRouter:
         # 4) SiriusAgent interpret fallback
         # ----------------------------------------------------
         try:
-            agent_result = self.agent.run_task("interpret", {"text": text})
+            agent_result = self.agent.run_task("interpret", {"text": original_text})
             if agent_result is not None:
                 return {
                     "status": "agent",
@@ -139,7 +148,7 @@ class NaturalLanguageRouter:
     # --------------------------------------------------------
     # SECURITY FAMILY CHECK
     # --------------------------------------------------------
-    def _security_check(self, fn):
+    def _security_check(self, fn: Callable) -> bool:
         """
         Placeholder for Security Family 4.4:
         - identity check
@@ -150,12 +159,9 @@ class NaturalLanguageRouter:
         return True
 
     # --------------------------------------------------------
-    # RULE-BASED COMMANDS (PASSWORD VAULT 4.0)
+    # RULE-BASED COMMANDS (PASSWORD VAULT 4.x)
     # --------------------------------------------------------
     def _handle_rule_based(self, text: str):
-        # (tvoj pôvodný kód – nemením)
-        # ...
-        # nechávam presne ako je
-        # ...
-        # posledný riadok:
+        # sem môžeš doplniť svoje existujúce pravidlá (Password Vault 4.x, atď.)
+        # ak nič nematchne, vráť None
         return None
