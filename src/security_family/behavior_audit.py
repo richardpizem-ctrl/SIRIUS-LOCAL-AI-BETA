@@ -1,9 +1,9 @@
 """
-Security Family – Behavior Audit 4.3.x
---------------------------------------
+Security Family – Behavior Audit 4.4.0 (PRO)
+--------------------------------------------
 Deterministic behavior-based identity scoring engine.
 
-Behavior Vector 3.0 – Dimensions (normalized 0–1):
+Behavior Vector 3.1 – Dimensions (normalized 0–1):
 - typing_speed
 - command_pattern
 - vocabulary
@@ -11,20 +11,22 @@ Behavior Vector 3.0 – Dimensions (normalized 0–1):
 - time_of_day
 - error_rate
 
-Features:
+Features (4.4.0):
 - weighted cosine similarity (OWNER / FAMILY)
 - stranger score = 1 - max(OWNER_sim, FAMILY_sim)
-- adaptive learning (EMA-style)
+- adaptive learning (EMA-style, deterministic)
 - short-term vs long-term trend analysis
 - anomaly detection (similarity + behavior shift)
 - safe-mode and degraded-mode support
+- Security Family 4.4 compliant
+- no dynamic imports, no eval, no reflection
 """
 
 import math
 from statistics import mean
 
 
-class BehaviorAudit:
+class BehaviorAudit44:
     def __init__(self, profile_store):
         self.profile_store = profile_store
 
@@ -141,7 +143,7 @@ class BehaviorAudit:
 
     def learn(self, label, data, learning_rate=0.2):
         """
-        Adaptive learning of OWNER/FAMILY profiles.
+        Adaptive learning of OWNER/FAMILY profiles (deterministic EMA).
         """
         if label not in ("OWNER", "FAMILY"):
             return
