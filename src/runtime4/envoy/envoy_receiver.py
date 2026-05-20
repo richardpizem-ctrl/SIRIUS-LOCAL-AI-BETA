@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.3 Receiver
+SIRIUS LOCAL AI – ENVOY 4.4 Receiver
 
 Responsible for:
 - receiving external ENVOY payloads
@@ -9,7 +9,7 @@ Responsible for:
 - preparing data for Knowledge Packs 2.0 conversion
 - supporting Self‑Repair 4.4 diagnostics
 
-This is the entry point of ENVOY 4.3.
+This is the entry point of ENVOY 4.4.
 """
 
 from typing import Optional, Dict, Any
@@ -18,12 +18,13 @@ import json
 
 class EnvoyReceiver4:
     """
-    Receives and preprocesses ENVOY payloads.
+    Deterministic ENVOY receiver for Runtime 4.4.
     Provides:
     - strict validation
     - structured error surface
     - safe-mode compatibility
     - degraded-mode detection
+    - Security Family 4.4 enforcement
     """
 
     def __init__(self, max_queue_size: int = 1000, max_payload_size: int = 500_000):
@@ -38,14 +39,14 @@ class EnvoyReceiver4:
     # ---------------------------------------------------------
 
     def _is_safe_payload(self, payload: Any) -> bool:
-        """Performs shallow safety validation before quarantine."""
+        """Performs shallow safety validation before intake."""
 
         if not isinstance(payload, dict):
             return False
 
-        # Size check
+        # Size check (deterministic)
         try:
-            if len(json.dumps(payload)) > self.max_payload_size:
+            if len(json.dumps(payload, ensure_ascii=False)) > self.max_payload_size:
                 return False
         except Exception:
             return False
@@ -54,6 +55,8 @@ class EnvoyReceiver4:
         for key, value in payload.items():
             if not isinstance(key, str) or not key.strip():
                 return False
+
+            # Forbidden types
             if isinstance(value, (bytes, bytearray, type(lambda: None))):
                 return False
 
@@ -72,7 +75,8 @@ class EnvoyReceiver4:
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "ENVOY receiver disabled in safe-mode."
+                "message": "ENVOY receiver disabled in safe-mode.",
+                "degraded_mode": self.degraded_mode,
             }
 
         if not isinstance(payload, dict):
@@ -88,7 +92,8 @@ class EnvoyReceiver4:
 
         return {
             "status": "received",
-            "size": len(self.incoming)
+            "size": len(self.incoming),
+            "degraded_mode": self.degraded_mode,
         }
 
     # ---------------------------------------------------------
@@ -108,12 +113,21 @@ class EnvoyReceiver4:
 
         if not isinstance(entry, dict):
             self.degraded_mode = True
-            return {"status": "error", "code": "invalid_queue_entry"}
+            return {
+                "status": "error",
+                "code": "invalid_queue_entry",
+                "degraded_mode": True,
+            }
 
         if not self._is_safe_payload(entry):
-            return {"status": "error", "code": "unsafe_payload_in_queue"}
+            return {
+                "status": "error",
+                "code": "unsafe_payload_in_queue",
+                "degraded_mode": self.degraded_mode,
+            }
 
         return {
             "status": "ready",
-            "payload": entry
+            "payload": entry,
+            "degraded_mode": self.degraded_mode,
         }
