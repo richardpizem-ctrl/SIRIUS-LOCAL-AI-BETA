@@ -1,26 +1,23 @@
-# pixel_layout_engine.py
-# PixelLayoutEngine – deterministic Phase‑4 layout renderer
-# SIRIUS LOCAL AI – ui_components (4.3.x)
+# pixel_layout_engine_4_4.py
+# PixelLayoutEngine – deterministic Phase‑4 layout renderer (4.4.0 PRO)
+# SIRIUS LOCAL AI – ui_components (4.4.0)
 
 from typing import List, Dict, Any
 
 
-class PixelLayoutEngine:
+class PixelLayoutEngine44:
     """
-    PixelLayoutEngine 4.3.x
+    PixelLayoutEngine 4.4.0 PRO
 
     Responsibilities:
-        - Receive layout blocks from UI components
+        - Receive layout blocks from UI components (4.4)
         - Validate and sanitize blocks
-        - Provide safe-mode and degraded-mode behavior
+        - Provide safe-mode and degraded-mode behavior (Security Family 4.4)
         - Maintain deterministic last-frame buffer
         - Provide error-safe rendering pipeline
         - Offline-only, no side-effects
-
-    Phase‑4 guarantees:
-        - No crashes from invalid blocks
-        - No crashes from component errors
-        - Structured fallback behavior
+        - Self‑Repair 4.4 compatible
+        - Phase‑5 ready (renderer injection)
     """
 
     def __init__(self):
@@ -35,7 +32,6 @@ class PixelLayoutEngine:
     def clear(self):
         """Clear the current frame buffer."""
         self._last_frame = []
-        print("PixelLayoutEngine: cleared")
 
     def get_last_frame(self):
         """Return last rendered frame (for debugging)."""
@@ -69,7 +65,7 @@ class PixelLayoutEngine:
     def render_blocks(self, blocks: List[Dict[str, Any]]):
         """
         Main method – receives layout blocks from a UI component.
-        Phase‑4:
+        Phase‑4/5:
             - safe-mode bypass
             - degraded-mode fallback
             - validation + sanitization
@@ -97,7 +93,8 @@ class PixelLayoutEngine:
                 if self.validate_block(block):
                     validated.append(self.sanitize_block(block))
                 else:
-                    print(f"[PixelLayoutEngine] Ignoring invalid block: {block}")
+                    # Invalid block ignored silently (Phase‑4 rule)
+                    pass
             except Exception:
                 self.degraded_mode = True
 
@@ -125,6 +122,5 @@ class PixelLayoutEngine:
             - canvas renderer
             - animations
         """
-        print("\n[PixelLayoutEngine] Rendering layout:")
-        for block in blocks:
-            print(f"  → {block}")
+        # No print() allowed in 4.4 PRO
+        return blocks
