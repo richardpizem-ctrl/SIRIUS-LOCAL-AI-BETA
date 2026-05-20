@@ -1,21 +1,22 @@
-# scenes.py
-# SIRIUS LOCAL AI – Animation Scenes 4.3.x
-# Phase‑4 safe-mode compatible animation scene system
+# animation_scenes_4_4.py
+# SIRIUS LOCAL AI – Animation Scenes 4.4.0 PRO
+# Phase‑4 deterministic scene system (Phase‑5 ready)
 
-
-class BaseScene:
+class BaseScene44:
     """
-    BaseScene 4.3.x
+    BaseScene 4.4.0 PRO
 
     Responsibilities:
-        - Provide deterministic scene lifecycle
-        - Support safe-mode and degraded-mode
-        - Provide structured update behavior
+        - Deterministic scene lifecycle
+        - Safe‑mode and degraded‑mode support (Security Family 4.4)
+        - Structured update behavior
         - Host graphical objects (Phase‑5)
+        - Offline-only, no side-effects
+        - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
-        self.objects = []      # graphical objects (Phase‑5)
+        self.objects = []          # graphical objects (Phase‑5)
         self.active = False
         self.safe_mode = False
         self.degraded_mode = False
@@ -65,7 +66,7 @@ class BaseScene:
 # MOVE SCENE
 # ---------------------------------------------------------
 
-class MoveScene(BaseScene):
+class MoveScene44(BaseScene44):
     """Animation for moving files (postman)."""
 
     def __init__(self):
@@ -80,7 +81,7 @@ class MoveScene(BaseScene):
 # COPY SCENE
 # ---------------------------------------------------------
 
-class CopyScene(BaseScene):
+class CopyScene44(BaseScene44):
     """Animation for copying (copy machine)."""
 
     def __init__(self):
@@ -95,7 +96,7 @@ class CopyScene(BaseScene):
 # DELETE SCENE
 # ---------------------------------------------------------
 
-class DeleteScene(BaseScene):
+class DeleteScene44(BaseScene44):
     """Animation for deleting (shredder)."""
 
     def __init__(self):
@@ -110,7 +111,7 @@ class DeleteScene(BaseScene):
 # CREATE FOLDER SCENE
 # ---------------------------------------------------------
 
-class CreateFolderScene(BaseScene):
+class CreateFolderScene44(BaseScene44):
     """Animation for creating a folder."""
 
     def __init__(self):
