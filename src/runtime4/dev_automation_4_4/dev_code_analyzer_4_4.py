@@ -1,18 +1,15 @@
-dev_automation_4_4/dev_code_analyzer_4_4.py
 """
 SIRIUS LOCAL AI – Developer Code Analyzer 4.4.0
 
-This module provides deterministic, offline‑safe static code analysis
-for Developer Automation 4.4. It supports:
+Deterministic, offline‑safe static code analysis for Developer Automation 4.4.
 
+Features:
 - Structural AST analysis
 - Symbol extraction (classes, functions, variables)
 - Import graph extraction
 - Dead‑code detection (static)
 - Complexity metrics (safe subset)
 - Security‑aware analysis (Security Family 4.4)
-
-All analysis is deterministic, offline, and fully isolated.
 
 Security Notes:
 - Only static imports allowed.
@@ -28,6 +25,7 @@ from typing import Dict, Any, List, Optional
 class DevCodeAnalyzer44:
     """
     Deterministic static code analyzer for Runtime 4.4.
+    Fully isolated, offline‑safe, and Self‑Repair 4.4 compatible.
     """
 
     def __init__(self, security_policy=None):
@@ -44,7 +42,10 @@ class DevCodeAnalyzer44:
 
         try:
             if self.security_policy:
-                self.security_policy.initialize()
+                sec = self.security_policy.initialize()
+                if isinstance(sec, dict) and sec.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": sec}
 
             self.initialized = True
             return {"status": "initialized"}
@@ -68,17 +69,24 @@ class DevCodeAnalyzer44:
         - variables
         - complexity metrics (safe subset)
         """
+
+        # Ensure initialized
         if not self.initialized:
             init_result = self.initialize()
             if init_result.get("status") not in ("initialized", "already_initialized"):
-                return {"status": "error", "reason": "analyzer_not_initialized", "details": init_result}
+                return {
+                    "status": "error",
+                    "reason": "analyzer_not_initialized",
+                    "details": init_result,
+                }
 
-        # 1. Security policy check
+        # Security policy check
         if self.security_policy:
             sec = self.security_policy.check_code_analysis(options)
             if sec.get("status") != "allowed":
                 return {"status": "blocked", "policy": sec}
 
+        # AST parsing
         try:
             tree = ast.parse(source_code)
 
@@ -122,7 +130,10 @@ class DevCodeAnalyzer44:
                 classes.append({
                     "name": node.name,
                     "doc": ast.get_docstring(node),
-                    "methods": [n.name for n in node.body if isinstance(n, ast.FunctionDef)],
+                    "methods": [
+                        n.name for n in node.body
+                        if isinstance(n, ast.FunctionDef)
+                    ],
                 })
         return classes
 
