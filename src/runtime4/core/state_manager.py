@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 State Manager
+SIRIUS LOCAL AI – Runtime 4.4 State Manager
 
 Responsible for:
 - storing runtime state
@@ -10,7 +10,7 @@ Responsible for:
 - degraded‑mode detection
 - Self‑Repair 4.4 diagnostics
 
-This is the central state container for Runtime 4.3.
+This is the central state container for Runtime 4.4.
 """
 
 from typing import Any, Dict, Optional
@@ -25,6 +25,7 @@ class StateManager4:
     - safe-mode compatibility
     - degraded-mode detection
     - Self‑Repair snapshot support
+    - deterministic, audit‑friendly behavior
     """
 
     def __init__(self):
@@ -32,7 +33,7 @@ class StateManager4:
         self.flags: Dict[str, bool] = {
             "safe_mode": False,
             "schoolwork_priority": True,
-            "diagnostics_enabled": True
+            "diagnostics_enabled": True,
         }
 
         # Persistent runtime state
@@ -99,7 +100,7 @@ class StateManager4:
             return {
                 "status": "error",
                 "code": "global_state_set_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     def get_global(self, key: str) -> Any:
@@ -111,7 +112,12 @@ class StateManager4:
     # MODULE STATE
     # ---------------------------------------------------------
 
-    def set_module_state(self, module_name: str, key: str, value: Any) -> Dict[str, Any]:
+    def set_module_state(
+        self,
+        module_name: str,
+        key: str,
+        value: Any,
+    ) -> Dict[str, Any]:
         if not self._validate_module_name(module_name):
             return {"status": "error", "code": "invalid_module_name"}
 
@@ -133,7 +139,7 @@ class StateManager4:
             return {
                 "status": "error",
                 "code": "module_state_set_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     def get_module_state(self, module_name: str, key: str) -> Any:
@@ -155,7 +161,7 @@ class StateManager4:
     def snapshot(self) -> Dict[str, Any]:
         """
         Returns a safe snapshot of all runtime state.
-        Used by RuntimeEngine 4.3 and Self‑Repair 4.4.
+        Used by RuntimeEngine 4.4 and Self‑Repair 4.4.
         """
 
         try:
@@ -171,5 +177,5 @@ class StateManager4:
             return {
                 "status": "error",
                 "code": "snapshot_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
