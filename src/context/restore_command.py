@@ -7,21 +7,22 @@ import copy
 
 class RestoreCommand(BaseCommand):
     """
-    RestoreCommand 4.3
+    RestoreCommand 4.4
     Restores the entire context from a backup JSON file created by context-backup.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - strict backup validation
-    - deep-copy restoration
-    - snapshot after restore
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Deterministic restore contract
+        - Strict backup validation
+        - Deep-copy restoration
+        - Snapshot after restore
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Stable output for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-restore"
     description = "Restores the entire context from a backup JSON file."
@@ -42,11 +43,12 @@ class RestoreCommand(BaseCommand):
         self.backup_dir = backup_dir
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Restores the entire context from a backup JSON file.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
@@ -124,7 +126,7 @@ class RestoreCommand(BaseCommand):
         self.context.persistent_memory = copy.deepcopy(data["persistent"])
         self.context.state = copy.deepcopy(data["state"])
 
-        # Enforce max_history
+        # Enforce max_history deterministically
         self.context.history = copy.deepcopy(
             data["history"][-self.context.max_history:]
         )
