@@ -1,20 +1,20 @@
-# gui_4_3.py
-# SIRIUS LOCAL AI – Graphical User Interface (v4.3.x)
-# Deterministic, safe-mode compatible GUI front-end
+# gui_4_4.py
+# SIRIUS LOCAL AI – Graphical User Interface (v4.4.0 PRO)
+# Deterministic, safe-mode compatible GUI front-end (Phase‑5 ready)
 
 from __future__ import annotations
 
 from dearpygui.core import *
 from dearpygui.simple import *
 
-from runtime.runtime_manager import RuntimeManager
-from runtime.plugin_loader_4_3 import PluginLoader43
-from runtime.nl_router_4_3 import NaturalLanguageRouter43
+from runtime.runtime_manager_4_4 import RuntimeManager44
+from runtime.plugin_loader_4_4 import PluginLoader44
+from runtime.nl_router_4_4 import NaturalLanguageRouter44
 
 
-class SiriusGUI43:
+class SiriusGUI44:
     """
-    SIRIUS LOCAL AI — Graphical User Interface (v4.3.x)
+    SIRIUS LOCAL AI — Graphical User Interface (v4.4.0 PRO)
 
     Features:
         - Natural language input
@@ -22,7 +22,7 @@ class SiriusGUI43:
         - Plugin-powered actions
         - Safe-mode + degraded-mode support
         - Deterministic, isolated error handling
-        - Self‑Repair 4.4 ready
+        - Phase‑5 ready
     """
 
     def __init__(self):
@@ -31,7 +31,7 @@ class SiriusGUI43:
 
         # Runtime bootstrap
         try:
-            self.runtime = RuntimeManager()
+            self.runtime = RuntimeManager44()
             self.runtime.initialize()
         except Exception as exc:
             self.degraded_mode = True
@@ -39,7 +39,7 @@ class SiriusGUI43:
 
         # Plugins
         try:
-            self.plugins = PluginLoader43(self.runtime)
+            self.plugins = PluginLoader44(self.runtime)
             self.plugins.load_all()
         except Exception as exc:
             self.degraded_mode = True
@@ -47,16 +47,16 @@ class SiriusGUI43:
 
         # NL Router
         try:
-            self.router = NaturalLanguageRouter43(self.runtime, self.plugins)
+            self.router = NaturalLanguageRouter44(self.runtime, self.plugins)
             self.router.initialize()
         except Exception as exc:
             self.degraded_mode = True
             self.runtime.logger.error(f"[GUI] NL Router init error: {exc}")
 
-        self.runtime.logger.info("GUI initialized (v4.3.x)")
+        self.runtime.logger.info("GUI initialized (v4.4.0 PRO)")
 
     # --------------------------------------------------------
-    # GUI LOGIC (4.3.x)
+    # GUI LOGIC (4.4.0 PRO)
     # --------------------------------------------------------
     def send_nl(self, sender, data):
         """Process natural language input."""
@@ -98,10 +98,10 @@ class SiriusGUI43:
         add_text(str(result), parent="Log")
 
     # --------------------------------------------------------
-    # GUI WINDOW (4.3.x)
+    # GUI WINDOW (4.4.0 PRO)
     # --------------------------------------------------------
     def run(self):
-        header = "SIRIUS LOCAL AI – GUI (v4.3.x)"
+        header = "SIRIUS LOCAL AI – GUI (v4.4.0 PRO)"
         if self.safe_mode:
             header += " [SAFE MODE]"
         elif self.degraded_mode:
@@ -152,5 +152,5 @@ class SiriusGUI43:
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    gui = SiriusGUI43()
+    gui = SiriusGUI44()
     gui.run()
