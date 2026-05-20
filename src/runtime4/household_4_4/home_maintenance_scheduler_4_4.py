@@ -1,20 +1,14 @@
-# household_4_4/home_maintenance_scheduler_4_4.py
 """
 SIRIUS LOCAL AI – Home Maintenance Scheduler 4.4.0
 
 Účel:
-- plánovanie údržby domácnosti (filtre, batérie, servis, čistenie)
-- 100 % offline, deterministické
-- žiadne AI heuristiky, žiadne dynamické importy
+- deterministické plánovanie údržby domácnosti
+- 100 % offline, žiadne AI heuristiky, žiadne dynamické importy
 
-Úloha údržby:
-{
-    "name": "vymenit_filter_klima",
-    "category": "air_system",
-    "interval_days": 30,
-    "last_done": "2026-05-01",
-    "next_due": "2026-05-31"
-}
+Security Family 4.4:
+- žiadne nebezpečné typy
+- deterministické správanie
+- Self‑Repair 4.4 ready
 """
 
 from typing import Dict, Any, Optional, List
@@ -29,22 +23,47 @@ class HomeMaintenanceScheduler44:
     def __init__(self, event_bus=None):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
         self.event_bus = event_bus
 
         # name → task
         self.tasks: Dict[str, Dict[str, Any]] = {}
 
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # INTERNAL VALIDATION
+    # ---------------------------------------------------------
+    def _validate_str(self, value: Any) -> bool:
+        return isinstance(value, str) and value.strip()
+
+    def _validate_int(self, value: Any) -> bool:
+        return isinstance(value, int) and value > 0
+
+    def _parse_date(self, value: Optional[str]):
+        if value is None:
+            return datetime.now()
+
+        if not self._validate_str(value):
+            return None
+
+        try:
+            return datetime.strptime(value, "%Y-%m-%d")
+        except Exception:
+            return None
+
+    # ---------------------------------------------------------
     # INITIALIZATION
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
             if self.event_bus:
-                self.event_bus.initialize()
+                res = self.event_bus.initialize()
+                if isinstance(res, dict) and res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "event_bus_init_failed"}
 
             self.initialized = True
             return {"status": "initialized"}
@@ -53,9 +72,9 @@ class HomeMaintenanceScheduler44:
             self.degraded_mode = True
             return {"status": "error", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     # ADD MAINTENANCE TASK
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def add_task(
         self,
         name: str,
@@ -64,102 +83,142 @@ class HomeMaintenanceScheduler44:
         last_done: Optional[str] = None
     ) -> Dict[str, Any]:
 
-        if last_done:
-            try:
-                last_dt = datetime.strptime(last_done, "%Y-%m-%d")
-            except ValueError:
-                return {"status": "error", "reason": "invalid_date_format"}
-        else:
-            last_dt = datetime.now()
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Maintenance scheduler disabled in safe-mode."}
 
-        next_due = last_dt + timedelta(days=interval_days)
+        if not self._validate_str(name):
+            return {"status": "error", "code": "invalid_name"}
 
-        task = {
-            "name": name,
-            "category": category,
-            "interval_days": interval_days,
-            "last_done": last_dt.strftime("%Y-%m-%d"),
-            "next_due": next_due.strftime("%Y-%m-%d"),
-        }
+        if not self._validate_str(category):
+            return {"status": "error", "code": "invalid_category"}
 
-        self.tasks[name] = task
+        if not self._validate_int(interval_days):
+            return {"status": "error", "code": "invalid_interval"}
 
-        if self.event_bus:
-            self.event_bus.emit("maintenance_task_added", {"task": task})
+        last_dt = self._parse_date(last_done)
+        if last_dt is None:
+            return {"status": "error", "code": "invalid_date_format"}
 
-        return {"status": "ok", "task": task}
+        try:
+            next_due = last_dt + timedelta(days=interval_days)
 
-    # ------------------------------------------------------------------
+            task = {
+                "name": name,
+                "category": category,
+                "interval_days": interval_days,
+                "last_done": last_dt.strftime("%Y-%m-%d"),
+                "next_due": next_due.strftime("%Y-%m-%d"),
+            }
+
+            self.tasks[name] = task
+
+            if self.event_bus:
+                try:
+                    self.event_bus.emit("maintenance_task_added", {"task": task})
+                except Exception:
+                    self.degraded_mode = True
+
+            return {"status": "ok", "task": dict(task)}
+
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "add_task_failed", "exception": str(exc)}
+
+    # ---------------------------------------------------------
     # MARK TASK AS DONE
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def mark_done(self, name: str, date: Optional[str] = None) -> Dict[str, Any]:
+        if not self._validate_str(name):
+            return {"status": "error", "code": "invalid_name"}
+
         if name not in self.tasks:
-            return {"status": "error", "reason": "task_not_found"}
+            return {"status": "error", "code": "task_not_found"}
 
-        if date:
-            try:
-                done_dt = datetime.strptime(date, "%Y-%m-%d")
-            except ValueError:
-                return {"status": "error", "reason": "invalid_date_format"}
-        else:
-            done_dt = datetime.now()
+        done_dt = self._parse_date(date)
+        if done_dt is None:
+            return {"status": "error", "code": "invalid_date_format"}
 
-        task = self.tasks[name]
-        task["last_done"] = done_dt.strftime("%Y-%m-%d")
-        task["next_due"] = (done_dt + timedelta(days=task["interval_days"])).strftime("%Y-%m-%d")
+        try:
+            task = self.tasks[name]
+            task["last_done"] = done_dt.strftime("%Y-%m-%d")
+            task["next_due"] = (done_dt + timedelta(days=task["interval_days"])).strftime("%Y-%m-%d")
 
-        if self.event_bus:
-            self.event_bus.emit("maintenance_task_completed", {"task": task})
+            if self.event_bus:
+                try:
+                    self.event_bus.emit("maintenance_task_completed", {"task": task})
+                except Exception:
+                    self.degraded_mode = True
 
-        return {"status": "ok", "task": dict(task)}
+            return {"status": "ok", "task": dict(task)}
 
-    # ------------------------------------------------------------------
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "mark_done_failed", "exception": str(exc)}
+
+    # ---------------------------------------------------------
     # LIST TASKS
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def list_tasks(self) -> Dict[str, Any]:
-        return {"status": "ok", "tasks": list(self.tasks.values())}
+        try:
+            return {"status": "ok", "tasks": list(self.tasks.values())}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "list_failed", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     # LIST DUE TASKS
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def list_due(self, date: Optional[str] = None) -> Dict[str, Any]:
-        if date:
-            try:
-                ref_dt = datetime.strptime(date, "%Y-%m-%d")
-            except ValueError:
-                return {"status": "error", "reason": "invalid_date_format"}
-        else:
-            ref_dt = datetime.now()
+        ref_dt = self._parse_date(date)
+        if ref_dt is None:
+            return {"status": "error", "code": "invalid_date_format"}
 
-        due = []
-        for task in self.tasks.values():
-            next_due_dt = datetime.strptime(task["next_due"], "%Y-%m-%d")
-            if next_due_dt <= ref_dt:
-                due.append(task)
+        try:
+            due = []
+            for task in self.tasks.values():
+                next_due_dt = datetime.strptime(task["next_due"], "%Y-%m-%d")
+                if next_due_dt <= ref_dt:
+                    due.append(task)
 
-        return {"status": "ok", "due": due}
+            return {"status": "ok", "due": due}
 
-    # ------------------------------------------------------------------
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "list_due_failed", "exception": str(exc)}
+
+    # ---------------------------------------------------------
     # REMOVE TASK
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def remove_task(self, name: str) -> Dict[str, Any]:
+        if not self._validate_str(name):
+            return {"status": "error", "code": "invalid_name"}
+
         if name not in self.tasks:
-            return {"status": "error", "reason": "task_not_found"}
+            return {"status": "error", "code": "task_not_found"}
 
-        removed = self.tasks.pop(name)
+        try:
+            removed = self.tasks.pop(name)
 
-        if self.event_bus:
-            self.event_bus.emit("maintenance_task_removed", {"task": removed})
+            if self.event_bus:
+                try:
+                    self.event_bus.emit("maintenance_task_removed", {"task": removed})
+                except Exception:
+                    self.degraded_mode = True
 
-        return {"status": "ok"}
+            return {"status": "ok"}
 
-    # ------------------------------------------------------------------
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "remove_failed", "exception": str(exc)}
+
+    # ---------------------------------------------------------
     # STATUS
-    # ------------------------------------------------------------------
+    # ---------------------------------------------------------
     def get_status(self) -> Dict[str, Any]:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "tasks_count": len(self.tasks),
         }
