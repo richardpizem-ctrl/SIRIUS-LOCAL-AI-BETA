@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Scheduler
+SIRIUS LOCAL AI – Runtime 4.4 Scheduler
 
 Responsible for:
 - task queue management
@@ -11,7 +11,7 @@ Responsible for:
 - degraded‑mode detection
 - Self‑Repair 4.4 compatibility
 
-This is the execution engine of Runtime 4.3.
+This is the execution engine of Runtime 4.4.
 """
 
 from typing import Optional, Any, Dict, List
@@ -19,8 +19,9 @@ from typing import Optional, Any, Dict, List
 
 class Scheduler4:
     """
-    Task scheduler for Runtime 4.3.
-    Handles task dispatching, prioritization, and execution flow.
+    Task scheduler for Runtime 4.4.
+    Handles task dispatching, prioritization, and execution flow
+    with deterministic, structured behavior.
     """
 
     def __init__(self, max_queue_size: int = 500):
@@ -57,7 +58,12 @@ class Scheduler4:
     # TASK MANAGEMENT
     # ---------------------------------------------------------
 
-    def add_task(self, task: str, context: Optional[dict] = None, priority: int = 1) -> Dict[str, Any]:
+    def add_task(
+        self,
+        task: str,
+        context: Optional[dict] = None,
+        priority: int = 1
+    ) -> Dict[str, Any]:
         """
         Adds a task to the queue with full safety checks.
         Priority 0 = highest, 5 = lowest.
@@ -78,7 +84,7 @@ class Scheduler4:
         entry = {
             "task": task,
             "context": context or {},
-            "priority": priority
+            "priority": priority,
         }
 
         self.task_queue.append(entry)
@@ -87,13 +93,13 @@ class Scheduler4:
             "status": "queued",
             "size": len(self.task_queue),
             "task": task,
-            "priority": priority
+            "priority": priority,
         }
 
     def get_next_task(self) -> Optional[Dict[str, Any]]:
         """
         Retrieves the next task based on priority rules.
-        Includes safety checks.
+        Includes safety checks and degraded-mode detection.
         """
 
         if not self.task_queue:
@@ -136,7 +142,7 @@ class Scheduler4:
     def tick(self) -> Optional[Dict[str, Any]]:
         """
         Executes a single scheduler cycle.
-        Returns the result of the executed task.
+        Returns the result of the scheduled task envelope.
         """
 
         if not self.running:
@@ -146,12 +152,15 @@ class Scheduler4:
         if not task:
             return None
 
+        if isinstance(task, dict) and task.get("status") == "error":
+            return task
+
         # SAFE MODE
         if self.safe_mode and task["priority"] > 1:
             return {
                 "status": "blocked",
                 "code": "blocked_by_safe_mode",
-                "task": task["task"]
+                "task": task["task"],
             }
 
         # SCHOOLWORK PRIORITY BOOST
@@ -160,10 +169,9 @@ class Scheduler4:
             if isinstance(ctx, dict) and ctx.get("type") == "schoolwork":
                 task["priority"] = 0
 
-        # Return safe execution envelope
         return {
             "status": "scheduled",
             "task": task["task"],
             "context": task["context"],
-            "priority": task["priority"]
+            "priority": task["priority"],
         }
