@@ -1,51 +1,58 @@
 """
-UI Workflow Module – Runtime 4.3.x
+UI Workflow Module – Runtime 4.3.x (PRO)
 
-New in 4.3.x:
-- Fallback Engine
+Provides:
+- Deterministic workflow execution
 - Multi‑strategy target resolution
 - Confidence‑based element selection
 - Retry logic
 - Semantic fallback
-- Fuzzy‑aware workflow pipeline
+- Fuzzy‑aware pipeline
 - Safe‑mode and degraded‑mode behavior
 - Structured workflow results
 
 The workflow engine is the highest layer of the UI Automation Engine.
 """
 
+from typing import Any, Dict, List, Optional
+
 
 class UIWorkflow:
+    """
+    Deterministic UI Workflow Engine for Runtime 4.3.x (PRO).
+    """
+
     def __init__(self, graph, parser, actions, sandbox=None):
         self.graph = graph
         self.parser = parser
         self.actions = actions
         self.sandbox = sandbox
 
-        self.max_retries = 3
-
-        self.safe_mode = False
-        self.degraded_mode = False
+        self.max_retries: int = 3
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
     # ------------------------------------------------------------
     # WORKFLOW EXECUTION
     # ------------------------------------------------------------
-    def run(self, steps):
+    def run(self, steps: List[Dict[str, Any]]) -> Dict[str, Any]:
         """
         Executes a list of workflow steps.
-        Returns structured result:
-        {
-            "status": "ok" | "failed" | "safe_mode",
-            "step_results": [...],
-            "degraded_mode": bool
-        }
         """
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
                 "step_results": [],
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
+            }
+
+        if not isinstance(steps, list):
+            return {
+                "status": "error",
+                "code": "invalid_steps",
+                "step_results": [],
+                "degraded_mode": self.degraded_mode,
             }
 
         results = []
@@ -54,26 +61,33 @@ class UIWorkflow:
             result = self._execute_step(step)
             results.append(result)
 
-            if not result["success"]:
+            if not result.get("success", False):
                 return {
                     "status": "failed",
                     "step_results": results,
-                    "degraded_mode": self.degraded_mode
+                    "degraded_mode": self.degraded_mode,
                 }
 
         return {
             "status": "ok",
             "step_results": results,
-            "degraded_mode": self.degraded_mode
+            "degraded_mode": self.degraded_mode,
         }
 
     # ------------------------------------------------------------
     # SINGLE STEP EXECUTION (WITH RETRIES)
     # ------------------------------------------------------------
-    def _execute_step(self, step):
+    def _execute_step(self, step: Dict[str, Any]) -> Dict[str, Any]:
         action = step.get("action")
         target = step.get("target")
         value = step.get("value")
+
+        if not isinstance(step, dict):
+            return {
+                "success": False,
+                "error": "invalid_step_format",
+                "degraded_mode": self.degraded_mode,
+            }
 
         for attempt in range(self.max_retries):
 
@@ -87,18 +101,19 @@ class UIWorkflow:
 
             # 2. Parse UI
             parse_result = self.parser.parse_graph(self.graph)
-            if isinstance(parse_result, dict) and parse_result.get("status") == "error":
+            if parse_result.get("status") == "error":
                 self.degraded_mode = True
                 continue
 
             # 3. Resolve target
             element = self._resolve_target(target)
             if not element:
-                continue  # retry
+                continue
 
             # 4. Execute action
             exec_result = self._execute_action(action, element, value)
-            if exec_result["success"]:
+            if exec_result.get("success"):
+                exec_result["attempt"] = attempt + 1
                 return exec_result
 
         return {
@@ -106,35 +121,39 @@ class UIWorkflow:
             "action": action,
             "target": target,
             "attempts": self.max_retries,
-            "degraded_mode": self.degraded_mode
+            "degraded_mode": self.degraded_mode,
         }
 
     # ------------------------------------------------------------
     # ACTION EXECUTION WRAPPER
     # ------------------------------------------------------------
-    def _execute_action(self, action, element, value):
+    def _execute_action(self, action: str, element: Any, value: Any) -> Dict[str, Any]:
         try:
             if action == "click":
-                ok = self.actions.click(element)
+                result = self.actions.click(element)
+
             elif action == "write":
-                ok = self.actions.write(element, value)
+                result = self.actions.write(element, value)
+
             elif action == "select":
-                ok = self.actions.select(element, value)
+                result = self.actions.select(element, value)
+
             elif action == "semantic":
-                ok = self.actions.semantic(element)
+                result = self.actions.semantic(element)
+
             else:
                 return {
                     "success": False,
                     "error": "unknown_action",
-                    "action": action
+                    "action": action,
                 }
 
             return {
-                "success": bool(ok),
+                "success": bool(result),
                 "action": action,
                 "element": getattr(element, "name", element),
                 "value": value,
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
 
         except Exception as exc:
@@ -145,13 +164,13 @@ class UIWorkflow:
                 "exception": str(exc),
                 "action": action,
                 "element": getattr(element, "name", element),
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
 
     # ------------------------------------------------------------
     # TARGET RESOLUTION (4.3.x – MULTI‑STRATEGY)
     # ------------------------------------------------------------
-    def _resolve_target(self, target):
+    def _resolve_target(self, target: Any) -> Optional[Any]:
         """
         Multi‑strategy resolution:
         1. Exact / partial / fuzzy match (Parser 4.3)
@@ -159,6 +178,7 @@ class UIWorkflow:
         3. Confidence‑based selection
         """
 
+        # String target → fuzzy search
         if isinstance(target, str):
             results = self.parser.find(name=target)
             if isinstance(results, dict):
@@ -167,9 +187,9 @@ class UIWorkflow:
             if not results:
                 return None
 
-            # Pick highest‑confidence match
             return results[0]["element"]
 
+        # Direct element reference
         if isinstance(target, dict):
             return target
 
