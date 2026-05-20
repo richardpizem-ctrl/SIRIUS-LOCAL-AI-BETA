@@ -1,7 +1,7 @@
 """
-Health Rules – Deterministic Classification Layer 4.3.x
--------------------------------------------------------
-This module classifies user text into safe, non-medical categories.
+Health Rules – Deterministic Classification Layer 4.4.0 (PRO)
+-------------------------------------------------------------
+Classifies user text into safe, non‑medical categories.
 No diagnoses, no medication advice, no medical claims.
 
 Categories:
@@ -11,14 +11,21 @@ Categories:
 - temperature
 - pain
 - unknown
+
+Security Family 4.4:
+- deterministic
+- offline
+- identity‑aware
+- safe‑mode aware
+- degraded‑mode aware
 """
 
-import re
 from typing import Optional
 
 
-# --- SIMPLE KEYWORD MAP ------------------------------------------------------
-
+# ---------------------------------------------------------------------
+# KEYWORD MAP (DETERMINISTIC, OFFLINE)
+# ---------------------------------------------------------------------
 KEYWORDS = {
     "hydration": [
         "smäd", "smad", "dehydrat", "málo pijem", "malo pijem",
@@ -43,35 +50,41 @@ KEYWORDS = {
 }
 
 
-# --- CLASSIFICATION LOGIC ----------------------------------------------------
-
+# ---------------------------------------------------------------------
+# CLASSIFICATION LOGIC (DETERMINISTIC, SAFE)
+# ---------------------------------------------------------------------
 def classify_health_state(text: str, context) -> str:
     """
-    Deterministic rule-based classifier.
+    Deterministic rule‑based classifier.
+
     Returns one of:
         hydration | rest | stress | temperature | pain | unknown
 
-    Safe-mode → always return "unknown".
-    Degraded-mode → still return deterministic category.
+    Safe‑mode → always return "unknown".
+    Degraded‑mode → still return deterministic category.
     """
 
-    # Safe-mode: no classification
+    # SAFE‑MODE → no classification
     if getattr(context, "safe_mode", False):
         return "unknown"
 
     try:
         normalized = (text or "").lower().strip()
 
-        # Identity-aware restrictions
+        # ---------------------------------------------------------
+        # IDENTITY‑AWARE RESTRICTIONS (Security Family 4.4)
+        # ---------------------------------------------------------
         if context.identity == "CHILD":
-            # children get simplified categories only
+            # CHILD identity gets simplified categories only
             if any(k in normalized for k in KEYWORDS["pain"]):
                 return "pain"
             if any(k in normalized for k in KEYWORDS["stress"]):
                 return "stress"
             return "rest"
 
-        # Standard classification
+        # ---------------------------------------------------------
+        # STANDARD CLASSIFICATION
+        # ---------------------------------------------------------
         for category, words in KEYWORDS.items():
             for w in words:
                 if w in normalized:
@@ -80,7 +93,7 @@ def classify_health_state(text: str, context) -> str:
         return "unknown"
 
     except Exception:
-        # Mark degraded-mode
+        # Mark degraded‑mode
         if hasattr(context, "mark_degraded"):
             context.mark_degraded()
         return "unknown"
