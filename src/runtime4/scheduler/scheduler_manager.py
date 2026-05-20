@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Scheduler 4.3 Manager
+SIRIUS LOCAL AI – Scheduler 4.3 Manager (PRO)
 
 Responsible for:
 - integrating SchedulerCore4, SchedulerRouter4, SchedulerQueue4
@@ -8,7 +8,11 @@ Responsible for:
 - coordinating execution with sandbox manager
 - supporting safe-mode and degraded-mode behavior
 
-This is the orchestration layer of Scheduler 4.3.
+Security Family 4.4 Compliance:
+- No eval, exec, reflection, dynamic imports
+- Strict input validation
+- Deterministic behavior
+- Self‑Repair 4.4 ready
 """
 
 from typing import Optional, Dict, Any
@@ -16,7 +20,7 @@ from typing import Optional, Dict, Any
 
 class SchedulerManager4:
     """
-    High-level orchestrator for Scheduler 4.3.
+    High-level orchestrator for Scheduler 4.3 (PRO).
     Provides:
     - unified scheduling API
     - strict validation
@@ -53,14 +57,12 @@ class SchedulerManager4:
     # ---------------------------------------------------------
 
     def submit(self, task: str, context: Optional[dict] = None):
-        """
-        Adds a task to the queue with safety checks.
-        """
+        """Adds a task to the queue with safety checks."""
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Task submission disabled in safe-mode."
+                "message": "Task submission disabled in safe-mode.",
             }
 
         # Validate task
@@ -75,8 +77,9 @@ class SchedulerManager4:
 
         # Validate module name if present
         module_name = context.get("module")
-        if module_name is not None and (not isinstance(module_name, str) or not module_name.strip()):
-            return {"status": "error", "code": "invalid_module_name"}
+        if module_name is not None:
+            if not isinstance(module_name, str) or not module_name.strip():
+                return {"status": "error", "code": "invalid_module_name"}
 
         try:
             return self.queue.push(task, context)
@@ -85,17 +88,16 @@ class SchedulerManager4:
             return {
                 "status": "error",
                 "code": "queue_push_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     def start(self):
-        """
-        Activates the scheduler.
-        """
+        """Activates the scheduler."""
+
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Scheduler start disabled in safe-mode."
+                "message": "Scheduler start disabled in safe-mode.",
             }
 
         self.active = True
@@ -103,9 +105,7 @@ class SchedulerManager4:
         return {"status": "scheduler_started"}
 
     def stop(self):
-        """
-        Stops the scheduler.
-        """
+        """Stops the scheduler."""
         self.active = False
         self.core.stop()
         return {"status": "scheduler_stopped"}
@@ -115,17 +115,14 @@ class SchedulerManager4:
     # ---------------------------------------------------------
 
     def step(self) -> Optional[Dict[str, Any]]:
-        """
-        Executes the next task in the queue.
-        """
+        """Executes the next task in the queue."""
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Scheduler execution disabled in safe-mode."
+                "message": "Scheduler execution disabled in safe-mode.",
             }
 
-        # Scheduler must be active
         if not self.active:
             return {"status": "error", "code": "scheduler_inactive"}
 
@@ -150,8 +147,9 @@ class SchedulerManager4:
 
         # Validate module name
         module_name = context.get("module")
-        if module_name is not None and (not isinstance(module_name, str) or not module_name.strip()):
-            return {"status": "error", "code": "invalid_module_name"}
+        if module_name is not None:
+            if not isinstance(module_name, str) or not module_name.strip():
+                return {"status": "error", "code": "invalid_module_name"}
 
         try:
             # Route task to correct module
@@ -161,25 +159,23 @@ class SchedulerManager4:
             return {
                 "status": "error",
                 "code": "routing_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     def run_all(self):
-        """
-        Executes all tasks until the queue is empty.
-        """
+        """Executes all tasks until the queue is empty."""
 
         if self.safe_mode:
             return [{
                 "status": "safe_mode",
-                "message": "Scheduler execution disabled in safe-mode."
+                "message": "Scheduler execution disabled in safe-mode.",
             }]
 
-        # Scheduler must be active
         if not self.active:
             return [{"status": "error", "code": "scheduler_inactive"}]
 
         results = []
         while self.queue.size() > 0:
             results.append(self.step())
+
         return results
