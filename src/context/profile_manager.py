@@ -6,26 +6,26 @@ import re
 
 class ProfileManager:
     """
-    ProfileManager 4.3
+    ProfileManager 4.4
     Handles saving, loading, listing, deleting, and inspecting
     context profiles for SIRIUS LOCAL AI.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - strict filename validation
-    - deep-copy safety
-    - snapshot-compatible structure
-    - max_history enforcement
-    - consistent return structure for commands
+    New in 4.4:
+        - Deterministic behavior for Runtime4.4
+        - Strict filename validation (stable, audit‑friendly)
+        - Deep‑copy safety for all operations
+        - Snapshot‑compatible structure
+        - max_history enforcement
+        - Stable, predictable structure for commands and Self‑Repair 4.4
     """
 
     VALID_NAME = re.compile(r"^[A-Za-z0-9_\-]+$")
 
-    def __init__(self, context_manager, base_path="profiles"):
+    def __init__(self, context_manager, base_path: str = "profiles"):
         self.context = context_manager
         self.base_path = base_path
 
+        # No side effects beyond required fs init
         if not os.path.exists(self.base_path):
             os.makedirs(self.base_path)
 
@@ -33,21 +33,24 @@ class ProfileManager:
     #  INTERNAL HELPERS
     # ============================================================
 
-    def _profile_path(self, name: str):
+    def _profile_path(self, name: str) -> str:
         return os.path.join(self.base_path, f"{name}.json")
 
-    def _exists(self, name: str):
+    def _exists(self, name: str) -> bool:
         return os.path.isfile(self._profile_path(name))
 
-    def _validate_name(self, name: str):
+    def _validate_name(self, name: str) -> bool:
         return bool(self.VALID_NAME.match(name))
 
     # ============================================================
     #  SAVE PROFILE
     # ============================================================
 
-    def save_profile(self, name: str):
-        """Save the current context into a profile file."""
+    def save_profile(self, name: str) -> bool:
+        """
+        Save the current context into a profile file.
+        Deterministic, deep‑copy safe.
+        """
         if not self._validate_name(name):
             return False
 
@@ -71,7 +74,10 @@ class ProfileManager:
     # ============================================================
 
     def load_profile(self, name: str):
-        """Load a profile and restore the context."""
+        """
+        Load a profile and restore the context.
+        Returns True on success, None on failure.
+        """
         if not self._exists(name):
             return None
 
@@ -104,8 +110,10 @@ class ProfileManager:
         self.context.persistent_memory = copy.deepcopy(persistent)
         self.context.state = copy.deepcopy(state)
 
-        # Enforce max_history
-        self.context.history = copy.deepcopy(history[-self.context.max_history:])
+        # Enforce max_history deterministically
+        self.context.history = copy.deepcopy(
+            history[-self.context.max_history :]
+        )
 
         return True
 
@@ -114,21 +122,30 @@ class ProfileManager:
     # ============================================================
 
     def list_profiles(self):
-        """Return a list of all saved profile names."""
+        """
+        Return a sorted list of all saved profile names.
+        Deterministic ordering.
+        """
         try:
             files = os.listdir(self.base_path)
         except Exception:
             return []
 
-        profiles = [f.replace(".json", "") for f in files if f.endswith(".json")]
+        profiles = [
+            f[:-5] for f in files
+            if f.endswith(".json")
+        ]
         return sorted(profiles)
 
     # ============================================================
     #  DELETE PROFILE
     # ============================================================
 
-    def delete_profile(self, name: str):
-        """Delete a profile file."""
+    def delete_profile(self, name: str) -> bool:
+        """
+        Delete a profile file.
+        Returns True on success, False on failure.
+        """
         if not self._exists(name):
             return False
 
@@ -144,7 +161,10 @@ class ProfileManager:
     # ============================================================
 
     def get_profile_info(self, name: str):
-        """Return metadata about a profile."""
+        """
+        Return metadata about a profile.
+        Returns dict on success, None on failure.
+        """
         if not self._exists(name):
             return None
 
