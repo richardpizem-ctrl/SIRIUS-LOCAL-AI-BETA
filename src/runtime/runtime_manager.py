@@ -12,16 +12,17 @@ log = logging.getLogger(__name__)
 
 class RuntimeManager:
     """
-    RuntimeManager 4.3+
+    RuntimeManager 4.4
     -------------------
-    - Plugin loader (4.3)
-    - NL Router (4.3)
-    - AI Task handler
-    - Workflow engine
+    - Plugin loader (deterministic pipeline)
+    - NL Router integrácia
+    - AI Task handler (vrátane Password Vault)
+    - Workflow engine integrácia
     - Security Family enforcement (4.4-ready)
     - Deterministic startup pipeline
     - Telemetry + degraded mode
     - Self‑Repair safe-mode
+    - Stabilný, štruktúrovaný návratový model
     """
 
     def __init__(self):
@@ -39,14 +40,14 @@ class RuntimeManager:
         self.degraded_mode = False
 
     # --------------------------------------------------------
-    # INITIALIZATION PIPELINE 4.3
+    # INITIALIZATION PIPELINE 4.4
     # --------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         start_time = time.time()
-        errors = []
-        warnings = []
+        errors: list[str] = []
+        warnings: list[str] = []
 
-        self.logger.info("RuntimeManager 4.3 – initialization started")
+        self.logger.info("RuntimeManager 4.4 – initialization started")
 
         # SAFE MODE (Self‑Repair)
         if self.safe_mode:
@@ -59,12 +60,23 @@ class RuntimeManager:
         # ----------------------------------------------------
         # 1) Load plugins
         # ----------------------------------------------------
-        plugin_result = self.plugins.load_all(self)
+        try:
+            plugin_result = self.plugins.load_all(self)
+        except Exception as exc:
+            msg = f"Plugin loading failed: {exc}"
+            self.logger.error(msg)
+            errors.append(msg)
+            plugin_result = {
+                "status": "error",
+                "exception": str(exc),
+                "instances": []
+            }
+
         if plugin_result.get("degraded_mode"):
             self.degraded_mode = True
             errors.extend(plugin_result.get("errors", []))
 
-        plugin_instances = list(self.plugins.instances.values())
+        plugin_instances = list(getattr(self.plugins, "instances", {}).values())
 
         # ----------------------------------------------------
         # 2) Register NL commands
@@ -138,26 +150,35 @@ class RuntimeManager:
                 errors.append(msg)
 
         # ----------------------------------------------------
-        # 8) Initialize modules
+        # 8) Initialize modules (RuntimeEngine modules)
         # ----------------------------------------------------
-        for module in self.engine.modules.values():
+        for name, module in self.engine.modules.items():
+            instance = module.get("instance")
             try:
-                module["instance"].initialize()
+                if hasattr(instance, "initialize"):
+                    res = instance.initialize()
+                    if isinstance(res, dict) and res.get("status") == "error":
+                        msg = f"Module '{name}' initialization reported error: {res}"
+                        self.logger.error(msg)
+                        errors.append(msg)
             except Exception as exc:
-                msg = f"Module initialization failed: {exc}"
+                msg = f"Module initialization failed for '{name}': {exc}"
                 self.logger.error(msg)
                 errors.append(msg)
 
         duration = time.time() - start_time
-        self.logger.info("RuntimeManager 4.3 – initialization complete")
+        self.logger.info("RuntimeManager 4.4 – initialization complete")
+
+        degraded = bool(errors)
+        self.degraded_mode = self.degraded_mode or degraded
 
         return {
-            "status": "degraded" if errors else "success",
+            "status": "degraded" if degraded else "success",
             "errors": errors,
             "warnings": warnings,
             "plugins": plugin_result,
             "duration": duration,
-            "degraded_mode": bool(errors),
+            "degraded_mode": self.degraded_mode,
         }
 
     # --------------------------------------------------------
@@ -167,7 +188,7 @@ class RuntimeManager:
         return self.nl.handle(text)
 
     # --------------------------------------------------------
-    # AI TASK HANDLER (PASSWORD VAULT)
+    # AI TASK HANDLER (PASSWORD VAULT + FALLBACK)
     # --------------------------------------------------------
     def handle_ai_task(self, goal: str, args: Dict[str, Any]) -> Dict[str, Any]:
         # PASSWORD VAULT – SAVE
@@ -219,6 +240,7 @@ class RuntimeManager:
         try:
             return self.agent.run_task(goal, args)
         except Exception as exc:
+            self.logger.error(f"AI task handler error for goal '{goal}': {exc}")
             return {"status": "error", "message": str(exc)}
 
     # --------------------------------------------------------
@@ -230,8 +252,10 @@ class RuntimeManager:
     # --------------------------------------------------------
     # ENGINE CONTROL
     # --------------------------------------------------------
-    def start(self):
-        self.engine.start()
+    def start(self) -> Dict[str, Any]:
+        res = self.engine.start()
+        return res if isinstance(res, dict) else {"status": "success"}
 
-    def stop(self):
-        self.engine.stop()
+    def stop(self) -> Dict[str, Any]:
+        res = self.engine.stop()
+        return res if isinstance(res, dict) else {"status": "success"}
