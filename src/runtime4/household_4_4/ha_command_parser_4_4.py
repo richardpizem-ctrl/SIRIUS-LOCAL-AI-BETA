@@ -1,4 +1,3 @@
-# household_4_4/ha_command_parser_4_4.py
 """
 SIRIUS LOCAL AI – Household Command Parser 4.4.0
 
@@ -17,6 +16,11 @@ Príklady:
 - "vypni všetky svetlá v obývačke"
 - "spusti rutinu good night"
 - "pridaj úlohu vyniesť smeti v kuchyni"
+
+Security Family 4.4:
+- žiadne nebezpečné typy
+- žiadne dynamické operácie
+- deterministické spracovanie
 """
 
 from typing import Dict, Any, Optional
@@ -25,11 +29,13 @@ from typing import Dict, Any, Optional
 class HouseholdCommandParser44:
     """
     Deterministic parser domácich príkazov.
+    Fully offline‑safe, deterministic, Security Family 4.4 compliant.
     """
 
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
@@ -37,6 +43,7 @@ class HouseholdCommandParser44:
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
+
         try:
             self.initialized = True
             return {"status": "initialized"}
@@ -48,30 +55,62 @@ class HouseholdCommandParser44:
     # MAIN PARSE
     # ------------------------------------------------------------------
     def parse(self, command: str) -> Dict[str, Any]:
+        # SAFE MODE
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Command parsing disabled in safe-mode.",
+                "degraded_mode": self.degraded_mode,
+            }
+
+        # VALIDATION
+        if not isinstance(command, str):
+            return {"status": "error", "code": "invalid_command_type"}
+
         cmd = command.lower().strip()
+        if not cmd:
+            return {"status": "error", "code": "empty_command"}
 
         # DEVICE CONTROL
         dc = self._parse_device_control(cmd)
         if dc:
-            return {"status": "ok", "intent": "device_control", "payload": dc}
+            return {
+                "status": "ok",
+                "intent": "device_control",
+                "payload": dc,
+                "degraded_mode": self.degraded_mode,
+            }
 
         # ROUTINE TRIGGER
         rt = self._parse_routine_trigger(cmd)
         if rt:
-            return {"status": "ok", "intent": "routine_trigger", "payload": rt}
+            return {
+                "status": "ok",
+                "intent": "routine_trigger",
+                "payload": rt,
+                "degraded_mode": self.degraded_mode,
+            }
 
         # TASK CREATE
         tc = self._parse_task_create(cmd)
         if tc:
-            return {"status": "ok", "intent": "task_create", "payload": tc}
+            return {
+                "status": "ok",
+                "intent": "task_create",
+                "payload": tc,
+                "degraded_mode": self.degraded_mode,
+            }
 
-        return {"status": "error", "reason": "unrecognized_command"}
+        return {
+            "status": "error",
+            "code": "unrecognized_command",
+            "degraded_mode": self.degraded_mode,
+        }
 
     # ------------------------------------------------------------------
     # DEVICE CONTROL PARSER
     # ------------------------------------------------------------------
     def _parse_device_control(self, cmd: str) -> Optional[Dict[str, Any]]:
-        # Jednoduché akcie
         actions = {
             "zapni": "on",
             "vypni": "off",
@@ -81,7 +120,6 @@ class HouseholdCommandParser44:
             "nastav": "set",
         }
 
-        # Akcia
         action = None
         for k, v in actions.items():
             if cmd.startswith(k + " "):
@@ -95,21 +133,23 @@ class HouseholdCommandParser44:
         if " v " in cmd:
             parts = cmd.split(" v ")
             room = parts[-1].strip()
-            return {
-                "action": action,
-                "target_type": "room",
-                "room": room,
-            }
+            if room:
+                return {
+                    "action": action,
+                    "target_type": "room",
+                    "room": room,
+                }
 
-        # DEVICE TARGET (explicit)
+        # DEVICE TARGET
         if " zariadenie " in cmd:
             parts = cmd.split(" zariadenie ")
             device_id = parts[-1].strip()
-            return {
-                "action": action,
-                "target_type": "device",
-                "device_id": device_id,
-            }
+            if device_id:
+                return {
+                    "action": action,
+                    "target_type": "device",
+                    "device_id": device_id,
+                }
 
         return None
 
@@ -119,11 +159,11 @@ class HouseholdCommandParser44:
     def _parse_routine_trigger(self, cmd: str) -> Optional[Dict[str, Any]]:
         if cmd.startswith("spusti rutinu "):
             name = cmd.replace("spusti rutinu ", "").strip()
-            return {"routine_name": name}
+            return {"routine_name": name} if name else None
 
         if cmd.startswith("spusti scénu "):
             name = cmd.replace("spusti scénu ", "").strip()
-            return {"routine_name": name}
+            return {"routine_name": name} if name else None
 
         return None
 
@@ -135,20 +175,20 @@ class HouseholdCommandParser44:
             return None
 
         text = cmd.replace("pridaj úlohu ", "").strip()
+        if not text:
+            return None
 
-        # Formát:
-        # "vyniesť smeti v kuchyni"
         if " v " in text:
             parts = text.split(" v ")
             name = parts[0].strip()
             room = parts[1].strip()
-            return {
-                "name": name,
-                "category": "general",
-                "room": room,
-            }
+            if name:
+                return {
+                    "name": name,
+                    "category": "general",
+                    "room": room or None,
+                }
 
-        # Bez miestnosti
         return {
             "name": text,
             "category": "general",
@@ -162,5 +202,6 @@ class HouseholdCommandParser44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
