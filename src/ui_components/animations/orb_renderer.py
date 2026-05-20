@@ -1,33 +1,35 @@
-# orb_renderer.py
-# SIRIUS LOCAL AI – ORB RENDERER 4.3.x
-# Phase‑4 safe-mode compatible QPainter renderer
+# orb_renderer_4_4.py
+# SIRIUS LOCAL AI – ORB RENDERER 4.4.0 PRO
+# Phase‑4 safe-mode compatible QPainter renderer (Phase‑5 ready)
 
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QPainter, QColor, QPen, QBrush
 from PySide6.QtCore import Qt, QTimer
 import math
 
-from .engine import (
-    OrbAwarenessBloom,
-    OrbEchoNetwork,
-    OrbInsightSingularity
+from .engine_4_4 import AnimationEngine44
+from .objects_4_4 import (
+    OrbAwarenessBloom44,
+    OrbEchoNetwork44,
+    OrbInsightSingularity44,
 )
 
 
-class OrbRenderer(QWidget):
+class OrbRenderer44(QWidget):
     """
-    OrbRenderer 4.3.x
+    OrbRenderer 4.4.0 PRO
 
     Responsibilities:
         - Render ORB layers using QPainter
-        - Integrate with AnimationEngine 4.3.x
+        - Integrate with AnimationEngine44
         - Provide safe-mode and degraded-mode behavior
         - Provide structured fallback UI
         - Deterministic, offline-only rendering
         - Error-safe update loop
+        - Phase‑5 ready (sandbox / restricted-mode compatible)
     """
 
-    def __init__(self, engine, orb, parent=None):
+    def __init__(self, engine: AnimationEngine44, orb, parent=None):
         super().__init__(parent)
 
         self.engine = engine
@@ -125,7 +127,7 @@ class OrbRenderer(QWidget):
 
         # ORB core
         r_inner = base * self.orb.inner_scale
-        r_mid   = base * self.orb.mid_scale
+        r_mid = base * self.orb.mid_scale
         r_outer = base * self.orb.outer_scale
 
         r, g, b = self.orb.color
@@ -149,7 +151,6 @@ class OrbRenderer(QWidget):
             try:
                 self._draw_effect(painter, obj, cx, cy, base)
             except Exception:
-                # Individual effect failure → skip, renderer continues
                 self.degraded_mode = True
 
         painter.end()
@@ -161,7 +162,7 @@ class OrbRenderer(QWidget):
     def _draw_effect(self, painter, obj, cx, cy, base):
 
         # TEMPORAL ECHOES
-        if obj.__class__.__name__ == "OrbTemporalEchoes":
+        if obj.__class__.__name__ == "OrbTemporalEchoes44":
             pen = QPen(QColor(150, 200, 255, 120), 2)
             painter.setPen(pen)
             painter.setBrush(Qt.NoBrush)
@@ -174,7 +175,7 @@ class OrbRenderer(QWidget):
                 painter.drawEllipse(cx - r, cy - r, r * 2, r * 2)
 
         # PREDICTIVE TRAILS
-        if obj.__class__.__name__ == "OrbPredictiveTrails":
+        if obj.__class__.__name__ == "OrbPredictiveTrails44":
             pen = QPen(QColor(100, 255, 200, 180), 2)
             painter.setPen(pen)
 
@@ -186,7 +187,7 @@ class OrbRenderer(QWidget):
                 painter.drawLine(cx, cy, x2, y2)
 
         # COGNITIVE MESH
-        if obj.__class__.__name__ == "OrbCognitiveMesh":
+        if obj.__class__.__name__ == "OrbCognitiveMesh44":
             pen = QPen(QColor(120, 180, 255, 150), 2)
             painter.setPen(pen)
 
@@ -198,7 +199,7 @@ class OrbRenderer(QWidget):
                 painter.drawPoint(x, y)
 
         # AWARENESS BLOOM
-        if isinstance(obj, OrbAwarenessBloom):
+        if isinstance(obj, OrbAwarenessBloom44):
             alpha = int(obj.life * 255)
             pen = QPen(QColor(255, 255, 200, alpha), 3)
             painter.setPen(pen)
@@ -206,7 +207,7 @@ class OrbRenderer(QWidget):
             painter.drawEllipse(cx - r, cy - r, r * 2, r * 2)
 
         # PROBABILITY CLOUD
-        if obj.__class__.__name__ == "OrbProbabilityCloud":
+        if obj.__class__.__name__ == "OrbProbabilityCloud44":
             for p in obj.points:
                 angle = math.radians(p[0])
                 r = base * p[1]
@@ -221,7 +222,7 @@ class OrbRenderer(QWidget):
                 painter.drawPoint(x, y)
 
         # ECHO NETWORK
-        if isinstance(obj, OrbEchoNetwork):
+        if isinstance(obj, OrbEchoNetwork44):
             for e in obj.echoes:
                 alpha = int(e[2] * 255)
                 pen = QPen(QColor(200, 255, 255, alpha), 2)
@@ -230,7 +231,7 @@ class OrbRenderer(QWidget):
                 painter.drawEllipse(cx - r, cy - r, r * 2, r * 2)
 
         # RIPPLE WAVES
-        if obj.__class__.__name__ == "OrbCognitiveRipple":
+        if obj.__class__.__name__ == "OrbCognitiveRipple44":
             for r in obj.ripples:
                 alpha = int(r[1] * 255)
                 pen = QPen(QColor(180, 220, 255, alpha), 2)
@@ -239,7 +240,7 @@ class OrbRenderer(QWidget):
                 painter.drawEllipse(cx - radius, cy - radius, radius * 2, radius * 2)
 
         # INSIGHT SINGULARITY
-        if isinstance(obj, OrbInsightSingularity) and obj.active:
+        if isinstance(obj, OrbInsightSingularity44) and obj.active:
             alpha = int(obj.intensity * 255)
             pen = QPen(QColor(255, 255, 150, alpha), 4)
             painter.setPen(pen)
