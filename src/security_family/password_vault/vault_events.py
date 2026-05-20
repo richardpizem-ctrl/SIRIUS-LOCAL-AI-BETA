@@ -1,14 +1,14 @@
 """
-SIRIUS LOCAL AI – PasswordVault Events 4.3.x
---------------------------------------------
-Static event definitions for Password Vault.
+SIRIUS LOCAL AI – PasswordVault Events 4.4.0 (PRO)
+--------------------------------------------------
+Static event definitions for Password Vault 4.4.
 
-These events are used by:
-- Security Family Router
+Used by:
+- Security Family Router 4.4
 - NL Router v4
-- Runtime Manager
-- UI Automation Engine (autofill)
-- Diagnostics & Self‑Repair
+- Runtime Manager 4.4
+- UI Automation Engine 4.4 (autofill)
+- Diagnostics & Self‑Repair 4.4
 
 Security Notes:
 - No dynamic imports, no eval, no reflection.
@@ -21,31 +21,31 @@ Security Notes:
 # PASSWORD VAULT EVENT CONSTANTS (STATIC, SAFE)
 # ---------------------------------------------------------
 
-PASSWORD_SAVE_EVENT = "SECURITY_EVENT_PASSWORD_SAVE"
-PASSWORD_RETRIEVE_EVENT = "SECURITY_EVENT_PASSWORD_RETRIEVE"
-PASSWORD_AUTOFILL_EVENT = "SECURITY_EVENT_PASSWORD_AUTOFILL"
-PASSWORD_DELETE_EVENT = "SECURITY_EVENT_PASSWORD_DELETE"
-PASSWORD_LIST_EVENT = "SECURITY_EVENT_PASSWORD_LIST"
-PASSWORD_PHISHING_DETECTED_EVENT = "SECURITY_EVENT_PASSWORD_PHISHING_DETECTED"
+PASSWORD_SAVE_EVENT_44 = "SECURITY_EVENT_PASSWORD_SAVE_44"
+PASSWORD_RETRIEVE_EVENT_44 = "SECURITY_EVENT_PASSWORD_RETRIEVE_44"
+PASSWORD_AUTOFILL_EVENT_44 = "SECURITY_EVENT_PASSWORD_AUTOFILL_44"
+PASSWORD_DELETE_EVENT_44 = "SECURITY_EVENT_PASSWORD_DELETE_44"
+PASSWORD_LIST_EVENT_44 = "SECURITY_EVENT_PASSWORD_LIST_44"
+PASSWORD_PHISHING_DETECTED_EVENT_44 = "SECURITY_EVENT_PASSWORD_PHISHING_DETECTED_44"
 
 # ---------------------------------------------------------
 # PACKAGE METADATA
 # ---------------------------------------------------------
 
-PASSWORD_VAULT_EVENTS_VERSION = "4.3.x"
-SECURITY_FAMILY_COMPAT = "4.4"
+PASSWORD_VAULT_EVENTS_VERSION: str = "4.4.0"
+SECURITY_FAMILY_COMPAT: str = "4.4"
 
 # ---------------------------------------------------------
 # SAFE EXPORT LIST
 # ---------------------------------------------------------
 
 __all__ = [
-    "PASSWORD_SAVE_EVENT",
-    "PASSWORD_RETRIEVE_EVENT",
-    "PASSWORD_AUTOFILL_EVENT",
-    "PASSWORD_DELETE_EVENT",
-    "PASSWORD_LIST_EVENT",
-    "PASSWORD_PHISHING_DETECTED_EVENT",
+    "PASSWORD_SAVE_EVENT_44",
+    "PASSWORD_RETRIEVE_EVENT_44",
+    "PASSWORD_AUTOFILL_EVENT_44",
+    "PASSWORD_DELETE_EVENT_44",
+    "PASSWORD_LIST_EVENT_44",
+    "PASSWORD_PHISHING_DETECTED_EVENT_44",
     "PASSWORD_VAULT_EVENTS_VERSION",
     "SECURITY_FAMILY_COMPAT",
 ]
