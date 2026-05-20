@@ -4,19 +4,20 @@ from context.context_manager import ContextManager
 
 class ContextRollbackCommand(BaseCommand):
     """
-    ContextRollbackCommand 4.3
+    ContextRollbackCommand 4.4
     Rolls the context back by N snapshots using the snapshot history.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - strict validation
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Deterministic rollback contract
+        - Strict validation
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Stable output for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-rollback"
     description = "Rolls the context back by N steps using snapshot history."
@@ -36,11 +37,12 @@ class ContextRollbackCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Rolls the context back by N snapshots.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
