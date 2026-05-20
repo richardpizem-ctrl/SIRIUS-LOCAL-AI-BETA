@@ -1,6 +1,5 @@
-security_family_4_4/security_self_repair_4_4.py
 """
-SIRIUS LOCAL AI – Security Self‑Repair Layer 4.4.0
+SIRIUS LOCAL AI – Security Self‑Repair Layer 4.4.0 (PRO)
 
 This module provides the *security‑focused* part of the Self‑Repair Layer
 for Runtime 4.4. It performs:
@@ -26,7 +25,7 @@ from typing import Dict, Any, List
 
 class SecuritySelfRepair44:
     """
-    Security Self‑Repair subsystem for Runtime 4.4.
+    Security Self‑Repair subsystem for Runtime 4.4 (PRO).
     Ensures that the Security Family remains stable and uncompromised.
     """
 
@@ -42,27 +41,32 @@ class SecuritySelfRepair44:
     }
 
     def __init__(self, fs_adapter=None):
+        # fs_adapter must provide: initialize(), exists(path), write_file(path, content)
         self.fs_adapter = fs_adapter
         self.initialized = False
+        self.safe_mode = False
         self.degraded_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
-            if self.fs_adapter:
+            if self.fs_adapter and hasattr(self.fs_adapter, "initialize"):
                 self.fs_adapter.initialize()
 
             self.initialized = True
-            return {"status": "initialized"}
-
+            return {"status": "ok"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – INTEGRITY CHECK
@@ -73,24 +77,54 @@ class SecuritySelfRepair44:
         Does NOT read or execute code — only checks file presence.
         """
 
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Integrity checks disabled in safe-mode.",
+            }
+
+        if not isinstance(base_path, str) or not base_path.strip():
+            return {
+                "status": "error",
+                "code": "invalid_base_path",
+            }
+
         if not self.fs_adapter:
-            return {"status": "error", "reason": "no_fs_adapter"}
+            return {
+                "status": "error",
+                "code": "no_fs_adapter",
+            }
 
-        missing = []
-        present = []
+        if not hasattr(self.fs_adapter, "exists"):
+            return {
+                "status": "error",
+                "code": "fs_adapter_missing_exists",
+            }
 
-        for module in self.EXPECTED_MODULES:
-            path = f"{base_path}/{module}.py"
-            if self.fs_adapter.exists(path):
-                present.append(path)
-            else:
-                missing.append(path)
+        missing: List[str] = []
+        present: List[str] = []
 
-        return {
-            "status": "ok",
-            "present": present,
-            "missing": missing,
-        }
+        try:
+            for module in self.EXPECTED_MODULES:
+                path = f"{base_path}/{module}.py"
+                if self.fs_adapter.exists(path):
+                    present.append(path)
+                else:
+                    missing.append(path)
+
+            return {
+                "status": "ok",
+                "present": present,
+                "missing": missing,
+                "degraded_mode": self.degraded_mode,
+            }
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "integrity_check_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – SAFE AUTO‑REPAIR
@@ -103,30 +137,55 @@ class SecuritySelfRepair44:
         - NEVER modifies existing code
         """
 
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Auto‑repair disabled in safe-mode.",
+            }
+
+        if not isinstance(missing_files, list):
+            return {
+                "status": "error",
+                "code": "invalid_missing_files",
+            }
+
         if not self.fs_adapter:
-            return {"status": "error", "reason": "no_fs_adapter"}
+            return {
+                "status": "error",
+                "code": "no_fs_adapter",
+            }
 
-        created = []
+        if not hasattr(self.fs_adapter, "write_file"):
+            return {
+                "status": "error",
+                "code": "fs_adapter_missing_write_file",
+            }
 
-        for path in missing_files:
-            try:
-                placeholder = (
-                    '"""AUTO‑GENERATED PLACEHOLDER FILE — SECURITY SELF‑REPAIR 4.4\n'
-                    'This file was created because the original module was missing.\n'
-                    'Please replace it with the correct implementation.\n'
-                    '"""'
-                )
+        created: List[str] = []
+
+        placeholder = (
+            '"""AUTO‑GENERATED PLACEHOLDER FILE — SECURITY SELF‑REPAIR 4.4\n'
+            'This file was created because the original module was missing.\n'
+            'Please replace it with the correct implementation.\n'
+            'No executable logic is contained in this placeholder.\n'
+            '"""'
+        )
+
+        try:
+            for path in missing_files:
+                if not isinstance(path, str) or not path.strip():
+                    continue
                 self.fs_adapter.write_file(path, placeholder)
                 created.append(path)
 
-            except Exception as exc:
-                return {
-                    "status": "error",
-                    "exception": str(exc),
-                    "failed_path": path,
-                }
-
-        return {"status": "ok", "created": created}
+            return {"status": "ok", "created": created}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "auto_repair_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – PATCH SUGGESTION (DIFF‑ONLY)
@@ -136,6 +195,18 @@ class SecuritySelfRepair44:
         Generates a deterministic diff‑style patch suggestion.
         Does NOT apply the patch.
         """
+
+        if not isinstance(module_name, str) or not module_name.strip():
+            return {
+                "status": "error",
+                "code": "invalid_module_name",
+            }
+
+        if not isinstance(issue, str) or not issue.strip():
+            return {
+                "status": "error",
+                "code": "invalid_issue",
+            }
 
         patch = [
             f"--- {module_name}.py",
@@ -148,6 +219,7 @@ class SecuritySelfRepair44:
             "status": "ok",
             "module": module_name,
             "patch": patch,
+            "degraded_mode": self.degraded_mode,
         }
 
     # ------------------------------------------------------------------
@@ -163,5 +235,6 @@ class SecuritySelfRepair44:
         return {
             "status": "ok",
             "integrity": integrity,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
