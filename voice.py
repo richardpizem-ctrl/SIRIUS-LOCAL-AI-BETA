@@ -1,34 +1,35 @@
-# voice_4_3.py
-# SIRIUS LOCAL AI – Voice Control (v4.3.x)
-# Deterministic, safe-mode compatible, sandboxed voice engine
+# voice_4_4.py
+# SIRIUS LOCAL AI – Voice Control (v4.4.0 PRO)
+# Deterministic, safe-mode compatible, sandboxed voice engine (Phase‑5 ready)
 
 from __future__ import annotations
 
 import speech_recognition as sr
-from runtime.runtime_manager import RuntimeManager
-from runtime.plugin_loader import PluginLoader
-from runtime.nl_router import NaturalLanguageRouter
+from runtime.runtime_manager_4_4 import RuntimeManager44
+from runtime.plugin_loader_4_4 import PluginLoader44
+from runtime.nl_router_4_4 import NaturalLanguageRouter44
 
 
-class SiriusVoice43:
+class SiriusVoice44:
     """
-    SIRIUS LOCAL AI — Voice Control (v4.3.x)
+    SIRIUS LOCAL AI — Voice Control (v4.4.0 PRO)
 
     Features:
         - Listens to microphone (sandboxed)
         - Recognizes Slovak speech
-        - Sends text to NL Router 4.3
+        - Sends text to NL Router 4.4
         - Safe-mode + degraded-mode support
         - Deterministic, isolated error handling
+        - Phase‑5 ready
     """
 
     def __init__(self):
-        # Runtime bootstrap
-        self.runtime = RuntimeManager()
         self.safe_mode = False
         self.degraded_mode = False
 
+        # Runtime bootstrap
         try:
+            self.runtime = RuntimeManager44()
             self.runtime.initialize()
         except Exception as exc:
             self.degraded_mode = True
@@ -36,19 +37,19 @@ class SiriusVoice43:
 
         # Plugins
         try:
-            self.plugins = PluginLoader(self.runtime)
-            self.plugins.load_plugins()
+            self.plugins = PluginLoader44(self.runtime)
+            self.plugins.load_all()
         except Exception as exc:
             self.degraded_mode = True
-            self.runtime.logger.error(f"Plugin load error: {exc}")
+            self.runtime.logger.error(f"[VOICE] Plugin load error: {exc}")
 
         # NL Router
         try:
-            self.router = NaturalLanguageRouter(self.runtime, self.plugins)
+            self.router = NaturalLanguageRouter44(self.runtime, self.plugins)
             self.router.initialize()
         except Exception as exc:
             self.degraded_mode = True
-            self.runtime.logger.error(f"NL Router init error: {exc}")
+            self.runtime.logger.error(f"[VOICE] NL Router init error: {exc}")
 
         # Speech Recognition
         try:
@@ -56,12 +57,12 @@ class SiriusVoice43:
             self.microphone = sr.Microphone()
         except Exception as exc:
             self.degraded_mode = True
-            self.runtime.logger.error(f"Microphone init error: {exc}")
+            self.runtime.logger.error(f"[VOICE] Microphone init error: {exc}")
 
-        self.runtime.logger.info("Voice engine initialized (v4.3.x)")
+        self.runtime.logger.info("Voice engine initialized (v4.4.0 PRO)")
 
     # --------------------------------------------------------
-    # SPEECH RECOGNITION (4.3.x)
+    # SPEECH RECOGNITION (4.4.0 PRO)
     # --------------------------------------------------------
     def listen(self):
         """Listen to microphone and return recognized text."""
@@ -92,10 +93,10 @@ class SiriusVoice43:
             return None
 
     # --------------------------------------------------------
-    # PROCESS COMMAND (4.3.x)
+    # PROCESS COMMAND (4.4.0 PRO)
     # --------------------------------------------------------
     def process(self, text):
-        """Send recognized text to NL Router 4.3."""
+        """Send recognized text to NL Router 4.4."""
         if not text:
             return
 
@@ -111,11 +112,11 @@ class SiriusVoice43:
             self.runtime.logger.error(f"[VOICE] NL processing error: {e}")
 
     # --------------------------------------------------------
-    # MAIN LOOP (4.3.x)
+    # MAIN LOOP (4.4.0 PRO)
     # --------------------------------------------------------
     def run(self):
         """Continuous voice listening loop."""
-        header = "SIRIUS Voice Control — active (v4.3.x)"
+        header = "SIRIUS Voice Control — active (v4.4.0 PRO)"
         if self.safe_mode:
             header += " [SAFE MODE]"
         elif self.degraded_mode:
@@ -150,5 +151,5 @@ class SiriusVoice43:
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    voice = SiriusVoice43()
+    voice = SiriusVoice44()
     voice.run()
