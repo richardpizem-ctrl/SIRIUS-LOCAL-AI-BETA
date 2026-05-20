@@ -6,19 +6,21 @@ import os
 
 class ContextExportCommand(BaseCommand):
     """
-    ContextExportCommand 4.3
+    ContextExportCommand 4.4
     Exports the context or selected sections into a JSON file.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic export structure
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - Stable output for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-export"
     description = "Exports the context or selected sections into a JSON file."
@@ -41,11 +43,12 @@ class ContextExportCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Exports the selected context section into a JSON file.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
