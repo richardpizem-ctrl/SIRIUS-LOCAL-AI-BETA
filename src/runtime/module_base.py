@@ -6,7 +6,7 @@ log = logging.getLogger(__name__)
 
 class ModuleBase:
     """
-    ModuleBase 4.3
+    ModuleBase 4.4
     ----------------
     - Unified lifecycle for all runtime modules
     - Deterministic structured telemetry
@@ -14,7 +14,8 @@ class ModuleBase:
     - Health checks (health() 2.0)
     - Dependency declaration
     - Security metadata (risk, identity, capabilities)
-    - Self‑Repair 4.4 ready (safe-mode, degraded mode)
+    - Self‑Repair Layer 4.4 ready (safe-mode, degraded mode)
+    - Stable structured return values for Runtime4.4
     """
 
     # --------------------------------------------------------
@@ -62,6 +63,7 @@ class ModuleBase:
             func()
             return {
                 "status": "success",
+                "module": self.name,
                 "action": action_name,
                 "duration": time.time() - t0,
             }
@@ -71,6 +73,7 @@ class ModuleBase:
             log.exception("%s failed for module '%s': %s", action_name, self.name, exc)
             return {
                 "status": "error",
+                "module": self.name,
                 "action": action_name,
                 "duration": time.time() - t0,
                 "exception": str(exc),
@@ -109,6 +112,7 @@ class ModuleBase:
             log.error(msg)
             return {
                 "status": "error",
+                "module": self.name,
                 "action": "start",
                 "message": msg,
             }
@@ -131,6 +135,7 @@ class ModuleBase:
         if not self.running:
             return {
                 "status": "skipped",
+                "module": self.name,
                 "action": "stop",
                 "message": "Module not running.",
             }
@@ -162,6 +167,7 @@ class ModuleBase:
     def health(self):
         """
         Returns structured module health information.
+        Deterministic for Runtime4.4 / Self‑Repair 4.4.
         """
         return {
             "name": self.name,
