@@ -7,17 +7,18 @@ log = logging.getLogger(__name__)
 
 class AILoop:
     """
-    AI Loop 4.3
+    AI Loop 4.4
     --------------------
     Features:
-    - Interval rules
-    - Event rules (triggered externally)
-    - Autonomous scheduler
-    - Overlap protection
-    - Rule pausing / resuming / unregistering
-    - Telemetry (last_run, error_count, running state)
-    - Deterministic Runtime4 behavior
-    - Self‑Repair 4.4 compatible
+        - Interval rules
+        - Event rules (triggered externally)
+        - Autonomous scheduler
+        - Overlap protection
+        - Rule pausing / resuming / unregistering
+        - Telemetry (last_run, error_count, running state)
+        - Deterministic Runtime4.4 behavior
+        - Self‑Repair Layer 4.4 compatible metadata
+        - Stable structured return values
     """
 
     def __init__(self, runtime_manager):
