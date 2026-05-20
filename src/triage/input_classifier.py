@@ -1,11 +1,11 @@
-# input_classifier.py
-# Automatic Input Triage Engine – InputClassifier 4.3.x
-# SIRIUS LOCAL AI – deterministic, offline-only classifier
+# input_classifier_4_4.py
+# SIRIUS LOCAL AI – InputClassifier 4.4.0 PRO
+# Deterministic, offline-only classifier with Phase‑5 security hooks.
 
 from typing import Literal
 
 
-InputType = Literal[
+InputType44 = Literal[
     "log",
     "config",
     "project",
@@ -15,40 +15,54 @@ InputType = Literal[
     "video",
     "text",
     "binary",
+    "document",
+    "archive",
     "unknown",
 ]
 
 
-class InputClassifier:
+class InputClassifier44:
     """
-    InputClassifier 4.3.x
+    InputClassifier 4.4.0 PRO
 
     Responsibilities:
         - Deterministic input type detection based on file extension and path patterns
+        - Forbidden extension detection (Phase‑4/5)
+        - Sandbox & quarantine hooks (Phase‑5 ready)
         - Safe fallback classification
-        - Forbidden extension detection (Phase‑4)
-        - Sandbox & quarantine hooks (Phase‑4)
-        - Degraded‑mode and safe‑mode compatible
+        - Safe‑mode and degraded‑mode compatible
+        - Offline-only behavior
 
     Used by:
-        AITEController.process()
+        AITEController44.process()
     """
 
     def __init__(self):
         self.safe_mode = False
         self.degraded_mode = False
 
-        # Phase‑4 forbidden extensions (expandable)
+        # Phase‑4/5 forbidden extensions (expanded)
         self.forbidden_ext = {
             ".bat", ".cmd", ".sh", ".ps1", ".vbs", ".js", ".jar",
-            ".scr", ".pif", ".msi", ".msix", ".apk", ".ipa"
+            ".scr", ".pif", ".msi", ".msix", ".apk", ".ipa",
+            ".reg", ".gadget", ".com", ".cpl", ".hta",
+        }
+
+        # Document formats (4.4)
+        self.document_ext = {
+            ".pdf", ".doc", ".docx", ".odt", ".rtf"
+        }
+
+        # Archive formats (4.4)
+        self.archive_ext = {
+            ".zip", ".rar", ".7z", ".tar", ".gz"
         }
 
     # ---------------------------------------------------------
     # Public API
     # ---------------------------------------------------------
 
-    def classify(self, input_path: str) -> InputType:
+    def classify(self, input_path: str) -> InputType44:
         """
         Determine the input type based on file extension and known patterns.
         Deterministic, offline-only, safe-mode aware.
@@ -63,7 +77,7 @@ class InputClassifier:
 
             lower = input_path.lower().strip()
 
-            # Forbidden extension check (Phase‑4)
+            # Forbidden extension check (Phase‑4/5)
             if self._is_forbidden(lower):
                 return "binary"
 
@@ -77,14 +91,18 @@ class InputClassifier:
 
             # PROJECT ROOTS
             if lower.endswith((
-                ".sln",
-                ".csproj",
-                ".vcxproj",
-                ".pyproj",
-                "package.json",
-                "pyproject.toml",
+                ".sln", ".csproj", ".vcxproj", ".pyproj",
+                "package.json", "pyproject.toml",
             )):
                 return "project"
+
+            # DOCUMENTS (4.4)
+            if lower.endswith(tuple(self.document_ext)):
+                return "document"
+
+            # ARCHIVES (4.4)
+            if lower.endswith(tuple(self.archive_ext)):
+                return "archive"
 
             # AUDIO
             if lower.endswith((".wav", ".mp3", ".flac", ".ogg", ".aiff")):
@@ -104,18 +122,9 @@ class InputClassifier:
 
             # TEXT / CODE
             if lower.endswith((
-                ".txt",
-                ".md",
-                ".rst",
-                ".py",
-                ".cs",
-                ".cpp",
-                ".h",
-                ".hpp",
-                ".js",
-                ".ts",
-                ".html",
-                ".css",
+                ".txt", ".md", ".rst",
+                ".py", ".cs", ".cpp", ".h", ".hpp",
+                ".js", ".ts", ".html", ".css",
             )):
                 return "text"
 
@@ -130,7 +139,7 @@ class InputClassifier:
             return "unknown"
 
     # ---------------------------------------------------------
-    # Phase‑4 Security Hooks
+    # Phase‑4/5 Security Hooks
     # ---------------------------------------------------------
 
     def _is_forbidden(self, lower: str) -> bool:
@@ -143,5 +152,6 @@ class InputClassifier:
     def is_potentially_harmful(self, input_path: str) -> bool:
         """
         Placeholder for malware heuristics (Phase‑5).
+        Deterministic stub.
         """
         return False
