@@ -1,16 +1,17 @@
 """
-Security Family – Time Limits 4.3.x
------------------------------------
+Security Family – Time Limits 4.4.0 (PRO)
+-----------------------------------------
 Intelligent time-based safety for FAMILY profiles.
 
-Features:
+Features (4.4.0):
 - deterministic, offline-only behavior
-- adaptive learning of usage patterns
-- anomaly detection (usage spikes)
-- short-term & long-term trends
-- risk scoring for FamilyMode 4.3.x
-- dynamic limit adjustments
+- adaptive learning of usage patterns (EMA-style)
+- anomaly detection (usage spikes + trend shift)
+- short-term & long-term trend analysis
+- risk scoring for FamilyMode44
+- dynamic limit adjustments (safe, bounded)
 - safe-mode and degraded-mode support
+- Security Family 4.4 compliant
 """
 
 import time
@@ -18,12 +19,12 @@ import math
 from statistics import mean
 
 
-class TimeLimits:
+class TimeLimits44:
     def __init__(self, config=None):
         """
         config example:
         {
-            "child_1": {
+            "FAMILY_1": {
                 "chat_minutes": 30,
                 "games_minutes": 60,
                 "media_minutes": 45
@@ -37,7 +38,7 @@ class TimeLimits:
         self.max_short = 20
         self.max_long = 200
 
-        # Thresholds
+        # Thresholds (4.4)
         self.anomaly_shift_threshold = 0.35
         self.anomaly_penalty = 0.25
 
@@ -128,7 +129,7 @@ class TimeLimits:
             return {"status": "error", "exception": str(exc)}
 
     # ---------------------------------------------------------
-    # ADAPTIVE LEARNING
+    # ADAPTIVE LEARNING (4.4)
     # ---------------------------------------------------------
     def _adaptive_learn(self, user_id, session_type, duration, learning_rate=0.1):
         try:
@@ -151,7 +152,7 @@ class TimeLimits:
             else:
                 return  # no change
 
-            # Clamp limit
+            # Clamp limit (4.4 safe bounds)
             new_limit = max(5, min(240, new_limit))
 
             # Save updated limit
@@ -164,7 +165,7 @@ class TimeLimits:
             self.degraded_mode = True
 
     # ---------------------------------------------------------
-    # ANOMALY DETECTION
+    # ANOMALY DETECTION (4.4)
     # ---------------------------------------------------------
     def detect_anomaly(self, user_id, session_type):
         try:
