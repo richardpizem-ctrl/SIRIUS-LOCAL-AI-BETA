@@ -1,31 +1,20 @@
 from commands.base_command import BaseCommand
-from commands.help_command import HelpCommand
-from commands.run_command import RunCommand
-from commands.system_info_command import SystemInfoCommand
-
-from context.context_info_command import ContextInfoCommand
-from context.context_set_command import ContextSetCommand
-from context.context_clear_command import ContextClearCommand
-from context.memory_save_command import MemorySaveCommand
-from context.memory_load_command import MemoryLoadCommand
-from context.context_dump_command import ContextDumpCommand
-from context.translate_command import TranslateCommand
-
-from commands.triage_test_command import TriageTestCommand
-from commands.move_text_files import MoveTextFilesCommand
 
 
 class CommandRegistry:
     """
-    CommandRegistry 4.3
+    CommandRegistry 4.4
     Central registration of command CLASSES for SIRIUS LOCAL AI Runtime4.
 
-    Improvements in 4.3:
-    - metadata validation for every command
-    - duplicate name protection
-    - deterministic ordering for NL Router 4.x
-    - Self‑Repair 4.4 compatibility (hashing)
-    - safe dynamic instantiation
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic ordering for NL Router 4.4
+        - Strict metadata validation
+        - Duplicate name protection
+        - Stable registry hashing
+        - Safe dynamic instantiation
+        - Runtime4.4‑ready command lifecycle
     """
 
     def __init__(self, context):
@@ -33,18 +22,23 @@ class CommandRegistry:
         self.context = context
 
     # ---------------------------------------------------------
-    # REGISTRATION (v4.3)
+    # REGISTRATION (4.4)
     # ---------------------------------------------------------
     def register(self, command_cls: type[BaseCommand]):
         """
         Registers a command CLASS by its name.
-        Performs metadata validation and duplicate protection.
+        Performs metadata validation, integrity check,
+        and duplicate protection.
         """
         if not issubclass(command_cls, BaseCommand):
             raise TypeError(f"Command {command_cls} must inherit from BaseCommand.")
 
         # Validate metadata
         command_cls.validate_metadata()
+
+        # Integrity check (Self‑Repair Layer 4.4)
+        if not command_cls.integrity_check():
+            raise ValueError(f"Integrity check failed for command: {command_cls.name}")
 
         # Prevent duplicate names
         if command_cls.name in self._commands:
@@ -64,12 +58,12 @@ class CommandRegistry:
     def all(self) -> dict[str, type[BaseCommand]]:
         """
         Returns all registered command classes.
-        Deterministic ordering for NL Router 4.x.
+        Deterministic ordering for NL Router 4.4.
         """
         return dict(sorted(self._commands.items()))
 
     # ---------------------------------------------------------
-    # DYNAMIC INSTANTIATION (v4.3)
+    # DYNAMIC INSTANTIATION (4.4)
     # ---------------------------------------------------------
     def create_instance(self, name: str, *args, **kwargs) -> BaseCommand | None:
         """
@@ -83,7 +77,7 @@ class CommandRegistry:
         return cmd_cls(*args, **kwargs)
 
     # ---------------------------------------------------------
-    # SELF‑REPAIR SUPPORT (v4.3)
+    # SELF‑REPAIR SUPPORT (4.4)
     # ---------------------------------------------------------
     def compute_registry_hash(self) -> str:
         """
@@ -101,9 +95,22 @@ class CommandRegistry:
         serialized = json.dumps(payload, sort_keys=True)
         return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
+    # ---------------------------------------------------------
+    # HEALTH METADATA (4.4)
+    # ---------------------------------------------------------
+    def health(self):
+        """
+        Returns registry health metadata for System Health Engine 4.4.
+        """
+        return {
+            "command_count": len(self._commands),
+            "integrity_ok": all(cmd.integrity_check() for cmd in self._commands.values()),
+            "registry_hash": self.compute_registry_hash(),
+        }
+
 
 # ---------------------------------------------------------
-# DEFAULT REGISTRY (v4.3)
+# DEFAULT REGISTRY (4.4)
 # ---------------------------------------------------------
 def create_default_registry(context) -> CommandRegistry:
     """
