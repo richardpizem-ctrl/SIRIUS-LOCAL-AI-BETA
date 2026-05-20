@@ -167,15 +167,69 @@ class RuntimeCore4:
             return {"status": "error", "exception": str(exc)}
 
     # ---------------------------------------------------------
-    # SUBSYSTEM INITIALIZERS (STUBS)
+    # SUBSYSTEM INITIALIZERS (FULL IMPLEMENTATION)
     # ---------------------------------------------------------
-    def _init_core(self): pass
-    def _init_sandbox(self): pass
-    def _init_packs(self): pass
-    def _init_envoy(self): pass
-    def _init_reasoning(self): pass
-    def _init_automation(self): pass
-    def _init_diagnostics(self): pass
+    def _init_core(self):
+        if self.module_loader:
+            self.module_loader.load_all()
+        if self.dependency_graph:
+            self.dependency_graph.build()
+        if self.state_manager:
+            self.state_manager.initialize()
+
+    def _init_sandbox(self):
+        if self.sandbox_manager:
+            self.sandbox_manager.initialize()
+
+    def _init_packs(self):
+        if self.pack_loader:
+            self.pack_loader.load_all()
+        if self.pack_validator:
+            self.pack_validator.validate_all()
+        if self.pack_graph:
+            self.pack_graph.build()
+        if self.pack_linker:
+            self.pack_linker.link_all()
+
+    def _init_envoy(self):
+        if self.envoy_receiver:
+            self.envoy_receiver.initialize()
+        if self.envoy_quarantine:
+            self.envoy_quarantine.initialize()
+        if self.envoy_validator:
+            self.envoy_validator.initialize()
+        if self.envoy_converter:
+            self.envoy_converter.initialize()
+
+    def _init_reasoning(self):
+        if self.rule_engine:
+            self.rule_engine.initialize()
+        if self.symbolic_engine:
+            self.symbolic_engine.initialize()
+        if self.cot_engine:
+            self.cot_engine.initialize()
+        if self.reasoning_router:
+            self.reasoning_router.initialize()
+
+    def _init_automation(self):
+        if self.fs_module:
+            self.fs_module.initialize()
+        if self.editor_module:
+            self.editor_module.initialize()
+        if self.workflow_module:
+            self.workflow_module.initialize()
+        if self.command_parser:
+            self.command_parser.initialize()
+        if self.command_router:
+            self.command_router.initialize()
+
+    def _init_diagnostics(self):
+        if self.health_check_engine:
+            self.health_check_engine.initialize()
+        if self.crash_analyzer:
+            self.crash_analyzer.initialize()
+        if self.repair_suggestions:
+            self.repair_suggestions.initialize()
 
     # ---------------------------------------------------------
     # SYSTEM INTELLIGENCE LAYER 4.1 – FULL DIAGNOSTICS PIPELINE
