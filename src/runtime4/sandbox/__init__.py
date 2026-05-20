@@ -1,15 +1,16 @@
 """
-SIRIUS LOCAL AI – SANDBOX 4.3 Package
+SIRIUS LOCAL AI – SANDBOX 4.3 Package (PRO)
 
 Provides:
 - SandboxContext4
 - SandboxProcess4
 
-This package implements the isolated execution environment
-used by Runtime 4.3 for safe evaluation, controlled execution,
-and deterministic behavior under restricted conditions.
+Účel:
+- izolované sandbox prostredie pre Runtime 4.3
+- bezpečné, deterministické vykonávanie pod kontrolou
+- žiadne dynamické načítavanie, žiadne eval, žiadna reflexia
 
-Security Notes (Runtime 4.3):
+Security Notes (Runtime 4.3 / Security Family 4.4):
 - Only static imports are allowed.
 - No dynamic loading, no eval, no reflection.
 - __all__ must contain only verified public symbols.
@@ -26,12 +27,12 @@ from .sandbox_context import SandboxContext4
 from .sandbox_process import SandboxProcess4
 
 # ---------------------------------------------------------
-# PACKAGE METADATA
+# PACKAGE METADATA (DETERMINISTIC, READ-ONLY)
 # ---------------------------------------------------------
 
-SANDBOX_VERSION = "4.3"
-SECURITY_FAMILY_COMPAT = "4.4"
-SAFE_MODE_SUPPORTED = True
+SANDBOX_VERSION: str = "4.3"
+SECURITY_FAMILY_COMPAT: str = "4.4"
+SAFE_MODE_SUPPORTED: bool = True
 
 # ---------------------------------------------------------
 # SAFE EXPORT LIST
