@@ -1,6 +1,5 @@
-knowledge_packs_4_4/__init__.py
 """
-SIRIUS LOCAL AI – Knowledge Packs 4.4.0
+SIRIUS LOCAL AI – Knowledge Packs 4.4.0 (PRO)
 
 This package contains the full Knowledge Packs subsystem for Runtime 4.4.
 It provides:
@@ -13,7 +12,12 @@ It provides:
 - KP Metadata 4.4 (versioning + descriptors)
 - Domain Packs 4.4 (math, language, science, history, geography, general)
 
-All modules inside this package are deterministic, offline, and fully isolated.
+All modules inside this package are:
+- deterministic
+- offline
+- fully isolated
+- static‑import only
+- free of dynamic loading, eval, reflection, or runtime mutation
 
 Security Notes (Knowledge Packs 4.4.0):
 - Only static imports allowed.
@@ -24,7 +28,7 @@ Security Notes (Knowledge Packs 4.4.0):
 """
 
 # -------------------------------------------------------------------------
-# PACKAGE METADATA
+# PACKAGE METADATA (STATIC, IMMUTABLE)
 # -------------------------------------------------------------------------
 
 KNOWLEDGE_PACKS_VERSION_4_4 = "4.4.0"
@@ -32,7 +36,7 @@ KNOWLEDGE_PACKS_RUNTIME = "4.4"
 KNOWLEDGE_PACKS_OFFLINE = True
 
 # -------------------------------------------------------------------------
-# SAFE EXPORT LIST
+# SAFE EXPORT LIST (STRICT WHITELIST)
 # -------------------------------------------------------------------------
 
 __all__ = [
