@@ -1,6 +1,6 @@
-# driver_manager_engine_4_3.py
-# SIRIUS LOCAL AI – Driver Manager Engine 4.3.x
-# Safe, deterministic, sandboxed driver diagnostics module
+# driver_manager_engine_4_4.py
+# SIRIUS LOCAL AI – Driver Manager Engine 4.4.0 PRO
+# Safe, deterministic, sandboxed driver diagnostics module (Phase‑4/5 ready)
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ DriverSeverity = Literal["info", "warning", "critical"]
 # ---------------------------------------------------------
 
 @dataclass
-class DriverIssue:
+class DriverIssue44:
     id: str
     severity: DriverSeverity
     title: str
@@ -32,9 +32,9 @@ class DriverIssue:
 
 
 @dataclass
-class DriverReport:
+class DriverReport44:
     timestamp: float
-    issues: List[DriverIssue] = field(default_factory=list)
+    issues: List[DriverIssue44] = field(default_factory=list)
     detected_inf_files: List[str] = field(default_factory=list)
     detected_packages: List[str] = field(default_factory=list)
     safe_mode: bool = False
@@ -45,17 +45,18 @@ class DriverReport:
 # ENGINE
 # ---------------------------------------------------------
 
-class DriverManagerEngine43:
+class DriverManagerEngine44:
     """
-    Driver Manager Engine 4.3.x
+    Driver Manager Engine 4.4.0 PRO
 
     - Safe, deterministic diagnostics
     - No installation, no system modification
-    - Registry scanning sandbox
-    - ZIP/EXE preview sandbox
+    - Registry scanning sandbox (Phase‑4)
+    - ZIP/EXE preview sandbox (Phase‑4)
     - Structured fallback behavior
-    - Safe-mode and degraded-mode support
-    - Self-Repair 4.4 ready
+    - Safe-mode and degraded-mode support (Security Family 4.4)
+    - Self-Repair 4.4 compatible
+    - Phase‑5 ready (restricted-mode hooks)
     """
 
     def __init__(self):
@@ -67,14 +68,14 @@ class DriverManagerEngine43:
     # PUBLIC API
     # ---------------------------------------------------------
 
-    def analyze(self) -> DriverReport:
+    def analyze(self) -> DriverReport44:
         """
-        Main entry point for Runtime Manager 4.3.x.
-        Always returns a valid DriverReport.
+        Main entry point for Runtime Manager 4.4.
+        Always returns a valid DriverReport44.
         """
 
         if self.safe_mode:
-            return DriverReport(
+            return DriverReport44(
                 timestamp=time.time(),
                 issues=[],
                 detected_inf_files=[],
@@ -92,7 +93,7 @@ class DriverManagerEngine43:
             issues.extend(self._detect_corrupted_drivers())
             issues.extend(self._detect_outdated_drivers())
 
-            return DriverReport(
+            return DriverReport44(
                 timestamp=time.time(),
                 issues=issues,
                 detected_inf_files=inf_files,
@@ -103,7 +104,7 @@ class DriverManagerEngine43:
 
         except Exception:
             self.degraded_mode = True
-            return DriverReport(
+            return DriverReport44(
                 timestamp=time.time(),
                 issues=[],
                 detected_inf_files=[],
@@ -150,7 +151,7 @@ class DriverManagerEngine43:
     # DRIVER DIAGNOSTICS (SANDBOXED)
     # ---------------------------------------------------------
 
-    def _detect_missing_drivers(self) -> List[DriverIssue]:
+    def _detect_missing_drivers(self) -> List[DriverIssue44]:
         """Detect missing drivers via registry (safe, isolated)."""
         issues = []
 
@@ -188,7 +189,7 @@ class DriverManagerEngine43:
                         winreg.QueryValueEx(subkey, "Driver")
                     except FileNotFoundError:
                         issues.append(
-                            DriverIssue(
+                            DriverIssue44(
                                 id=f"missing_driver_{device}_{sub}",
                                 severity="critical",
                                 title="Chýbajúci ovládač zariadenia",
@@ -198,7 +199,7 @@ class DriverManagerEngine43:
                                 ),
                                 suggested_actions=[
                                     "Vyhľadať INF súbor v Downloads.",
-                                    "Navrhnúť inštaláciu cez VYSLANEC 4.3.",
+                                    "Navrhnúť inštaláciu cez VYSLANEC 4.4.",
                                     "Navrhnúť otvorenie oficiálnej stránky výrobcu.",
                                 ],
                             )
@@ -215,11 +216,11 @@ class DriverManagerEngine43:
 
         return issues
 
-    def _detect_corrupted_drivers(self) -> List[DriverIssue]:
+    def _detect_corrupted_drivers(self) -> List[DriverIssue44]:
         """Placeholder for signature/integrity checks."""
         return []
 
-    def _detect_outdated_drivers(self) -> List[DriverIssue]:
+    def _detect_outdated_drivers(self) -> List[DriverIssue44]:
         """Placeholder for version comparison."""
         return []
 
@@ -243,7 +244,7 @@ class DriverManagerEngine43:
     # ---------------------------------------------------------
 
     def get_driver_summary(self) -> dict:
-        """Provide System Health Engine 4.3.x with basic driver info."""
+        """Provide System Health Engine 4.4 with basic driver info."""
         try:
             return {
                 "missing": len(self._detect_missing_drivers()),
