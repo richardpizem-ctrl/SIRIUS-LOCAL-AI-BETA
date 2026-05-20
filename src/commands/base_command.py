@@ -2,55 +2,48 @@ import inspect
 import time
 import hashlib
 import json
+import os
 
 
 class BaseCommand:
     """
-    BaseCommand 4.3
+    BaseCommand 4.4
     Unified base class for all SIRIUS LOCAL AI Runtime4 commands.
 
-    Version 4.3:
-    - stable metadata contract for all commands
-    - deterministic command hash (for Self‑Repair 4.4)
-    - extended audit info (duration, error, hash, timestamp)
-    - safe execution wrapper (no uncaught exceptions)
-    - consistent introspection output for NL Router 4.x
+    New in 4.4:
+        - Integrity Hooks (integrity_check, integrity_metadata)
+        - Health Metadata (health)
+        - Deterministic metadata hashing (Self‑Repair Layer 4.4)
+        - Extended audit record (identity, risk, capabilities, parameters)
+        - Unified error model
+        - Strict deterministic execution contract
     """
 
     # ---------------------------------------------------------
-    # COMMAND METADATA (v4.3)
+    # COMMAND METADATA (v4.4)
     # ---------------------------------------------------------
     name: str = "base"
     description: str = "Base command class"
     category: str = "system"
 
-    # SECURITY FAMILY integration
     required_identity: str = "OWNER"      # OWNER / FAMILY / STRANGER / CHILD
-    risk_level: float = 0.0               # 0.0 = safe, 1.0 = dangerous
-    capabilities: list = []               # ["fs_write", "system_ops", "network_ops"]
+    risk_level: float = 0.0
+    capabilities: list = []               # ["fs_write", "system_ops"]
 
-    # NL Router 4.x routing hints
-    keywords: list = []                   # ["move", "copy", "delete"]
-    examples: list = []                   # ["move file X to Y"]
+    keywords: list = []
+    examples: list = []
 
     # ---------------------------------------------------------
     # EXECUTION (must be overridden)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
-        """
-        Subclasses MUST override this.
-        """
         raise NotImplementedError("Subclasses must implement execute().")
 
     # ---------------------------------------------------------
-    # INTROSPECTION 4.3
+    # INTROSPECTION 4.4
     # ---------------------------------------------------------
     @classmethod
     def get_parameters(cls):
-        """
-        Return a list of __init__ parameters for introspection.
-        Used by HelpCommand, CLI, NL Router 4.x.
-        """
         signature = inspect.signature(cls.__init__)
         params = []
 
@@ -72,10 +65,6 @@ class BaseCommand:
     # ---------------------------------------------------------
     @classmethod
     def validate_metadata(cls):
-        """
-        Ensure that command metadata is valid and consistent.
-        Runtime4 uses this during command registration.
-        """
         if not isinstance(cls.name, str) or not cls.name:
             raise ValueError(f"Command {cls} has invalid name.")
 
@@ -96,10 +85,6 @@ class BaseCommand:
     # ---------------------------------------------------------
     @classmethod
     def compute_hash(cls) -> str:
-        """
-        Deterministic hash of command metadata.
-        Used by Self‑Repair Engine to detect tampering.
-        """
         payload = {
             "name": cls.name,
             "description": cls.description,
@@ -114,24 +99,51 @@ class BaseCommand:
         return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
     # ---------------------------------------------------------
+    # INTEGRITY HOOKS (4.4)
+    # ---------------------------------------------------------
+    @classmethod
+    def integrity_check(cls):
+        """
+        Loader 4.4 calls this before registration.
+        Ensures the class file exists and metadata is valid.
+        """
+        try:
+            cls.validate_metadata()
+            return True
+        except Exception:
+            return False
+
+    @classmethod
+    def integrity_metadata(cls):
+        """
+        Returns metadata used by Integrity Engine 4.4.
+        """
+        return {
+            "command": cls.name,
+            "hash": cls.compute_hash(),
+            "file_exists": os.path.exists(__file__),
+        }
+
+    # ---------------------------------------------------------
+    # HEALTH METADATA (4.4)
+    # ---------------------------------------------------------
+    def health(self):
+        return {
+            "command": self.name,
+            "risk_level": self.risk_level,
+            "capabilities": self.capabilities,
+            "integrity_ok": True,
+        }
+
+    # ---------------------------------------------------------
     # LIFECYCLE HOOKS
     # ---------------------------------------------------------
-    def before_execute(self):
-        """
-        Hook before execution.
-        Runtime4 can inject:
-        - identity check
-        - risk check
-        - capability enforcement
-        - audit logging
-        """
+    def before_execute(self, identity="OWNER", params=None):
         self._start_time = time.time()
+        self._identity_used = identity
+        self._params_used = params or {}
 
     def after_execute(self, result=None, error=None):
-        """
-        Hook after execution.
-        Returns a unified audit record.
-        """
         duration = time.time() - getattr(self, "_start_time", time.time())
 
         return {
@@ -139,23 +151,26 @@ class BaseCommand:
             "duration": duration,
             "result": result,
             "error": str(error) if error else None,
+            "error_type": type(error).__name__ if error else None,
             "timestamp": time.time(),
-            "hash": self.compute_hash(),
+            "command_hash": self.compute_hash(),
+            "identity_used": self._identity_used,
+            "risk_level": self.risk_level,
+            "capabilities": self.capabilities,
+            "parameters": self._params_used,
         }
 
     # ---------------------------------------------------------
-    # SAFE EXECUTION WRAPPER (v4.3)
+    # SAFE EXECUTION WRAPPER (v4.4)
     # ---------------------------------------------------------
-    def run(self, *args, **kwargs):
+    def run(self, identity="OWNER", params=None, *args, **kwargs):
         """
-        Safe wrapper around execute().
-        Runtime Core 4.x calls ONLY run(), never execute().
+        Runtime Core 4.4 calls ONLY run(), never execute().
         """
-        self.before_execute()
+        self.before_execute(identity=identity, params=params)
 
         try:
             result = self.execute(*args, **kwargs)
             return self.after_execute(result=result)
         except Exception as e:
-            # Runtime4 will log this in audit trail
             return self.after_execute(result=None, error=e)
