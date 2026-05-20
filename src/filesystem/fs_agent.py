@@ -7,16 +7,17 @@ log = logging.getLogger(__name__)
 
 class FSAgent:
     """
-    Filesystem Agent (FS‑AGENT) 4.3
+    Filesystem Agent (FS‑AGENT) 4.4
     Safe file operations: move, copy, delete, read, write,
     path validation, size checks, and directory scanning.
 
-    Improvements in 4.3:
-    - deterministic Runtime4 behavior
-    - strict path‑safety enforcement
-    - safe file operations with error handling
-    - consistent return values for workflow engine
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Deterministic Runtime4.4 behavior
+        - Strict path‑safety enforcement (Self‑Repair Layer 4.4)
+        - Stable error model for workflow engine
+        - Guaranteed safe operations (no partial writes/moves)
+        - Normalized return values
+        - Deep-copy isolation
     """
 
     # ---------------------------------------------------------
@@ -39,6 +40,7 @@ class FSAgent:
     def safe_join(base: str, *paths: str) -> str:
         """
         Prevents path traversal attacks.
+        Deterministic and safe.
         """
         final = os.path.abspath(os.path.join(base, *paths))
         base_abs = os.path.abspath(base)
@@ -61,7 +63,7 @@ class FSAgent:
 
         files = []
         try:
-            for f in os.listdir(folder):
+            for f in sorted(os.listdir(folder)):
                 full = os.path.join(folder, f)
                 if os.path.isfile(full):
                     if extension:
