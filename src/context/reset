@@ -4,19 +4,20 @@ from context.context_manager import ContextManager
 
 class ResetCommand(BaseCommand):
     """
-    ResetCommand 4.3
+    ResetCommand 4.4
     Completely wipes the entire context and restores a clean default state.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - snapshot after reset
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Deterministic reset contract
+        - Stable post‑reset snapshot
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Stable output for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-reset"
     description = "Fully resets session, persistent, state, and history to a clean context."
@@ -36,11 +37,12 @@ class ResetCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Fully resets the entire context.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
@@ -50,8 +52,12 @@ class ResetCommand(BaseCommand):
         self.context.persistent_memory = {}
         self.context.state = {}
         self.context.history = []
+
+        # Profile subsystem (4.4)
         self.context.profiles = {}
         self.context.active_profile = None
+
+        # Self‑Repair metadata
         self.context.last_integrity_hash = None
 
         # -----------------------------
@@ -60,7 +66,9 @@ class ResetCommand(BaseCommand):
         if hasattr(self.context, "snapshot"):
             self.context.snapshot()
 
-        # Mark reset action
+        # -----------------------------
+        # LOG RESET ACTION
+        # -----------------------------
         if hasattr(self.context, "set_state"):
             self.context.set_state("last_action", "reset")
 
