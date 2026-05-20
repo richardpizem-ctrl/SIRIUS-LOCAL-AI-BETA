@@ -1,26 +1,27 @@
-# orb_widget.py
-# SIRIUS LOCAL AI – ORB UI Widget 4.3.x
-# Phase‑4 UI Manager compatible ORB wrapper
+# orb_widget_4_4.py
+# SIRIUS LOCAL AI – ORB UI Widget 4.4.0 PRO
+# Phase‑4 UI Manager compatible ORB wrapper (Phase‑5 ready)
 
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel
 from PySide6.QtCore import Qt
 
-# ORB engine + renderer
-from ui_components.animations.orb_factory import create_sirius_orb
-from ui_components.animations.orb_renderer import OrbRenderer
+# ORB engine + renderer (4.4 PRO)
+from ui_components.animations.orb_factory_4_4 import create_sirius_orb_44
+from ui_components.animations.orb_renderer_4_4 import OrbRenderer44
 
 
-class OrbWidget(QWidget):
+class OrbWidget44(QWidget):
     """
-    OrbWidget 4.3.x
+    OrbWidget 4.4.0 PRO
 
     Responsibilities:
-        - Create ORB engine + core object via factory
-        - Wrap OrbRenderer into a QWidget
-        - Provide safe-mode and degraded-mode behavior
+        - Create ORB engine + core object via factory (4.4)
+        - Wrap OrbRenderer44 into a QWidget
+        - Provide safe-mode and degraded-mode behavior (Security Family 4.4)
         - Provide structured fallback UI
         - Provide external trigger API (success, warning, insight)
         - Deterministic, offline-only behavior
+        - Self‑Repair 4.4 compatible
     """
 
     def __init__(self, parent=None):
@@ -34,11 +35,11 @@ class OrbWidget(QWidget):
         layout.setAlignment(Qt.AlignCenter)
 
         try:
-            # Create ORB engine + core object
-            self.engine, self.orb = create_sirius_orb()
+            # Create ORB engine + core object (4.4)
+            self.engine, self.orb = create_sirius_orb_44()
 
-            # Create renderer
-            self.renderer = OrbRenderer(self.engine, self.orb)
+            # Create renderer (4.4)
+            self.renderer = OrbRenderer44(self.engine, self.orb)
 
             layout.addWidget(self.renderer)
 
@@ -69,7 +70,7 @@ class OrbWidget(QWidget):
 
     def exit_safe_mode(self):
         self.safe_mode = False
-        # Real UI Manager will re-create the widget in Phase‑5
+        # UI Manager 4.4/5 will re-create the widget if needed
 
     def _replace_with_safe_placeholder(self):
         """Replace ORB with a safe-mode placeholder."""
@@ -82,7 +83,7 @@ class OrbWidget(QWidget):
         self.layout().addWidget(label)
 
     # ---------------------------------------------------------
-    # External triggers (Phase‑4)
+    # External triggers (Phase‑4 / Phase‑5 ready)
     # ---------------------------------------------------------
 
     def set_state(self, state: str):
