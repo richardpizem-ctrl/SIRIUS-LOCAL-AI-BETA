@@ -3,15 +3,16 @@ import re
 
 class EmailValidator:
     """
-    EmailValidator 4.3
+    EmailValidator 4.4
     Provides validation utilities for email addresses, subjects,
     body text, and attachment paths in a deterministic and safe way.
 
-    Improvements in 4.3:
-    - deterministic Runtime4 behavior
-    - stricter email validation
-    - normalized return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Deterministic Runtime4.4 behavior
+        - Normalized whitespace handling
+        - Strict type validation
+        - Stable output contract for EmailManager 4.4
+        - Self‑Repair Layer 4.4 compatible structure
     """
 
     # ---------------------------------------------------------
@@ -24,12 +25,15 @@ class EmailValidator:
     def validate_email(self, email: str) -> bool:
         """
         Validates an email address format.
+        Deterministic and safe.
         """
         if not isinstance(email, str):
             return False
+
         email = email.strip()
         if len(email) == 0:
             return False
+
         return bool(self.EMAIL_REGEX.match(email))
 
     # ---------------------------------------------------------
@@ -38,12 +42,12 @@ class EmailValidator:
     def validate_subject(self, subject: str) -> bool:
         """
         Validates subject length and type.
+        Deterministic and safe.
         """
         if not isinstance(subject, str):
             return False
 
         subject = subject.strip()
-
         if len(subject) == 0:
             return False
 
@@ -58,12 +62,12 @@ class EmailValidator:
     def validate_body(self, body: str) -> bool:
         """
         Validates email body text.
+        Deterministic and safe.
         """
         if not isinstance(body, str):
             return False
 
         body = body.strip()
-
         if len(body) == 0:
             return False
 
@@ -75,13 +79,12 @@ class EmailValidator:
     def validate_attachment(self, path: str) -> bool:
         """
         Validates attachment path format.
-        (File existence is checked elsewhere.)
+        Deterministic and safe.
         """
         if not isinstance(path, str):
             return False
 
         path = path.strip()
-
         if len(path) == 0:
             return False
 
@@ -94,6 +97,7 @@ class EmailValidator:
         """
         Validates all components of an email.
         Returns a dict with validation results.
+        Deterministic output for Runtime4.4.
         """
         email_ok = self.validate_email(to)
         subject_ok = self.validate_subject(subject)
