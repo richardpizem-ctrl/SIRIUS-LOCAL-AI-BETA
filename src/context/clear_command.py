@@ -4,20 +4,22 @@ from context.context_manager import ContextManager
 
 class ContextClearCommand(BaseCommand):
     """
-    ContextClearCommand 4.3
+    ContextClearCommand 4.4
     Clears the short‑term (session) memory with validation, snapshot creation,
     and state logging.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic execution contract
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - Stable structure for Runtime4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-clear"
     description = "Clears the short‑term session memory with validation and snapshot."
@@ -37,11 +39,12 @@ class ContextClearCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Clears the session memory with validation, snapshot, and state logging.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
