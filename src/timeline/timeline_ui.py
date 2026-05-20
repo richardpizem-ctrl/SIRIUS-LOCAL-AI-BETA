@@ -1,25 +1,27 @@
-# timeline_ui.py
-# SIRIUS LOCAL AI – TimelineUI 4.3.x (Phase‑4)
-# Clean, production‑ready timeline logic for PixelLayoutEngine
+# timeline_ui_4_4.py
+# SIRIUS LOCAL AI – TimelineUI 4.4.0 (Phase‑4 PRO)
+# Deterministic, offline-only timeline logic for PixelLayoutEngine (Phase‑4)
 
 from typing import List, Dict, Any, Optional
 
 
-class TimelineUI:
+class TimelineUI44:
     """
-    TimelineUI is the logical layer of the timeline.
+    TimelineUI44 is the logical layer of the timeline.
     It generates layout blocks for PixelLayoutEngine (Phase‑4).
 
-    Features (Phase‑4):
+    Features (Phase‑4 PRO):
         - adaptive grid (C4)
         - header
         - events
         - markers
         - playhead (C13)
         - overlays (C1–C12)
-        - public setters for all state
+        - snapping + ghost layers (PRO)
+        - selection box
         - deterministic, offline-only behavior
         - safe-mode & degraded-mode compatible
+        - Security Family 4.4 compliant
     """
 
     def __init__(self):
@@ -37,7 +39,7 @@ class TimelineUI:
         self.safe_mode: bool = False
         self.degraded_mode: bool = False
 
-        # Dynamic state (empty by default)
+        # Dynamic state
         self._events: List[Dict[str, Any]] = []
         self._markers: List[Dict[str, Any]] = []
         self._selected_event: Optional[Dict[str, Any]] = None
@@ -50,6 +52,8 @@ class TimelineUI:
         self._event_overlap = {"active": False}
         self._dragging_marker = {"active": False}
         self._playhead = {"active": False}
+        self._snapping = {"active": False}
+        self._ghost = {"active": False}
 
     # ---------------------------------------------------------
     # Public API – layout generation
@@ -145,6 +149,12 @@ class TimelineUI:
     def set_dragging_marker(self, active: bool, **kwargs) -> None:
         self._dragging_marker = {"active": active, **kwargs}
 
+    def set_snapping(self, active: bool, **kwargs) -> None:
+        self._snapping = {"active": active, **kwargs}
+
+    def set_ghost(self, active: bool, **kwargs) -> None:
+        self._ghost = {"active": active, **kwargs}
+
     def reset_overlays(self) -> None:
         self._hover["active"] = False
         self._grid_hover["active"] = False
@@ -152,6 +162,8 @@ class TimelineUI:
         self._resizing_event["active"] = False
         self._event_overlap["active"] = False
         self._dragging_marker["active"] = False
+        self._snapping["active"] = False
+        self._ghost["active"] = False
 
     # ---------------------------------------------------------
     # Internal layout builders
@@ -318,12 +330,31 @@ class TimelineUI:
         }]
 
     def _build_snapping_overlay(self) -> List[Dict[str, Any]]:
-        # Snapping overlay is optional; disabled unless explicitly set
-        return []
+        sn = self._snapping
+        if not sn.get("active"):
+            return []
+        return [{
+            "type": "snapping_line",
+            "x": sn.get("x", 0),
+            "y": 0,
+            "height": self.height,
+            "color": sn.get("color", "cyan"),
+            "opacity": 0.4,
+        }]
 
     def _build_ghost_overlay(self) -> List[Dict[str, Any]]:
-        # Ghost overlay is optional; disabled unless explicitly set
-        return []
+        gh = self._ghost
+        if not gh.get("active"):
+            return []
+        return [{
+            "type": "ghost_block",
+            "x": gh.get("x", 0),
+            "y": gh.get("y", 0),
+            "width": gh.get("width", 0),
+            "height": gh.get("height", 0),
+            "color": gh.get("color", "gray"),
+            "opacity": 0.2,
+        }]
 
     def _build_selection_overlay(self) -> List[Dict[str, Any]]:
         sel = self._selected_event
