@@ -7,15 +7,16 @@ from workflow.logger import WorkflowLogger
 
 class CLI:
     """
-    CLI for SIRIUS LOCAL AI 4.3
+    CLI for SIRIUS LOCAL AI 4.4
     ---------------------------
     - OWNER identity enforcement
     - Security Family integration
-    - Pretty JSON output
+    - Pretty JSON output (deterministic)
     - Command metadata support
     - Dependency injection for managers
-    - Deterministic Runtime4 behavior
-    - Self‑Repair 4.4 compatible
+    - Deterministic Runtime4.4 behavior
+    - Self‑Repair Layer 4.4 compatible
+    - Stable error model
     """
 
     def __init__(self, context, managers: dict):
