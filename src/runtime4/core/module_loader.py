@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Module Loader
+SIRIUS LOCAL AI – Runtime 4.4 Module Loader
 
 Responsible for:
 - registering runtime modules
@@ -8,8 +8,7 @@ Responsible for:
 - preparing modules for sandbox isolation
 - exposing modules to the scheduler and dependency graph
 - Self‑Repair 4.4 degraded-mode detection
-
-This component acts as the boot manager of Runtime 4.3.
+- safe‑mode compatibility
 """
 
 from typing import Any, Dict, List
@@ -17,19 +16,22 @@ from typing import Any, Dict, List
 
 class ModuleLoader4:
     """
-    Handles loading, initialization, and validation of runtime modules.
-    Provides:
+    ModuleLoader 4.4
+    ----------------
     - strict validation
+    - deterministic initialization
     - structured error surface
     - telemetry
     - degraded-mode detection
     - safe-mode compatibility
+    - Self‑Repair Layer 4.4 compliant
     """
 
     def __init__(self, max_modules: int = 200):
         self.modules: Dict[str, Any] = {}
         self.max_modules = max_modules
         self.degraded_mode = False
+        self.safe_mode = False
 
     # ---------------------------------------------------------
     # VALIDATION HELPERS
@@ -51,6 +53,9 @@ class ModuleLoader4:
 
     def register(self, name: str, module: Any) -> Dict[str, Any]:
         """Registers a module under a given name with full safety checks."""
+
+        if self.safe_mode:
+            return {"status": "safe_mode", "module": name}
 
         if not self._validate_name(name):
             return {"status": "error", "code": "invalid_module_name"}
@@ -84,10 +89,23 @@ class ModuleLoader4:
         Returns structured telemetry and degraded-mode status.
         """
 
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "results": {},
+                "errors": [],
+                "modules": list(self.modules.keys()),
+                "degraded_mode": False,
+            }
+
         results = {}
         errors = []
 
-        for name, module in self.modules.items():
+        # Deterministic order
+        module_names = sorted(self.modules.keys())
+
+        for name in module_names:
+            module = self.modules[name]
 
             # Defense in depth
             if not self._validate_module(module):
@@ -97,12 +115,23 @@ class ModuleLoader4:
 
             if hasattr(module, "initialize") and callable(module.initialize):
                 try:
-                    module.initialize()
-                    results[name] = {"status": "initialized"}
+                    res = module.initialize()
+
+                    # If module returns structured error
+                    if isinstance(res, dict) and res.get("status") == "error":
+                        results[name] = {
+                            "status": "error",
+                            "code": "initialization_failed",
+                            "details": res,
+                        }
+                        errors.append(name)
+                    else:
+                        results[name] = {"status": "initialized"}
+
                 except Exception as exc:
                     results[name] = {
                         "status": "error",
-                        "code": "initialization_failed",
+                        "code": "initialization_exception",
                         "exception": str(exc),
                     }
                     errors.append(name)
@@ -115,7 +144,7 @@ class ModuleLoader4:
             "status": "degraded" if errors else "success",
             "results": results,
             "errors": errors,
-            "modules": list(self.modules.keys()),
+            "modules": module_names,
             "degraded_mode": self.degraded_mode,
         }
 
@@ -129,4 +158,4 @@ class ModuleLoader4:
         return self.modules.get(name)
 
     def list_modules(self) -> List[str]:
-        return list(self.modules.keys())
+        return sorted(self.modules.keys())
