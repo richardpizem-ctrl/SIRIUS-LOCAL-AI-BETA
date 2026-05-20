@@ -1,6 +1,5 @@
-security_family_4_4/family_mode_4_4.py
 """
-SIRIUS LOCAL AI – Family Mode 4.4.0
+SIRIUS LOCAL AI – Family Mode 4.4.0 (PRO)
 
 FamilyMode 4.4 is the child‑safe identity layer inside Security Family 4.4.
 It activates when:
@@ -16,8 +15,6 @@ FamilyMode enforces:
 - Deterministic isolation
 - Integration with Behavior Monitor 4.4 and TimeLimits 4.4
 
-All logic is deterministic, offline, and fully isolated.
-
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
@@ -30,7 +27,7 @@ from typing import Dict, Any
 
 class FamilyMode44:
     """
-    Child‑safe restricted identity mode for Runtime 4.4.
+    Child‑safe restricted identity mode for Runtime 4.4 (PRO).
     """
 
     # Allowed actions for FAMILY identity (safe subset)
@@ -58,30 +55,42 @@ class FamilyMode44:
         self.initialized = False
         self.active = False
         self.reason = None
+        self.safe_mode = False
         self.degraded_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
-
+            return {"status": "ok"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # ACTIVATE FAMILY MODE
     # ------------------------------------------------------------------
-    def activate(self, reason: str):
-        """
-        Activates FamilyMode with a deterministic reason.
-        """
+    def activate(self, reason: str) -> Dict[str, Any]:
+        """Activates FamilyMode with a deterministic reason."""
+
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "FamilyMode activation disabled in safe-mode.",
+            }
+
+        if not isinstance(reason, str) or not reason.strip():
+            return {"status": "error", "code": "invalid_reason"}
+
         self.active = True
         self.reason = reason
         return {"status": "activated", "reason": reason}
@@ -89,7 +98,7 @@ class FamilyMode44:
     # ------------------------------------------------------------------
     # DEACTIVATE FAMILY MODE
     # ------------------------------------------------------------------
-    def deactivate(self):
+    def deactivate(self) -> Dict[str, Any]:
         self.active = False
         self.reason = None
         return {"status": "deactivated"}
@@ -98,9 +107,17 @@ class FamilyMode44:
     # CHECK ACTION PERMISSION
     # ------------------------------------------------------------------
     def check_action(self, action: str) -> Dict[str, Any]:
-        """
-        Determines whether a UI action is allowed under FamilyMode.
-        """
+        """Determines whether a UI action is allowed under FamilyMode."""
+
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Action validation disabled in safe-mode.",
+            }
+
+        if not isinstance(action, str) or not action.strip():
+            return {"status": "error", "code": "invalid_action"}
+
         if not self.active:
             return {"status": "allowed", "mode": "inactive"}
 
@@ -133,4 +150,6 @@ class FamilyMode44:
             "status": "ok",
             "active": self.active,
             "reason": self.reason,
+            "safe_mode": self.safe_mode,
+            "degraded_mode": self.degraded_mode,
         }
