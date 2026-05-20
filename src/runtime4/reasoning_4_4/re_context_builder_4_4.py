@@ -1,6 +1,5 @@
-# reasoning_4_4/re_context_builder_4_4.py
 """
-SIRIUS LOCAL AI – Reasoning Context Builder 4.4.0
+SIRIUS LOCAL AI – Reasoning Context Builder 4.4.0 (PRO)
 
 Účel:
 - vytvára reasoning kontext pre jeden dotaz
@@ -20,7 +19,7 @@ from typing import Dict, Any, List
 
 class ReasoningContextBuilder44:
     """
-    Deterministic context builder pre Reasoning Engine 4.4.
+    Deterministic context builder pre Reasoning Engine 4.4 (PRO).
     """
 
     def __init__(self, registry=None, query_engine=None, context_memory=None):
@@ -30,6 +29,7 @@ class ReasoningContextBuilder44:
 
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
@@ -40,25 +40,37 @@ class ReasoningContextBuilder44:
 
         try:
             if self.registry:
-                self.registry.initialize()
+                res = self.registry.initialize()
+                if res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "registry_init_failed", "details": res}
+
             if self.query_engine:
-                self.query_engine.initialize()
+                res = self.query_engine.initialize()
+                if res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "query_engine_init_failed", "details": res}
+
             if self.context_memory:
-                self.context_memory.initialize()
+                res = self.context_memory.initialize()
+                if res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "context_memory_init_failed", "details": res}
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # SELECT PACKS BY SUBJECT
     # ------------------------------------------------------------------
     def _select_packs(self, subjects: List[str]) -> List[str]:
         """
-        Jednoduché deterministické mapovanie tém → packy.
+        Deterministické mapovanie tém → packy.
+        Žiadne heuristiky, žiadne AI.
         """
 
         mapping = {
@@ -72,9 +84,10 @@ class ReasoningContextBuilder44:
 
         packs = []
         for s in subjects:
-            packs.extend(mapping.get(s, []))
+            if isinstance(s, str):
+                packs.extend(mapping.get(s, []))
 
-        # odstráni duplicity
+        # odstránenie duplicít deterministicky
         return list(dict.fromkeys(packs))
 
     # ------------------------------------------------------------------
@@ -88,23 +101,30 @@ class ReasoningContextBuilder44:
         - uloží všetko do context memory
         """
 
-        try:
-            if not self.context_memory:
-                return {"status": "error", "reason": "no_context_memory"}
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Context building disabled in safe-mode."}
 
+        if not isinstance(subjects, list):
+            return {"status": "error", "code": "invalid_subjects_type"}
+
+        if not self.context_memory:
+            return {"status": "error", "code": "no_context_memory"}
+
+        try:
             # 1. Vyber packy
             packs = self._select_packs(subjects)
 
+            # 2. Zaregistruj packy do context memory
             for p in packs:
                 self.context_memory.add_pack(p)
 
-            # 2. Načítaj fakty z packov
+            # 3. Načítaj fakty z packov
             for p in packs:
                 keys = self.query_engine.list_keys(p)
                 if keys.get("status") != "ok":
                     continue
 
-                for key in keys["keys"]:
+                for key in keys.get("keys", []):
                     fact = self.query_engine.get(p, key)
                     if fact.get("status") == "ok":
                         self.context_memory.add_fact(
@@ -113,11 +133,15 @@ class ReasoningContextBuilder44:
                             value=fact["value"]
                         )
 
-            # 3. Export kontextu
-            return self.context_memory.export()
+            # 4. Export kontextu
+            exported = self.context_memory.export()
+            exported["status"] = "ok"
+            exported["degraded_mode"] = self.degraded_mode
+            return exported
 
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            self.degraded_mode = True
+            return {"status": "error", "code": "context_build_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # STATUS
@@ -126,5 +150,6 @@ class ReasoningContextBuilder44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
