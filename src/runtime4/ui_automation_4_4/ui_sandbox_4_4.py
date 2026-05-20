@@ -1,16 +1,14 @@
 """
-SIRIUS LOCAL AI – UI Sandbox 4.4.0
+SIRIUS LOCAL AI – UI Sandbox 4.4.0 (PRO)
 
-This module provides the hardened sandbox layer for UI Automation Engine 4.4.
-It is responsible for:
+Hardened sandbox layer for UI Automation Engine 4.4.
 
-- Enforcing Security Family 4.4 rules for UI actions
-- Mediating all OS‑level UI operations
-- Applying STRANGER‑mode and behavior‑based restrictions
-- Enforcing time limits and action quotas
-- Providing deterministic, auditable execution results
-
-All logic is deterministic, offline, and fully isolated.
+Responsibilities:
+- Enforce Security Family 4.4 rules for UI actions
+- Mediate all OS‑level UI operations
+- Apply STRANGER‑mode and behavior‑based restrictions
+- Enforce time limits and action quotas
+- Provide deterministic, auditable execution results
 
 Security Notes:
 - Only static imports allowed.
@@ -24,9 +22,14 @@ from typing import Dict, Any, Optional
 
 class UISandbox44:
     """
-    Hardened UI sandbox for Runtime 4.4.
+    Hardened UI sandbox for Runtime 4.4 (PRO).
     All UI actions must go through this class.
     """
+
+    REQUIRED_CAPABILITY_METHODS = {"initialize", "execute_ui_action"}
+    REQUIRED_POLICY_METHODS = {"initialize", "check_action"}
+    REQUIRED_TIME_LIMITER_METHODS = {"initialize", "check", "consume"}
+    REQUIRED_BEHAVIOR_METHODS = {"initialize", "record"}
 
     def __init__(
         self,
@@ -42,35 +45,110 @@ class UISandbox44:
         self.behavior_monitor = behavior_monitor
         self.identity = identity
 
-        self.initialized = False
-        self.degraded_mode = False
+        self.initialized: bool = False
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
     # ---------------------------------------------------------------------
     # INITIALIZATION
     # ---------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
+        # Capability adapter
+        if not self.capability_adapter:
+            self.degraded_mode = True
+            return {"status": "error", "code": "no_capability_adapter"}
+
+        for m in self.REQUIRED_CAPABILITY_METHODS:
+            if not hasattr(self.capability_adapter, m):
+                self.degraded_mode = True
+                return {
+                    "status": "error",
+                    "code": "invalid_capability_adapter_interface",
+                    "missing": m,
+                }
+
+        # Security policy (optional but validated if present)
+        if self.security_policy:
+            for m in self.REQUIRED_POLICY_METHODS:
+                if not hasattr(self.security_policy, m):
+                    self.degraded_mode = True
+                    return {
+                        "status": "error",
+                        "code": "invalid_security_policy_interface",
+                        "missing": m,
+                    }
+
+        # Time limiter (optional)
+        if self.time_limiter:
+            for m in self.REQUIRED_TIME_LIMITER_METHODS:
+                if not hasattr(self.time_limiter, m):
+                    self.degraded_mode = True
+                    return {
+                        "status": "error",
+                        "code": "invalid_time_limiter_interface",
+                        "missing": m,
+                    }
+
+        # Behavior monitor (optional)
+        if self.behavior_monitor:
+            for m in self.REQUIRED_BEHAVIOR_METHODS:
+                if not hasattr(self.behavior_monitor, m):
+                    self.degraded_mode = True
+                    return {
+                        "status": "error",
+                        "code": "invalid_behavior_monitor_interface",
+                        "missing": m,
+                    }
+
         try:
-            if self.capability_adapter:
-                self.capability_adapter.initialize()
+            cap_res = self.capability_adapter.initialize()
+            if cap_res.get("status") not in ("initialized", "already_initialized"):
+                self.degraded_mode = True
+                return {
+                    "status": "error",
+                    "code": "capability_init_failed",
+                    "details": cap_res,
+                }
 
             if self.security_policy:
-                self.security_policy.initialize()
+                pol_res = self.security_policy.initialize()
+                if pol_res.get("status") not in ("initialized", "already_initialized"):
+                    self.degraded_mode = True
+                    return {
+                        "status": "error",
+                        "code": "policy_init_failed",
+                        "details": pol_res,
+                    }
 
             if self.time_limiter:
-                self.time_limiter.initialize()
+                tl_res = self.time_limiter.initialize()
+                if tl_res.get("status") not in ("initialized", "already_initialized"):
+                    self.degraded_mode = True
+                    return {
+                        "status": "error",
+                        "code": "time_limiter_init_failed",
+                        "details": tl_res,
+                    }
 
             if self.behavior_monitor:
-                self.behavior_monitor.initialize()
+                bm_res = self.behavior_monitor.initialize()
+                if bm_res.get("status") not in ("initialized", "already_initialized"):
+                    self.degraded_mode = True
+                    return {
+                        "status": "error",
+                        "code": "behavior_monitor_init_failed",
+                        "details": bm_res,
+                    }
 
             self.initialized = True
             return {"status": "initialized"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "exception", "exception": str(exc)}
 
     # ---------------------------------------------------------------------
     # PUBLIC API – EXECUTE UI ACTION
@@ -81,63 +159,110 @@ class UISandbox44:
         action: str,
         payload: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
-        """
-        Executes a UI action in a hardened, deterministic way.
 
-        Steps:
-        1. Check initialization
-        2. Evaluate security policy (identity, STRANGER‑mode, behavior)
-        3. Enforce time limits / quotas
-        4. Dispatch to capability adapter
-        5. Record behavior outcome (if enabled)
-        """
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "action": action,
+                "element": element_ref,
+                "degraded_mode": self.degraded_mode,
+            }
+
+        if not isinstance(element_ref, dict) or not isinstance(action, str):
+            return {"status": "error", "code": "invalid_arguments"}
+
         if not self.initialized:
-            init_result = self.initialize()
-            if init_result.get("status") not in ("initialized", "already_initialized"):
-                return {"status": "error", "reason": "sandbox_not_initialized", "details": init_result}
+            init = self.initialize()
+            if init.get("status") not in ("initialized", "already_initialized"):
+                return {
+                    "status": "error",
+                    "code": "sandbox_not_initialized",
+                    "details": init,
+                }
+
+        payload = payload or {}
 
         # 1. Security policy check
         if self.security_policy:
-            policy_result = self.security_policy.check_action(
-                identity=self.identity,
-                element_ref=element_ref,
-                action=action,
-                payload=payload or {},
-            )
-            if policy_result.get("status") != "allowed":
-                return {"status": "blocked", "policy": policy_result}
+            try:
+                policy_result = self.security_policy.check_action(
+                    element_ref=element_ref,
+                    action=action,
+                )
+                if policy_result.get("status") != "allowed":
+                    return {
+                        "status": "blocked",
+                        "layer": "policy",
+                        "policy": policy_result,
+                        "degraded_mode": self.degraded_mode,
+                    }
+            except Exception as exc:
+                self.degraded_mode = True
+                return {
+                    "status": "error",
+                    "code": "policy_exception",
+                    "exception": str(exc),
+                }
 
         # 2. Time limit / quota check
         if self.time_limiter:
-            limit_result = self.time_limiter.check(
-                identity=self.identity,
-                action=action,
-            )
-            if limit_result.get("status") != "allowed":
-                return {"status": "blocked", "time_limit": limit_result}
+            try:
+                limit_result = self.time_limiter.check(
+                    identity=self.identity,
+                    action=action,
+                )
+                if limit_result.get("status") != "allowed":
+                    return {
+                        "status": "blocked",
+                        "layer": "time_limiter",
+                        "time_limit": limit_result,
+                        "degraded_mode": self.degraded_mode,
+                    }
+            except Exception as exc:
+                self.degraded_mode = True
+                return {
+                    "status": "error",
+                    "code": "time_limiter_exception",
+                    "exception": str(exc),
+                }
 
         # 3. Execute via capability adapter
-        if not self.capability_adapter:
-            return {"status": "error", "reason": "no_capability_adapter"}
-
         try:
             result = self.capability_adapter.execute_ui_action(
                 element_ref=element_ref,
                 action=action,
-                payload=payload or {},
+                payload=payload,
             )
 
             # 4. Behavior monitoring
             if self.behavior_monitor:
-                self.behavior_monitor.record(
-                    identity=self.identity,
-                    element_ref=element_ref,
-                    action=action,
-                    result=result,
-                )
+                try:
+                    self.behavior_monitor.record(
+                        identity=self.identity,
+                        element_ref=element_ref,
+                        action=action,
+                        result=result,
+                    )
+                except Exception:
+                    self.degraded_mode = True
 
-            return {"status": "ok", "result": result}
+            # 5. Time consumption
+            if self.time_limiter:
+                try:
+                    self.time_limiter.consume(identity=self.identity, amount=1)
+                except Exception:
+                    self.degraded_mode = True
+
+            return {
+                "status": "ok",
+                "result": result,
+                "degraded_mode": self.degraded_mode,
+            }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "capability_exception",
+                "exception": str(exc),
+            }
