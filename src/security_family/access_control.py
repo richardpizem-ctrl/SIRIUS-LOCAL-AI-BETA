@@ -1,58 +1,66 @@
 """
-Security Family – Access Control 4.3.x
---------------------------------------
+Security Family – Access Control 4.4.0 (PRO)
+--------------------------------------------
 Dynamic permissions based on identity, context, risk score, trends,
-and adaptive learning.
+and deterministic adaptive learning.
 
-Features:
-- deterministic, offline-only behavior
-- identity-aware permission tiers
-- risk-aware restrictions
+Features (4.4.0):
+- deterministic, offline‑only behavior
+- identity‑aware permission tiers (OWNER / FAMILY / CHILD / STRANGER)
+- risk‑aware restrictions
 - anomaly detection (similarity, behavior shift, risk)
-- safe-mode and degraded-mode support
+- safe‑mode and degraded‑mode support
 - structured, predictable permission output
+- Security Family 4.4 compliant
+- no dynamic imports, no eval, no reflection
 """
 
 import math
 from statistics import mean
 
 
-class AccessControl:
+class AccessControl44:
+    """
+    Deterministic access control engine for Security Family 4.4.
+    """
+
+    VALID_IDENTITIES = {"OWNER", "FAMILY", "CHILD", "STRANGER"}
+
     def __init__(self):
         # Base permissions for each identity
         self.base_levels = {
             "OWNER": {
                 "tier": "FULL",
-                "permissions": [
+                "permissions": {
                     "full_access",
                     "system_operations",
                     "sensitive_actions",
                     "module_management",
-                ],
+                },
             },
             "FAMILY": {
                 "tier": "LIMITED",
-                "permissions": [
+                "permissions": {
                     "games",
                     "media",
                     "safe_operations",
                     "school_mode_allowed",
-                ],
+                },
             },
             "CHILD": {
                 "tier": "CHILD_LIMITED",
-                "permissions": [
+                "permissions": {
                     "safe_operations",
                     "games_limited",
                     "media_limited",
-                ],
+                },
             },
             "STRANGER": {
                 "tier": "RESTRICTED",
-                "permissions": [
+                "permissions": {
                     "restricted_mode",
                     "no_sensitive_actions",
-                ],
+                },
             },
         }
 
@@ -76,9 +84,16 @@ class AccessControl:
         self.degraded_mode = False
 
     # ---------------------------------------------------------
+    # IDENTITY NORMALIZATION
+    # ---------------------------------------------------------
+    def _normalize_identity(self, identity: str) -> str:
+        identity = (identity or "STRANGER").upper().strip()
+        return identity if identity in self.VALID_IDENTITIES else "STRANGER"
+
+    # ---------------------------------------------------------
     # MAIN ACCESS DECISION
     # ---------------------------------------------------------
-    def get_permissions(self, identity, context=None):
+    def get_permissions(self, identity: str, context=None):
         """
         identity: OWNER / FAMILY / CHILD / STRANGER
         context: {
@@ -92,6 +107,8 @@ class AccessControl:
             "family_similarity": float
         }
         """
+
+        identity = self._normalize_identity(identity)
 
         if self.safe_mode:
             return ["restricted_mode", "no_sensitive_actions"]
@@ -120,15 +137,14 @@ class AccessControl:
             return ["restricted_mode", "no_sensitive_actions"]
 
     # ---------------------------------------------------------
-    # CONTEXT RULES
+    # CONTEXT RULES (4.4)
     # ---------------------------------------------------------
     def _apply_context_rules(self, identity, ctx):
         extra = set()
 
         # 1. High risk → restrict everything except safe ops
         if ctx.get("risk_score", 0) > self.risk_threshold:
-            extra |= {"restricted_mode", "no_sensitive_actions"}
-            return extra
+            return {"restricted_mode", "no_sensitive_actions"}
 
         # 2. School mode → FAMILY gets extra permissions
         if identity == "FAMILY" and ctx.get("school_mode"):
@@ -145,13 +161,15 @@ class AccessControl:
         return extra
 
     # ---------------------------------------------------------
-    # ADAPTIVE LEARNING (Access Control 4.3.x)
+    # ADAPTIVE LEARNING (4.4)
     # ---------------------------------------------------------
-    def learn(self, identity, behavior_vector, learning_rate=0.15):
+    def learn(self, identity, behavior_vector):
         """
         Adaptive permission learning based on long-term behavior.
-        Deterministic placeholder for future 4.4+ evolution.
+        Deterministic, offline, safe.
         """
+        identity = self._normalize_identity(identity)
+
         if identity not in ("OWNER", "FAMILY"):
             return
 
@@ -195,7 +213,7 @@ class AccessControl:
         return {"short": short_avg, "long": long_avg, "delta": delta}
 
     # ---------------------------------------------------------
-    # ANOMALY DETECTION (Access Control 4.3.x)
+    # ANOMALY DETECTION (4.4)
     # ---------------------------------------------------------
     def _detect_anomaly(self, ctx):
         """
