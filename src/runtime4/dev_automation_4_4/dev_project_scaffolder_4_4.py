@@ -1,17 +1,14 @@
-dev_automation_4_4/dev_project_scaffolder_4_4.py
 """
 SIRIUS LOCAL AI – Developer Project Scaffolder 4.4.0
 
-This module generates deterministic, offline‑safe project scaffolds for
-Developer Automation 4.4. It supports:
+Deterministic, offline‑safe project scaffolding for Developer Automation 4.4.
 
+Features:
 - Python project templates
 - Module/package skeletons
 - Runtime 4.x compatible folder structures
 - Deterministic file generation
 - Security‑aware scaffolding (Security Family 4.4)
-
-All scaffolding logic is deterministic, offline, and fully isolated.
 
 Security Notes:
 - Only static imports allowed.
@@ -26,6 +23,7 @@ from typing import Dict, Any, Optional, List
 class DevProjectScaffolder44:
     """
     Deterministic project scaffolding engine for Runtime 4.4.
+    Fully isolated, offline‑safe, and Self‑Repair 4.4 compatible.
     """
 
     def __init__(self, fs_adapter=None, security_policy=None):
@@ -44,10 +42,16 @@ class DevProjectScaffolder44:
 
         try:
             if self.fs_adapter:
-                self.fs_adapter.initialize()
+                res = self.fs_adapter.initialize()
+                if isinstance(res, dict) and res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": res}
 
             if self.security_policy:
-                self.security_policy.initialize()
+                sec = self.security_policy.initialize()
+                if isinstance(sec, dict) and sec.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "exception": sec}
 
             self.initialized = True
             return {"status": "initialized"}
@@ -67,25 +71,25 @@ class DevProjectScaffolder44:
         - "python_basic"
         - "python_package"
         - "runtime4_module"
-
-        Returns:
-        {
-            "status": "ok",
-            "created_files": [...],
-        }
         """
+
+        # Ensure initialized
         if not self.initialized:
             init_result = self.initialize()
             if init_result.get("status") not in ("initialized", "already_initialized"):
-                return {"status": "error", "reason": "scaffolder_not_initialized", "details": init_result}
+                return {
+                    "status": "error",
+                    "reason": "scaffolder_not_initialized",
+                    "details": init_result,
+                }
 
-        # 1. Security policy check
+        # Security policy check
         if self.security_policy:
             sec = self.security_policy.check_scaffold(template, target_path, options)
             if sec.get("status") != "allowed":
                 return {"status": "blocked", "policy": sec}
 
-        # 2. Select template
+        # Template selection
         if template == "python_basic":
             return self._generate_python_basic(target_path)
 
@@ -126,7 +130,7 @@ class DevProjectScaffolder44:
         name = options.get("module_name", "new_module")
         files = {
             f"{target}/{name}/__init__.py": f'"""Runtime 4.x module: {name}"""',
-            f"{target}/{name}/{name}.py": f'class {name.capitalize()}:\n    pass\n',
+            f"{target}/{name}/{name}.py": f"class {name.capitalize()}:\n    pass\n",
         }
         return self._write_files(files)
 
@@ -143,6 +147,11 @@ class DevProjectScaffolder44:
                 self.fs_adapter.write_file(path, content)
                 created.append(path)
             except Exception as exc:
-                return {"status": "error", "exception": str(exc), "failed_path": path}
+                self.degraded_mode = True
+                return {
+                    "status": "error",
+                    "exception": str(exc),
+                    "failed_path": path,
+                }
 
         return {"status": "ok", "created_files": created}
