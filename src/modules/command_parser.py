@@ -6,7 +6,7 @@ log = logging.getLogger(__name__)
 
 class CommandParser:
     """
-    CommandParser 4.3
+    CommandParser 4.4
     --------------------
     Parses structured commands like:
 
@@ -21,15 +21,38 @@ class CommandParser:
             "args": ["src/a.py", "modules/a.py"]
         }
 
-    Improvements in 4.3:
-    - deterministic Runtime4 behavior
-    - strict AST validation (no unsafe nodes)
-    - consistent error structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Deterministic AST contract
+        - Strict node whitelist (Self‑Repair 4.4)
+        - Stable error model for Runtime4.4
+        - Guaranteed safe argument extraction
+        - No execution, no evaluation, no side‑effects
     """
 
     def __init__(self):
         self.name = "parser"
+
+    # --------------------------------------------------------
+    # INTERNAL: SAFE NODE CHECK
+    # --------------------------------------------------------
+    @staticmethod
+    def _is_safe_node(node) -> bool:
+        """
+        Only allow:
+        - ast.Expression
+        - ast.Call
+        - ast.Attribute
+        - ast.Name
+        - ast.Constant
+        """
+        safe_types = (
+            ast.Expression,
+            ast.Call,
+            ast.Attribute,
+            ast.Name,
+            ast.Constant,
+        )
+        return isinstance(node, safe_types)
 
     # --------------------------------------------------------
     # MAIN PARSE FUNCTION
@@ -37,6 +60,7 @@ class CommandParser:
     def parse(self, command: str) -> dict | None:
         """
         Parses a command string into module, method, and args.
+        Deterministic, safe, and audit‑friendly.
         """
 
         if not isinstance(command, str) or not command.strip():
@@ -47,6 +71,11 @@ class CommandParser:
             # Convert string into AST
             tree = ast.parse(command.strip(), mode="eval")
 
+            # Validate root node
+            if not self._is_safe_node(tree):
+                log.error("PARSER: Unsafe root node.")
+                return None
+
             # Must be a function call
             if not isinstance(tree.body, ast.Call):
                 log.error("PARSER: Not a valid call expression.")
@@ -54,12 +83,16 @@ class CommandParser:
 
             call = tree.body
 
+            # Validate call node
+            if not self._is_safe_node(call):
+                log.error("PARSER: Unsafe call node.")
+                return None
+
             # Extract module.method
             if not isinstance(call.func, ast.Attribute):
                 log.error("PARSER: Invalid function format.")
                 return None
 
-            # Module name must be an identifier
             if not isinstance(call.func.value, ast.Name):
                 log.error("PARSER: Invalid module name.")
                 return None
@@ -70,11 +103,10 @@ class CommandParser:
             # Extract arguments (only constants allowed)
             args = []
             for arg in call.args:
-                if isinstance(arg, ast.Constant):
-                    args.append(arg.value)
-                else:
+                if not isinstance(arg, ast.Constant):
                     log.error("PARSER: Unsupported argument type: %s", type(arg).__name__)
                     return None
+                args.append(arg.value)
 
             parsed = {
                 "module": module,
