@@ -7,21 +7,22 @@ import copy
 
 class ContextImportCommand(BaseCommand):
     """
-    ContextImportCommand 4.3
+    ContextImportCommand 4.4
     Imports the context or selected sections from a JSON file.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - deep-copy safety
-    - snapshot before mutation
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic import behavior
+        - Deep‑copy safety
+        - Snapshot before mutation
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Stable structure for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-import"
     description = "Imports the context or selected sections from a JSON file."
@@ -44,11 +45,12 @@ class ContextImportCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Imports selected context section from a JSON file.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
