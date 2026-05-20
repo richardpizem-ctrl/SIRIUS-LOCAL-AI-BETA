@@ -7,15 +7,15 @@ log = logging.getLogger(__name__)
 
 class SiriusAgent:
     """
-    SiriusAgent 4.3+
+    SiriusAgent 4.4
     ----------------
     - Unified AI task registry
-    - Security Family enforcement (risk, identity, capabilities)
+    - Security Family enforcement (identity, risk, capabilities)
     - Workflow integration
     - Plugin task support
     - Telemetry and error isolation
     - Deterministic structured returns
-    - Self‑Repair 4.4 ready (degraded mode)
+    - Self‑Repair Layer 4.4 compatible (safe-mode, degraded-mode)
     """
 
     def __init__(self, runtime_manager):
@@ -30,6 +30,7 @@ class SiriusAgent:
     def register_task(self, name: str, fn: Callable, meta: Dict[str, Any] = None):
         """
         Register an AI task.
+
         meta = {
             "description": "...",
             "risk_level": 0.2,
@@ -44,6 +45,11 @@ class SiriusAgent:
 
         log.info("AI task registered: %s", name)
 
+        return {
+            "status": "success",
+            "task": name
+        }
+
     # --------------------------------------------------------
     # RUN TASK
     # --------------------------------------------------------
@@ -53,6 +59,7 @@ class SiriusAgent:
         if name not in self.tasks:
             return {
                 "status": "error",
+                "task": name,
                 "message": f"Unknown AI task: {name}"
             }
 
@@ -62,19 +69,25 @@ class SiriusAgent:
         # SECURITY FAMILY: IDENTITY CHECK
         # ----------------------------------------------------
         required_identity = meta.get("required_identity")
-        if required_identity and self.rm.security.identity != required_identity:
-            return {
-                "status": "error",
-                "message": f"Task '{name}' requires identity '{required_identity}'."
-            }
+        if required_identity:
+            identity = getattr(self.rm.security, "identity", None)
+            if identity != required_identity:
+                return {
+                    "status": "error",
+                    "task": name,
+                    "message": f"Task '{name}' requires identity '{required_identity}'."
+                }
 
         # ----------------------------------------------------
         # SECURITY FAMILY: RISK CHECK
         # ----------------------------------------------------
         risk = meta.get("risk_level", 0)
-        if risk > self.rm.security.max_task_risk:
+        max_risk = getattr(self.rm.security, "max_task_risk", 1.0)
+
+        if risk > max_risk:
             return {
                 "status": "error",
+                "task": name,
                 "message": f"Task '{name}' blocked due to high risk."
             }
 
@@ -82,15 +95,15 @@ class SiriusAgent:
         # SECURITY FAMILY: CAPABILITY CHECK
         # ----------------------------------------------------
         required_caps = meta.get("capabilities", [])
-        missing_caps = [
-            cap for cap in required_caps
-            if cap not in self.rm.security.capabilities
-        ]
+        granted_caps = getattr(self.rm.security, "capabilities", [])
 
-        if missing_caps:
+        missing = [cap for cap in required_caps if cap not in granted_caps]
+
+        if missing:
             return {
                 "status": "error",
-                "message": f"Missing required capabilities: {missing_caps}"
+                "task": name,
+                "message": f"Missing required capabilities: {missing}"
             }
 
         # ----------------------------------------------------
