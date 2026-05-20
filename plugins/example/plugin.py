@@ -1,13 +1,15 @@
 # plugin.py
-# SIRIUS LOCAL AI – Example Plugin 4.3.x
-# Reference implementation for all SIRIUS plugins
+# SIRIUS LOCAL AI – Example Plugin 4.4.0
+# Reference implementation for all SIRIUS plugins (Phase‑4.4)
 
 from __future__ import annotations
+
+import os
 
 
 class Plugin:
     """
-    Example Plugin 4.3.x
+    Example Plugin 4.4.0
 
     Demonstrates:
         - NL commands
@@ -15,20 +17,62 @@ class Plugin:
         - Workflows
         - AI Loop rules
         - GUI elements
-        - Safe-mode + degraded-mode support
         - Deterministic behavior
-        - Self‑Repair 4.4 readiness
+        - Safe-mode + degraded-mode support
+        - Plugin Integrity Hooks (4.4)
+        - Health Metadata (4.4)
+        - Self‑Repair Layer 4.4 compatibility
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
+
+        # Runtime 4.4 modes
         self.safe_mode = False
         self.degraded_mode = False
 
-        self.rm.logger.info("[PLUGIN:example] Initialized (v4.3.x)")
+        # 4.4 integrity + health
+        self.integrity_ok = True
+        self.health_status = "OK"
+
+        self.rm.logger.info("[PLUGIN:example] Initialized (v4.4.0)")
 
     # --------------------------------------------------------
-    # NL COMMANDS (4.3.x)
+    # INTEGRITY HOOKS (4.4)
+    # --------------------------------------------------------
+    def integrity_check(self):
+        """
+        Called by PluginLoader 4.4.
+        Must return True/False.
+        """
+        try:
+            return os.path.exists(__file__)
+        except Exception:
+            return False
+
+    def integrity_repair(self):
+        """
+        Called by Self‑Repair Layer 4.4.
+        Plugin may reload, reset state, or fallback.
+        """
+        self.rm.logger.warn("[PLUGIN:example] Integrity repair triggered.")
+        self.integrity_ok = False
+        self.degraded_mode = True
+        return True
+
+    # --------------------------------------------------------
+    # HEALTH METADATA (4.4)
+    # --------------------------------------------------------
+    def health(self):
+        return {
+            "status": self.health_status,
+            "safe_mode": self.safe_mode,
+            "degraded_mode": self.degraded_mode,
+            "integrity_ok": self.integrity_ok,
+        }
+
+    # --------------------------------------------------------
+    # NL COMMANDS (4.4)
     # --------------------------------------------------------
     def nl_commands(self):
         return {
@@ -38,21 +82,20 @@ class Plugin:
         }
 
     def _nl_hello(self, text):
-        return "Hello! The Example Plugin 4.3.x is active and responding."
+        return "Hello! The Example Plugin 4.4.0 is active and responding."
 
     def _nl_test(self, text):
-        return "Example Plugin 4.3.x — NL command executed successfully."
+        return "Example Plugin 4.4.0 — NL command executed successfully."
 
     def _nl_run_workflow(self, text):
         try:
             return self.rm.run_workflow("plugin_demo_workflow")
         except Exception as e:
-            self.degraded_mode = True
-            self.rm.logger.error(f"[EXAMPLE] Workflow error: {e}")
+            self._handle_error("Workflow", e)
             return "Workflow error."
 
     # --------------------------------------------------------
-    # AI TASKS (4.3.x)
+    # AI TASKS (4.4)
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -63,18 +106,18 @@ class Plugin:
     def _ai_test_task(self, params):
         return {
             "status": "OK",
-            "message": "Example Plugin 4.3.x — AI task executed successfully.",
+            "message": "Example Plugin 4.4.0 — AI task executed successfully.",
         }
 
     def _ai_status(self, params):
         return {
             "plugin": "example",
             "state": "running",
-            "info": "Example Plugin 4.3.x is operating normally.",
+            "info": "Example Plugin 4.4.0 is operating normally.",
         }
 
     # --------------------------------------------------------
-    # WORKFLOWS (4.3.x)
+    # WORKFLOWS (4.4)
     # --------------------------------------------------------
     def workflows(self):
         return [
@@ -89,7 +132,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # AI LOOP RULES (4.3.x)
+    # AI LOOP RULES (4.4)
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -102,7 +145,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI ELEMENTS (4.3.x)
+    # GUI ELEMENTS (4.4)
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -119,10 +162,20 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # SAFE-MODE CONTROL
+    # INTERNAL ERROR HANDLER (4.4)
+    # --------------------------------------------------------
+    def _handle_error(self, label, exception):
+        self.degraded_mode = True
+        self.health_status = "DEGRADED"
+        self.rm.logger.error(f"[EXAMPLE] {label} error: {exception}")
+
+    # --------------------------------------------------------
+    # SAFE-MODE CONTROL (4.4)
     # --------------------------------------------------------
     def enter_safe_mode(self):
         self.safe_mode = True
+        self.rm.logger.warn("[PLUGIN:example] Entered SAFE MODE.")
 
     def exit_safe_mode(self):
         self.safe_mode = False
+        self.rm.logger.info("[PLUGIN:example] Exited SAFE MODE.")
