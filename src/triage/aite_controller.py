@@ -1,23 +1,23 @@
-# aite_controller.py
-# SIRIUS LOCAL AI – Automatic Input Triage Engine (AITE) 4.3.x
+# aite_controller_4_4.py
+# SIRIUS LOCAL AI – Automatic Input Triage Engine (AITE) 4.4.0 PRO
 # Deterministic, offline-only triage controller with safe-mode and degraded-mode support.
 
 from typing import Dict, Any
-from .input_classifier import InputClassifier
-from .input_router import InputRouter
-from .metadata_builder import MetadataBuilder
+from .input_classifier_4_4 import InputClassifier44
+from .input_router_4_4 import InputRouter44
+from .metadata_builder_4_4 import MetadataBuilder44
 
 
-class AITEController:
+class AITEController44:
     """
-    Automatic Input Triage Engine (AITE) – 4.3.x
+    Automatic Input Triage Engine (AITE) – 4.4.0 PRO
 
     Responsibilities:
-        - Validate input path
+        - Validate input path (Phase‑5 ready)
         - Detect input type (text, image, audio, application, unknown)
         - Determine the correct target storage path
         - Generate metadata for the file
-        - Provide a unified triage result for FS‑AGENT
+        - Provide a unified triage result for FS‑AGENT 4.4
         - Safe-mode and degraded-mode compatible
         - Deterministic, offline-only behavior
 
@@ -26,9 +26,9 @@ class AITEController:
     """
 
     def __init__(self):
-        self.classifier = InputClassifier()
-        self.router = InputRouter()
-        self.metadata = MetadataBuilder()
+        self.classifier = InputClassifier44()
+        self.router = InputRouter44()
+        self.metadata = MetadataBuilder44()
 
         self.safe_mode = False
         self.degraded_mode = False
@@ -95,6 +95,7 @@ class AITEController:
         """
         Basic validation before classification.
         Ensures the input path is usable and safe.
+        Phase‑5 ready: forbidden extensions, sandbox rules, quarantine.
         """
 
         if not isinstance(input_path, str):
