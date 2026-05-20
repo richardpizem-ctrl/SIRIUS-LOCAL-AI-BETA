@@ -1,6 +1,5 @@
-# reasoning_4_4/re_safety_guard_4_4.py
 """
-SIRIUS LOCAL AI – Reasoning Safety Guard 4.4.0
+SIRIUS LOCAL AI – Reasoning Safety Guard 4.4.0 (PRO)
 
 Účel:
 - bezpečnostná vrstva nad Reasoning Engine 4.4
@@ -11,6 +10,7 @@ SIRIUS LOCAL AI – Reasoning Safety Guard 4.4.0
     - žiadne dynamické importy, eval, exec
     - žiadne systémové príkazy
 - 100 % deterministické, bez AI heuristiky
+- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
 """
 
 from typing import Dict, Any, List
@@ -18,14 +18,15 @@ from typing import Dict, Any, List
 
 class ReasoningSafetyGuard44:
     """
-    Deterministic safety guard pre Reasoning Engine 4.4.
+    Deterministic safety guard pre Reasoning Engine 4.4 (PRO).
     """
 
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
-        # Zakázané patterny v dotaze (hard‑coded, deterministické)
+        # Zakázané patterny v dotaze (deterministické)
         self.forbidden_substrings: List[str] = [
             "import ",
             "exec(",
@@ -39,7 +40,7 @@ class ReasoningSafetyGuard44:
             "wget ",
         ]
 
-        # Maximálna dĺžka dotazu (aby sa predišlo abuse)
+        # Maximálna dĺžka dotazu
         self.max_query_length: int = 4000
 
     # ------------------------------------------------------------------
@@ -51,10 +52,11 @@ class ReasoningSafetyGuard44:
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
+
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # CHECK QUERY
@@ -62,12 +64,16 @@ class ReasoningSafetyGuard44:
     def check_query(self, query: str) -> Dict[str, Any]:
         """
         Skontroluje, či je dotaz bezpečný.
+        Deterministické, bez heuristiky.
         """
+
+        if not isinstance(query, str):
+            return {"status": "blocked", "code": "invalid_query_type"}
 
         if len(query) > self.max_query_length:
             return {
                 "status": "blocked",
-                "reason": "query_too_long",
+                "code": "query_too_long",
                 "max_length": self.max_query_length,
                 "actual_length": len(query),
             }
@@ -77,7 +83,7 @@ class ReasoningSafetyGuard44:
             if forbidden in lower_q:
                 return {
                     "status": "blocked",
-                    "reason": "forbidden_pattern",
+                    "code": "forbidden_pattern",
                     "pattern": forbidden,
                 }
 
@@ -89,17 +95,23 @@ class ReasoningSafetyGuard44:
     def check_context(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Skontroluje, či kontext neobsahuje nebezpečné hodnoty.
-        V tejto verzii len overí, že v packoch a faktoch nie sú URL a kódové patterny.
         """
+
+        if not isinstance(context, dict):
+            return {"status": "blocked", "code": "invalid_context_type"}
 
         # Kontrola faktov
         for fact in context.get("facts", []):
+            if not isinstance(fact, dict):
+                return {"status": "blocked", "code": "invalid_fact_type"}
+
             value = str(fact.get("value", "")).lower()
+
             for forbidden in ["http://", "https://", "import ", "exec(", "eval("]:
                 if forbidden in value:
                     return {
                         "status": "blocked",
-                        "reason": "forbidden_in_fact",
+                        "code": "forbidden_in_fact",
                         "pattern": forbidden,
                         "fact_key": fact.get("key"),
                         "pack": fact.get("pack"),
@@ -115,6 +127,9 @@ class ReasoningSafetyGuard44:
         Kombinovaná kontrola dotazu + kontextu.
         Ak čokoľvek zlyhá, reasoning sa nemá vykonať.
         """
+
+        if self.safe_mode:
+            return {"status": "blocked", "code": "safe_mode"}
 
         q_check = self.check_query(query)
         if q_check.get("status") != "ok":
@@ -141,6 +156,7 @@ class ReasoningSafetyGuard44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "max_query_length": self.max_query_length,
             "forbidden_patterns_count": len(self.forbidden_substrings),
