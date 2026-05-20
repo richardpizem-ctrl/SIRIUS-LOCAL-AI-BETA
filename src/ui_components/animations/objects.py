@@ -1,20 +1,22 @@
-# objects.py
-# SIRIUS LOCAL AI – UI Drawable Objects 4.3.x
+# objects_4_4.py
+# SIRIUS LOCAL AI – UI Drawable Objects 4.4.0 PRO
 # Deterministic, safe-mode compatible drawing primitives for UI components
 
 from dataclasses import dataclass
 
 
 @dataclass
-class DrawableObject:
+class DrawableObject44:
     """
     Base graphical object – all shapes inherit from this.
 
-    Phase‑4 Features:
+    Phase‑4/5 Features:
         - safe-mode compatibility
         - degraded-mode fallback
         - deterministic draw() behavior
-        - PixelLayoutEngine-ready structure
+        - PixelLayoutEngine Phase‑4 ready
+        - Self‑Repair 4.4 compatible
+        - Offline-only, no side-effects
     """
 
     x: float
@@ -28,7 +30,7 @@ class DrawableObject:
     def draw(self):
         """
         Base draw method.
-        Subclasses override this with DearPyGUI or custom renderers.
+        Subclasses override this with PixelLayoutEngine or custom renderers.
         """
         if self.safe_mode or not self.visible:
             return
@@ -44,7 +46,7 @@ class DrawableObject:
 # CIRCLE
 # ---------------------------------------------------------
 
-class Circle(DrawableObject):
+class Circle44(DrawableObject44):
     def __init__(self, x, y, radius, color):
         super().__init__(x, y, color)
         self.radius = radius
@@ -54,7 +56,7 @@ class Circle(DrawableObject):
             return
 
         try:
-            # DearPyGUI draw_circle will go here (Phase‑5)
+            # PixelLayoutEngine draw_circle (Phase‑5)
             pass
         except Exception:
             self.degraded_mode = True
@@ -64,7 +66,7 @@ class Circle(DrawableObject):
 # RECTANGLE
 # ---------------------------------------------------------
 
-class Rectangle(DrawableObject):
+class Rectangle44(DrawableObject44):
     def __init__(self, x, y, width, height, color):
         super().__init__(x, y, color)
         self.width = width
@@ -75,7 +77,7 @@ class Rectangle(DrawableObject):
             return
 
         try:
-            # DearPyGUI draw_rectangle will go here (Phase‑5)
+            # PixelLayoutEngine draw_rectangle (Phase‑5)
             pass
         except Exception:
             self.degraded_mode = True
@@ -85,7 +87,7 @@ class Rectangle(DrawableObject):
 # LINE
 # ---------------------------------------------------------
 
-class Line(DrawableObject):
+class Line44(DrawableObject44):
     def __init__(self, x, y, x2, y2, color):
         super().__init__(x, y, color)
         self.x2 = x2
@@ -96,7 +98,7 @@ class Line(DrawableObject):
             return
 
         try:
-            # DearPyGUI draw_line will go here (Phase‑5)
+            # PixelLayoutEngine draw_line (Phase‑5)
             pass
         except Exception:
             self.degraded_mode = True
