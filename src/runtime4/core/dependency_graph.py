@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Scheduler Manager
+SIRIUS LOCAL AI – Runtime 4.4 Scheduler Manager
 
 Responsible for:
 - executing modules in dependency‑safe order
@@ -7,16 +7,19 @@ Responsible for:
 - integrating with SandboxManager4
 - enforcing safe‑mode and degraded‑mode rules
 - providing deterministic scheduling
-- exposing telemetry for RuntimeEngine 4.3
-- supporting Self‑Repair 4.4 diagnostics
+- exposing telemetry for RuntimeEngine 4.4
+- supporting Self‑Repair Layer 4.4 diagnostics
 """
 
-from typing import Dict, Any, List
+from typing import Dict, Any
 
 
 class SchedulerManager4:
     """
-    Deterministic scheduler for Runtime 4.3.
+    Deterministic scheduler for Runtime 4.4.
+    - Stable structured return values
+    - Safe‑mode aware
+    - Degraded‑mode propagation
     """
 
     def __init__(self, dependency_graph, sandbox_manager):
@@ -28,7 +31,6 @@ class SchedulerManager4:
     # ---------------------------------------------------------
     # EXECUTION PIPELINE
     # ---------------------------------------------------------
-
     def execute_all(self, modules: Dict[str, Any]) -> Dict[str, Any]:
         """
         Executes all modules in dependency‑safe order.
@@ -39,7 +41,11 @@ class SchedulerManager4:
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Scheduler disabled in safe‑mode."
+                "message": "Scheduler disabled in safe‑mode.",
+                "order": [],
+                "results": {},
+                "errors": [],
+                "degraded_mode": False,
             }
 
         # Resolve dependency order
@@ -51,20 +57,24 @@ class SchedulerManager4:
                 "status": "error",
                 "code": "dependency_resolution_failed",
                 "details": order_result,
+                "order": [],
+                "results": {},
+                "errors": [],
+                "degraded_mode": True,
             }
 
         order = order_result.get("order", [])
-        results = {}
-        errors = []
+        results: Dict[str, Any] = {}
+        errors: list[str] = []
 
         # Execute modules in order
         for module_name in order:
-
             module = modules.get(module_name)
+
             if not module:
                 results[module_name] = {
                     "status": "error",
-                    "code": "module_not_found"
+                    "code": "module_not_found",
                 }
                 errors.append(module_name)
                 continue
@@ -74,26 +84,35 @@ class SchedulerManager4:
             if ctx is None:
                 results[module_name] = {
                     "status": "error",
-                    "code": "sandbox_missing"
+                    "code": "sandbox_missing",
                 }
                 errors.append(module_name)
                 continue
 
             # Execute module
             try:
-                if hasattr(module, "start") and callable(module.start):
-                    module.start()
-                    results[module_name] = {"status": "executed"}
+                instance = module.get("instance", module)
+                if hasattr(instance, "start") and callable(instance.start):
+                    start_res = instance.start()
+                    if isinstance(start_res, dict) and start_res.get("status") == "error":
+                        results[module_name] = {
+                            "status": "error",
+                            "code": "execution_failed",
+                            "details": start_res,
+                        }
+                        errors.append(module_name)
+                    else:
+                        results[module_name] = {"status": "executed"}
                 else:
                     results[module_name] = {
                         "status": "skipped",
-                        "reason": "no_start_method"
+                        "reason": "no_start_method",
                     }
             except Exception as exc:
                 results[module_name] = {
                     "status": "error",
-                    "code": "execution_failed",
-                    "exception": str(exc)
+                    "code": "execution_exception",
+                    "exception": str(exc),
                 }
                 errors.append(module_name)
 
