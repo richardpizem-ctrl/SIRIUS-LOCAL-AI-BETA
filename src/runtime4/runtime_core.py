@@ -1,21 +1,22 @@
 """
-SIRIUS LOCAL AI – Runtime Core 4.3.x
+SIRIUS LOCAL AI – Runtime Core 4.4.0 (PRO)
 
-This is the central orchestrator of the Runtime 4.3 architecture.
-It coordinates:
+Central orchestrator of the Runtime 4.4 architecture.
+Coordinates:
 - module loading
 - sandbox isolation
 - dependency graph
 - scheduler
 - Knowledge Packs 2.0
-- ENVOY 4.0 integration
+- ENVOY 4.x integration
 - offline reasoning engines
-- PC automation modules
+- PC automation runtime
 - diagnostics & self‑repair hooks
+- UI Automation Engine 4.4 (OS bridge, resolver, router, sandbox, workflow)
 
 All logic is deterministic, offline, and fully isolated.
 
-Security Notes (Runtime 4.3.x):
+Security Notes (Runtime 4.4.0):
 - Only static imports are allowed.
 - No dynamic loading, no eval, no reflection.
 - __all__ must contain only verified public namespaces.
@@ -26,7 +27,7 @@ Security Notes (Runtime 4.3.x):
 from typing import Optional, Dict, Any
 
 # -------------------------------------------------------------------------
-# SYSTEM INTELLIGENCE LAYER 4.1 – IMPORTS (STATIC ONLY)
+# SYSTEM INTELLIGENCE LAYER 4.1 – STATIC IMPORTS
 # -------------------------------------------------------------------------
 
 from system_health_engine_4_1 import SystemHealthEngine41
@@ -37,11 +38,18 @@ from education_engine_4_1 import EducationEngine41
 from system_agent_4_1 import SystemAgent41
 
 
-class RuntimeCore4:
+class RuntimeCore44:
     """
-    Main orchestrator for SIRIUS Runtime 4.3.x.
+    Main orchestrator for SIRIUS Runtime 4.4.0 (PRO).
     Responsible for initializing, connecting, and supervising all subsystems.
     """
+
+    # Minimal interface contracts (duck-typing)
+    REQUIRED_SCHEDULER_METHODS = {"submit"}
+    REQUIRED_SANDBOX_METHODS = {"execute", "initialize"}
+    REQUIRED_MODULE_LOADER_METHODS = {"load_all"}
+    REQUIRED_DEP_GRAPH_METHODS = {"build"}
+    REQUIRED_STATE_MANAGER_METHODS = {"initialize"}
 
     def __init__(
         self,
@@ -56,7 +64,7 @@ class RuntimeCore4:
         pack_validator=None,
         pack_graph=None,
         pack_linker=None,
-        # ENVOY 4.0
+        # ENVOY 4.x
         envoy_receiver=None,
         envoy_quarantine=None,
         envoy_validator=None,
@@ -78,14 +86,6 @@ class RuntimeCore4:
         crash_analyzer=None,
         repair_suggestions=None,
     ):
-        # ---------------------------------------------------------
-        # VALIDATION (duck-typing only)
-        # ---------------------------------------------------------
-        if scheduler is not None and not hasattr(scheduler, "submit"):
-            raise ValueError("Invalid scheduler: missing submit() method.")
-        if sandbox_manager is not None and not hasattr(sandbox_manager, "execute"):
-            raise ValueError("Invalid sandbox_manager: missing execute() method.")
-
         # Core subsystems
         self.scheduler = scheduler
         self.dependency_graph = dependency_graph
@@ -99,7 +99,7 @@ class RuntimeCore4:
         self.pack_graph = pack_graph
         self.pack_linker = pack_linker
 
-        # ENVOY 4.0
+        # ENVOY 4.x
         self.envoy_receiver = envoy_receiver
         self.envoy_quarantine = envoy_quarantine
         self.envoy_validator = envoy_validator
@@ -124,9 +124,7 @@ class RuntimeCore4:
         self.crash_analyzer = crash_analyzer
         self.repair_suggestions = repair_suggestions
 
-        # ---------------------------------------------------------
-        # SYSTEM INTELLIGENCE LAYER 4.1
-        # ---------------------------------------------------------
+        # System Intelligence Layer 4.1
         self.health_engine_41 = SystemHealthEngine41()
         self.driver_engine_41 = DriverManagerEngine41()
         self.task_engine_41 = TaskManagerEngine41()
@@ -135,22 +133,84 @@ class RuntimeCore4:
         self.agent_41 = SystemAgent41(dry_run=True)
 
         # Internal flags
-        self._initialized = False
-        self._running = False
+        self._initialized: bool = False
+        self._running: bool = False
 
-        # Runtime 4.3.x flags
-        self.safe_mode = False
-        self.degraded_mode = False
+        # Runtime 4.4 flags
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
-    # ---------------------------------------------------------
+    # ---------------------------------------------------------------------
+    # INTERNAL – INTERFACE VALIDATION
+    # ---------------------------------------------------------------------
+    def _validate_interfaces(self) -> Dict[str, Any]:
+        # Scheduler
+        if self.scheduler is not None:
+            for m in self.REQUIRED_SCHEDULER_METHODS:
+                if not hasattr(self.scheduler, m):
+                    return {
+                        "status": "error",
+                        "code": "invalid_scheduler_interface",
+                        "missing": m,
+                    }
+
+        # Sandbox manager
+        if self.sandbox_manager is not None:
+            for m in self.REQUIRED_SANDBOX_METHODS:
+                if not hasattr(self.sandbox_manager, m):
+                    return {
+                        "status": "error",
+                        "code": "invalid_sandbox_interface",
+                        "missing": m,
+                    }
+
+        # Module loader
+        if self.module_loader is not None:
+            for m in self.REQUIRED_MODULE_LOADER_METHODS:
+                if not hasattr(self.module_loader, m):
+                    return {
+                        "status": "error",
+                        "code": "invalid_module_loader_interface",
+                        "missing": m,
+                    }
+
+        # Dependency graph
+        if self.dependency_graph is not None:
+            for m in self.REQUIRED_DEP_GRAPH_METHODS:
+                if not hasattr(self.dependency_graph, m):
+                    return {
+                        "status": "error",
+                        "code": "invalid_dependency_graph_interface",
+                        "missing": m,
+                    }
+
+        # State manager
+        if self.state_manager is not None:
+            for m in self.REQUIRED_STATE_MANAGER_METHODS:
+                if not hasattr(self.state_manager, m):
+                    return {
+                        "status": "error",
+                        "code": "invalid_state_manager_interface",
+                        "missing": m,
+                    }
+
+        return {"status": "ok"}
+
+    # ---------------------------------------------------------------------
     # INITIALIZATION PHASE
-    # ---------------------------------------------------------
-    def initialize(self):
+    # ---------------------------------------------------------------------
+    def initialize(self) -> Dict[str, Any]:
         if self.safe_mode:
             return {"status": "safe_mode"}
 
         if self._initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "degraded_mode": self.degraded_mode}
+
+        # Validate interfaces first
+        iface = self._validate_interfaces()
+        if iface.get("status") != "ok":
+            self.degraded_mode = True
+            return iface
 
         try:
             self._init_core()
@@ -164,12 +224,12 @@ class RuntimeCore4:
             return {"status": "initialized", "degraded_mode": self.degraded_mode}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_exception", "exception": str(exc)}
 
-    # ---------------------------------------------------------
-    # SUBSYSTEM INITIALIZERS (FULL IMPLEMENTATION)
-    # ---------------------------------------------------------
-    def _init_core(self):
+    # ---------------------------------------------------------------------
+    # SUBSYSTEM INITIALIZERS
+    # ---------------------------------------------------------------------
+    def _init_core(self) -> None:
         if self.module_loader:
             self.module_loader.load_all()
         if self.dependency_graph:
@@ -177,11 +237,11 @@ class RuntimeCore4:
         if self.state_manager:
             self.state_manager.initialize()
 
-    def _init_sandbox(self):
+    def _init_sandbox(self) -> None:
         if self.sandbox_manager:
             self.sandbox_manager.initialize()
 
-    def _init_packs(self):
+    def _init_packs(self) -> None:
         if self.pack_loader:
             self.pack_loader.load_all()
         if self.pack_validator:
@@ -191,7 +251,7 @@ class RuntimeCore4:
         if self.pack_linker:
             self.pack_linker.link_all()
 
-    def _init_envoy(self):
+    def _init_envoy(self) -> None:
         if self.envoy_receiver:
             self.envoy_receiver.initialize()
         if self.envoy_quarantine:
@@ -201,7 +261,7 @@ class RuntimeCore4:
         if self.envoy_converter:
             self.envoy_converter.initialize()
 
-    def _init_reasoning(self):
+    def _init_reasoning(self) -> None:
         if self.rule_engine:
             self.rule_engine.initialize()
         if self.symbolic_engine:
@@ -211,7 +271,7 @@ class RuntimeCore4:
         if self.reasoning_router:
             self.reasoning_router.initialize()
 
-    def _init_automation(self):
+    def _init_automation(self) -> None:
         if self.fs_module:
             self.fs_module.initialize()
         if self.editor_module:
@@ -223,7 +283,7 @@ class RuntimeCore4:
         if self.command_router:
             self.command_router.initialize()
 
-    def _init_diagnostics(self):
+    def _init_diagnostics(self) -> None:
         if self.health_check_engine:
             self.health_check_engine.initialize()
         if self.crash_analyzer:
@@ -231,27 +291,24 @@ class RuntimeCore4:
         if self.repair_suggestions:
             self.repair_suggestions.initialize()
 
-    # ---------------------------------------------------------
+    # ---------------------------------------------------------------------
     # SYSTEM INTELLIGENCE LAYER 4.1 – FULL DIAGNOSTICS PIPELINE
-    # ---------------------------------------------------------
-    def run_full_diagnostics(self, identity: str = "OWNER") -> dict:
+    # ---------------------------------------------------------------------
+    def run_full_diagnostics(self, identity: str = "OWNER") -> Dict[str, Any]:
         if self.safe_mode:
             return {"status": "safe_mode"}
 
         try:
-            # 1. Collect raw diagnostic reports
             health_report = self.health_engine_41.analyze()
             driver_report = self.driver_engine_41.analyze()
             task_report = self.task_engine_41.analyze()
             service_report = self.service_engine_41.analyze()
 
-            # 2. Convert reports into human explanations
             health_expl = self.education_engine_41.explain_system_health(identity, health_report)
             driver_expl = self.education_engine_41.explain_drivers(identity, driver_report)
             task_expl = self.education_engine_41.explain_tasks(identity, task_report)
             service_expl = self.education_engine_41.explain_services(identity, service_report)
 
-            # 3. Suggested actions
             suggested_actions = self._build_suggested_actions(
                 identity, driver_report, task_report, service_report
             )
@@ -276,16 +333,16 @@ class RuntimeCore4:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "diagnostics_exception", "exception": str(exc)}
 
-    # ---------------------------------------------------------
-    # ACTION BUILDER (unchanged logic, structured output)
-    # ---------------------------------------------------------
+    # ---------------------------------------------------------------------
+    # ACTION BUILDER (unchanged semantics, structured output)
+    # ---------------------------------------------------------------------
     def _build_suggested_actions(self, identity, driver_report, task_report, service_report):
         actions = []
 
         # DRIVER ISSUES
-        for issue in driver_report.issues:
+        for issue in getattr(driver_report, "issues", []):
             if issue.severity in ("warning", "critical"):
                 actions.append({
                     "type": "INSTALL_DRIVER",
@@ -295,7 +352,7 @@ class RuntimeCore4:
                 })
 
         # TASK ISSUES
-        for issue in task_report.issues:
+        for issue in getattr(task_report, "issues", []):
             if issue.id == "explorer_restart_suggestion":
                 actions.append({
                     "type": "RESTART_EXPLORER",
@@ -304,7 +361,7 @@ class RuntimeCore4:
                     "identity_required": "OWNER",
                 })
             if issue.id in ("high_cpu_processes", "high_ram_processes"):
-                for pid in issue.related_pids:
+                for pid in getattr(issue, "related_pids", []):
                     actions.append({
                         "type": "KILL_PROCESS",
                         "label": f"Terminate process {pid}",
@@ -313,8 +370,8 @@ class RuntimeCore4:
                     })
 
         # SERVICE ISSUES
-        for issue in service_report.issues:
-            for svc in issue.related_services:
+        for issue in getattr(service_report, "issues", []):
+            for svc in getattr(issue, "related_services", []):
                 actions.append({
                     "type": "RESTART_SERVICE",
                     "label": f"Restart service {svc}",
