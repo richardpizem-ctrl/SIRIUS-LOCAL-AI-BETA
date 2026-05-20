@@ -4,24 +4,26 @@ from context.context_manager import ContextManager
 
 class ContextInfoCommand(BaseCommand):
     """
-    ContextInfoCommand 4.3
+    ContextInfoCommand 4.4
     Displays diagnostic information about the AI context:
-    - short‑term memory (session)
-    - long‑term memory (persistent)
-    - system state
-    - snapshot history
-    - consistency validation
+        - short‑term memory (session)
+        - long‑term memory (persistent)
+        - system state
+        - snapshot history
+        - consistency validation
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic introspection structure
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - Stable output for Runtime4.4, GUI, and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-info"
     description = "Displays extended diagnostic information about the AI context."
@@ -41,11 +43,12 @@ class ContextInfoCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Returns structured diagnostic information about the context.
+        Deterministic, safe, and audit‑friendly.
         """
 
         # -----------------------------
