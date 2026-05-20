@@ -1,21 +1,25 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Sandbox Context
+SIRIUS LOCAL AI – Runtime 4.3 Sandbox Context (PRO)
 
 The Sandbox Context stores:
 - isolated module state
 - capability profile
 - runtime metadata
 - execution flags
-- links to sandbox process
 - safe-mode and degraded-mode indicators
+- deterministic, offline-only behavior
 
-This is the contextual memory layer of the sandbox system.
+Security Family 4.4 Compliance:
+- No eval, exec, reflection, or dynamic imports
+- Strict input validation
+- Deterministic state transitions
+- Self‑Repair 4.4 ready
 """
 
 
 class SandboxContext4:
     """
-    Holds isolated state and metadata for a sandboxed module.
+    Deterministic sandbox context for isolated module execution.
     Provides:
     - strict state isolation
     - capability enforcement
@@ -56,10 +60,14 @@ class SandboxContext4:
 
         try:
             self.state[key] = value
-            return {"status": "success"}
+            return {"status": "ok"}
         except Exception as exc:
             self.metadata["degraded_mode"] = True
-            return {"status": "error", "code": "state_set_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "state_set_failed",
+                "exception": str(exc),
+            }
 
     def get_state(self, key: str):
         """Retrieves a value from the sandbox state."""
@@ -77,7 +85,7 @@ class SandboxContext4:
             return {"status": "error", "code": "invalid_capability_list"}
 
         self.capabilities = caps
-        return {"status": "success"}
+        return {"status": "ok"}
 
     def has_capability(self, cap: str) -> bool:
         """Checks if the module has a specific capability."""
@@ -94,13 +102,30 @@ class SandboxContext4:
 
         try:
             self.metadata[key] = value
-            return {"status": "success"}
+            return {"status": "ok"}
         except Exception as exc:
             self.metadata["degraded_mode"] = True
-            return {"status": "error", "code": "metadata_set_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "metadata_set_failed",
+                "exception": str(exc),
+            }
 
     def get_metadata(self, key: str):
         """Retrieves metadata value."""
         if not isinstance(key, str):
             return None
         return self.metadata.get(key)
+
+    # ---------------------------------------------------------
+    # EXPORT (DETERMINISTIC SNAPSHOT)
+    # ---------------------------------------------------------
+
+    def export(self):
+        """Returns a deterministic snapshot of the sandbox context."""
+        return {
+            "module_name": self.module_name,
+            "state": dict(self.state),
+            "capabilities": list(self.capabilities),
+            "metadata": dict(self.metadata),
+        }
