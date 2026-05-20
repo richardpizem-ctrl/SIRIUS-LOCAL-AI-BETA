@@ -1,4 +1,13 @@
 {
+  "VERSION": "4.4.0",
+  "FORMAT": "PROFILE_STORE_4_4_PRO",
+
+  "IDENTITY_REGISTRY": {
+    "OWNER": true,
+    "FAMILY_MEMBERS": ["FAMILY_1"],
+    "MAX_FAMILY_MEMBERS": 5
+  },
+
   "OWNER": {
     "typing_speed": 0.0,
     "command_pattern": 0.0,
@@ -8,7 +17,7 @@
     "time_of_day": 0.0
   },
 
-  "FAMILY": {
+  "FAMILY_1": {
     "typing_speed": 0.0,
     "command_pattern": 0.0,
     "vocabulary": 0.0,
@@ -17,26 +26,16 @@
     "time_of_day": 0.0
   },
 
-  "FAMILY_child_1": {
-    "typing_speed": 0.0,
-    "command_pattern": 0.0,
-    "vocabulary": 0.0,
-    "task_type": 0.0,
-    "error_rate": 0.0,
-    "time_of_day": 0.0
-  },
-
-  "STRANGER_BASELINE": {
+  "STRANGER_BASELINE_44": {
     "expected_noise": 0.25,
     "max_allowed_similarity": 0.35,
     "behavior_noise_floor": 0.15,
     "max_behavior_shift": 0.25
   },
 
-  "SETTINGS": {
+  "SETTINGS_44": {
     "audit_sensitivity": 0.85,
     "learning_rate": 0.2,
-    "max_family_members": 5,
 
     "risk_thresholds": {
       "low": 0.3,
