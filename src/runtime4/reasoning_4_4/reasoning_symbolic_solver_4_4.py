@@ -1,6 +1,5 @@
-# reasoning_4_4/reasoning_symbolic_solver_4_4.py
 """
-SIRIUS LOCAL AI – Reasoning Symbolic Solver 4.4.0
+SIRIUS LOCAL AI – Reasoning Symbolic Solver 4.4.0 (PRO)
 
 Deterministic, offline‑safe symbolic solver for Reasoning Engine 4.4.
 
@@ -25,6 +24,10 @@ from typing import Any, Dict, Union, List, Optional
 Number = Union[int, float]
 
 
+# ============================================================
+# BASE NODE
+# ============================================================
+
 class SymbolicNode44:
     """
     Base class for all symbolic expression nodes.
@@ -39,6 +42,10 @@ class SymbolicNode44:
     def simplify(self) -> "SymbolicNode44":
         return self
 
+
+# ============================================================
+# CONSTANT NODE
+# ============================================================
 
 class ConstNode44(SymbolicNode44):
     def __init__(self, value: Number):
@@ -57,6 +64,10 @@ class ConstNode44(SymbolicNode44):
         return f"Const({self.value})"
 
 
+# ============================================================
+# VARIABLE NODE
+# ============================================================
+
 class VarNode44(SymbolicNode44):
     def __init__(self, name: str):
         self.name = name
@@ -73,6 +84,10 @@ class VarNode44(SymbolicNode44):
         return f"Var({self.name})"
 
 
+# ============================================================
+# BINARY OPERATION NODE
+# ============================================================
+
 class BinOpNode44(SymbolicNode44):
     def __init__(self, op: str, left: SymbolicNode44, right: SymbolicNode44):
         self.op = op
@@ -83,16 +98,11 @@ class BinOpNode44(SymbolicNode44):
         lv = self.left.evaluate(env)
         rv = self.right.evaluate(env)
 
-        if self.op == "+":
-            return lv + rv
-        if self.op == "-":
-            return lv - rv
-        if self.op == "*":
-            return lv * rv
-        if self.op == "/":
-            return lv / rv
-        if self.op == "^":
-            return lv ** rv
+        if self.op == "+": return lv + rv
+        if self.op == "-": return lv - rv
+        if self.op == "*": return lv * rv
+        if self.op == "/": return lv / rv
+        if self.op == "^": return lv ** rv
 
         raise ValueError(f"Unsupported operator: {self.op}")
 
@@ -114,22 +124,16 @@ class BinOpNode44(SymbolicNode44):
 
         # Neutral elements
         if self.op == "+":
-            if isinstance(left_s, ConstNode44) and left_s.value == 0:
-                return right_s
-            if isinstance(right_s, ConstNode44) and right_s.value == 0:
-                return left_s
+            if isinstance(left_s, ConstNode44) and left_s.value == 0: return right_s
+            if isinstance(right_s, ConstNode44) and right_s.value == 0: return left_s
 
         if self.op == "*":
             if isinstance(left_s, ConstNode44):
-                if left_s.value == 0:
-                    return ConstNode44(0)
-                if left_s.value == 1:
-                    return right_s
+                if left_s.value == 0: return ConstNode44(0)
+                if left_s.value == 1: return right_s
             if isinstance(right_s, ConstNode44):
-                if right_s.value == 0:
-                    return ConstNode44(0)
-                if right_s.value == 1:
-                    return left_s
+                if right_s.value == 0: return ConstNode44(0)
+                if right_s.value == 1: return left_s
 
         return BinOpNode44(self.op, left_s, right_s)
 
@@ -137,15 +141,13 @@ class BinOpNode44(SymbolicNode44):
         return f"BinOp({self.op}, {self.left}, {self.right})"
 
 
+# ============================================================
+# PARSER
+# ============================================================
+
 class SymbolicParser44:
     """
     Deterministic parser for simple symbolic expressions.
-
-    Grammar (informal):
-        expr   := term (('+' | '-') term)*
-        term   := factor (('*' | '/') factor)*
-        factor := primary ('^' factor)?
-        primary:= NUMBER | IDENT | '(' expr ')'
     """
 
     def __init__(self, text: str):
@@ -153,8 +155,7 @@ class SymbolicParser44:
         self.pos = 0
         self.length = len(text)
 
-    # ------------- low-level helpers -------------
-
+    # low-level helpers
     def _peek(self) -> Optional[str]:
         if self.pos >= self.length:
             return None
@@ -170,18 +171,15 @@ class SymbolicParser44:
         while self._peek() is not None and self._peek().isspace():
             self._consume()
 
-    # ------------- token readers -------------
-
+    # number
     def _read_number(self) -> ConstNode44:
         start = self.pos
         dot_seen = False
 
         while True:
             ch = self._peek()
-            if ch is None:
-                break
-            if ch.isdigit():
-                self._consume()
+            if ch is None: break
+            if ch.isdigit(): self._consume()
             elif ch == "." and not dot_seen:
                 dot_seen = True
                 self._consume()
@@ -192,10 +190,9 @@ class SymbolicParser44:
         if not num_str:
             raise ValueError("Expected number")
 
-        if "." in num_str:
-            return ConstNode44(float(num_str))
-        return ConstNode44(int(num_str))
+        return ConstNode44(float(num_str) if "." in num_str else int(num_str))
 
+    # identifier
     def _read_ident(self) -> VarNode44:
         start = self.pos
         ch = self._peek()
@@ -205,18 +202,13 @@ class SymbolicParser44:
         self._consume()
         while True:
             ch = self._peek()
-            if ch is None:
-                break
-            if ch.isalnum() or ch == "_":
-                self._consume()
-            else:
-                break
+            if ch is None: break
+            if ch.isalnum() or ch == "_": self._consume()
+            else: break
 
-        name = self.text[start:self.pos]
-        return VarNode44(name)
+        return VarNode44(self.text[start:self.pos])
 
-    # ------------- grammar rules -------------
-
+    # grammar
     def parse(self) -> SymbolicNode44:
         node = self._parse_expr()
         self._skip_ws()
@@ -231,8 +223,7 @@ class SymbolicParser44:
             ch = self._peek()
             if ch in ("+", "-"):
                 op = self._consume()
-                right = self._parse_term()
-                node = BinOpNode44(op, node, right)
+                node = BinOpNode44(op, node, self._parse_term())
             else:
                 break
         return node
@@ -244,8 +235,7 @@ class SymbolicParser44:
             ch = self._peek()
             if ch in ("*", "/"):
                 op = self._consume()
-                right = self._parse_factor()
-                node = BinOpNode44(op, node, right)
+                node = BinOpNode44(op, node, self._parse_factor())
             else:
                 break
         return node
@@ -253,11 +243,9 @@ class SymbolicParser44:
     def _parse_factor(self) -> SymbolicNode44:
         node = self._parse_primary()
         self._skip_ws()
-        ch = self._peek()
-        if ch == "^":
+        if self._peek() == "^":
             self._consume()
-            right = self._parse_factor()
-            node = BinOpNode44("^", node, right)
+            node = BinOpNode44("^", node, self._parse_factor())
         return node
 
     def _parse_primary(self) -> SymbolicNode44:
@@ -267,11 +255,8 @@ class SymbolicParser44:
         if ch is None:
             raise ValueError("Unexpected end of input")
 
-        if ch.isdigit():
-            return self._read_number()
-
-        if ch.isalpha() or ch == "_":
-            return self._read_ident()
+        if ch.isdigit(): return self._read_number()
+        if ch.isalpha() or ch == "_": return self._read_ident()
 
         if ch == "(":
             self._consume()
@@ -288,93 +273,79 @@ class SymbolicParser44:
 
         if ch == "-":
             self._consume()
-            zero = ConstNode44(0)
-            return BinOpNode44("-", zero, self._parse_primary())
+            return BinOpNode44("-", ConstNode44(0), self._parse_primary())
 
         raise ValueError(f"Unexpected character: {ch}")
 
 
+# ============================================================
+# HIGH‑LEVEL SOLVER (PRO)
+# ============================================================
+
 class ReasoningSymbolicSolver44:
     """
-    High-level interface for symbolic solving in Reasoning Engine 4.4.
+    High-level interface for symbolic solving in Reasoning Engine 4.4 (PRO).
     """
 
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
 
-    # ------------------------------------------------------------------
-    # INITIALIZATION
-    # ------------------------------------------------------------------
+    # INIT
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "ok"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
-    # PARSE EXPRESSION
-    # ------------------------------------------------------------------
+    # PARSE
     def parse(self, expr: str) -> Dict[str, Any]:
+        if self.safe_mode:
+            return {"status": "safe_mode"}
+
+        if not isinstance(expr, str):
+            return {"status": "error", "code": "invalid_expr_type"}
+
         try:
             parser = SymbolicParser44(expr)
-            node = parser.parse()
-            return {"status": "ok", "ast": node}
+            return {"status": "ok", "ast": parser.parse()}
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "parse_failed", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
-    # EVALUATE EXPRESSION
-    # ------------------------------------------------------------------
+    # EVALUATE
     def evaluate(self, expr: str, env: Dict[str, Number]) -> Dict[str, Any]:
         parsed = self.parse(expr)
         if parsed.get("status") != "ok":
             return parsed
 
-        node: SymbolicNode44 = parsed["ast"]
         try:
-            value = node.evaluate(env)
+            value = parsed["ast"].evaluate(env)
             return {"status": "ok", "value": value}
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "eval_failed", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
-    # SIMPLIFY EXPRESSION
-    # ------------------------------------------------------------------
+    # SIMPLIFY
     def simplify(self, expr: str) -> Dict[str, Any]:
         parsed = self.parse(expr)
         if parsed.get("status") != "ok":
             return parsed
 
-        node: SymbolicNode44 = parsed["ast"]
         try:
-            simplified = node.simplify()
-            return {"status": "ok", "ast": simplified}
+            return {"status": "ok", "ast": parsed["ast"].simplify()}
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "simplify_failed", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
-    # SUBSTITUTE VARIABLES
-    # ------------------------------------------------------------------
-    def substitute(
-        self,
-        expr: str,
-        mapping: Dict[str, str],
-    ) -> Dict[str, Any]:
-        """
-        Substitute variables in expr with other expressions (given as strings).
-        """
-
+    # SUBSTITUTE
+    def substitute(self, expr: str, mapping: Dict[str, str]) -> Dict[str, Any]:
         parsed = self.parse(expr)
         if parsed.get("status") != "ok":
             return parsed
-
-        node: SymbolicNode44 = parsed["ast"]
 
         # Parse mapping expressions
         sub_map: Dict[str, SymbolicNode44] = {}
@@ -383,24 +354,23 @@ class ReasoningSymbolicSolver44:
             if sub_parsed.get("status") != "ok":
                 return {
                     "status": "error",
-                    "reason": "substitution_parse_failed",
+                    "code": "substitution_parse_failed",
                     "var": name,
                     "details": sub_parsed,
                 }
             sub_map[name] = sub_parsed["ast"]
 
         try:
-            new_node = node.substitute(sub_map)
+            new_node = parsed["ast"].substitute(sub_map)
             return {"status": "ok", "ast": new_node}
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "substitution_failed", "exception": str(exc)}
 
-    # ------------------------------------------------------------------
     # STATUS
-    # ------------------------------------------------------------------
     def get_status(self) -> Dict[str, Any]:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
