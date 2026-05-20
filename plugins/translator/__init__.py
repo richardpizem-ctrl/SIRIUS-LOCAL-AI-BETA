@@ -1,34 +1,37 @@
 """
-SIRIUS LOCAL AI – Translator Plugin (v4.3.x)
+SIRIUS LOCAL AI – Translator Plugin (v4.4.0)
 --------------------------------------------
 
-This package provides the Translator Plugin for SIRIUS Runtime 4.3.x.
+This package provides the Translator Plugin for SIRIUS Runtime 4.4.0.
 It enables text translation through the ContextManager.translate() API.
 
-Capabilities:
+Capabilities (4.4):
     - Natural language translation commands
     - AI task bindings for programmatic translation
     - Workflow integration (auto-translate workflows)
     - AI Loop rules for periodic translation checks
     - GUI elements for quick translation actions
-    - Safe-mode + degraded-mode support
-    - Deterministic, offline-only behavior
-    - Self‑Repair 4.4 ready
+    - Safe‑Mode / Degraded‑Mode support
+    - Deterministic offline-only behavior
+    - Plugin Integrity Hooks (4.4)
+    - Health Metadata (4.4)
+    - Self‑Repair Layer 4.4 compatibility
 
 Architecture Notes:
-    - The plugin is dynamically loaded through PluginLoader 4.3.x.
-    - No imports are performed at package level to avoid side-effects.
-    - The actual implementation resides in plugin.py.
-    - Manifest.json defines plugin metadata and capabilities.
-    - This __init__.py file must remain side‑effect free.
+    - Dynamically loaded through PluginLoader 4.4.0.
+    - No imports at package level (side‑effect free).
+    - Implementation resides in plugin.py.
+    - manifest.json defines plugin metadata, health, and integrity rules.
+    - This __init__.py file must remain strictly passive.
 
 Compatibility:
-    - RuntimeManager 4.3.x
-    - PluginLoader 4.3.x
-    - NL Router 4.3.x
-    - SystemAgent 4.3.x
-    - Workflow Engine 4.3.x
-    - AI Loop 4.3.x
+    - RuntimeManager 4.4.0
+    - PluginLoader 4.4.0
+    - NL Router 4.4.0
+    - SystemAgent 4.4.0
+    - Workflow Engine 4.4.0
+    - AI Loop 4.4.0
+    - Self‑Repair Layer 4.4
 
 This file intentionally contains no executable code.
 """
