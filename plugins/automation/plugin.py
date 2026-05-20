@@ -1,17 +1,16 @@
 # plugin.py
-# SIRIUS LOCAL AI – Automation Plugin 4.3.x
-# Safe, deterministic, sandboxed automation module
+# SIRIUS LOCAL AI – Automation Plugin 4.4.0
+# Deterministic, sandboxed, integrity‑checked automation module
 
 from __future__ import annotations
 
 import os
-import sys
 from dataclasses import dataclass
 
 
 class Plugin:
     """
-    Automation Plugin 4.3.x
+    Automation Plugin 4.4.0
 
     Responsibilities:
         - Provide NL commands for automation
@@ -19,21 +18,64 @@ class Plugin:
         - Provide workflows
         - Provide AI Loop rules
         - Provide GUI elements
-        - Delegate ALL system actions to SystemAgent 4.3
+        - Delegate ALL system actions to SystemAgent 4.4
         - Deterministic, safe-mode aware, degraded-mode aware
+        - Provide integrity hooks (4.4)
+        - Provide health metadata (4.4)
+        - Support Self‑Repair Layer 4.4
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
         self.agent = runtime_manager.get_system_agent()
 
+        # Runtime 4.4 modes
         self.safe_mode = False
         self.degraded_mode = False
 
-        self.rm.logger.info("[PLUGIN:automation] Initialized (v4.3.x)")
+        # 4.4 integrity + health
+        self.integrity_ok = True
+        self.health_status = "OK"
+
+        self.rm.logger.info("[PLUGIN:automation] Initialized (v4.4.0)")
 
     # --------------------------------------------------------
-    # NL COMMANDS (4.3.x)
+    # INTEGRITY HOOKS (4.4)
+    # --------------------------------------------------------
+    def integrity_check(self):
+        """
+        Called by PluginLoader 4.4.
+        Must return True/False.
+        """
+        try:
+            # Minimal deterministic check
+            return os.path.exists(__file__)
+        except Exception:
+            return False
+
+    def integrity_repair(self):
+        """
+        Called by Self‑Repair Layer 4.4.
+        Plugin may reload, reset state, or fallback.
+        """
+        self.rm.logger.warn("[PLUGIN:automation] Integrity repair triggered.")
+        self.integrity_ok = False
+        self.degraded_mode = True
+        return True
+
+    # --------------------------------------------------------
+    # HEALTH METADATA (4.4)
+    # --------------------------------------------------------
+    def health(self):
+        return {
+            "status": self.health_status,
+            "safe_mode": self.safe_mode,
+            "degraded_mode": self.degraded_mode,
+            "integrity_ok": self.integrity_ok,
+        }
+
+    # --------------------------------------------------------
+    # NL COMMANDS (4.4)
     # --------------------------------------------------------
     def nl_commands(self):
         return {
@@ -51,15 +93,12 @@ class Plugin:
 
         action = {
             "id": "automation_run_command",
-            "type": "KILL_PROCESS",   # placeholder type, replaced below
+            "type": "RUN_SHELL_COMMAND",
             "label": "Run Shell Command",
-            "description": "Execute shell command via SystemAgent",
+            "description": "Execute shell command via SystemAgent 4.4",
             "identity_required": "OWNER",
             "payload": {"cmd": cmd},
         }
-
-        # In 4.3.x, shell commands use a dedicated action type:
-        action["type"] = "RUN_SHELL_COMMAND"
 
         result = self.agent.execute_action("OWNER", action)
         return result.message
@@ -76,7 +115,7 @@ class Plugin:
             "id": "automation_run_script",
             "type": "RUN_SCRIPT",
             "label": "Run Python Script",
-            "description": "Execute Python script via SystemAgent",
+            "description": "Execute Python script via SystemAgent 4.4",
             "identity_required": "OWNER",
             "payload": {"script": script},
         }
@@ -85,7 +124,7 @@ class Plugin:
         return result.message
 
     # --------------------------------------------------------
-    # AI TASKS (4.3.x)
+    # AI TASKS (4.4)
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -105,7 +144,7 @@ class Plugin:
             "id": "automation_ai_run_command",
             "type": "RUN_SHELL_COMMAND",
             "label": "Run Shell Command",
-            "description": "Execute shell command via SystemAgent",
+            "description": "Execute shell command via SystemAgent 4.4",
             "identity_required": "OWNER",
             "payload": {"cmd": cmd},
         }
@@ -125,7 +164,7 @@ class Plugin:
             "id": "automation_ai_run_script",
             "type": "RUN_SCRIPT",
             "label": "Run Python Script",
-            "description": "Execute Python script via SystemAgent",
+            "description": "Execute Python script via SystemAgent 4.4",
             "identity_required": "OWNER",
             "payload": {"script": script},
         }
@@ -134,7 +173,7 @@ class Plugin:
         return {"success": result.success, "message": result.message}
 
     # --------------------------------------------------------
-    # WORKFLOWS (4.3.x)
+    # WORKFLOWS (4.4)
     # --------------------------------------------------------
     def workflows(self):
         return [
@@ -153,7 +192,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # AI LOOP RULES (4.3.x)
+    # AI LOOP RULES (4.4)
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -167,7 +206,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI ELEMENTS (4.3.x)
+    # GUI ELEMENTS (4.4)
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -186,10 +225,12 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # SAFE-MODE CONTROL
+    # SAFE-MODE CONTROL (4.4)
     # --------------------------------------------------------
     def enter_safe_mode(self):
         self.safe_mode = True
+        self.rm.logger.warn("[PLUGIN:automation] Entered SAFE MODE.")
 
     def exit_safe_mode(self):
         self.safe_mode = False
+        self.rm.logger.info("[PLUGIN:automation] Exited SAFE MODE.")
