@@ -3,26 +3,27 @@ from commands.base_command import BaseCommand
 
 class RunCommand(BaseCommand):
     """
-    RunCommand 4.3
+    RunCommand 4.4
     Central execution of actions, AI tasks, and NL commands.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - consistent return structure
-    - NL Router 4.x friendly
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic execution contract
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - Stable NL routing behavior
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "run"
     description = "Runs an AI task, NL command, or system action."
     category = "system"
 
-    required_identity = "FAMILY"   # anyone may run commands, AccessControl decides
+    required_identity = "FAMILY"   # AccessControl decides final permissions
     risk_level = 0.1
     capabilities = ["command_exec"]
 
@@ -38,11 +39,12 @@ class RunCommand(BaseCommand):
         self.registry = registry
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Runs an AI task, NL command, or command from registry.
+        Deterministic, safe, and audit‑friendly.
         """
         if not args:
             return {"status": "error", "message": "No action provided."}
@@ -58,7 +60,8 @@ class RunCommand(BaseCommand):
                 try:
                     # Instantiate command with remaining args
                     cmd_instance = cmd_cls(*args[1:], **kwargs)
-                    result = cmd_instance.run()
+                    result = cmd_instance.run(identity=self._identity_used,
+                                              params=self._params_used)
                     return {
                         "status": "command",
                         "command": action,
