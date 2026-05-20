@@ -1,16 +1,15 @@
 """
-SIRIUS LOCAL AI – UI Action Router 4.4.0
+SIRIUS LOCAL AI – UI Action Router 4.4.0 (PRO)
 
-This module routes UI actions in a deterministic, offline‑safe manner.
-It is part of the UI Automation Engine 4.4 and provides:
-
-- Action validation (allowed actions only)
+Responsible for deterministic routing of UI actions inside Runtime 4.4.
+Provides:
+- Action validation
 - Element reference validation
 - Security Family 4.4 compliance
-- STRANGER‑mode restrictions
-- Deterministic routing to the UI Sandbox 4.4
-
-All logic is deterministic, offline, and fully isolated.
+- STRANGER-mode restrictions
+- Deterministic routing to UI Sandbox 4.4
+- Safe-mode and degraded-mode behavior
+- Structured result surface
 
 Security Notes:
 - Only static imports allowed.
@@ -19,15 +18,14 @@ Security Notes:
 - Fully compatible with Security Family 4.4.
 """
 
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional
 
 
 class UIActionRouter44:
     """
-    Deterministic UI action router for Runtime 4.4.
+    Deterministic UI action router for Runtime 4.4 (PRO).
     """
 
-    # Allowed UI actions in 4.4.0
     ALLOWED_ACTIONS = {
         "click",
         "double_click",
@@ -41,24 +39,28 @@ class UIActionRouter44:
         "scroll",
     }
 
+    REQUIRED_ELEMENT_FIELDS = ("id", "role", "path")
+
     def __init__(self, sandbox=None, security_policy=None):
         self.sandbox = sandbox
         self.security_policy = security_policy
+
         self.initialized = False
+        self.safe_mode = False
         self.degraded_mode = False
 
     # ---------------------------------------------------------------------
     # INITIALIZATION
     # ---------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
-            if self.sandbox:
+            if self.sandbox and hasattr(self.sandbox, "initialize"):
                 self.sandbox.initialize()
 
-            if self.security_policy:
+            if self.security_policy and hasattr(self.security_policy, "initialize"):
                 self.security_policy.initialize()
 
             self.initialized = True
@@ -66,36 +68,74 @@ class UIActionRouter44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+            }
 
     # ---------------------------------------------------------------------
     # PUBLIC API – ROUTE ACTION
     # ---------------------------------------------------------------------
-    def route(self, element_ref: Dict[str, Any], action: str, payload: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
-        """
-        Routes a UI action to the sandbox after validating:
-        - action type
-        - element reference
-        - security policy
-        """
+    def route(
+        self,
+        element_ref: Dict[str, Any],
+        action: str,
+        payload: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
+
+        # Safe-mode → block everything
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "action": action,
+                "element": element_ref,
+                "degraded_mode": self.degraded_mode,
+            }
+
+        # Ensure initialized
         if not self.initialized:
-            init_result = self.initialize()
-            if init_result.get("status") not in ("initialized", "already_initialized"):
-                return {"status": "error", "reason": "router_not_initialized", "details": init_result}
+            init = self.initialize()
+            if init.get("status") not in ("initialized", "already_initialized"):
+                return {
+                    "status": "error",
+                    "code": "router_not_initialized",
+                    "details": init,
+                }
 
         # 1. Validate action
         if action not in self.ALLOWED_ACTIONS:
-            return {"status": "error", "reason": "action_not_allowed", "action": action}
+            return {
+                "status": "error",
+                "code": "action_not_allowed",
+                "action": action,
+            }
 
         # 2. Validate element reference
         if not self._validate_element_ref(element_ref):
-            return {"status": "error", "reason": "invalid_element_reference"}
+            return {
+                "status": "error",
+                "code": "invalid_element_reference",
+                "element": element_ref,
+            }
 
         # 3. Security policy check
         if self.security_policy:
-            sec = self.security_policy.check_action(element_ref, action)
-            if sec.get("status") != "allowed":
-                return {"status": "blocked", "policy": sec}
+            try:
+                sec = self.security_policy.check_action(element_ref, action)
+                if sec.get("status") != "allowed":
+                    return {
+                        "status": "blocked",
+                        "layer": "policy",
+                        "policy": sec,
+                    }
+            except Exception as exc:
+                self.degraded_mode = True
+                return {
+                    "status": "error",
+                    "code": "policy_exception",
+                    "exception": str(exc),
+                }
 
         # 4. Dispatch to sandbox
         try:
@@ -104,28 +144,36 @@ class UIActionRouter44:
                 action=action,
                 payload=payload or {}
             )
-            return {"status": "ok", "result": result}
+
+            return {
+                "status": "ok",
+                "action": action,
+                "element": element_ref,
+                "result": result,
+                "degraded_mode": self.degraded_mode,
+            }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "sandbox_exception",
+                "exception": str(exc),
+                "action": action,
+                "element": element_ref,
+            }
 
     # ---------------------------------------------------------------------
     # INTERNAL – ELEMENT REF VALIDATION
     # ---------------------------------------------------------------------
     def _validate_element_ref(self, ref: Dict[str, Any]) -> bool:
-        """
-        Ensures element reference contains required deterministic fields.
-        """
         if not isinstance(ref, dict):
             return False
 
-        required = ("id", "role", "path")
-        for key in required:
+        for key in self.REQUIRED_ELEMENT_FIELDS:
             if key not in ref:
                 return False
 
-        # path must be deterministic (list of indices or names)
         if not isinstance(ref.get("path"), list):
             return False
 
