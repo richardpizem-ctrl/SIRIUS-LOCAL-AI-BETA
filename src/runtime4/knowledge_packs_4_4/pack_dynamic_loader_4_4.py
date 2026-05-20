@@ -1,6 +1,5 @@
-knowledge_packs_4_4/pack_dynamic_loader_4_4.py
 """
-SIRIUS LOCAL AI – Pack Dynamic Loader 4.4.0
+SIRIUS LOCAL AI – Pack Dynamic Loader 4.4.0 (PRO)
 
 This module provides a SAFE, deterministic, non‑code‑executing loader
 for Knowledge Packs 4.4.
@@ -12,14 +11,14 @@ It supports:
 - Refreshing pack list without restarting Runtime
 - Zero dynamic imports, zero eval, zero code execution
 
-Security Notes:
+Security Notes (PRO):
 - Only static file reads allowed.
 - No Python code is ever executed from packs.
 - Packs must be pure JSON or pure Python dicts.
 - Fully offline, deterministic, isolated.
 """
 
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 
 class PackDynamicLoader44:
@@ -34,28 +33,52 @@ class PackDynamicLoader44:
 
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
+
+    # ------------------------------------------------------------------
+    # INTERNAL HELPERS
+    # ------------------------------------------------------------------
+    def _has_fs(self) -> bool:
+        return self.fs is not None
+
+    def _has_validator(self) -> bool:
+        return self.validator is not None
+
+    def _has_registry(self) -> bool:
+        return self.registry is not None
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
-            if self.fs:
-                self.fs.initialize()
-            if self.validator:
-                self.validator.initialize()
-            if self.registry:
-                self.registry.initialize()
+            if self._has_fs():
+                res = self.fs.initialize()
+                if isinstance(res, dict) and res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "fs_init_failed", "details": res}
+
+            if self._has_validator():
+                res = self.validator.initialize()
+                if isinstance(res, dict) and res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "validator_init_failed", "details": res}
+
+            if self._has_registry():
+                res = self.registry.initialize()
+                if isinstance(res, dict) and res.get("status") == "error":
+                    self.degraded_mode = True
+                    return {"status": "error", "code": "registry_init_failed", "details": res}
 
             self.initialized = True
             return {"status": "initialized"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # LOAD PACK FROM FILE
@@ -66,32 +89,34 @@ class PackDynamicLoader44:
         Does NOT execute any code.
         """
 
-        if not self.fs:
-            return {"status": "error", "reason": "no_fs_adapter"}
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Dynamic loader disabled in safe-mode."}
+
+        if not self._has_fs():
+            return {"status": "error", "code": "no_fs_adapter"}
 
         try:
             raw = self.fs.read_json(path)
-
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "read_failed", "exception": str(exc)}
 
         # Validate structure
-        if self.validator:
+        if self._has_validator():
             valid = self.validator.validate(raw)
             if valid.get("status") != "ok":
                 return {
                     "status": "error",
-                    "reason": "validation_failed",
+                    "code": "validation_failed",
                     "details": valid,
                 }
 
         # Register pack
-        if self.registry:
+        if self._has_registry():
             reg = self.registry.register(raw)
             if reg.get("status") != "ok":
                 return {
                     "status": "error",
-                    "reason": "registration_failed",
+                    "code": "registration_failed",
                     "details": reg,
                 }
 
@@ -105,17 +130,19 @@ class PackDynamicLoader44:
         Loads all JSON packs from a directory.
         """
 
-        if not self.fs:
-            return {"status": "error", "reason": "no_fs_adapter"}
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Dynamic loader disabled in safe-mode."}
+
+        if not self._has_fs():
+            return {"status": "error", "code": "no_fs_adapter"}
 
         try:
-            files = self.fs.list_files(directory)
-
+            files: List[str] = self.fs.list_files(directory)
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "list_failed", "exception": str(exc)}
 
-        loaded = []
-        failed = []
+        loaded: List[str] = []
+        failed: List[Dict[str, Any]] = []
 
         for f in files:
             if not f.endswith(".json"):
@@ -141,10 +168,19 @@ class PackDynamicLoader44:
         Clears registry and reloads all packs.
         """
 
-        if not self.registry:
-            return {"status": "error", "reason": "no_registry"}
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Dynamic loader disabled in safe-mode."}
 
-        self.registry.clear()
+        if not self._has_registry():
+            return {"status": "error", "code": "no_registry"}
+
+        try:
+            cleared = self.registry.clear()
+            if isinstance(cleared, dict) and cleared.get("status") != "ok":
+                return {"status": "error", "code": "clear_failed", "details": cleared}
+        except Exception as exc:
+            self.degraded_mode = True
+            return {"status": "error", "code": "clear_exception", "exception": str(exc)}
 
         return self.load_all(directory)
 
@@ -155,5 +191,6 @@ class PackDynamicLoader44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
