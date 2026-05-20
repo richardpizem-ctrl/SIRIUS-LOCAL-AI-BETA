@@ -1,26 +1,29 @@
 {
     "name": "automation",
-    "version": "4.3.0",
-    "description": "Automation plugin for SIRIUS LOCAL AI 4.3.x — shell commands, scripts, workflows, NL bindings.",
+    "version": "4.4.0",
+    "description": "Automation plugin for SIRIUS LOCAL AI 4.4 — sandboxed commands, scripts, workflows, NL bindings.",
     "author": "Richard Pizem",
     "entry": "plugin.py",
     "enabled": true,
 
     "architecture": {
-        "phase": "4.3",
+        "phase": "4.4",
         "self_repair_ready": true,
         "deterministic": true,
         "safe_mode_aware": true,
-        "degraded_mode_aware": true
+        "degraded_mode_aware": true,
+        "integrity_hooks": true,
+        "health_metadata": true
     },
 
     "compatibility": {
-        "runtime": "4.3.x",
-        "plugin_loader": "4.3.x",
-        "nl_router": "4.3.x",
-        "system_agent": "4.3.x",
-        "workflow_engine": "4.3.x",
-        "ai_loop": "4.3.x"
+        "runtime_min_version": "4.4.0",
+        "runtime_max_version": "4.4.x",
+        "plugin_loader": "4.4.x",
+        "nl_router": "4.4.x",
+        "system_agent": "4.4.x",
+        "workflow_engine": "4.4.x",
+        "ai_loop": "4.4.x"
     },
 
     "capabilities": {
@@ -35,6 +38,24 @@
         "sandboxed": true,
         "side_effect_free_import": true,
         "requires_network": false,
-        "requires_admin": false
+        "requires_admin": false,
+        "crash_resistant": true,
+        "self_repairable": true
+    },
+
+    "integrity": {
+        "checksum_enabled": true,
+        "watch_files": [
+            "plugin.py",
+            "manifest.json"
+        ],
+        "auto_quarantine_on_corruption": true
+    },
+
+    "self_repair": {
+        "enabled": true,
+        "strategy": "reload_plugin",
+        "fallback_mode": "degraded",
+        "max_repair_attempts": 3
     }
 }
