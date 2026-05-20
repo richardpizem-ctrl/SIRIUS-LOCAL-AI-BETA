@@ -1,23 +1,24 @@
-# main_window.py
-# SIRIUS LOCAL AI – Main Window 4.3.x
-# Phase‑4 UI Manager compatible main application window
+# main_window_4_4.py
+# SIRIUS LOCAL AI – Main Window 4.4.0 PRO
+# Phase‑4 UI Manager compatible main application window (Phase‑5 ready)
 
 from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout
 from PySide6.QtCore import Qt
 
-from ui.orb_widget import OrbWidget
+from ui.orb_widget_4_4 import OrbWidget44
 
 
-class MainWindow(QMainWindow):
+class MainWindow44(QMainWindow):
     """
-    MainWindow 4.3.x
+    MainWindow 4.4.0 PRO
 
     Responsibilities:
-        - Host the ORB widget (Phase‑4)
-        - Provide a stable root container for UI Manager
-        - Support safe‑mode and degraded‑mode
+        - Host the ORB widget (Phase‑4, Phase‑5 ready)
+        - Provide a stable root container for UI Manager 4.4
+        - Support safe‑mode and degraded‑mode (Security Family 4.4)
         - Provide structured lifecycle hooks
         - Deterministic, offline-only behavior
+        - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -38,10 +39,10 @@ class MainWindow(QMainWindow):
         layout.setSpacing(0)
 
         # -----------------------------------------------------
-        # ORB widget (Phase‑4)
+        # ORB widget (Phase‑4 / Phase‑5 ready)
         # -----------------------------------------------------
         try:
-            self.orb = OrbWidget()
+            self.orb = OrbWidget44()
             layout.addWidget(self.orb, alignment=Qt.AlignCenter)
 
         except Exception as exc:
@@ -70,7 +71,7 @@ class MainWindow(QMainWindow):
         return label
 
     # ---------------------------------------------------------
-    # Lifecycle hooks (Phase‑4)
+    # Lifecycle hooks (Phase‑4 / Phase‑5 ready)
     # ---------------------------------------------------------
 
     def enter_safe_mode(self):
