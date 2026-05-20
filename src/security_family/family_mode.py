@@ -1,25 +1,26 @@
 """
-Security Family – Family Mode 4.3.x
------------------------------------
+Security Family – Family Mode 4.4.0 (PRO)
+-----------------------------------------
 Safe environment for children of the owner.
 
-Features:
-- behavior-based risk scoring
+Features (4.4.0):
+- behavior-based risk scoring (via BehaviorAudit44)
 - anomaly-aware safety mode
-- time-limit enforcement
+- time-limit enforcement (TimeLimits44)
 - schoolwork priority mode
 - deterministic, offline-only behavior
 - safe-mode and degraded-mode support
+- Security Family 4.4 compliant
 """
 
 import math
 
 
-class FamilyMode:
+class FamilyMode44:
     def __init__(self, access_control, behavior_audit, time_limits):
-        self.access_control = access_control
-        self.behavior_audit = behavior_audit
-        self.time_limits = time_limits
+        self.access_control = access_control        # AccessControl44
+        self.behavior_audit = behavior_audit        # BehaviorAudit44
+        self.time_limits = time_limits              # TimeLimits44
 
         self.active = False
         self.school_mode = False
@@ -76,7 +77,7 @@ class FamilyMode:
             # 2. Time limit enforcement
             time_exceeded = self.time_limits.exceeded("FAMILY")
 
-            # 3. Build context for AccessControl 4.3.x
+            # 3. Build context for AccessControl44
             context = {
                 "risk_score": risk,
                 "school_mode": self.school_mode,
