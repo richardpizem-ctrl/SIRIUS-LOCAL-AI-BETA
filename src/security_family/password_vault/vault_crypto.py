@@ -1,20 +1,21 @@
 """
-PasswordVault Cryptography – Runtime 4.3.x
-------------------------------------------
-AES‑256‑GCM encryption helpers for Password Vault.
+SIRIUS LOCAL AI – PasswordVault Cryptography 4.4.0 (PRO)
+--------------------------------------------------------
+AES‑256‑GCM encryption helpers for Password Vault 4.4.0.
 
 Features:
-- deterministic, offline-only cryptography
-- PBKDF2-HMAC-SHA256 key derivation
+- deterministic, offline‑only cryptography
+- PBKDF2‑HMAC‑SHA256 key derivation
 - AES‑256‑GCM authenticated encryption
-- safe-mode and degraded-mode support
+- safe‑mode and degraded‑mode support
 - structured error handling
 - no dynamic imports, no eval, no reflection
+- Security Family 4.4 compliant
 """
 
 import os
 import json
-from typing import Tuple, Dict, Any
+from typing import Dict, Any
 
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -23,14 +24,14 @@ from cryptography.hazmat.backends import default_backend
 
 
 # Runtime flags
-SAFE_MODE = False
-DEGRADED_MODE = False
+SAFE_MODE: bool = False
+DEGRADED_MODE: bool = False
 
 
 # ------------------------------------------------------------
 # MASTER KEY DERIVATION (PBKDF2‑HMAC‑SHA256)
 # ------------------------------------------------------------
-def derive_master_key(master_secret: str) -> bytes:
+def derive_master_key_44(master_secret: str) -> bytes:
     """
     Derive a stable 256‑bit key from master secret.
     PBKDF2‑HMAC‑SHA256, 200k iterations.
@@ -40,11 +41,11 @@ def derive_master_key(master_secret: str) -> bytes:
     global DEGRADED_MODE
 
     if SAFE_MODE:
-        # Return a dummy key in safe-mode (vault operations disabled anyway)
+        # Return a dummy key in safe‑mode (vault operations disabled anyway)
         return b"\x00" * 32
 
     try:
-        salt = b"SIRIUS_VAULT_SALT_v1"
+        salt = b"SIRIUS_VAULT_SALT_v2_4_4"
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
@@ -62,13 +63,16 @@ def derive_master_key(master_secret: str) -> bytes:
 # ------------------------------------------------------------
 # AES‑256‑GCM ENCRYPTION
 # ------------------------------------------------------------
-def encrypt_data(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
+def encrypt_data_44(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
     """
     Encrypt a Python dict using AES‑256‑GCM.
+
     Returns structured encrypted payload:
     {
         "iv": bytes,
-        "ciphertext": bytes
+        "ciphertext": bytes,
+        "status": "ok" | "safe_mode" | "error",
+        "degraded_mode": bool
     }
     """
 
@@ -85,7 +89,7 @@ def encrypt_data(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
     try:
         aes = AESGCM(key)
         iv = os.urandom(12)
-        plaintext = json.dumps(data).encode("utf-8")
+        plaintext = json.dumps(data, separators=(",", ":")).encode("utf-8")
         ciphertext = aes.encrypt(iv, plaintext, None)
 
         return {
@@ -109,9 +113,17 @@ def encrypt_data(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
 # ------------------------------------------------------------
 # AES‑256‑GCM DECRYPTION
 # ------------------------------------------------------------
-def decrypt_data(iv: bytes, ciphertext: bytes, key: bytes) -> Dict[str, Any]:
+def decrypt_data_44(payload: Dict[str, Any], key: bytes) -> Dict[str, Any]:
     """
     Decrypt AES‑256‑GCM encrypted payload.
+
+    Expects:
+    {
+        "iv": bytes,
+        "ciphertext": bytes,
+        ...
+    }
+
     Returns:
     {
         "status": "ok" | "error" | "safe_mode",
@@ -130,6 +142,9 @@ def decrypt_data(iv: bytes, ciphertext: bytes, key: bytes) -> Dict[str, Any]:
         }
 
     try:
+        iv = payload.get("iv") or b""
+        ciphertext = payload.get("ciphertext") or b""
+
         aes = AESGCM(key)
         plaintext = aes.decrypt(iv, ciphertext, None)
         data = json.loads(plaintext.decode("utf-8"))
@@ -148,3 +163,12 @@ def decrypt_data(iv: bytes, ciphertext: bytes, key: bytes) -> Dict[str, Any]:
             "exception": str(exc),
             "degraded_mode": True,
         }
+
+
+__all__ = [
+    "derive_master_key_44",
+    "encrypt_data_44",
+    "decrypt_data_44",
+    "SAFE_MODE",
+    "DEGRADED_MODE",
+]
