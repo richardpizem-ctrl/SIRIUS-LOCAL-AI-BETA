@@ -1,6 +1,5 @@
-security_family_4_4/security_stranger_mode_4_4.py
 """
-SIRIUS LOCAL AI – Stranger Mode 4.4.0
+SIRIUS LOCAL AI – Stranger Mode 4.4.0 (PRO)
 
 StrangerMode 4.4 is the restricted‑identity security layer inside
 Security Family 4.4. It activates when:
@@ -16,8 +15,6 @@ StrangerMode enforces:
 - Deterministic isolation rules
 - Integration with Behavior Monitor 4.4 and Security Policy Core 4.4
 
-All logic is deterministic, offline, and fully isolated.
-
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
@@ -30,9 +27,12 @@ from typing import Dict, Any
 
 class StrangerMode44:
     """
-    Restricted identity mode for Runtime 4.4.
+    Restricted identity mode for Runtime 4.4 (PRO).
     Enforces strict limitations on actions and capabilities.
     """
+
+    VALID_ACTION_TYPES = {"click", "focus", "scroll", "set_text", "invoke",
+                          "select", "expand", "collapse", "double_click", "right_click"}
 
     # Allowed actions for STRANGER identity (very limited)
     ALLOWED_ACTIONS = {
@@ -56,30 +56,42 @@ class StrangerMode44:
         self.initialized = False
         self.active = False
         self.reason = None
+        self.safe_mode = False
         self.degraded_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
-
+            return {"status": "ok"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # ACTIVATE STRANGER MODE
     # ------------------------------------------------------------------
-    def activate(self, reason: str):
-        """
-        Activates StrangerMode with a deterministic reason.
-        """
+    def activate(self, reason: str) -> Dict[str, Any]:
+        """Activates StrangerMode with a deterministic reason."""
+
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "StrangerMode activation disabled in safe-mode.",
+            }
+
+        if not isinstance(reason, str) or not reason.strip():
+            return {"status": "error", "code": "invalid_reason"}
+
         self.active = True
         self.reason = reason
         return {"status": "activated", "reason": reason}
@@ -87,7 +99,7 @@ class StrangerMode44:
     # ------------------------------------------------------------------
     # DEACTIVATE STRANGER MODE
     # ------------------------------------------------------------------
-    def deactivate(self):
+    def deactivate(self) -> Dict[str, Any]:
         self.active = False
         self.reason = None
         return {"status": "deactivated"}
@@ -96,9 +108,25 @@ class StrangerMode44:
     # CHECK ACTION PERMISSION
     # ------------------------------------------------------------------
     def check_action(self, action: str) -> Dict[str, Any]:
-        """
-        Determines whether a UI action is allowed under StrangerMode.
-        """
+        """Determines whether a UI action is allowed under StrangerMode."""
+
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Action validation disabled in safe-mode.",
+            }
+
+        if not isinstance(action, str) or not action.strip():
+            return {"status": "error", "code": "invalid_action"}
+
+        if action not in self.VALID_ACTION_TYPES:
+            return {
+                "status": "blocked",
+                "mode": "STRANGER",
+                "reason": "unknown_action",
+                "action": action,
+            }
+
         if not self.active:
             return {"status": "allowed", "mode": "inactive"}
 
@@ -115,7 +143,7 @@ class StrangerMode44:
         if action in self.ALLOWED_ACTIONS:
             return {"status": "allowed", "mode": "STRANGER"}
 
-        # Unknown action → block by default
+        # Default block
         return {
             "status": "blocked",
             "mode": "STRANGER",
@@ -131,4 +159,6 @@ class StrangerMode44:
             "status": "ok",
             "active": self.active,
             "reason": self.reason,
+            "safe_mode": self.safe_mode,
+            "degraded_mode": self.degraded_mode,
         }
