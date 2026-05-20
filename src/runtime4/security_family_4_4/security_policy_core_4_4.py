@@ -1,6 +1,5 @@
-security_family_4_4/security_policy_core_4_4.py
 """
-SIRIUS LOCAL AI – Security Policy Core 4.4.0
+SIRIUS LOCAL AI – Security Policy Core 4.4.0 (PRO)
 
 Security Policy Core 4.4 is the central rule engine of Security Family 4.4.
 It provides deterministic, offline‑safe enforcement of:
@@ -11,8 +10,6 @@ It provides deterministic, offline‑safe enforcement of:
 - UI safety constraints
 - Behavior‑aware adjustments (safe subset)
 - Integration with Policy Router 4.4
-
-All logic is deterministic, offline, and fully isolated.
 
 Security Notes:
 - Only static imports allowed.
@@ -26,8 +23,10 @@ from typing import Dict, Any
 
 class SecurityPolicyCore44:
     """
-    Deterministic rule engine for Runtime 4.4.
+    Deterministic rule engine for Runtime 4.4 (PRO).
     """
+
+    VALID_IDENTITIES = {"OWNER", "FAMILY", "STRANGER"}
 
     # Sensitive actions always blocked for FAMILY + STRANGER
     SENSITIVE_ACTIONS = {
@@ -45,22 +44,26 @@ class SecurityPolicyCore44:
 
     def __init__(self):
         self.initialized = False
+        self.safe_mode = False
         self.degraded_mode = False
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
             return {"status": "already_initialized"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
-
+            return {"status": "ok"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+            }
 
     # ------------------------------------------------------------------
     # IDENTITY OVERRIDE (OPTIONAL)
@@ -73,6 +76,10 @@ class SecurityPolicyCore44:
         - Elements tagged as "child" → FAMILY
         - Elements tagged as "unknown" → STRANGER
         """
+
+        if not isinstance(element_ref, dict):
+            return None
+
         tag = element_ref.get("tag")
 
         if tag == "trusted":
@@ -92,35 +99,73 @@ class SecurityPolicyCore44:
         Determines whether an action is allowed based on identity and rules.
         """
 
-        # 1. OWNER has full access except explicit forbidden cases
-        if identity == "OWNER":
-            # OWNER‑only actions are allowed
-            return {"status": "allowed"}
+        if self.safe_mode:
+            return {
+                "status": "safe_mode",
+                "message": "Policy checks disabled in safe-mode.",
+            }
 
-        # 2. FAMILY restrictions
+        # Validate identity
+        if identity not in self.VALID_IDENTITIES:
+            return {
+                "status": "blocked",
+                "code": "invalid_identity",
+                "identity": identity,
+            }
+
+        # Validate action
+        if not isinstance(action, str) or not action.strip():
+            return {
+                "status": "blocked",
+                "code": "invalid_action",
+            }
+
+        # Validate element_ref
+        if not isinstance(element_ref, dict):
+            return {
+                "status": "blocked",
+                "code": "invalid_element_ref",
+            }
+
+        # ------------------------------
+        # OWNER
+        # ------------------------------
+        if identity == "OWNER":
+            # OWNER has full access except explicit forbidden cases
+            return {"status": "allowed", "layer": "policy_core"}
+
+        # ------------------------------
+        # FAMILY
+        # ------------------------------
         if identity == "FAMILY":
             if action in self.SENSITIVE_ACTIONS:
                 return {
                     "status": "blocked",
+                    "layer": "policy_core",
                     "reason": "sensitive_action_blocked_for_family",
                     "action": action,
                 }
-            return {"status": "allowed"}
+            return {"status": "allowed", "layer": "policy_core"}
 
-        # 3. STRANGER restrictions
+        # ------------------------------
+        # STRANGER
+        # ------------------------------
         if identity == "STRANGER":
-            # STRANGER cannot perform sensitive or owner‑only actions
             if action in self.SENSITIVE_ACTIONS or action in self.OWNER_ONLY_ACTIONS:
                 return {
                     "status": "blocked",
+                    "layer": "policy_core",
                     "reason": "action_blocked_for_stranger",
                     "action": action,
                 }
-            return {"status": "allowed"}
+            return {"status": "allowed", "layer": "policy_core"}
 
-        # 4. Unknown identity → block
+        # ------------------------------
+        # Unknown identity (should never happen)
+        # ------------------------------
         return {
             "status": "blocked",
+            "layer": "policy_core",
             "reason": "unknown_identity",
             "identity": identity,
         }
@@ -132,5 +177,6 @@ class SecurityPolicyCore44:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
