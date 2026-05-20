@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Scheduler 4.3 Router
+SIRIUS LOCAL AI – Scheduler 4.3 Router (PRO)
 
 Responsible for:
 - routing tasks to correct modules
@@ -8,7 +8,11 @@ Responsible for:
 - integrating scheduler with sandbox manager
 - safe-mode and degraded-mode behavior
 
-This is the routing layer of Scheduler 4.3.
+Security Family 4.4 Compliance:
+- No eval, exec, reflection, dynamic imports
+- Strict input validation
+- Deterministic behavior
+- Self‑Repair 4.4 ready
 """
 
 from typing import Optional, Dict, Any
@@ -16,7 +20,7 @@ from typing import Optional, Dict, Any
 
 class SchedulerRouter4:
     """
-    Decides which module should execute a given task.
+    Deterministic routing layer for Scheduler 4.3 (PRO).
     Provides:
     - strict validation
     - structured error surface
@@ -37,7 +41,7 @@ class SchedulerRouter4:
         self.sandbox_manager = sandbox_manager
 
         # Task → module mapping table
-        self.routing_table = {}
+        self.routing_table: Dict[str, str] = {}
 
         self.safe_mode = False
         self.degraded_mode = False
@@ -47,15 +51,12 @@ class SchedulerRouter4:
     # ---------------------------------------------------------
 
     def register_route(self, task_name: str, module_name: str):
-        """
-        Registers a mapping: task_name → module_name.
-        Includes safety checks.
-        """
+        """Registers a mapping: task_name → module_name."""
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Route registration disabled in safe-mode."
+                "message": "Route registration disabled in safe-mode.",
             }
 
         # Validate task_name
@@ -66,7 +67,7 @@ class SchedulerRouter4:
         if not isinstance(module_name, str) or not module_name.strip():
             return {"status": "error", "code": "invalid_module_name"}
 
-        # Validate module exists in loader
+        # Validate module exists
         if self.module_loader.get_module(module_name) is None:
             return {"status": "error", "code": "unknown_module"}
 
@@ -74,21 +75,18 @@ class SchedulerRouter4:
             self.routing_table[task_name] = module_name
             return {
                 "status": "route_registered",
-                "degraded_mode": self.degraded_mode
+                "degraded_mode": self.degraded_mode,
             }
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "route_registration_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
 
     def resolve_module(self, task_name: str) -> Optional[str]:
-        """
-        Returns the module responsible for the given task.
-        Includes safety checks.
-        """
+        """Returns the module responsible for the given task."""
 
         if not isinstance(task_name, str) or not task_name.strip():
             return None
@@ -108,13 +106,12 @@ class SchedulerRouter4:
     def route(self, task: str, context: Optional[dict] = None) -> Dict[str, Any]:
         """
         Resolves the module and executes the task via sandbox manager.
-        Includes full Runtime 4.3 security validation.
         """
 
         if self.safe_mode:
             return {
                 "status": "safe_mode",
-                "message": "Routing disabled in safe-mode."
+                "message": "Routing disabled in safe-mode.",
             }
 
         # Validate task
@@ -133,7 +130,7 @@ class SchedulerRouter4:
             return {
                 "status": "error",
                 "code": "no_route_defined",
-                "task": task
+                "task": task,
             }
 
         # Validate module exists
@@ -148,12 +145,12 @@ class SchedulerRouter4:
             return self.sandbox_manager.execute(
                 module_name=module_name,
                 task=task,
-                context=context
+                context=context,
             )
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "sandbox_execution_failed",
-                "exception": str(exc)
+                "exception": str(exc),
             }
