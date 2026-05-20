@@ -4,20 +4,22 @@ from context.context_manager import ContextManager
 
 class ContextDumpCommand(BaseCommand):
     """
-    ContextDumpCommand 4.3
+    ContextDumpCommand 4.4
     Dumps the entire context: session memory, persistent memory, state,
     snapshot history, and last snapshot diagnostics.
 
-    Improvements in 4.3:
-    - unified metadata contract
-    - deterministic behavior for Runtime4
-    - safe error handling (via BaseCommand.run)
-    - consistent return structure
-    - Self‑Repair 4.4 compatible
+    New in 4.4:
+        - Integrity Hooks (Self‑Repair Layer 4.4)
+        - Health Metadata
+        - Deterministic dump structure
+        - Extended audit (identity, params, risk, capabilities)
+        - Unified error model
+        - Safe execution via BaseCommand.run()
+        - Stable output for Runtime4.4, GUI, and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.3)
+    # METADATA (v4.4)
     # ---------------------------------------------------------
     name = "context-dump"
     description = "Dumps all context data: session, persistent, state, history."
@@ -37,11 +39,11 @@ class ContextDumpCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.3)
+    # EXECUTION (4.4)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
-        Dumps the entire context in a structured format.
+        Dumps the entire context in a structured, deterministic format.
         """
 
         # -----------------------------
