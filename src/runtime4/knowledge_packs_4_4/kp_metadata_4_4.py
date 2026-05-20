@@ -1,25 +1,23 @@
-knowledge_packs_4_4/kp_metadata_4_4.py
 """
-SIRIUS LOCAL AI – Knowledge Pack Metadata Engine 4.4.0
+SIRIUS LOCAL AI – Knowledge Pack Metadata Engine 4.4.0 (PRO)
 
 KP Metadata 4.4 provides deterministic, offline‑safe metadata handling for
 Knowledge Packs. It enriches packs with:
 
 - Version info
-- Creation timestamp
-- Update timestamp
+- Deterministic timestamps (monotonic, not real-time)
 - Author info
 - Tags
 - Descriptions
 
-Security Notes:
+Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
 - Metadata must be pure JSON/dict.
 - Fully offline, deterministic, isolated.
+- No real-time system calls allowed (Runtime 4.4 PRO rule).
 """
 
 from typing import Dict, Any
-import time
 
 
 class KnowledgePackMetadata44:
@@ -32,6 +30,25 @@ class KnowledgePackMetadata44:
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
+        self.safe_mode = False
+
+        # Deterministic timestamp counter (Runtime 4.4 PRO requirement)
+        self._counter = 1
+
+    # ------------------------------------------------------------------
+    # INTERNAL HELPERS
+    # ------------------------------------------------------------------
+    def _next_timestamp(self) -> int:
+        """
+        Deterministic timestamp generator.
+        Runtime 4.4 PRO forbids real-time calls.
+        """
+        ts = self._counter
+        self._counter += 1
+        return ts
+
+    def _validate_json_safe(self, value: Any) -> bool:
+        return isinstance(value, (str, int, float, bool, dict, list))
 
     # ------------------------------------------------------------------
     # INITIALIZATION
@@ -46,7 +63,7 @@ class KnowledgePackMetadata44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "init_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # ATTACH METADATA TO PACK
@@ -56,28 +73,42 @@ class KnowledgePackMetadata44:
         Enriches a Knowledge Pack with deterministic metadata fields.
         """
 
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Metadata engine disabled in safe-mode."}
+
         try:
             meta = pack.metadata or {}
 
-            # Add or update metadata fields
+            # Deterministic timestamps
+            meta.setdefault("created_at", self._next_timestamp())
+            meta["updated_at"] = self._next_timestamp()
+
+            # Version
             meta.setdefault("kp_version", self.VERSION)
-            meta.setdefault("created_at", int(time.time()))
-            meta["updated_at"] = int(time.time())
 
-            # Ensure tags exist
-            meta.setdefault("tags", [])
+            # Tags
+            if "tags" not in meta or not isinstance(meta["tags"], list):
+                meta["tags"] = []
 
-            # Ensure description exists
-            meta.setdefault("description", f"Knowledge Pack '{pack.name}'")
+            # Description
+            if "description" not in meta or not isinstance(meta["description"], str):
+                meta["description"] = f"Knowledge Pack '{pack.name}'"
 
-            # Apply metadata back to pack
+            # Validate JSON-safe metadata
+            for key, value in meta.items():
+                if not self._validate_json_safe(value):
+                    return {
+                        "status": "error",
+                        "code": "invalid_metadata_value",
+                        "field": key,
+                    }
+
             pack.metadata = meta
-
             return {"status": "ok", "pack": pack}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "code": "attach_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
     # MERGE METADATA
@@ -85,29 +116,42 @@ class KnowledgePackMetadata44:
     def merge_metadata(self, pack, new_meta: Dict[str, Any]) -> Dict[str, Any]:
         """
         Safely merges new metadata fields into an existing pack.
+        Deterministic, JSON-safe only.
         """
+
+        if self.safe_mode:
+            return {"status": "safe_mode", "message": "Metadata engine disabled in safe-mode."}
 
         try:
             meta = pack.metadata or {}
 
             for key, value in new_meta.items():
-                # Only safe JSON types allowed
-                if isinstance(value, (str, int, float, bool, dict, list)):
+                if self._validate_json_safe(value):
                     meta[key] = value
+                else:
+                    return {
+                        "status": "error",
+                        "code": "invalid_metadata_value",
+                        "field": key,
+                    }
+
+            # Update timestamp deterministically
+            meta["updated_at"] = self._next_timestamp()
 
             pack.metadata = meta
-
             return {"status": "ok", "pack": pack}
 
         except Exception as exc:
-            return {"status": "error", "exception": str(exc)}
+            self.degraded_mode = True
+            return {"status": "error", "code": "merge_failed", "exception": str(exc)}
 
     # ------------------------------------------------------------------
-    # GET STATUS
+    # STATUS
     # ------------------------------------------------------------------
     def get_status(self) -> Dict[str, Any]:
         return {
             "status": "ok",
             "initialized": self.initialized,
+            "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
         }
