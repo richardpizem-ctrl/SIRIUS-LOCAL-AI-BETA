@@ -1,26 +1,28 @@
-# manager.py
-# SIRIUS LOCAL AI – Animation Manager 4.3.x
-# Phase‑4 scene controller with safe‑mode and degraded‑mode
+# manager_4_4.py
+# SIRIUS LOCAL AI – Animation Manager 4.4.0 PRO
+# Phase‑4/5 scene controller with safe‑mode and degraded‑mode
 
-from .animation_scenes import (
-    MoveScene,
-    CopyScene,
-    DeleteScene,
-    CreateFolderScene
+from .animation_scenes_4_4 import (
+    MoveScene44,
+    CopyScene44,
+    DeleteScene44,
+    CreateFolderScene44
 )
 
 
-class AnimationManager:
+class AnimationManager44:
     """
-    AnimationManager 4.3.x
+    AnimationManager 4.4.0 PRO
 
     Responsibilities:
         - Manage animation scenes (Phase‑4)
-        - Switch scenes safely
-        - Provide deterministic update cycle
-        - Support safe‑mode and degraded‑mode
-        - Provide structured fallback behavior
+        - Deterministic scene switching
+        - Error‑safe lifecycle control
+        - Safe‑mode and degraded‑mode support (Security Family 4.4)
+        - Structured fallback behavior
         - Offline-only, no side-effects
+        - Phase‑5 ready (sandbox, restricted-mode)
+        - Self‑Repair 4.4 compatible
     """
 
     def __init__(self):
@@ -32,10 +34,10 @@ class AnimationManager:
         # Preloaded scenes (Phase‑4 static registry)
         try:
             self.scenes = {
-                "move": MoveScene(),
-                "copy": CopyScene(),
-                "delete": DeleteScene(),
-                "create_folder": CreateFolderScene(),
+                "move": MoveScene44(),
+                "copy": CopyScene44(),
+                "delete": DeleteScene44(),
+                "create_folder": CreateFolderScene44(),
             }
         except Exception:
             # If scene creation fails → degraded mode
