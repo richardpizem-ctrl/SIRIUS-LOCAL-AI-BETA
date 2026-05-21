@@ -1,9 +1,17 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v4.3.0 EXPANDED)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v4.4.0 PRO EXPANDED)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
 It serves as an architectural orientation map for the **Intelligent Runtime 4.x** architecture.
 
-Version **4.3.0** expands the module map with the new **Semantic UI Automation Engine**, replacing the originally planned 4.2.0 release.
+Version **4.4.0 PRO** expands the module map with:
+- **AITE 4.4 (Multimodal Semantic Triage)**  
+- **Reasoning Engine 4.4**  
+- **Workflow Engine 4.4**  
+- **Knowledge Packs 4.4**  
+- **UI Automation Engine 4.4**  
+- **System Agent 4.2 (Safe Action Execution Layer)**  
+- hardened SECURITY FAMILY 4.4  
+- upgraded System Intelligence Layer 4.4  
 
 All processing is fully local; no data leaves the user's PC.
 
@@ -19,10 +27,11 @@ All processing is fully local; no data leaves the user's PC.
 - enforcing capability boundaries  
 - event routing  
 - global system stability  
-- integration with Security Family 4.0  
+- integration with Security Family 4.4  
 - integration with Self‑Repair Layer  
 - deterministic execution  
-- UI Automation Engine 4.3 integration  
+- System Agent 4.2 routing  
+- UI Automation Engine 4.4 integration  
 
 ---
 
@@ -31,11 +40,10 @@ All processing is fully local; no data leaves the user's PC.
 **Responsibilities:**
 - moving, copying, deleting  
 - path validation  
-- safety checks  
 - rollback‑safe operations  
 - semantic routing (documents, code, schoolwork)  
-- integration with Schoolwork Engine 4.0  
-- integration with UI Automation Engine 4.3 (file‑based workflows)  
+- integration with Schoolwork Engine 4.4  
+- integration with UI Automation Engine 4.4 (file‑based workflows)  
 
 ---
 
@@ -49,7 +57,8 @@ All processing is fully local; no data leaves the user's PC.
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
 - identity‑aware filtering (OWNER / FAMILY / STRANGER)  
-- UI automation command routing (v4.3.0)  
+- UI automation command routing (v4.4.0)  
+- System Agent 4.2 validation for system‑level intents  
 
 ---
 
@@ -61,12 +70,12 @@ All processing is fully local; no data leaves the user's PC.
 - supporting multi‑step workflows  
 - providing contextual hints  
 - subject/difficulty metadata  
-- integration with Schoolwork Engine 4.0  
-- integration with UI Automation Engine 4.3 (contextual UI hints)  
+- integration with Schoolwork Engine 4.4  
+- integration with UI Automation Engine 4.4 (contextual UI hints)  
 
 ---
 
-# 5. Workflow Engine 4.x
+# 5. Workflow Engine 4.4
 **Purpose:** Deterministic multi‑step logic.  
 **Responsibilities:**
 - workflow state machine  
@@ -74,8 +83,9 @@ All processing is fully local; no data leaves the user's PC.
 - semantic transitions  
 - preventing invalid sequences  
 - SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 4.x  
-- integration with UIWorkflow 4.3  
+- integration with Reasoning Engine 4.4  
+- integration with UIWorkflow 4.4  
+- deterministic fallback behavior  
 
 ---
 
@@ -87,7 +97,7 @@ All processing is fully local; no data leaves the user's PC.
 - identity indicators  
 - SCHOOLWORK indicators  
 - future tray/voice integration  
-- UI automation visual feedback (v4.3.0)  
+- UI automation visual feedback (v4.4.0)  
 
 ---
 
@@ -100,8 +110,8 @@ All processing is fully local; no data leaves the user's PC.
 
 ---
 
-# 8. Automatic Input Triage Engine (AITE 4.0)
-**Purpose:** Semantic detection and classification of all inputs.  
+# 8. Automatic Input Triage Engine (AITE 4.4)
+**Purpose:** Multimodal semantic detection and classification of all inputs.  
 **Responsibilities:**
 - detecting input type (text, image, code, document, installer)  
 - OCR extraction  
@@ -111,10 +121,11 @@ All processing is fully local; no data leaves the user's PC.
 - routing to correct modules  
 - metadata generation  
 - integration with FS‑AGENT, CME‑MEM  
-- integration with Schoolwork Engine 4.0  
-- integration with Reasoning Engine 4.x  
+- integration with Schoolwork Engine 4.4  
+- integration with Reasoning Engine 4.4  
 - ENVOY 4.0 support  
-- UI automation intent detection (v4.3.0)  
+- UI automation intent detection (v4.4.0)  
+- identity‑aware triage 3.1  
 
 ---
 
@@ -126,7 +137,8 @@ All processing is fully local; no data leaves the user's PC.
 - safe wrappers around OS operations  
 - multi‑step system actions  
 - identity‑aware restrictions  
-- UI automation OS‑level routing (v4.3.0)  
+- UI automation OS‑level routing (v4.4.0)  
+- System Agent 4.2 enforcement  
 
 **Submodules:**
 - `file_ops`  
@@ -135,7 +147,7 @@ All processing is fully local; no data leaves the user's PC.
 - `audio_ops`  
 - `system_context`  
 - `automation_ops`  
-- `ui_capabilities_4_3` (NEW)  
+- `ui_capabilities_4_4` (UPDATED)  
 
 ---
 
@@ -163,7 +175,7 @@ All processing is fully local; no data leaves the user's PC.
 - predictable behavior  
 - integrating CME, FS‑AGENT, GUI  
 - SCHOOLWORK workflow routing  
-- UI automation workflow integration (v4.3.0)  
+- UI automation workflow integration (v4.4.0)  
 
 ---
 
@@ -178,7 +190,7 @@ All processing is fully local; no data leaves the user's PC.
 - registering GUI elements  
 - safe plugin isolation  
 - SCHOOLWORK‑aware plugin behavior  
-- UI automation plugin hooks (v4.3.0)  
+- UI automation plugin hooks (v4.4.0)  
 
 Official plugins include:
 - automation  
@@ -211,7 +223,8 @@ Official plugins include:
 - generating patch suggestions  
 - preventing uncontrolled modifications  
 - reporting system health to Runtime Core  
-- validating UI automation modules (v4.3.0)  
+- validating UI automation modules (v4.4.0)  
+- integration with System Agent 4.2  
 
 **Submodules:**  
 - `health_check_engine.py`  
@@ -220,7 +233,7 @@ Official plugins include:
 
 ---
 
-# 15. Security Family 4.0 (Identity Engine 2.0)
+# 15. Security Family 4.4 (Identity Engine 2.0)
 **Purpose:** Behavior‑based identity and family safety layer.  
 **Responsibilities:**
 - OWNER / FAMILY / STRANGER identity  
@@ -231,7 +244,8 @@ Official plugins include:
 - Schoolwork Engine integration  
 - identity‑aware routing  
 - STRANGER‑mode restrictions  
-- UI automation identity gating (v4.3.0)  
+- UI automation identity gating (v4.4.0)  
+- System Agent 4.2 enforcement  
 
 **Submodules:**
 - `identity_engine_v2.py`  
@@ -253,11 +267,11 @@ Official plugins include:
 ## 16.4 SCHOOL_HELPER 4.0  
 ## 16.5 IMAGE_ANALYZER 4.0  
 ## 16.6 CONTEXT_ROUTER 4.0  
-## 16.7 KNOWLEDGE_PACKS 4.x  
+## 16.7 KNOWLEDGE_PACKS 4.4 (UPDATED)  
 
 ---
 
-# 17. PASSWORD_VAULT 4.0 (NEW)
+# 17. PASSWORD_VAULT 4.0
 **Purpose:** Secure offline credential storage.  
 **Responsibilities:**
 - AES‑256‑GCM encrypted vault  
@@ -269,34 +283,46 @@ Official plugins include:
 - NL Router integration  
 - Runtime Core integration  
 
-**Submodules:**
-- `vault_api.py`  
-- `vault_core.py`  
-- `vault_storage.py`  
-- `vault_crypto.py`  
-
 ---
 
-# 18. UI Automation Engine 4.3 (NEW)
+# 18. UI Automation Engine 4.4 (UPDATED)
 **Purpose:** Semantic, deterministic UI automation.  
 **Responsibilities:**
-- fuzzy UI parsing  
+- improved fuzzy UI parsing  
 - semantic alias mapping  
 - multi‑stage resolution pipeline  
 - deterministic fallback logic  
 - OS‑level routing  
 - safe sandboxed execution  
-- WIN‑CAP 4.3 integration  
+- WIN‑CAP 4.4 integration  
+- System Agent 4.2 validation  
 
 **Submodules:**
-- `ui_parser_4_3.py`  
-- `ui_workflow_4_3.py`  
-- `ui_actions_4_3.py`  
-- `win_capabilities_4_3.py`  
+- `ui_parser_4_4.py`  
+- `ui_workflow_4_4.py`  
+- `ui_actions_4_4.py`  
+- `win_capabilities_4_4.py`  
 
 ---
 
-# 19. SIRIUS ENVOY 4.0 (Safe Retrieval Layer)
+# 19. System Agent 4.2 (NEW)
+**Purpose:** Final gatekeeper for all system‑level actions.  
+**Responsibilities:**
+- validating every system action  
+- enforcing identity rules  
+- blocking unsafe operations  
+- deterministic safety enforcement  
+- logging system actions  
+- protecting OS‑level automation  
+
+**Submodules:**
+- `agent_core_4_2.py`  
+- `agent_rules_4_2.py`  
+- `agent_validation_4_2.py`  
+
+---
+
+# 20. SIRIUS ENVOY 4.0 (Safe Retrieval Layer)
 **Purpose:** Safe, outbound‑only online retrieval.  
 **Responsibilities:**  
 - scraper layer  
@@ -307,19 +333,20 @@ Official plugins include:
 
 ---
 
-# 20. Module Interconnections
+# 21. Module Interconnections
 All modules communicate through:
 
 - Runtime Core 4.x  
 - NL Router 4.x  
-- Workflow Engine 4.x  
+- Workflow Engine 4.4  
 - CME‑MEM 4.x  
-- Security Family 4.0  
+- Security Family 4.4  
 - WIN‑CAP 4.x  
-- UI Automation Engine 4.3  
+- UI Automation Engine 4.4  
+- System Agent 4.2  
 
 ---
 
 # Document Status
-**Version:** 4.3.0 (Expanded)  
-Updated to reflect the **4.2 → 4.3 transition** and the new **UI Automation Engine 4.3**.
+**Version:** 4.4.0 PRO (Expanded)  
+Updated to reflect the **4.3 → 4.4 transition**, new **System Agent 4.2**, and the upgraded **UI Automation Engine 4.4**.
