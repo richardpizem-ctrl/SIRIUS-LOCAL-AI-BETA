@@ -1,8 +1,15 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v4.0.0)
+# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v4.4.0 PRO)
 
-This document defines the performance model, optimization rules, and runtime guarantees of the **Intelligent Runtime 4.0** architecture.
+This document defines the performance model, optimization rules, and runtime guarantees of the **Intelligent Runtime 4.x** architecture.
 
-SIRIUS LOCAL AI is designed for **deterministic, predictable, offline‑only execution** with strict safety and identity‑aware constraints.
+Version **4.4.0 PRO** expands the original 4.0.0 performance rules with:
+- **AITE 4.4 (faster semantic triage)**  
+- **Reasoning Engine 4.4 (bounded deterministic reasoning)**  
+- **Workflow Engine 4.4 (constant‑time transitions)**  
+- **Knowledge Packs 4.4 (indexed semantic lookups)**  
+- **UI Automation Engine 4.4 (real OS automation with deterministic fallback)**  
+- **System Agent 4.2 (identity‑aware, constant‑time validation)**  
+- **Security Family 4.4 (hardened identity checks)**  
 
 All processing is fully local; no data leaves the user's PC.
 
@@ -18,15 +25,17 @@ All processing is fully local; no data leaves the user's PC.
 - minimal overhead in all operations  
 - plugin execution must follow strict performance rules  
 - SCHOOLWORK workflows must remain instant  
-- **Security Family 4.0 must not introduce latency or blocking behavior**  
+- **Security Family 4.4 must not introduce latency or blocking behavior**  
 - identity checks must remain constant‑time  
 - stranger‑mode restrictions must be lightweight  
 - Self‑Repair Layer must run only in safe, controlled intervals  
 - Reasoning Engine must remain bounded and deterministic  
+- **System Agent 4.2 validation must be O(1)**  
+- **UI Automation Engine 4.4 must not block the runtime**  
 
 ---
 
-# 2. Runtime Guarantees (Runtime 4.0)
+# 2. Runtime Guarantees (Runtime 4.4)
 
 - no race conditions  
 - no parallel writes  
@@ -35,16 +44,18 @@ All processing is fully local; no data leaves the user's PC.
 - no unpredictable system modifications  
 - event routing is O(1)  
 - plugin loading is cached and isolated  
-- AI Loop 4.0 uses safe interval scheduling  
+- AI Loop 4.x uses safe interval scheduling  
 - SCHOOLWORK Engine must not delay routing  
 - **identity checks remain O(1)**  
 - **time‑limit checks remain O(1)**  
 - Self‑Repair checks must be lightweight  
 - semantic routing must remain constant‑time  
+- **System Agent 4.2 must validate actions in constant time**  
+- **UI Automation Engine 4.4 fallback logic must be bounded**  
 
 ---
 
-# 3. Filesystem Performance (FS‑AGENT 4.0)
+# 3. Filesystem Performance (FS‑AGENT 4.x)
 
 Rules:
 - validate paths before performing operations  
@@ -54,13 +65,14 @@ Rules:
 - ensure rollback‑safe operations  
 - minimize disk I/O during workflows  
 - SCHOOLWORK files must route instantly  
-- **Security Family 4.0 must not slow down FS‑AGENT operations**  
+- **Security Family 4.4 must not slow down FS‑AGENT operations**  
 - identity‑restricted file operations must remain O(1)  
 - semantic file classification must be lightweight  
+- **System Agent 4.2 must not add overhead to FS operations**  
 
 ---
 
-# 4. WIN‑CAP Performance (WIN‑CAP 4.0)
+# 4. WIN‑CAP Performance (WIN‑CAP 4.x)
 
 - window operations must be atomic  
 - app detection must be cached  
@@ -72,10 +84,11 @@ Rules:
 - **identity‑restricted operations must not add overhead**  
 - STRANGER‑mode checks must be constant‑time  
 - automation operations must remain bounded  
+- **UI Automation Engine 4.4 must use cached capability lookups**  
 
 ---
 
-# 5. UI Performance (GUI 4.0)
+# 5. UI Performance (GUI 4.x)
 
 - no heavy rendering  
 - animations must be lightweight and optional  
@@ -86,10 +99,11 @@ Rules:
 - SCHOOLWORK indicators must be instant  
 - **FAMILY mode warnings must be non‑blocking and instant**  
 - semantic UI hints must be pre‑computed  
+- **UI Automation Engine 4.4 visual feedback must be O(1)**  
 
 ---
 
-# 6. Workflow Performance (Workflow Engine 4.0)
+# 6. Workflow Performance (Workflow Engine 4.4)
 
 - workflows must not recompute state  
 - context memory must be minimal  
@@ -100,10 +114,11 @@ Rules:
 - SCHOOLWORK workflows must bypass restrictions without overhead  
 - **identity‑restricted workflows must remain lightweight**  
 - semantic transitions must be cached  
+- **System Agent 4.2 validation must not slow workflow transitions**  
 
 ---
 
-# 7. AI Loop Performance (AI Loop 4.0)
+# 7. AI Loop Performance (AI Loop 4.x)
 
 - interval tasks must be short  
 - no blocking operations  
@@ -115,10 +130,11 @@ Rules:
 - **time‑limit checks must be constant‑time**  
 - Self‑Repair checks must run in low‑impact intervals  
 - Reasoning Engine hooks must be bounded  
+- **UI Automation Engine 4.4 must not run inside the AI Loop**  
 
 ---
 
-# 8. Reasoning Engine Performance (v4.0.0)
+# 8. Reasoning Engine Performance (v4.4.0)
 
 - reasoning depth must be capped  
 - no unbounded chain‑of‑thought  
@@ -127,6 +143,7 @@ Rules:
 - no recursive rule expansion without limits  
 - SCHOOLWORK reasoning must remain instant  
 - identity‑restricted reasoning must not add overhead  
+- **AITE 4.4 must pre‑compute semantic tags for faster reasoning**  
 
 ---
 
@@ -139,12 +156,13 @@ Rules:
 - avoid logging inside tight loops  
 - plugin logs must follow the same rules  
 - SCHOOLWORK events must not log academic content  
-- **Security Family 4.0 must not log identity data or behavior patterns**  
+- **Security Family 4.4 must not log identity data or behavior patterns**  
 - Self‑Repair logs must be minimal and safe  
+- **UI Automation Engine 4.4 logs must be constant‑time**  
 
 ---
 
-# 10. Plugin System Performance (Plugin System 4.0)
+# 10. Plugin System Performance (Plugin System 4.x)
 
 - plugin loading is cached  
 - NL command detection is O(1)  
@@ -153,12 +171,13 @@ Rules:
 - AI tasks must be optimized  
 - plugins must not introduce heavy operations  
 - SCHOOLWORK‑aware plugins must remain instant  
-- **plugins must not bypass or slow down Security Family 4.0 checks**  
+- **plugins must not bypass or slow down Security Family 4.4 checks**  
 - reasoning hooks must be bounded  
+- **System Agent 4.2 must validate plugin actions instantly**  
 
 ---
 
-# 11. Security Family Performance (v4.0.0)
+# 11. Security Family Performance (v4.4.0)
 
 ### Identity Engine 2.0
 - identity classification must be constant‑time  
@@ -166,6 +185,7 @@ Rules:
 - no background training loops  
 - no scanning of large datasets  
 - STRANGER detection must be instant  
+- **System Agent 4.2 must enforce identity rules without overhead**
 
 ### Time‑Limits Engine v2
 - time checks must be O(1)  
@@ -174,7 +194,7 @@ Rules:
 - no repeated disk writes  
 - FAMILY mode transitions must be instant  
 
-### Schoolwork Engine 4.0
+### Schoolwork Engine 4.4
 - schoolwork detection must be lightweight  
 - no deep semantic loops  
 - bypass logic must be instant  
@@ -188,7 +208,7 @@ Rules:
 
 ---
 
-# 12. Self‑Repair & Health‑Check Layer (v4.0.0)
+# 12. Self‑Repair & Health‑Check Layer (v4.4.0)
 
 - integrity checks must be lightweight  
 - no deep scanning of source code  
@@ -197,10 +217,12 @@ Rules:
 - patch suggestions must be pre‑computed  
 - health reports must be instant  
 - no repeated disk I/O  
+- **System Agent 4.2 integrity must be checked in constant‑time**  
+- **UI Automation Engine 4.4 modules must be validated without overhead**  
 
 ---
 
 # Document Status
 
-Current version: **4.0.0 (Stable)**  
-Performance rules are fully updated for the Intelligent Runtime 4.0 and prepared for future enhancements in v5.0.0.
+Current version: **4.4.0 PRO (Updated)**  
+Performance rules are fully aligned with the Intelligent Runtime 4.4 architecture and prepared for future enhancements in v5.0.0.
