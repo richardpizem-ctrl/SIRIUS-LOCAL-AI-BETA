@@ -1,252 +1,351 @@
-# 🟦 SIRIUS Runtime 4.2.0 – UI Automation Engine (Completed)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v4.4.0 PRO)
 
-This release introduces the complete UI Automation subsystem for SIRIUS Runtime.
-All modules are fully implemented, documented, and prepared for the upcoming 4.3.0 upgrade.
+This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
+It serves as an architectural orientation map for the **Intelligent Runtime 4.x** architecture.
 
----
+Version **4.4.0 PRO** expands the module map with the upgraded **System Intelligence & UI Automation stack**, including **AITE 4.4**, **Workflow Engine 4.4**, **Knowledge Packs 4.4**, **UI Automation Engine 4.4**, and **System Agent 4.2**.
 
-## ✔ Included Modules
-
-### • UI Graph
-- Window tree abstraction  
-- Fake OS elements for workflow testing  
-- Ready for WinCapabilities integration (4.3.0 → 4.4.0)
-
-### • UI Parser
-- Element extraction and normalization  
-- Exact, case‑insensitive and partial matching  
-- Prepared for fuzzy matching engine (4.3.0 → 4.4.0)
-
-### • UI Actions
-- Deterministic UI operations (click, write, select, semantic)  
-- Unified audit logging  
-- Sandbox‑aware execution  
-- Ready for real OS UI control (4.3.0 → 4.4.0)
-
-### • UI Sandbox
-- Identity‑based permission model (OWNER / FAMILY / STRANGER / CHILD)  
-- Deterministic security rules  
-- Local audit trail  
-- Ready for EventBus integration (4.3.0 → 4.4.0)
-
-### • UI Workflow
-- Deterministic step engine (scan → parse → find → act)  
-- Clean target resolution  
-- Demo workflow included  
-- Ready for fallback logic (4.3.0 → 4.4.0)
+All processing is fully local; no data leaves the user's PC.
 
 ---
 
-## ✔ Highlights
-- Fully isolated module (does not modify runtime core)  
-- 100% deterministic behavior  
-- Full English documentation across all modules  
-- Unified architecture and naming conventions  
-- Complete vertical slice demo (`demo_ok_click_workflow`)  
-- Fully prepared for 4.3.0 and 4.4.0 upgrades
-
----
-
-## ✔ Next Milestone: Runtime 4.3.0
-- Fuzzy Matching Engine (Parser)  
-- WinCapabilities OS UI control (Actions)  
-- Workflow fallback engine  
-- EventBus integration for audit logs  
-
----
-
-# 🟩 SIRIUS Runtime 4.3.0 – Semantic UI Automation Engine (Completed)
-
-This release delivers the full UI Automation Engine for SIRIUS LOCAL AI.
-Version 4.3.0 replaces the previously planned 4.2.0 and introduces a complete,
-deterministic, semantic UI automation pipeline fully integrated with Runtime 4.0.
-
----
-
-## 🔍 UIParser 4.3.0 – Fuzzy Matching Engine
-- multi‑strategy fuzzy matching  
-- confidence scoring  
-- semantic alias mapping  
-- deterministic element resolution  
-- ready for window graph reasoning  
-
-## 🔁 UIWorkflow 4.3.0 – Retry & Fallback Engine
-- confidence‑based action routing  
-- automatic retry logic  
-- fallback strategies  
-- multi‑stage resolution pipeline  
-- seamless integration with UIParser  
-
-## 🖱️ UIActions 4.3.0 – OS‑Aware Action Layer
-- unified action interface (click, write, select, semantic)  
-- sandbox‑protected execution  
-- OS‑level routing via WinCapabilities  
-- deterministic fallback behavior  
-- extended audit logging  
-
-## 🪟 WinCapabilities 4.3.0 – OS UI Control Interface
-- safe adapter for OS‑level UI automation  
-- deterministic stubs (no real OS interaction yet)  
-- ready for Win32/UIA/WinRT integration in 4.4.0  
-- unified logging and action tracing  
-
----
-
-## 🎯 Summary
-Version 4.3.0 completes the entire Semantic UI Automation Engine:
-- fuzzy UI parsing  
-- workflow fallback logic  
-- semantic UI actions  
-- OS‑level routing  
-- sandbox enforcement  
+# 1. Runtime Core 4.x
+**Purpose:** Central orchestrator of the entire system.  
+**Responsibilities:**
+- module initialization  
+- lifecycle management  
+- plugin loading  
+- task and workflow dispatch  
+- enforcing capability boundaries  
+- event routing  
+- global system stability  
+- integration with Security Family 4.4  
+- integration with Self‑Repair Layer  
 - deterministic execution  
-
-This is the most advanced UI automation layer ever implemented in SIRIUS.
-
----
-
-## 📌 Notes
-- Version 4.2.0 is now **replaced** by 4.3.0.  
-- All modules are fully integrated and production‑ready.  
-- Prepares the foundation for **Runtime 4.4.0 – Real OS Automation**.
+- UI Automation Engine 4.4 integration  
+- System Agent 4.2 routing for system‑level actions  
 
 ---
 
-## 🧩 Compatibility
-- Fully compatible with Runtime Core 4.0  
-- No breaking changes  
-- No migration steps required  
+# 2. Filesystem Agent (FS‑AGENT 4.x)
+**Purpose:** Safe, deterministic file operations.  
+**Responsibilities:**
+- moving, copying, deleting  
+- path validation  
+- safety checks  
+- rollback‑safe operations  
+- semantic routing (documents, code, schoolwork)  
+- integration with Schoolwork Engine 4.4  
+- integration with UI Automation Engine 4.4 (file‑based workflows)  
 
 ---
 
-## 🏁 Status
-**This is a stable release.**
+# 3. Natural Language Router (NL Router 4.x)
+**Purpose:** Semantic interpretation and routing of user commands.  
+**Responsibilities:**
+- command classification  
+- semantic extraction  
+- routing to modules or plugins  
+- plugin NL command detection  
+- fallback interpretation  
+- preventing ambiguous or unsafe actions  
+- identity‑aware filtering (OWNER / FAMILY / STRANGER)  
+- UI automation command routing (v4.4.0)  
+- System Agent 4.2‑aware command gating for system actions  
 
 ---
 
-# 🟧 SIRIUS Runtime 4.4.0 PRO – Deterministic OS Automation (NEW)
-
-Version **4.4.0 PRO** upgrades the entire UI Automation subsystem into a **system‑intelligent, OS‑aware, identity‑validated automation engine**.
-
-This is the first version capable of **real OS‑level UI automation**, safely controlled by:
-
-- **System Agent 4.2**  
-- **Security Family 4.4**  
-- **WinCapabilities 4.4**  
-- **UI Automation Engine 4.4**  
-
----
-
-## 🔍 UIParser 4.4.0 – PRO Fuzzy Engine
-- improved fuzzy matching  
-- multi‑layer semantic alias mapping  
-- deterministic scoring  
-- safer fallback behavior  
-- identity‑aware parsing  
-
-## 🔁 UIWorkflow 4.4.0 – Deterministic OS Workflow Engine
-- multi‑stage fallback logic  
-- OS‑aware retries  
-- System Agent 4.2 validation  
-- safe‑mode restrictions  
-- SCHOOLWORK‑aware routing  
-
-## 🖱️ UIActions 4.4.0 – Real OS Automation Layer
-- real Win32/UIA/WinRT routing  
-- deterministic sandboxed execution  
-- OWNER‑only high‑risk actions  
-- FAMILY‑safe restrictions  
-- STRANGER‑mode blocking  
-- full System Agent 4.2 enforcement  
-
-## 🪟 WinCapabilities 4.4.0 – OS Capability Layer
-- hardened OS adapters  
-- deterministic capability boundaries  
-- identity‑aware permission model  
-- safe fallback stubs  
-- unified audit logging  
+# 4. Context Memory Engine (CME‑MEM 4.x)
+**Purpose:** Semantic workflow context.  
+**Responsibilities:**
+- tracking recent actions  
+- storing semantic tags  
+- supporting multi‑step workflows  
+- providing contextual hints  
+- subject/difficulty metadata  
+- integration with Schoolwork Engine 4.4  
+- integration with UI Automation Engine 4.4 (contextual UI hints)  
 
 ---
 
-## 🎯 Summary (4.4.0 PRO)
-- real OS UI automation  
+# 5. Workflow Engine 4.x
+**Purpose:** Deterministic multi‑step logic.  
+**Responsibilities:**
+- workflow state machine  
+- plugin workflow execution  
+- semantic transitions  
+- preventing invalid sequences  
+- SCHOOLWORK workflow prioritization  
+- integration with Reasoning Engine 4.4  
+- integration with UIWorkflow 4.4  
+- System Agent 4.2 validation for system‑level workflows  
+
+---
+
+# 6. GUI Layer 4.x
+**Purpose:** Modular user interface.  
+**Responsibilities:**
+- rendering plugin UI  
+- executing GUI actions  
+- identity indicators  
+- SCHOOLWORK indicators  
+- future tray/voice integration  
+- UI automation visual feedback (v4.4.0)  
+
+---
+
+# 7. Email Composer
+**Purpose:** Generating email text (without sending).  
+**Responsibilities:**
+- email drafts  
+- structured responses  
+- professional text generation  
+
+---
+
+# 8. Automatic Input Triage Engine (AITE 4.4)
+**Purpose:** Semantic detection and classification of all inputs.  
+**Responsibilities:**
+- detecting input type (text, image, code, document, installer)  
+- OCR extraction  
+- semantic analysis  
+- subject detection  
+- difficulty scoring  
+- routing to correct modules  
+- metadata generation  
+- integration with FS‑AGENT, CME‑MEM  
+- integration with Schoolwork Engine 4.4  
+- integration with Reasoning Engine 4.4  
+- ENVOY 4.0 support  
+- UI automation intent detection (v4.4.0)  
+- identity‑aware triage aligned with Security Family 4.4  
+
+---
+
+# 9. Windows System Capabilities Layer (WIN‑CAP 4.x)
+**Purpose:** Safe, abstracted access to Windows 11 system functions.  
+**Responsibilities:**
+- exposing high‑level system capabilities  
+- enforcing permissions and allowed scopes  
+- safe wrappers around OS operations  
+- multi‑step system actions  
+- identity‑aware restrictions  
+- UI automation OS‑level routing (v4.4.0)  
+- System Agent 4.2‑validated capability execution  
+
+**Submodules:**
+- `file_ops`  
+- `app_ops`  
+- `window_ops`  
+- `audio_ops`  
+- `system_context`  
+- `automation_ops`  
+- `ui_capabilities_4_4` (UPDATED)  
+
+---
+
+# 10. UI Components
+**Purpose:** Modular UI building blocks.  
+**Responsibilities:**
+- reusable UI elements  
+- layout components  
+- visual helpers  
+- animation hooks  
+
+**Subfolder: `animations/`**
+- `animation_engine.py`  
+- `animation_objects.py`  
+- `animation_scenes.py`  
+- `animation_manager.py`  
+
+---
+
+# 11. Workflow Module
+**Purpose:** High‑level workflow logic.  
+**Responsibilities:**
+- orchestrating multi‑step operations  
+- validating transitions  
+- predictable behavior  
+- integrating CME, FS‑AGENT, GUI  
+- SCHOOLWORK workflow routing  
+- UI automation workflow integration (v4.4.0)  
+- System Agent 4.2‑aware system workflows  
+
+---
+
+# 12. Plugin System 4.x
+**Purpose:** Extensible plugin ecosystem.  
+**Responsibilities:**
+- loading plugin manifests  
+- registering NL commands  
+- registering AI tasks  
+- registering workflows  
+- registering reasoning hooks  
+- registering GUI elements  
+- safe plugin isolation  
+- SCHOOLWORK‑aware plugin behavior  
+- UI automation plugin hooks (v4.4.0)  
+- identity‑aware plugin capabilities via Security Family 4.4  
+
+Official plugins include:
+- automation  
+- clipboard  
+- file_manager  
+- notes  
+- system_tools  
+- translator  
+- developer_tools  
+
+---
+
+# 13. AI Loop 4.x
+**Purpose:** Autonomous interval‑based logic.  
+**Responsibilities:**
+- executing plugin heartbeat rules  
+- safe periodic tasks  
+- deterministic scheduling  
+- error protection  
+- SCHOOLWORK‑aware timing  
+
+---
+
+# 14. Self‑Repair & Health‑Check Layer (v4.x)
+**Purpose:** Diagnostics and safe automatic recovery.  
+**Responsibilities:**  
+- checking integrity of core modules  
+- detecting corrupted states, missing files, invalid configs  
+- performing safe automatic repairs  
+- generating patch suggestions  
+- preventing uncontrolled modifications  
+- reporting system health to Runtime Core  
+- validating UI automation modules (v4.4.0)  
+- monitoring System Agent 4.2 and Security Family 4.4 integrity  
+
+**Submodules:**  
+- `health_check_engine.py`  
+- `self_repair_safe.py`  
+- `repair_suggestions.py`  
+
+---
+
+# 15. Security Family 4.4 (Identity Engine 2.0)
+**Purpose:** Behavior‑based identity and family safety layer.  
+**Responsibilities:**
+- OWNER / FAMILY / STRANGER identity  
+- behavior‑based recognition  
+- safe‑mode for unknown users  
+- restricted mode for children  
+- time‑limits v2  
+- Schoolwork Engine integration  
+- identity‑aware routing  
+- STRANGER‑mode restrictions  
+- UI automation identity gating (v4.4.0)  
+- System Agent 4.2 policy integration  
+
+**Submodules:**
+- `identity_engine_v2.py`  
+- `behavior_audit_v2.py`  
+- `access_control_v2.py`  
+- `family_mode_v2.py`  
+- `stranger_mode_v2.py`  
+- `time_limits_v2.py`  
+- `schoolwork_engine.py`  
+- `profile_store_v2.json`  
+
+---
+
+# 16. Intelligent Runtime Modules (v4.x)
+
+## 16.1 HOME_ASSISTANT 4.0  
+## 16.2 COOKING_ADVISOR 4.0  
+## 16.3 DEVICE_DIAGNOSTICS 2.0  
+## 16.4 SCHOOL_HELPER 4.0  
+## 16.5 IMAGE_ANALYZER 4.0  
+## 16.6 CONTEXT_ROUTER 4.0  
+## 16.7 KNOWLEDGE_PACKS 4.4  
+
+---
+
+# 17. PASSWORD_VAULT 4.0
+**Purpose:** Secure offline credential storage.  
+**Responsibilities:**
+- AES‑256‑GCM encrypted vault  
+- PBKDF2‑HMAC‑SHA256 master key derivation  
+- OWNER‑only write access  
+- FAMILY read‑only access  
+- STRANGER blocked  
+- deterministic API for workflows  
+- NL Router integration  
+- Runtime Core integration  
+- Security Family 4.4 + System Agent 4.2 enforcement for access  
+
+**Submodules:**
+- `vault_api.py`  
+- `vault_core.py`  
+- `vault_storage.py`  
+- `vault_crypto.py`  
+
+---
+
+# 18. UI Automation Engine 4.4 (UPDATED)
+**Purpose:** Semantic, deterministic UI automation with real OS‑level control.  
+**Responsibilities:**
+- fuzzy UI parsing  
+- semantic alias mapping  
+- multi‑stage resolution pipeline  
 - deterministic fallback logic  
-- identity‑aware execution  
-- System Agent 4.2 validation  
-- SECURITY FAMILY 4.4 enforcement  
-- safe, predictable, reversible actions  
+- OS‑level routing  
+- safe sandboxed execution  
+- WIN‑CAP 4.4 integration  
+- System Agent 4.2 validation for all UI actions  
+- identity‑aware UI automation (OWNER / FAMILY / STRANGER)  
 
-This is the **first production‑ready OS automation engine** in SIRIUS history.
-
----
-
-# 🔐 Password Vault 4.0 – Secure Offline Credential Storage
-
-Password Vault 4.0 is a **fully offline**, **AES‑256‑GCM encrypted**,  
-**identity‑aware** credential storage module for **SIRIUS LOCAL AI Runtime 4.0**.
-
-It provides deterministic, safe, and OWNER‑controlled password management  
-without cloud sync, telemetry, or external dependencies.
+**Submodules:**
+- `ui_parser_4_4.py`  
+- `ui_workflow_4_4.py`  
+- `ui_actions_4_4.py`  
+- `win_capabilities_4_4.py`  
 
 ---
 
-# 1. 🎯 Purpose
-
-Password Vault 4.0 enables SIRIUS to:
-
-- store credentials securely  
-- retrieve them deterministically  
-- enforce identity‑aware access  
-- integrate with workflows and NL commands  
-- operate fully offline  
-- protect sensitive data with modern cryptography  
-
-The vault is designed for **local‑only**, **tamper‑resistant**,  
-**family‑safe** credential management.
+# 19. System Agent 4.2 (Safe Action Execution Layer)
+**Purpose:** Final gatekeeper for all system‑level and UI automation actions.  
+**Responsibilities:**
+- validating every system action  
+- enforcing identity rules from Security Family 4.4  
+- blocking unsafe operations  
+- logging all sensitive actions  
+- ensuring deterministic, reversible behavior  
+- mediating between Runtime Core, WIN‑CAP, and UI Automation Engine 4.4  
 
 ---
 
-# 2. 🧱 Architecture Overview
-
-Password Vault 4.0 consists of four internal layers:
-
-### **1. vault_api.py**  
-Public interface for all vault operations.
-
-### **2. vault_core.py**  
-Implements logic for storing, retrieving, updating, and deleting entries.
-
-### **3. vault_storage.py**  
-Handles encrypted JSON container on disk.
-
-### **4. vault_crypto.py**  
-AES‑256‑GCM encryption + PBKDF2‑HMAC‑SHA256 key derivation.
+# 20. SIRIUS ENVOY 4.0 (Safe Retrieval Layer)
+**Purpose:** Safe, outbound‑only online retrieval.  
+**Responsibilities:**  
+- scraper layer  
+- quarantine sandbox  
+- validator & policy filter  
+- safe payload delivery  
+- Knowledge Pack updates  
+- never bypassing Security Family 4.4 or System Agent 4.2  
 
 ---
 
-# 3. 🔐 Cryptography
+# 21. Module Interconnections
+All modules communicate through:
 
-### **Encryption:**  
-- AES‑256‑GCM  
-- 12‑byte IV  
-- authentication tag included in ciphertext  
+- Runtime Core 4.x  
+- NL Router 4.x  
+- Workflow Engine 4.x  
+- CME‑MEM 4.x  
+- Security Family 4.4  
+- WIN‑CAP 4.x  
+- UI Automation Engine 4.4  
+- System Agent 4.2  
 
-### **Key Derivation:**  
-- PBKDF2‑HMAC‑SHA256  
-- 200,000 iterations  
-- deterministic salt for stable vault key  
+---
 
-### **Storage Format:**  
-Encrypted JSON file containing:
-
-```json
-{
-  "entries": {
-    "example.com": {
-      "username": "user123",
-      "password": "encrypted",
-      "meta": {}
-    }
-  }
-}
-
+# Document Status
+**Version:** 4.4.0 PRO  
+Updated to reflect the **4.3 → 4.4 transition**, the new **System Agent 4.2**, and the upgraded **UI Automation Engine 4.4**.
