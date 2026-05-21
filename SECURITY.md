@@ -1,7 +1,8 @@
-# 🔐 Security – SIRIUS LOCAL AI (v4.0.0 → 4.3.0 EXPANDED)
+# 🔐 Security – SIRIUS LOCAL AI  
+### v4.0.0 → 4.3.0 → **4.4.0 PRO (Expanded)**
 
 Thank you for taking the time to help improve the security of **SIRIUS LOCAL AI**.  
-This document defines the **official security policy**, **threat model**, and **reporting process** for the **Runtime 4.0 architecture**.
+This document defines the **official security policy**, **threat model**, and **reporting process** for the **Runtime 4.x architecture**.
 
 All processing in SIRIUS LOCAL AI is fully local.  
 No data leaves the user’s PC.  
@@ -31,9 +32,15 @@ No remote execution.
 
 ---
 
-# 5. 🔐 Security Architecture Summary (v4.0.0 → 4.3.0)
+# 5. 🔐 Security Architecture Summary (v4.0.0 → 4.3.0 → **4.4.0 PRO**)
 
-SIRIUS LOCAL AI Runtime 4.0 includes the full security stack, expanded in later versions (4.2.0 and 4.3.0) with UI‑level sandboxing and deterministic OS‑aware action routing.
+SIRIUS LOCAL AI Runtime 4.x includes the full security stack, expanded in later versions (4.2.0, 4.3.0, and 4.4.0 PRO) with:
+
+- UI‑level sandboxing  
+- deterministic OS‑aware action routing  
+- identity‑aware system‑level automation  
+- System Agent 4.2 (NEW)  
+- hardened Security Family 4.4  
 
 ---
 
@@ -48,9 +55,15 @@ SIRIUS LOCAL AI Runtime 4.0 includes the full security stack, expanded in later 
   - OWNER: full read/write  
   - FAMILY: read‑only  
   - STRANGER: blocked  
-  - identity‑aware routing enforced by Security Family  
+- identity‑aware routing enforced by Security Family  
+- **Security Family 4.4 (NEW)**  
+  - stronger identity gating for OS‑level actions  
+  - deterministic permission evaluation  
+  - SCHOOLWORK bypass logic 2.0  
+  - hardened STRANGER‑mode protections  
+  - integration with System Agent 4.2  
 
-Security Family remains the **root of all identity enforcement** across Runtime 4.0 → 4.3.0.
+Security Family remains the **root of all identity enforcement** across Runtime 4.0 → 4.4.0 PRO.
 
 ---
 
@@ -85,71 +98,91 @@ Security Family remains the **root of all identity enforcement** across Runtime 
 ---
 
 # 🔐 5.2 Password Vault 4.0 — Secure Credential Storage
+*(unchanged)*
 
 Password Vault 4.0 is a **fully offline, encrypted, identity‑aware credential storage module** integrated into the Security Family.
 
-### **Security Guarantees**
-- AES‑256‑GCM encryption  
-- PBKDF2‑HMAC‑SHA256 master key derivation  
-- encrypted JSON container  
-- no plaintext storage  
-- no cloud sync  
-- no telemetry  
-- deterministic behavior  
-
-### **Identity Enforcement**
-- OWNER → full access (read/write/delete)  
-- FAMILY → read‑only  
-- STRANGER → denied  
-- all access routed through Security Family 4.0  
-- NL Router + RuntimeCore enforce identity rules  
-
-### **Threat Protections**
-- tamper‑resistant encrypted container  
-- no direct filesystem access (FS‑AGENT only)  
-- no direct crypto access (vault_crypto only)  
-- no remote execution  
-- no dynamic imports  
-- no unsafe code paths  
-
 ---
 
-# 🛡 5.3 UI Automation Security (NEW in 4.2.0 → 4.3.0)
+# 🛡 5.3 UI Automation Security (4.2.0 → 4.3.0)
+*(unchanged)*
 
 The UI Automation Engine introduced in **4.2.0** and expanded in **4.3.0** adds a new security surface.  
 All UI‑level actions are strictly sandboxed and identity‑aware.
 
-### **UI Sandbox (4.2.0)**
-- OWNER / FAMILY / STRANGER / CHILD permission model  
-- deterministic allow/deny rules  
-- local audit trail  
-- no direct OS access  
-- no elevated privileges  
-- no kernel‑level operations  
+---
 
-### **UI Actions Security (4.3.0)**
-- OS‑aware routing via WinCapabilities  
-- deterministic fallback behavior  
-- identity‑restricted UI operations  
-- no raw Win32/UIA calls  
-- all actions pass through sandbox filters  
-- extended audit logging  
+# 🛡 **5.4 System Agent 4.2 – OS‑Level Security Layer (NEW in 4.4.0 PRO)**
 
-### **Workflow Safety (4.3.0)**
-- retry logic is bounded  
-- fallback logic is deterministic  
-- no infinite loops  
-- no uncontrolled UI interactions  
-- semantic target resolution prevents mis‑clicks  
+System Agent 4.2 is the **final security gatekeeper** for all OS‑level actions introduced in Runtime 4.4.0 PRO.
+
+### **Purpose**
+To ensure that **every system‑level action** is:
+- safe  
+- reversible  
+- identity‑validated  
+- logged  
+- deterministic  
+
+### **Security Guarantees**
+- no direct OS access from any module  
+- no privileged operations  
+- no kernel‑level calls  
+- no raw Win32/UIA/WinRT access  
+- all system actions must pass through System Agent  
+- OWNER / FAMILY / STRANGER enforcement  
+- SCHOOLWORK bypass logic preserved  
+- deterministic allow/deny evaluation  
 
 ### **Threat Protections**
-- no direct access to OS automation APIs  
+- blocks unsafe system operations  
+- blocks destructive commands  
+- blocks unverified automation  
+- blocks unauthorized UI actions  
+- blocks privilege escalation  
+- blocks background system manipulation  
+- blocks persistent hooks or injections  
+
+### **Integration**
+System Agent 4.2 mediates:
+- UI Automation Engine 4.4  
+- WIN‑CAP 4.4  
+- Workflow Engine 4.4  
+- AITE 4.4  
+- Security Family 4.4  
+
+System Agent is the **core of OS‑level safety** in Runtime 4.4.0 PRO.
+
+---
+
+# 🛡 **5.5 UI Automation Security (Expanded in 4.4.0 PRO)**
+
+UI Automation Engine 4.4 introduces **real OS‑level UI control**, protected by:
+
+### **OS‑Level Safety**
+- all actions validated by System Agent  
+- deterministic fallback logic  
+- identity‑aware UI actions  
+- sandbox‑protected execution  
 - no uncontrolled input injection  
-- no background UI scanning  
 - no persistent hooks  
 - no global event listeners  
+- no background UI scanning  
 
-The UI Automation Engine is designed to be **safe by default**, with no ability to perform unsafe or privileged UI actions.
+### **WinCapabilities 4.4**
+- safe adapter for Win32/UIA/WinRT  
+- no direct access to raw APIs  
+- deterministic routing  
+- unified audit logging  
+
+### **Workflow Safety**
+- bounded retries  
+- deterministic fallback  
+- semantic target resolution  
+- mis‑click prevention  
+- identity‑aware gating  
+
+UI Automation Engine 4.4 is **safe by design**, with no ability to perform unsafe or privileged UI actions.
 
 ---
 
@@ -175,5 +208,12 @@ The UI Automation Engine is designed to be **safe by default**, with no ability 
 
 # 9. 📄 Document Status
 
-**Version:** 4.3.0 (Expanded)  
-This SECURITY.md describes the official security policy for **SIRIUS LOCAL AI Runtime 4.0**, including the new **Password Vault 4.0**, **UI Sandbox 4.2.0**, and **Semantic UI Automation Security 4.3.0**.
+**Version:** **4.4.0 PRO (Expanded)**  
+This SECURITY.md describes the official security policy for **SIRIUS LOCAL AI Runtime 4.x**, including:
+
+- Password Vault 4.0  
+- UI Sandbox 4.2.0  
+- Semantic UI Automation Security 4.3.0  
+- **System Agent 4.2 (NEW)**  
+- **UI Automation Engine 4.4 (NEW)**  
+- **Security Family 4.4 (NEW)**  
