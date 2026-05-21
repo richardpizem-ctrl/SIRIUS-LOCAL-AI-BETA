@@ -9,297 +9,182 @@ This document defines what “SIRIUS as a Workstation” means, why it is 80–9
 ---
 
 # ## **1. What is the SIRIUS Workstation**
-SIRIUS Workstation is an **autonomous operating behavior system** capable of:
-
-- executing tasks in the OS and UI  
-- repairing its own errors  
-- explaining what happened and why  
-- continuing after failure  
-- adapting workflows dynamically  
-- running without GPU  
-- operating on minimal RAM  
-- functioning as a standalone intelligent operator  
-
-SIRIUS is not a tool.  
-SIRIUS is an **operator** that works on your machine.
+*(unchanged)*
 
 ---
 
 # ## **2. Why SIRIUS is Unique (80–90% Uniqueness)**
-
-### **✔ UI Automation + Autonomy + Introspection (no competitor has all three)**  
-RPA tools can automate UI but cannot think.  
-Agents can think but cannot operate UI.  
-LLM assistants can talk but cannot act.  
-
-SIRIUS does all three simultaneously.
-
-### **✔ Real‑time self‑repair**  
-SIRIUS can:
-
-- detect an error  
-- understand the cause  
-- repair the workflow  
-- explain the repair  
-- continue execution  
-
-No RPA, agent, or AI assistant can do this.
-
-### **✔ Extremely lightweight**  
-SIRIUS runs on:
-
-- **450–650 MB RAM**  
-- **no GPU**  
-- **any standard PC or laptop**  
-
-### **✔ A new category of software**  
-Not RPA.  
-Not an agent.  
-Not a macro.  
-Not a chatbot.  
-
-SIRIUS is an **Autonomous Workstation**.
+*(unchanged)*
 
 ---
 
 # ## **3. Architecture Overview**
-
-SIRIUS consists of several core engines:
-
-- **Runtime Engine**  
-- **UI Interaction Engine**  
-- **Workflow Engine**  
-- **Introspection Engine**  
-- **Repair Engine**  
-- **Identity Engine 4.0**  
-- **Behavioral Security Family**  
-- **Autonomous AGENT Engine**  
-- **Modular System Layer**
-
-Each engine is independent, replaceable, and designed for low resource usage.
+*(unchanged)*
 
 ---
 
 # ## **4. Core Capabilities**
-
-### **✔ Automates any application**  
-No API required.  
-No integrations.  
-No plugins.
-
-### **✔ Self‑healing workflows**  
-SIRIUS does not stop when something fails.
-
-### **✔ Continues after errors**  
-No restart needed.
-
-### **✔ Explains every action**  
-Every step includes:
-
-- reason  
-- result  
-- repair (if needed)
-
-### **✔ Runs on normal hardware**  
-No special requirements.
+*(unchanged)*
 
 ---
 
 # ## **5. Comparison with Existing Systems**
-
-| System | UI Actions | Autonomy | Self‑Repair | Introspection | RAM | GPU |
-|--------|------------|----------|-------------|---------------|-----|-----|
-| RPA (UiPath) | ✔ | ✖ | ✖ | ✖ | high | no |
-| AutoGPT | ✖ | ✔ | ✖ | ✖ | high | no |
-| Devin | ✖ | ✔ | ✖ | ✖ | high | yes |
-| ChatGPT/Copilot | ✖ | ✖ | ✖ | ✖ | low | no |
-| **SIRIUS** | **✔** | **✔** | **✔** | **✔** | **low** | **no** |
+*(unchanged)*
 
 ---
 
 # ## **6. Who SIRIUS Is For**
-
-### **✔ Everyday users**  
-Automating daily tasks.
-
-### **✔ Developers**  
-Testing, scripting, UI automation.
-
-### **✔ Enthusiasts**  
-Experimentation, custom modules, workflows.
-
-### **✖ Not for corporations**  
-SIRIUS is not a commercial product.  
-It is a personal and community‑driven technology.
+*(unchanged)*
 
 ---
 
 # ## **7. Project Philosophy**
-
-SIRIUS is:
-
-- independent  
-- personal  
-- modular  
-- lightweight  
-- autonomous  
-- offline  
-- private  
-
-Not a startup.  
-Not a service.  
-Not a corporate tool.
-
-It is an **autonomous workstation for everyone**.
+*(unchanged)*
 
 ---
 
 # ## **8. Future Development**
-
-Planned expansions:
-
-- deeper introspection  
-- enhanced UI fallback logic  
-- workflow templates  
-- optional text/image generation modules  
-- plugin ecosystem  
-- extended logging  
-- advanced behavioral identity  
+*(unchanged)*
 
 ---
 
 # ## **9. Unique Modules of the SIRIUS Workstation**
-
-These modules make SIRIUS fundamentally different from any existing system.
-
----
-
-# ### **9.1 AGENT Engine (Autonomous Operator)**  
-The AGENT Engine is the autonomous operator responsible for:
-
-- executing tasks without human intervention  
-- making contextual decisions  
-- adapting workflows dynamically  
-- repairing failures  
-- explaining actions  
-- continuing after errors  
-
-This is not a chatbot — it is a **true autonomous operator**.
+*(unchanged)*
 
 ---
 
-# ### **9.2 Behavioral Security Family (Identity by Behavior)**  
-A completely unique security system based on **behavioral identity**, not biometrics.
+# ## **10. NEW IN VERSION 4.4.0 PRO — Deterministic OS‑Level Autonomous Workstation**
 
-It provides:
+Version **4.4.0 PRO** transforms SIRIUS from a semantic UI automation engine into a **true OS‑level autonomous operator** with deterministic, identity‑aware, system‑validated actions.
 
-- OWNER mode (full access)  
-- FAMILY mode (safe mode for children)  
-- STRANGER mode (restricted mode)  
-- offline learning  
-- protection of sensitive operations  
-- automatic mode switching  
-
-No other system in the world offers this.
+This is the first version where SIRIUS becomes a **full operating‑system‑aware autonomous workstation**.
 
 ---
 
-# ### **9.3 Identity Engine 4.0**  
-Identity Engine analyzes:
+# ### **10.1 System Agent 4.2 — OS‑Level Safety & Validation Layer**
 
-- interaction patterns  
-- timing  
-- reaction speed  
-- UI behavior  
-- workflow habits  
+System Agent 4.2 is the **final authority** for all system‑level actions.
 
-It builds a **behavioral identity profile** used for:
+It ensures that every action SIRIUS performs is:
 
-- security  
-- access control  
-- family mode  
-- stranger detection  
+- safe  
+- reversible  
+- identity‑validated  
+- deterministic  
+- logged  
+- OS‑aware  
 
-All offline, without cameras or microphones.
+### Responsibilities:
+- validates every system‑level action  
+- enforces OWNER / FAMILY / STRANGER permissions  
+- blocks unsafe or destructive operations  
+- mediates UI Automation + WIN‑CAP  
+- ensures deterministic behavior  
+- prevents privilege escalation  
+- prevents unsafe automation sequences  
 
----
-
-# ### **9.4 Introspection Engine**  
-The most advanced module in SIRIUS.
-
-It:
-
-- observes every step  
-- analyzes outcomes  
-- detects failures  
-- identifies root causes  
-- proposes repairs  
-- executes repairs  
-- explains results  
-
-This is the foundation of SIRIUS autonomy.
+This module is what elevates SIRIUS from “UI automation” to a **true OS‑level autonomous workstation**.
 
 ---
 
-# ### **9.5 Repair Engine (Self‑Healing System)**  
-The Repair Engine enables SIRIUS to:
+# ### **10.2 UI Automation Engine 4.4 — Real OS Automation**
 
-- fix workflows  
-- adjust UI actions  
-- modify parameters  
-- find alternative paths  
-- recover from unexpected UI changes  
+Version 4.4.0 introduces **real Win32/UIA/WinRT automation**, protected by System Agent 4.2.
 
-SIRIUS does not crash — it **self‑heals**.
+### Capabilities:
+- real OS‑level UI control  
+- deterministic fallback logic  
+- identity‑aware UI actions  
+- sandbox‑protected execution  
+- safe routing through WinCapabilities 4.4  
+- mis‑click prevention  
+- semantic target resolution  
+- bounded retries  
 
----
-
-# ### **9.6 Workflow Engine**  
-The Workflow Engine provides:
-
-- task definitions  
-- step sequences  
-- adaptive branching  
-- fallback logic  
-- safe execution limits  
-- automatic continuation  
-
-It is the brain of SIRIUS automation.
+This is the first version where SIRIUS can **operate Windows 11 like a human**, but safely and deterministically.
 
 ---
 
-# ### **9.7 UI Interaction Engine**  
-The UI Engine handles:
+# ### **10.3 Security Family 4.4 — Hardened Identity Enforcement**
 
-- clicking  
-- typing  
-- element detection  
-- OCR  
-- visual fallback logic  
-- interaction with any application  
+Security Family 4.4 extends the behavioral identity model with:
 
-No API required.
+- deterministic identity gating for OS‑level actions  
+- stronger STRANGER‑mode restrictions  
+- SCHOOLWORK bypass logic 2.0  
+- identity‑aware UI automation  
+- constant‑time permission evaluation  
+- integration with System Agent 4.2  
 
----
-
-# ### **9.8 Runtime Engine**  
-The Runtime Engine manages:
-
-- module orchestration  
-- task scheduling  
-- memory context  
-- safety rules  
-- performance optimization  
-- low RAM usage  
-
-This is why SIRIUS runs on any machine.
+This ensures that **identity is enforced at every layer** of the workstation.
 
 ---
 
-# ## **Conclusion**
+# ### **10.4 AITE 4.4 — Multimodal Semantic Triage**
 
-SIRIUS Workstation defines a **new category of software**:  
-an autonomous, introspective, self‑repairing workstation that can act, think, explain, and continue.
+AITE 4.4 improves:
+
+- OCR speed  
+- semantic detection  
+- identity‑aware triage  
+- SCHOOLWORK bypass logic  
+- deterministic classification  
+
+AITE now routes tasks not only by semantics, but also by **system context**.
+
+---
+
+# ### **10.5 Reasoning Engine 4.4 — Deterministic Reasoning Layer**
+
+Enhancements:
+
+- bounded reasoning depth  
+- symbolic logic 2.0  
+- pack‑aware reasoning 2.0  
+- deterministic chain‑of‑thought  
+- SCHOOLWORK reasoning priority  
+
+SIRIUS now reasons **faster, safer, and more predictably**.
+
+---
+
+# ### **10.6 Workflow Engine 4.4 — Security‑Aware Multi‑Step Logic**
+
+Workflow Engine 4.4 introduces:
+
+- identity‑aware workflow gating  
+- deterministic fallback logic  
+- constant‑time transitions  
+- semantic caching  
+- System Agent validation for system workflows  
+
+This makes SIRIUS workflows **safe, predictable, and OS‑aware**.
+
+---
+
+# ### **10.7 Knowledge Packs 4.4 — Indexed Semantic Packs**
+
+Enhancements:
+
+- faster lookups  
+- improved semantic linking  
+- expanded household, school, and device packs  
+- deterministic pack‑to‑pack reasoning  
+
+---
+
+# ## **Conclusion (Updated for 4.4.0 PRO)**
+
+SIRIUS Workstation is now:
+
+- an autonomous operator  
+- a semantic reasoner  
+- a deterministic OS‑level automation engine  
+- a self‑repairing system  
+- an identity‑aware safety platform  
+- a fully offline, private, modular workstation  
+
+Version **4.4.0 PRO** completes the transformation of SIRIUS into a **true Autonomous Workstation** —  
+a system that can act, think, explain, repair, and operate Windows 11 safely and intelligently.
 
 It has no equivalent in the world today.
-
