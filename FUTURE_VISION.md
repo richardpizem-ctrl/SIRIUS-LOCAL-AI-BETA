@@ -1,14 +1,15 @@
-# 🌟 Future Vision (v4.3.0 and Beyond)
+# 🌟 Future Vision (v4.4.0 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, and fully local.
 
-This expanded v4.3.0 edition includes the completed **UI Automation Engine 4.3**, the transition from **4.2 → 4.3**, and updated long‑term goals.
+This expanded **v4.4.0 edition** includes the completed **UI Automation Engine 4.4**, the transition from **4.3 → 4.4 PRO**, upgraded system‑intelligence modules, and strengthened long‑term goals.
 
 This document describes:
-1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0 → v4.3.0)  
+1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0 → v4.4.0)  
 2. **What v4.0.0 introduced**  
 3. **What v4.3.0 added**  
-4. **Long‑term direction (v5.0.0 and beyond)**  
+4. **What v4.4.0 expanded**  
+5. **Long‑term direction (v5.0.0 and beyond)**  
 
 All features remain:
 - 100% offline  
@@ -222,7 +223,54 @@ Extend SIRIUS into semantic, deterministic UI automation while preserving safety
 
 ---
 
-# 🚀 4. Long‑Term Vision (Beyond v4.3.0)
+# 🚀 4. Version 4.4.0 – PRO Runtime Expansion (NEW)
+
+Version 4.4.0 upgrades the entire Runtime 4.x architecture into the **PRO tier**, focusing on stability, determinism, and system‑level intelligence.
+
+Delivered in v4.4.0:
+
+### 🧠 Reasoning Engine 4.4
+- improved structured reasoning  
+- safer academic logic  
+- deterministic fallback behavior  
+
+### 🧩 AITE 4.4
+- faster multimodal triage  
+- improved OCR  
+- deeper subject graph  
+- identity‑aware triage 3.1  
+- safer routing  
+
+### 🛡 SECURITY FAMILY 4.4
+- hardened STRANGER mode  
+- improved FAMILY restrictions  
+- safer OWNER‑level actions  
+- integration with System Agent 4.2  
+
+### 🧰 System Agent 4.2
+- final gatekeeper for all system actions  
+- deterministic validation  
+- hardened safety rules  
+
+### 🪟 UI Automation Engine 4.4
+- improved fuzzy matching  
+- safer fallback logic  
+- deterministic retries  
+- PRO‑level OS routing  
+
+### 📦 Knowledge Packs 4.4
+- improved semantic linking  
+- safer educational content  
+- deterministic pack updates  
+
+### 🧱 System Intelligence Layer 4.4
+- improved diagnostics  
+- safer optimization suggestions  
+- deterministic system‑level workflows  
+
+---
+
+# 🚀 5. Long‑Term Vision (Beyond v4.4.0)
 
 SIRIUS will evolve into:
 
@@ -278,5 +326,5 @@ SIRIUS will evolve into:
 
 # 📄 Document Status
 
-Current version: **v4.3.0 (Expanded)**  
-Updated to reflect the **4.2 → 4.3 transition** and the new **UI Automation Engine 4.3**.
+Current version: **v4.4.0 (Expanded)**  
+Updated to reflect the **4.3 → 4.4 transition** and the new **UI Automation Engine 4.4**.
