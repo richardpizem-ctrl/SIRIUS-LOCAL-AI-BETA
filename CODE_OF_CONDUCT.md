@@ -1,18 +1,19 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v4.3.0 EXPANDED)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v4.4.0 EXPANDED)
 
 This project follows a professional, respectful, and safety‑oriented standard of behavior.  
 The goal is to maintain a **safe, friendly, and productive environment** for all contributors and all users of SIRIUS LOCAL AI — including households, families, and children.
 
-Version **4.3.0** expands the Code of Conduct to reflect:
+Version **4.4.0** expands the Code of Conduct to reflect:
 
-- the new **UI Automation Engine 4.3.0**  
-- the transition from **4.2.0 → 4.3.0**  
-- updated safety‑critical modules  
+- the new **UI Automation Engine 4.4.0**  
+- the transition from **4.3.0 → 4.4.0 PRO**  
+- upgraded safety‑critical modules  
 - Identity Engine 2.0  
-- SECURITY FAMILY 4.0  
-- Schoolwork Engine 4.0  
-- Self‑Repair & Health‑Check Layer  
+- SECURITY FAMILY 4.4  
+- Schoolwork Engine 4.4  
+- System Agent 4.2  
 - deterministic UI automation behavior  
+- hardened routing and PRO‑level safety  
 
 ---
 
@@ -28,12 +29,12 @@ Version **4.3.0** expands the Code of Conduct to reflect:
 - maintain clarity, professionalism, and transparency  
 - support safe and responsible use of AI technologies  
 - respect safety‑critical modules such as:  
-  - **SECURITY FAMILY 4.0**  
+  - **SECURITY FAMILY 4.4**  
   - **Identity Engine 2.0**  
-  - **Schoolwork Engine 4.0**  
+  - **Schoolwork Engine 4.4**  
   - **Time‑Limits Engine v2**  
   - **Self‑Repair & Health‑Check Layer**  
-  - **UI Automation Engine 4.3.0** (NEW)  
+  - **UI Automation Engine 4.4.0** (UPDATED)  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -54,7 +55,8 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - respecting FAMILY‑safe design and identity‑based protections  
 - ensuring SCHOOLWORK‑related features remain unrestricted and safe  
 - preserving deterministic, safe, offline‑only behavior  
-- respecting the new **UI Automation Engine 4.3.0** safety boundaries  
+- respecting the **UI Automation Engine 4.4.0** safety boundaries  
+- ensuring PRO‑level routing and safety are not weakened  
 
 ---
 
@@ -77,8 +79,9 @@ These principles ensure that collaboration remains focused, respectful, and effe
   - Schoolwork Engine bypass  
 - modifying SECURITY FAMILY logic to weaken protections  
 - disabling or interfering with the Self‑Repair Layer  
-- abusing or misusing the **UI Automation Engine 4.3.0** to perform unsafe actions  
+- abusing or misusing the **UI Automation Engine 4.4.0** to perform unsafe actions  
 - attempting to circumvent deterministic UI automation safeguards  
+- weakening System Agent 4.2 validation rules  
 
 Such behavior harms the community and will not be tolerated.
 
@@ -98,7 +101,8 @@ Project maintainers have the right and responsibility to:
 - ensure that safety modules remain uncompromised  
 - reject contributions that weaken identity‑based protections  
 - prevent unsafe modifications to SCHOOLWORK ENGINE or SECURITY FAMILY  
-- ensure that **UI Automation Engine 4.3.0** remains deterministic and safe  
+- ensure that **UI Automation Engine 4.4.0** remains deterministic and safe  
+- ensure System Agent 4.2 remains the final gatekeeper  
 
 Maintainers act to protect the long‑term health of the project.
 
@@ -137,7 +141,8 @@ Severity depends on:
 - whether it is repeated  
 - whether it involved attempts to bypass FAMILY or SCHOOLWORK protections  
 - whether it attempted to weaken SECURITY FAMILY or Identity Engine 2.0  
-- whether it attempted to misuse or compromise the **UI Automation Engine 4.3.0**  
+- whether it attempted to misuse or compromise the **UI Automation Engine 4.4.0**  
+- whether it attempted to bypass System Agent 4.2  
 
 Maintainers will always act in good faith and fairness.
 
@@ -153,18 +158,18 @@ This Code of Conduct applies to:
 - project‑related communication outside GitHub  
 - any interaction representing the project  
 - all modules including safety‑critical components:  
-  - **SECURITY FAMILY 4.0**  
+  - **SECURITY FAMILY 4.4**  
   - **Identity Engine 2.0**  
-  - **Schoolwork Engine 4.0**  
+  - **Schoolwork Engine 4.4**  
   - **Time‑Limits Engine v2**  
   - **Self‑Repair & Health‑Check Layer**  
-  - **UI Automation Engine 4.3.0** (NEW)  
+  - **UI Automation Engine 4.4.0**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (v4.3.0)
+# 8. 🧒 Family & Safety Considerations (v4.4.0)
 
-SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 4.0** module designed to:
+SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 4.4** module designed to:
 
 - protect children using the system  
 - enforce time‑based limits for minors  
@@ -175,6 +180,7 @@ SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 4.0** module designed to:
 - ensure OWNER‑level actions remain restricted  
 - integrate with Identity Engine 2.0 for behavior‑based recognition  
 - ensure UI automation cannot perform unsafe actions without identity validation  
+- ensure System Agent 4.2 validates all system‑level actions  
 
 Contributors must **not** attempt to weaken, bypass, or disable these protections.
 
@@ -189,4 +195,4 @@ and help maintain a respectful, safe, and productive environment for all users �
 
 ---
 
-**Document Status:** v4.3.0 (Expanded)
+**Document Status:** v4.4.0 (Expanded)
