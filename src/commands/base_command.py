@@ -1,3 +1,7 @@
+# Runtime4 Command Base Class
+# Baseline module
+# Version: 4.5.0
+
 import inspect
 import time
 import hashlib
@@ -7,20 +11,20 @@ import os
 
 class BaseCommand:
     """
-    BaseCommand 4.4
+    BaseCommand 4.5
     Unified base class for all SIRIUS LOCAL AI Runtime4 commands.
 
-    New in 4.4:
-        - Integrity Hooks (integrity_check, integrity_metadata)
-        - Health Metadata (health)
-        - Deterministic metadata hashing (Self‑Repair Layer 4.4)
-        - Extended audit record (identity, risk, capabilities, parameters)
-        - Unified error model
-        - Strict deterministic execution contract
+    Updated in 4.5:
+        - Prepared for Self‑Repair Layer 4.5
+        - Deterministic metadata hashing (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
+        - Extended audit record (unchanged)
+        - Strict deterministic execution contract (unchanged)
     """
 
     # ---------------------------------------------------------
-    # COMMAND METADATA (v4.4)
+    # COMMAND METADATA (v4.5)
     # ---------------------------------------------------------
     name: str = "base"
     description: str = "Base command class"
@@ -40,7 +44,7 @@ class BaseCommand:
         raise NotImplementedError("Subclasses must implement execute().")
 
     # ---------------------------------------------------------
-    # INTROSPECTION 4.4
+    # INTROSPECTION 4.5
     # ---------------------------------------------------------
     @classmethod
     def get_parameters(cls):
@@ -81,7 +85,7 @@ class BaseCommand:
             raise ValueError(f"Command {cls.name} has invalid risk_level.")
 
     # ---------------------------------------------------------
-    # COMMAND HASH (Self‑Repair 4.4)
+    # COMMAND HASH (Self‑Repair 4.5)
     # ---------------------------------------------------------
     @classmethod
     def compute_hash(cls) -> str:
@@ -99,13 +103,13 @@ class BaseCommand:
         return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
     # ---------------------------------------------------------
-    # INTEGRITY HOOKS (4.4)
+    # INTEGRITY HOOKS (4.5)
     # ---------------------------------------------------------
     @classmethod
     def integrity_check(cls):
         """
-        Loader 4.4 calls this before registration.
-        Ensures the class file exists and metadata is valid.
+        Loader 4.5 calls this before registration.
+        Ensures metadata is valid.
         """
         try:
             cls.validate_metadata()
@@ -116,7 +120,7 @@ class BaseCommand:
     @classmethod
     def integrity_metadata(cls):
         """
-        Returns metadata used by Integrity Engine 4.4.
+        Returns metadata used by Integrity Engine 4.5.
         """
         return {
             "command": cls.name,
@@ -125,7 +129,7 @@ class BaseCommand:
         }
 
     # ---------------------------------------------------------
-    # HEALTH METADATA (4.4)
+    # HEALTH METADATA (4.5)
     # ---------------------------------------------------------
     def health(self):
         return {
@@ -161,11 +165,11 @@ class BaseCommand:
         }
 
     # ---------------------------------------------------------
-    # SAFE EXECUTION WRAPPER (v4.4)
+    # SAFE EXECUTION WRAPPER (v4.5)
     # ---------------------------------------------------------
     def run(self, identity="OWNER", params=None, *args, **kwargs):
         """
-        Runtime Core 4.4 calls ONLY run(), never execute().
+        Runtime Core 4.5 calls ONLY run(), never execute().
         """
         self.before_execute(identity=identity, params=params)
 
