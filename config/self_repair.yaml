@@ -1,0 +1,23 @@
+# File: config/self_repair.yaml
+# Version: 4.5.0
+# Configuration for the Self‑Repair Layer
+
+self_repair:
+  enabled: true
+  auto_repair: true
+  auto_stabilize: true
+
+  scan_interval_seconds: 30
+  max_repair_attempts: 3
+
+  logging:
+    enabled: true
+    path: logs/self_repair.log
+
+  fallback:
+    enable_degraded_mode: true
+    disable_unstable_modules: true
+
+  integrity_map: config/integrity_map.json
+  baseline_root: baseline_runtime4
+  target_root: src/runtime4
