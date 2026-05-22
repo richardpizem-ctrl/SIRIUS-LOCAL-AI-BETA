@@ -1,5 +1,5 @@
-# Baseline version of ConfigValidator
-# This file is a clean, unmodified reference copy.
+# Runtime4 Configuration Validator
+# Baseline module
 # Version: 4.5.0
 
 class ConfigValidator:
