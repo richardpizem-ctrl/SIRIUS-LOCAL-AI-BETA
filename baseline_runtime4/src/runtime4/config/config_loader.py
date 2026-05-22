@@ -1,5 +1,5 @@
-# Baseline version of ConfigLoader
-# This file is a clean, unmodified reference copy.
+# Runtime4 Configuration Loader
+# Baseline module
 # Version: 4.5.0
 
 class ConfigLoader:
