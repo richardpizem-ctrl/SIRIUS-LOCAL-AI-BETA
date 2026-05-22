@@ -1,0 +1,10 @@
+{
+  "self_repair": {
+    "src/runtime4/self_repair/self_repair_engine.py": "sha256-placeholder",
+    "src/runtime4/self_repair/integrity_scanner.py": "sha256-placeholder",
+    "src/runtime4/self_repair/recovery_protocol.py": "sha256-placeholder",
+    "src/runtime4/self_repair/module_rebuilder.py": "sha256-placeholder",
+    "src/runtime4/self_repair/fallback_manager.py": "sha256-placeholder",
+    "src/runtime4/self_repair/repair_log.py": "sha256-placeholder"
+  }
+}
