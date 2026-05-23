@@ -1,8 +1,8 @@
 """
-SIRIUS LOCAL AI – UI Automation Engine 4.4.0 (PRO)
+SIRIUS LOCAL AI – UI Automation Engine 4.5.0 (PRO)
 
-This package contains the next‑generation UI Automation Engine for Runtime 4.4.
-It extends the 4.3.x UI Automation stack with:
+This package contains the next‑generation UI Automation Engine for Runtime 4.5.
+It extends the 4.4.x UI Automation stack with:
 
 - OS‑level UI bridge (Win32 / UIA / WinRT abstraction)
 - Semantic element resolution (fuzzy + structural matching)
@@ -12,21 +12,21 @@ It extends the 4.3.x UI Automation stack with:
 
 All logic is deterministic, offline, and fully isolated.
 
-Security Notes (UI Automation 4.4.0):
+Security Notes (UI Automation 4.5.0):
 - Only static imports are allowed.
 - No dynamic loading, no eval, no reflection.
 - __all__ must contain only verified public namespaces.
 - This file must not contain executable logic.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 - STRANGER‑mode and behavior‑based safety ready.
 """
 
 # -------------------------------------------------------------------------
-# PACKAGE METADATA (Runtime 4.4)
+# PACKAGE METADATA (Runtime 4.5)
 # -------------------------------------------------------------------------
 
-UI_AUTOMATION_VERSION_4_4: str = "4.4.0"
-UI_AUTOMATION_SECURITY_FAMILY: str = "4.4"
+UI_AUTOMATION_VERSION_4_5: str = "4.5.0"
+UI_AUTOMATION_SECURITY_FAMILY: str = "4.5"
 UI_AUTOMATION_OS_LEVEL: bool = True
 
 # -------------------------------------------------------------------------
@@ -34,12 +34,12 @@ UI_AUTOMATION_OS_LEVEL: bool = True
 # -------------------------------------------------------------------------
 
 __all__ = [
-    "ui_os_bridge_4_4",
-    "ui_element_resolver_4_4",
-    "ui_action_router_4_4",
-    "ui_sandbox_4_4",
-    "ui_workflow_4_4",
-    "UI_AUTOMATION_VERSION_4_4",
+    "ui_os_bridge_4_5",
+    "ui_element_resolver_4_5",
+    "ui_action_router_4_5",
+    "ui_sandbox_4_5",
+    "ui_workflow_4_5",
+    "UI_AUTOMATION_VERSION_4_5",
     "UI_AUTOMATION_SECURITY_FAMILY",
     "UI_AUTOMATION_OS_LEVEL",
 ]
