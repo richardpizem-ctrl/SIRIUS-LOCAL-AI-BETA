@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Scheduler 4.3 Router (PRO)
+SIRIUS LOCAL AI – Scheduler 4.5 Router (PRO)
 
 Responsible for:
 - routing tasks to correct modules
@@ -8,19 +8,19 @@ Responsible for:
 - integrating scheduler with sandbox manager
 - safe-mode and degraded-mode behavior
 
-Security Family 4.4 Compliance:
+Security Family 4.5 Compliance:
 - No eval, exec, reflection, dynamic imports
 - Strict input validation
 - Deterministic behavior
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Optional, Dict, Any
 
 
-class SchedulerRouter4:
+class SchedulerRouter45:
     """
-    Deterministic routing layer for Scheduler 4.3 (PRO).
+    Deterministic routing layer for Scheduler 4.5 (PRO).
     Provides:
     - strict validation
     - structured error surface
@@ -45,6 +45,7 @@ class SchedulerRouter4:
 
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ---------------------------------------------------------
     # ROUTING TABLE MANAGEMENT
@@ -57,25 +58,27 @@ class SchedulerRouter4:
             return {
                 "status": "safe_mode",
                 "message": "Route registration disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate task_name
         if not isinstance(task_name, str) or not task_name.strip():
-            return {"status": "error", "code": "invalid_task_name"}
+            return {"status": "error", "code": "invalid_task_name", "version": self.version}
 
         # Validate module_name
         if not isinstance(module_name, str) or not module_name.strip():
-            return {"status": "error", "code": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name", "version": self.version}
 
         # Validate module exists
         if self.module_loader.get_module(module_name) is None:
-            return {"status": "error", "code": "unknown_module"}
+            return {"status": "error", "code": "unknown_module", "version": self.version}
 
         try:
             self.routing_table[task_name] = module_name
             return {
                 "status": "route_registered",
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
         except Exception as exc:
             self.degraded_mode = True
@@ -83,6 +86,7 @@ class SchedulerRouter4:
                 "status": "error",
                 "code": "route_registration_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     def resolve_module(self, task_name: str) -> Optional[str]:
@@ -112,15 +116,16 @@ class SchedulerRouter4:
             return {
                 "status": "safe_mode",
                 "message": "Routing disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate task
         if not isinstance(task, str) or not task.strip():
-            return {"status": "error", "code": "invalid_task"}
+            return {"status": "error", "code": "invalid_task", "version": self.version}
 
         # Validate context
         if context is not None and not isinstance(context, dict):
-            return {"status": "error", "code": "invalid_context_type"}
+            return {"status": "error", "code": "invalid_context_type", "version": self.version}
 
         context = context or {}
 
@@ -131,26 +136,31 @@ class SchedulerRouter4:
                 "status": "error",
                 "code": "no_route_defined",
                 "task": task,
+                "version": self.version,
             }
 
         # Validate module exists
         if self.module_loader.get_module(module_name) is None:
-            return {"status": "error", "code": "unknown_module"}
+            return {"status": "error", "code": "unknown_module", "version": self.version}
 
         # Prepare execution context
         context["module"] = module_name
 
         try:
             # Execute inside sandbox
-            return self.sandbox_manager.execute(
+            result = self.sandbox_manager.execute(
                 module_name=module_name,
                 task=task,
                 context=context,
             )
+            if isinstance(result, dict) and "version" not in result:
+                result["version"] = self.version
+            return result
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "sandbox_execution_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
