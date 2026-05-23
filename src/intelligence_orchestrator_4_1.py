@@ -1,5 +1,5 @@
-# intelligence_orchestrator_4_4.py
-# SIRIUS LOCAL AI – Intelligence Orchestrator 4.4.0 PRO
+# intelligence_orchestrator_4_5.py
+# SIRIUS LOCAL AI – Intelligence Orchestrator 4.5.0 PRO
 # High-level, AI-aware orchestration layer (deterministic, safe-mode compatible, Phase‑5 ready)
 
 from __future__ import annotations
@@ -8,21 +8,21 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Any, Literal, Optional
 import time
 
-from system_health_engine_4_4 import SystemHealthEngine44, HealthIssue44, HealthReport44
-from driver_manager_engine_4_4 import DriverManagerEngine44, DriverIssue44, DriverReport44
-from task_manager_engine_4_4 import TaskManagerEngine44, TaskIssue44, TaskReport44
-from service_manager_engine_4_4 import ServiceManagerEngine44, ServiceIssue44, ServiceReport44
-from education_engine_4_4 import (
-    EducationEngine44,
-    EducationBundle44,
-    ExplanationBlock44,
+from system_health_engine_4_5 import SystemHealthEngine45, HealthIssue45, HealthReport45
+from driver_manager_engine_4_5 import DriverManagerEngine45, DriverIssue45, DriverReport45
+from task_manager_engine_4_5 import TaskManagerEngine45, TaskIssue45, TaskReport45
+from service_manager_engine_4_5 import ServiceManagerEngine45, ServiceIssue45, ServiceReport45
+from education_engine_4_5 import (
+    EducationEngine45,
+    EducationBundle45,
+    ExplanationBlock45,
     IdentityType,
 )
-from system_agent_4_4 import (
-    SystemAgent44,
-    AgentAction44,
-    AgentResult44,
-    ActionType44,
+from system_agent_4_5 import (
+    SystemAgent45,
+    AgentAction45,
+    AgentResult45,
+    ActionType45,
 )
 
 
@@ -30,11 +30,11 @@ Severity = Literal["info", "warning", "critical"]
 
 
 # ---------------------------------------------------------
-# DATA STRUCTURES (4.4.0 PRO)
+# DATA STRUCTURES (4.5.0 PRO)
 # ---------------------------------------------------------
 
 @dataclass
-class PrioritizedItem44:
+class PrioritizedItem45:
     id: str
     domain: str
     title: str
@@ -47,32 +47,32 @@ class PrioritizedItem44:
 
 
 @dataclass
-class OrchestrationPlan44:
+class OrchestrationPlan45:
     identity: IdentityType
     created_at: float
-    issues: List[PrioritizedItem44]
-    actions: List[AgentAction44]
+    issues: List[PrioritizedItem45]
+    actions: List[AgentAction45]
     dry_run: bool
     safe_mode: bool = False
     degraded_mode: bool = False
 
 
 # ---------------------------------------------------------
-# ORCHESTRATOR 4.4.0 PRO
+# ORCHESTRATOR 4.5.0 PRO
 # ---------------------------------------------------------
 
-class IntelligenceOrchestrator44:
+class IntelligenceOrchestrator45:
     """
-    Intelligence Orchestrator 4.4.0 PRO
+    Intelligence Orchestrator 4.5.0 PRO
     """
 
     def __init__(self, dry_run: bool = True) -> None:
-        self.health_engine = SystemHealthEngine44()
-        self.driver_engine = DriverManagerEngine44()
-        self.task_engine = TaskManagerEngine44()
-        self.service_engine = ServiceManagerEngine44()
-        self.education_engine = EducationEngine44()
-        self.agent = SystemAgent44(dry_run=dry_run)
+        self.health_engine = SystemHealthEngine45()
+        self.driver_engine = DriverManagerEngine45()
+        self.task_engine = TaskManagerEngine45()
+        self.service_engine = ServiceManagerEngine45()
+        self.education_engine = EducationEngine45()
+        self.agent = SystemAgent45(dry_run=dry_run)
 
         self.dry_run = dry_run
         self.safe_mode = False
@@ -85,10 +85,10 @@ class IntelligenceOrchestrator44:
     # PUBLIC API
     # ---------------------------------------------------------
 
-    def build_plan(self, identity: IdentityType = "OWNER") -> OrchestrationPlan44:
+    def build_plan(self, identity: IdentityType = "OWNER") -> OrchestrationPlan45:
 
         if self.safe_mode:
-            return OrchestrationPlan44(
+            return OrchestrationPlan45(
                 identity=identity,
                 created_at=time.time(),
                 issues=[],
@@ -131,7 +131,7 @@ class IntelligenceOrchestrator44:
                 issues,
             )
 
-            return OrchestrationPlan44(
+            return OrchestrationPlan45(
                 identity=identity,
                 created_at=time.time(),
                 issues=issues,
@@ -143,7 +143,7 @@ class IntelligenceOrchestrator44:
 
         except Exception:
             self.degraded_mode = True
-            return OrchestrationPlan44(
+            return OrchestrationPlan45(
                 identity=identity,
                 created_at=time.time(),
                 issues=[],
@@ -166,7 +166,7 @@ class IntelligenceOrchestrator44:
             explanation = block.body if block else issue.description
             score = self._compute_priority(issue.severity, "health", issue)
 
-            items.append(PrioritizedItem44(
+            items.append(PrioritizedItem45(
                 id=issue.id,
                 domain="health",
                 title=issue.title,
@@ -189,7 +189,7 @@ class IntelligenceOrchestrator44:
             explanation = block.body if block else issue.description
             score = self._compute_priority(issue.severity, "drivers", issue)
 
-            items.append(PrioritizedItem44(
+            items.append(PrioritizedItem45(
                 id=issue.id,
                 domain="drivers",
                 title=issue.title,
@@ -215,7 +215,7 @@ class IntelligenceOrchestrator44:
             explanation = block.body if block else issue.description
             score = self._compute_priority(issue.severity, "tasks", issue)
 
-            items.append(PrioritizedItem44(
+            items.append(PrioritizedItem45(
                 id=issue.id,
                 domain="tasks",
                 title=issue.title,
@@ -238,7 +238,7 @@ class IntelligenceOrchestrator44:
             explanation = block.body if block else issue.description
             score = self._compute_priority(issue.severity, "services", issue)
 
-            items.append(PrioritizedItem44(
+            items.append(PrioritizedItem45(
                 id=issue.id,
                 domain="services",
                 title=issue.title,
@@ -253,7 +253,7 @@ class IntelligenceOrchestrator44:
         return items
 
     # ---------------------------------------------------------
-    # PRIORITY MODEL 4.4
+    # PRIORITY MODEL 4.5
     # ---------------------------------------------------------
 
     def _compute_priority(self, severity, domain, issue):
@@ -279,7 +279,7 @@ class IntelligenceOrchestrator44:
         return base + domain_offset + impact_bonus + quick_win_bonus
 
     # ---------------------------------------------------------
-    # NORMALIZATION 4.4
+    # NORMALIZATION 4.5
     # ---------------------------------------------------------
 
     def _normalize_and_sort_issues(self, issues, identity):
@@ -297,7 +297,7 @@ class IntelligenceOrchestrator44:
             elif identity == "STRANGER" and item.domain != "health":
                 score *= 0.4
 
-            adjusted.append(PrioritizedItem44(
+            adjusted.append(PrioritizedItem45(
                 id=item.id,
                 domain=item.domain,
                 title=item.title,
@@ -313,7 +313,7 @@ class IntelligenceOrchestrator44:
         return adjusted
 
     # ---------------------------------------------------------
-    # ACTION MAPPING (4.4 PRO)
+    # ACTION MAPPING (4.5 PRO)
     # ---------------------------------------------------------
 
     def _build_agent_actions(self, identity, health_report, driver_report, task_report, service_report, issues):
@@ -321,7 +321,7 @@ class IntelligenceOrchestrator44:
 
         for issue in driver_report.issues:
             if issue.severity in ("warning", "critical"):
-                actions.append(AgentAction44(
+                actions.append(AgentAction45(
                     id=f"install_driver_{issue.id}",
                     type="INSTALL_DRIVER",
                     label="Install missing or updated driver",
@@ -335,7 +335,7 @@ class IntelligenceOrchestrator44:
 
         for issue in task_report.issues:
             if getattr(issue, "id", "") == "explorer_restart_suggestion":
-                actions.append(AgentAction44(
+                actions.append(AgentAction45(
                     id="restart_explorer",
                     type="RESTART_EXPLORER",
                     label="Restart Windows Explorer",
@@ -346,7 +346,7 @@ class IntelligenceOrchestrator44:
 
             if getattr(issue, "id", "") in ("high_cpu_processes", "high_ram_processes"):
                 for pid in getattr(issue, "related_pids", []):
-                    actions.append(AgentAction44(
+                    actions.append(AgentAction45(
                         id=f"kill_process_{pid}",
                         type="KILL_PROCESS",
                         label=f"Terminate process {pid}",
@@ -357,7 +357,7 @@ class IntelligenceOrchestrator44:
 
         for issue in service_report.issues:
             for svc in getattr(issue, "related_services", []):
-                actions.append(AgentAction44(
+                actions.append(AgentAction45(
                     id=f"restart_service_{svc}",
                     type="RESTART_SERVICE",
                     label=f"Restart service {svc}",
@@ -368,7 +368,7 @@ class IntelligenceOrchestrator44:
 
         for issue in health_report.issues:
             if getattr(issue, "id", "") == "disk_cleanup_recommended":
-                actions.append(AgentAction44(
+                actions.append(AgentAction45(
                     id="run_disk_cleanup",
                     type="RUN_DISK_CLEANUP",
                     label="Run disk cleanup",
