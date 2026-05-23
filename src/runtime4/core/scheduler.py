@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.4 Scheduler
+SIRIUS LOCAL AI – Runtime 4.5 Scheduler
 
 Responsible for:
 - task queue management
@@ -9,9 +9,9 @@ Responsible for:
 - deterministic execution
 - structured telemetry
 - degraded‑mode detection
-- Self‑Repair 4.4 compatibility
+- Self‑Repair 4.5 compatibility
 
-This is the execution engine of Runtime 4.4.
+This is the execution engine of Runtime 4.5.
 """
 
 from typing import Optional, Any, Dict, List
@@ -19,7 +19,7 @@ from typing import Optional, Any, Dict, List
 
 class Scheduler4:
     """
-    Task scheduler for Runtime 4.4.
+    Task scheduler for Runtime 4.5.
     Handles task dispatching, prioritization, and execution flow
     with deterministic, structured behavior.
     """
@@ -70,16 +70,16 @@ class Scheduler4:
         """
 
         if not self._validate_task(task):
-            return {"status": "error", "code": "invalid_task"}
+            return {"status": "error", "code": "invalid_task", "scheduler_version": "4.5"}
 
         if not self._validate_context(context):
-            return {"status": "error", "code": "invalid_context"}
+            return {"status": "error", "code": "invalid_context", "scheduler_version": "4.5"}
 
         if not self._validate_priority(priority):
-            return {"status": "error", "code": "invalid_priority"}
+            return {"status": "error", "code": "invalid_priority", "scheduler_version": "4.5"}
 
         if len(self.task_queue) >= self.max_queue_size:
-            return {"status": "error", "code": "queue_overflow"}
+            return {"status": "error", "code": "queue_overflow", "scheduler_version": "4.5"}
 
         entry = {
             "task": task,
@@ -94,6 +94,7 @@ class Scheduler4:
             "size": len(self.task_queue),
             "task": task,
             "priority": priority,
+            "scheduler_version": "4.5",
         }
 
     def get_next_task(self) -> Optional[Dict[str, Any]]:
@@ -109,21 +110,21 @@ class Scheduler4:
             self.task_queue.sort(key=lambda t: t["priority"])
         except Exception:
             self.degraded_mode = True
-            return {"status": "error", "code": "invalid_queue_structure"}
+            return {"status": "error", "code": "invalid_queue_structure", "scheduler_version": "4.5"}
 
         entry = self.task_queue.pop(0)
 
         if not isinstance(entry, dict):
             self.degraded_mode = True
-            return {"status": "error", "code": "invalid_queue_entry"}
+            return {"status": "error", "code": "invalid_queue_entry", "scheduler_version": "4.5"}
 
         if not self._validate_task(entry.get("task")):
             self.degraded_mode = True
-            return {"status": "error", "code": "invalid_task_in_queue"}
+            return {"status": "error", "code": "invalid_task_in_queue", "scheduler_version": "4.5"}
 
         if not self._validate_context(entry.get("context")):
             self.degraded_mode = True
-            return {"status": "error", "code": "invalid_context_in_queue"}
+            return {"status": "error", "code": "invalid_context_in_queue", "scheduler_version": "4.5"}
 
         return entry
 
@@ -133,11 +134,11 @@ class Scheduler4:
 
     def start(self) -> Dict[str, Any]:
         self.running = True
-        return {"status": "success", "message": "scheduler_started"}
+        return {"status": "success", "message": "scheduler_started", "scheduler_version": "4.5"}
 
     def stop(self) -> Dict[str, Any]:
         self.running = False
-        return {"status": "success", "message": "scheduler_stopped"}
+        return {"status": "success", "message": "scheduler_stopped", "scheduler_version": "4.5"}
 
     def tick(self) -> Optional[Dict[str, Any]]:
         """
@@ -146,13 +147,14 @@ class Scheduler4:
         """
 
         if not self.running:
-            return {"status": "error", "code": "scheduler_not_running"}
+            return {"status": "error", "code": "scheduler_not_running", "scheduler_version": "4.5"}
 
         task = self.get_next_task()
         if not task:
             return None
 
         if isinstance(task, dict) and task.get("status") == "error":
+            task["scheduler_version"] = "4.5"
             return task
 
         # SAFE MODE
@@ -161,6 +163,7 @@ class Scheduler4:
                 "status": "blocked",
                 "code": "blocked_by_safe_mode",
                 "task": task["task"],
+                "scheduler_version": "4.5",
             }
 
         # SCHOOLWORK PRIORITY BOOST
@@ -174,4 +177,5 @@ class Scheduler4:
             "task": task["task"],
             "context": task["context"],
             "priority": task["priority"],
+            "scheduler_version": "4.5",
         }
