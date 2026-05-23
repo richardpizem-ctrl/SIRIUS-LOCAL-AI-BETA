@@ -1,8 +1,8 @@
 """
-SIRIUS LOCAL AI – Stranger Mode 4.4.0 (PRO)
+SIRIUS LOCAL AI – Stranger Mode 4.5.0 (PRO)
 
-StrangerMode 4.4 is the restricted‑identity security layer inside
-Security Family 4.4. It activates when:
+StrangerMode 4.5 is the restricted‑identity security layer inside
+Security Family 4.5. It activates when:
 
 - Behavior does not match OWNER or FAMILY identity
 - Risk score exceeds safe thresholds
@@ -13,26 +13,28 @@ StrangerMode enforces:
 - Blocked access to sensitive operations
 - Reduced permissions for automation
 - Deterministic isolation rules
-- Integration with Behavior Monitor 4.4 and Security Policy Core 4.4
+- Integration with Behavior Monitor 4.5 and Security Policy Core 4.5
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No content logging, no personal data stored.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any
 
 
-class StrangerMode44:
+class StrangerMode45:
     """
-    Restricted identity mode for Runtime 4.4 (PRO).
+    Restricted identity mode for Runtime 4.5 (PRO).
     Enforces strict limitations on actions and capabilities.
     """
 
-    VALID_ACTION_TYPES = {"click", "focus", "scroll", "set_text", "invoke",
-                          "select", "expand", "collapse", "double_click", "right_click"}
+    VALID_ACTION_TYPES = {
+        "click", "focus", "scroll", "set_text", "invoke",
+        "select", "expand", "collapse", "double_click", "right_click"
+    }
 
     # Allowed actions for STRANGER identity (very limited)
     ALLOWED_ACTIONS = {
@@ -58,23 +60,25 @@ class StrangerMode44:
         self.reason = None
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "init_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -87,14 +91,15 @@ class StrangerMode44:
             return {
                 "status": "safe_mode",
                 "message": "StrangerMode activation disabled in safe-mode.",
+                "version": self.version,
             }
 
         if not isinstance(reason, str) or not reason.strip():
-            return {"status": "error", "code": "invalid_reason"}
+            return {"status": "error", "code": "invalid_reason", "version": self.version}
 
         self.active = True
         self.reason = reason
-        return {"status": "activated", "reason": reason}
+        return {"status": "activated", "reason": reason, "version": self.version}
 
     # ------------------------------------------------------------------
     # DEACTIVATE STRANGER MODE
@@ -102,7 +107,7 @@ class StrangerMode44:
     def deactivate(self) -> Dict[str, Any]:
         self.active = False
         self.reason = None
-        return {"status": "deactivated"}
+        return {"status": "deactivated", "version": self.version}
 
     # ------------------------------------------------------------------
     # CHECK ACTION PERMISSION
@@ -114,10 +119,11 @@ class StrangerMode44:
             return {
                 "status": "safe_mode",
                 "message": "Action validation disabled in safe-mode.",
+                "version": self.version,
             }
 
         if not isinstance(action, str) or not action.strip():
-            return {"status": "error", "code": "invalid_action"}
+            return {"status": "error", "code": "invalid_action", "version": self.version}
 
         if action not in self.VALID_ACTION_TYPES:
             return {
@@ -125,10 +131,11 @@ class StrangerMode44:
                 "mode": "STRANGER",
                 "reason": "unknown_action",
                 "action": action,
+                "version": self.version,
             }
 
         if not self.active:
-            return {"status": "allowed", "mode": "inactive"}
+            return {"status": "allowed", "mode": "inactive", "version": self.version}
 
         # Blocked actions
         if action in self.BLOCKED_ACTIONS:
@@ -137,11 +144,12 @@ class StrangerMode44:
                 "mode": "STRANGER",
                 "reason": "action_forbidden_in_stranger_mode",
                 "action": action,
+                "version": self.version,
             }
 
         # Allowed actions
         if action in self.ALLOWED_ACTIONS:
-            return {"status": "allowed", "mode": "STRANGER"}
+            return {"status": "allowed", "mode": "STRANGER", "version": self.version}
 
         # Default block
         return {
@@ -149,6 +157,7 @@ class StrangerMode44:
             "mode": "STRANGER",
             "reason": "unknown_action",
             "action": action,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------------
@@ -161,4 +170,5 @@ class StrangerMode44:
             "reason": self.reason,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
