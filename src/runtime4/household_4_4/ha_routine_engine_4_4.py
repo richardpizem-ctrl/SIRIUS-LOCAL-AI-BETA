@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Household Routine Engine 4.4.0
+SIRIUS LOCAL AI – Household Routine Engine 4.5.0
 
 Účel:
 - deterministické IF–THEN rutiny pre domácnosť
@@ -30,18 +30,18 @@ Event‑based:
     ]
 }
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HouseholdRoutineEngine44:
+class HouseholdRoutineEngine45:
     """
-    Deterministic routine engine pre domácnosť.
+    Deterministic routine engine pre domácnosť 4.5.
     """
 
     def __init__(self, state_manager=None, device_registry=None, event_bus=None):
@@ -108,7 +108,7 @@ class HouseholdRoutineEngine44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.state_manager, self.device_registry, self.event_bus]
@@ -117,63 +117,76 @@ class HouseholdRoutineEngine44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "degraded_mode": self.degraded_mode, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # REGISTER ROUTINE
     # ---------------------------------------------------------
     def register_routine(self, routine: Dict[str, Any]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Routine engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Routine engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         check = self._validate_routine(routine)
         if not check["valid"]:
-            return {"status": "error", "code": check["code"]}
+            return {"status": "error", "code": check["code"], "version": "4.5"}
 
         name = routine["name"]
         for r in self.routines:
             if r.get("name") == name:
-                return {"status": "error", "code": "routine_exists"}
+                return {"status": "error", "code": "routine_exists", "version": "4.5"}
 
         try:
             self.routines.append(routine)
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "routine_register_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "routine_register_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST ROUTINES
     # ---------------------------------------------------------
     def list_routines(self) -> Dict[str, Any]:
-        return {"status": "ok", "routines": list(self.routines)}
+        return {"status": "ok", "routines": list(self.routines), "version": "4.5"}
 
     # ---------------------------------------------------------
     # RUN ROUTINE BY NAME
     # ---------------------------------------------------------
     def run_routine(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         for r in self.routines:
             if r.get("name") == name:
                 return self._execute_routine(r)
 
-        return {"status": "error", "code": "routine_not_found"}
+        return {"status": "error", "code": "routine_not_found", "version": "4.5"}
 
     # ---------------------------------------------------------
     # EXECUTE ROUTINE
     # ---------------------------------------------------------
     def _execute_routine(self, routine: Dict[str, Any]) -> Dict[str, Any]:
         if not self.state_manager:
-            return {"status": "error", "code": "no_state_manager"}
+            return {"status": "error", "code": "no_state_manager", "version": "4.5"}
 
         results: List[Dict[str, Any]] = []
 
@@ -208,18 +221,23 @@ class HouseholdRoutineEngine44:
                     "results": results,
                 })
 
-            return {"status": "ok", "results": results}
+            return {"status": "ok", "results": results, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "routine_execute_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "routine_execute_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # EVENT HANDLING (event‑based routines)
     # ---------------------------------------------------------
     def handle_event(self, event_name: str, payload: Dict[str, Any]) -> Dict[str, Any]:
         if not self._validate_str(event_name):
-            return {"status": "error", "code": "invalid_event_name"}
+            return {"status": "error", "code": "invalid_event_name", "version": "4.5"}
 
         matched: List[str] = []
 
@@ -237,11 +255,16 @@ class HouseholdRoutineEngine44:
                 self._execute_routine(r)
                 matched.append(r.get("name"))
 
-            return {"status": "ok", "matched_routines": matched}
+            return {"status": "ok", "matched_routines": matched, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "event_handler_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "event_handler_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     def _conditions_match(self, conditions: Dict[str, Any], payload: Dict[str, Any]) -> bool:
         for key, expected in conditions.items():
@@ -259,4 +282,5 @@ class HouseholdRoutineEngine44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "routines_count": len(self.routines),
+            "version": "4.5",
         }
