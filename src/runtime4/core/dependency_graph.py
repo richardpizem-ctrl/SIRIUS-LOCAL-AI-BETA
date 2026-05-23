@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.4 Scheduler Manager
+SIRIUS LOCAL AI – Runtime 4.5 Scheduler Manager
 
 Responsible for:
 - executing modules in dependency‑safe order
@@ -7,8 +7,8 @@ Responsible for:
 - integrating with SandboxManager4
 - enforcing safe‑mode and degraded‑mode rules
 - providing deterministic scheduling
-- exposing telemetry for RuntimeEngine 4.4
-- supporting Self‑Repair Layer 4.4 diagnostics
+- exposing telemetry for RuntimeEngine 4.5
+- supporting Self‑Repair Layer 4.5 diagnostics
 """
 
 from typing import Dict, Any
@@ -16,7 +16,7 @@ from typing import Dict, Any
 
 class SchedulerManager4:
     """
-    Deterministic scheduler for Runtime 4.4.
+    Deterministic scheduler for Runtime 4.5.
     - Stable structured return values
     - Safe‑mode aware
     - Degraded‑mode propagation
