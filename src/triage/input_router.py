@@ -1,13 +1,13 @@
-# input_router_4_4.py
-# SIRIUS LOCAL AI – InputRouter 4.4.0 PRO
+# input_router_4_5.py
+# SIRIUS LOCAL AI – InputRouter 4.5.0 PRO
 # Deterministic, offline-only routing engine with Phase‑5 security hooks.
 
 from typing import Dict
 
 
-class InputRouter44:
+class InputRouter45:
     """
-    InputRouter 4.4.0 PRO
+    InputRouter 4.5.0 PRO
 
     Responsibilities:
         - Deterministic mapping of input types to storage directories
@@ -19,7 +19,7 @@ class InputRouter44:
         - Offline-only behavior
 
     Used by:
-        AITEController44.process()
+        AITEController45.process()
     """
 
     def __init__(self):
