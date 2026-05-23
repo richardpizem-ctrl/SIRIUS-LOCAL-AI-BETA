@@ -1,5 +1,5 @@
-# ai_loop_4_4.py
-# SIRIUS LOCAL AI – Autonomous Runtime Loop 4.4.0 PRO
+# ai_loop_4_5.py
+# SIRIUS LOCAL AI – Autonomous Runtime Loop 4.5.0 PRO
 # Deterministic, safe-mode compatible, sandboxed AI loop (Phase‑5 ready)
 
 from __future__ import annotations
@@ -9,16 +9,16 @@ import threading
 import psutil
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from runtime.runtime_manager_4_4 import RuntimeManager44
+from runtime.runtime_manager_4_5 import RuntimeManager45
 
 
 # ============================================================
-# FILESYSTEM HANDLER (4.4.0 PRO)
+# FILESYSTEM HANDLER (4.5.0 PRO)
 # ============================================================
-class FSHandler44(FileSystemEventHandler):
-    """Filesystem event handler used by the AI Loop 4.4."""
+class FSHandler45(FileSystemEventHandler):
+    """Filesystem event handler used by the AI Loop 4.5."""
 
-    def __init__(self, loop: "SiriusAILoop44"):
+    def __init__(self, loop: "SiriusAILoop45"):
         self.loop = loop
 
     def on_created(self, event):
@@ -35,23 +35,23 @@ class FSHandler44(FileSystemEventHandler):
 
 
 # ============================================================
-# SIRIUS AI LOOP (4.4.0 PRO)
+# SIRIUS AI LOOP (4.5.0 PRO)
 # ============================================================
-class SiriusAILoop44:
+class SiriusAILoop45:
     """
-    SIRIUS LOCAL AI — Autonomous Runtime Loop (4.4.0 PRO)
+    SIRIUS LOCAL AI — Autonomous Runtime Loop (4.5.0 PRO)
 
     Responsibilities:
         - Filesystem monitoring (sandboxed)
         - System monitoring (safe, deterministic)
         - Rule-based autonomous actions (AI-aware)
-        - RuntimeManager44 task dispatch
+        - RuntimeManager45 task dispatch
         - Safe-mode + degraded-mode support
-        - Phase‑5 / Self‑Repair 4.4 ready
+        - Phase‑5 / Self‑Repair 4.5 ready
     """
 
     def __init__(self):
-        self.rm = RuntimeManager44()
+        self.rm = RuntimeManager45()
         self.rm.initialize()
 
         self.observer = Observer()
@@ -61,10 +61,10 @@ class SiriusAILoop44:
         self.degraded_mode = False
         self._running = True
 
-        self.rm.logger.info("AI Loop initialized (v4.4.0 PRO)")
+        self.rm.logger.info("AI Loop initialized (v4.5.0 PRO)")
 
     # --------------------------------------------------------
-    # RULES (4.4.0 PRO)
+    # RULES (4.5.0 PRO)
     # --------------------------------------------------------
     def _load_rules(self):
         """
@@ -92,7 +92,7 @@ class SiriusAILoop44:
         }
 
     # --------------------------------------------------------
-    # FILESYSTEM EVENTS (4.4.0 PRO)
+    # FILESYSTEM EVENTS (4.5.0 PRO)
     # --------------------------------------------------------
     def handle_fs_event(self, event_type: str, path: str) -> None:
         if self.safe_mode:
@@ -113,7 +113,7 @@ class SiriusAILoop44:
             self.rm.logger.error(f"FS event error: {e}")
 
     # --------------------------------------------------------
-    # SYSTEM MONITORING (4.4.0 PRO)
+    # SYSTEM MONITORING (4.5.0 PRO)
     # --------------------------------------------------------
     def monitor_system(self) -> None:
         self.rm.logger.info("System monitor started")
@@ -144,7 +144,7 @@ class SiriusAILoop44:
                 time.sleep(2)
 
     # --------------------------------------------------------
-    # FILESYSTEM MONITORING (4.4.0 PRO)
+    # FILESYSTEM MONITORING (4.5.0 PRO)
     # --------------------------------------------------------
     def monitor_fs(self) -> None:
         self.rm.logger.info("Filesystem monitor started")
@@ -153,7 +153,7 @@ class SiriusAILoop44:
             return
 
         try:
-            handler = FSHandler44(self)
+            handler = FSHandler45(self)
             self.observer.schedule(handler, ".", recursive=True)
             self.observer.start()
 
@@ -162,10 +162,10 @@ class SiriusAILoop44:
             self.rm.logger.error(f"FS monitor error: {e}")
 
     # --------------------------------------------------------
-    # MAIN LOOP (4.4.0 PRO)
+    # MAIN LOOP (4.5.0 PRO)
     # --------------------------------------------------------
     def run(self) -> None:
-        header = "🤖 SIRIUS AI LOOP — ENTERPRISE MODE (v4.4.0 PRO)"
+        header = "🤖 SIRIUS AI LOOP — ENTERPRISE MODE (v4.5.0 PRO)"
         if self.safe_mode:
             header += " [SAFE MODE]"
         elif self.degraded_mode:
@@ -191,7 +191,7 @@ class SiriusAILoop44:
             self.shutdown()
 
     # --------------------------------------------------------
-    # CLEAN SHUTDOWN (4.4.0 PRO)
+    # CLEAN SHUTDOWN (4.5.0 PRO)
     # --------------------------------------------------------
     def shutdown(self) -> None:
         self.rm.logger.info("Shutting down AI Loop...")
@@ -220,5 +220,5 @@ class SiriusAILoop44:
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    loop = SiriusAILoop44()
+    loop = SiriusAILoop45()
     loop.run()
