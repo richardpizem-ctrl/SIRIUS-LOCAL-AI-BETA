@@ -1,8 +1,8 @@
 """
-SIRIUS LOCAL AI – Security Audit Layer 4.4.0 (PRO)
+SIRIUS LOCAL AI – Security Audit Layer 4.5.0 (PRO)
 
-Security Audit 4.4 provides deterministic, offline‑safe auditing for the
-entire Security Family 4.4 subsystem.
+Security Audit 4.5 provides deterministic, offline‑safe auditing for the
+entire Security Family 4.5 subsystem.
 
 It performs:
 - High‑level event logging (safe subset)
@@ -10,7 +10,7 @@ It performs:
 - Module health tracking
 - Integrity snapshots
 - Export‑safe audit summaries (no sensitive data)
-- Integration with Self‑Repair 4.4 and Policy Router 4.4
+- Integration with Self‑Repair 4.5 and Policy Router 4.5
 
 Security Notes:
 - No personal data stored.
@@ -22,15 +22,16 @@ Security Notes:
 from typing import Dict, Any, List
 
 
-class SecurityAudit44:
+class SecurityAudit45:
     """
-    Deterministic audit logger for Runtime 4.4 (PRO).
+    Deterministic audit logger for Runtime 4.5 (PRO).
     """
 
     def __init__(self):
         self.initialized = False
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
         # Safe audit log (high‑level only)
         self.log: List[Dict[str, Any]] = []
@@ -40,17 +41,18 @@ class SecurityAudit44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "init_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -71,19 +73,20 @@ class SecurityAudit44:
             return {
                 "status": "safe_mode",
                 "message": "Audit logging disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate identity
         if not isinstance(identity, str) or not identity.strip():
-            return {"status": "error", "code": "invalid_identity"}
+            return {"status": "error", "code": "invalid_identity", "version": self.version}
 
         # Validate action
         if not isinstance(action, str) or not action.strip():
-            return {"status": "error", "code": "invalid_action"}
+            return {"status": "error", "code": "invalid_action", "version": self.version}
 
         # Validate decision
         if not isinstance(decision, dict):
-            return {"status": "error", "code": "invalid_decision"}
+            return {"status": "error", "code": "invalid_decision", "version": self.version}
 
         try:
             entry = {
@@ -94,7 +97,7 @@ class SecurityAudit44:
             }
 
             self.log.append(entry)
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -102,6 +105,7 @@ class SecurityAudit44:
                 "status": "error",
                 "code": "audit_write_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -114,6 +118,7 @@ class SecurityAudit44:
             "status": "ok",
             "events": list(self.log),
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------------
@@ -122,13 +127,14 @@ class SecurityAudit44:
     def clear_log(self) -> Dict[str, Any]:
         try:
             self.log.clear()
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "audit_clear_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -142,4 +148,5 @@ class SecurityAudit44:
             "event_count": len(self.log),
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
