@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Household Safety Guard 4.4.0
+SIRIUS LOCAL AI – Household Safety Guard 4.5.0
 
 Účel:
 - bezpečnostná vrstva pre domáce príkazy
@@ -14,18 +14,18 @@ Pravidlá:
 - FAMILY → povolené všetko okrem kritických akcií (napr. reset, mazanie)
 - OWNER → plný prístup
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any
 
 
-class HouseholdSafetyGuard44:
+class HouseholdSafetyGuard45:
     """
-    Deterministic safety guard pre domácnosť.
+    Deterministic safety guard pre domácnosť 4.5.
     """
 
     def __init__(self):
@@ -48,14 +48,14 @@ class HouseholdSafetyGuard44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # MAIN CHECK
@@ -70,14 +70,15 @@ class HouseholdSafetyGuard44:
                 "status": "safe_mode",
                 "message": "Safety guard disabled in safe-mode.",
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         # VALIDATION
         if not self._validate_str(command):
-            return {"status": "error", "code": "invalid_command"}
+            return {"status": "error", "code": "invalid_command", "version": "4.5"}
 
         if not self._validate_str(identity):
-            return {"status": "error", "code": "invalid_identity"}
+            return {"status": "error", "code": "invalid_identity", "version": "4.5"}
 
         identity = identity.upper().strip()
         cmd_lower = command.lower()
@@ -88,6 +89,7 @@ class HouseholdSafetyGuard44:
                 "status": "blocked",
                 "code": "identity_restricted",
                 "identity": identity,
+                "version": "4.5",
             }
 
         # CHILD → kontrola rizikových slov
@@ -98,6 +100,7 @@ class HouseholdSafetyGuard44:
                         "status": "blocked",
                         "code": "child_forbidden_action",
                         "word": word,
+                        "version": "4.5",
                     }
 
         # FAMILY → blokuje kritické akcie
@@ -108,17 +111,19 @@ class HouseholdSafetyGuard44:
                         "status": "blocked",
                         "code": "family_forbidden_action",
                         "word": word,
+                        "version": "4.5",
                     }
 
         # OWNER → všetko povolené
         if identity == "OWNER":
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         # Neznáma identita
         return {
             "status": "blocked",
             "code": "unknown_identity",
             "identity": identity,
+            "version": "4.5",
         }
 
     # ---------------------------------------------------------
@@ -132,4 +137,5 @@ class HouseholdSafetyGuard44:
             "degraded_mode": self.degraded_mode,
             "child_forbidden_count": len(self.forbidden_for_child),
             "family_forbidden_count": len(self.forbidden_for_family),
+            "version": "4.5",
         }
