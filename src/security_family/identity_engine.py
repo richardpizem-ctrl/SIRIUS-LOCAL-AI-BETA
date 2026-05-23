@@ -1,5 +1,5 @@
 """
-Security Family – Identity Engine 4.4.0 (PRO)
+Security Family – Identity Engine 4.5.0 (PRO)
 --------------------------------------------
 Learns and recognizes OWNER and FAMILY behavior profiles.
 
@@ -11,7 +11,7 @@ Behavior Vector 3.1 – Dimensions (normalized 0–1):
 - time_of_day
 - error_rate
 
-Features (4.4.0):
+Features (4.5.0):
 - Behavior Vector 3.1 normalization
 - weighted cosine similarity
 - adaptive learning (EMA, deterministic)
@@ -20,7 +20,7 @@ Features (4.4.0):
 - anomaly detection (similarity + behavior shift)
 - stranger detection with penalties
 - safe-mode and degraded-mode support
-- Security Family 4.4 compliant
+- Security Family 4.5 compliant
 - no dynamic imports, no eval, no reflection
 """
 
@@ -28,7 +28,7 @@ import math
 from statistics import mean
 
 
-class IdentityEngine44:
+class IdentityEngine45:
     def __init__(self, profile_store):
         self.profile_store = profile_store
 
