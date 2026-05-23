@@ -5,21 +5,20 @@ from commands.base_command import BaseCommand
 
 class SystemInfoCommand(BaseCommand):
     """
-    SystemInfoCommand 4.4
+    SystemInfoCommand 4.5
     Returns basic information about the system, platform, and environment.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic output for Runtime4.4
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Safe execution via BaseCommand.run()
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic output (unchanged)
         - Stable structure for CLI, NL Router, GUI, Workflow Engine
+        - Unified audit model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "system-info"
     description = "Displays information about the system, platform, and environment."
@@ -33,12 +32,12 @@ class SystemInfoCommand(BaseCommand):
     examples = ["system-info", "show system info"]
 
     # ---------------------------------------------------------
-    # EXECUTION (v4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
         Returns an overview of basic system information.
-        Output is structured for Workflow Engine 4.4.
+        Output is structured for Workflow Engine 4.5.
         Deterministic ordering guaranteed.
         """
 
