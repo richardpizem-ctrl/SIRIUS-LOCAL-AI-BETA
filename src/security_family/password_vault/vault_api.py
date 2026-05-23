@@ -1,8 +1,8 @@
 """
-SIRIUS LOCAL AI – PasswordVault API 4.4.0 (PRO)
+SIRIUS LOCAL AI – PasswordVault API 4.5.0 (PRO)
 -----------------------------------------------
-High‑level API for Password Vault 4.4.0.
-Used by Security Family 4.4 modules.
+High‑level API for Password Vault 4.5.0.
+Used by Security Family 4.5 modules.
 
 Features:
 - deterministic, offline‑only behavior
@@ -10,24 +10,24 @@ Features:
 - structured return values
 - identity‑aware access (OWNER / FAMILY / STRANGER / CHILD)
 - no dynamic imports, no eval, no reflection
-- Security Family 4.4 compliant
+- Security Family 4.5 compliant
 """
 
 from pathlib import Path
 from typing import Optional, Dict, Any
 
-from .vault_core_4_4 import PasswordVault44
+from .vault_core_4_5 import PasswordVault45
 
 
 # ---------------------------------------------------------
 # DEFAULT STORAGE PATH (DETERMINISTIC)
 # ---------------------------------------------------------
 
-_DEFAULT_VAULT_PATH = str(Path.home() / ".sirius_local_ai" / "password_vault_4_4.json")
-_vault_instance: Optional[PasswordVault44] = None
+_DEFAULT_VAULT_PATH = str(Path.home() / ".sirius_local_ai" / "password_vault_4_5.json")
+_vault_instance: Optional[PasswordVault45] = None
 
 # Runtime flags
-SAFE_MODE: bool = False
+SAFE_MODE: bool = True
 DEGRADED_MODE: bool = False
 
 
@@ -35,16 +35,16 @@ DEGRADED_MODE: bool = False
 # INTERNAL VAULT ACCESSOR (SAFE, DETERMINISTIC)
 # ---------------------------------------------------------
 
-def _get_vault() -> PasswordVault44:
+def _get_vault() -> PasswordVault45:
     global _vault_instance, DEGRADED_MODE
 
     if SAFE_MODE:
-        raise RuntimeError("PasswordVault44 is in safe‑mode.")
+        raise RuntimeError("PasswordVault45 is in safe‑mode.")
 
     try:
         if _vault_instance is None:
             Path(_DEFAULT_VAULT_PATH).parent.mkdir(parents=True, exist_ok=True)
-            _vault_instance = PasswordVault44(storage_path=_DEFAULT_VAULT_PATH)
+            _vault_instance = PasswordVault45(storage_path=_DEFAULT_VAULT_PATH)
         return _vault_instance
 
     except Exception:
@@ -53,10 +53,10 @@ def _get_vault() -> PasswordVault44:
 
 
 # ---------------------------------------------------------
-# HIGH‑LEVEL API (STRUCTURED, SAFE, 4.4 PRO)
+# HIGH‑LEVEL API (STRUCTURED, SAFE, 4.5 PRO)
 # ---------------------------------------------------------
 
-def save_password_44(
+def save_password_45(
     domain: str,
     username: str,
     password: str,
@@ -66,15 +66,6 @@ def save_password_44(
     """
     Saves a password entry.
     Identity‑aware, deterministic, offline‑safe.
-
-    Returns:
-    {
-        "status": "ok" | "safe_mode" | "error",
-        "domain": str,
-        "username": str,
-        "identity": str,
-        "degraded_mode": bool
-    }
     """
 
     if SAFE_MODE:
@@ -84,6 +75,7 @@ def save_password_44(
             "username": username,
             "identity": identity,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     try:
@@ -102,6 +94,7 @@ def save_password_44(
             "identity": identity,
             "result": result,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     except Exception as exc:
@@ -114,24 +107,17 @@ def save_password_44(
             "identity": identity,
             "exception": str(exc),
             "degraded_mode": True,
+            "version": "4.5.0",
         }
 
 
-def retrieve_password_44(
+def retrieve_password_45(
     domain: str,
     username: Optional[str] = None,
     identity: str = "OWNER",
 ) -> Dict[str, Any]:
     """
     Retrieves a password entry.
-
-    Returns:
-    {
-        "status": "ok" | "not_found" | "safe_mode" | "error",
-        "entry": dict | None,
-        "identity": str,
-        "degraded_mode": bool
-    }
     """
 
     if SAFE_MODE:
@@ -140,6 +126,7 @@ def retrieve_password_44(
             "entry": None,
             "identity": identity,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     try:
@@ -152,6 +139,7 @@ def retrieve_password_44(
                 "entry": None,
                 "identity": identity,
                 "degraded_mode": DEGRADED_MODE,
+                "version": "4.5.0",
             }
 
         return {
@@ -159,6 +147,7 @@ def retrieve_password_44(
             "entry": entry,
             "identity": identity,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     except Exception as exc:
@@ -170,20 +159,13 @@ def retrieve_password_44(
             "identity": identity,
             "exception": str(exc),
             "degraded_mode": True,
+            "version": "4.5.0",
         }
 
 
-def list_entries_44(identity: str = "OWNER") -> Dict[str, Any]:
+def list_entries_45(identity: str = "OWNER") -> Dict[str, Any]:
     """
     Lists all stored entries.
-
-    Returns:
-    {
-        "status": "ok" | "safe_mode" | "error",
-        "entries": list,
-        "identity": str,
-        "degraded_mode": bool
-    }
     """
 
     if SAFE_MODE:
@@ -192,6 +174,7 @@ def list_entries_44(identity: str = "OWNER") -> Dict[str, Any]:
             "entries": [],
             "identity": identity,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     try:
@@ -202,6 +185,7 @@ def list_entries_44(identity: str = "OWNER") -> Dict[str, Any]:
             "entries": entries,
             "identity": identity,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     except Exception as exc:
@@ -213,23 +197,17 @@ def list_entries_44(identity: str = "OWNER") -> Dict[str, Any]:
             "identity": identity,
             "exception": str(exc),
             "degraded_mode": True,
+            "version": "4.5.0",
         }
 
 
-def delete_entry_44(
+def delete_entry_45(
     domain: str,
     username: Optional[str] = None,
     identity: str = "OWNER",
 ) -> Dict[str, Any]:
     """
     Deletes a password entry.
-
-    Returns:
-    {
-        "status": "ok" | "not_found" | "safe_mode" | "error",
-        "identity": str,
-        "degraded_mode": bool
-    }
     """
 
     if SAFE_MODE:
@@ -237,6 +215,7 @@ def delete_entry_44(
             "status": "safe_mode",
             "identity": identity,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     try:
@@ -248,12 +227,14 @@ def delete_entry_44(
                 "status": "not_found",
                 "identity": identity,
                 "degraded_mode": DEGRADED_MODE,
+                "version": "4.5.0",
             }
 
         return {
             "status": "ok",
             "identity": identity,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     except Exception as exc:
@@ -264,4 +245,5 @@ def delete_entry_44(
             "identity": identity,
             "exception": str(exc),
             "degraded_mode": True,
+            "version": "4.5.0",
         }
