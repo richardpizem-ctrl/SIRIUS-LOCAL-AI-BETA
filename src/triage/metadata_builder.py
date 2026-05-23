@@ -1,5 +1,5 @@
-# metadata_builder_4_4.py
-# SIRIUS LOCAL AI – MetadataBuilder 4.4.0 PRO
+# metadata_builder_4_5.py
+# SIRIUS LOCAL AI – MetadataBuilder 4.5.0 PRO
 # Deterministic, offline-only metadata generator with Phase‑5 security hooks.
 
 import os
@@ -8,9 +8,9 @@ import hashlib
 from typing import Dict, Any, Optional
 
 
-class MetadataBuilder44:
+class MetadataBuilder45:
     """
-    MetadataBuilder 4.4.0 PRO
+    MetadataBuilder 4.5.0 PRO
 
     Responsibilities:
         - Build deterministic metadata for input files
@@ -18,7 +18,7 @@ class MetadataBuilder44:
         - Provide sandbox/quarantine metadata hooks (Phase‑5 ready)
         - Provide file integrity metadata (SHA‑256)
         - Extended category mapping (document, archive)
-        - Fully compatible with AITEController44
+        - Fully compatible with AITEController45
         - Deterministic, offline-only behavior
     """
 
