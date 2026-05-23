@@ -9,6 +9,11 @@ Responsible for:
 - Isolating unstable components
 - Switching to degraded but stable modes
 - Providing runtime stabilization hooks
+
+Notes:
+- No file operations performed here
+- Fully deterministic, offline, isolated
+- Compatible with Runtime 4.5 and Security Family 4.5
 """
 
 from typing import List, Dict, Any
@@ -21,17 +26,23 @@ class FallbackManager:
     """
 
     def __init__(self):
+        self.version = "4.5.0"
+
         # Future: can be extended with dynamic policies
         self.fallback_policies = {
             "missing": self._fallback_for_missing,
             "modified": self._fallback_for_modified,
         }
 
+    # ---------------------------------------------------------
+    # APPLY FALLBACK ACTIONS
+    # ---------------------------------------------------------
     def apply(self, scan_result: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
         Applies fallback actions based on integrity scan result.
         Returns a list of fallback actions taken.
         """
+
         actions: List[Dict[str, Any]] = []
 
         corrupted = scan_result.get("corrupted_modules", [])
@@ -50,7 +61,6 @@ class FallbackManager:
     # ---------------------------------------------------------
     # FALLBACK HANDLERS
     # ---------------------------------------------------------
-
     def _fallback_for_missing(self, module: str, file_path: str) -> Dict[str, Any]:
         """
         Fallback for missing files:
@@ -62,6 +72,7 @@ class FallbackManager:
             "module": module,
             "file": file_path,
             "reason": "missing_file",
+            "version": self.version,
         }
 
     def _fallback_for_modified(self, module: str, file_path: str) -> Dict[str, Any]:
@@ -75,12 +86,12 @@ class FallbackManager:
             "module": module,
             "file": file_path,
             "reason": "modified_file",
+            "version": self.version,
         }
 
     # ---------------------------------------------------------
     # RUNTIME STABILIZATION
     # ---------------------------------------------------------
-
     def stabilize(self) -> None:
         """
         Runtime stabilization hook.
@@ -92,5 +103,5 @@ class FallbackManager:
 
         For now, this is a placeholder for future logic.
         """
-        # Example placeholder – no-op in 4.5.0 baseline
+        # No-op in 4.5.0 baseline
         return
