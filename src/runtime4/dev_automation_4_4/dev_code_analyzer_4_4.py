@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Developer Code Analyzer 4.4.0
+SIRIUS LOCAL AI – Developer Code Analyzer 4.5.0
 
-Deterministic, offline‑safe static code analysis for Developer Automation 4.4.
+Deterministic, offline‑safe static code analysis for Developer Automation 4.5.
 
 Features:
 - Structural AST analysis
@@ -9,23 +9,23 @@ Features:
 - Import graph extraction
 - Dead‑code detection (static)
 - Complexity metrics (safe subset)
-- Security‑aware analysis (Security Family 4.4)
+- Security‑aware analysis (Security Family 4.5)
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No execution of source code; only AST parsing.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 import ast
 from typing import Dict, Any, List, Optional
 
 
-class DevCodeAnalyzer44:
+class DevCodeAnalyzer45:
     """
-    Deterministic static code analyzer for Runtime 4.4.
-    Fully isolated, offline‑safe, and Self‑Repair 4.4 compatible.
+    Deterministic static code analyzer for Runtime 4.5.
+    Fully isolated, offline‑safe, and Self‑Repair 4.5 compatible.
     """
 
     def __init__(self, security_policy=None):
@@ -36,23 +36,31 @@ class DevCodeAnalyzer44:
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5.0"}
 
         try:
             if self.security_policy:
                 sec = self.security_policy.initialize()
                 if isinstance(sec, dict) and sec.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "exception": sec}
+                    return {
+                        "status": "error",
+                        "exception": sec,
+                        "version": "4.5.0",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5.0"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5.0",
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – ANALYZE SOURCE CODE
@@ -78,13 +86,18 @@ class DevCodeAnalyzer44:
                     "status": "error",
                     "reason": "analyzer_not_initialized",
                     "details": init_result,
+                    "version": "4.5.0",
                 }
 
         # Security policy check
         if self.security_policy:
             sec = self.security_policy.check_code_analysis(options)
             if sec.get("status") != "allowed":
-                return {"status": "blocked", "policy": sec}
+                return {
+                    "status": "blocked",
+                    "policy": sec,
+                    "version": "4.5.0",
+                }
 
         # AST parsing
         try:
@@ -99,17 +112,25 @@ class DevCodeAnalyzer44:
                 "complexity": self._compute_complexity(tree),
             }
 
-            return {"status": "ok", "analysis": result}
+            return {
+                "status": "ok",
+                "analysis": result,
+                "version": "4.5.0",
+            }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5.0",
+            }
 
     # ------------------------------------------------------------------
     # INTERNAL – IMPORTS
     # ------------------------------------------------------------------
     def _extract_imports(self, tree: ast.AST) -> List[str]:
-        imports = []
+        imports: List[str] = []
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
                 for n in node.names:
@@ -124,38 +145,43 @@ class DevCodeAnalyzer44:
     # INTERNAL – CLASSES
     # ------------------------------------------------------------------
     def _extract_classes(self, tree: ast.AST) -> List[Dict[str, Any]]:
-        classes = []
+        classes: List[Dict[str, Any]] = []
         for node in ast.walk(tree):
             if isinstance(node, ast.ClassDef):
-                classes.append({
-                    "name": node.name,
-                    "doc": ast.get_docstring(node),
-                    "methods": [
-                        n.name for n in node.body
-                        if isinstance(n, ast.FunctionDef)
-                    ],
-                })
+                classes.append(
+                    {
+                        "name": node.name,
+                        "doc": ast.get_docstring(node),
+                        "methods": [
+                            n.name
+                            for n in node.body
+                            if isinstance(n, ast.FunctionDef)
+                        ],
+                    }
+                )
         return classes
 
     # ------------------------------------------------------------------
     # INTERNAL – FUNCTIONS
     # ------------------------------------------------------------------
     def _extract_functions(self, tree: ast.AST) -> List[Dict[str, Any]]:
-        funcs = []
+        funcs: List[Dict[str, Any]] = []
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef):
-                funcs.append({
-                    "name": node.name,
-                    "doc": ast.get_docstring(node),
-                    "args": [a.arg for a in node.args.args],
-                })
+                funcs.append(
+                    {
+                        "name": node.name,
+                        "doc": ast.get_docstring(node),
+                        "args": [a.arg for a in node.args.args],
+                    }
+                )
         return funcs
 
     # ------------------------------------------------------------------
     # INTERNAL – VARIABLES
     # ------------------------------------------------------------------
     def _extract_variables(self, tree: ast.AST) -> List[str]:
-        vars_found = []
+        vars_found: List[str] = []
         for node in ast.walk(tree):
             if isinstance(node, ast.Assign):
                 for target in node.targets:
