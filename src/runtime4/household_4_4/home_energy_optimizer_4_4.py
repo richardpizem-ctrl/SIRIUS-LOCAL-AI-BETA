@@ -1,23 +1,23 @@
 """
-SIRIUS LOCAL AI – Home Energy Optimizer 4.4.0
+SIRIUS LOCAL AI – Home Energy Optimizer 4.5.0
 
 Účel:
-- deterministická nadstavba nad HomeEnergyMonitor44 + StateManager
+- deterministická nadstavba nad HomeEnergyMonitor45 + StateManager45
 - hľadá jednoduché úspory energie bez AI heuristík
 - 100 % offline, deterministické
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HomeEnergyOptimizer44:
+class HomeEnergyOptimizer45:
     """
-    Deterministic energy optimizer pre domácnosť.
+    Deterministic energy optimizer pre domácnosť 4.5.
     """
 
     def __init__(self, energy_monitor=None, state_manager=None, event_bus=None):
@@ -46,7 +46,7 @@ class HomeEnergyOptimizer44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.energy_monitor, self.state_manager, self.event_bus]
@@ -55,24 +55,32 @@ class HomeEnergyOptimizer44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # ANALYZE – FIND HIGH USAGE DEVICES
     # ---------------------------------------------------------
     def analyze_high_usage(self) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Optimizer disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Optimizer disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self.energy_monitor:
-            return {"status": "error", "code": "no_energy_monitor"}
+            return {"status": "error", "code": "no_energy_monitor", "version": "4.5"}
 
         try:
             high: List[Dict[str, Any]] = []
@@ -88,21 +96,30 @@ class HomeEnergyOptimizer44:
 
             high.sort(key=lambda x: x["energy_kwh"], reverse=True)
 
-            return {"status": "ok", "high_usage_devices": high}
+            return {"status": "ok", "high_usage_devices": high, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "analyze_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "analyze_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # SUGGEST SHUTDOWN
     # ---------------------------------------------------------
     def suggest_shutdown(self) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Optimizer disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Optimizer disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self.state_manager or not self.energy_monitor:
-            return {"status": "error", "code": "missing_dependencies"}
+            return {"status": "error", "code": "missing_dependencies", "version": "4.5"}
 
         try:
             suggestions: List[Dict[str, Any]] = []
@@ -129,21 +146,30 @@ class HomeEnergyOptimizer44:
 
             suggestions.sort(key=lambda x: x["energy_kwh"], reverse=True)
 
-            return {"status": "ok", "suggestions": suggestions}
+            return {"status": "ok", "suggestions": suggestions, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "suggest_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "suggest_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # APPLY SHUTDOWN SUGGESTIONS
     # ---------------------------------------------------------
     def apply_shutdown(self, max_devices: Optional[int] = None) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Optimizer disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Optimizer disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self.state_manager or not self.energy_monitor:
-            return {"status": "error", "code": "missing_dependencies"}
+            return {"status": "error", "code": "missing_dependencies", "version": "4.5"}
 
         try:
             sug_res = self.suggest_shutdown()
@@ -153,7 +179,7 @@ class HomeEnergyOptimizer44:
             suggestions = sug_res.get("suggestions", [])
             if max_devices is not None:
                 if not isinstance(max_devices, int) or max_devices < 0:
-                    return {"status": "error", "code": "invalid_max_devices"}
+                    return {"status": "error", "code": "invalid_max_devices", "version": "4.5"}
                 suggestions = suggestions[:max_devices]
 
             results: List[Dict[str, Any]] = []
@@ -169,25 +195,35 @@ class HomeEnergyOptimizer44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "applied": results}
+            return {"status": "ok", "applied": results, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "apply_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "apply_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # SET THRESHOLD
     # ---------------------------------------------------------
     def set_high_usage_threshold(self, kwh: float) -> Dict[str, Any]:
         if not self._validate_float(kwh) or kwh < 0:
-            return {"status": "error", "code": "invalid_threshold"}
+            return {"status": "error", "code": "invalid_threshold", "version": "4.5"}
 
         try:
             self.high_usage_threshold_kwh = float(kwh)
-            return {"status": "ok", "threshold_kwh": self.high_usage_threshold_kwh}
+            return {"status": "ok", "threshold_kwh": self.high_usage_threshold_kwh, "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "threshold_set_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "threshold_set_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -199,4 +235,5 @@ class HomeEnergyOptimizer44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "high_usage_threshold_kwh": self.high_usage_threshold_kwh,
+            "version": "4.5",
         }
