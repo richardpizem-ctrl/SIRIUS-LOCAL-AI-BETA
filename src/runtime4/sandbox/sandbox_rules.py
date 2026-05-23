@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Sandbox Rules (PRO)
+SIRIUS LOCAL AI – Runtime 4.5 Sandbox Rules (PRO)
 
 Defines capability-based security rules for sandboxed modules.
 Responsible for:
@@ -8,13 +8,13 @@ Responsible for:
 - rule enforcement
 - module security profiles
 - safe-mode and degraded-mode behavior
-- compatibility with Security Family 4.4
+- compatibility with Security Family 4.5
 
 This is the policy layer of the sandbox system.
 """
 
 
-class SandboxRules4:
+class SandboxRules45:
     """
     Deterministic capability rule engine (PRO).
     Provides:
@@ -39,6 +39,7 @@ class SandboxRules4:
 
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ---------------------------------------------------------
     # CAPABILITY MANAGEMENT
@@ -51,30 +52,32 @@ class SandboxRules4:
             return {
                 "status": "safe_mode",
                 "message": "Capability assignment disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate module name
         if not isinstance(module_name, str) or not module_name.strip():
-            return {"status": "error", "code": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name", "version": self.version}
 
         # Validate caps list
         if not isinstance(caps, list):
-            return {"status": "error", "code": "invalid_capability_list"}
+            return {"status": "error", "code": "invalid_capability_list", "version": self.version}
 
         # Validate each capability
         for cap in caps:
             if not isinstance(cap, str) or not cap.strip():
-                return {"status": "error", "code": "invalid_capability_value"}
+                return {"status": "error", "code": "invalid_capability_value", "version": self.version}
 
         try:
             self.capabilities[module_name] = caps
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "capability_assignment_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     def get_capabilities(self, module_name: str):
@@ -120,21 +123,23 @@ class SandboxRules4:
                 "allowed": False,
                 "error": "safe_mode",
                 "message": "Operation validation disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate module name
         if not isinstance(module_name, str) or not module_name.strip():
-            return {"allowed": False, "error": "invalid_module_name"}
+            return {"allowed": False, "error": "invalid_module_name", "version": self.version}
 
         # Validate operation
         if not isinstance(operation, str) or not operation.strip():
-            return {"allowed": False, "error": "invalid_operation"}
+            return {"allowed": False, "error": "invalid_operation", "version": self.version}
 
         # Check permission
         if self.is_allowed(module_name, operation):
             return {
                 "allowed": True,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         return {
@@ -143,4 +148,5 @@ class SandboxRules4:
             "module": module_name,
             "operation": operation,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
