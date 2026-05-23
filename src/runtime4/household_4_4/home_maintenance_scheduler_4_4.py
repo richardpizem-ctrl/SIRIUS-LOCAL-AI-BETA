@@ -1,13 +1,13 @@
 """
 SIRIUS LOCAL AI – Home Maintenance Scheduler 4.4.0
 
-Účel:
-- deterministické plánovanie údržby domácnosti
-- 100 % offline, žiadne AI heuristiky, žiadne dynamické importy
+Purpose:
+- deterministic household maintenance scheduling
+- 100% offline, no AI heuristics, no dynamic imports
 
 Security Family 4.4:
-- žiadne nebezpečné typy
-- deterministické správanie
+- no dangerous types
+- deterministic behavior
 - Self‑Repair 4.4 ready
 """
 
@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 
 class HomeMaintenanceScheduler44:
     """
-    Deterministic maintenance scheduler pre domácnosť.
+    Deterministic maintenance scheduler for household tasks.
     """
 
     def __init__(self, event_bus=None):
@@ -27,7 +27,7 @@ class HomeMaintenanceScheduler44:
 
         self.event_bus = event_bus
 
-        # name → task
+        # name → task structure
         self.tasks: Dict[str, Dict[str, Any]] = {}
 
     # ---------------------------------------------------------
@@ -84,7 +84,10 @@ class HomeMaintenanceScheduler44:
     ) -> Dict[str, Any]:
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Maintenance scheduler disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Maintenance scheduler disabled in safe-mode."
+            }
 
         if not self._validate_str(name):
             return {"status": "error", "code": "invalid_name"}
@@ -122,7 +125,11 @@ class HomeMaintenanceScheduler44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "add_task_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "add_task_failed",
+                "exception": str(exc)
+            }
 
     # ---------------------------------------------------------
     # MARK TASK AS DONE
@@ -141,7 +148,9 @@ class HomeMaintenanceScheduler44:
         try:
             task = self.tasks[name]
             task["last_done"] = done_dt.strftime("%Y-%m-%d")
-            task["next_due"] = (done_dt + timedelta(days=task["interval_days"])).strftime("%Y-%m-%d")
+            task["next_due"] = (
+                done_dt + timedelta(days=task["interval_days"])
+            ).strftime("%Y-%m-%d")
 
             if self.event_bus:
                 try:
@@ -153,7 +162,11 @@ class HomeMaintenanceScheduler44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "mark_done_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "mark_done_failed",
+                "exception": str(exc)
+            }
 
     # ---------------------------------------------------------
     # LIST TASKS
@@ -163,7 +176,11 @@ class HomeMaintenanceScheduler44:
             return {"status": "ok", "tasks": list(self.tasks.values())}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_failed",
+                "exception": str(exc)
+            }
 
     # ---------------------------------------------------------
     # LIST DUE TASKS
@@ -184,7 +201,11 @@ class HomeMaintenanceScheduler44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_due_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_due_failed",
+                "exception": str(exc)
+            }
 
     # ---------------------------------------------------------
     # REMOVE TASK
@@ -209,7 +230,11 @@ class HomeMaintenanceScheduler44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "remove_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "remove_failed",
+                "exception": str(exc)
+            }
 
     # ---------------------------------------------------------
     # STATUS
