@@ -1,14 +1,14 @@
-# manager_4_4.py
-# SIRIUS LOCAL AI – UI Manager 4.4.0 PRO
+# manager_4_5.py
+# SIRIUS LOCAL AI – UI Manager 4.5.0 PRO
 # Phase‑4 deterministic UI component orchestrator (Phase‑5 ready)
 
 from typing import Dict, Type, Optional
-from .pixel_layout_engine_4_4 import PixelLayoutEngine44
+from .pixel_layout_engine_4_5 import PixelLayoutEngine45
 
 
-class UIComponent44:
+class UIComponent45:
     """
-    Base class for all UI components (4.4 PRO).
+    Base class for all UI components (4.5 PRO).
 
     Requirements:
         - mount()
@@ -32,36 +32,36 @@ class UIComponent44:
         raise NotImplementedError
 
 
-class UIManager44:
+class UIManager45:
     """
-    UIManager 4.4.0 PRO
+    UIManager 4.5.0 PRO
 
     Responsibilities:
         - Component registration
         - Component lifecycle (mount/unmount)
         - Active component switching
-        - Safe-mode and degraded-mode behavior (Security Family 4.4)
-        - Integration with PixelLayoutEngine44 (Phase‑4)
+        - Safe-mode and degraded-mode behavior (Security Family 4.5)
+        - Integration with PixelLayoutEngine45 (Phase‑4)
         - Deterministic, offline-only behavior
         - Error-safe rendering
         - Phase‑5 ready (sandbox, restricted-mode)
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
     """
 
     def __init__(self):
         self.safe_mode = False
         self.degraded_mode = False
 
-        self._registry: Dict[str, Type[UIComponent44]] = {}
-        self._instances: Dict[str, UIComponent44] = {}
+        self._registry: Dict[str, Type[UIComponent45]] = {}
+        self._instances: Dict[str, UIComponent45] = {}
         self._active: Optional[str] = None
-        self._layout_engine: Optional[PixelLayoutEngine44] = None
+        self._layout_engine: Optional[PixelLayoutEngine45] = None
 
     # ---------------------------------------------------------
     # REGISTRATION
     # ---------------------------------------------------------
 
-    def register(self, name: str, component_cls: Type[UIComponent44]):
+    def register(self, name: str, component_cls: Type[UIComponent45]):
         """Register a UI component class under a unique name."""
         if name in self._registry:
             raise ValueError(f"UI component '{name}' already registered")
@@ -83,7 +83,7 @@ class UIManager44:
     # COMPONENT ACCESS
     # ---------------------------------------------------------
 
-    def get(self, name: str) -> UIComponent44:
+    def get(self, name: str) -> UIComponent45:
         """Return an instance of a component, creating it if needed."""
         if name not in self._registry:
             raise KeyError(f"UI component '{name}' not found")
@@ -145,8 +145,8 @@ class UIManager44:
     # LAYOUT ENGINE INTEGRATION
     # ---------------------------------------------------------
 
-    def connect_layout_engine(self, engine: PixelLayoutEngine44):
-        """Attach PixelLayoutEngine44 instance."""
+    def connect_layout_engine(self, engine: PixelLayoutEngine45):
+        """Attach PixelLayoutEngine45 instance."""
         self._layout_engine = engine
 
     # ---------------------------------------------------------
@@ -155,7 +155,7 @@ class UIManager44:
 
     def render_active(self):
         """
-        Render the currently active component and forward to PixelLayoutEngine44.
+        Render the currently active component and forward to PixelLayoutEngine45.
         Deterministic, safe-mode aware, error-safe.
         """
 
