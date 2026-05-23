@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Family Mode 4.4.0 (PRO)
+SIRIUS LOCAL AI – Family Mode 4.5.0 (PRO)
 
-FamilyMode 4.4 is the child‑safe identity layer inside Security Family 4.4.
+FamilyMode 4.5 is the child‑safe identity layer inside Security Family 4.5.
 It activates when:
 
 - Identity Engine classifies the user as FAMILY
@@ -13,21 +13,21 @@ FamilyMode enforces:
 - Blocked access to sensitive operations
 - Safe‑interaction rules
 - Deterministic isolation
-- Integration with Behavior Monitor 4.4 and TimeLimits 4.4
+- Integration with Behavior Monitor 4.5 and TimeLimits 4.5
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No personal data stored.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any
 
 
-class FamilyMode44:
+class FamilyMode45:
     """
-    Child‑safe restricted identity mode for Runtime 4.4 (PRO).
+    Child‑safe restricted identity mode for Runtime 4.5 (PRO).
     """
 
     # Allowed actions for FAMILY identity (safe subset)
@@ -57,23 +57,25 @@ class FamilyMode44:
         self.reason = None
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "init_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -86,14 +88,15 @@ class FamilyMode44:
             return {
                 "status": "safe_mode",
                 "message": "FamilyMode activation disabled in safe-mode.",
+                "version": self.version,
             }
 
         if not isinstance(reason, str) or not reason.strip():
-            return {"status": "error", "code": "invalid_reason"}
+            return {"status": "error", "code": "invalid_reason", "version": self.version}
 
         self.active = True
         self.reason = reason
-        return {"status": "activated", "reason": reason}
+        return {"status": "activated", "reason": reason, "version": self.version}
 
     # ------------------------------------------------------------------
     # DEACTIVATE FAMILY MODE
@@ -101,7 +104,7 @@ class FamilyMode44:
     def deactivate(self) -> Dict[str, Any]:
         self.active = False
         self.reason = None
-        return {"status": "deactivated"}
+        return {"status": "deactivated", "version": self.version}
 
     # ------------------------------------------------------------------
     # CHECK ACTION PERMISSION
@@ -113,13 +116,14 @@ class FamilyMode44:
             return {
                 "status": "safe_mode",
                 "message": "Action validation disabled in safe-mode.",
+                "version": self.version,
             }
 
         if not isinstance(action, str) or not action.strip():
-            return {"status": "error", "code": "invalid_action"}
+            return {"status": "error", "code": "invalid_action", "version": self.version}
 
         if not self.active:
-            return {"status": "allowed", "mode": "inactive"}
+            return {"status": "allowed", "mode": "inactive", "version": self.version}
 
         # Blocked actions
         if action in self.BLOCKED_ACTIONS:
@@ -128,11 +132,12 @@ class FamilyMode44:
                 "mode": "FAMILY",
                 "reason": "action_forbidden_in_family_mode",
                 "action": action,
+                "version": self.version,
             }
 
         # Allowed actions
         if action in self.ALLOWED_ACTIONS:
-            return {"status": "allowed", "mode": "FAMILY"}
+            return {"status": "allowed", "mode": "FAMILY", "version": self.version}
 
         # Unknown action → block by default
         return {
@@ -140,6 +145,7 @@ class FamilyMode44:
             "mode": "FAMILY",
             "reason": "unknown_action",
             "action": action,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------------
@@ -152,4 +158,5 @@ class FamilyMode44:
             "reason": self.reason,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
