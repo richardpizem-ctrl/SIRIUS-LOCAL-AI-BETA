@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – UI Workflow Engine 4.4.0 (PRO)
+SIRIUS LOCAL AI – UI Workflow Engine 4.5.0 (PRO)
 
-Deterministic multi‑step UI workflows for UI Automation Engine 4.4.
+Deterministic multi‑step UI workflows for UI Automation Engine 4.5.
 
 Responsibilities:
 - Semantic element resolution
@@ -14,15 +14,15 @@ Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - All OS interaction must go through the sandbox.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import List, Dict, Any, Optional
 
 
-class UIWorkflow44:
+class UIWorkflow45:
     """
-    Multi‑step deterministic UI workflow engine for Runtime 4.4 (PRO).
+    Multi‑step deterministic UI workflow engine for Runtime 4.5 (PRO).
     """
 
     REQUIRED_RESOLVER_METHODS = {"initialize", "resolve"}
@@ -30,6 +30,8 @@ class UIWorkflow44:
     REQUIRED_SANDBOX_METHODS = {"initialize"}
 
     def __init__(self, resolver=None, router=None, sandbox=None):
+        self.version: str = "4.5.0"
+
         self.resolver = resolver
         self.router = router
         self.sandbox = sandbox
@@ -43,12 +45,12 @@ class UIWorkflow44:
     # ---------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         # Resolver
         if not self.resolver:
             self.degraded_mode = True
-            return {"status": "error", "code": "no_resolver"}
+            return {"status": "error", "code": "no_resolver", "version": self.version}
 
         for m in self.REQUIRED_RESOLVER_METHODS:
             if not hasattr(self.resolver, m):
@@ -57,12 +59,13 @@ class UIWorkflow44:
                     "status": "error",
                     "code": "invalid_resolver_interface",
                     "missing": m,
+                    "version": self.version,
                 }
 
         # Router
         if not self.router:
             self.degraded_mode = True
-            return {"status": "error", "code": "no_router"}
+            return {"status": "error", "code": "no_router", "version": self.version}
 
         for m in self.REQUIRED_ROUTER_METHODS:
             if not hasattr(self.router, m):
@@ -71,6 +74,7 @@ class UIWorkflow44:
                     "status": "error",
                     "code": "invalid_router_interface",
                     "missing": m,
+                    "version": self.version,
                 }
 
         # Sandbox (optional but validated if present)
@@ -82,6 +86,7 @@ class UIWorkflow44:
                         "status": "error",
                         "code": "invalid_sandbox_interface",
                         "missing": m,
+                        "version": self.version,
                     }
 
         try:
@@ -92,6 +97,7 @@ class UIWorkflow44:
                     "status": "error",
                     "code": "resolver_init_failed",
                     "details": r_res,
+                    "version": self.version,
                 }
 
             rt_res = self.router.initialize()
@@ -101,6 +107,7 @@ class UIWorkflow44:
                     "status": "error",
                     "code": "router_init_failed",
                     "details": rt_res,
+                    "version": self.version,
                 }
 
             if self.sandbox:
@@ -111,14 +118,20 @@ class UIWorkflow44:
                         "status": "error",
                         "code": "sandbox_init_failed",
                         "details": sb_res,
+                        "version": self.version,
                     }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "exception", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "exception",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
     # ---------------------------------------------------------------------
     # PUBLIC API – RUN WORKFLOW
@@ -137,10 +150,11 @@ class UIWorkflow44:
                 "status": "safe_mode",
                 "results": [],
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if not isinstance(steps, list):
-            return {"status": "error", "code": "invalid_steps"}
+            return {"status": "error", "code": "invalid_steps", "version": self.version}
 
         if not self.initialized:
             init = self.initialize()
@@ -149,6 +163,7 @@ class UIWorkflow44:
                     "status": "error",
                     "code": "workflow_not_initialized",
                     "details": init,
+                    "version": self.version,
                 }
 
         results: List[Dict[str, Any]] = []
@@ -163,12 +178,14 @@ class UIWorkflow44:
                     "failed_step": index,
                     "results": results,
                     "degraded_mode": self.degraded_mode,
+                    "version": self.version,
                 }
 
         return {
             "status": "ok",
             "results": results,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
     # ---------------------------------------------------------------------
@@ -180,6 +197,7 @@ class UIWorkflow44:
                 "status": "error",
                 "code": "invalid_step_definition",
                 "step": index,
+                "version": self.version,
             }
 
         query = step.get("query")
@@ -191,6 +209,7 @@ class UIWorkflow44:
                 "status": "error",
                 "code": "invalid_step_definition",
                 "step": index,
+                "version": self.version,
             }
 
         # 1. Resolve element
@@ -203,6 +222,7 @@ class UIWorkflow44:
                 "code": "resolve_exception",
                 "exception": str(exc),
                 "step": index,
+                "version": self.version,
             }
 
         if resolved.get("status") != "ok":
@@ -211,6 +231,7 @@ class UIWorkflow44:
                 "code": "resolve_failed",
                 "details": resolved,
                 "step": index,
+                "version": self.version,
             }
 
         element = resolved.get("element")
@@ -219,6 +240,7 @@ class UIWorkflow44:
                 "status": "error",
                 "code": "element_not_found",
                 "step": index,
+                "version": self.version,
             }
 
         # 2. Route action
@@ -231,6 +253,7 @@ class UIWorkflow44:
                 "code": "route_exception",
                 "exception": str(exc),
                 "step": index,
+                "version": self.version,
             }
 
         if routed.get("status") != "ok":
@@ -239,6 +262,7 @@ class UIWorkflow44:
                 "code": "action_failed",
                 "details": routed,
                 "step": index,
+                "version": self.version,
             }
 
         return {
@@ -247,4 +271,5 @@ class UIWorkflow44:
             "element": element,
             "action_result": routed,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
