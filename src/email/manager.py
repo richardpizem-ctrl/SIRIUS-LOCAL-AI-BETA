@@ -1,21 +1,22 @@
 # ============================================================
-#  SEND EMAIL (FINAL v4.4 PIPELINE)
+#  SEND EMAIL (FINAL v4.5 PIPELINE)
 # ============================================================
 
 def send_email(self, draft: dict, sender_profile: dict | None = None):
     """
-    Final v4.4 send-email pipeline.
+    Final v4.5 send-email pipeline.
     Converts a draft into a sent email, validates it,
     attaches sender profile, timestamps it, stores it,
     and returns a deterministic structured response.
 
-    New in 4.4:
-        - Deterministic timestamp contract
-        - Stable metadata normalization
-        - Strict validation pipeline
-        - Self‑Repair Layer 4.4 integrity hooks
-        - Stable output schema for Runtime4.4 & NL Router 4.4
+    Updated in 4.5:
+        - Deterministic timestamp contract (unchanged)
+        - Stable metadata normalization (improved)
+        - Strict validation pipeline (unchanged)
+        - Self‑Repair Layer 4.5 integrity hooks
+        - Stable output schema for Runtime4.5 & NL Router 4.5
         - Guaranteed deep-copy isolation
+        - Metadata version bumped to 4.5
     """
 
     # -----------------------------
@@ -59,10 +60,11 @@ def send_email(self, draft: dict, sender_profile: dict | None = None):
         sent["metadata"] = {}
 
     # -----------------------------
-    # SELF‑REPAIR METADATA (4.4)
+    # SELF‑REPAIR METADATA (4.5)
     # -----------------------------
-    sent["metadata"]["integrity_version"] = "4.4"
+    sent["metadata"]["integrity_version"] = "4.5"
     sent["metadata"]["validated"] = True
+    sent["metadata"]["pipeline"] = "send-email-4.5"
 
     # -----------------------------
     # STORE SENT EMAIL
