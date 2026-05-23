@@ -1,60 +1,60 @@
-# orb_factory_4_4.py
-# SIRIUS LOCAL AI – ORB FACTORY 4.4.0 PRO
+# orb_factory_4_5.py
+# SIRIUS LOCAL AI – ORB FACTORY 4.5.0 PRO
 # Phase‑4 deterministic ORB assembly system (Phase‑5 ready)
 
-from .engine_4_4 import AnimationEngine44
+from .engine_4_5 import AnimationEngine45
 
-from .objects_4_4 import (
-    OrbObject44,
-    OrbRingObject44,
-    OrbGlowObject44,
-    OrbStateController44,
-    OrbThinkingEffect44,
-    OrbWarningFlash44,
-    OrbSuccessBurst44,
-    OrbEnergyFlow44,
-    OrbBreathingEffect44,
-    OrbIntelligencePulse44,
-    OrbLinkEffect44,
-    OrbEnergyField44,
-    OrbNeuralPathways44,
-    OrbDecisionMap44,
-    OrbSynapseSparks44,
-    OrbMemoryRings44,
-    OrbLogicFlow44,
-    OrbConsciousnessField44,
-    OrbReasoningWaves44,
-    OrbMetaThoughtLayers44,
-    OrbSelfReflectionPulse44,
-    OrbTemporalEchoes44,
-    OrbPredictiveTrails44,
-    OrbCognitiveMesh44,
-    OrbFocusBeam44,
-    OrbAwarenessBloom44,
-    OrbQuantumFluctuations44,
-    OrbSuperposition44,
-    OrbProbabilityCloud44,
-    OrbHyperFocus44,
-    OrbDimensionalShift44,
-    OrbRealityDistortion44,
-    OrbEchoNetwork44,
-    OrbDeepInsightBurst44,
-    OrbEmergentThoughtLayers44,
-    OrbCognitiveResonance44,
-    OrbInsightConvergence44,
-    OrbAwarenessHalo44,
-    OrbDeepReflectionField44,
-    OrbUnifiedCore44,
-    OrbHarmonicFieldMatrix44,
-    OrbInsightSingularity44,
-    OrbCognitiveRipple44,
-    OrbTotalityLayer44
+from .objects_4_5 import (
+    OrbObject45,
+    OrbRingObject45,
+    OrbGlowObject45,
+    OrbStateController45,
+    OrbThinkingEffect45,
+    OrbWarningFlash45,
+    OrbSuccessBurst45,
+    OrbEnergyFlow45,
+    OrbBreathingEffect45,
+    OrbIntelligencePulse45,
+    OrbLinkEffect45,
+    OrbEnergyField45,
+    OrbNeuralPathways45,
+    OrbDecisionMap45,
+    OrbSynapseSparks45,
+    OrbMemoryRings45,
+    OrbLogicFlow45,
+    OrbConsciousnessField45,
+    OrbReasoningWaves45,
+    OrbMetaThoughtLayers45,
+    OrbSelfReflectionPulse45,
+    OrbTemporalEchoes45,
+    OrbPredictiveTrails45,
+    OrbCognitiveMesh45,
+    OrbFocusBeam45,
+    OrbAwarenessBloom45,
+    OrbQuantumFluctuations45,
+    OrbSuperposition45,
+    OrbProbabilityCloud45,
+    OrbHyperFocus45,
+    OrbDimensionalShift45,
+    OrbRealityDistortion45,
+    OrbEchoNetwork45,
+    OrbDeepInsightBurst45,
+    OrbEmergentThoughtLayers45,
+    OrbCognitiveResonance45,
+    OrbInsightConvergence45,
+    OrbAwarenessHalo45,
+    OrbDeepReflectionField45,
+    OrbUnifiedCore45,
+    OrbHarmonicFieldMatrix45,
+    OrbInsightSingularity45,
+    OrbCognitiveRipple45,
+    OrbTotalityLayer45
 )
 
 
-def create_sirius_orb_44():
+def create_sirius_orb_45():
     """
-    Create a fully assembled SIRIUS ORB (4.4 PRO).
+    Create a fully assembled SIRIUS ORB (4.5 PRO).
 
     Returns:
         (engine, orb) tuple
@@ -68,75 +68,75 @@ def create_sirius_orb_44():
         - failures do not break the factory
     """
 
-    engine = AnimationEngine44()
+    engine = AnimationEngine45()
 
     try:
         # Core ORB
-        orb = OrbObject44()
+        orb = OrbObject45()
 
-        # All ORB layers (4.4 PRO)
+        # All ORB layers (4.5 PRO)
         layers = [
             orb,
-            OrbRingObject44(),
-            OrbGlowObject44(),
-            OrbStateController44(orb),
+            OrbRingObject45(),
+            OrbGlowObject45(),
+            OrbStateController45(orb),
 
             # Thinking / warning / success / flow
-            OrbThinkingEffect44(),
-            OrbWarningFlash44(),
-            OrbSuccessBurst44(),
-            OrbEnergyFlow44(),
+            OrbThinkingEffect45(),
+            OrbWarningFlash45(),
+            OrbSuccessBurst45(),
+            OrbEnergyFlow45(),
 
             # Breathing / pulse / link / field
-            OrbBreathingEffect44(orb),
-            OrbIntelligencePulse44(orb),
-            OrbLinkEffect44(),
-            OrbEnergyField44(),
+            OrbBreathingEffect45(orb),
+            OrbIntelligencePulse45(orb),
+            OrbLinkEffect45(),
+            OrbEnergyField45(),
 
             # Neural / decision / synapse / memory / logic
-            OrbNeuralPathways44(),
-            OrbDecisionMap44(),
-            OrbSynapseSparks44(),
-            OrbMemoryRings44(),
-            OrbLogicFlow44(),
+            OrbNeuralPathways45(),
+            OrbDecisionMap45(),
+            OrbSynapseSparks45(),
+            OrbMemoryRings45(),
+            OrbLogicFlow45(),
 
             # Consciousness / reasoning / meta-thought / reflection
-            OrbConsciousnessField44(),
-            OrbReasoningWaves44(),
-            OrbMetaThoughtLayers44(),
-            OrbSelfReflectionPulse44(),
+            OrbConsciousnessField45(),
+            OrbReasoningWaves45(),
+            OrbMetaThoughtLayers45(),
+            OrbSelfReflectionPulse45(),
 
             # Temporal / predictive / mesh / focus / awareness
-            OrbTemporalEchoes44(),
-            OrbPredictiveTrails44(),
-            OrbCognitiveMesh44(),
-            OrbFocusBeam44(),
-            OrbAwarenessBloom44(),
+            OrbTemporalEchoes45(),
+            OrbPredictiveTrails45(),
+            OrbCognitiveMesh45(),
+            OrbFocusBeam45(),
+            OrbAwarenessBloom45(),
 
             # Quantum / superposition / probability / hyper-focus
-            OrbQuantumFluctuations44(orb),
-            OrbSuperposition44(),
-            OrbProbabilityCloud44(),
-            OrbHyperFocus44(orb),
+            OrbQuantumFluctuations45(orb),
+            OrbSuperposition45(),
+            OrbProbabilityCloud45(),
+            OrbHyperFocus45(orb),
 
             # Dimensional / reality / echo network / deep insight
-            OrbDimensionalShift44(orb),
-            OrbRealityDistortion44(),
-            OrbEchoNetwork44(),
-            OrbDeepInsightBurst44(),
+            OrbDimensionalShift45(orb),
+            OrbRealityDistortion45(),
+            OrbEchoNetwork45(),
+            OrbDeepInsightBurst45(),
 
             # Emergent / resonance / convergence / halo
-            OrbEmergentThoughtLayers44(),
-            OrbCognitiveResonance44(orb),
-            OrbInsightConvergence44(),
-            OrbAwarenessHalo44(),
+            OrbEmergentThoughtLayers45(),
+            OrbCognitiveResonance45(orb),
+            OrbInsightConvergence45(),
+            OrbAwarenessHalo45(),
 
             # Final unified layers
-            OrbUnifiedCore44(orb),
-            OrbHarmonicFieldMatrix44(),
-            OrbInsightSingularity44(),
-            OrbCognitiveRipple44(),
-            OrbTotalityLayer44(orb),
+            OrbUnifiedCore45(orb),
+            OrbHarmonicFieldMatrix45(),
+            OrbInsightSingularity45(),
+            OrbCognitiveRipple45(),
+            OrbTotalityLayer45(orb),
         ]
 
         # Register all objects
@@ -151,6 +151,6 @@ def create_sirius_orb_44():
     except Exception:
         # Global failure → degraded mode with minimal ORB
         engine.degraded_mode = True
-        orb = OrbObject44()
+        orb = OrbObject45()
         engine.add_object(orb)
         return engine, orb
