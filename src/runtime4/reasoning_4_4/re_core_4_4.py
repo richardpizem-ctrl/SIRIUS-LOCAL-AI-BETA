@@ -1,32 +1,32 @@
 """
-SIRIUS LOCAL AI – Reasoning Core 4.4.0 (PRO)
+SIRIUS LOCAL AI – Reasoning Core 4.5.0 (PRO)
 
-Hlavné deterministické jadro Reasoning Engine 4.4.
+Hlavné deterministické jadro Reasoning Engine 4.5.
 
 Účel:
 - centralizované rozhranie pre reasoning dotazy
 - orchestrácia:
-    - Multi‑Subject Router 4.4
-    - Context Builder 4.4
-    - Context Memory 4.4
-    - Chain Executor 4.4
-    - Rule Engine 4.4
-    - Symbolic Solver 4.4
-    - (voliteľne) Graph Builder 4.4
+    - Multi‑Subject Router 4.5
+    - Context Builder 4.5
+    - Context Memory 4.5
+    - Chain Executor 4.5
+    - Rule Engine 4.5
+    - Symbolic Solver 4.5
+    - (voliteľne) Graph Builder 4.5
 
 Vlastnosti:
 - 100 % offline, deterministické
 - žiadne AI heuristiky
 - žiadne dynamické importy, eval, exec
-- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
+- kompatibilné so Security Family 4.5 a Self‑Repair 4.5
 """
 
 from typing import Dict, Any, Optional
 
 
-class ReasoningCore44:
+class ReasoningCore45:
     """
-    Deterministic PRO jadro Reasoning Engine 4.4.
+    Deterministic PRO jadro Reasoning Engine 4.5.
     """
 
     def __init__(
@@ -61,7 +61,7 @@ class ReasoningCore44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [
@@ -85,14 +85,20 @@ class ReasoningCore44:
                             "status": "error",
                             "code": "module_init_failed",
                             "details": res,
+                            "version": "4.5",
                         }
 
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # MAIN ENTRYPOINT – REASON
@@ -103,16 +109,20 @@ class ReasoningCore44:
 
         1. validácia vstupu
         2. detekcia tém (router)
-        3. zostavenie kontextu (Context Builder 4.4)
-        4. vykonanie reasoning chainu (Chain Executor 4.4)
+        3. zostavenie kontextu (Context Builder 4.5)
+        4. vykonanie reasoning chainu (Chain Executor 4.5)
         5. voliteľne: reasoning graf
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Reasoning disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Reasoning disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not isinstance(query, str) or not query.strip():
-            return {"status": "error", "code": "invalid_query"}
+            return {"status": "error", "code": "invalid_query", "version": "4.5"}
 
         # 1. Inicializácia
         if not self.initialized:
@@ -130,7 +140,7 @@ class ReasoningCore44:
 
             # 3. Zostavenie kontextu
             if not self.context_builder:
-                return {"status": "error", "code": "no_context_builder"}
+                return {"status": "error", "code": "no_context_builder", "version": "4.5"}
 
             context_export = self.context_builder.build_context(subjects)
             if context_export.get("status") != "ok":
@@ -138,11 +148,12 @@ class ReasoningCore44:
                     "status": "error",
                     "code": "context_build_failed",
                     "details": context_export,
+                    "version": "4.5",
                 }
 
             # 4. Reasoning chain
             if not self.chain_executor:
-                return {"status": "error", "code": "no_chain_executor"}
+                return {"status": "error", "code": "no_chain_executor", "version": "4.5"}
 
             chain_result = self.chain_executor.execute(query, context_export)
 
@@ -159,11 +170,17 @@ class ReasoningCore44:
                 "chain": chain_result,
                 "graph": graph_result,
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "reasoning_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "reasoning_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STATUS
@@ -183,4 +200,5 @@ class ReasoningCore44:
             "has_chain_executor": self.chain_executor is not None,
             "has_rule_engine": self.rule_engine is not None,
             "has_symbolic_solver": self.symbolic_solver is not None,
+            "version": "4.5",
         }
