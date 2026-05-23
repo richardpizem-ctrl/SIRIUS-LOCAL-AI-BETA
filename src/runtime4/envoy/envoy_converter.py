@@ -1,16 +1,16 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.4 Converter
+SIRIUS LOCAL AI – ENVOY 4.5 Converter
 
 Responsible for:
 - converting validated ENVOY payloads into Knowledge Pack 2.0 format
 - extracting data and metadata
-- enforcing Security Family 4.4 rules
+- enforcing Security Family 4.5 rules
 - deterministic, offline‑safe conversion
 - degraded‑mode propagation
 - safe‑mode compatibility
-- Self‑Repair 4.4 diagnostics
+- Self‑Repair 4.5 diagnostics
 
-This is the conversion layer of ENVOY 4.4.
+This is the conversion layer of ENVOY 4.5.
 """
 
 from typing import Dict, Any
@@ -19,7 +19,7 @@ from typing import Dict, Any
 class EnvoyConverter4:
     """
     Deterministic ENVOY → Knowledge Pack 2.0 converter.
-    Fully isolated, offline‑safe, and Security Family 4.4 compliant.
+    Fully isolated, offline‑safe, and Security Family 4.5 compliant.
     """
 
     def __init__(self, max_content_size: int = 500_000):
@@ -73,7 +73,7 @@ class EnvoyConverter4:
     def convert(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
         Converts an ENVOY payload into a Knowledge Pack 2.0 structure.
-        Includes full Runtime 4.4 security validation.
+        Includes full Runtime 4.5 security validation.
         """
 
         # SAFE MODE
@@ -82,11 +82,12 @@ class EnvoyConverter4:
                 "status": "safe_mode",
                 "message": "ENVOY conversion disabled in safe-mode.",
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         # Validate payload
         if not isinstance(payload, dict):
-            return {"status": "error", "code": "invalid_payload_type"}
+            return {"status": "error", "code": "invalid_payload_type", "version": "4.5"}
 
         content = payload.get("content")
         meta = payload.get("meta", {})
@@ -94,11 +95,11 @@ class EnvoyConverter4:
 
         # Validate content
         if not self._is_safe_content(content):
-            return {"status": "error", "code": "invalid_or_unsafe_content"}
+            return {"status": "error", "code": "invalid_or_unsafe_content", "version": "4.5"}
 
         # Validate metadata
         if not self._is_safe_meta(meta):
-            return {"status": "error", "code": "invalid_or_unsafe_meta"}
+            return {"status": "error", "code": "invalid_or_unsafe_meta", "version": "4.5"}
 
         try:
             # Build Knowledge Pack 2.0 structure
@@ -115,6 +116,7 @@ class EnvoyConverter4:
                 "status": "success",
                 "pack": pack,
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         except Exception as exc:
@@ -123,4 +125,5 @@ class EnvoyConverter4:
                 "status": "error",
                 "code": "conversion_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
