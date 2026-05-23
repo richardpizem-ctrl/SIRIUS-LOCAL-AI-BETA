@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Runtime Core 4.4.0 (PRO)
+SIRIUS LOCAL AI – Runtime Core 4.5.0 (PRO)
 
-Central orchestrator of the Runtime 4.4 architecture.
+Central orchestrator of the Runtime 4.5 architecture.
 Coordinates:
 - module loading
 - sandbox isolation
@@ -11,17 +11,17 @@ Coordinates:
 - ENVOY 4.x integration
 - offline reasoning engines
 - PC automation runtime
-- diagnostics & self‑repair hooks
-- UI Automation Engine 4.4 (OS bridge, resolver, router, sandbox, workflow)
+- diagnostics & Self‑Repair Layer 4.5 (Phase‑5)
+- UI Automation Engine 4.5 (OS bridge, resolver, router, sandbox, workflow)
 
 All logic is deterministic, offline, and fully isolated.
 
-Security Notes (Runtime 4.4.0):
+Security Notes (Runtime 4.5.0):
 - Only static imports are allowed.
 - No dynamic loading, no eval, no reflection.
 - __all__ must contain only verified public namespaces.
-- Fully compatible with Security Family 4.4.
-- Self‑Repair 4.4 ready.
+- Fully compatible with Security Family 4.5.
+- Self‑Repair Layer Phase‑5 ready.
 """
 
 from typing import Optional, Dict, Any
@@ -38,9 +38,9 @@ from education_engine_4_1 import EducationEngine41
 from system_agent_4_1 import SystemAgent41
 
 
-class RuntimeCore44:
+class RuntimeCore45:
     """
-    Main orchestrator for SIRIUS Runtime 4.4.0 (PRO).
+    Main orchestrator for SIRIUS Runtime 4.5.0 (PRO).
     Responsible for initializing, connecting, and supervising all subsystems.
     """
 
@@ -136,7 +136,7 @@ class RuntimeCore44:
         self._initialized: bool = False
         self._running: bool = False
 
-        # Runtime 4.4 flags
+        # Runtime 4.5 flags
         self.safe_mode: bool = False
         self.degraded_mode: bool = False
 
@@ -201,15 +201,16 @@ class RuntimeCore44:
     # ---------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode"}
+            return {"status": "safe_mode", "version": "4.5.0"}
 
         if self._initialized:
-            return {"status": "already_initialized", "degraded_mode": self.degraded_mode}
+            return {"status": "already_initialized", "degraded_mode": self.degraded_mode, "version": "4.5.0"}
 
         # Validate interfaces first
         iface = self._validate_interfaces()
         if iface.get("status") != "ok":
             self.degraded_mode = True
+            iface["version"] = "4.5.0"
             return iface
 
         try:
@@ -221,10 +222,10 @@ class RuntimeCore44:
             self._init_automation()
             self._init_diagnostics()
             self._initialized = True
-            return {"status": "initialized", "degraded_mode": self.degraded_mode}
+            return {"status": "initialized", "degraded_mode": self.degraded_mode, "version": "4.5.0"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_exception", "exception": str(exc)}
+            return {"status": "error", "code": "init_exception", "exception": str(exc), "version": "4.5.0"}
 
     # ---------------------------------------------------------------------
     # SUBSYSTEM INITIALIZERS
@@ -296,7 +297,7 @@ class RuntimeCore44:
     # ---------------------------------------------------------------------
     def run_full_diagnostics(self, identity: str = "OWNER") -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode"}
+            return {"status": "safe_mode", "version": "4.5.0"}
 
         try:
             health_report = self.health_engine_41.analyze()
@@ -329,11 +330,17 @@ class RuntimeCore44:
                 },
                 "suggested_actions": suggested_actions,
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5.0",
             }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "diagnostics_exception", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "diagnostics_exception",
+                "exception": str(exc),
+                "version": "4.5.0",
+            }
 
     # ---------------------------------------------------------------------
     # ACTION BUILDER (unchanged semantics, structured output)
