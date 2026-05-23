@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Household Room Mapper 4.4.0
+SIRIUS LOCAL AI – Household Room Mapper 4.5.0
 
 Účel:
 - mapuje zariadenia do miestností
@@ -15,18 +15,18 @@ room_map = {
     "living_room": ["dev_010"]
 }
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HouseholdRoomMapper44:
+class HouseholdRoomMapper45:
     """
-    Deterministic room mapper pre domácnosť.
+    Deterministic room mapper pre domácnosť 4.5.
     """
 
     def __init__(self, device_registry=None):
@@ -50,40 +50,52 @@ class HouseholdRoomMapper44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             if self.device_registry:
                 init = self.device_registry.initialize()
                 if isinstance(init, dict) and init.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "device_registry_init_failed"}
+                    return {
+                        "status": "error",
+                        "code": "device_registry_init_failed",
+                        "version": "4.5",
+                    }
 
             # Rebuild map from registry
             rebuild = self.rebuild()
             if rebuild.get("status") != "ok":
                 self.degraded_mode = True
-                return {"status": "error", "code": "rebuild_failed"}
+                return {
+                    "status": "error",
+                    "code": "rebuild_failed",
+                    "version": "4.5",
+                }
 
             self.initialized = True
-            return {"status": "initialized", "degraded_mode": self.degraded_mode}
+            return {"status": "initialized", "degraded_mode": self.degraded_mode, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # REGISTER DEVICE → UPDATE MAP
     # ---------------------------------------------------------
     def add_device_to_room(self, device_id: str, room: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Room mapper disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Room mapper disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         if not self._validate_str(room):
-            return {"status": "error", "code": "invalid_room"}
+            return {"status": "error", "code": "invalid_room", "version": "4.5"}
 
         try:
             if room not in self.room_map:
@@ -92,61 +104,81 @@ class HouseholdRoomMapper44:
             if device_id not in self.room_map[room]:
                 self.room_map[room].append(device_id)
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "add_device_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "add_device_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # REMOVE DEVICE
     # ---------------------------------------------------------
     def remove_device(self, device_id: str) -> Dict[str, Any]:
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         try:
             for room, devices in self.room_map.items():
                 if device_id in devices:
                     devices.remove(device_id)
-                    return {"status": "ok"}
+                    return {"status": "ok", "version": "4.5"}
 
-            return {"status": "error", "code": "device_not_found"}
+            return {"status": "error", "code": "device_not_found", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "remove_device_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "remove_device_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # GET DEVICES IN ROOM
     # ---------------------------------------------------------
     def devices_in_room(self, room: str) -> Dict[str, Any]:
         if not self._validate_str(room):
-            return {"status": "error", "code": "invalid_room"}
+            return {"status": "error", "code": "invalid_room", "version": "4.5"}
 
         try:
             devices = self.room_map.get(room, [])
-            return {"status": "ok", "room": room, "devices": list(devices)}
+            return {"status": "ok", "room": room, "devices": list(devices), "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "query_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "query_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST ROOMS
     # ---------------------------------------------------------
     def list_rooms(self) -> Dict[str, Any]:
         try:
-            return {"status": "ok", "rooms": list(self.room_map.keys())}
+            return {"status": "ok", "rooms": list(self.room_map.keys()), "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_rooms_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_rooms_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # REBUILD MAP
     # ---------------------------------------------------------
     def rebuild(self) -> Dict[str, Any]:
         if not self.device_registry:
-            return {"status": "error", "code": "no_device_registry"}
+            return {"status": "error", "code": "no_device_registry", "version": "4.5"}
 
         try:
             self.room_map = {}
@@ -160,11 +192,16 @@ class HouseholdRoomMapper44:
                     self.room_map[room] = []
                 self.room_map[room].append(d["id"])
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "rebuild_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "rebuild_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -176,4 +213,5 @@ class HouseholdRoomMapper44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "rooms_count": len(self.room_map),
+            "version": "4.5",
         }
