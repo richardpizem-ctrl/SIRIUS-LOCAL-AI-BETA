@@ -1,13 +1,13 @@
 """
 SIRIUS LOCAL AI – Home Inventory Manager 4.5.0
 
-Účel:
-- deterministické sledovanie zásob v domácnosti
-- 100 % offline, žiadne AI heuristiky, žiadne dynamické importy
+Purpose:
+- deterministic household inventory tracking
+- 100% offline, no AI heuristics, no dynamic imports
 
 Security Family 4.5:
-- žiadne nebezpečné typy
-- deterministické správanie
+- no dangerous types
+- deterministic behavior
 - Self‑Repair 4.5 ready
 """
 
@@ -16,7 +16,7 @@ from typing import Dict, Any, Optional, List
 
 class HomeInventoryManager45:
     """
-    Deterministic inventory manager pre domácnosť 4.5.
+    Deterministic household inventory manager 4.5.
     """
 
     def __init__(self, event_bus=None):
@@ -26,7 +26,7 @@ class HomeInventoryManager45:
 
         self.event_bus = event_bus
 
-        # name → item
+        # name → item structure
         self.inventory: Dict[str, Dict[str, Any]] = {}
 
     # ---------------------------------------------------------
