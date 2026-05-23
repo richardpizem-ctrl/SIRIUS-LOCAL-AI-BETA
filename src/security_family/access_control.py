@@ -1,17 +1,17 @@
 """
-Security Family – Access Control 4.4.0 (PRO)
+Security Family – Access Control 4.5.0 (PRO)
 --------------------------------------------
 Dynamic permissions based on identity, context, risk score, trends,
 and deterministic adaptive learning.
 
-Features (4.4.0):
+Features (4.5.0):
 - deterministic, offline‑only behavior
 - identity‑aware permission tiers (OWNER / FAMILY / CHILD / STRANGER)
 - risk‑aware restrictions
 - anomaly detection (similarity, behavior shift, risk)
 - safe‑mode and degraded‑mode support
 - structured, predictable permission output
-- Security Family 4.4 compliant
+- Security Family 4.5 compliant
 - no dynamic imports, no eval, no reflection
 """
 
@@ -19,9 +19,9 @@ import math
 from statistics import mean
 
 
-class AccessControl44:
+class AccessControl45:
     """
-    Deterministic access control engine for Security Family 4.4.
+    Deterministic access control engine for Security Family 4.5.
     """
 
     VALID_IDENTITIES = {"OWNER", "FAMILY", "CHILD", "STRANGER"}
@@ -137,7 +137,7 @@ class AccessControl44:
             return ["restricted_mode", "no_sensitive_actions"]
 
     # ---------------------------------------------------------
-    # CONTEXT RULES (4.4)
+    # CONTEXT RULES (4.5)
     # ---------------------------------------------------------
     def _apply_context_rules(self, identity, ctx):
         extra = set()
@@ -161,7 +161,7 @@ class AccessControl44:
         return extra
 
     # ---------------------------------------------------------
-    # ADAPTIVE LEARNING (4.4)
+    # ADAPTIVE LEARNING (4.5)
     # ---------------------------------------------------------
     def learn(self, identity, behavior_vector):
         """
@@ -213,7 +213,7 @@ class AccessControl44:
         return {"short": short_avg, "long": long_avg, "delta": delta}
 
     # ---------------------------------------------------------
-    # ANOMALY DETECTION (4.4)
+    # ANOMALY DETECTION (4.5)
     # ---------------------------------------------------------
     def _detect_anomaly(self, ctx):
         """
