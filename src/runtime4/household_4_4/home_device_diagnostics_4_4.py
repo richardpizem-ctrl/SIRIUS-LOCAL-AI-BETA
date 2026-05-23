@@ -1,26 +1,26 @@
 """
-SIRIUS LOCAL AI – Home Device Diagnostics 4.4.0
+SIRIUS LOCAL AI – Home Device Diagnostics 4.5.0
 
 Účel:
 - deterministická diagnostika domácich zariadení
 - 100 % offline, žiadne AI heuristiky, žiadne dynamické importy
 - integrácia s:
-    - Household Device Registry 4.4
-    - Household State Manager 4.4
-    - Event Bus 4.4
+    - Household Device Registry 4.5
+    - Household State Manager 4.5
+    - Event Bus 4.5
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HomeDeviceDiagnostics44:
+class HomeDeviceDiagnostics45:
     """
-    Deterministic diagnostics modul pre domácnosť.
+    Deterministic diagnostics modul pre domácnosť 4.5.
     """
 
     def __init__(self, device_registry=None, state_manager=None, event_bus=None):
@@ -45,7 +45,7 @@ class HomeDeviceDiagnostics44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.device_registry, self.state_manager, self.event_bus]
@@ -54,21 +54,29 @@ class HomeDeviceDiagnostics44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # RUN FULL DIAGNOSTICS
     # ---------------------------------------------------------
     def run_diagnostics(self) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Diagnostics disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Diagnostics disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         try:
             devices = self.device_registry.list_devices().get("devices", [])
@@ -81,11 +89,17 @@ class HomeDeviceDiagnostics44:
                 "status": "ok",
                 "devices_checked": len(devices),
                 "results": results,
+                "version": "4.5",
             }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "diagnostics_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "diagnostics_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # DIAGNOSE SINGLE DEVICE
@@ -158,20 +172,26 @@ class HomeDeviceDiagnostics44:
     # ---------------------------------------------------------
     def diagnose(self, device_id: str) -> Dict[str, Any]:
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         device = self.device_registry.get_device(device_id)
         if device.get("status") != "ok":
-            return {"status": "error", "code": "device_not_found"}
+            return {"status": "error", "code": "device_not_found", "version": "4.5"}
 
         try:
             return {
                 "status": "ok",
                 "result": self._diagnose_device(device["device"]),
+                "version": "4.5",
             }
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "diagnose_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "diagnose_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -182,4 +202,5 @@ class HomeDeviceDiagnostics44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
