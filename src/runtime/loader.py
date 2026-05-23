@@ -8,18 +8,19 @@ log = logging.getLogger(__name__)
 
 class Loader:
     """
-    Loader 4.4
+    Loader 4.5
     --------------------
     Dynamically discovers and loads runtime modules.
 
-    New in 4.4:
-        - Deterministic module discovery
+    Updated in 4.5:
+        - Deterministic module discovery (unchanged)
         - Strict side‑effect protection
-        - Stable metadata contract for Runtime4.4
-        - Self‑Repair Layer 4.4 compatible
+        - Stable metadata contract for Runtime4.5
+        - Self‑Repair Layer 4.5 compatible
         - Safe import isolation
         - Module integrity validation
         - Audit‑friendly structured return values
+        - Metadata version bumped to 4.5
     """
 
     def __init__(self, package_root: str):
@@ -56,7 +57,8 @@ class Loader:
 
             return {
                 "status": "success",
-                "modules": discovered
+                "modules": discovered,
+                "loader_version": "4.5"
             }
 
         except Exception as exc:
@@ -64,7 +66,8 @@ class Loader:
             return {
                 "status": "error",
                 "message": "Module discovery failed.",
-                "exception": str(exc)
+                "exception": str(exc),
+                "loader_version": "4.5"
             }
 
     # --------------------------------------------------------
@@ -89,7 +92,8 @@ class Loader:
 
             return {
                 "status": "success",
-                "module": name
+                "module": name,
+                "loader_version": "4.5"
             }
 
         except Exception as exc:
@@ -97,7 +101,8 @@ class Loader:
             return {
                 "status": "error",
                 "module": name,
-                "exception": str(exc)
+                "exception": str(exc),
+                "loader_version": "4.5"
             }
 
     # --------------------------------------------------------
@@ -119,7 +124,8 @@ class Loader:
 
         return {
             "status": "success",
-            "loaded": results
+            "loaded": results,
+            "loader_version": "4.5"
         }
 
     # --------------------------------------------------------
