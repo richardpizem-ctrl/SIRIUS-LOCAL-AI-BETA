@@ -1,8 +1,8 @@
 """
-SIRIUS LOCAL AI – Pack Linker 4.4.0 (PRO)
+SIRIUS LOCAL AI – Pack Linker 4.5.0 (PRO)
 
-Pack Linker 4.4 provides deterministic, offline‑safe linking between
-Knowledge Packs 4.4.
+Pack Linker 4.5 provides deterministic, offline‑safe linking between
+Knowledge Packs 4.5.
 
 It supports:
 - Cross‑pack references
@@ -10,7 +10,7 @@ It supports:
 - Relationship mapping
 - Safe resolution of references
 - Zero code execution (data‑only)
-- Integration with KP Registry 4.4 and KP Metadata 4.4
+- Integration with KP Registry 4.5 and KP Metadata 4.5
 
 Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
@@ -21,9 +21,9 @@ Security Notes (PRO):
 from typing import Dict, Any, List, Optional
 
 
-class PackLinker44:
+class PackLinker45:
     """
-    Deterministic linker for Knowledge Packs 4.4.
+    Deterministic linker for Knowledge Packs 4.5.
     """
 
     def __init__(self, registry=None, metadata=None):
@@ -56,27 +56,42 @@ class PackLinker44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             if self.registry:
                 res = self.registry.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "registry_init_failed", "details": res}
+                    return {
+                        "status": "error",
+                        "code": "registry_init_failed",
+                        "details": res,
+                        "version": "4.5",
+                    }
 
             if self.metadata:
                 res = self.metadata.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "metadata_init_failed", "details": res}
+                    return {
+                        "status": "error",
+                        "code": "metadata_init_failed",
+                        "details": res,
+                        "version": "4.5",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # RESOLVE REFERENCES FOR ONE PACK
@@ -88,10 +103,14 @@ class PackLinker44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Linker disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Linker disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self.registry:
-            return {"status": "error", "code": "no_registry"}
+            return {"status": "error", "code": "no_registry", "version": "4.5"}
 
         try:
             data = self._get_pack_data(pack)
@@ -106,6 +125,7 @@ class PackLinker44:
                             "status": "error",
                             "code": "invalid_reference_format",
                             "ref": ref,
+                            "version": "4.5",
                         }
 
                     pack_name, ref_key = ref.split(":", 1)
@@ -116,6 +136,7 @@ class PackLinker44:
                             "status": "error",
                             "code": "target_pack_not_found",
                             "ref": ref,
+                            "version": "4.5",
                         }
 
                     target_data = self._get_pack_data(target_pack)
@@ -124,11 +145,12 @@ class PackLinker44:
                             "status": "error",
                             "code": "target_key_not_found",
                             "ref": ref,
+                            "version": "4.5",
                         }
 
                     resolved[key] = target_data[ref_key]
 
-            return {"status": "ok", "resolved": resolved}
+            return {"status": "ok", "resolved": resolved, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -136,6 +158,7 @@ class PackLinker44:
                 "status": "error",
                 "code": "resolve_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
     # ------------------------------------------------------------------
@@ -147,10 +170,15 @@ class PackLinker44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "linked": {}, "failed": []}
+            return {
+                "status": "safe_mode",
+                "linked": {},
+                "failed": [],
+                "version": "4.5",
+            }
 
         if not self.registry:
-            return {"status": "error", "code": "no_registry"}
+            return {"status": "error", "code": "no_registry", "version": "4.5"}
 
         linked = {}
         failed = []
@@ -167,6 +195,7 @@ class PackLinker44:
                 "status": "ok",
                 "linked": linked,
                 "failed": failed,
+                "version": "4.5",
             }
 
         except Exception as exc:
@@ -175,6 +204,7 @@ class PackLinker44:
                 "status": "error",
                 "code": "link_all_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
     # ------------------------------------------------------------------
@@ -186,4 +216,5 @@ class PackLinker44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
