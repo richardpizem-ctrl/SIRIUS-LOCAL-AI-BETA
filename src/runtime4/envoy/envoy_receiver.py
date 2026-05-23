@@ -1,15 +1,15 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.4 Receiver
+SIRIUS LOCAL AI – ENVOY 4.5 Receiver
 
 Responsible for:
 - receiving external ENVOY payloads
 - performing initial structural checks
 - routing payloads to quarantine or validator
-- enforcing Security Family 4.4 rules
+- enforcing Security Family 4.5 rules
 - preparing data for Knowledge Packs 2.0 conversion
-- supporting Self‑Repair 4.4 diagnostics
+- supporting Self‑Repair 4.5 diagnostics
 
-This is the entry point of ENVOY 4.4.
+This is the entry point of ENVOY 4.5.
 """
 
 from typing import Optional, Dict, Any
@@ -18,13 +18,13 @@ import json
 
 class EnvoyReceiver4:
     """
-    Deterministic ENVOY receiver for Runtime 4.4.
+    Deterministic ENVOY receiver for Runtime 4.5.
     Provides:
     - strict validation
     - structured error surface
     - safe-mode compatibility
     - degraded-mode detection
-    - Security Family 4.4 enforcement
+    - Security Family 4.5 enforcement
     """
 
     def __init__(self, max_queue_size: int = 1000, max_payload_size: int = 500_000):
@@ -77,16 +77,17 @@ class EnvoyReceiver4:
                 "status": "safe_mode",
                 "message": "ENVOY receiver disabled in safe-mode.",
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         if not isinstance(payload, dict):
-            return {"status": "error", "code": "invalid_payload_type"}
+            return {"status": "error", "code": "invalid_payload_type", "version": "4.5"}
 
         if not self._is_safe_payload(payload):
-            return {"status": "error", "code": "unsafe_payload"}
+            return {"status": "error", "code": "unsafe_payload", "version": "4.5"}
 
         if len(self.incoming) >= self.max_queue_size:
-            return {"status": "error", "code": "queue_overflow"}
+            return {"status": "error", "code": "queue_overflow", "version": "4.5"}
 
         self.incoming.append(payload)
 
@@ -94,6 +95,7 @@ class EnvoyReceiver4:
             "status": "received",
             "size": len(self.incoming),
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
 
     # ---------------------------------------------------------
@@ -117,6 +119,7 @@ class EnvoyReceiver4:
                 "status": "error",
                 "code": "invalid_queue_entry",
                 "degraded_mode": True,
+                "version": "4.5",
             }
 
         if not self._is_safe_payload(entry):
@@ -124,10 +127,12 @@ class EnvoyReceiver4:
                 "status": "error",
                 "code": "unsafe_payload_in_queue",
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         return {
             "status": "ready",
             "payload": entry,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
