@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – UI Automation OS Bridge 4.4.0 (PRO)
+SIRIUS LOCAL AI – UI Automation OS Bridge 4.5.0 (PRO)
 
-Deterministic OS‑level bridge for UI Automation Engine 4.4.
+Deterministic OS‑level bridge for UI Automation Engine 4.5.
 
 Responsibilities:
 - Win32 / UIA / WinRT abstraction (via capability adapter)
@@ -14,21 +14,23 @@ Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - All OS calls must go through verified capability wrappers.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Optional, Dict, Any
 
 
-class UIOSBridge44:
+class UIOSBridge45:
     """
-    Deterministic OS‑level UI bridge for Runtime 4.4 (PRO).
+    Deterministic OS‑level UI bridge for Runtime 4.5 (PRO).
     """
 
     REQUIRED_CAPABILITY_METHODS = {"initialize", "get_windows", "find_element"}
     REQUIRED_SANDBOX_METHODS = {"initialize", "execute_ui_action"}
 
     def __init__(self, capability_adapter=None, sandbox=None):
+        self.version: str = "4.5.0"
+
         self.capability_adapter = capability_adapter
         self.sandbox = sandbox
 
@@ -41,12 +43,16 @@ class UIOSBridge44:
     # ---------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         # Validate capability adapter
         if not self.capability_adapter:
             self.degraded_mode = True
-            return {"status": "error", "code": "no_capability_adapter"}
+            return {
+                "status": "error",
+                "code": "no_capability_adapter",
+                "version": self.version,
+            }
 
         for method in self.REQUIRED_CAPABILITY_METHODS:
             if not hasattr(self.capability_adapter, method):
@@ -55,12 +61,17 @@ class UIOSBridge44:
                     "status": "error",
                     "code": "invalid_capability_adapter_interface",
                     "missing": method,
+                    "version": self.version,
                 }
 
         # Validate sandbox
         if not self.sandbox:
             self.degraded_mode = True
-            return {"status": "error", "code": "no_sandbox"}
+            return {
+                "status": "error",
+                "code": "no_sandbox",
+                "version": self.version,
+            }
 
         for method in self.REQUIRED_SANDBOX_METHODS:
             if not hasattr(self.sandbox, method):
@@ -69,6 +80,7 @@ class UIOSBridge44:
                     "status": "error",
                     "code": "invalid_sandbox_interface",
                     "missing": method,
+                    "version": self.version,
                 }
 
         try:
@@ -79,6 +91,7 @@ class UIOSBridge44:
                     "status": "error",
                     "code": "capability_init_failed",
                     "details": cap_res,
+                    "version": self.version,
                 }
 
             sb_res = self.sandbox.initialize()
@@ -88,14 +101,20 @@ class UIOSBridge44:
                     "status": "error",
                     "code": "sandbox_init_failed",
                     "details": sb_res,
+                    "version": self.version,
                 }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "exception", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "exception",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
     # ---------------------------------------------------------------------
     # WINDOW ENUMERATION (SAFE)
@@ -106,6 +125,7 @@ class UIOSBridge44:
                 "status": "safe_mode",
                 "windows": [],
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if not self.initialized:
@@ -115,6 +135,7 @@ class UIOSBridge44:
                     "status": "error",
                     "code": "bridge_not_initialized",
                     "details": init,
+                    "version": self.version,
                 }
 
         try:
@@ -123,10 +144,16 @@ class UIOSBridge44:
                 "status": "ok",
                 "windows": windows,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "exception", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "exception",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
     # ---------------------------------------------------------------------
     # UIA ELEMENT QUERY (SAFE)
@@ -137,10 +164,15 @@ class UIOSBridge44:
                 "status": "safe_mode",
                 "element": None,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if not isinstance(query, dict):
-            return {"status": "error", "code": "invalid_query"}
+            return {
+                "status": "error",
+                "code": "invalid_query",
+                "version": self.version,
+            }
 
         if not self.initialized:
             init = self.initialize()
@@ -149,6 +181,7 @@ class UIOSBridge44:
                     "status": "error",
                     "code": "bridge_not_initialized",
                     "details": init,
+                    "version": self.version,
                 }
 
         try:
@@ -157,10 +190,16 @@ class UIOSBridge44:
                 "status": "ok",
                 "element": result,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "exception", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "exception",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
     # ---------------------------------------------------------------------
     # SAFE ACTION DISPATCH (SANDBOX‑ROUTED)
@@ -177,10 +216,15 @@ class UIOSBridge44:
                 "action": action,
                 "element": element_ref,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if not isinstance(element_ref, dict) or not isinstance(action, str):
-            return {"status": "error", "code": "invalid_arguments"}
+            return {
+                "status": "error",
+                "code": "invalid_arguments",
+                "version": self.version,
+            }
 
         if not self.initialized:
             init = self.initialize()
@@ -189,6 +233,7 @@ class UIOSBridge44:
                     "status": "error",
                     "code": "bridge_not_initialized",
                     "details": init,
+                    "version": self.version,
                 }
 
         try:
@@ -201,6 +246,7 @@ class UIOSBridge44:
                 "status": "ok",
                 "result": result,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
         except Exception as exc:
             self.degraded_mode = True
@@ -208,4 +254,5 @@ class UIOSBridge44:
                 "status": "error",
                 "code": "exception",
                 "exception": str(exc),
+                "version": self.version,
             }
