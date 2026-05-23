@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.3 Sandbox Process (PRO)
+SIRIUS LOCAL AI – Runtime 4.5 Sandbox Process (PRO)
 
 The Sandbox Process simulates an isolated execution environment.
 It is responsible for:
@@ -10,17 +10,17 @@ It is responsible for:
 - preparing for capability-based restrictions
 - supporting safe-mode and degraded-mode behavior
 
-Security Family 4.4 Compliance:
+Security Family 4.5 Compliance:
 - No eval, exec, reflection, dynamic imports
 - Strict input validation
 - Deterministic behavior
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Optional, Dict, Any
 
 
-class SandboxProcess4:
+class SandboxProcess45:
     """
     Represents a single sandboxed execution process (PRO).
     Provides:
@@ -49,21 +49,22 @@ class SandboxProcess4:
         """Stores a value inside the sandbox context with safety checks."""
 
         if not isinstance(key, str) or not key.strip():
-            return {"status": "error", "code": "invalid_context_key"}
+            return {"status": "error", "code": "invalid_context_key", "version": "4.5"}
 
         # Prevent storing dangerous types (callables, functions, methods)
         if callable(value):
-            return {"status": "error", "code": "invalid_context_value_type"}
+            return {"status": "error", "code": "invalid_context_value_type", "version": "4.5"}
 
         try:
             self.context[key] = value
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "context_set_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
     def get_context(self, key: str):
@@ -87,19 +88,20 @@ class SandboxProcess4:
             return {
                 "status": "safe_mode",
                 "message": "Sandbox execution disabled in safe-mode.",
+                "version": "4.5",
             }
 
         # Sandbox must be active
         if not self.active:
-            return {"status": "error", "code": "sandbox_inactive"}
+            return {"status": "error", "code": "sandbox_inactive", "version": "4.5"}
 
         # Validate task
         if not isinstance(task, str) or not task.strip():
-            return {"status": "error", "code": "invalid_task"}
+            return {"status": "error", "code": "invalid_task", "version": "4.5"}
 
         # Validate payload
         if payload is not None and not isinstance(payload, dict):
-            return {"status": "error", "code": "invalid_payload_type"}
+            return {"status": "error", "code": "invalid_payload_type", "version": "4.5"}
 
         try:
             # Deterministic placeholder execution
@@ -109,6 +111,7 @@ class SandboxProcess4:
                 "task": task,
                 "payload": payload or {},
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
         except Exception as exc:
             self.degraded_mode = True
@@ -116,6 +119,7 @@ class SandboxProcess4:
                 "status": "error",
                 "code": "execution_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
     # ---------------------------------------------------------
@@ -125,7 +129,7 @@ class SandboxProcess4:
     def shutdown(self):
         """Shuts down the sandbox process."""
         self.active = False
-        return {"status": "sandbox_shutdown"}
+        return {"status": "sandbox_shutdown", "version": "4.5"}
 
     # ---------------------------------------------------------
     # EXPORT (DETERMINISTIC SNAPSHOT)
@@ -139,4 +143,5 @@ class SandboxProcess4:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "context": dict(self.context),
+            "version": "4.5",
         }
