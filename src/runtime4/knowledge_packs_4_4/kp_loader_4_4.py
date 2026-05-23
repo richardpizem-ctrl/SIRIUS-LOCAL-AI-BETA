@@ -1,13 +1,13 @@
 """
-SIRIUS LOCAL AI – Knowledge Pack Loader 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Pack Loader 4.5.0 (PRO)
 
-KP Loader 4.4 is the deterministic, offline‑safe loader for Knowledge Packs.
+KP Loader 4.5 is the deterministic, offline‑safe loader for Knowledge Packs.
 It loads packs from JSON files or Python dicts and integrates with:
 
-- KP Core 4.4 (base pack structure)
-- KP Validator 4.4 (schema + integrity checks)
-- KP Registry 4.4 (pack registration)
-- KP Metadata 4.4 (versioning + descriptors)
+- KP Core 4.5 (base pack structure)
+- KP Validator 4.5 (schema + integrity checks)
+- KP Registry 4.5 (pack registration)
+- KP Metadata 4.5 (versioning + descriptors)
 
 Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
@@ -19,9 +19,9 @@ Security Notes (PRO):
 from typing import Dict, Any, List, Optional
 
 
-class KnowledgePackLoader44:
+class KnowledgePackLoader45:
     """
-    Deterministic loader for Knowledge Packs 4.4.
+    Deterministic loader for Knowledge Packs 4.5.
     """
 
     def __init__(self, fs_adapter=None, core=None, validator=None, registry=None, metadata=None):
@@ -49,7 +49,7 @@ class KnowledgePackLoader44:
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.fs, self.core, self.validator, self.registry, self.metadata]
@@ -58,32 +58,50 @@ class KnowledgePackLoader44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # LOAD PACK FROM FILE
     # ------------------------------------------------------------------
     def load_from_file(self, path: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Loader disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Loader disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self.fs:
-            return {"status": "error", "code": "no_fs_adapter"}
+            return {"status": "error", "code": "no_fs_adapter", "version": "4.5"}
 
         if not self._validate_str(path):
-            return {"status": "error", "code": "invalid_path"}
+            return {"status": "error", "code": "invalid_path", "version": "4.5"}
 
         try:
             raw = self.fs.read_json(path)
         except Exception as exc:
-            return {"status": "error", "code": "file_read_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "file_read_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
         return self._process_raw_pack(raw)
 
@@ -92,7 +110,11 @@ class KnowledgePackLoader44:
     # ------------------------------------------------------------------
     def load_from_dict(self, raw: Dict[str, Any]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Loader disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Loader disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         return self._process_raw_pack(raw)
 
@@ -111,7 +133,7 @@ class KnowledgePackLoader44:
 
         # 1. Validate raw structure
         if not self._validate_raw(raw):
-            return {"status": "error", "code": "invalid_raw_structure"}
+            return {"status": "error", "code": "invalid_raw_structure", "version": "4.5"}
 
         # 2. Schema validation
         if self.validator:
@@ -121,6 +143,7 @@ class KnowledgePackLoader44:
                     "status": "error",
                     "code": "validation_failed",
                     "details": valid,
+                    "version": "4.5",
                 }
 
         # 3. Create pack container
@@ -136,10 +159,11 @@ class KnowledgePackLoader44:
                     "status": "error",
                     "code": "pack_creation_failed",
                     "details": created,
+                    "version": "4.5",
                 }
             pack = created["pack"]
         else:
-            return {"status": "error", "code": "core_missing"}
+            return {"status": "error", "code": "core_missing", "version": "4.5"}
 
         # 4. Metadata enrichment
         if self.metadata:
@@ -149,6 +173,7 @@ class KnowledgePackLoader44:
                     "status": "error",
                     "code": "metadata_failed",
                     "details": enriched,
+                    "version": "4.5",
                 }
             pack = enriched["pack"]
 
@@ -160,27 +185,37 @@ class KnowledgePackLoader44:
                     "status": "error",
                     "code": "registration_failed",
                     "details": reg,
+                    "version": "4.5",
                 }
 
-        return {"status": "ok", "pack": pack}
+        return {"status": "ok", "pack": pack, "version": "4.5"}
 
     # ------------------------------------------------------------------
     # LOAD ALL PACKS FROM DIRECTORY
     # ------------------------------------------------------------------
     def load_all(self, directory: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Loader disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Loader disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self.fs:
-            return {"status": "error", "code": "no_fs_adapter"}
+            return {"status": "error", "code": "no_fs_adapter", "version": "4.5"}
 
         if not self._validate_str(directory):
-            return {"status": "error", "code": "invalid_directory"}
+            return {"status": "error", "code": "invalid_directory", "version": "4.5"}
 
         try:
             files = self.fs.list_files(directory)
         except Exception as exc:
-            return {"status": "error", "code": "list_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
         loaded = []
         failed = []
@@ -199,6 +234,7 @@ class KnowledgePackLoader44:
             "status": "ok",
             "loaded": loaded,
             "failed": failed,
+            "version": "4.5",
         }
 
     # ------------------------------------------------------------------
@@ -210,4 +246,5 @@ class KnowledgePackLoader44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
