@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Knowledge Pack Validator 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Pack Validator 4.5.0 (PRO)
 
-KP Validator 4.4 performs deterministic, offline‑safe validation of
+KP Validator 4.5 performs deterministic, offline‑safe validation of
 Knowledge Packs. It ensures:
 
 - Correct schema
@@ -10,7 +10,7 @@ Knowledge Packs. It ensures:
 - Safe data structures
 - No executable code
 - No invalid metadata
-- Compatibility with KP Core 4.4
+- Compatibility with KP Core 4.5
 
 Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
@@ -21,9 +21,9 @@ Security Notes (PRO):
 from typing import Dict, Any
 
 
-class KnowledgePackValidator44:
+class KnowledgePackValidator45:
     """
-    Deterministic validator for Knowledge Packs 4.4.
+    Deterministic validator for Knowledge Packs 4.5.
     """
 
     ALLOWED_PACK_TYPES = {
@@ -42,7 +42,7 @@ class KnowledgePackValidator44:
         "data",
     }
 
-    VERSION = "4.4"
+    VERSION = "4.5"
 
     SAFE_TYPES = (str, int, float, bool, dict, list)
 
@@ -72,15 +72,20 @@ class KnowledgePackValidator44:
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # VALIDATE PACK STRUCTURE
@@ -92,11 +97,15 @@ class KnowledgePackValidator44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Validator disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Validator disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         # Must be dict
         if not isinstance(raw, dict):
-            return {"status": "error", "code": "not_a_dict"}
+            return {"status": "error", "code": "not_a_dict", "version": "4.5"}
 
         # Required fields
         missing = self.REQUIRED_FIELDS - set(raw.keys())
@@ -105,11 +114,12 @@ class KnowledgePackValidator44:
                 "status": "error",
                 "code": "missing_fields",
                 "missing": sorted(list(missing)),
+                "version": "4.5",
             }
 
         # Validate name
         if not self._validate_str(raw.get("name")):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         # Validate version
         if raw.get("version") != self.VERSION:
@@ -118,6 +128,7 @@ class KnowledgePackValidator44:
                 "code": "invalid_version",
                 "expected": self.VERSION,
                 "found": raw.get("version"),
+                "version": "4.5",
             }
 
         # Validate pack type
@@ -126,24 +137,26 @@ class KnowledgePackValidator44:
                 "status": "error",
                 "code": "invalid_pack_type",
                 "allowed": sorted(self.ALLOWED_PACK_TYPES),
+                "version": "4.5",
             }
 
         # Validate data
         data = raw.get("data")
         if not isinstance(data, dict):
-            return {"status": "error", "code": "data_must_be_dict"}
+            return {"status": "error", "code": "data_must_be_dict", "version": "4.5"}
 
         # Validate metadata
         metadata = raw.get("metadata", {})
         if not self._validate_metadata(metadata):
-            return {"status": "error", "code": "invalid_metadata"}
+            return {"status": "error", "code": "invalid_metadata", "version": "4.5"}
 
         # Recursive safe type check
         safe_check = self._validate_safe_types(raw)
         if safe_check.get("status") != "ok":
+            safe_check["version"] = "4.5"
             return safe_check
 
-        return {"status": "ok"}
+        return {"status": "ok", "version": "4.5"}
 
     # ------------------------------------------------------------------
     # RECURSIVE SAFE TYPE CHECK
@@ -197,4 +210,5 @@ class KnowledgePackValidator44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
