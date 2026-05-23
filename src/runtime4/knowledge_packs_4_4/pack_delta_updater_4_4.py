@@ -1,15 +1,15 @@
 """
-SIRIUS LOCAL AI – Pack Delta Updater 4.4.0 (PRO)
+SIRIUS LOCAL AI – Pack Delta Updater 4.5.0 (PRO)
 
 This module provides deterministic, offline‑safe delta updates for
-Knowledge Packs 4.4.
+Knowledge Packs 4.5.
 
 It supports:
 - Computing diffs between pack versions
 - Applying diffs to produce updated pack data
 - Safe rollback
 - Zero code execution (data‑only)
-- Integration with KP Registry 4.4 and KP Validator 4.4
+- Integration with KP Registry 4.5 and KP Validator 4.5
 
 Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
@@ -20,9 +20,9 @@ Security Notes (PRO):
 from typing import Dict, Any
 
 
-class PackDeltaUpdater44:
+class PackDeltaUpdater45:
     """
-    Deterministic delta generator + applier for Knowledge Packs 4.4.
+    Deterministic delta generator + applier for Knowledge Packs 4.5.
     """
 
     def __init__(self, validator=None):
@@ -45,21 +45,30 @@ class PackDeltaUpdater44:
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             if self.validator:
                 res = self.validator.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "validator_init_failed"}
+                    return {
+                        "status": "error",
+                        "code": "validator_init_failed",
+                        "version": "4.5",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # COMPUTE DELTA
@@ -71,10 +80,14 @@ class PackDeltaUpdater44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Delta updater disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Delta updater disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_dict(old_pack) or not self._validate_dict(new_pack):
-            return {"status": "error", "code": "invalid_pack_structure"}
+            return {"status": "error", "code": "invalid_pack_structure", "version": "4.5"}
 
         try:
             delta = {
@@ -91,7 +104,12 @@ class PackDeltaUpdater44:
                 if self._validate_json_safe(new_pack[key]):
                     delta["added"][key] = new_pack[key]
                 else:
-                    return {"status": "error", "code": "unsafe_value_added", "key": key}
+                    return {
+                        "status": "error",
+                        "code": "unsafe_value_added",
+                        "key": key,
+                        "version": "4.5",
+                    }
 
             # Removed keys
             for key in sorted(old_keys - new_keys):
@@ -101,18 +119,28 @@ class PackDeltaUpdater44:
             for key in sorted(old_keys & new_keys):
                 if old_pack[key] != new_pack[key]:
                     if not self._validate_json_safe(new_pack[key]):
-                        return {"status": "error", "code": "unsafe_modified_value", "key": key}
+                        return {
+                            "status": "error",
+                            "code": "unsafe_modified_value",
+                            "key": key,
+                            "version": "4.5",
+                        }
 
                     delta["modified"][key] = {
                         "old": old_pack[key],
                         "new": new_pack[key],
                     }
 
-            return {"status": "ok", "delta": delta}
+            return {"status": "ok", "delta": delta, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "delta_compute_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "delta_compute_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # APPLY DELTA
@@ -124,10 +152,14 @@ class PackDeltaUpdater44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Delta updater disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Delta updater disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_dict(base_pack) or not self._validate_dict(delta):
-            return {"status": "error", "code": "invalid_structure"}
+            return {"status": "error", "code": "invalid_structure", "version": "4.5"}
 
         try:
             updated = dict(base_pack)
@@ -153,13 +185,19 @@ class PackDeltaUpdater44:
                         "status": "error",
                         "code": "validation_failed_after_delta",
                         "details": valid,
+                        "version": "4.5",
                     }
 
-            return {"status": "ok", "updated_pack": updated}
+            return {"status": "ok", "updated_pack": updated, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "apply_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "apply_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # ROLLBACK DELTA
@@ -171,10 +209,14 @@ class PackDeltaUpdater44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Delta updater disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Delta updater disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_dict(updated_pack) or not self._validate_dict(delta):
-            return {"status": "error", "code": "invalid_structure"}
+            return {"status": "error", "code": "invalid_structure", "version": "4.5"}
 
         try:
             rolled_back = dict(updated_pack)
@@ -192,11 +234,16 @@ class PackDeltaUpdater44:
             for key, change in delta.get("modified", {}).items():
                 rolled_back[key] = change.get("old")
 
-            return {"status": "ok", "rolled_back_pack": rolled_back}
+            return {"status": "ok", "rolled_back_pack": rolled_back, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "rollback_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "rollback_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STATUS
@@ -207,4 +254,5 @@ class PackDeltaUpdater44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
