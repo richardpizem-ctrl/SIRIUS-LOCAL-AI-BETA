@@ -1,6 +1,6 @@
 {
-  "VERSION": "4.4.0",
-  "FORMAT": "PROFILE_STORE_4_4_PRO",
+  "VERSION": "4.5.0",
+  "FORMAT": "PROFILE_STORE_4_5_PRO",
 
   "IDENTITY_REGISTRY": {
     "OWNER": true,
@@ -26,14 +26,14 @@
     "time_of_day": 0.0
   },
 
-  "STRANGER_BASELINE_44": {
+  "STRANGER_BASELINE_45": {
     "expected_noise": 0.25,
     "max_allowed_similarity": 0.35,
     "behavior_noise_floor": 0.15,
     "max_behavior_shift": 0.25
   },
 
-  "SETTINGS_44": {
+  "SETTINGS_45": {
     "audit_sensitivity": 0.85,
     "learning_rate": 0.2,
 
