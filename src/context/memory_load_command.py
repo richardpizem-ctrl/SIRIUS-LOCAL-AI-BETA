@@ -4,21 +4,21 @@ from context.context_manager import ContextManager
 
 class MemoryLoadCommand(BaseCommand):
     """
-    MemoryLoadCommand 4.4
+    MemoryLoadCommand 4.5
     Loads a value from persistent memory and safely merges it into state.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic diff structure
-        - Snapshot before merge
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Stable output for Runtime4.4 and NL Router 4.4
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic diff structure (unchanged)
+        - Snapshot before merge (unchanged)
+        - Stable output for Runtime4.5 and NL Router 4.5
+        - Unified error model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "memory-load"
     description = "Loads a value from persistent memory and merges it into state."
@@ -38,7 +38,7 @@ class MemoryLoadCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
