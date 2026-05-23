@@ -4,21 +4,20 @@ from context.context_manager import ContextManager
 
 class ContextDiffCommand(BaseCommand):
     """
-    ContextDiffCommand 4.4
+    ContextDiffCommand 4.5
     Compares the current context state with values stored in memory.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic diff output
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Safe execution via BaseCommand.run()
-        - Stable structure for Runtime4.4 and NL Router 4.4
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic diff output (unchanged)
+        - Stable structure for Runtime4.5 and NL Router 4.5
+        - Unified error model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "context-diff"
     description = "Shows differences between the current state and stored memory."
@@ -38,7 +37,7 @@ class ContextDiffCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
