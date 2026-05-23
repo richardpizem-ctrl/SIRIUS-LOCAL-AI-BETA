@@ -1,23 +1,23 @@
 """
-SIRIUS LOCAL AI – Home Scene Manager 4.4.0 (PRO)
+SIRIUS LOCAL AI – Home Scene Manager 4.5.0 (PRO)
 
-Účel:
-- deterministická správa domácich scén
-- žiadne AI heuristiky, žiadne dynamické importy
-- 100 % offline
+Purpose:
+- deterministic management of home scenes
+- no AI heuristics, no dynamic imports
+- 100% offline
 
-Security Family 4.4:
-- deterministické správanie
-- safe‑mode kompatibilita
-- Self‑Repair 4.4 ready
+Security Family 4.5:
+- deterministic behavior
+- safe‑mode compatible
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HomeSceneManager44:
+class HomeSceneManager45:
     """
-    Deterministic scene manager pre domácnosť.
+    Deterministic scene manager for household automation 4.5.
     """
 
     def __init__(self, state_manager=None, event_bus=None):
@@ -28,7 +28,7 @@ class HomeSceneManager44:
         self.state_manager = state_manager
         self.event_bus = event_bus
 
-        # Názov scény → definícia
+        # Scene name → definition
         self.scenes: Dict[str, Dict[str, Any]] = {}
 
     # ---------------------------------------------------------
@@ -54,7 +54,7 @@ class HomeSceneManager44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.state_manager, self.event_bus]
@@ -63,33 +63,45 @@ class HomeSceneManager44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # REGISTER SCENE
     # ---------------------------------------------------------
     def register_scene(self, scene: Dict[str, Any]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Scene manager disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Scene manager disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         name = scene.get("name")
         actions = scene.get("actions")
 
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name in self.scenes:
-            return {"status": "error", "code": "scene_exists"}
+            return {"status": "error", "code": "scene_exists", "version": "4.5"}
 
         if not self._validate_actions(actions):
-            return {"status": "error", "code": "invalid_actions"}
+            return {"status": "error", "code": "invalid_actions", "version": "4.5"}
 
         try:
             self.scenes[name] = scene
@@ -100,34 +112,48 @@ class HomeSceneManager44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "register_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "register_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST SCENES
     # ---------------------------------------------------------
     def list_scenes(self) -> Dict[str, Any]:
         try:
-            return {"status": "ok", "scenes": list(self.scenes.keys())}
+            return {
+                "status": "ok",
+                "scenes": list(self.scenes.keys()),
+                "version": "4.5",
+            }
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # RUN SCENE
     # ---------------------------------------------------------
     def run_scene(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name not in self.scenes:
-            return {"status": "error", "code": "scene_not_found"}
+            return {"status": "error", "code": "scene_not_found", "version": "4.5"}
 
         if not self.state_manager:
-            return {"status": "error", "code": "no_state_manager"}
+            return {"status": "error", "code": "no_state_manager", "version": "4.5"}
 
         try:
             scene = self.scenes[name]
@@ -167,29 +193,39 @@ class HomeSceneManager44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "results": results}
+            return {"status": "ok", "results": results, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "run_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "run_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # DELETE SCENE
     # ---------------------------------------------------------
     def delete_scene(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name not in self.scenes:
-            return {"status": "error", "code": "scene_not_found"}
+            return {"status": "error", "code": "scene_not_found", "version": "4.5"}
 
         try:
             del self.scenes[name]
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "delete_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "delete_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -201,4 +237,5 @@ class HomeSceneManager44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "scenes_count": len(self.scenes),
+            "version": "4.5",
         }
