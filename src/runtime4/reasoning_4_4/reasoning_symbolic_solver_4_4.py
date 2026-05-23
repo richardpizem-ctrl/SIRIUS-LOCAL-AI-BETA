@@ -1,376 +1,210 @@
 """
-SIRIUS LOCAL AI – Reasoning Symbolic Solver 4.4.0 (PRO)
+SIRIUS LOCAL AI – Multi‑Subject Reasoning Router 4.5.0 (PRO)
 
-Deterministic, offline‑safe symbolic solver for Reasoning Engine 4.4.
+Deterministic router pre Reasoning Engine 4.5.
 
-Features:
-- Simple symbolic expressions (variables, numbers, +, -, *, /, ^, parentheses)
-- Deterministic parsing (no eval, no dynamic imports, no reflection)
-- Expression tree representation
-- Substitution of variables
-- Numeric evaluation with environment
-- Basic simplifications (constant folding, neutral elements)
-
-Security Notes:
-- No eval, no exec, no dynamic imports.
-- Only operates on in‑memory strings, numbers, and dicts.
-- Fully offline, deterministic, isolated.
+Účel:
+- rozhoduje, ktorý reasoning modul sa má použiť
+- rozdeľuje dotaz podľa tém
+- vyberá relevantné Knowledge Packy
+- spúšťa správny reasoning mód (symbolic / rules / chain)
+- 100 % offline, deterministické, bez AI heuristiky
+- kompatibilné so Security Family 4.5 a Self‑Repair 4.5
 """
 
-from __future__ import annotations
-from typing import Any, Dict, Union, List, Optional
+from typing import Dict, Any, List
 
 
-Number = Union[int, float]
-
-
-# ============================================================
-# BASE NODE
-# ============================================================
-
-class SymbolicNode44:
+class ReasoningMultiSubjectRouter45:
     """
-    Base class for all symbolic expression nodes.
+    Deterministic multi‑subject router (PRO).
     """
 
-    def evaluate(self, env: Dict[str, Number]) -> Number:
-        raise NotImplementedError
+    def __init__(
+        self,
+        registry=None,
+        query_engine=None,
+        context_builder=None,
+        chain_executor=None,
+        rule_engine=None,
+        symbolic_solver=None,
+    ):
+        self.registry = registry
+        self.query_engine = query_engine
+        self.context_builder = context_builder
+        self.chain_executor = chain_executor
+        self.rule_engine = rule_engine
+        self.symbolic_solver = symbolic_solver
 
-    def substitute(self, mapping: Dict[str, "SymbolicNode44"]) -> "SymbolicNode44":
-        raise NotImplementedError
-
-    def simplify(self) -> "SymbolicNode44":
-        return self
-
-
-# ============================================================
-# CONSTANT NODE
-# ============================================================
-
-class ConstNode44(SymbolicNode44):
-    def __init__(self, value: Number):
-        self.value = value
-
-    def evaluate(self, env: Dict[str, Number]) -> Number:
-        return self.value
-
-    def substitute(self, mapping: Dict[str, "SymbolicNode44"]) -> "SymbolicNode44":
-        return self
-
-    def simplify(self) -> "SymbolicNode44":
-        return self
-
-    def __repr__(self) -> str:
-        return f"Const({self.value})"
-
-
-# ============================================================
-# VARIABLE NODE
-# ============================================================
-
-class VarNode44(SymbolicNode44):
-    def __init__(self, name: str):
-        self.name = name
-
-    def evaluate(self, env: Dict[str, Number]) -> Number:
-        if self.name not in env:
-            raise KeyError(f"Variable '{self.name}' not found in environment")
-        return env[self.name]
-
-    def substitute(self, mapping: Dict[str, "SymbolicNode44"]) -> "SymbolicNode44":
-        return mapping.get(self.name, self)
-
-    def __repr__(self) -> str:
-        return f"Var({self.name})"
-
-
-# ============================================================
-# BINARY OPERATION NODE
-# ============================================================
-
-class BinOpNode44(SymbolicNode44):
-    def __init__(self, op: str, left: SymbolicNode44, right: SymbolicNode44):
-        self.op = op
-        self.left = left
-        self.right = right
-
-    def evaluate(self, env: Dict[str, Number]) -> Number:
-        lv = self.left.evaluate(env)
-        rv = self.right.evaluate(env)
-
-        if self.op == "+": return lv + rv
-        if self.op == "-": return lv - rv
-        if self.op == "*": return lv * rv
-        if self.op == "/": return lv / rv
-        if self.op == "^": return lv ** rv
-
-        raise ValueError(f"Unsupported operator: {self.op}")
-
-    def substitute(self, mapping: Dict[str, SymbolicNode44]) -> "SymbolicNode44":
-        return BinOpNode44(
-            self.op,
-            self.left.substitute(mapping),
-            self.right.substitute(mapping),
-        )
-
-    def simplify(self) -> "SymbolicNode44":
-        left_s = self.left.simplify()
-        right_s = self.right.simplify()
-
-        # Constant folding
-        if isinstance(left_s, ConstNode44) and isinstance(right_s, ConstNode44):
-            env: Dict[str, Number] = {}
-            return ConstNode44(self.evaluate(env))
-
-        # Neutral elements
-        if self.op == "+":
-            if isinstance(left_s, ConstNode44) and left_s.value == 0: return right_s
-            if isinstance(right_s, ConstNode44) and right_s.value == 0: return left_s
-
-        if self.op == "*":
-            if isinstance(left_s, ConstNode44):
-                if left_s.value == 0: return ConstNode44(0)
-                if left_s.value == 1: return right_s
-            if isinstance(right_s, ConstNode44):
-                if right_s.value == 0: return ConstNode44(0)
-                if right_s.value == 1: return left_s
-
-        return BinOpNode44(self.op, left_s, right_s)
-
-    def __repr__(self) -> str:
-        return f"BinOp({self.op}, {self.left}, {self.right})"
-
-
-# ============================================================
-# PARSER
-# ============================================================
-
-class SymbolicParser44:
-    """
-    Deterministic parser for simple symbolic expressions.
-    """
-
-    def __init__(self, text: str):
-        self.text = text
-        self.pos = 0
-        self.length = len(text)
-
-    # low-level helpers
-    def _peek(self) -> Optional[str]:
-        if self.pos >= self.length:
-            return None
-        return self.text[self.pos]
-
-    def _consume(self) -> Optional[str]:
-        ch = self._peek()
-        if ch is not None:
-            self.pos += 1
-        return ch
-
-    def _skip_ws(self) -> None:
-        while self._peek() is not None and self._peek().isspace():
-            self._consume()
-
-    # number
-    def _read_number(self) -> ConstNode44:
-        start = self.pos
-        dot_seen = False
-
-        while True:
-            ch = self._peek()
-            if ch is None: break
-            if ch.isdigit(): self._consume()
-            elif ch == "." and not dot_seen:
-                dot_seen = True
-                self._consume()
-            else:
-                break
-
-        num_str = self.text[start:self.pos]
-        if not num_str:
-            raise ValueError("Expected number")
-
-        return ConstNode44(float(num_str) if "." in num_str else int(num_str))
-
-    # identifier
-    def _read_ident(self) -> VarNode44:
-        start = self.pos
-        ch = self._peek()
-        if ch is None or not (ch.isalpha() or ch == "_"):
-            raise ValueError("Expected identifier")
-
-        self._consume()
-        while True:
-            ch = self._peek()
-            if ch is None: break
-            if ch.isalnum() or ch == "_": self._consume()
-            else: break
-
-        return VarNode44(self.text[start:self.pos])
-
-    # grammar
-    def parse(self) -> SymbolicNode44:
-        node = self._parse_expr()
-        self._skip_ws()
-        if self._peek() is not None:
-            raise ValueError(f"Unexpected character at position {self.pos}: {self._peek()}")
-        return node
-
-    def _parse_expr(self) -> SymbolicNode44:
-        node = self._parse_term()
-        while True:
-            self._skip_ws()
-            ch = self._peek()
-            if ch in ("+", "-"):
-                op = self._consume()
-                node = BinOpNode44(op, node, self._parse_term())
-            else:
-                break
-        return node
-
-    def _parse_term(self) -> SymbolicNode44:
-        node = self._parse_factor()
-        while True:
-            self._skip_ws()
-            ch = self._peek()
-            if ch in ("*", "/"):
-                op = self._consume()
-                node = BinOpNode44(op, node, self._parse_factor())
-            else:
-                break
-        return node
-
-    def _parse_factor(self) -> SymbolicNode44:
-        node = self._parse_primary()
-        self._skip_ws()
-        if self._peek() == "^":
-            self._consume()
-            node = BinOpNode44("^", node, self._parse_factor())
-        return node
-
-    def _parse_primary(self) -> SymbolicNode44:
-        self._skip_ws()
-        ch = self._peek()
-
-        if ch is None:
-            raise ValueError("Unexpected end of input")
-
-        if ch.isdigit(): return self._read_number()
-        if ch.isalpha() or ch == "_": return self._read_ident()
-
-        if ch == "(":
-            self._consume()
-            node = self._parse_expr()
-            self._skip_ws()
-            if self._peek() != ")":
-                raise ValueError("Expected ')'")
-            self._consume()
-            return node
-
-        if ch == "+":
-            self._consume()
-            return self._parse_primary()
-
-        if ch == "-":
-            self._consume()
-            return BinOpNode44("-", ConstNode44(0), self._parse_primary())
-
-        raise ValueError(f"Unexpected character: {ch}")
-
-
-# ============================================================
-# HIGH‑LEVEL SOLVER (PRO)
-# ============================================================
-
-class ReasoningSymbolicSolver44:
-    """
-    High-level interface for symbolic solving in Reasoning Engine 4.4 (PRO).
-    """
-
-    def __init__(self):
         self.initialized = False
         self.degraded_mode = False
         self.safe_mode = False
+        self.version = "4.5"
 
-    # INIT
+    # ------------------------------------------------------------------
+    # INITIALIZATION
+    # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
+            modules = [
+                self.registry,
+                self.query_engine,
+                self.context_builder,
+                self.chain_executor,
+                self.rule_engine,
+                self.symbolic_solver,
+            ]
+
+            for m in modules:
+                if m and hasattr(m, "initialize"):
+                    res = m.initialize()
+                    if isinstance(res, dict) and res.get("status") == "error":
+                        self.degraded_mode = True
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "details": res,
+                            "version": self.version,
+                        }
+
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
+
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
-    # PARSE
-    def parse(self, expr: str) -> Dict[str, Any]:
+    # ------------------------------------------------------------------
+    # SUBJECT DETECTION (deterministic)
+    # ------------------------------------------------------------------
+    def detect_subjects(self, text: str) -> List[str]:
+        """
+        Deterministická detekcia tém podľa kľúčových slov.
+        Žiadne AI, žiadne heuristiky.
+        """
+
+        if not isinstance(text, str):
+            return ["general"]
+
+        text_l = text.lower()
+        subjects: List[str] = []
+
+        if any(w in text_l for w in ["math", "calculate", "solve", "equation"]):
+            subjects.append("math")
+
+        if any(w in text_l for w in ["history", "year", "war", "king"]):
+            subjects.append("history")
+
+        if any(w in text_l for w in ["language", "grammar", "word", "translate"]):
+            subjects.append("language")
+
+        if any(w in text_l for w in ["science", "physics", "chemistry", "biology"]):
+            subjects.append("science")
+
+        if any(w in text_l for w in ["geography", "country", "capital", "continent"]):
+            subjects.append("geography")
+
+        if not subjects:
+            subjects.append("general")
+
+        return subjects
+
+    # ------------------------------------------------------------------
+    # ROUTING LOGIC (PRO)
+    # ------------------------------------------------------------------
+    def route(self, query: str) -> Dict[str, Any]:
+        """
+        Hlavná routing funkcia.
+        Rozhoduje, ktorý reasoning mód sa použije.
+        """
+
         if self.safe_mode:
-            return {"status": "safe_mode"}
+            return {
+                "status": "safe_mode",
+                "message": "Router disabled in safe-mode.",
+                "version": self.version,
+            }
 
-        if not isinstance(expr, str):
-            return {"status": "error", "code": "invalid_expr_type"}
-
-        try:
-            parser = SymbolicParser44(expr)
-            return {"status": "ok", "ast": parser.parse()}
-        except Exception as exc:
-            return {"status": "error", "code": "parse_failed", "exception": str(exc)}
-
-    # EVALUATE
-    def evaluate(self, expr: str, env: Dict[str, Number]) -> Dict[str, Any]:
-        parsed = self.parse(expr)
-        if parsed.get("status") != "ok":
-            return parsed
+        if not isinstance(query, str):
+            return {"status": "error", "code": "invalid_query_type", "version": self.version}
 
         try:
-            value = parsed["ast"].evaluate(env)
-            return {"status": "ok", "value": value}
-        except Exception as exc:
-            return {"status": "error", "code": "eval_failed", "exception": str(exc)}
+            # 1. Detekcia tém
+            subjects = self.detect_subjects(query)
 
-    # SIMPLIFY
-    def simplify(self, expr: str) -> Dict[str, Any]:
-        parsed = self.parse(expr)
-        if parsed.get("status") != "ok":
-            return parsed
+            # 2. Zostavenie kontextu
+            if not self.context_builder:
+                return {"status": "error", "code": "no_context_builder", "version": self.version}
 
-        try:
-            return {"status": "ok", "ast": parsed["ast"].simplify()}
-        except Exception as exc:
-            return {"status": "error", "code": "simplify_failed", "exception": str(exc)}
-
-    # SUBSTITUTE
-    def substitute(self, expr: str, mapping: Dict[str, str]) -> Dict[str, Any]:
-        parsed = self.parse(expr)
-        if parsed.get("status") != "ok":
-            return parsed
-
-        # Parse mapping expressions
-        sub_map: Dict[str, SymbolicNode44] = {}
-        for name, sub_expr in mapping.items():
-            sub_parsed = self.parse(sub_expr)
-            if sub_parsed.get("status") != "ok":
+            ctx = self.context_builder.build_context(subjects)
+            if ctx.get("status") != "ok":
                 return {
                     "status": "error",
-                    "code": "substitution_parse_failed",
-                    "var": name,
-                    "details": sub_parsed,
+                    "code": "context_build_failed",
+                    "details": ctx,
+                    "version": self.version,
                 }
-            sub_map[name] = sub_parsed["ast"]
 
-        try:
-            new_node = parsed["ast"].substitute(sub_map)
-            return {"status": "ok", "ast": new_node}
+            # 3. Symbolic reasoning (math)
+            if "math" in subjects and self.symbolic_solver:
+                symbolic = self.symbolic_solver.simplify(query)
+                return {
+                    "status": "ok",
+                    "type": "symbolic",
+                    "result": symbolic,
+                    "subjects": subjects,
+                    "version": self.version,
+                }
+
+            # 4. Rule‑based reasoning (history, science)
+            if ("history" in subjects or "science" in subjects) and self.rule_engine:
+                rules = self.rule_engine.apply_rules(query, ctx)
+                return {
+                    "status": "ok",
+                    "type": "rules",
+                    "result": rules,
+                    "subjects": subjects,
+                    "version": self.version,
+                }
+
+            # 5. Default → chain executor
+            if not self.chain_executor:
+                return {"status": "error", "code": "no_chain_executor", "version": self.version}
+
+            chain = self.chain_executor.execute(query, ctx)
+            return {
+                "status": "ok",
+                "type": "chain",
+                "result": chain,
+                "subjects": subjects,
+                "version": self.version,
+            }
+
         except Exception as exc:
-            return {"status": "error", "code": "substitution_failed", "exception": str(exc)}
+            self.degraded_mode = True
+            return {
+                "status": "error",
+                "code": "routing_failed",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
+    # ------------------------------------------------------------------
     # STATUS
+    # ------------------------------------------------------------------
     def get_status(self) -> Dict[str, Any]:
         return {
             "status": "ok",
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
