@@ -7,22 +7,22 @@ import copy
 
 class ContextMergeCommand(BaseCommand):
     """
-    ContextMergeCommand 4.4
+    ContextMergeCommand 4.5
     Merges an external JSON context file into the current context.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic merge behavior
-        - Deep‑copy safety
-        - Snapshot before merge
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Stable structure for Runtime4.4 and NL Router 4.4
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic merge behavior (unchanged)
+        - Deep‑copy safety (unchanged)
+        - Snapshot before merge (unchanged)
+        - Stable structure for Runtime4.5 and NL Router 4.5
+        - Unified error model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "context-merge"
     description = "Merges an external JSON context file into the current context."
@@ -42,7 +42,7 @@ class ContextMergeCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
