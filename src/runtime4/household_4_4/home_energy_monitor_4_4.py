@@ -1,22 +1,22 @@
 """
-SIRIUS LOCAL AI – Home Energy Monitor 4.4.0
+SIRIUS LOCAL AI – Home Energy Monitor 4.5.0
 
 Účel:
 - deterministické sledovanie spotreby energie v domácnosti
 - 100 % offline, žiadne AI heuristiky, žiadne dynamické importy
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, Optional, List
 
 
-class HomeEnergyMonitor44:
+class HomeEnergyMonitor45:
     """
-    Deterministic energy monitor pre domácnosť.
+    Deterministic energy monitor pre domácnosť 4.5.
     """
 
     def __init__(self, device_registry=None, state_manager=None, event_bus=None):
@@ -47,7 +47,7 @@ class HomeEnergyMonitor44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.device_registry, self.state_manager, self.event_bus]
@@ -56,7 +56,11 @@ class HomeEnergyMonitor44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             # Inicializácia profilov
             devices = self.device_registry.list_devices().get("devices", [])
@@ -73,24 +77,28 @@ class HomeEnergyMonitor44:
                     }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # SET WATTAGE
     # ---------------------------------------------------------
     def set_wattage(self, device_id: str, wattage: float) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Energy monitor disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Energy monitor disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         if not self._validate_float(wattage) or wattage < 0:
-            return {"status": "error", "code": "invalid_wattage"}
+            return {"status": "error", "code": "invalid_wattage", "version": "4.5"}
 
         try:
             if device_id not in self.profiles:
@@ -102,24 +110,33 @@ class HomeEnergyMonitor44:
             else:
                 self.profiles[device_id]["wattage"] = wattage
 
-            return {"status": "ok", "profile": dict(self.profiles[device_id])}
+            return {"status": "ok", "profile": dict(self.profiles[device_id]), "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "wattage_set_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "wattage_set_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # TICK – UPDATE ENERGY
     # ---------------------------------------------------------
     def tick(self, hours: float) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Energy monitor disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Energy monitor disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_float(hours) or hours <= 0:
-            return {"status": "error", "code": "invalid_hours"}
+            return {"status": "error", "code": "invalid_hours", "version": "4.5"}
 
         if not self.state_manager:
-            return {"status": "error", "code": "no_state_manager"}
+            return {"status": "error", "code": "no_state_manager", "version": "4.5"}
 
         updated: List[Dict[str, Any]] = []
 
@@ -148,24 +165,29 @@ class HomeEnergyMonitor44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "updated": updated}
+            return {"status": "ok", "updated": updated, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "tick_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "tick_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # GET DEVICE ENERGY
     # ---------------------------------------------------------
     def get_device_energy(self, device_id: str) -> Dict[str, Any]:
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         profile = self.profiles.get(device_id)
         if not profile:
-            return {"status": "error", "code": "device_not_tracked"}
+            return {"status": "error", "code": "device_not_tracked", "version": "4.5"}
 
-        return {"status": "ok", "profile": dict(profile)}
+        return {"status": "ok", "profile": dict(profile), "version": "4.5"}
 
     # ---------------------------------------------------------
     # GET TOTAL ENERGY
@@ -173,36 +195,50 @@ class HomeEnergyMonitor44:
     def get_total_energy(self) -> Dict[str, Any]:
         try:
             total = sum(p["energy_kwh"] for p in self.profiles.values())
-            return {"status": "ok", "total_kwh": total}
+            return {"status": "ok", "total_kwh": total, "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "total_energy_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "total_energy_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # RESET ENERGY
     # ---------------------------------------------------------
     def reset_energy(self, device_id: Optional[str] = None) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Energy monitor disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Energy monitor disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         try:
             if device_id is None:
                 for p in self.profiles.values():
                     p["energy_kwh"] = 0.0
-                return {"status": "ok"}
+                return {"status": "ok", "version": "4.5"}
 
             if not self._validate_str(device_id):
-                return {"status": "error", "code": "invalid_device_id"}
+                return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
             if device_id not in self.profiles:
-                return {"status": "error", "code": "device_not_tracked"}
+                return {"status": "error", "code": "device_not_tracked", "version": "4.5"}
 
             self.profiles[device_id]["energy_kwh"] = 0.0
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "reset_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "reset_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -214,4 +250,5 @@ class HomeEnergyMonitor44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "tracked_devices": len(self.profiles),
+            "version": "4.5",
         }
