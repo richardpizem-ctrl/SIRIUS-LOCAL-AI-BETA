@@ -1,22 +1,22 @@
 """
-SIRIUS LOCAL AI – Household Core 4.4.0
+SIRIUS LOCAL AI – Household Core 4.5.0
 
-Hlavné jadro Household Automation 4.4.
+Hlavné jadro Household Automation 4.5.
 
 Účel:
 - centralizované rozhranie pre všetky domáce akcie
 - orchestrácia modulov:
-    - Device Registry 4.4
-    - State Manager 4.4
-    - Routine Engine 4.4
-    - Room Mapper 4.4
-    - Command Parser 4.4
-    - Safety Guard 4.4
-    - Event Bus 4.4
-    - Context Memory 4.4
-    - Task Planner 4.4 (voliteľné)
-    - Device Diagnostics 4.4 (voliteľné)
-    - Multi‑Step Executor 4.4
+    - Device Registry 4.5
+    - State Manager 4.5
+    - Routine Engine 4.5
+    - Room Mapper 4.5
+    - Command Parser 4.5
+    - Safety Guard 4.5
+    - Event Bus 4.5
+    - Context Memory 4.5
+    - Task Planner 4.5 (voliteľné)
+    - Device Diagnostics 4.5 (voliteľné)
+    - Multi‑Step Executor 4.5
 
 Vlastnosti:
 - 100 % offline, deterministické
@@ -27,10 +27,10 @@ Vlastnosti:
 from typing import Dict, Any, Optional
 
 
-class HouseholdCore44:
+class HouseholdCore45:
     """
-    Hlavné jadro Household Automation 4.4.
-    Deterministické, offline‑safe, Security Family 4.4 compliant.
+    Hlavné jadro Household Automation 4.5.
+    Deterministické, offline‑safe, Security Family 4.5 compliant.
     """
 
     def __init__(
@@ -87,7 +87,7 @@ class HouseholdCore44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = {
@@ -111,14 +111,15 @@ class HouseholdCore44:
                         "code": "module_init_failed",
                         "module": name,
                         "degraded_mode": self.degraded_mode,
+                        "version": "4.5",
                     }
 
             self.initialized = True
-            return {"status": "initialized", "degraded_mode": self.degraded_mode}
+            return {"status": "initialized", "degraded_mode": self.degraded_mode, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # MAIN ENTRYPOINT – COMMAND
@@ -133,6 +134,7 @@ class HouseholdCore44:
                 "status": "safe_mode",
                 "message": "Household core disabled in safe-mode.",
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         if not self.initialized:
@@ -141,13 +143,14 @@ class HouseholdCore44:
                 return init
 
         if not isinstance(command, str):
-            return {"status": "error", "code": "invalid_command_type"}
+            return {"status": "error", "code": "invalid_command_type", "version": "4.5"}
 
         if not self.multi_step_executor:
             return {
                 "status": "error",
                 "code": "no_multi_step_executor",
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         try:
@@ -162,6 +165,7 @@ class HouseholdCore44:
                 "code": "executor_failure",
                 "exception": str(exc),
                 "degraded_mode": True,
+                "version": "4.5",
             }
 
     # ---------------------------------------------------------
@@ -169,7 +173,7 @@ class HouseholdCore44:
     # ---------------------------------------------------------
     def run_device_diagnostics(self) -> Dict[str, Any]:
         if not self.device_diagnostics:
-            return {"status": "error", "code": "no_device_diagnostics"}
+            return {"status": "error", "code": "no_device_diagnostics", "version": "4.5"}
 
         try:
             return self.device_diagnostics.run_diagnostics()
@@ -179,6 +183,7 @@ class HouseholdCore44:
                 "status": "error",
                 "code": "diagnostics_failure",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
     # ---------------------------------------------------------
@@ -186,7 +191,7 @@ class HouseholdCore44:
     # ---------------------------------------------------------
     def create_task(self, name: str, category: str, room: Optional[str] = None, priority: str = "medium") -> Dict[str, Any]:
         if not self.task_planner:
-            return {"status": "error", "code": "no_task_planner"}
+            return {"status": "error", "code": "no_task_planner", "version": "4.5"}
 
         try:
             return self.task_planner.create_task(
@@ -197,17 +202,17 @@ class HouseholdCore44:
             )
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "task_create_failed", "exception": str(exc)}
+            return {"status": "error", "code": "task_create_failed", "exception": str(exc), "version": "4.5"}
 
     def list_tasks(self, include_completed: bool = True) -> Dict[str, Any]:
         if not self.task_planner:
-            return {"status": "error", "code": "no_task_planner"}
+            return {"status": "error", "code": "no_task_planner", "version": "4.5"}
 
         try:
             return self.task_planner.list_tasks(include_completed=include_completed)
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "task_list_failed", "exception": str(exc)}
+            return {"status": "error", "code": "task_list_failed", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # STATUS
@@ -231,4 +236,5 @@ class HouseholdCore44:
                 "device_diagnostics": self.device_diagnostics is not None,
                 "multi_step_executor": self.multi_step_executor is not None,
             },
+            "version": "4.5",
         }
