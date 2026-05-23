@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 class RuntimeEngine:
     """
-    RuntimeEngine 4.4
+    RuntimeEngine 4.5
     -----------------
     - Manages module lifecycle
     - Dependency-aware startup
@@ -20,9 +20,10 @@ class RuntimeEngine:
     - Telemetry and health checks
     - Error isolation
     - Command parsing + routing
-    - Deterministic Runtime4.4 behavior
-    - Self‑Repair Layer 4.4 compatible
+    - Deterministic Runtime4.5 behavior
+    - Self‑Repair Layer 4.5 compatible
     - Stable structured return values
+    - Metadata version bumped to 4.5
     """
 
     def __init__(self):
@@ -55,7 +56,8 @@ class RuntimeEngine:
 
         return {
             "status": "success",
-            "module": name
+            "module": name,
+            "engine_version": "4.5"
         }
 
     # --------------------------------------------------------
@@ -102,7 +104,8 @@ class RuntimeEngine:
             return {
                 "status": "error",
                 "message": "Failed to resolve startup order.",
-                "exception": str(exc)
+                "exception": str(exc),
+                "engine_version": "4.5"
             }
 
         for name in self.order:
@@ -124,7 +127,8 @@ class RuntimeEngine:
         return {
             "status": "success",
             "started_modules": self.started,
-            "duration": duration
+            "duration": duration,
+            "engine_version": "4.5"
         }
 
     # --------------------------------------------------------
@@ -145,10 +149,12 @@ class RuntimeEngine:
             log.error("ENGINE: Parsing failed.")
             return {
                 "status": "error",
-                "message": "Parsing failed."
+                "message": "Parsing failed.",
+                "engine_version": "4.5"
             }
 
         result = self.router.route(parsed)
+        result["engine_version"] = "4.5"
         return result
 
     # --------------------------------------------------------
@@ -177,5 +183,6 @@ class RuntimeEngine:
         return {
             "status": "success",
             "stopped_modules": list(reversed(self.started)),
-            "duration": duration
+            "duration": duration,
+            "engine_version": "4.5"
         }
