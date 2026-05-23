@@ -1,6 +1,6 @@
-# sirius_4_4.py
-# SIRIUS LOCAL AI – Runtime Entry Point 4.4.0 PRO
-# Deterministic, safe-mode compatible bootstrap for Runtime 4.4
+# sirius_4_5.py
+# SIRIUS LOCAL AI – Runtime Entry Point 4.5.0 PRO
+# Deterministic, safe-mode compatible bootstrap for Runtime 4.5
 
 from __future__ import annotations
 
@@ -9,21 +9,21 @@ import threading
 import sys
 from typing import Optional
 
-from runtime.runtime_manager_4_4 import RuntimeManager44
-from runtime.plugin_loader_4_4 import PluginLoader44
-from runtime.nl_router_4_4 import NaturalLanguageRouter44
-from runtime.ai_loop_4_4 import AILoop44
+from runtime.runtime_manager_4_5 import RuntimeManager45
+from runtime.plugin_loader_4_5 import PluginLoader45
+from runtime.nl_router_4_5 import NaturalLanguageRouter45
+from runtime.ai_loop_4_5 import AILoop45
 
 
-class SiriusApp44:
+class SiriusApp45:
     """
-    Main application class orchestrating the entire SIRIUS runtime 4.4.0 PRO.
+    Main application class orchestrating the entire SIRIUS runtime 4.5.0 PRO.
 
     Responsibilities:
-        - bootstrap RuntimeManager 4.4
-        - load plugins via PluginLoader 4.4
-        - initialize NL Router 4.4
-        - start AI Loop 4.4 (autonomous mode)
+        - bootstrap RuntimeManager 4.5
+        - load plugins via PluginLoader 4.5
+        - initialize NL Router 4.5
+        - start AI Loop 4.5 (autonomous mode)
         - provide CLI as primary front-end
         - expose hooks for GUI / TRAY / VOICE
         - support safe-mode and degraded-mode
@@ -35,18 +35,18 @@ class SiriusApp44:
         self.degraded_mode = False
 
         # Runtime core
-        self.runtime = RuntimeManager44()
+        self.runtime = RuntimeManager45()
 
         # Plugin system
-        self.plugin_loader = PluginLoader44(self.runtime)
+        self.plugin_loader = PluginLoader45(self.runtime)
 
         # Natural language router
-        self.nl_router = NaturalLanguageRouter44(self.runtime, self.plugin_loader)
+        self.nl_router = NaturalLanguageRouter45(self.runtime, self.plugin_loader)
 
         # Autonomous AI loop
-        self.ai_loop: Optional[AILoop44] = None
+        self.ai_loop: Optional[AILoop45] = None
         if enable_ai_loop:
-            self.ai_loop = AILoop44(self.runtime, self.plugin_loader)
+            self.ai_loop = AILoop45(self.runtime, self.plugin_loader)
 
         self._ai_loop_thread: Optional[threading.Thread] = None
 
@@ -89,7 +89,7 @@ class SiriusApp44:
 
         self._ai_loop_thread = threading.Thread(
             target=_runner,
-            name="SIRIUS-AI-LOOP-44",
+            name="SIRIUS-AI-LOOP-45",
             daemon=True,
         )
         self._ai_loop_thread.start()
@@ -104,7 +104,7 @@ class SiriusApp44:
             return ""
 
         if self.safe_mode:
-            return "SIRIUS 4.4 is in SAFE MODE. Text processing is temporarily disabled."
+            return "SIRIUS 4.5 is in SAFE MODE. Text processing is temporarily disabled."
 
         try:
             return self.nl_router.route(text)
@@ -121,7 +121,7 @@ class SiriusApp44:
     # --------------------------------------------------------------------- #
 
     def run_cli(self) -> None:
-        header = "SIRIUS LOCAL AI – Runtime 4.4.0 PRO"
+        header = "SIRIUS LOCAL AI – Runtime 4.5.0 PRO"
         if self.safe_mode:
             header += " [SAFE MODE]"
         elif self.degraded_mode:
@@ -185,7 +185,7 @@ class SiriusApp44:
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="sirius",
-        description="SIRIUS LOCAL AI – Runtime 4.4.0 PRO entrypoint",
+        description="SIRIUS LOCAL AI – Runtime 4.5.0 PRO entrypoint",
     )
 
     parser.add_argument(
@@ -219,7 +219,7 @@ def main(argv: Optional[list[str]] = None) -> None:
 
     args = parse_args(argv)
 
-    app = SiriusApp44(enable_ai_loop=not args.no_ai_loop)
+    app = SiriusApp45(enable_ai_loop=not args.no_ai_loop)
 
     if args.safe_mode:
         app.enter_safe_mode()
