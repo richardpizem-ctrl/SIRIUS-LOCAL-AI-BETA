@@ -1,5 +1,5 @@
 """
-UI Graph Module – Runtime 4.3.0 (PRO)
+UI Graph Module – Runtime 4.5.0 (PRO)
 
 Responsible for:
 - Reading the UI window tree
@@ -12,7 +12,7 @@ Security Notes:
 - No dynamic imports, no eval, no reflection
 - Deterministic fallback behavior
 - Fully offline‑safe
-- Compatible with Security Family 4.4 and UI Sandbox 4.3.x
+- Compatible with Security Family 4.5 and UI Sandbox 4.5.x
 """
 
 from typing import Any, Dict, List, Optional
@@ -31,13 +31,15 @@ class FakeElement:
 
 class UIGraph:
     """
-    Deterministic UI Graph Engine for Runtime 4.3.x (PRO).
+    Deterministic UI Graph Engine for Runtime 4.5.x (PRO).
     """
 
     def __init__(self, win_capabilities=None):
         """
         win_capabilities: optional OS-level UI enumeration layer
         """
+        self.version = "4.5.0"
+
         self.win_capabilities = win_capabilities
 
         self.windows: List[Any] = []
@@ -85,6 +87,7 @@ class UIGraph:
                 "status": "safe_mode",
                 "windows": [],
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         os_result = self._try_os("enumerate_windows")
@@ -96,6 +99,7 @@ class UIGraph:
                 "windows": [],
                 "via_os": True,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if isinstance(os_result, list):
@@ -105,6 +109,7 @@ class UIGraph:
                 "windows": self.windows,
                 "via_os": True,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         # Deterministic fallback
@@ -114,6 +119,7 @@ class UIGraph:
             "windows": self.windows,
             "via_os": False,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------
@@ -131,6 +137,7 @@ class UIGraph:
                 "status": "safe_mode",
                 "elements": [],
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         os_result = self._try_os("enumerate_elements")
@@ -142,6 +149,7 @@ class UIGraph:
                 "elements": [],
                 "via_os": True,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if isinstance(os_result, list):
@@ -151,6 +159,7 @@ class UIGraph:
                 "elements": self.elements,
                 "via_os": True,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         # Deterministic fallback
@@ -166,6 +175,7 @@ class UIGraph:
             "elements": self.elements,
             "via_os": False,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------
@@ -174,7 +184,7 @@ class UIGraph:
     def find_element(self, query: str) -> Optional[Any]:
         """
         Finds a UI element by exact name match.
-        Deterministic, no fuzzy matching in 4.3.x.
+        Deterministic, no fuzzy matching in 4.5.x baseline.
         """
 
         if not isinstance(query, str) or not query.strip():
