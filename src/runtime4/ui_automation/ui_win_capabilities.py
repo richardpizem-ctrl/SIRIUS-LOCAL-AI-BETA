@@ -1,17 +1,22 @@
 """
-WinCapabilities Module – Runtime 4.3.x (PRO)
+WinCapabilities Module – Runtime 4.5.x (PRO)
 
 Responsible for:
 - Providing an OS UI control interface for UIActions
 - Abstracting real OS automation (click, write, select, semantic)
 - Keeping Runtime 4.x deterministic and testable
 
-In 4.3.x this module is a SAFE ADAPTER:
+In 4.5.x this module is a SAFE ADAPTER:
 - No real OS integration yet
 - All methods are deterministic
-- Ready for future Win32/UIA/WinRT bindings in 4.4.0+
+- Ready for future Win32/UIA/WinRT bindings
 - Supports safe-mode and degraded-mode behavior
 - Strict error codes and unified result surface
+
+Security Notes:
+- Deterministic, offline-safe
+- No dynamic imports, no eval, no reflection
+- Fully compatible with Security Family 4.5
 """
 
 from typing import Any, Dict, List, Optional
@@ -19,7 +24,7 @@ from typing import Any, Dict, List, Optional
 
 class WinCapabilities:
     """
-    Deterministic OS‑level UI control adapter for Runtime 4.3.x (PRO).
+    Deterministic OS‑level UI control adapter for Runtime 4.5.x (PRO).
     """
 
     VALID_ACTIONS = {"click", "write", "select", "semantic"}
@@ -27,9 +32,11 @@ class WinCapabilities:
     def __init__(self, dry_run: bool = True):
         """
         dry_run:
-            True  = simulate OS actions (4.3.x default)
-            False = reserved for future real OS integration (4.4+)
+            True  = simulate OS actions (4.5.x default)
+            False = reserved for future real OS integration
         """
+        self.version: str = "4.5.0"
+
         self.dry_run = dry_run
         self.last_calls: List[Dict[str, Any]] = []
 
@@ -57,6 +64,7 @@ class WinCapabilities:
             "dry_run": self.dry_run,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
         self.last_calls.append(entry)
@@ -80,7 +88,7 @@ class WinCapabilities:
             )
 
         try:
-            # In 4.3.x → always deterministic success
+            # In 4.5.x → still deterministic success
             return self._log(action_type, element, value, result=True)
 
         except Exception:
@@ -106,7 +114,7 @@ class WinCapabilities:
         return None
 
     # ------------------------------------------------------------
-    # OS-LEVEL ACTIONS (INTERFACE ONLY IN 4.3.x)
+    # OS-LEVEL ACTIONS (INTERFACE ONLY)
     # ------------------------------------------------------------
     def click(self, element: Any) -> Dict[str, Any]:
         err = self._validate_action("click")
@@ -172,4 +180,5 @@ class WinCapabilities:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "last_call_count": len(self.last_calls),
+            "version": self.version,
         }
