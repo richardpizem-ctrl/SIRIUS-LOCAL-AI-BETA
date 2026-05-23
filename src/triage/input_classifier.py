@@ -1,11 +1,11 @@
-# input_classifier_4_4.py
-# SIRIUS LOCAL AI – InputClassifier 4.4.0 PRO
+# input_classifier_4_5.py
+# SIRIUS LOCAL AI – InputClassifier 4.5.0 PRO
 # Deterministic, offline-only classifier with Phase‑5 security hooks.
 
 from typing import Literal
 
 
-InputType44 = Literal[
+InputType45 = Literal[
     "log",
     "config",
     "project",
@@ -21,9 +21,9 @@ InputType44 = Literal[
 ]
 
 
-class InputClassifier44:
+class InputClassifier45:
     """
-    InputClassifier 4.4.0 PRO
+    InputClassifier 4.5.0 PRO
 
     Responsibilities:
         - Deterministic input type detection based on file extension and path patterns
@@ -34,7 +34,7 @@ class InputClassifier44:
         - Offline-only behavior
 
     Used by:
-        AITEController44.process()
+        AITEController45.process()
     """
 
     def __init__(self):
@@ -48,12 +48,12 @@ class InputClassifier44:
             ".reg", ".gadget", ".com", ".cpl", ".hta",
         }
 
-        # Document formats (4.4)
+        # Document formats (4.5)
         self.document_ext = {
             ".pdf", ".doc", ".docx", ".odt", ".rtf"
         }
 
-        # Archive formats (4.4)
+        # Archive formats (4.5)
         self.archive_ext = {
             ".zip", ".rar", ".7z", ".tar", ".gz"
         }
@@ -62,7 +62,7 @@ class InputClassifier44:
     # Public API
     # ---------------------------------------------------------
 
-    def classify(self, input_path: str) -> InputType44:
+    def classify(self, input_path: str) -> InputType45:
         """
         Determine the input type based on file extension and known patterns.
         Deterministic, offline-only, safe-mode aware.
@@ -96,11 +96,11 @@ class InputClassifier44:
             )):
                 return "project"
 
-            # DOCUMENTS (4.4)
+            # DOCUMENTS (4.5)
             if lower.endswith(tuple(self.document_ext)):
                 return "document"
 
-            # ARCHIVES (4.4)
+            # ARCHIVES (4.5)
             if lower.endswith(tuple(self.archive_ext)):
                 return "archive"
 
