@@ -1,5 +1,5 @@
-# tray_4_4.py
-# SIRIUS LOCAL AI – Windows Tray Icon (v4.4.0 PRO)
+# tray_4_5.py
+# SIRIUS LOCAL AI – Windows Tray Icon (v4.5.0 PRO)
 # Deterministic, safe-mode compatible tray module (Phase‑5 ready)
 
 from __future__ import annotations
@@ -13,12 +13,12 @@ import sys
 import os
 import pathlib
 
-from runtime.runtime_manager_4_4 import RuntimeManager44
+from runtime.runtime_manager_4_5 import RuntimeManager45
 
 
-class SiriusTray44:
+class SiriusTray45:
     """
-    SIRIUS LOCAL AI — Windows Tray Icon (v4.4.0 PRO)
+    SIRIUS LOCAL AI — Windows Tray Icon (v4.5.0 PRO)
 
     Features:
         - Launch GUI (safe, sandboxed)
@@ -35,9 +35,9 @@ class SiriusTray44:
 
         # Runtime bootstrap
         try:
-            self.rm = RuntimeManager44()
+            self.rm = RuntimeManager45()
             self.rm.initialize()
-            self.rm.logger.info("Tray initialized (v4.4.0 PRO)")
+            self.rm.logger.info("Tray initialized (v4.5.0 PRO)")
         except Exception as exc:
             self.degraded_mode = True
             print(f"[TRAY] Initialization failed: {exc}")
@@ -51,7 +51,7 @@ class SiriusTray44:
         )
 
     # --------------------------------------------------------
-    # ICON (4.4.0 PRO)
+    # ICON (4.5.0 PRO)
     # --------------------------------------------------------
     def _create_icon(self):
         """Create simple black/white tray icon."""
@@ -61,7 +61,7 @@ class SiriusTray44:
         return img
 
     # --------------------------------------------------------
-    # MENU (4.4.0 PRO)
+    # MENU (4.5.0 PRO)
     # --------------------------------------------------------
     def _menu(self):
         return (
@@ -72,7 +72,7 @@ class SiriusTray44:
         )
 
     # --------------------------------------------------------
-    # ACTIONS (4.4.0 PRO)
+    # ACTIONS (4.5.0 PRO)
     # --------------------------------------------------------
     def open_gui(self, icon, item):
         """Launch GUI using python (sandboxed)."""
@@ -82,7 +82,7 @@ class SiriusTray44:
 
         try:
             python = sys.executable
-            gui_path = pathlib.Path(__file__).parent / "gui_4_4.py"
+            gui_path = pathlib.Path(__file__).parent / "gui_4_5.py"
             subprocess.Popen([python, str(gui_path)])
             self.rm.logger.info("GUI launched from tray")
         except Exception as e:
@@ -97,7 +97,7 @@ class SiriusTray44:
 
         try:
             python = sys.executable
-            sirius_path = pathlib.Path(__file__).parent / "sirius_4_4.py"
+            sirius_path = pathlib.Path(__file__).parent / "sirius_4_5.py"
             subprocess.Popen([python, str(sirius_path)])
             self.rm.logger.info("SIRIUS restarted from tray")
             os._exit(0)
@@ -117,11 +117,11 @@ class SiriusTray44:
         icon.stop()
 
     # --------------------------------------------------------
-    # RUN (4.4.0 PRO)
+    # RUN (4.5.0 PRO)
     # --------------------------------------------------------
     def run(self):
         """Run tray icon in background thread."""
-        header = "Tray icon running (v4.4.0 PRO)"
+        header = "Tray icon running (v4.5.0 PRO)"
         if self.safe_mode:
             header += " [SAFE MODE]"
         elif self.degraded_mode:
@@ -136,7 +136,7 @@ class SiriusTray44:
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    tray = SiriusTray44()
+    tray = SiriusTray45()
     tray.run()
 
     try:
