@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Knowledge Pack Registry 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Pack Registry 4.5.0 (PRO)
 
-KP Registry 4.4 is the central deterministic storage for all loaded
+KP Registry 4.5 is the central deterministic storage for all loaded
 Knowledge Packs. It provides:
 
 - Safe registration
@@ -22,9 +22,9 @@ Security Notes (PRO):
 from typing import Dict, Any, Optional
 
 
-class KnowledgePackRegistry44:
+class KnowledgePackRegistry45:
     """
-    Deterministic registry for Knowledge Packs 4.4.
+    Deterministic registry for Knowledge Packs 4.5.
     """
 
     def __init__(self):
@@ -69,26 +69,35 @@ class KnowledgePackRegistry44:
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.packs = {}
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # REGISTER PACK
     # ------------------------------------------------------------------
     def register(self, pack: Dict[str, Any]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Registry disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Registry disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_pack(pack):
-            return {"status": "error", "code": "invalid_pack"}
+            return {"status": "error", "code": "invalid_pack", "version": "4.5"}
 
         name = pack["name"]
 
@@ -98,16 +107,27 @@ class KnowledgePackRegistry44:
                 "status": "error",
                 "code": "duplicate_pack",
                 "existing_version": self.packs[name].get("version"),
+                "version": "4.5",
             }
 
         try:
             # Store pack deterministically
             self.packs[name] = dict(pack)
-            return {"status": "ok", "name": name, "version": pack["version"]}
+            return {
+                "status": "ok",
+                "name": name,
+                "version": pack["version"],
+                "version_info": "4.5",
+            }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "register_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "register_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # GET PACK BY NAME
@@ -129,10 +149,15 @@ class KnowledgePackRegistry44:
     def clear(self) -> Dict[str, Any]:
         try:
             self.packs.clear()
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "clear_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "clear_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STATUS
@@ -144,4 +169,5 @@ class KnowledgePackRegistry44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
