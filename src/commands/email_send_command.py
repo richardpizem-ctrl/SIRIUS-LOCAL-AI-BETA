@@ -4,21 +4,20 @@ from email.manager import EmailManager
 
 class EmailSendCommand(BaseCommand):
     """
-    EmailSendCommand 4.4
+    EmailSendCommand 4.5
     Sends an email using EmailManager with validation, snapshot,
     profile loading, and structured JSON output.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic execution contract
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Safe execution via BaseCommand.run()
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic execution contract (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
+        - Unified audit model (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "email-send"
     description = "Sends an email using EmailManager."
