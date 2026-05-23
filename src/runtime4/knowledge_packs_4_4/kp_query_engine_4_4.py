@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Knowledge Pack Query Engine 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Pack Query Engine 4.5.0 (PRO)
 
-KP Query Engine 4.4 provides deterministic, offline‑safe search and lookup
+KP Query Engine 4.5 provides deterministic, offline‑safe search and lookup
 capabilities across all registered Knowledge Packs.
 
 Features:
@@ -10,7 +10,7 @@ Features:
 - Substring search
 - Cross‑pack search
 - Deterministic fuzzy‑like matching (no heuristics)
-- Integration with KP Registry 4.4
+- Integration with KP Registry 4.5
 - Zero code execution
 
 Security Notes (PRO):
@@ -22,9 +22,9 @@ Security Notes (PRO):
 from typing import Dict, Any, List, Optional
 
 
-class KnowledgePackQueryEngine44:
+class KnowledgePackQueryEngine45:
     """
-    Deterministic query engine for Knowledge Packs 4.4.
+    Deterministic query engine for Knowledge Packs 4.5.
     """
 
     def __init__(self, registry=None):
@@ -47,65 +47,87 @@ class KnowledgePackQueryEngine44:
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             if self.registry:
                 res = self.registry.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "registry_init_failed"}
+                    return {
+                        "status": "error",
+                        "code": "registry_init_failed",
+                        "version": "4.5",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # EXACT LOOKUP
     # ------------------------------------------------------------------
     def get(self, pack_name: str, key: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Query engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Query engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_registry():
-            return {"status": "error", "code": "no_registry"}
+            return {"status": "error", "code": "no_registry", "version": "4.5"}
 
         if not self._validate_str(pack_name):
-            return {"status": "error", "code": "invalid_pack_name"}
+            return {"status": "error", "code": "invalid_pack_name", "version": "4.5"}
 
         if not self._validate_str(key):
-            return {"status": "error", "code": "invalid_key"}
+            return {"status": "error", "code": "invalid_key", "version": "4.5"}
 
         try:
             pack = self.registry.get(pack_name)
             if not pack:
-                return {"status": "error", "code": "pack_not_found"}
+                return {"status": "error", "code": "pack_not_found", "version": "4.5"}
 
             data = pack.get("data", {})
             if key not in data:
-                return {"status": "error", "code": "key_not_found"}
+                return {"status": "error", "code": "key_not_found", "version": "4.5"}
 
-            return {"status": "ok", "value": data[key]}
+            return {"status": "ok", "value": data[key], "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "lookup_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "lookup_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # PREFIX SEARCH
     # ------------------------------------------------------------------
     def prefix_search(self, prefix: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Query engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Query engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_registry():
-            return {"status": "error", "code": "no_registry"}
+            return {"status": "error", "code": "no_registry", "version": "4.5"}
 
         if not self._validate_str(prefix):
-            return {"status": "error", "code": "invalid_prefix"}
+            return {"status": "error", "code": "invalid_prefix", "version": "4.5"}
 
         try:
             results = []
@@ -120,24 +142,33 @@ class KnowledgePackQueryEngine44:
                             "value": value,
                         })
 
-            return {"status": "ok", "results": results}
+            return {"status": "ok", "results": results, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "prefix_search_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "prefix_search_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # FULL SEARCH (substring)
     # ------------------------------------------------------------------
     def search(self, text: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Query engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Query engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_registry():
-            return {"status": "error", "code": "no_registry"}
+            return {"status": "error", "code": "no_registry", "version": "4.5"}
 
         if not self._validate_str(text):
-            return {"status": "error", "code": "invalid_search_text"}
+            return {"status": "error", "code": "invalid_search_text", "version": "4.5"}
 
         try:
             text_lower = text.lower()
@@ -155,11 +186,16 @@ class KnowledgePackQueryEngine44:
                             "value": value,
                         })
 
-            return {"status": "ok", "results": results}
+            return {"status": "ok", "results": results, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "search_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "search_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # SAFE DETERMINISTIC "FUZZY" MATCH
@@ -174,10 +210,14 @@ class KnowledgePackQueryEngine44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Query engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Query engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_str(text):
-            return {"status": "error", "code": "invalid_fuzzy_text"}
+            return {"status": "error", "code": "invalid_fuzzy_text", "version": "4.5"}
 
         try:
             prefix = self.prefix_search(text)
@@ -195,35 +235,53 @@ class KnowledgePackQueryEngine44:
                     seen.add(key)
                     unique.append(item)
 
-            return {"status": "ok", "results": unique}
+            return {"status": "ok", "results": unique, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "fuzzy_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "fuzzy_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # LIST KEYS
     # ------------------------------------------------------------------
     def list_keys(self, pack_name: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Query engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Query engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_registry():
-            return {"status": "error", "code": "no_registry"}
+            return {"status": "error", "code": "no_registry", "version": "4.5"}
 
         if not self._validate_str(pack_name):
-            return {"status": "error", "code": "invalid_pack_name"}
+            return {"status": "error", "code": "invalid_pack_name", "version": "4.5"}
 
         try:
             pack = self.registry.get(pack_name)
             if not pack:
-                return {"status": "error", "code": "pack_not_found"}
+                return {"status": "error", "code": "pack_not_found", "version": "4.5"}
 
-            return {"status": "ok", "keys": list(pack.get("data", {}).keys())}
+            return {
+                "status": "ok",
+                "keys": list(pack.get("data", {}).keys()),
+                "version": "4.5",
+            }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_keys_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_keys_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STATUS
@@ -234,4 +292,5 @@ class KnowledgePackQueryEngine44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
