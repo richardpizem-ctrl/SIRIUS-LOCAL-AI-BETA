@@ -1,8 +1,8 @@
 """
-SIRIUS LOCAL AI – Knowledge Packs Core 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Packs Core 4.5.0 (PRO)
 
-KP Core 4.4 provides the foundational structures and rules for the entire
-Knowledge Packs subsystem in Runtime 4.4.
+KP Core 4.5 provides the foundational structures and rules for the entire
+Knowledge Packs subsystem in Runtime 4.5.
 
 This module defines:
 - Pack schema structure
@@ -27,9 +27,9 @@ from typing import Dict, Any, Optional
 # SAFE PACK CONTAINER
 # =========================================================================
 
-class KnowledgePack44:
+class KnowledgePack45:
     """
-    Deterministic container for a Knowledge Pack 4.4.
+    Deterministic container for a Knowledge Pack 4.5.
     """
 
     def __init__(
@@ -68,7 +68,7 @@ class KnowledgePack44:
     def is_valid(self) -> bool:
         """
         Minimal structural validation.
-        Full validation is done by KP Validator 4.4.
+        Full validation is done by KP Validator 4.5.
         """
         if not isinstance(self.name, str) or not self.name.strip():
             return False
@@ -93,9 +93,9 @@ class KnowledgePack44:
 # CORE UTILITIES
 # =========================================================================
 
-class KnowledgePackCore44:
+class KnowledgePackCore45:
     """
-    Core utilities and constants for Knowledge Packs 4.4.
+    Core utilities and constants for Knowledge Packs 4.5.
     Deterministic, offline, safe.
     """
 
@@ -108,7 +108,7 @@ class KnowledgePackCore44:
         "geography",
     }
 
-    VERSION_FORMAT = "4.4"
+    VERSION_FORMAT = "4.5"
 
     def __init__(self):
         self.initialized = False
@@ -135,15 +135,15 @@ class KnowledgePackCore44:
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ------------------------------------------------------------------
     # CREATE PACK
@@ -156,31 +156,36 @@ class KnowledgePackCore44:
         metadata: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """
-        Creates a new Knowledge Pack 4.4 container.
+        Creates a new Knowledge Pack 4.5 container.
         Deterministic, strict validation.
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "KP Core disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "KP Core disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if pack_type not in self.PACK_TYPES:
             return {
                 "status": "error",
                 "code": "invalid_pack_type",
                 "allowed": sorted(self.PACK_TYPES),
+                "version": "4.5",
             }
 
         if not self._validate_data(data):
-            return {"status": "error", "code": "invalid_data"}
+            return {"status": "error", "code": "invalid_data", "version": "4.5"}
 
         if metadata is not None and not isinstance(metadata, dict):
-            return {"status": "error", "code": "invalid_metadata"}
+            return {"status": "error", "code": "invalid_metadata", "version": "4.5"}
 
         try:
-            pack = KnowledgePack44(
+            pack = KnowledgePack45(
                 name=name,
                 version=self.VERSION_FORMAT,
                 pack_type=pack_type,
@@ -189,13 +194,18 @@ class KnowledgePackCore44:
             )
 
             if not pack.is_valid():
-                return {"status": "error", "code": "invalid_pack_structure"}
+                return {"status": "error", "code": "invalid_pack_structure", "version": "4.5"}
 
-            return {"status": "ok", "pack": pack}
+            return {"status": "ok", "pack": pack, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "create_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "create_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STATUS
@@ -206,4 +216,5 @@ class KnowledgePackCore44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
