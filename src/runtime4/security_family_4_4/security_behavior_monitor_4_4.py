@@ -1,29 +1,29 @@
 """
-SIRIUS LOCAL AI – Security Behavior Monitor 4.4.0 (PRO)
+SIRIUS LOCAL AI – Security Behavior Monitor 4.5.0 (PRO)
 
 This module provides deterministic, offline‑safe behavior monitoring for
-Security Family 4.4. It supports:
+Security Family 4.5. It supports:
 
 - Per‑identity behavior tracking (OWNER / FAMILY / STRANGER)
 - Action history logging (safe subset)
 - Risk scoring (deterministic, rule‑based)
 - Pattern detection (short‑term vs long‑term)
 - Security escalation hooks
-- Integration with Security Policy Core 4.4
+- Integration with Security Policy Core 4.5
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No sensitive data stored.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class SecurityBehaviorMonitor44:
+class SecurityBehaviorMonitor45:
     """
-    Deterministic behavior monitor for Runtime 4.4 (PRO).
+    Deterministic behavior monitor for Runtime 4.5 (PRO).
     Tracks high‑level behavior events and computes risk scores.
     """
 
@@ -33,6 +33,7 @@ class SecurityBehaviorMonitor44:
         self.initialized = False
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
         # Behavior history (safe, high‑level only)
         self.history: Dict[str, List[Dict[str, Any]]] = {
@@ -53,17 +54,18 @@ class SecurityBehaviorMonitor44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "init_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -89,23 +91,24 @@ class SecurityBehaviorMonitor44:
             return {
                 "status": "safe_mode",
                 "message": "Behavior logging disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate identity
         if identity not in self.VALID_IDENTITIES:
-            return {"status": "error", "code": "invalid_identity"}
+            return {"status": "error", "code": "invalid_identity", "version": self.version}
 
         # Validate action
         if not isinstance(action, str) or not action.strip():
-            return {"status": "error", "code": "invalid_action"}
+            return {"status": "error", "code": "invalid_action", "version": self.version}
 
         # Validate element_ref
         if not isinstance(element_ref, dict):
-            return {"status": "error", "code": "invalid_element_ref"}
+            return {"status": "error", "code": "invalid_element_ref", "version": self.version}
 
         # Validate result
         if not isinstance(result, dict):
-            return {"status": "error", "code": "invalid_result"}
+            return {"status": "error", "code": "invalid_result", "version": self.version}
 
         try:
             event = {
@@ -119,7 +122,7 @@ class SecurityBehaviorMonitor44:
             # Update deterministic risk score
             self._update_risk(identity, event)
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -127,6 +130,7 @@ class SecurityBehaviorMonitor44:
                 "status": "error",
                 "code": "behavior_record_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -168,13 +172,14 @@ class SecurityBehaviorMonitor44:
     # ------------------------------------------------------------------
     def get_risk(self, identity: str) -> Dict[str, Any]:
         if identity not in self.VALID_IDENTITIES:
-            return {"status": "error", "code": "invalid_identity"}
+            return {"status": "error", "code": "invalid_identity", "version": self.version}
 
         return {
             "status": "ok",
             "identity": identity,
             "risk_score": self.risk_scores[identity],
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------------
@@ -182,11 +187,12 @@ class SecurityBehaviorMonitor44:
     # ------------------------------------------------------------------
     def get_history(self, identity: str) -> Dict[str, Any]:
         if identity not in self.VALID_IDENTITIES:
-            return {"status": "error", "code": "invalid_identity"}
+            return {"status": "error", "code": "invalid_identity", "version": self.version}
 
         return {
             "status": "ok",
             "identity": identity,
             "events": list(self.history[identity]),
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
