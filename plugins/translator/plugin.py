@@ -1,5 +1,5 @@
 # plugin.py
-# SIRIUS LOCAL AI – Translator Plugin 4.4.0
+# SIRIUS LOCAL AI – Translator Plugin 4.5.0
 # Safe, deterministic translation module using ContextManager.translate()
 # with integrity + health support
 
@@ -10,7 +10,7 @@ import os
 
 class Plugin:
     """
-    Translator Plugin 4.4.0
+    Translator Plugin 4.5.0
 
     Responsibilities:
         - Provide NL commands for translation
@@ -19,27 +19,27 @@ class Plugin:
         - Provide AI Loop rules
         - Provide GUI elements
         - Deterministic, safe-mode aware, degraded-mode aware
-        - Plugin Integrity Hooks (4.4)
-        - Health Metadata (4.4)
-        - Self‑Repair Layer 4.4 compatibility
+        - Plugin Integrity Hooks (4.5)
+        - Health Metadata (4.5)
+        - Self‑Repair Layer 4.5 compatibility
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
         self.ctx = runtime_manager.context
 
-        # Runtime 4.4 modes
+        # Runtime 4.5 modes
         self.safe_mode = False
         self.degraded_mode = False
 
-        # 4.4 integrity + health
+        # 4.5 integrity + health
         self.integrity_ok = True
         self.health_status = "OK"
 
-        self.rm.logger.info("[PLUGIN:translator] Initialized (v4.4.0)")
+        self.rm.logger.info("[PLUGIN:translator] Initialized (v4.5.0)")
 
     # --------------------------------------------------------
-    # INTEGRITY HOOKS (4.4)
+    # INTEGRITY HOOKS (4.5)
     # --------------------------------------------------------
     def integrity_check(self):
         try:
@@ -54,7 +54,7 @@ class Plugin:
         return True
 
     # --------------------------------------------------------
-    # HEALTH METADATA (4.4)
+    # HEALTH METADATA (4.5)
     # --------------------------------------------------------
     def health(self):
         return {
@@ -65,7 +65,7 @@ class Plugin:
         }
 
     # --------------------------------------------------------
-    # NL COMMANDS (4.4)
+    # NL COMMANDS (4.5)
     # --------------------------------------------------------
     def nl_commands(self):
         return {
@@ -99,7 +99,7 @@ class Plugin:
             return "Translation error."
 
     # --------------------------------------------------------
-    # AI TASKS (4.4)
+    # AI TASKS (4.5)
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -130,7 +130,7 @@ class Plugin:
             return {"error": "Translation failed"}
 
     # --------------------------------------------------------
-    # WORKFLOWS (4.4)
+    # WORKFLOWS (4.5)
     # --------------------------------------------------------
     def workflows(self):
         return [
@@ -149,7 +149,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # AI LOOP RULES (4.4)
+    # AI LOOP RULES (4.5)
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -163,7 +163,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI ELEMENTS (4.4)
+    # GUI ELEMENTS (4.5)
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -182,7 +182,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # INTERNAL ERROR HANDLER (4.4)
+    # INTERNAL ERROR HANDLER (4.5)
     # --------------------------------------------------------
     def _handle_error(self, label, exception):
         self.degraded_mode = True
@@ -190,7 +190,7 @@ class Plugin:
         self.rm.logger.error(f"[TRANSLATOR] {label} error: {exception}")
 
     # --------------------------------------------------------
-    # SAFE-MODE CONTROL (4.4)
+    # SAFE-MODE CONTROL (4.5)
     # --------------------------------------------------------
     def enter_safe_mode(self):
         self.safe_mode = True
