@@ -1,5 +1,5 @@
 """
-UI Workflow Module – Runtime 4.3.x (PRO)
+UI Workflow Module – Runtime 4.5.x (PRO)
 
 Provides:
 - Deterministic workflow execution
@@ -12,6 +12,11 @@ Provides:
 - Structured workflow results
 
 The workflow engine is the highest layer of the UI Automation Engine.
+
+Security Notes:
+- Deterministic, offline-safe
+- No dynamic imports, no eval, no reflection
+- Fully compatible with Security Family 4.5
 """
 
 from typing import Any, Dict, List, Optional
@@ -19,10 +24,12 @@ from typing import Any, Dict, List, Optional
 
 class UIWorkflow:
     """
-    Deterministic UI Workflow Engine for Runtime 4.3.x (PRO).
+    Deterministic UI Workflow Engine for Runtime 4.5.x (PRO).
     """
 
     def __init__(self, graph, parser, actions, sandbox=None):
+        self.version = "4.5.0"
+
         self.graph = graph
         self.parser = parser
         self.actions = actions
@@ -45,6 +52,7 @@ class UIWorkflow:
                 "status": "safe_mode",
                 "step_results": [],
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if not isinstance(steps, list):
@@ -53,6 +61,7 @@ class UIWorkflow:
                 "code": "invalid_steps",
                 "step_results": [],
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         results = []
@@ -66,12 +75,14 @@ class UIWorkflow:
                     "status": "failed",
                     "step_results": results,
                     "degraded_mode": self.degraded_mode,
+                    "version": self.version,
                 }
 
         return {
             "status": "ok",
             "step_results": results,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------
@@ -87,6 +98,7 @@ class UIWorkflow:
                 "success": False,
                 "error": "invalid_step_format",
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         for attempt in range(self.max_retries):
@@ -114,6 +126,7 @@ class UIWorkflow:
             exec_result = self._execute_action(action, element, value)
             if exec_result.get("success"):
                 exec_result["attempt"] = attempt + 1
+                exec_result["version"] = self.version
                 return exec_result
 
         return {
@@ -122,6 +135,7 @@ class UIWorkflow:
             "target": target,
             "attempts": self.max_retries,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------
@@ -146,6 +160,7 @@ class UIWorkflow:
                     "success": False,
                     "error": "unknown_action",
                     "action": action,
+                    "version": self.version,
                 }
 
             return {
@@ -154,6 +169,7 @@ class UIWorkflow:
                 "element": getattr(element, "name", element),
                 "value": value,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         except Exception as exc:
@@ -165,15 +181,16 @@ class UIWorkflow:
                 "action": action,
                 "element": getattr(element, "name", element),
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
     # ------------------------------------------------------------
-    # TARGET RESOLUTION (4.3.x – MULTI‑STRATEGY)
+    # TARGET RESOLUTION (4.5.x – MULTI‑STRATEGY)
     # ------------------------------------------------------------
     def _resolve_target(self, target: Any) -> Optional[Any]:
         """
         Multi‑strategy resolution:
-        1. Exact / partial / fuzzy match (Parser 4.3)
+        1. Exact / partial / fuzzy match (Parser 4.5)
         2. Semantic fallback
         3. Confidence‑based selection
         """
