@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.4 Module Loader
+SIRIUS LOCAL AI – Runtime 4.5 Module Loader
 
 Responsible for:
 - registering runtime modules
@@ -7,7 +7,7 @@ Responsible for:
 - initializing modules in deterministic order
 - preparing modules for sandbox isolation
 - exposing modules to the scheduler and dependency graph
-- Self‑Repair 4.4 degraded-mode detection
+- Self‑Repair 4.5 degraded-mode detection
 - safe‑mode compatibility
 """
 
@@ -16,7 +16,7 @@ from typing import Any, Dict, List
 
 class ModuleLoader4:
     """
-    ModuleLoader 4.4
+    ModuleLoader 4.5
     ----------------
     - strict validation
     - deterministic initialization
@@ -24,7 +24,8 @@ class ModuleLoader4:
     - telemetry
     - degraded-mode detection
     - safe-mode compatibility
-    - Self‑Repair Layer 4.4 compliant
+    - Self‑Repair Layer 4.5 compliant
+    - Metadata version bumped to 4.5
     """
 
     def __init__(self, max_modules: int = 200):
@@ -55,29 +56,29 @@ class ModuleLoader4:
         """Registers a module under a given name with full safety checks."""
 
         if self.safe_mode:
-            return {"status": "safe_mode", "module": name}
+            return {"status": "safe_mode", "module": name, "loader_version": "4.5"}
 
         if not self._validate_name(name):
-            return {"status": "error", "code": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name", "loader_version": "4.5"}
 
         if not self._validate_module(module):
-            return {"status": "error", "code": "invalid_module_object"}
+            return {"status": "error", "code": "invalid_module_object", "loader_version": "4.5"}
 
         if len(self.modules) >= self.max_modules:
-            return {"status": "error", "code": "module_limit_reached"}
+            return {"status": "error", "code": "module_limit_reached", "loader_version": "4.5"}
 
         self.modules[name] = module
-        return {"status": "success", "module": name}
+        return {"status": "success", "module": name, "loader_version": "4.5"}
 
     def unregister(self, name: str) -> Dict[str, Any]:
         if not self._validate_name(name):
-            return {"status": "error", "code": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name", "loader_version": "4.5"}
 
         if name in self.modules:
             del self.modules[name]
-            return {"status": "success", "module": name}
+            return {"status": "success", "module": name, "loader_version": "4.5"}
 
-        return {"status": "error", "code": "module_not_found"}
+        return {"status": "error", "code": "module_not_found", "loader_version": "4.5"}
 
     # ---------------------------------------------------------
     # INITIALIZATION
@@ -96,6 +97,7 @@ class ModuleLoader4:
                 "errors": [],
                 "modules": list(self.modules.keys()),
                 "degraded_mode": False,
+                "loader_version": "4.5",
             }
 
         results = {}
@@ -146,6 +148,7 @@ class ModuleLoader4:
             "errors": errors,
             "modules": module_names,
             "degraded_mode": self.degraded_mode,
+            "loader_version": "4.5",
         }
 
     # ---------------------------------------------------------
