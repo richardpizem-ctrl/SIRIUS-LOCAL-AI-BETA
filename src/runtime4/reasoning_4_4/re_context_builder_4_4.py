@@ -1,25 +1,25 @@
 """
-SIRIUS LOCAL AI – Reasoning Context Builder 4.4.0 (PRO)
+SIRIUS LOCAL AI – Reasoning Context Builder 4.5.0 (PRO)
 
 Účel:
 - vytvára reasoning kontext pre jeden dotaz
 - vyberá relevantné Knowledge Packy podľa tém
-- ťahá fakty z KP Query Engine 4.4
-- zapisuje všetko do Reasoning Context Memory 4.4
+- ťahá fakty z KP Query Engine 4.5
+- zapisuje všetko do Reasoning Context Memory 4.5
 - 100 % offline, deterministické, bez AI heuristiky
 
 Používa:
-- KP Registry 4.4
-- KP Query Engine 4.4
-- Reasoning Context Memory 4.4
+- KP Registry 4.5
+- KP Query Engine 4.5
+- Reasoning Context Memory 4.5
 """
 
 from typing import Dict, Any, List
 
 
-class ReasoningContextBuilder44:
+class ReasoningContextBuilder45:
     """
-    Deterministic context builder pre Reasoning Engine 4.4 (PRO).
+    Deterministic context builder pre Reasoning Engine 4.5 (PRO).
     """
 
     def __init__(self, registry=None, query_engine=None, context_memory=None):
@@ -36,33 +36,53 @@ class ReasoningContextBuilder44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             if self.registry:
                 res = self.registry.initialize()
                 if res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "registry_init_failed", "details": res}
+                    return {
+                        "status": "error",
+                        "code": "registry_init_failed",
+                        "details": res,
+                        "version": "4.5",
+                    }
 
             if self.query_engine:
                 res = self.query_engine.initialize()
                 if res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "query_engine_init_failed", "details": res}
+                    return {
+                        "status": "error",
+                        "code": "query_engine_init_failed",
+                        "details": res,
+                        "version": "4.5",
+                    }
 
             if self.context_memory:
                 res = self.context_memory.initialize()
                 if res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "context_memory_init_failed", "details": res}
+                    return {
+                        "status": "error",
+                        "code": "context_memory_init_failed",
+                        "details": res,
+                        "version": "4.5",
+                    }
 
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # SELECT PACKS BY SUBJECT
@@ -102,13 +122,17 @@ class ReasoningContextBuilder44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Context building disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Context building disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not isinstance(subjects, list):
-            return {"status": "error", "code": "invalid_subjects_type"}
+            return {"status": "error", "code": "invalid_subjects_type", "version": "4.5"}
 
         if not self.context_memory:
-            return {"status": "error", "code": "no_context_memory"}
+            return {"status": "error", "code": "no_context_memory", "version": "4.5"}
 
         try:
             # 1. Vyber packy
@@ -137,11 +161,17 @@ class ReasoningContextBuilder44:
             exported = self.context_memory.export()
             exported["status"] = "ok"
             exported["degraded_mode"] = self.degraded_mode
+            exported["version"] = "4.5"
             return exported
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "context_build_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "context_build_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STATUS
@@ -152,4 +182,5 @@ class ReasoningContextBuilder44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
