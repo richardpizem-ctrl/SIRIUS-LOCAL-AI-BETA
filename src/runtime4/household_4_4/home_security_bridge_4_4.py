@@ -1,23 +1,23 @@
 """
-SIRIUS LOCAL AI – Home Security Bridge 4.4.0 (PRO)
+SIRIUS LOCAL AI – Home Security Bridge 4.5.0 (PRO)
 
-Účel:
-- deterministický most medzi Household Automation 4.4 a bezpečnostnými režimami
-- prepína domáce správanie podľa security módu
-- 100 % offline, žiadne AI heuristiky
+Purpose:
+- deterministic bridge between Household Automation 4.5 and security modes
+- switches household behavior based on security mode
+- 100% offline, no AI heuristics
 
-Security Family 4.4:
-- safe‑mode kompatibilita
-- sprísnené pravidlá pre STRANGER_MODE a VACATION
-- Self‑Repair 4.4 ready
+Security Family 4.5:
+- safe‑mode compatible
+- stricter rules for STRANGER_MODE and VACATION
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HomeSecurityBridge44:
+class HomeSecurityBridge45:
     """
-    Deterministic security bridge pre domácnosť.
+    Deterministic security bridge for household automation 4.5.
     """
 
     def __init__(self, state_manager=None, safety_guard=None, event_bus=None):
@@ -29,10 +29,10 @@ class HomeSecurityBridge44:
         self.safety_guard = safety_guard
         self.event_bus = event_bus
 
-        # aktuálny security mód
+        # current security mode
         self.current_mode: str = "HOME"
 
-        # deterministické mapovanie módov na akcie
+        # deterministic mapping of modes to actions
         self.mode_actions = {
             "HOME": [],
             "AWAY": [
@@ -72,7 +72,7 @@ class HomeSecurityBridge44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.state_manager, self.safety_guard, self.event_bus]
@@ -81,25 +81,33 @@ class HomeSecurityBridge44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # SET SECURITY MODE
     # ---------------------------------------------------------
     def set_mode(self, mode: str) -> Dict[str, Any]:
         if not self._validate_str(mode):
-            return {"status": "error", "code": "invalid_mode"}
+            return {"status": "error", "code": "invalid_mode", "version": "4.5"}
 
         mode = mode.upper().strip()
         if mode not in self.mode_actions:
-            return {"status": "error", "code": "unknown_mode"}
+            return {"status": "error", "code": "unknown_mode", "version": "4.5"}
 
         try:
             old_mode = self.current_mode
@@ -120,7 +128,7 @@ class HomeSecurityBridge44:
                             results.append({"status": "error", "code": "invalid_room"})
                             continue
 
-                        # špeciálny prípad – všetky miestnosti
+                        # special case – all rooms
                         if room == "all":
                             res = self.state_manager.set_state_for_room("all", action, value)
                         else:
@@ -138,36 +146,41 @@ class HomeSecurityBridge44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "mode": mode, "results": results}
+            return {"status": "ok", "mode": mode, "results": results, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "set_mode_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "set_mode_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # GET CURRENT MODE
     # ---------------------------------------------------------
     def get_mode(self) -> Dict[str, Any]:
-        return {"status": "ok", "mode": self.current_mode}
+        return {"status": "ok", "mode": self.current_mode, "version": "4.5"}
 
     # ---------------------------------------------------------
     # CHECK COMMAND AGAINST SECURITY MODE
     # ---------------------------------------------------------
     def check_command(self, command: str, identity: str) -> Dict[str, Any]:
         if not self._validate_str(command):
-            return {"status": "error", "code": "invalid_command"}
+            return {"status": "error", "code": "invalid_command", "version": "4.5"}
 
         if not self._validate_str(identity):
-            return {"status": "error", "code": "invalid_identity"}
+            return {"status": "error", "code": "invalid_identity", "version": "4.5"}
 
         try:
-            # 1. základná bezpečnostná vrstva
+            # 1. base safety layer
             if self.safety_guard:
                 base = self.safety_guard.check_command(command, identity)
                 if base.get("status") == "blocked":
                     return base
 
-            # 2. dodatočné obmedzenia podľa módu
+            # 2. additional restrictions based on mode
             mode = self.current_mode
             lowered = command.lower()
 
@@ -177,6 +190,7 @@ class HomeSecurityBridge44:
                         "status": "blocked",
                         "code": "stranger_mode_restriction",
                         "mode": mode,
+                        "version": "4.5",
                     }
 
             if mode == "VACATION":
@@ -186,13 +200,19 @@ class HomeSecurityBridge44:
                         "status": "blocked",
                         "code": "vacation_mode_restriction",
                         "mode": mode,
+                        "version": "4.5",
                     }
 
-            return {"status": "ok", "mode": mode}
+            return {"status": "ok", "mode": mode, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "check_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "check_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -204,4 +224,5 @@ class HomeSecurityBridge44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "current_mode": self.current_mode,
+            "version": "4.5",
         }
