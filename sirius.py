@@ -1,34 +1,34 @@
-# sirius_4_4.py
-# SIRIUS LOCAL AI – Main Entry Point (v4.4.0 PRO)
+# sirius_4_5.py
+# SIRIUS LOCAL AI – Main Entry Point (v4.5.0 PRO)
 # Deterministic, safe-mode compatible bootstrap (Phase‑5 ready)
 
 from __future__ import annotations
 
 import sys
-from runtime.cli_4_4 import SiriusCLI44
-from runtime.runtime_manager_4_4 import RuntimeManager44
+from runtime.cli_4_5 import SiriusCLI45
+from runtime.runtime_manager_4_5 import RuntimeManager45
 
 
 # ============================================================
-# MAIN ENTRY (v4.4.0 PRO)
+# MAIN ENTRY (v4.5.0 PRO)
 # ============================================================
 def main():
     # Initialize runtime first (global logger, config, env)
-    rm = RuntimeManager44()
+    rm = RuntimeManager45()
 
     safe_mode = False
     degraded_mode = False
 
     try:
         rm.initialize()
-        rm.logger.info("SIRIUS LOCAL AI – Entry point started (v4.4.0 PRO)")
+        rm.logger.info("SIRIUS LOCAL AI – Entry point started (v4.5.0 PRO)")
     except Exception as exc:
         degraded_mode = True
         print(f"[ENTRY] Runtime initialization failed: {exc}")
 
     # Start CLI (safe-mode aware)
     try:
-        cli = SiriusCLI44()
+        cli = SiriusCLI45()
         if safe_mode:
             cli.safe_mode = True
         cli.run(sys.argv)
