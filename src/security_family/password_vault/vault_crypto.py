@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – PasswordVault Cryptography 4.4.0 (PRO)
+SIRIUS LOCAL AI – PasswordVault Cryptography 4.5.0 (PRO)
 --------------------------------------------------------
-AES‑256‑GCM encryption helpers for Password Vault 4.4.0.
+AES‑256‑GCM encryption helpers for Password Vault 4.5.0.
 
 Features:
 - deterministic, offline‑only cryptography
@@ -10,7 +10,7 @@ Features:
 - safe‑mode and degraded‑mode support
 - structured error handling
 - no dynamic imports, no eval, no reflection
-- Security Family 4.4 compliant
+- Security Family 4.5 compliant
 """
 
 import os
@@ -31,7 +31,7 @@ DEGRADED_MODE: bool = False
 # ------------------------------------------------------------
 # MASTER KEY DERIVATION (PBKDF2‑HMAC‑SHA256)
 # ------------------------------------------------------------
-def derive_master_key_44(master_secret: str) -> bytes:
+def derive_master_key_45(master_secret: str) -> bytes:
     """
     Derive a stable 256‑bit key from master secret.
     PBKDF2‑HMAC‑SHA256, 200k iterations.
@@ -41,11 +41,10 @@ def derive_master_key_44(master_secret: str) -> bytes:
     global DEGRADED_MODE
 
     if SAFE_MODE:
-        # Return a dummy key in safe‑mode (vault operations disabled anyway)
         return b"\x00" * 32
 
     try:
-        salt = b"SIRIUS_VAULT_SALT_v2_4_4"
+        salt = b"SIRIUS_VAULT_SALT_v2_4_5"
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
@@ -63,7 +62,7 @@ def derive_master_key_44(master_secret: str) -> bytes:
 # ------------------------------------------------------------
 # AES‑256‑GCM ENCRYPTION
 # ------------------------------------------------------------
-def encrypt_data_44(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
+def encrypt_data_45(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
     """
     Encrypt a Python dict using AES‑256‑GCM.
 
@@ -72,7 +71,8 @@ def encrypt_data_44(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
         "iv": bytes,
         "ciphertext": bytes,
         "status": "ok" | "safe_mode" | "error",
-        "degraded_mode": bool
+        "degraded_mode": bool,
+        "version": "4.5.0"
     }
     """
 
@@ -84,6 +84,7 @@ def encrypt_data_44(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
             "ciphertext": b"",
             "status": "safe_mode",
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     try:
@@ -97,6 +98,7 @@ def encrypt_data_44(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
             "ciphertext": ciphertext,
             "status": "ok",
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     except Exception as exc:
@@ -107,13 +109,14 @@ def encrypt_data_44(data: Dict[str, Any], key: bytes) -> Dict[str, Any]:
             "status": "error",
             "exception": str(exc),
             "degraded_mode": True,
+            "version": "4.5.0",
         }
 
 
 # ------------------------------------------------------------
 # AES‑256‑GCM DECRYPTION
 # ------------------------------------------------------------
-def decrypt_data_44(payload: Dict[str, Any], key: bytes) -> Dict[str, Any]:
+def decrypt_data_45(payload: Dict[str, Any], key: bytes) -> Dict[str, Any]:
     """
     Decrypt AES‑256‑GCM encrypted payload.
 
@@ -128,7 +131,8 @@ def decrypt_data_44(payload: Dict[str, Any], key: bytes) -> Dict[str, Any]:
     {
         "status": "ok" | "error" | "safe_mode",
         "data": dict | None,
-        "degraded_mode": bool
+        "degraded_mode": bool,
+        "version": "4.5.0"
     }
     """
 
@@ -139,6 +143,7 @@ def decrypt_data_44(payload: Dict[str, Any], key: bytes) -> Dict[str, Any]:
             "status": "safe_mode",
             "data": None,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     try:
@@ -153,6 +158,7 @@ def decrypt_data_44(payload: Dict[str, Any], key: bytes) -> Dict[str, Any]:
             "status": "ok",
             "data": data,
             "degraded_mode": DEGRADED_MODE,
+            "version": "4.5.0",
         }
 
     except Exception as exc:
@@ -162,13 +168,14 @@ def decrypt_data_44(payload: Dict[str, Any], key: bytes) -> Dict[str, Any]:
             "data": None,
             "exception": str(exc),
             "degraded_mode": True,
+            "version": "4.5.0",
         }
 
 
 __all__ = [
-    "derive_master_key_44",
-    "encrypt_data_44",
-    "decrypt_data_44",
+    "derive_master_key_45",
+    "encrypt_data_45",
+    "decrypt_data_45",
     "SAFE_MODE",
     "DEGRADED_MODE",
 ]
