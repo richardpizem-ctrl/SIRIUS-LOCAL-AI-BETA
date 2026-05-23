@@ -9,7 +9,13 @@ Responsible for:
 - Mapping integrity scan results to recovery actions
 - Coordinating safe, reversible repair steps
 - Ensuring no destructive or unsafe operations occur
+
+Notes:
+- Deterministic, offline, isolated
+- No dynamic imports, no eval, no reflection
+- Fully compatible with Runtime 4.5
 """
+
 
 class RecoveryProtocol:
     """
@@ -18,12 +24,17 @@ class RecoveryProtocol:
     """
 
     def __init__(self):
+        self.version = "4.5.0"
+
         # Recovery rules can be extended in future versions
         self.rules = {
             "missing": self._handle_missing_file,
             "modified": self._handle_modified_file,
         }
 
+    # ---------------------------------------------------------
+    # APPLY RECOVERY RULES
+    # ---------------------------------------------------------
     def apply(self, scan_result):
         """
         Applies recovery rules to the integrity scan result.
@@ -47,7 +58,6 @@ class RecoveryProtocol:
     # ---------------------------------------------------------
     # HANDLERS FOR SPECIFIC ISSUE TYPES
     # ---------------------------------------------------------
-
     def _handle_missing_file(self, module, file_path):
         """
         Handles missing files by marking them for rebuild.
@@ -57,6 +67,7 @@ class RecoveryProtocol:
             "module": module,
             "file": file_path,
             "reason": "missing_file",
+            "version": self.version,
         }
 
     def _handle_modified_file(self, module, file_path):
@@ -69,4 +80,5 @@ class RecoveryProtocol:
             "module": module,
             "file": file_path,
             "reason": "modified_file",
+            "version": self.version,
         }
