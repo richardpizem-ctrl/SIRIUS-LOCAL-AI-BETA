@@ -3,16 +3,17 @@ import re
 
 class EmailValidator:
     """
-    EmailValidator 4.4
+    EmailValidator 4.5
     Provides validation utilities for email addresses, subjects,
     body text, and attachment paths in a deterministic and safe way.
 
-    New in 4.4:
-        - Deterministic Runtime4.4 behavior
-        - Normalized whitespace handling
-        - Strict type validation
-        - Stable output contract for EmailManager 4.4
-        - Self‑Repair Layer 4.4 compatible structure
+    Updated in 4.5:
+        - Deterministic Runtime4.5 behavior
+        - Normalized whitespace handling (unchanged)
+        - Strict type validation (unchanged)
+        - Stable output contract for EmailManager 4.5
+        - Self‑Repair Layer 4.5 compatible structure
+        - Metadata version bumped to 4.5
     """
 
     # ---------------------------------------------------------
@@ -97,7 +98,7 @@ class EmailValidator:
         """
         Validates all components of an email.
         Returns a dict with validation results.
-        Deterministic output for Runtime4.4.
+        Deterministic output for Runtime4.5.
         """
         email_ok = self.validate_email(to)
         subject_ok = self.validate_subject(subject)
@@ -107,5 +108,6 @@ class EmailValidator:
             "email_valid": email_ok,
             "subject_valid": subject_ok,
             "body_valid": body_ok,
-            "all_valid": email_ok and subject_ok and body_ok
+            "all_valid": email_ok and subject_ok and body_ok,
+            "validator_version": "4.5"
         }
