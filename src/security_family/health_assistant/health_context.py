@@ -1,8 +1,8 @@
 """
-Health Context – Identity & Safety Context for Health Assistant 4.4.0 (PRO)
+Health Context – Identity & Safety Context for Health Assistant 4.5.0 (PRO)
 ---------------------------------------------------------------------------
 Provides identity‑aware, deterministic, offline‑safe context for the
-Health Assistant 4.4.0.
+Health Assistant 4.5.0.
 
 This module NEVER:
 - interpretuje zdravotné údaje
@@ -10,19 +10,21 @@ This module NEVER:
 - robí medicínske rozhodnutia
 - generuje medicínske odporúčania
 
-Slúži len ako bezpečný, izolovaný kontextový objekt pre Security Family 4.4.
+Slúži len ako bezpečný, izolovaný kontextový objekt pre Security Family 4.5.
 """
 
-class HealthContext44:
+class HealthContext45:
     """
-    Context object used by HealthAssistant44.
+    Context object used by HealthAssistant45.
     Holds identity, safety notes, and runtime flags.
-    Deterministic, offline, Security Family 4.4 compliant.
+    Deterministic, offline, Security Family 4.5 compliant.
     """
 
     VALID_IDENTITIES = {"OWNER", "FAMILY", "CHILD", "STRANGER"}
 
     def __init__(self, identity: str = "OWNER") -> None:
+        self.version = "4.5.0"
+
         # Normalize identity
         identity = (identity or "OWNER").upper().strip()
         if identity not in self.VALID_IDENTITIES:
@@ -74,4 +76,4 @@ class HealthContext44:
         self.degraded_mode = True
 
 
-__all__ = ["HealthContext44"]
+__all__ = ["HealthContext45"]
