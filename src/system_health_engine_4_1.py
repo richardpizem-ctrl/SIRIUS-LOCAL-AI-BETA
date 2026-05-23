@@ -1,5 +1,5 @@
-# system_health_engine_4_4.py
-# SIRIUS LOCAL AI – System Health Engine 4.4.0 PRO
+# system_health_engine_4_5.py
+# SIRIUS LOCAL AI – System Health Engine 4.5.0 PRO
 # Deterministic, safe-mode compatible, Phase‑5 ready health diagnostics
 
 from __future__ import annotations
@@ -15,11 +15,11 @@ HealthSeverity = Literal["info", "warning", "critical"]
 
 
 # ---------------------------------------------------------
-# DATA STRUCTURES (4.4.0 PRO)
+# DATA STRUCTURES (4.5.0 PRO)
 # ---------------------------------------------------------
 
 @dataclass
-class HealthIssue44:
+class HealthIssue45:
     id: str
     severity: HealthSeverity
     title: str
@@ -30,29 +30,29 @@ class HealthIssue44:
 
 
 @dataclass
-class HealthReport44:
+class HealthReport45:
     timestamp: float
     cpu_usage: float
     ram_usage: float
     disk_usage: float
     health_score: int
-    issues: List[HealthIssue44] = field(default_factory=list)
+    issues: List[HealthIssue45] = field(default_factory=list)
     safe_mode: bool = False
     degraded_mode: bool = False
 
 
 # ---------------------------------------------------------
-# ENGINE 4.4.0 PRO
+# ENGINE 4.5.0 PRO
 # ---------------------------------------------------------
 
-class SystemHealthEngine44:
+class SystemHealthEngine45:
     """
-    System Health Engine 4.4.0 PRO
+    System Health Engine 4.5.0 PRO
 
     Responsibilities:
         - Collect CPU/RAM/DISK metrics
         - Detect performance, stability and resource issues
-        - Produce deterministic HealthReport44
+        - Produce deterministic HealthReport45
         - Safe-mode & degraded-mode aware
         - Phase‑5 ready (extended health domains)
     """
@@ -65,9 +65,9 @@ class SystemHealthEngine44:
     # PUBLIC API
     # ---------------------------------------------------------
 
-    def analyze(self) -> HealthReport44:
+    def analyze(self) -> HealthReport45:
         if self.safe_mode:
-            return HealthReport44(
+            return HealthReport45(
                 timestamp=time.time(),
                 cpu_usage=0.0,
                 ram_usage=0.0,
@@ -83,13 +83,13 @@ class SystemHealthEngine44:
             ram = psutil.virtual_memory().percent
             disk = psutil.disk_usage("/").percent
 
-            issues: List[HealthIssue44] = []
+            issues: List[HealthIssue45] = []
             score = 100
 
             # CPU
             if cpu > 85:
                 issues.append(
-                    HealthIssue44(
+                    HealthIssue45(
                         id="high_cpu",
                         severity="warning",
                         title="Vysoké vyťaženie CPU",
@@ -104,7 +104,7 @@ class SystemHealthEngine44:
             # RAM
             if ram > 90:
                 issues.append(
-                    HealthIssue44(
+                    HealthIssue45(
                         id="high_ram",
                         severity="warning",
                         title="Nedostatok RAM",
@@ -119,7 +119,7 @@ class SystemHealthEngine44:
             # DISK
             if disk > 90:
                 issues.append(
-                    HealthIssue44(
+                    HealthIssue45(
                         id="disk_full",
                         severity="critical",
                         title="Disk je takmer plný",
@@ -134,7 +134,7 @@ class SystemHealthEngine44:
             # Disk cleanup suggestion
             if disk > 75:
                 issues.append(
-                    HealthIssue44(
+                    HealthIssue45(
                         id="disk_cleanup_recommended",
                         severity="info",
                         title="Odporúčané čistenie disku",
@@ -148,7 +148,7 @@ class SystemHealthEngine44:
             # Final score clamp
             score = max(0, min(100, score))
 
-            return HealthReport44(
+            return HealthReport45(
                 timestamp=time.time(),
                 cpu_usage=cpu,
                 ram_usage=ram,
@@ -161,7 +161,7 @@ class SystemHealthEngine44:
 
         except Exception:
             self.degraded_mode = True
-            return HealthReport44(
+            return HealthReport45(
                 timestamp=time.time(),
                 cpu_usage=0.0,
                 ram_usage=0.0,
