@@ -10,6 +10,11 @@ Responsible for:
 - Coordinating recovery protocols
 - Dispatching fallback logic
 - Logging repair events
+
+Notes:
+- Deterministic, offline, isolated
+- No dynamic imports, no eval, no reflection
+- Fully compatible with Runtime 4.5
 """
 
 from .integrity_scanner import IntegrityScanner
@@ -26,18 +31,26 @@ class SelfRepairEngine:
     """
 
     def __init__(self):
+        self.version = "4.5.0"
+
         self.scanner = IntegrityScanner()
         self.protocol = RecoveryProtocol()
         self.rebuilder = ModuleRebuilder()
         self.fallback = FallbackManager()
         self.log = RepairLog()
 
+    # ---------------------------------------------------------
+    # INTEGRITY CHECK
+    # ---------------------------------------------------------
     def run_integrity_check(self):
         """Runs a full integrity scan and returns the result."""
         result = self.scanner.scan()
         self.log.record_scan(result)
         return result
 
+    # ---------------------------------------------------------
+    # REPAIR PIPELINE
+    # ---------------------------------------------------------
     def repair_if_needed(self):
         """
         Executes repair actions if integrity scan detects issues.
@@ -46,7 +59,11 @@ class SelfRepairEngine:
         scan = self.run_integrity_check()
 
         if scan["status"] == "OK":
-            return {"repaired": False, "details": "System stable"}
+            return {
+                "repaired": False,
+                "details": "System stable",
+                "version": self.version,
+            }
 
         # Step 1: Apply recovery protocol
         recovery_actions = self.protocol.apply(scan)
@@ -65,11 +82,15 @@ class SelfRepairEngine:
             "recovery_actions": recovery_actions,
             "rebuild_actions": rebuild_actions,
             "fallback_actions": fallback_actions,
+            "version": self.version,
         }
 
         self.log.record_repair(report)
         return report
 
+    # ---------------------------------------------------------
+    # RUNTIME STABILIZATION
+    # ---------------------------------------------------------
     def stabilize_runtime(self):
         """Optional: runtime stabilization hook."""
         self.fallback.stabilize()
