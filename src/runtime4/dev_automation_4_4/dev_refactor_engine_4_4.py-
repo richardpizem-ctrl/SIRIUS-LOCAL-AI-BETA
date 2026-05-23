@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Developer Refactor Engine 4.4.0
+SIRIUS LOCAL AI – Developer Refactor Engine 4.5.0
 
-Deterministic, offline‑safe code refactoring for Developer Automation 4.4.
+Deterministic, offline‑safe code refactoring for Developer Automation 4.5.
 
 Features:
 - Structural code transformations
@@ -9,23 +9,23 @@ Features:
 - Import cleanup
 - Dead‑code detection
 - Deterministic formatting rules
-- Security‑aware refactoring (Security Family 4.4)
+- Security‑aware refactoring (Security Family 4.5)
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No AST execution, only AST inspection + transformation.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class DevRefactorEngine44:
+class DevRefactorEngine45:
     """
-    Deterministic refactoring engine for Runtime 4.4.
+    Deterministic refactoring engine for Runtime 4.5.
     Performs safe, structural code transformations without executing code.
-    Fully isolated, offline‑safe, and Self‑Repair 4.4 compatible.
+    Fully isolated, offline‑safe, and Self‑Repair 4.5 compatible.
     """
 
     def __init__(self, analyzer=None, formatter=None, security_policy=None):
@@ -39,35 +39,51 @@ class DevRefactorEngine44:
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5.0"}
 
         try:
             if self.analyzer:
                 res = self.analyzer.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "exception": res}
+                    return {
+                        "status": "error",
+                        "exception": res,
+                        "version": "4.5.0",
+                    }
 
             if self.formatter:
                 fmt = self.formatter.initialize()
                 if isinstance(fmt, dict) and fmt.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "exception": fmt}
+                    return {
+                        "status": "error",
+                        "exception": fmt,
+                        "version": "4.5.0",
+                    }
 
             if self.security_policy:
                 sec = self.security_policy.initialize()
                 if isinstance(sec, dict) and sec.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "exception": sec}
+                    return {
+                        "status": "error",
+                        "exception": sec,
+                        "version": "4.5.0",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5.0"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5.0",
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – REFACTOR FILE
@@ -91,6 +107,7 @@ class DevRefactorEngine44:
                     "status": "error",
                     "reason": "engine_not_initialized",
                     "details": init_result,
+                    "version": "4.5.0",
                 }
 
         try:
@@ -101,7 +118,11 @@ class DevRefactorEngine44:
             if self.security_policy:
                 sec = self.security_policy.check_refactor_rules(rules)
                 if sec.get("status") != "allowed":
-                    return {"status": "blocked", "policy": sec}
+                    return {
+                        "status": "blocked",
+                        "policy": sec,
+                        "version": "4.5.0",
+                    }
 
             # Deterministic rule application
             for rule in rules.get("steps", []):
@@ -134,11 +155,16 @@ class DevRefactorEngine44:
                 "status": "ok",
                 "refactored_code": code,
                 "changes": changes,
+                "version": "4.5.0",
             }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5.0",
+            }
 
     # ------------------------------------------------------------------
     # INTERNAL – RENAME
@@ -172,7 +198,7 @@ class DevRefactorEngine44:
         return code, {
             "status": "ok",
             "action": "remove_dead_code",
-            "note": "static placeholder",
+            "note": "static_placeholder",
         }
 
     # ------------------------------------------------------------------
@@ -183,7 +209,7 @@ class DevRefactorEngine44:
         return code, {
             "status": "ok",
             "action": "cleanup_imports",
-            "note": "static placeholder",
+            "note": "static_placeholder",
         }
 
     # ------------------------------------------------------------------
