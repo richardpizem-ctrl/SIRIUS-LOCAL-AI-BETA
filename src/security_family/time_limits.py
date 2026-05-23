@@ -1,17 +1,17 @@
 """
-Security Family – Time Limits 4.4.0 (PRO)
+Security Family – Time Limits 4.5.0 (PRO)
 -----------------------------------------
 Intelligent time-based safety for FAMILY profiles.
 
-Features (4.4.0):
+Features (4.5.0):
 - deterministic, offline-only behavior
 - adaptive learning of usage patterns (EMA-style)
 - anomaly detection (usage spikes + trend shift)
 - short-term & long-term trend analysis
-- risk scoring for FamilyMode44
+- risk scoring for FamilyMode45
 - dynamic limit adjustments (safe, bounded)
 - safe-mode and degraded-mode support
-- Security Family 4.4 compliant
+- Security Family 4.5 compliant
 """
 
 import time
@@ -19,7 +19,7 @@ import math
 from statistics import mean
 
 
-class TimeLimits44:
+class TimeLimits45:
     def __init__(self, config=None):
         """
         config example:
@@ -38,7 +38,7 @@ class TimeLimits44:
         self.max_short = 20
         self.max_long = 200
 
-        # Thresholds (4.4)
+        # Thresholds (4.5)
         self.anomaly_shift_threshold = 0.35
         self.anomaly_penalty = 0.25
 
@@ -129,7 +129,7 @@ class TimeLimits44:
             return {"status": "error", "exception": str(exc)}
 
     # ---------------------------------------------------------
-    # ADAPTIVE LEARNING (4.4)
+    # ADAPTIVE LEARNING (4.5)
     # ---------------------------------------------------------
     def _adaptive_learn(self, user_id, session_type, duration, learning_rate=0.1):
         try:
@@ -152,7 +152,7 @@ class TimeLimits44:
             else:
                 return  # no change
 
-            # Clamp limit (4.4 safe bounds)
+            # Clamp limit (4.5 safe bounds)
             new_limit = max(5, min(240, new_limit))
 
             # Save updated limit
@@ -165,7 +165,7 @@ class TimeLimits44:
             self.degraded_mode = True
 
     # ---------------------------------------------------------
-    # ANOMALY DETECTION (4.4)
+    # ANOMALY DETECTION (4.5)
     # ---------------------------------------------------------
     def detect_anomaly(self, user_id, session_type):
         try:
