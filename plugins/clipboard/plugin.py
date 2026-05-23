@@ -1,5 +1,5 @@
 # plugin.py
-# SIRIUS LOCAL AI – Clipboard Plugin 4.4.0
+# SIRIUS LOCAL AI – Clipboard Plugin 4.5.0
 # Safe, deterministic, sandboxed clipboard module with integrity + health support
 
 from __future__ import annotations
@@ -10,7 +10,7 @@ import os
 
 class Plugin:
     """
-    Clipboard Plugin 4.4.0
+    Clipboard Plugin 4.5.0
 
     Responsibilities:
         - Provide NL commands for clipboard operations
@@ -19,30 +19,30 @@ class Plugin:
         - Provide AI Loop rules
         - Provide GUI elements
         - Deterministic, safe-mode aware, degraded-mode aware
-        - Provide integrity hooks (4.4)
-        - Provide health metadata (4.4)
-        - Support Self‑Repair Layer 4.4
+        - Provide integrity hooks (4.5)
+        - Provide health metadata (4.5)
+        - Support Self‑Repair Layer 4.5
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
 
-        # Runtime 4.4 modes
+        # Runtime 4.5 modes
         self.safe_mode = False
         self.degraded_mode = False
 
-        # 4.4 integrity + health
+        # 4.5 integrity + health
         self.integrity_ok = True
         self.health_status = "OK"
 
-        self.rm.logger.info("[PLUGIN:clipboard] Initialized (v4.4.0)")
+        self.rm.logger.info("[PLUGIN:clipboard] Initialized (v4.5.0)")
 
     # --------------------------------------------------------
-    # INTEGRITY HOOKS (4.4)
+    # INTEGRITY HOOKS (4.5)
     # --------------------------------------------------------
     def integrity_check(self):
         """
-        Called by PluginLoader 4.4.
+        Called by PluginLoader 4.5.
         Must return True/False.
         """
         try:
@@ -52,7 +52,7 @@ class Plugin:
 
     def integrity_repair(self):
         """
-        Called by Self‑Repair Layer 4.4.
+        Called by Self‑Repair Layer 4.5.
         Plugin may reload, reset state, or fallback.
         """
         self.rm.logger.warn("[PLUGIN:clipboard] Integrity repair triggered.")
@@ -61,7 +61,7 @@ class Plugin:
         return True
 
     # --------------------------------------------------------
-    # HEALTH METADATA (4.4)
+    # HEALTH METADATA (4.5)
     # --------------------------------------------------------
     def health(self):
         return {
@@ -72,7 +72,7 @@ class Plugin:
         }
 
     # --------------------------------------------------------
-    # NL COMMANDS (4.4)
+    # NL COMMANDS (4.5)
     # --------------------------------------------------------
     def nl_commands(self):
         return {
@@ -109,7 +109,7 @@ class Plugin:
             return "Clipboard error."
 
     # --------------------------------------------------------
-    # AI TASKS (4.4)
+    # AI TASKS (4.5)
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -147,7 +147,7 @@ class Plugin:
             return {"error": "Clipboard error"}
 
     # --------------------------------------------------------
-    # WORKFLOWS (4.4)
+    # WORKFLOWS (4.5)
     # --------------------------------------------------------
     def workflows(self):
         return [
@@ -162,7 +162,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # AI LOOP RULES (4.4)
+    # AI LOOP RULES (4.5)
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -176,7 +176,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI ELEMENTS (4.4)
+    # GUI ELEMENTS (4.5)
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -199,7 +199,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # INTERNAL ERROR HANDLER (4.4)
+    # INTERNAL ERROR HANDLER (4.5)
     # --------------------------------------------------------
     def _handle_error(self, label, exception):
         self.degraded_mode = True
@@ -207,7 +207,7 @@ class Plugin:
         self.rm.logger.error(f"[CLIPBOARD] {label} error: {exception}")
 
     # --------------------------------------------------------
-    # SAFE-MODE CONTROL (4.4)
+    # SAFE-MODE CONTROL (4.5)
     # --------------------------------------------------------
     def enter_safe_mode(self):
         self.safe_mode = True
