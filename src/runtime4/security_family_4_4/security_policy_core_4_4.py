@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Security Policy Core 4.4.0 (PRO)
+SIRIUS LOCAL AI – Security Policy Core 4.5.0 (PRO)
 
-Security Policy Core 4.4 is the central rule engine of Security Family 4.4.
+Security Policy Core 4.5 is the central rule engine of Security Family 4.5.
 It provides deterministic, offline‑safe enforcement of:
 
 - Identity rules (OWNER / FAMILY / STRANGER)
@@ -9,21 +9,21 @@ It provides deterministic, offline‑safe enforcement of:
 - Sensitive operation restrictions
 - UI safety constraints
 - Behavior‑aware adjustments (safe subset)
-- Integration with Policy Router 4.4
+- Integration with Policy Router 4.5
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No personal data stored.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any
 
 
-class SecurityPolicyCore44:
+class SecurityPolicyCore45:
     """
-    Deterministic rule engine for Runtime 4.4 (PRO).
+    Deterministic rule engine for Runtime 4.5 (PRO).
     """
 
     VALID_IDENTITIES = {"OWNER", "FAMILY", "STRANGER"}
@@ -46,23 +46,25 @@ class SecurityPolicyCore44:
         self.initialized = False
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "init_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -103,6 +105,7 @@ class SecurityPolicyCore44:
             return {
                 "status": "safe_mode",
                 "message": "Policy checks disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate identity
@@ -111,6 +114,7 @@ class SecurityPolicyCore44:
                 "status": "blocked",
                 "code": "invalid_identity",
                 "identity": identity,
+                "version": self.version,
             }
 
         # Validate action
@@ -118,6 +122,7 @@ class SecurityPolicyCore44:
             return {
                 "status": "blocked",
                 "code": "invalid_action",
+                "version": self.version,
             }
 
         # Validate element_ref
@@ -125,14 +130,14 @@ class SecurityPolicyCore44:
             return {
                 "status": "blocked",
                 "code": "invalid_element_ref",
+                "version": self.version,
             }
 
         # ------------------------------
         # OWNER
         # ------------------------------
         if identity == "OWNER":
-            # OWNER has full access except explicit forbidden cases
-            return {"status": "allowed", "layer": "policy_core"}
+            return {"status": "allowed", "layer": "policy_core", "version": self.version}
 
         # ------------------------------
         # FAMILY
@@ -144,8 +149,9 @@ class SecurityPolicyCore44:
                     "layer": "policy_core",
                     "reason": "sensitive_action_blocked_for_family",
                     "action": action,
+                    "version": self.version,
                 }
-            return {"status": "allowed", "layer": "policy_core"}
+            return {"status": "allowed", "layer": "policy_core", "version": self.version}
 
         # ------------------------------
         # STRANGER
@@ -157,8 +163,9 @@ class SecurityPolicyCore44:
                     "layer": "policy_core",
                     "reason": "action_blocked_for_stranger",
                     "action": action,
+                    "version": self.version,
                 }
-            return {"status": "allowed", "layer": "policy_core"}
+            return {"status": "allowed", "layer": "policy_core", "version": self.version}
 
         # ------------------------------
         # Unknown identity (should never happen)
@@ -168,6 +175,7 @@ class SecurityPolicyCore44:
             "layer": "policy_core",
             "reason": "unknown_identity",
             "identity": identity,
+            "version": self.version,
         }
 
     # ------------------------------------------------------------------
@@ -179,4 +187,5 @@ class SecurityPolicyCore44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
