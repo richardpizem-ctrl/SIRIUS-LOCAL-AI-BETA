@@ -1,5 +1,5 @@
-# service_manager_engine_4_4.py
-# SIRIUS LOCAL AI – Service Manager Engine 4.4.0 PRO
+# service_manager_engine_4_5.py
+# SIRIUS LOCAL AI – Service Manager Engine 4.5.0 PRO
 # Deterministic, sandboxed, safe-mode compatible diagnostics (Phase‑4/5 ready)
 
 from __future__ import annotations
@@ -15,11 +15,11 @@ ServiceSeverity = Literal["info", "warning", "critical"]
 
 
 # ---------------------------------------------------------
-# DATA STRUCTURES (4.4.0 PRO)
+# DATA STRUCTURES (4.5.0 PRO)
 # ---------------------------------------------------------
 
 @dataclass
-class ServiceInfo44:
+class ServiceInfo45:
     name: str
     status: str
     pid: Optional[int]
@@ -27,7 +27,7 @@ class ServiceInfo44:
 
 
 @dataclass
-class ServiceIssue44:
+class ServiceIssue45:
     id: str
     severity: ServiceSeverity
     title: str
@@ -39,21 +39,21 @@ class ServiceIssue44:
 
 
 @dataclass
-class ServiceReport44:
+class ServiceReport45:
     timestamp: float
-    services: List[ServiceInfo44] = field(default_factory=list)
-    issues: List[ServiceIssue44] = field(default_factory=list)
+    services: List[ServiceInfo45] = field(default_factory=list)
+    issues: List[ServiceIssue45] = field(default_factory=list)
     safe_mode: bool = False
     degraded_mode: bool = False
 
 
 # ---------------------------------------------------------
-# ENGINE 4.4.0 PRO
+# ENGINE 4.5.0 PRO
 # ---------------------------------------------------------
 
-class ServiceManagerEngine44:
+class ServiceManagerEngine45:
     """
-    Service Manager Engine 4.4.0 PRO
+    Service Manager Engine 4.5.0 PRO
 
     - deterministic diagnostics
     - sandboxed service enumeration
@@ -85,14 +85,14 @@ class ServiceManagerEngine44:
     # PUBLIC API
     # ---------------------------------------------------------
 
-    def analyze(self) -> ServiceReport44:
+    def analyze(self) -> ServiceReport45:
         """
-        Main entry point for Runtime Manager 4.4.
-        Always returns a valid ServiceReport44.
+        Main entry point for Runtime Manager 4.5.
+        Always returns a valid ServiceReport45.
         """
 
         if self.safe_mode:
-            return ServiceReport44(
+            return ServiceReport45(
                 timestamp=time.time(),
                 services=[],
                 issues=[],
@@ -102,7 +102,7 @@ class ServiceManagerEngine44:
 
         try:
             services = self._collect_services()
-            issues: List[ServiceIssue44] = []
+            issues: List[ServiceIssue45] = []
 
             issues.extend(self._detect_stopped_critical_services(services))
             issues.extend(self._detect_failed_services(services))
@@ -110,7 +110,7 @@ class ServiceManagerEngine44:
             issues.extend(self._detect_network_restart_candidate(services))
             issues.extend(self._detect_windows_update_issues(services))
 
-            return ServiceReport44(
+            return ServiceReport45(
                 timestamp=time.time(),
                 services=services,
                 issues=issues,
@@ -120,7 +120,7 @@ class ServiceManagerEngine44:
 
         except Exception:
             self.degraded_mode = True
-            return ServiceReport44(
+            return ServiceReport45(
                 timestamp=time.time(),
                 services=[],
                 issues=[],
@@ -132,8 +132,8 @@ class ServiceManagerEngine44:
     # SERVICE COLLECTION (SANDBOXED)
     # ---------------------------------------------------------
 
-    def _collect_services(self) -> List[ServiceInfo44]:
-        result: List[ServiceInfo44] = []
+    def _collect_services(self) -> List[ServiceInfo45]:
+        result: List[ServiceInfo45] = []
 
         try:
             for svc in psutil.win_service_iter():
@@ -144,7 +144,7 @@ class ServiceManagerEngine44:
                     pid = info.get("pid", None)
 
                     result.append(
-                        ServiceInfo44(
+                        ServiceInfo45(
                             name=name,
                             status=status,
                             pid=pid,
@@ -160,11 +160,11 @@ class ServiceManagerEngine44:
         return result
 
     # ---------------------------------------------------------
-    # ANALYSIS HELPERS (4.4.0 PRO)
+    # ANALYSIS HELPERS (4.5.0 PRO)
     # ---------------------------------------------------------
 
-    def _detect_stopped_critical_services(self, services: List[ServiceInfo44]) -> List[ServiceIssue44]:
-        issues: List[ServiceIssue44] = []
+    def _detect_stopped_critical_services(self, services: List[ServiceInfo45]) -> List[ServiceIssue45]:
+        issues: List[ServiceIssue45] = []
 
         stopped = [s for s in services if s.is_critical and s.status.lower() != "running"]
 
@@ -172,7 +172,7 @@ class ServiceManagerEngine44:
             return issues
 
         issues.append(
-            ServiceIssue44(
+            ServiceIssue45(
                 id="critical_services_stopped",
                 severity="critical",
                 title="Kritické služby Windows sú zastavené",
@@ -181,7 +181,7 @@ class ServiceManagerEngine44:
                     "To môže spôsobovať problémy so zvukom, sieťou, aktualizáciami alebo stabilitou systému."
                 ),
                 suggested_actions=[
-                    "Navrhnúť reštart kritických služieb cez VYSLANEC 4.4.",
+                    "Navrhnúť reštart kritických služieb cez VYSLANEC 4.5.",
                     "Zobraziť používateľovi zoznam zastavených služieb.",
                 ],
                 related_services=[s.name for s in stopped],
@@ -192,8 +192,8 @@ class ServiceManagerEngine44:
 
         return issues
 
-    def _detect_failed_services(self, services: List[ServiceInfo44]) -> List[ServiceIssue44]:
-        issues: List[ServiceIssue44] = []
+    def _detect_failed_services(self, services: List[ServiceInfo45]) -> List[ServiceIssue45]:
+        issues: List[ServiceIssue45] = []
 
         failed = [s for s in services if s.status.lower() == "stopped" and not s.is_critical]
 
@@ -201,7 +201,7 @@ class ServiceManagerEngine44:
             return issues
 
         issues.append(
-            ServiceIssue44(
+            ServiceIssue45(
                 id="noncritical_services_failed",
                 severity="warning",
                 title="Niektoré služby sú zastavené",
@@ -210,7 +210,7 @@ class ServiceManagerEngine44:
                     "Nemusia byť kritické, ale môžu ovplyvniť funkčnosť aplikácií."
                 ),
                 suggested_actions=[
-                    "Ponúknuť možnosť reštartu týchto služieb cez VYSLANEC 4.4.",
+                    "Ponúknuť možnosť reštartu týchto služieb cez VYSLANEC 4.5.",
                 ],
                 related_services=[s.name for s in failed],
                 impact="usability",
@@ -220,8 +220,8 @@ class ServiceManagerEngine44:
 
         return issues
 
-    def _detect_audio_restart_candidate(self, services: List[ServiceInfo44]) -> List[ServiceIssue44]:
-        issues: List[ServiceIssue44] = []
+    def _detect_audio_restart_candidate(self, services: List[ServiceInfo45]) -> List[ServiceIssue45]:
+        issues: List[ServiceIssue45] = []
 
         audio = [s for s in services if s.name.lower() in ("audiosrv", "audiosrv")]
 
@@ -231,13 +231,13 @@ class ServiceManagerEngine44:
         svc = audio[0]
         if svc.status.lower() != "running":
             issues.append(
-                ServiceIssue44(
+                ServiceIssue45(
                     id="audio_service_down",
                     severity="warning",
                     title="Windows Audio nie je spustené",
                     description="Zvuk nemusí fungovať správne.",
                     suggested_actions=[
-                        "Navrhnúť reštart Windows Audio cez VYSLANEC 4.4.",
+                        "Navrhnúť reštart Windows Audio cez VYSLANEC 4.5.",
                     ],
                     related_services=[svc.name],
                     impact="audio",
@@ -247,21 +247,21 @@ class ServiceManagerEngine44:
 
         return issues
 
-    def _detect_network_restart_candidate(self, services: List[ServiceInfo44]) -> List[ServiceIssue44]:
-        issues: List[ServiceIssue44] = []
+    def _detect_network_restart_candidate(self, services: List[ServiceInfo45]) -> List[ServiceIssue45]:
+        issues: List[ServiceIssue45] = []
 
         dhcp = [s for s in services if s.name.lower() == "dhcp"]
         dns = [s for s in services if s.name.lower() == "dnscache"]
 
         if dhcp and dhcp[0].status.lower() != "running":
             issues.append(
-                ServiceIssue44(
+                ServiceIssue45(
                     id="dhcp_down",
                     severity="warning",
                     title="DHCP Client nie je spustený",
                     description="Sieť nemusí fungovať správne.",
                     suggested_actions=[
-                        "Navrhnúť reštart DHCP Client cez VYSLANEC 4.4.",
+                        "Navrhnúť reštart DHCP Client cez VYSLANEC 4.5.",
                     ],
                     related_services=["Dhcp"],
                     impact="network",
@@ -271,13 +271,13 @@ class ServiceManagerEngine44:
 
         if dns and dns[0].status.lower() != "running":
             issues.append(
-                ServiceIssue44(
+                ServiceIssue45(
                     id="dns_down",
                     severity="warning",
                     title="DNS Client nie je spustený",
                     description="Môžu sa vyskytnúť problémy s internetom.",
                     suggested_actions=[
-                        "Navrhnúť reštart DNS Client cez VYSLANEC 4.4.",
+                        "Navrhnúť reštart DNS Client cez VYSLANEC 4.5.",
                     ],
                     related_services=["Dnscache"],
                     impact="network",
@@ -287,20 +287,20 @@ class ServiceManagerEngine44:
 
         return issues
 
-    def _detect_windows_update_issues(self, services: List[ServiceInfo44]) -> List[ServiceIssue44]:
-        issues: List[ServiceIssue44] = []
+    def _detect_windows_update_issues(self, services: List[ServiceInfo45]) -> List[ServiceIssue45]:
+        issues: List[ServiceIssue45] = []
 
         wu = [s for s in services if s.name.lower() == "wuauserv"]
 
         if wu and wu[0].status.lower() != "running":
             issues.append(
-                ServiceIssue44(
+                ServiceIssue45(
                     id="windows_update_down",
                     severity="info",
                     title="Windows Update nie je spustený",
                     description="Aktualizácie systému nemusia fungovať.",
                     suggested_actions=[
-                        "Navrhnúť reštart Windows Update cez VYSLANEC 4.4.",
+                        "Navrhnúť reštart Windows Update cez VYSLANEC 4.5.",
                     ],
                     related_services=["wuauserv"],
                     impact="usability",
@@ -311,7 +311,7 @@ class ServiceManagerEngine44:
         return issues
 
     # ---------------------------------------------------------
-    # SUMMARY FOR SYSTEM HEALTH ENGINE 4.4
+    # SUMMARY FOR SYSTEM HEALTH ENGINE 4.5
     # ---------------------------------------------------------
 
     def get_service_summary(self) -> Dict[str, Any]:
