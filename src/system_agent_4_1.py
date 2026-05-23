@@ -1,5 +1,5 @@
-# system_agent_4_4.py
-# SIRIUS LOCAL AI – System Agent 4.4.0 PRO (VYSLANEC 4.4)
+# system_agent_4_5.py
+# SIRIUS LOCAL AI – System Agent 4.5.0 PRO (VYSLANEC 4.5)
 # Deterministic, identity-aware, safe-mode compatible action executor (Phase‑5 ready)
 
 from __future__ import annotations
@@ -9,11 +9,11 @@ from typing import List, Literal, Optional, Dict, Any
 import time
 import logging
 
-# Identity types – Security Family 4.4
+# Identity types – Security Family 4.5
 IdentityType = Literal["OWNER", "FAMILY", "STRANGER"]
 
 # Action types – abstract, OS-agnostic
-ActionType44 = Literal[
+ActionType45 = Literal[
     "KILL_PROCESS",
     "RESTART_PROCESS",
     "RESTART_EXPLORER",
@@ -25,9 +25,9 @@ ActionType44 = Literal[
 
 
 @dataclass
-class AgentAction44:
+class AgentAction45:
     id: str
-    type: ActionType44
+    type: ActionType45
     label: str
     description: str
     identity_required: IdentityType
@@ -35,7 +35,7 @@ class AgentAction44:
 
 
 @dataclass
-class AgentResult44:
+class AgentResult45:
     action_id: str
     success: bool
     message: str
@@ -43,12 +43,12 @@ class AgentResult44:
     dry_run: bool
 
 
-class SystemAgent44:
+class SystemAgent45:
     """
-    System Agent 4.4.0 PRO (VYSLANEC 4.4)
+    System Agent 4.5.0 PRO (VYSLANEC 4.5)
 
     - deterministic execution layer
-    - identity-aware permission model (Security Family 4.4)
+    - identity-aware permission model (Security Family 4.5)
     - safe-mode & degraded-mode aware
     - dry-run simulation mode
     - Phase‑5 ready (policy hooks, restricted-mode)
@@ -59,11 +59,11 @@ class SystemAgent44:
         self.safe_mode = False
         self.degraded_mode = False
 
-        self.logger = logging.getLogger("SystemAgent44")
+        self.logger = logging.getLogger("SystemAgent45")
         if not self.logger.handlers:
             handler = logging.StreamHandler()
             formatter = logging.Formatter(
-                "[%(asctime)s] [%(levelname)s] SystemAgent44: %(message)s"
+                "[%(asctime)s] [%(levelname)s] SystemAgent45: %(message)s"
             )
             handler.setFormatter(formatter)
             self.logger.addHandler(handler)
@@ -76,8 +76,8 @@ class SystemAgent44:
     def execute_action(
         self,
         identity: IdentityType,
-        action: AgentAction44,
-    ) -> AgentResult44:
+        action: AgentAction45,
+    ) -> AgentResult45:
 
         self.logger.info(
             "Requested action '%s' (%s) by identity %s",
@@ -90,7 +90,7 @@ class SystemAgent44:
         if self.safe_mode:
             msg = "SAFE MODE: actions are disabled."
             self.logger.warning("%s Action: %s", msg, action.id)
-            return AgentResult44(
+            return AgentResult45(
                 action_id=action.id,
                 success=False,
                 message=msg,
@@ -102,7 +102,7 @@ class SystemAgent44:
         if not self._is_allowed(identity, action):
             msg = "Action not allowed for this identity."
             self.logger.warning("%s Action: %s", msg, action.id)
-            return AgentResult44(
+            return AgentResult45(
                 action_id=action.id,
                 success=False,
                 message=msg,
@@ -114,7 +114,7 @@ class SystemAgent44:
         if self.dry_run:
             msg = "Dry-run mode: action simulated, no real system changes performed."
             self.logger.info("%s Action: %s", msg, action.id)
-            return AgentResult44(
+            return AgentResult45(
                 action_id=action.id,
                 success=True,
                 message=msg,
@@ -127,7 +127,7 @@ class SystemAgent44:
             self._perform_action(action)
             msg = "Action executed successfully."
             self.logger.info("%s Action: %s", msg, action.id)
-            return AgentResult44(
+            return AgentResult45(
                 action_id=action.id,
                 success=True,
                 message=msg,
@@ -138,7 +138,7 @@ class SystemAgent44:
             self.degraded_mode = True
             msg = f"Action failed: {e}"
             self.logger.error("%s Action: %s", msg, action.id)
-            return AgentResult44(
+            return AgentResult45(
                 action_id=action.id,
                 success=False,
                 message=msg,
@@ -149,15 +149,15 @@ class SystemAgent44:
     def execute_actions_batch(
         self,
         identity: IdentityType,
-        actions: List[AgentAction44],
-    ) -> List[AgentResult44]:
+        actions: List[AgentAction45],
+    ) -> List[AgentResult45]:
         return [self.execute_action(identity, a) for a in actions]
 
     # -------------------------------------------------------------------------
-    # PERMISSIONS (Security Family 4.4)
+    # PERMISSIONS (Security Family 4.5)
     # -------------------------------------------------------------------------
 
-    def _is_allowed(self, identity: IdentityType, action: AgentAction44) -> bool:
+    def _is_allowed(self, identity: IdentityType, action: AgentAction45) -> bool:
 
         if identity == "STRANGER":
             return False
@@ -177,7 +177,7 @@ class SystemAgent44:
     # INTERNAL EXECUTION (PLACEHOLDERS)
     # -------------------------------------------------------------------------
 
-    def _perform_action(self, action: AgentAction44) -> None:
+    def _perform_action(self, action: AgentAction45) -> None:
         if action.type == "KILL_PROCESS":
             self._kill_process(action.payload)
         elif action.type == "RESTART_PROCESS":
