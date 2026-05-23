@@ -4,20 +4,20 @@ from context.context_manager import ContextManager
 
 class ResetCommand(BaseCommand):
     """
-    ResetCommand 4.4
+    ResetCommand 4.5
     Completely wipes the entire context and restores a clean default state.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Deterministic reset contract
-        - Stable post‑reset snapshot
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Stable output for Runtime4.4 and NL Router 4.4
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic reset contract (unchanged)
+        - Stable post‑reset snapshot (unchanged)
+        - Unified error model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "context-reset"
     description = "Fully resets session, persistent, state, and history to a clean context."
@@ -37,7 +37,7 @@ class ResetCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -53,7 +53,7 @@ class ResetCommand(BaseCommand):
         self.context.state = {}
         self.context.history = []
 
-        # Profile subsystem (4.4)
+        # Profile subsystem
         self.context.profiles = {}
         self.context.active_profile = None
 
