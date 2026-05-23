@@ -8,17 +8,18 @@ log = logging.getLogger(__name__)
 
 class FSModule:
     """
-    FSModule 4.4
+    FSModule 4.5
     ----------------
     High‑level filesystem operations for SIRIUS LOCAL AI.
 
-    New in 4.4:
-        - Deterministic Runtime4.4 behavior
-        - Strict path validation contract
+    Updated in 4.5:
+        - Deterministic Runtime4.5 behavior
+        - Strict path validation contract (unchanged)
         - Stable structured return values
-        - Self‑Repair Layer 4.4 compatible metadata
+        - Self‑Repair Layer 4.5 compatible metadata
         - Safe directory creation and overwrite handling
-        - Unified error model for CommandRouter 4.4
+        - Unified error model for CommandRouter 4.5
+        - Metadata version bumped to 4.5
     """
 
     def __init__(self):
@@ -45,14 +46,16 @@ class FSModule:
             log.info("FS: Created directory: %s", p)
             return {
                 "status": "success",
-                "path": str(p)
+                "path": str(p),
+                "fs_version": "4.5"
             }
         except Exception as exc:
             log.exception("FS: Failed to create directory '%s': %s", p, exc)
             return {
                 "status": "error",
                 "path": str(p),
-                "exception": str(exc)
+                "exception": str(exc),
+                "fs_version": "4.5"
             }
 
     # --------------------------------------------------------
@@ -68,7 +71,8 @@ class FSModule:
             return {
                 "status": "success",
                 "src": str(src_p),
-                "dst": str(dst_p)
+                "dst": str(dst_p),
+                "fs_version": "4.5"
             }
         except Exception as exc:
             log.exception("FS: Failed to move '%s' → '%s': %s", src_p, dst_p, exc)
@@ -76,7 +80,8 @@ class FSModule:
                 "status": "error",
                 "src": str(src_p),
                 "dst": str(dst_p),
-                "exception": str(exc)
+                "exception": str(exc),
+                "fs_version": "4.5"
             }
 
     # --------------------------------------------------------
@@ -96,7 +101,8 @@ class FSModule:
             return {
                 "status": "success",
                 "src": str(src_p),
-                "dst": str(dst_p)
+                "dst": str(dst_p),
+                "fs_version": "4.5"
             }
         except Exception as exc:
             log.exception("FS: Failed to copy '%s' → '%s': %s", src_p, dst_p, exc)
@@ -104,7 +110,8 @@ class FSModule:
                 "status": "error",
                 "src": str(src_p),
                 "dst": str(dst_p),
-                "exception": str(exc)
+                "exception": str(exc),
+                "fs_version": "4.5"
             }
 
     # --------------------------------------------------------
@@ -123,20 +130,23 @@ class FSModule:
                 return {
                     "status": "error",
                     "path": str(p),
-                    "message": "Nothing to delete"
+                    "message": "Nothing to delete",
+                    "fs_version": "4.5"
                 }
 
             log.info("FS: Deleted '%s'", p)
             return {
                 "status": "success",
-                "path": str(p)
+                "path": str(p),
+                "fs_version": "4.5"
             }
         except Exception as exc:
             log.exception("FS: Failed to delete '%s': %s", p, exc)
             return {
                 "status": "error",
                 "path": str(p),
-                "exception": str(exc)
+                "exception": str(exc),
+                "fs_version": "4.5"
             }
 
     # --------------------------------------------------------
@@ -151,14 +161,16 @@ class FSModule:
             return {
                 "status": "success",
                 "path": str(p),
-                "content": content
+                "content": content,
+                "fs_version": "4.5"
             }
         except Exception as exc:
             log.exception("FS: Failed to read '%s': %s", p, exc)
             return {
                 "status": "error",
                 "path": str(p),
-                "exception": str(exc)
+                "exception": str(exc),
+                "fs_version": "4.5"
             }
 
     # --------------------------------------------------------
@@ -172,12 +184,14 @@ class FSModule:
             log.info("FS: Wrote file: %s", p)
             return {
                 "status": "success",
-                "path": str(p)
+                "path": str(p),
+                "fs_version": "4.5"
             }
         except Exception as exc:
             log.exception("FS: Failed to write '%s': %s", p, exc)
             return {
                 "status": "error",
                 "path": str(p),
-                "exception": str(exc)
+                "exception": str(exc),
+                "fs_version": "4.5"
             }
