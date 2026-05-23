@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Household Command Parser 4.4.0
+SIRIUS LOCAL AI – Household Command Parser 4.5.0
 
 Účel:
 - deterministické rozpoznávanie domácich príkazov
@@ -17,7 +17,7 @@ Príklady:
 - "spusti rutinu good night"
 - "pridaj úlohu vyniesť smeti v kuchyni"
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - žiadne dynamické operácie
 - deterministické spracovanie
@@ -26,10 +26,10 @@ Security Family 4.4:
 from typing import Dict, Any, Optional
 
 
-class HouseholdCommandParser44:
+class HouseholdCommandParser45:
     """
     Deterministic parser domácich príkazov.
-    Fully offline‑safe, deterministic, Security Family 4.4 compliant.
+    Fully offline‑safe, deterministic, Security Family 4.5 compliant.
     """
 
     def __init__(self):
@@ -42,14 +42,14 @@ class HouseholdCommandParser44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ------------------------------------------------------------------
     # MAIN PARSE
@@ -61,15 +61,16 @@ class HouseholdCommandParser44:
                 "status": "safe_mode",
                 "message": "Command parsing disabled in safe-mode.",
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         # VALIDATION
         if not isinstance(command, str):
-            return {"status": "error", "code": "invalid_command_type"}
+            return {"status": "error", "code": "invalid_command_type", "version": "4.5"}
 
         cmd = command.lower().strip()
         if not cmd:
-            return {"status": "error", "code": "empty_command"}
+            return {"status": "error", "code": "empty_command", "version": "4.5"}
 
         # DEVICE CONTROL
         dc = self._parse_device_control(cmd)
@@ -79,6 +80,7 @@ class HouseholdCommandParser44:
                 "intent": "device_control",
                 "payload": dc,
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         # ROUTINE TRIGGER
@@ -89,6 +91,7 @@ class HouseholdCommandParser44:
                 "intent": "routine_trigger",
                 "payload": rt,
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         # TASK CREATE
@@ -99,12 +102,14 @@ class HouseholdCommandParser44:
                 "intent": "task_create",
                 "payload": tc,
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
         return {
             "status": "error",
             "code": "unrecognized_command",
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
 
     # ------------------------------------------------------------------
@@ -204,4 +209,5 @@ class HouseholdCommandParser44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
