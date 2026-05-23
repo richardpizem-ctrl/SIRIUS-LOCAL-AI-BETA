@@ -7,17 +7,18 @@ log = logging.getLogger(__name__)
 
 class FSAgent:
     """
-    Filesystem Agent (FS‑AGENT) 4.4
+    Filesystem Agent (FS‑AGENT) 4.5
     Safe file operations: move, copy, delete, read, write,
     path validation, size checks, and directory scanning.
 
-    New in 4.4:
-        - Deterministic Runtime4.4 behavior
-        - Strict path‑safety enforcement (Self‑Repair Layer 4.4)
+    Updated in 4.5:
+        - Deterministic Runtime4.5 behavior
+        - Strict path‑safety enforcement (Self‑Repair Layer 4.5)
         - Stable error model for workflow engine
         - Guaranteed safe operations (no partial writes/moves)
         - Normalized return values
         - Deep-copy isolation
+        - Metadata version bumped to 4.5
     """
 
     # ---------------------------------------------------------
