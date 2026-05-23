@@ -1,35 +1,35 @@
 """
-SIRIUS LOCAL AI – Security Policy Router 4.4.0 (PRO)
+SIRIUS LOCAL AI – Security Policy Router 4.5.0 (PRO)
 
-The Security Policy Router 4.4 is the central decision layer that connects:
+The Security Policy Router 4.5 is the central decision layer that connects:
 
-- Identity Engine 4.4
-- StrangerMode 4.4
-- FamilyMode 4.4
-- Behavior Monitor 4.4
-- TimeLimits 4.4
-- Security Policy Core 4.4
+- Identity Engine 4.5
+- StrangerMode 4.5
+- FamilyMode 4.5
+- Behavior Monitor 4.5
+- TimeLimits 4.5
+- Security Policy Core 4.5
 
 Its job is to:
 - Determine which identity rules apply
 - Route UI actions through the correct security layer
 - Enforce restrictions deterministically
 - Block unsafe actions
-- Provide unified security decisions for Runtime 4.4
+- Provide unified security decisions for Runtime 4.5
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No personal data stored.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any
 
 
-class SecurityPolicyRouter44:
+class SecurityPolicyRouter45:
     """
-    Central security decision router for Runtime 4.4 (PRO).
+    Central security decision router for Runtime 4.5 (PRO).
     """
 
     def __init__(
@@ -51,13 +51,14 @@ class SecurityPolicyRouter44:
         self.initialized = False
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             if self.identity_engine:
@@ -79,7 +80,7 @@ class SecurityPolicyRouter44:
                 self.policy_core.initialize()
 
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -87,6 +88,7 @@ class SecurityPolicyRouter44:
                 "status": "error",
                 "code": "init_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -106,14 +108,15 @@ class SecurityPolicyRouter44:
             return {
                 "status": "safe_mode",
                 "message": "Security routing disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate inputs
         if not isinstance(element_ref, dict):
-            return {"status": "blocked", "code": "invalid_element_ref"}
+            return {"status": "blocked", "code": "invalid_element_ref", "version": self.version}
 
         if not isinstance(action, str) or not action.strip():
-            return {"status": "blocked", "code": "invalid_action"}
+            return {"status": "blocked", "code": "invalid_action", "version": self.version}
 
         # 1. Determine identity
         try:
@@ -124,6 +127,7 @@ class SecurityPolicyRouter44:
                 "status": "blocked",
                 "code": "identity_engine_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
         # 2. Time limits
@@ -134,6 +138,7 @@ class SecurityPolicyRouter44:
                     "status": "blocked",
                     "layer": "time_limits",
                     "details": tl,
+                    "version": self.version,
                 }
 
         # 3. StrangerMode
@@ -144,6 +149,7 @@ class SecurityPolicyRouter44:
                     "status": "blocked",
                     "layer": "stranger_mode",
                     "details": sm,
+                    "version": self.version,
                 }
 
         # 4. FamilyMode
@@ -154,6 +160,7 @@ class SecurityPolicyRouter44:
                     "status": "blocked",
                     "layer": "family_mode",
                     "details": fm,
+                    "version": self.version,
                 }
 
         # 5. Policy Core
@@ -165,6 +172,7 @@ class SecurityPolicyRouter44:
                 "status": "blocked",
                 "code": "policy_core_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
         if pc.get("status") == "blocked":
@@ -172,6 +180,7 @@ class SecurityPolicyRouter44:
                 "status": "blocked",
                 "layer": "policy_core",
                 "details": pc,
+                "version": self.version,
             }
 
         # 6. Allowed
@@ -179,6 +188,7 @@ class SecurityPolicyRouter44:
             "status": "allowed",
             "identity": identity,
             "layer": "policy_router",
+            "version": self.version,
         }
 
     # ------------------------------------------------------------------
@@ -193,17 +203,18 @@ class SecurityPolicyRouter44:
             return {
                 "status": "safe_mode",
                 "message": "Action recording disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate inputs
         if not isinstance(element_ref, dict):
-            return {"status": "error", "code": "invalid_element_ref"}
+            return {"status": "error", "code": "invalid_element_ref", "version": self.version}
 
         if not isinstance(action, str) or not action.strip():
-            return {"status": "error", "code": "invalid_action"}
+            return {"status": "error", "code": "invalid_action", "version": self.version}
 
         if not isinstance(result, dict):
-            return {"status": "error", "code": "invalid_result"}
+            return {"status": "error", "code": "invalid_result", "version": self.version}
 
         try:
             identity = self.identity_engine.get_identity(element_ref)
@@ -216,7 +227,7 @@ class SecurityPolicyRouter44:
             if self.time_limits:
                 self.time_limits.consume(identity, amount=1)
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -224,6 +235,7 @@ class SecurityPolicyRouter44:
                 "status": "error",
                 "code": "record_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ------------------------------------------------------------------
@@ -235,4 +247,5 @@ class SecurityPolicyRouter44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
