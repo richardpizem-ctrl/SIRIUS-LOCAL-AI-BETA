@@ -7,15 +7,17 @@ log = logging.getLogger(__name__)
 
 class SiriusAgent:
     """
-    SiriusAgent 4.4
+    SiriusAgent 4.5
     ----------------
     - Unified AI task registry
     - Security Family enforcement (identity, risk, capabilities)
     - Workflow integration
     - Plugin task support
     - Telemetry and error isolation
-    - Deterministic structured returns
-    - Self‑Repair Layer 4.4 compatible (safe-mode, degraded-mode)
+    - Deterministic Runtime4.5 behavior
+    - Stable structured return values
+    - Self‑Repair Layer 4.5 compatible (safe-mode, degraded-mode)
+    - Metadata version bumped to 4.5
     """
 
     def __init__(self, runtime_manager):
@@ -47,7 +49,8 @@ class SiriusAgent:
 
         return {
             "status": "success",
-            "task": name
+            "task": name,
+            "agent_version": "4.5"
         }
 
     # --------------------------------------------------------
@@ -60,7 +63,8 @@ class SiriusAgent:
             return {
                 "status": "error",
                 "task": name,
-                "message": f"Unknown AI task: {name}"
+                "message": f"Unknown AI task: {name}",
+                "agent_version": "4.5"
             }
 
         meta = self.task_meta.get(name, {})
@@ -75,7 +79,8 @@ class SiriusAgent:
                 return {
                     "status": "error",
                     "task": name,
-                    "message": f"Task '{name}' requires identity '{required_identity}'."
+                    "message": f"Task '{name}' requires identity '{required_identity}'.",
+                    "agent_version": "4.5"
                 }
 
         # ----------------------------------------------------
@@ -88,7 +93,8 @@ class SiriusAgent:
             return {
                 "status": "error",
                 "task": name,
-                "message": f"Task '{name}' blocked due to high risk."
+                "message": f"Task '{name}' blocked due to high risk.",
+                "agent_version": "4.5"
             }
 
         # ----------------------------------------------------
@@ -103,7 +109,8 @@ class SiriusAgent:
             return {
                 "status": "error",
                 "task": name,
-                "message": f"Missing required capabilities: {missing}"
+                "message": f"Missing required capabilities: {missing}",
+                "agent_version": "4.5"
             }
 
         # ----------------------------------------------------
@@ -119,7 +126,8 @@ class SiriusAgent:
                 "status": "ok",
                 "task": name,
                 "duration": round(time.time() - start, 4),
-                "result": result
+                "result": result,
+                "agent_version": "4.5"
             }
 
         except Exception as exc:
@@ -128,5 +136,6 @@ class SiriusAgent:
             return {
                 "status": "error",
                 "task": name,
-                "message": str(exc)
+                "message": str(exc),
+                "agent_version": "4.5"
             }
