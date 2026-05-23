@@ -1,5 +1,5 @@
 """
-Health Rules – Deterministic Classification Layer 4.4.0 (PRO)
+Health Rules – Deterministic Classification Layer 4.5.0 (PRO)
 -------------------------------------------------------------
 Classifies user text into safe, non‑medical categories.
 No diagnoses, no medication advice, no medical claims.
@@ -12,7 +12,7 @@ Categories:
 - pain
 - unknown
 
-Security Family 4.4:
+Security Family 4.5:
 - deterministic
 - offline
 - identity‑aware
@@ -21,7 +21,6 @@ Security Family 4.4:
 """
 
 from typing import Optional
-
 
 # ---------------------------------------------------------------------
 # KEYWORD MAP (DETERMINISTIC, OFFLINE)
@@ -49,7 +48,6 @@ KEYWORDS = {
     ],
 }
 
-
 # ---------------------------------------------------------------------
 # CLASSIFICATION LOGIC (DETERMINISTIC, SAFE)
 # ---------------------------------------------------------------------
@@ -72,7 +70,7 @@ def classify_health_state(text: str, context) -> str:
         normalized = (text or "").lower().strip()
 
         # ---------------------------------------------------------
-        # IDENTITY‑AWARE RESTRICTIONS (Security Family 4.4)
+        # IDENTITY‑AWARE RESTRICTIONS (Security Family 4.5)
         # ---------------------------------------------------------
         if context.identity == "CHILD":
             # CHILD identity gets simplified categories only
