@@ -1,23 +1,23 @@
 """
-SIRIUS LOCAL AI – Knowledge Packs Validator 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Packs Validator 4.5.0 (PRO)
 
 Responsible for:
 - validating pack structure
 - checking required fields
-- enforcing Security Family 4.4 rules
-- ensuring compatibility with Knowledge Packs 4.4
+- enforcing Security Family 4.5 rules
+- ensuring compatibility with Knowledge Packs 4.5
 - preparing packs for loader/graph/linker stages
-- supporting Self‑Repair 4.4 diagnostics
+- supporting Self‑Repair 4.5 diagnostics
 
-This is the validation layer for Knowledge Packs 4.4.
+This is the validation layer for Knowledge Packs 4.5.
 """
 
 from typing import Dict, Any
 
 
-class PackValidator44:
+class PackValidator45:
     """
-    Deterministic validator for Knowledge Packs 4.4.
+    Deterministic validator for Knowledge Packs 4.5.
     Provides:
     - strict structural validation
     - metadata validation
@@ -44,7 +44,7 @@ class PackValidator44:
         "geography",
     }
 
-    VERSION = "4.4"
+    VERSION = "4.5"
     SAFE_TYPES = (str, int, float, bool, dict, list)
 
     def __init__(self):
@@ -57,15 +57,20 @@ class PackValidator44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # VALIDATION HELPERS
@@ -88,15 +93,19 @@ class PackValidator44:
     # ------------------------------------------------------------------
     def validate(self, pack: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Performs full validation of a Knowledge Pack 4.4.
+        Performs full validation of a Knowledge Pack 4.5.
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Validation disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Validation disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         # Must be dict
         if not isinstance(pack, dict):
-            return {"status": "error", "code": "not_a_dict"}
+            return {"status": "error", "code": "not_a_dict", "version": "4.5"}
 
         # Required fields
         missing = self.REQUIRED_FIELDS - set(pack.keys())
@@ -105,11 +114,12 @@ class PackValidator44:
                 "status": "error",
                 "code": "missing_fields",
                 "missing": sorted(list(missing)),
+                "version": "4.5",
             }
 
         # Validate name
         if not self._validate_str(pack["name"]):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         # Validate version
         if pack["version"] != self.VERSION:
@@ -118,6 +128,7 @@ class PackValidator44:
                 "code": "invalid_version",
                 "expected": self.VERSION,
                 "found": pack["version"],
+                "version": "4.5",
             }
 
         # Validate pack type
@@ -126,22 +137,24 @@ class PackValidator44:
                 "status": "error",
                 "code": "invalid_pack_type",
                 "allowed": sorted(self.ALLOWED_PACK_TYPES),
+                "version": "4.5",
             }
 
         # Validate data
         if not isinstance(pack["data"], dict):
-            return {"status": "error", "code": "data_must_be_dict"}
+            return {"status": "error", "code": "data_must_be_dict", "version": "4.5"}
 
         # Validate metadata
         if not self._validate_metadata(pack["metadata"]):
-            return {"status": "error", "code": "invalid_metadata"}
+            return {"status": "error", "code": "invalid_metadata", "version": "4.5"}
 
         # Recursive JSON-safe validation
         safe_check = self._validate_safe_types(pack)
         if safe_check.get("status") != "ok":
+            safe_check["version"] = "4.5"
             return safe_check
 
-        return {"status": "ok"}
+        return {"status": "ok", "version": "4.5"}
 
     # ------------------------------------------------------------------
     # RECURSIVE SAFE TYPE CHECK
@@ -193,4 +206,5 @@ class PackValidator44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
