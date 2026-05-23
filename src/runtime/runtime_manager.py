@@ -12,17 +12,18 @@ log = logging.getLogger(__name__)
 
 class RuntimeManager:
     """
-    RuntimeManager 4.4
+    RuntimeManager 4.5
     -------------------
     - Plugin loader (deterministic pipeline)
     - NL Router integrácia
     - AI Task handler (vrátane Password Vault)
     - Workflow engine integrácia
-    - Security Family enforcement (4.4-ready)
+    - Security Family enforcement (4.5-ready)
     - Deterministic startup pipeline
     - Telemetry + degraded mode
     - Self‑Repair safe-mode
     - Stabilný, štruktúrovaný návratový model
+    - Metadata version bumped to 4.5
     """
 
     def __init__(self):
@@ -40,14 +41,14 @@ class RuntimeManager:
         self.degraded_mode = False
 
     # --------------------------------------------------------
-    # INITIALIZATION PIPELINE 4.4
+    # INITIALIZATION PIPELINE 4.5
     # --------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         start_time = time.time()
         errors: list[str] = []
         warnings: list[str] = []
 
-        self.logger.info("RuntimeManager 4.4 – initialization started")
+        self.logger.info("RuntimeManager 4.5 – initialization started")
 
         # SAFE MODE (Self‑Repair)
         if self.safe_mode:
@@ -55,6 +56,7 @@ class RuntimeManager:
                 "status": "safe_mode",
                 "message": "RuntimeManager started in safe-mode.",
                 "duration": time.time() - start_time,
+                "runtime_manager_version": "4.5",
             }
 
         # ----------------------------------------------------
@@ -167,7 +169,7 @@ class RuntimeManager:
                 errors.append(msg)
 
         duration = time.time() - start_time
-        self.logger.info("RuntimeManager 4.4 – initialization complete")
+        self.logger.info("RuntimeManager 4.5 – initialization complete")
 
         degraded = bool(errors)
         self.degraded_mode = self.degraded_mode or degraded
@@ -179,13 +181,17 @@ class RuntimeManager:
             "plugins": plugin_result,
             "duration": duration,
             "degraded_mode": self.degraded_mode,
+            "runtime_manager_version": "4.5",
         }
 
     # --------------------------------------------------------
     # NATURAL LANGUAGE HANDLER
     # --------------------------------------------------------
     def handle_nl(self, text: str) -> Dict[str, Any]:
-        return self.nl.handle(text)
+        res = self.nl.handle(text)
+        if isinstance(res, dict) and "runtime_manager_version" not in res:
+            res["runtime_manager_version"] = "4.5"
+        return res
 
     # --------------------------------------------------------
     # AI TASK HANDLER (PASSWORD VAULT + FALLBACK)
@@ -198,10 +204,18 @@ class RuntimeManager:
             password = args.get("password")
 
             if not domain or not password:
-                return {"status": "error", "message": "Missing domain or password"}
+                return {
+                    "status": "error",
+                    "message": "Missing domain or password",
+                    "runtime_manager_version": "4.5",
+                }
 
             save_password(domain, username, password)
-            return {"status": "ok", "message": f"Password saved for {domain}"}
+            return {
+                "status": "ok",
+                "message": f"Password saved for {domain}",
+                "runtime_manager_version": "4.5",
+            }
 
         # PASSWORD VAULT – RETRIEVE
         if goal == "password.retrieve":
@@ -209,7 +223,11 @@ class RuntimeManager:
             username = args.get("username", "default")
 
             if not domain:
-                return {"status": "error", "message": "Missing domain"}
+                return {
+                    "status": "error",
+                    "message": "Missing domain",
+                    "runtime_manager_version": "4.5",
+                }
 
             entry = retrieve_password(domain, username)
             if entry:
@@ -217,10 +235,15 @@ class RuntimeManager:
                     "status": "ok",
                     "domain": domain,
                     "username": username,
-                    "password": entry["password"]
+                    "password": entry["password"],
+                    "runtime_manager_version": "4.5",
                 }
             else:
-                return {"status": "not_found", "message": f"No password for {domain}"}
+                return {
+                    "status": "not_found",
+                    "message": f"No password for {domain}",
+                    "runtime_manager_version": "4.5",
+                }
 
         # PASSWORD VAULT – AUTOFILL
         if goal == "password.autofill":
@@ -229,33 +252,56 @@ class RuntimeManager:
 
             entry = retrieve_password(domain, username)
             if not entry:
-                return {"status": "not_found", "message": f"No password for {domain}"}
+                return {
+                    "status": "not_found",
+                    "message": f"No password for {domain}",
+                    "runtime_manager_version": "4.5",
+                }
 
             return {
                 "status": "ok",
-                "message": f"Password for {domain} prepared for autofill"
+                "message": f"Password for {domain} prepared for autofill",
+                "runtime_manager_version": "4.5",
             }
 
         # FALLBACK TO AGENT TASKS
         try:
-            return self.agent.run_task(goal, args)
+            res = self.agent.run_task(goal, args)
+            if isinstance(res, dict) and "runtime_manager_version" not in res:
+                res["runtime_manager_version"] = "4.5"
+            return res
         except Exception as exc:
             self.logger.error(f"AI task handler error for goal '{goal}': {exc}")
-            return {"status": "error", "message": str(exc)}
+            return {
+                "status": "error",
+                "message": str(exc),
+                "runtime_manager_version": "4.5",
+            }
 
     # --------------------------------------------------------
     # CONTEXT
     # --------------------------------------------------------
     def get_ai_context(self) -> Dict[str, Any]:
-        return self.agent.get_context()
+        ctx = self.agent.get_context()
+        if isinstance(ctx, dict) and "runtime_manager_version" not in ctx:
+            ctx["runtime_manager_version"] = "4.5"
+        return ctx
 
     # --------------------------------------------------------
     # ENGINE CONTROL
     # --------------------------------------------------------
     def start(self) -> Dict[str, Any]:
         res = self.engine.start()
-        return res if isinstance(res, dict) else {"status": "success"}
+        if not isinstance(res, dict):
+            res = {"status": "success"}
+        if "runtime_manager_version" not in res:
+            res["runtime_manager_version"] = "4.5"
+        return res
 
     def stop(self) -> Dict[str, Any]:
         res = self.engine.stop()
-        return res if isinstance(res, dict) else {"status": "success"}
+        if not isinstance(res, dict):
+            res = {"status": "success"}
+        if "runtime_manager_version" not in res:
+            res["runtime_manager_version"] = "4.5"
+        return res
