@@ -1,22 +1,22 @@
 """
-SIRIUS LOCAL AI – Home Task Planner 4.4.0 (PRO)
+SIRIUS LOCAL AI – Home Task Planner 4.5.0 (PRO)
 
-Účel:
-- deterministické plánovanie domácich úloh
-- 100 % offline, žiadne AI heuristiky
+Purpose:
+- deterministic household task planning
+- 100% offline, no AI heuristics
 
-Security Family 4.4:
-- safe‑mode kompatibilita
-- Self‑Repair 4.4 ready
+Security Family 4.5:
+- safe‑mode compatible
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 import uuid
 
 
-class HomeTaskPlanner44:
+class HomeTaskPlanner45:
     """
-    Deterministic planner domácich úloh.
+    Deterministic household task planner 4.5.
     """
 
     def __init__(self, event_bus=None, context_memory=None):
@@ -27,7 +27,7 @@ class HomeTaskPlanner44:
         self.event_bus = event_bus
         self.context_memory = context_memory
 
-        # Úlohy uložené v pamäti
+        # Tasks stored in memory
         self.tasks: List[Dict[str, Any]] = []
 
     # ---------------------------------------------------------
@@ -45,7 +45,7 @@ class HomeTaskPlanner44:
             return False
         if not self._validate_str(schedule.get("type")):
             return False
-        # čas je voliteľný, ale ak existuje, musí byť string
+        # time is optional, but if present must be a string
         if "time" in schedule and not self._validate_str(schedule.get("time")):
             return False
         return True
@@ -55,7 +55,7 @@ class HomeTaskPlanner44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.event_bus, self.context_memory]
@@ -64,14 +64,22 @@ class HomeTaskPlanner44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # CREATE TASK
@@ -86,19 +94,23 @@ class HomeTaskPlanner44:
     ) -> Dict[str, Any]:
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Task planner disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Task planner disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if not self._validate_str(category):
-            return {"status": "error", "code": "invalid_category"}
+            return {"status": "error", "code": "invalid_category", "version": "4.5"}
 
         if not self._validate_str(priority):
-            return {"status": "error", "code": "invalid_priority"}
+            return {"status": "error", "code": "invalid_priority", "version": "4.5"}
 
         if not self._validate_schedule(schedule):
-            return {"status": "error", "code": "invalid_schedule"}
+            return {"status": "error", "code": "invalid_schedule", "version": "4.5"}
 
         try:
             task = {
@@ -119,11 +131,16 @@ class HomeTaskPlanner44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "task": dict(task)}
+            return {"status": "ok", "task": dict(task), "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "create_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "create_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST TASKS
@@ -131,21 +148,30 @@ class HomeTaskPlanner44:
     def list_tasks(self, include_completed: bool = True) -> Dict[str, Any]:
         try:
             if include_completed:
-                return {"status": "ok", "tasks": list(self.tasks)}
+                return {
+                    "status": "ok",
+                    "tasks": list(self.tasks),
+                    "version": "4.5",
+                }
 
             filtered = [t for t in self.tasks if not t["completed"]]
-            return {"status": "ok", "tasks": filtered}
+            return {"status": "ok", "tasks": filtered, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # MARK COMPLETED
     # ---------------------------------------------------------
     def complete_task(self, task_id: str) -> Dict[str, Any]:
         if not self._validate_str(task_id):
-            return {"status": "error", "code": "invalid_task_id"}
+            return {"status": "error", "code": "invalid_task_id", "version": "4.5"}
 
         try:
             for t in self.tasks:
@@ -158,20 +184,25 @@ class HomeTaskPlanner44:
                         except Exception:
                             self.degraded_mode = True
 
-                    return {"status": "ok", "task": dict(t)}
+                    return {"status": "ok", "task": dict(t), "version": "4.5"}
 
-            return {"status": "error", "code": "task_not_found"}
+            return {"status": "error", "code": "task_not_found", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "complete_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "complete_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # DELETE TASK
     # ---------------------------------------------------------
     def delete_task(self, task_id: str) -> Dict[str, Any]:
         if not self._validate_str(task_id):
-            return {"status": "error", "code": "invalid_task_id"}
+            return {"status": "error", "code": "invalid_task_id", "version": "4.5"}
 
         try:
             for t in self.tasks:
@@ -184,43 +215,58 @@ class HomeTaskPlanner44:
                         except Exception:
                             self.degraded_mode = True
 
-                    return {"status": "ok"}
+                    return {"status": "ok", "version": "4.5"}
 
-            return {"status": "error", "code": "task_not_found"}
+            return {"status": "error", "code": "task_not_found", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "delete_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "delete_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # FIND TASKS BY ROOM
     # ---------------------------------------------------------
     def tasks_in_room(self, room: str) -> Dict[str, Any]:
         if not self._validate_str(room):
-            return {"status": "error", "code": "invalid_room"}
+            return {"status": "error", "code": "invalid_room", "version": "4.5"}
 
         try:
             result = [t for t in self.tasks if t.get("room") == room]
-            return {"status": "ok", "tasks": result}
+            return {"status": "ok", "tasks": result, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "tasks_in_room_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "tasks_in_room_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # FIND TASKS BY CATEGORY
     # ---------------------------------------------------------
     def tasks_by_category(self, category: str) -> Dict[str, Any]:
         if not self._validate_str(category):
-            return {"status": "error", "code": "invalid_category"}
+            return {"status": "error", "code": "invalid_category", "version": "4.5"}
 
         try:
             result = [t for t in self.tasks if t.get("category") == category]
-            return {"status": "ok", "tasks": result}
+            return {"status": "ok", "tasks": result, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "tasks_by_category_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "tasks_by_category_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # SCHEDULED TASKS (for Routine Engine)
@@ -242,4 +288,5 @@ class HomeTaskPlanner44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "tasks_count": len(self.tasks),
+            "version": "4.5",
         }
