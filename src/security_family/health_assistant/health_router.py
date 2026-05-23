@@ -1,25 +1,25 @@
 """
-Health Router – Natural Language Routing Layer 4.4.0 (PRO)
+Health Router – Natural Language Routing Layer 4.5.0 (PRO)
 ----------------------------------------------------------
-Routes natural‑language input into the HealthAssistant44 module.
+Routes natural‑language input into the HealthAssistant45 module.
 
 Responsibilities:
 - Accept text from NL Router v4 or other modules
 - Normalize input
-- Forward it to HealthAssistant44
-- Enforce Security Family 4.4 rules
+- Forward it to HealthAssistant45
+- Enforce Security Family 4.5 rules
 - Provide deterministic, identity‑aware, sandbox‑safe output
 - Support safe‑mode and degraded‑mode behavior
 
 No diagnoses, no medication advice, no medical claims.
 """
 
-from .health_assistant_4_4 import HealthAssistant44
+from .health_assistant_4_5 import HealthAssistant45
 
 
-class HealthRouter44:
+class HealthRouter45:
     """
-    Lightweight NL routing wrapper for HealthAssistant44.
+    Lightweight NL routing wrapper for HealthAssistant45.
     Provides:
     - safe‑mode behavior
     - degraded‑mode detection
@@ -27,7 +27,8 @@ class HealthRouter44:
     """
 
     def __init__(self, identity: str = "OWNER") -> None:
-        self.assistant = HealthAssistant44(identity=identity)
+        self.version = "4.5.0"
+        self.assistant = HealthAssistant45(identity=identity)
 
         self.safe_mode: bool = False
         self.degraded_mode: bool = False
@@ -38,7 +39,7 @@ class HealthRouter44:
     # ------------------------------------------------------------------
     def route(self, text: str) -> dict:
         """
-        Route natural‑language text into the HealthAssistant44.
+        Route natural‑language text into the HealthAssistant45.
 
         Returns dict:
         {
@@ -47,7 +48,8 @@ class HealthRouter44:
             "message": str,
             "safety_note": str,
             "identity": str,
-            "degraded_mode": bool
+            "degraded_mode": bool,
+            "version": "4.5.0"
         }
         """
 
@@ -60,6 +62,7 @@ class HealthRouter44:
                 "safety_note": self.assistant.context.default_safety_note,
                 "identity": self.assistant.context.identity,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         try:
@@ -75,15 +78,18 @@ class HealthRouter44:
                     "safety_note": self.assistant.context.default_safety_note,
                     "identity": self.assistant.context.identity,
                     "degraded_mode": self.degraded_mode,
+                    "version": self.version,
                 }
 
-            # Delegate to HealthAssistant44
+            # Delegate to HealthAssistant45
             result = self.assistant.handle(text)
 
             # Merge degraded‑mode flags
             if result.get("degraded_mode"):
                 self.degraded_mode = True
 
+            # Inject version for consistency
+            result["version"] = self.version
             return result
 
         except Exception as exc:
@@ -96,7 +102,8 @@ class HealthRouter44:
                 "identity": self.assistant.context.identity,
                 "exception": str(exc),
                 "degraded_mode": True,
+                "version": self.version,
             }
 
 
-__all__ = ["HealthRouter44"]
+__all__ = ["HealthRouter45"]
