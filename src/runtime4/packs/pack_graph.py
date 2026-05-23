@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Knowledge Packs Graph 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Packs Graph 4.5.0 (PRO)
 
 Responsible for:
 - deterministic dependency tracking
@@ -8,18 +8,18 @@ Responsible for:
 - strict validation of pack names
 - safe-mode compatibility
 - degraded-mode detection
-- Self‑Repair 4.4 compatible error surface
-- Security Family 4.4 enforcement
+- Self‑Repair 4.5 compatible error surface
+- Security Family 4.5 enforcement
 
-This is the graph layer of Knowledge Packs 4.4.
+This is the graph layer of Knowledge Packs 4.5.
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class PackGraph44:
+class PackGraph45:
     """
-    Deterministic dependency graph for Knowledge Packs 4.4.
+    Deterministic dependency graph for Knowledge Packs 4.5.
     """
 
     def __init__(self, max_packs: int = 1000):
@@ -40,31 +40,39 @@ class PackGraph44:
     # ------------------------------------------------------------------
     def add_pack(self, name: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Graph modification disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Graph modification disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_name(name):
-            return {"status": "error", "code": "invalid_pack_name"}
+            return {"status": "error", "code": "invalid_pack_name", "version": "4.5"}
 
         if len(self.graph) >= self.max_packs:
-            return {"status": "error", "code": "pack_limit_reached"}
+            return {"status": "error", "code": "pack_limit_reached", "version": "4.5"}
 
         if name not in self.graph:
             self.graph[name] = []
 
-        return {"status": "ok", "pack": name}
+        return {"status": "ok", "pack": name, "version": "4.5"}
 
     def add_dependency(self, pack: str, depends_on: str) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Graph modification disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Graph modification disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_name(pack):
-            return {"status": "error", "code": "invalid_pack_name"}
+            return {"status": "error", "code": "invalid_pack_name", "version": "4.5"}
 
         if not self._validate_name(depends_on):
-            return {"status": "error", "code": "invalid_dependency_name"}
+            return {"status": "error", "code": "invalid_dependency_name", "version": "4.5"}
 
         if pack == depends_on:
-            return {"status": "error", "code": "self_dependency_not_allowed"}
+            return {"status": "error", "code": "self_dependency_not_allowed", "version": "4.5"}
 
         if pack not in self.graph:
             self.graph[pack] = []
@@ -75,7 +83,12 @@ class PackGraph44:
         if depends_on not in self.graph[pack]:
             self.graph[pack].append(depends_on)
 
-        return {"status": "ok", "pack": pack, "depends_on": depends_on}
+        return {
+            "status": "ok",
+            "pack": pack,
+            "depends_on": depends_on,
+            "version": "4.5",
+        }
 
     def get_dependencies(self, pack: str) -> List[str]:
         if not self._validate_name(pack):
@@ -123,7 +136,11 @@ class PackGraph44:
     # ------------------------------------------------------------------
     def resolve_order(self) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Graph resolution disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Graph resolution disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         cycle = self._detect_cycle()
         if cycle:
@@ -131,6 +148,7 @@ class PackGraph44:
                 "status": "error",
                 "code": "cycle_detected",
                 "cycle": cycle,
+                "version": "4.5",
             }
 
         visited = set()
@@ -155,6 +173,7 @@ class PackGraph44:
                 "status": "error",
                 "code": "resolution_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
         return {
@@ -162,6 +181,7 @@ class PackGraph44:
             "order": order,
             "count": len(order),
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
 
     # ------------------------------------------------------------------
@@ -173,4 +193,5 @@ class PackGraph44:
             "packs": len(self.graph),
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
