@@ -7,7 +7,7 @@ log = logging.getLogger(__name__)
 
 class EventBus:
     """
-    EventBus 4.4
+    EventBus 4.5
     --------------------
     Features:
         - Thread‑safe event dispatch
@@ -17,9 +17,10 @@ class EventBus:
         - Event metadata (timestamp, source, payload)
         - Listener groups
         - Optional event history
-        - Deterministic Runtime4.4 behavior
-        - Self‑Repair Layer 4.4 compatible
+        - Deterministic Runtime4.5 behavior
+        - Self‑Repair Layer 4.5 compatible
         - Stable structured return values
+        - Metadata version bumped to 4.5
     """
 
     def __init__(self, keep_history: bool = False):
@@ -34,17 +35,17 @@ class EventBus:
     # ---------------------------------------------------------
     def subscribe(self, event_name: str, callback, *, once=False):
         if not isinstance(event_name, str) or not event_name:
-            return {"status": "error", "message": "Invalid event name"}
+            return {"status": "error", "message": "Invalid event name", "bus_version": "4.5"}
 
         if not callable(callback):
-            return {"status": "error", "message": "Callback must be callable"}
+            return {"status": "error", "message": "Callback must be callable", "bus_version": "4.5"}
 
         with self._lock:
             if event_name == "*":
                 if callback not in self._wildcard_listeners:
                     self._wildcard_listeners.append(callback)
                     log.info("Subscribed to ALL events: %s", callback)
-                return {"status": "success", "event": "*"}
+                return {"status": "success", "event": "*", "bus_version": "4.5"}
 
             if event_name not in self._listeners:
                 self._listeners[event_name] = []
@@ -58,7 +59,7 @@ class EventBus:
                     self._once_listeners[event_name] = []
                 self._once_listeners[event_name].append(callback)
 
-        return {"status": "success", "event": event_name}
+        return {"status": "success", "event": event_name, "bus_version": "4.5"}
 
     # ---------------------------------------------------------
     # UNSUBSCRIBE
@@ -69,8 +70,8 @@ class EventBus:
                 if callback in self._wildcard_listeners:
                     self._wildcard_listeners.remove(callback)
                     log.info("Unsubscribed from ALL events: %s", callback)
-                    return {"status": "success", "event": "*"}
-                return {"status": "error", "message": "Callback not found"}
+                    return {"status": "success", "event": "*", "bus_version": "4.5"}
+                return {"status": "error", "message": "Callback not found", "bus_version": "4.5"}
 
             if event_name in self._listeners:
                 if callback in self._listeners[event_name]:
@@ -81,7 +82,7 @@ class EventBus:
                 if callback in self._once_listeners[event_name]:
                     self._once_listeners[event_name].remove(callback)
 
-        return {"status": "success", "event": event_name}
+        return {"status": "success", "event": event_name, "bus_version": "4.5"}
 
     # ---------------------------------------------------------
     # EMIT (SYNC)
@@ -91,7 +92,8 @@ class EventBus:
             "name": event_name,
             "data": data,
             "source": source,
-            "timestamp": time.time()
+            "timestamp": time.time(),
+            "bus_version": "4.5"
         }
 
         # Save history
@@ -123,7 +125,7 @@ class EventBus:
             if event_name in self._once_listeners:
                 self._once_listeners[event_name].clear()
 
-        return {"status": "success", "event": event_name}
+        return {"status": "success", "event": event_name, "bus_version": "4.5"}
 
     # ---------------------------------------------------------
     # EMIT ASYNC
@@ -136,16 +138,17 @@ class EventBus:
         )
         thread.start()
 
-        return {"status": "success", "event": event_name, "mode": "async"}
+        return {"status": "success", "event": event_name, "mode": "async", "bus_version": "4.5"}
 
     # ---------------------------------------------------------
     # HISTORY
     # ---------------------------------------------------------
     def get_history(self):
         if self._history is None:
-            return {"status": "error", "message": "History disabled"}
+            return {"status": "error", "message": "History disabled", "bus_version": "4.5"}
 
         return {
             "status": "success",
-            "events": list(self._history)
+            "events": list(self._history),
+            "bus_version": "4.5"
         }
