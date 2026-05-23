@@ -1,29 +1,29 @@
 """
-Security Family – Stranger Mode 4.4.0 (PRO)
+Security Family – Stranger Mode 4.5.0 (PRO)
 -------------------------------------------
 Activated when behavior does not match OWNER or FAMILY.
 
 Provides:
-- full isolation mode (4.4 hardened)
+- full isolation mode (4.5 hardened)
 - safe-mode enforcement
 - restricted permissions
 - risk-aware activation
 - anomaly-aware escalation
 - deterministic, offline-only behavior
 - safe-mode and degraded-mode support
-- Security Family 4.4 compliant
+- Security Family 4.5 compliant
 """
 
-class StrangerMode44:
+class StrangerMode45:
     def __init__(self, access_control, behavior_audit):
-        self.access_control = access_control      # AccessControl44
-        self.behavior_audit = behavior_audit      # BehaviorAudit44
+        self.access_control = access_control      # AccessControl45
+        self.behavior_audit = behavior_audit      # BehaviorAudit45
 
         self.active = False
         self.safe_mode = False
         self.degraded_mode = False
 
-        # Thresholds (4.4)
+        # Thresholds (4.5)
         self.high_risk_threshold = 0.65
         self.anomaly_penalty = 0.25
 
@@ -61,7 +61,7 @@ class StrangerMode44:
             # 1. Calculate risk score
             risk, anomaly = self._calculate_risk(behavior_data)
 
-            # 2. Build context for AccessControl44
+            # 2. Build context for AccessControl45
             context = {
                 "risk_score": risk,
                 "school_mode": False,
@@ -124,7 +124,7 @@ class StrangerMode44:
             return 1.0, {"is_anomaly": True, "reason": "internal_error"}
 
     # ---------------------------------------------------------
-    # ISOLATION STATE (4.4 hardened)
+    # ISOLATION STATE (4.5 hardened)
     # ---------------------------------------------------------
     def _isolation_state(self):
         return {
