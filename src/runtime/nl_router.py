@@ -8,7 +8,7 @@ log = logging.getLogger(__name__)
 
 class NaturalLanguageRouter:
     """
-    NL Router 4.4
+    NL Router 4.5
     ----------------
     - Plugin dynamic NL commands (regex + parameters)
     - Security Family enforcement (identity, capabilities, risk)
@@ -17,8 +17,9 @@ class NaturalLanguageRouter:
     - Rule-based commands (Password Vault 4.x)
     - AITE fallback
     - SiriusAgent interpret fallback
-    - Self‑Repair Layer 4.4 ready (safe-mode, degraded mode)
-    - Stable error model for Runtime4.4
+    - Self‑Repair Layer 4.5 ready (safe-mode, degraded mode)
+    - Stable error model for Runtime4.5
+    - Metadata version bumped to 4.5
     """
 
     def __init__(self, runtime_manager):
@@ -42,7 +43,8 @@ class NaturalLanguageRouter:
 
         return {
             "status": "success",
-            "command": key
+            "command": key,
+            "nl_version": "4.5"
         }
 
     # --------------------------------------------------------
@@ -60,6 +62,7 @@ class NaturalLanguageRouter:
                 "status": "safe_mode",
                 "message": "NL Router is running in safe-mode.",
                 "duration": time.time() - t0,
+                "nl_version": "4.5"
             }
 
         # ----------------------------------------------------
@@ -76,6 +79,7 @@ class NaturalLanguageRouter:
                             "command": pattern,
                             "message": "Command blocked by Security Family.",
                             "duration": time.time() - t0,
+                            "nl_version": "4.5"
                         }
 
                     result = fn(original_text, self.rm)
@@ -84,7 +88,9 @@ class NaturalLanguageRouter:
                         "command": pattern,
                         "result": result,
                         "duration": time.time() - t0,
+                        "nl_version": "4.5"
                     }
+
                 except Exception as e:
                     self.degraded_mode = True
                     log.exception("NL Router plugin error (%s): %s", pattern, e)
@@ -94,6 +100,7 @@ class NaturalLanguageRouter:
                         "command": pattern,
                         "exception": str(e),
                         "duration": time.time() - t0,
+                        "nl_version": "4.5"
                     }
 
         # ----------------------------------------------------
@@ -105,6 +112,7 @@ class NaturalLanguageRouter:
                 "status": "rule_based",
                 "result": rb,
                 "duration": time.time() - t0,
+                "nl_version": "4.5"
             }
 
         # ----------------------------------------------------
@@ -117,6 +125,7 @@ class NaturalLanguageRouter:
                     "status": "aite",
                     "result": aite_result,
                     "duration": time.time() - t0,
+                    "nl_version": "4.5"
                 }
         except Exception as e:
             log.exception("AITE error: %s", e)
@@ -131,6 +140,7 @@ class NaturalLanguageRouter:
                     "status": "agent",
                     "result": agent_result,
                     "duration": time.time() - t0,
+                    "nl_version": "4.5"
                 }
         except Exception as e:
             log.exception("Agent interpret error: %s", e)
@@ -143,6 +153,7 @@ class NaturalLanguageRouter:
             "source": "router",
             "message": "I do not understand the command.",
             "duration": time.time() - t0,
+            "nl_version": "4.5"
         }
 
     # --------------------------------------------------------
@@ -150,7 +161,7 @@ class NaturalLanguageRouter:
     # --------------------------------------------------------
     def _security_check(self, fn: Callable) -> bool:
         """
-        Placeholder for Security Family 4.4:
+        Placeholder for Security Family 4.5:
         - identity check
         - capability check
         - risk check
