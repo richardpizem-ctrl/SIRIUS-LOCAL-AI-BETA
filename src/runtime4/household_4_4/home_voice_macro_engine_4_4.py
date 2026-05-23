@@ -1,21 +1,21 @@
 """
-SIRIUS LOCAL AI – Home Voice Macro Engine 4.4.0 (PRO)
+SIRIUS LOCAL AI – Home Voice Macro Engine 4.5.0 (PRO)
 
-Účel:
-- deterministické hlasové makrá (sekvencie akcií)
-- 100 % offline, žiadne AI heuristiky
+Purpose:
+- deterministic voice macros (action sequences)
+- 100% offline, no AI heuristics
 
-Security Family 4.4:
-- safe‑mode kompatibilita
-- Self‑Repair 4.4 ready
+Security Family 4.5:
+- safe‑mode compatible
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HomeVoiceMacroEngine44:
+class HomeVoiceMacroEngine45:
     """
-    Deterministic voice macro engine pre domácnosť.
+    Deterministic voice macro engine for household automation 4.5.
     """
 
     def __init__(self, state_manager=None, event_bus=None):
@@ -26,7 +26,7 @@ class HomeVoiceMacroEngine44:
         self.state_manager = state_manager
         self.event_bus = event_bus
 
-        # name → macro
+        # name → macro definition
         self.macros: Dict[str, Dict[str, Any]] = {}
 
     # ---------------------------------------------------------
@@ -52,7 +52,7 @@ class HomeVoiceMacroEngine44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.state_manager, self.event_bus]
@@ -61,33 +61,45 @@ class HomeVoiceMacroEngine44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # REGISTER MACRO
     # ---------------------------------------------------------
     def register_macro(self, macro: Dict[str, Any]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Voice macro engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Voice macro engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         name = macro.get("name")
         steps = macro.get("steps")
 
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name in self.macros:
-            return {"status": "error", "code": "macro_exists"}
+            return {"status": "error", "code": "macro_exists", "version": "4.5"}
 
         if not self._validate_steps(steps):
-            return {"status": "error", "code": "invalid_steps"}
+            return {"status": "error", "code": "invalid_steps", "version": "4.5"}
 
         try:
             self.macros[name] = macro
@@ -98,21 +110,26 @@ class HomeVoiceMacroEngine44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "register_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "register_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # DELETE MACRO
     # ---------------------------------------------------------
     def delete_macro(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name not in self.macros:
-            return {"status": "error", "code": "macro_not_found"}
+            return {"status": "error", "code": "macro_not_found", "version": "4.5"}
 
         try:
             removed = self.macros.pop(name)
@@ -123,34 +140,48 @@ class HomeVoiceMacroEngine44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "delete_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "delete_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST MACROS
     # ---------------------------------------------------------
     def list_macros(self) -> Dict[str, Any]:
         try:
-            return {"status": "ok", "macros": list(self.macros.keys())}
+            return {
+                "status": "ok",
+                "macros": list(self.macros.keys()),
+                "version": "4.5",
+            }
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # RUN MACRO
     # ---------------------------------------------------------
     def run_macro(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name not in self.macros:
-            return {"status": "error", "code": "macro_not_found"}
+            return {"status": "error", "code": "macro_not_found", "version": "4.5"}
 
         if not self.state_manager:
-            return {"status": "error", "code": "no_state_manager"}
+            return {"status": "error", "code": "no_state_manager", "version": "4.5"}
 
         try:
             macro = self.macros[name]
@@ -190,11 +221,16 @@ class HomeVoiceMacroEngine44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "results": results}
+            return {"status": "ok", "results": results, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "run_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "run_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -206,4 +242,5 @@ class HomeVoiceMacroEngine44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "macros_count": len(self.macros),
+            "version": "4.5",
         }
