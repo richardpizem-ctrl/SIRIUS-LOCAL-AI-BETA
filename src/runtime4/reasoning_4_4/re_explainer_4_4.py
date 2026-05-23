@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Reasoning Explainer 4.4.0 (PRO)
+SIRIUS LOCAL AI – Reasoning Explainer 4.5.0 (PRO)
 
 Účel:
 - vytvára vysvetliteľný reasoning trace
@@ -11,15 +11,15 @@ SIRIUS LOCAL AI – Reasoning Explainer 4.4.0 (PRO)
     - chain kroky a intermediate stavy
     - reasoning graf (ak je k dispozícii)
 - 100 % offline, deterministické, bez AI heuristiky
-- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
+- kompatibilné so Security Family 4.5 a Self‑Repair 4.5
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class ReasoningExplainer44:
+class ReasoningExplainer45:
     """
-    Deterministic explainer pre Reasoning Engine 4.4 (PRO).
+    Deterministic explainer pre Reasoning Engine 4.5 (PRO).
     """
 
     def __init__(self):
@@ -32,22 +32,27 @@ class ReasoningExplainer44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – EXPLAIN
     # ------------------------------------------------------------------
     def explain(self, core_result: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Vytvorí vysvetlenie z výsledku ReasoningCore44.reason().
+        Vytvorí vysvetlenie z výsledku ReasoningCore45.reason().
 
         Očakáva štruktúru:
         {
@@ -61,16 +66,21 @@ class ReasoningExplainer44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Explainer disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Explainer disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not isinstance(core_result, dict):
-            return {"status": "error", "code": "invalid_core_result_type"}
+            return {"status": "error", "code": "invalid_core_result_type", "version": "4.5"}
 
         if core_result.get("status") != "ok":
             return {
                 "status": "error",
                 "code": "core_not_ok",
                 "core_status": core_result.get("status"),
+                "version": "4.5",
             }
 
         try:
@@ -86,6 +96,7 @@ class ReasoningExplainer44:
                 "subjects": subjects,
                 "steps": [],
                 "degraded_mode": self.degraded_mode,
+                "version": "4.5",
             }
 
             # 1. Základný kontext
@@ -117,7 +128,12 @@ class ReasoningExplainer44:
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "explain_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "explain_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STEP BUILDERS
@@ -190,4 +206,5 @@ class ReasoningExplainer44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
