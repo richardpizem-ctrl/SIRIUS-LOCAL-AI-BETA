@@ -1,9 +1,8 @@
-security_family_4_4/identity_engine_4_4.py
 """
-SIRIUS LOCAL AI – Identity Engine 4.4.0
+SIRIUS LOCAL AI – Identity Engine 4.5.0
 
-Identity Engine 4.4 is the deterministic identity classifier used by
-Security Family 4.4. It determines whether the interacting entity is:
+Identity Engine 4.5 is the deterministic identity classifier used by
+Security Family 4.5. It determines whether the interacting entity is:
 
 - OWNER   (full permissions)
 - FAMILY  (child‑safe, restricted)
@@ -11,8 +10,8 @@ Security Family 4.4. It determines whether the interacting entity is:
 
 Identity is determined using:
 - Element reference metadata (role, source, trust level)
-- Behavior patterns (via Behavior Monitor 4.4)
-- Security Policy Core 4.4 rules
+- Behavior patterns (via Behavior Monitor 4.5)
+- Security Policy Core 4.5 rules
 - Deterministic fallback logic
 
 Identity Engine NEVER uses:
@@ -27,9 +26,9 @@ All logic is deterministic, offline, and fully isolated.
 from typing import Dict, Any
 
 
-class IdentityEngine44:
+class IdentityEngine45:
     """
-    Deterministic identity classifier for Runtime 4.4.
+    Deterministic identity classifier for Runtime 4.5.
     """
 
     def __init__(self, behavior_monitor=None, policy_core=None):
@@ -38,13 +37,14 @@ class IdentityEngine44:
 
         self.initialized = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             if self.behavior_monitor:
@@ -54,11 +54,15 @@ class IdentityEngine44:
                 self.policy_core.initialize()
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – GET IDENTITY
@@ -114,4 +118,5 @@ class IdentityEngine44:
             "status": "ok",
             "initialized": self.initialized,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
