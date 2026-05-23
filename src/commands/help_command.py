@@ -4,21 +4,20 @@ from commands.base_command import BaseCommand
 
 class HelpCommand(BaseCommand):
     """
-    HelpCommand 4.4
+    HelpCommand 4.5
     Provides detailed command introspection for CLI, NL Router, and GUI.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic introspection output
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Safe execution via BaseCommand.run()
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic introspection output (unchanged)
         - Stable structure for all help responses
+        - Unified audit model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "help"
     description = "Displays a list of commands or detailed information about a specific command."
@@ -59,7 +58,7 @@ class HelpCommand(BaseCommand):
     def _list_commands(self):
         """
         Returns a list of all registered commands with basic metadata.
-        Deterministic ordering for Runtime 4.4.
+        Deterministic ordering for Runtime 4.5.
         """
         output = []
 
@@ -86,7 +85,7 @@ class HelpCommand(BaseCommand):
     def _describe_command(self, name):
         """
         Returns detailed metadata for a single command.
-        Deterministic, stable structure for NL Router 4.4.
+        Deterministic, stable structure for NL Router 4.5.
         """
         cmd = self.command_registry.get(name)
 
