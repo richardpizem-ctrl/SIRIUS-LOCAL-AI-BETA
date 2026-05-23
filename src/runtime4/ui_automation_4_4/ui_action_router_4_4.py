@@ -1,13 +1,13 @@
 """
-SIRIUS LOCAL AI – UI Action Router 4.4.0 (PRO)
+SIRIUS LOCAL AI – UI Action Router 4.5.0 (PRO)
 
-Responsible for deterministic routing of UI actions inside Runtime 4.4.
+Responsible for deterministic routing of UI actions inside Runtime 4.5.
 Provides:
 - Action validation
 - Element reference validation
-- Security Family 4.4 compliance
+- Security Family 4.5 compliance
 - STRANGER-mode restrictions
-- Deterministic routing to UI Sandbox 4.4
+- Deterministic routing to UI Sandbox 4.5
 - Safe-mode and degraded-mode behavior
 - Structured result surface
 
@@ -15,15 +15,15 @@ Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - All OS interaction must go through the sandbox.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any, Optional
 
 
-class UIActionRouter44:
+class UIActionRouter45:
     """
-    Deterministic UI action router for Runtime 4.4 (PRO).
+    Deterministic UI action router for Runtime 4.5 (PRO).
     """
 
     ALLOWED_ACTIONS = {
@@ -42,6 +42,8 @@ class UIActionRouter44:
     REQUIRED_ELEMENT_FIELDS = ("id", "role", "path")
 
     def __init__(self, sandbox=None, security_policy=None):
+        self.version = "4.5.0"
+
         self.sandbox = sandbox
         self.security_policy = security_policy
 
@@ -54,7 +56,7 @@ class UIActionRouter44:
     # ---------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         try:
             if self.sandbox and hasattr(self.sandbox, "initialize"):
@@ -64,7 +66,7 @@ class UIActionRouter44:
                 self.security_policy.initialize()
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -72,6 +74,7 @@ class UIActionRouter44:
                 "status": "error",
                 "code": "init_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ---------------------------------------------------------------------
@@ -91,6 +94,7 @@ class UIActionRouter44:
                 "action": action,
                 "element": element_ref,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         # Ensure initialized
@@ -101,6 +105,7 @@ class UIActionRouter44:
                     "status": "error",
                     "code": "router_not_initialized",
                     "details": init,
+                    "version": self.version,
                 }
 
         # 1. Validate action
@@ -109,6 +114,7 @@ class UIActionRouter44:
                 "status": "error",
                 "code": "action_not_allowed",
                 "action": action,
+                "version": self.version,
             }
 
         # 2. Validate element reference
@@ -117,6 +123,7 @@ class UIActionRouter44:
                 "status": "error",
                 "code": "invalid_element_reference",
                 "element": element_ref,
+                "version": self.version,
             }
 
         # 3. Security policy check
@@ -128,6 +135,7 @@ class UIActionRouter44:
                         "status": "blocked",
                         "layer": "policy",
                         "policy": sec,
+                        "version": self.version,
                     }
             except Exception as exc:
                 self.degraded_mode = True
@@ -135,6 +143,7 @@ class UIActionRouter44:
                     "status": "error",
                     "code": "policy_exception",
                     "exception": str(exc),
+                    "version": self.version,
                 }
 
         # 4. Dispatch to sandbox
@@ -151,6 +160,7 @@ class UIActionRouter44:
                 "element": element_ref,
                 "result": result,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         except Exception as exc:
@@ -161,6 +171,7 @@ class UIActionRouter44:
                 "exception": str(exc),
                 "action": action,
                 "element": element_ref,
+                "version": self.version,
             }
 
     # ---------------------------------------------------------------------
