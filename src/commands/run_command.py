@@ -3,21 +3,20 @@ from commands.base_command import BaseCommand
 
 class RunCommand(BaseCommand):
     """
-    RunCommand 4.4
+    RunCommand 4.5
     Central execution of actions, AI tasks, and NL commands.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic execution contract
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Safe execution via BaseCommand.run()
-        - Stable NL routing behavior
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic execution contract (unchanged)
+        - Stable NL routing behavior (unchanged)
+        - Unified audit model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "run"
     description = "Runs an AI task, NL command, or system action."
@@ -39,7 +38,7 @@ class RunCommand(BaseCommand):
         self.registry = registry
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -60,8 +59,10 @@ class RunCommand(BaseCommand):
                 try:
                     # Instantiate command with remaining args
                     cmd_instance = cmd_cls(*args[1:], **kwargs)
-                    result = cmd_instance.run(identity=self._identity_used,
-                                              params=self._params_used)
+                    result = cmd_instance.run(
+                        identity=self._identity_used,
+                        params=self._params_used
+                    )
                     return {
                         "status": "command",
                         "command": action,
