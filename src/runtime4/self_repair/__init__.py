@@ -11,6 +11,9 @@ This module provides:
 - Fallback logic
 - Repair logging
 - Runtime stabilization hooks
+
+All components are deterministic, offline, and fully isolated.
+Fully compatible with Runtime 4.5 and Security Family 4.5.
 """
 
 from .self_repair_engine import SelfRepairEngine
