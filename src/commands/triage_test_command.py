@@ -3,21 +3,20 @@ from commands.base_command import BaseCommand
 
 class TriageTestCommand(BaseCommand):
     """
-    TriageTestCommand 4.4
+    TriageTestCommand 4.5
     Tests AITE (Automatic Input Triage Engine) on a given file.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic execution contract
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Safe execution via BaseCommand.run()
-        - Stable NL Router output
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic execution contract (unchanged)
+        - Stable NL Router output (unchanged)
+        - Unified audit model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "triage-test"
     description = "Tests AITE triage on a given file."
@@ -37,7 +36,7 @@ class TriageTestCommand(BaseCommand):
         self.runtime = runtime
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
