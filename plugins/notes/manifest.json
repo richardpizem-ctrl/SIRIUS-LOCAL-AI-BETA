@@ -1,29 +1,31 @@
 {
     "name": "notes",
-    "version": "4.4.0",
-    "description": "Notes plugin for SIRIUS LOCAL AI 4.4 — safe, deterministic note creation and management.",
+    "version": "4.5.0",
+    "description": "Notes plugin for SIRIUS LOCAL AI 4.5 — safe, deterministic note creation and management.",
     "author": "Richard Pizem",
     "entry": "plugin.py",
     "enabled": true,
 
     "architecture": {
-        "phase": "4.4",
+        "phase": "4.5",
         "self_repair_ready": true,
         "deterministic": true,
         "safe_mode_aware": true,
         "degraded_mode_aware": true,
         "integrity_hooks": true,
-        "health_metadata": true
+        "health_metadata": true,
+        "baseline_compatible": true
     },
 
     "compatibility": {
-        "runtime_min_version": "4.4.0",
-        "runtime_max_version": "4.4.x",
-        "plugin_loader": "4.4.x",
-        "nl_router": "4.4.x",
-        "system_agent": "4.4.x",
-        "workflow_engine": "4.4.x",
-        "ai_loop": "4.4.x"
+        "runtime_min_version": "4.5.0",
+        "runtime_max_version": "4.5.x",
+        "plugin_loader": "4.5.x",
+        "nl_router": "4.5.x",
+        "system_agent": "4.5.x",
+        "workflow_engine": "4.5.x",
+        "ai_loop": "4.5.x",
+        "self_repair_layer": "4.5"
     },
 
     "capabilities": {
@@ -31,7 +33,8 @@
         "ai_tasks": true,
         "workflows": true,
         "ai_loop_rules": true,
-        "gui_elements": true
+        "gui_elements": true,
+        "notes_management": true
     },
 
     "health": {
@@ -40,7 +43,8 @@
         "requires_network": false,
         "requires_admin": false,
         "crash_resistant": true,
-        "self_repairable": true
+        "self_repairable": true,
+        "deterministic_behavior": true
     },
 
     "integrity": {
@@ -49,13 +53,15 @@
             "plugin.py",
             "manifest.json"
         ],
-        "auto_quarantine_on_corruption": true
+        "auto_quarantine_on_corruption": true,
+        "hash_algorithm": "sha256"
     },
 
     "self_repair": {
         "enabled": true,
         "strategy": "reload_plugin",
         "fallback_mode": "degraded",
-        "max_repair_attempts": 3
+        "max_repair_attempts": 3,
+        "auto_recover": true
     }
 }
