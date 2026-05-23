@@ -1,22 +1,22 @@
 """
-SIRIUS LOCAL AI – Home Inventory Manager 4.4.0
+SIRIUS LOCAL AI – Home Inventory Manager 4.5.0
 
 Účel:
 - deterministické sledovanie zásob v domácnosti
 - 100 % offline, žiadne AI heuristiky, žiadne dynamické importy
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, Optional, List
 
 
-class HomeInventoryManager44:
+class HomeInventoryManager45:
     """
-    Deterministic inventory manager pre domácnosť.
+    Deterministic inventory manager pre domácnosť 4.5.
     """
 
     def __init__(self, event_bus=None):
@@ -43,21 +43,25 @@ class HomeInventoryManager44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             if self.event_bus:
                 res = self.event_bus.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "event_bus_init_failed"}
+                    return {
+                        "status": "error",
+                        "code": "event_bus_init_failed",
+                        "version": "4.5",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # ADD OR UPDATE ITEM
@@ -71,19 +75,23 @@ class HomeInventoryManager44:
     ) -> Dict[str, Any]:
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Inventory manager disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Inventory manager disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if not self._validate_str(category):
-            return {"status": "error", "code": "invalid_category"}
+            return {"status": "error", "code": "invalid_category", "version": "4.5"}
 
         if not self._validate_int(quantity):
-            return {"status": "error", "code": "invalid_quantity"}
+            return {"status": "error", "code": "invalid_quantity", "version": "4.5"}
 
         if not self._validate_int(min_quantity):
-            return {"status": "error", "code": "invalid_min_quantity"}
+            return {"status": "error", "code": "invalid_min_quantity", "version": "4.5"}
 
         try:
             item = {
@@ -101,21 +109,26 @@ class HomeInventoryManager44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "item": dict(item)}
+            return {"status": "ok", "item": dict(item), "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "add_item_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "add_item_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # REMOVE ITEM
     # ---------------------------------------------------------
     def remove_item(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name not in self.inventory:
-            return {"status": "error", "code": "item_not_found"}
+            return {"status": "error", "code": "item_not_found", "version": "4.5"}
 
         try:
             removed = self.inventory.pop(name)
@@ -126,24 +139,29 @@ class HomeInventoryManager44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "remove_item_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "remove_item_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # UPDATE QUANTITY
     # ---------------------------------------------------------
     def update_quantity(self, name: str, quantity: int) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if not self._validate_int(quantity):
-            return {"status": "error", "code": "invalid_quantity"}
+            return {"status": "error", "code": "invalid_quantity", "version": "4.5"}
 
         if name not in self.inventory:
-            return {"status": "error", "code": "item_not_found"}
+            return {"status": "error", "code": "item_not_found", "version": "4.5"}
 
         try:
             old = self.inventory[name]["quantity"]
@@ -159,21 +177,31 @@ class HomeInventoryManager44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "item": dict(self.inventory[name])}
+            return {"status": "ok", "item": dict(self.inventory[name]), "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "update_quantity_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "update_quantity_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST ITEMS
     # ---------------------------------------------------------
     def list_items(self) -> Dict[str, Any]:
         try:
-            return {"status": "ok", "items": list(self.inventory.values())}
+            return {"status": "ok", "items": list(self.inventory.values()), "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST LOW-STOCK ITEMS
@@ -184,40 +212,59 @@ class HomeInventoryManager44:
                 item for item in self.inventory.values()
                 if item["quantity"] <= item["min_quantity"]
             ]
-            return {"status": "ok", "low_stock": low}
+            return {"status": "ok", "low_stock": low, "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "low_stock_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "low_stock_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # GET ITEM
     # ---------------------------------------------------------
     def get_item(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name not in self.inventory:
-            return {"status": "error", "code": "item_not_found"}
+            return {"status": "error", "code": "item_not_found", "version": "4.5"}
 
         try:
-            return {"status": "ok", "item": dict(self.inventory[name])}
+            return {"status": "ok", "item": dict(self.inventory[name]), "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "get_item_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "get_item_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # CLEAR INVENTORY
     # ---------------------------------------------------------
     def clear(self) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Inventory manager disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Inventory manager disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         try:
             self.inventory = {}
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "clear_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "clear_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -229,4 +276,5 @@ class HomeInventoryManager44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "items_count": len(self.inventory),
+            "version": "4.5",
         }
