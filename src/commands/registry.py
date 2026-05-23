@@ -3,18 +3,17 @@ from commands.base_command import BaseCommand
 
 class CommandRegistry:
     """
-    CommandRegistry 4.4
+    CommandRegistry 4.5
     Central registration of command CLASSES for SIRIUS LOCAL AI Runtime4.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic ordering for NL Router 4.4
-        - Strict metadata validation
-        - Duplicate name protection
-        - Stable registry hashing
-        - Safe dynamic instantiation
-        - Runtime4.4‑ready command lifecycle
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic ordering for NL Router 4.5
+        - Strict metadata validation (unchanged)
+        - Duplicate name protection (unchanged)
+        - Stable registry hashing (unchanged)
+        - Safe dynamic instantiation (unchanged)
+        - Runtime4.5‑ready command lifecycle
     """
 
     def __init__(self, context):
@@ -22,7 +21,7 @@ class CommandRegistry:
         self.context = context
 
     # ---------------------------------------------------------
-    # REGISTRATION (4.4)
+    # REGISTRATION (4.5)
     # ---------------------------------------------------------
     def register(self, command_cls: type[BaseCommand]):
         """
@@ -36,7 +35,7 @@ class CommandRegistry:
         # Validate metadata
         command_cls.validate_metadata()
 
-        # Integrity check (Self‑Repair Layer 4.4)
+        # Integrity check (Self‑Repair Layer 4.5)
         if not command_cls.integrity_check():
             raise ValueError(f"Integrity check failed for command: {command_cls.name}")
 
@@ -58,17 +57,17 @@ class CommandRegistry:
     def all(self) -> dict[str, type[BaseCommand]]:
         """
         Returns all registered command classes.
-        Deterministic ordering for NL Router 4.4.
+        Deterministic ordering for NL Router 4.5.
         """
         return dict(sorted(self._commands.items()))
 
     # ---------------------------------------------------------
-    # DYNAMIC INSTANTIATION (4.4)
+    # DYNAMIC INSTANTIATION (4.5)
     # ---------------------------------------------------------
     def create_instance(self, name: str, *args, **kwargs) -> BaseCommand | None:
         """
         Creates an instance of a command by name.
-        Runtime4 uses only this method.
+        Runtime4.5 uses only this method.
         """
         cmd_cls = self.get(name)
         if not cmd_cls:
@@ -77,12 +76,12 @@ class CommandRegistry:
         return cmd_cls(*args, **kwargs)
 
     # ---------------------------------------------------------
-    # SELF‑REPAIR SUPPORT (4.4)
+    # SELF‑REPAIR SUPPORT (4.5)
     # ---------------------------------------------------------
     def compute_registry_hash(self) -> str:
         """
         Computes a deterministic hash of all registered commands.
-        Used by Self‑Repair 4.4 to detect tampering.
+        Used by Self‑Repair 4.5 to detect tampering.
         """
         import hashlib
         import json
@@ -96,11 +95,11 @@ class CommandRegistry:
         return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
     # ---------------------------------------------------------
-    # HEALTH METADATA (4.4)
+    # HEALTH METADATA (4.5)
     # ---------------------------------------------------------
     def health(self):
         """
-        Returns registry health metadata for System Health Engine 4.4.
+        Returns registry health metadata for System Health Engine 4.5.
         """
         return {
             "command_count": len(self._commands),
@@ -110,7 +109,7 @@ class CommandRegistry:
 
 
 # ---------------------------------------------------------
-# DEFAULT REGISTRY (4.4)
+# DEFAULT REGISTRY (4.5)
 # ---------------------------------------------------------
 def create_default_registry(context) -> CommandRegistry:
     """
