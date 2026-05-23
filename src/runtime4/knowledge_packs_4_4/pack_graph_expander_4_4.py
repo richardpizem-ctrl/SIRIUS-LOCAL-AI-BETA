@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Pack Graph Expander 4.4.0 (PRO)
+SIRIUS LOCAL AI – Pack Graph Expander 4.5.0 (PRO)
 
-This module builds deterministic knowledge graphs from Knowledge Packs 4.4.
+This module builds deterministic knowledge graphs from Knowledge Packs 4.5.
 
 It supports:
 - Node extraction
@@ -9,7 +9,7 @@ It supports:
 - Cross-pack graph linking
 - Graph expansion rules
 - Deterministic offline graph generation
-- Integration with KP Registry 4.4 and Pack Linker 4.4
+- Integration with KP Registry 4.5 and Pack Linker 4.5
 
 Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
@@ -20,9 +20,9 @@ Security Notes (PRO):
 from typing import Dict, Any, List
 
 
-class PackGraphExpander44:
+class PackGraphExpander45:
     """
-    Deterministic graph builder for Knowledge Packs 4.4.
+    Deterministic graph builder for Knowledge Packs 4.5.
     """
 
     def __init__(self, registry=None, linker=None):
@@ -52,27 +52,42 @@ class PackGraphExpander44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             if self.registry:
                 res = self.registry.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "registry_init_failed", "details": res}
+                    return {
+                        "status": "error",
+                        "code": "registry_init_failed",
+                        "details": res,
+                        "version": "4.5",
+                    }
 
             if self.linker:
                 res = self.linker.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "code": "linker_init_failed", "details": res}
+                    return {
+                        "status": "error",
+                        "code": "linker_init_failed",
+                        "details": res,
+                        "version": "4.5",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # EXTRACT NODES
@@ -146,7 +161,11 @@ class PackGraphExpander44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "graph": {"nodes": [], "edges": []}}
+            return {
+                "status": "safe_mode",
+                "graph": {"nodes": [], "edges": []},
+                "version": "4.5",
+            }
 
         try:
             nodes = self.extract_nodes(pack)
@@ -158,6 +177,7 @@ class PackGraphExpander44:
                     "nodes": nodes,
                     "edges": edges,
                 },
+                "version": "4.5",
             }
 
         except Exception as exc:
@@ -166,6 +186,7 @@ class PackGraphExpander44:
                 "status": "error",
                 "code": "build_graph_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
     # ------------------------------------------------------------------
@@ -180,10 +201,11 @@ class PackGraphExpander44:
             return {
                 "status": "safe_mode",
                 "graph": {"nodes": [], "edges": []},
+                "version": "4.5",
             }
 
         if not self.registry:
-            return {"status": "error", "code": "no_registry"}
+            return {"status": "error", "code": "no_registry", "version": "4.5"}
 
         try:
             full_graph = {
@@ -213,6 +235,7 @@ class PackGraphExpander44:
             return {
                 "status": "ok",
                 "graph": full_graph,
+                "version": "4.5",
             }
 
         except Exception as exc:
@@ -221,6 +244,7 @@ class PackGraphExpander44:
                 "status": "error",
                 "code": "build_full_graph_failed",
                 "exception": str(exc),
+                "version": "4.5",
             }
 
     # ------------------------------------------------------------------
@@ -232,4 +256,5 @@ class PackGraphExpander44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
