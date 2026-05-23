@@ -1,5 +1,5 @@
 """
-UI Sandbox Module – Runtime 4.3.x (PRO)
+UI Sandbox Module – Runtime 4.5.x (PRO)
 
 Responsible for:
 - Security rules for UI actions
@@ -14,7 +14,7 @@ whether a UI action is allowed to execute.
 Security Notes:
 - Deterministic, offline-safe
 - No dynamic imports, no eval, no reflection
-- Fully compatible with Security Family 4.4
+- Fully compatible with Security Family 4.5
 """
 
 from typing import Any, Dict, Optional
@@ -22,7 +22,7 @@ from typing import Any, Dict, Optional
 
 class UISandbox:
     """
-    Deterministic UI Sandbox for Runtime 4.3.x (PRO).
+    Deterministic UI Sandbox for Runtime 4.5.x (PRO).
     """
 
     VALID_IDENTITIES = {"OWNER", "FAMILY", "STRANGER", "CHILD"}
@@ -32,6 +32,8 @@ class UISandbox:
         """
         identity: current user identity
         """
+        self.version = "4.5.0"
+
         self.identity = identity if identity in self.VALID_IDENTITIES else "STRANGER"
 
         self.audit_log: list = []
@@ -147,6 +149,7 @@ class UISandbox:
             "reason": reason,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": self.version,
         }
 
         self.audit_log.append(entry)
@@ -162,4 +165,5 @@ class UISandbox:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "audit_count": len(self.audit_log),
+            "version": self.version,
         }
