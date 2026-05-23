@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Household Device Registry 4.4.0
+SIRIUS LOCAL AI – Household Device Registry 4.5.0
 
 Účel:
 - eviduje všetky zariadenia v domácnosti
@@ -16,18 +16,18 @@ Zariadenie má formát:
     "capabilities": ["on", "off"]
 }
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HouseholdDeviceRegistry44:
+class HouseholdDeviceRegistry45:
     """
-    Deterministic registry domácich zariadení.
+    Deterministic registry domácich zariadení pre Household Automation 4.5.
     """
 
     def __init__(self):
@@ -59,15 +59,15 @@ class HouseholdDeviceRegistry44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.devices = []
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # REGISTER DEVICE
@@ -82,28 +82,32 @@ class HouseholdDeviceRegistry44:
     ) -> Dict[str, Any]:
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Device registry disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Device registry disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         # VALIDATION
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_device_name"}
+            return {"status": "error", "code": "invalid_device_name", "version": "4.5"}
 
         if not self._validate_str(device_type):
-            return {"status": "error", "code": "invalid_device_type"}
+            return {"status": "error", "code": "invalid_device_type", "version": "4.5"}
 
         if room is not None and not self._validate_str(room):
-            return {"status": "error", "code": "invalid_room"}
+            return {"status": "error", "code": "invalid_room", "version": "4.5"}
 
         if capabilities is not None and not self._validate_capabilities(capabilities):
-            return {"status": "error", "code": "invalid_capabilities"}
+            return {"status": "error", "code": "invalid_capabilities", "version": "4.5"}
 
         # DUPLICITY CHECK
         for d in self.devices:
             if d["id"] == device_id:
-                return {"status": "error", "code": "device_id_exists"}
+                return {"status": "error", "code": "device_id_exists", "version": "4.5"}
 
         try:
             device = {
@@ -116,59 +120,69 @@ class HouseholdDeviceRegistry44:
 
             self.devices.append(device)
 
-            return {"status": "ok", "device": device}
+            return {"status": "ok", "device": device, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "device_register_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "device_register_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # GET DEVICE
     # ---------------------------------------------------------
     def get_device(self, device_id: str) -> Dict[str, Any]:
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         for d in self.devices:
             if d["id"] == device_id:
-                return {"status": "ok", "device": d}
+                return {"status": "ok", "device": d, "version": "4.5"}
 
-        return {"status": "error", "code": "device_not_found"}
+        return {"status": "error", "code": "device_not_found", "version": "4.5"}
 
     # ---------------------------------------------------------
     # LIST DEVICES
     # ---------------------------------------------------------
     def list_devices(self) -> Dict[str, Any]:
-        return {"status": "ok", "devices": list(self.devices)}
+        return {"status": "ok", "devices": list(self.devices), "version": "4.5"}
 
     # ---------------------------------------------------------
     # LIST DEVICES BY ROOM
     # ---------------------------------------------------------
     def list_devices_in_room(self, room: str) -> Dict[str, Any]:
         if not self._validate_str(room):
-            return {"status": "error", "code": "invalid_room"}
+            return {"status": "error", "code": "invalid_room", "version": "4.5"}
 
         result = [d for d in self.devices if d.get("room") == room]
-        return {"status": "ok", "devices": result}
+        return {"status": "ok", "devices": result, "version": "4.5"}
 
     # ---------------------------------------------------------
     # DELETE DEVICE
     # ---------------------------------------------------------
     def delete_device(self, device_id: str) -> Dict[str, Any]:
         if not self._validate_str(device_id):
-            return {"status": "error", "code": "invalid_device_id"}
+            return {"status": "error", "code": "invalid_device_id", "version": "4.5"}
 
         try:
             for d in self.devices:
                 if d["id"] == device_id:
                     self.devices.remove(d)
-                    return {"status": "ok"}
+                    return {"status": "ok", "version": "4.5"}
 
-            return {"status": "error", "code": "device_not_found"}
+            return {"status": "error", "code": "device_not_found", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "device_delete_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "device_delete_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -180,4 +194,5 @@ class HouseholdDeviceRegistry44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "devices_count": len(self.devices),
+            "version": "4.5",
         }
