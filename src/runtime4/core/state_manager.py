@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Runtime 4.4 State Manager
+SIRIUS LOCAL AI – Runtime 4.5 State Manager
 
 Responsible for:
 - storing runtime state
@@ -8,9 +8,9 @@ Responsible for:
 - providing state access to all subsystems
 - ensuring deterministic and recoverable execution
 - degraded‑mode detection
-- Self‑Repair 4.4 diagnostics
+- Self‑Repair 4.5 diagnostics
 
-This is the central state container for Runtime 4.4.
+This is the central state container for Runtime 4.5.
 """
 
 from typing import Any, Dict, Optional
@@ -26,6 +26,7 @@ class StateManager4:
     - degraded-mode detection
     - Self‑Repair snapshot support
     - deterministic, audit‑friendly behavior
+    - Metadata version bumped to 4.5
     """
 
     def __init__(self):
@@ -68,13 +69,13 @@ class StateManager4:
 
     def set_flag(self, name: str, value: bool) -> Dict[str, Any]:
         if not self._validate_flag_name(name):
-            return {"status": "error", "code": "invalid_flag_name"}
+            return {"status": "error", "code": "invalid_flag_name", "state_version": "4.5"}
 
         if not isinstance(value, bool):
-            return {"status": "error", "code": "invalid_flag_value"}
+            return {"status": "error", "code": "invalid_flag_value", "state_version": "4.5"}
 
         self.flags[name] = value
-        return {"status": "success", "flag": name, "value": value}
+        return {"status": "success", "flag": name, "value": value, "state_version": "4.5"}
 
     def get_flag(self, name: str) -> Optional[bool]:
         if not self._validate_flag_name(name):
@@ -87,20 +88,21 @@ class StateManager4:
 
     def set_global(self, key: str, value: Any) -> Dict[str, Any]:
         if not self._validate_key(key):
-            return {"status": "error", "code": "invalid_global_key"}
+            return {"status": "error", "code": "invalid_global_key", "state_version": "4.5"}
 
         if not self._validate_value(value):
-            return {"status": "error", "code": "unsafe_value_type"}
+            return {"status": "error", "code": "unsafe_value_type", "state_version": "4.5"}
 
         try:
             self.global_state[key] = value
-            return {"status": "success", "key": key}
+            return {"status": "success", "key": key, "state_version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
             return {
                 "status": "error",
                 "code": "global_state_set_failed",
                 "exception": str(exc),
+                "state_version": "4.5",
             }
 
     def get_global(self, key: str) -> Any:
@@ -119,20 +121,20 @@ class StateManager4:
         value: Any,
     ) -> Dict[str, Any]:
         if not self._validate_module_name(module_name):
-            return {"status": "error", "code": "invalid_module_name"}
+            return {"status": "error", "code": "invalid_module_name", "state_version": "4.5"}
 
         if not self._validate_key(key):
-            return {"status": "error", "code": "invalid_state_key"}
+            return {"status": "error", "code": "invalid_state_key", "state_version": "4.5"}
 
         if not self._validate_value(value):
-            return {"status": "error", "code": "unsafe_value_type"}
+            return {"status": "error", "code": "unsafe_value_type", "state_version": "4.5"}
 
         try:
             if module_name not in self.module_state:
                 self.module_state[module_name] = {}
 
             self.module_state[module_name][key] = value
-            return {"status": "success", "module": module_name, "key": key}
+            return {"status": "success", "module": module_name, "key": key, "state_version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
@@ -140,6 +142,7 @@ class StateManager4:
                 "status": "error",
                 "code": "module_state_set_failed",
                 "exception": str(exc),
+                "state_version": "4.5",
             }
 
     def get_module_state(self, module_name: str, key: str) -> Any:
@@ -155,13 +158,13 @@ class StateManager4:
         return module.get(key)
 
     # ---------------------------------------------------------
-    # SNAPSHOT (Self‑Repair 4.4)
+    # SNAPSHOT (Self‑Repair 4.5)
     # ---------------------------------------------------------
 
     def snapshot(self) -> Dict[str, Any]:
         """
         Returns a safe snapshot of all runtime state.
-        Used by RuntimeEngine 4.4 and Self‑Repair 4.4.
+        Used by RuntimeEngine 4.5 and Self‑Repair 4.5.
         """
 
         try:
@@ -171,6 +174,7 @@ class StateManager4:
                 "global_state": dict(self.global_state),
                 "module_state": {k: dict(v) for k, v in self.module_state.items()},
                 "degraded_mode": self.degraded_mode,
+                "state_version": "4.5",
             }
         except Exception as exc:
             self.degraded_mode = True
@@ -178,4 +182,5 @@ class StateManager4:
                 "status": "error",
                 "code": "snapshot_failed",
                 "exception": str(exc),
+                "state_version": "4.5",
             }
