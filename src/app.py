@@ -1,5 +1,5 @@
 # app.py
-# SIRIUS LOCAL AI – Application Entry Point 4.3.x
+# SIRIUS LOCAL AI – Application Entry Point 4.5.0 PRO
 # Deterministic, safe-mode compatible startup pipeline
 
 import sys
@@ -9,11 +9,11 @@ from ui.main_window import MainWindow
 
 def run_sirius_app():
     """
-    Main entry point for SIRIUS LOCAL AI Runtime (4.3.x).
+    Main entry point for SIRIUS LOCAL AI Runtime (4.5.0 PRO).
 
     Responsibilities:
         - Initialize QApplication
-        - Initialize MainWindow
+        - Initialize MainWindow (Phase‑4/5)
         - Provide safe-mode and degraded-mode fallback
         - Provide deterministic startup behavior
         - Provide error-safe execution
@@ -22,7 +22,7 @@ def run_sirius_app():
     try:
         app = QApplication(sys.argv)
 
-        # Main window (Phase‑4)
+        # Main window (Phase‑4/5)
         win = MainWindow()
         win.show()
 
