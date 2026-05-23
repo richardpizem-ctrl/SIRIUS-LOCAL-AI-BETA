@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Scheduler 4.3 Core (PRO)
+SIRIUS LOCAL AI – Scheduler 4.5 Core (PRO)
 
 Responsible for:
 - receiving tasks
@@ -9,19 +9,19 @@ Responsible for:
 - future support for task graphs
 - safe-mode and degraded-mode behavior
 
-Security Family 4.4 Compliance:
+Security Family 4.5 Compliance:
 - No eval, exec, reflection, dynamic imports
 - Strict input validation
 - Deterministic behavior
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Optional, Dict, Any
 
 
-class SchedulerCore4:
+class SchedulerCore45:
     """
-    Deterministic offline task scheduler for Runtime 4.3 (PRO).
+    Deterministic offline task scheduler for Runtime 4.5 (PRO).
     Provides:
     - strict validation
     - structured error surface
@@ -43,6 +43,7 @@ class SchedulerCore4:
         self.active = False
         self.safe_mode = False
         self.degraded_mode = False
+        self.version = "4.5"
 
     # ---------------------------------------------------------
     # TASK MANAGEMENT
@@ -55,15 +56,16 @@ class SchedulerCore4:
             return {
                 "status": "safe_mode",
                 "message": "Task submission disabled in safe-mode.",
+                "version": self.version,
             }
 
         # Validate task
         if not isinstance(task, str) or not task.strip():
-            return {"status": "error", "code": "invalid_task"}
+            return {"status": "error", "code": "invalid_task", "version": self.version}
 
         # Validate context
         if context is not None and not isinstance(context, dict):
-            return {"status": "error", "code": "invalid_context_type"}
+            return {"status": "error", "code": "invalid_context_type", "version": self.version}
 
         context = context or {}
 
@@ -71,7 +73,7 @@ class SchedulerCore4:
         module_name = context.get("module")
         if module_name is not None:
             if not isinstance(module_name, str) or not module_name.strip():
-                return {"status": "error", "code": "invalid_module_name"}
+                return {"status": "error", "code": "invalid_module_name", "version": self.version}
 
         try:
             self.queue.append({"task": task, "context": context})
@@ -79,6 +81,7 @@ class SchedulerCore4:
                 "status": "queued",
                 "size": len(self.queue),
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
         except Exception as exc:
             self.degraded_mode = True
@@ -86,6 +89,7 @@ class SchedulerCore4:
                 "status": "error",
                 "code": "queue_append_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ---------------------------------------------------------
@@ -99,10 +103,11 @@ class SchedulerCore4:
             return {
                 "status": "safe_mode",
                 "message": "Scheduler execution disabled in safe-mode.",
+                "version": self.version,
             }
 
         if not self.active:
-            return {"status": "error", "code": "scheduler_inactive"}
+            return {"status": "error", "code": "scheduler_inactive", "version": self.version}
 
         if not self.queue:
             return None
@@ -115,27 +120,28 @@ class SchedulerCore4:
                 "status": "error",
                 "code": "queue_pop_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
         # Validate entry
         if not isinstance(entry, dict):
-            return {"status": "error", "code": "invalid_queue_entry"}
+            return {"status": "error", "code": "invalid_queue_entry", "version": self.version}
 
         task = entry.get("task")
         context = entry.get("context", {})
 
         # Validate task
         if not isinstance(task, str) or not task.strip():
-            return {"status": "error", "code": "invalid_task"}
+            return {"status": "error", "code": "invalid_task", "version": self.version}
 
         # Validate context
         if not isinstance(context, dict):
-            return {"status": "error", "code": "invalid_context_type"}
+            return {"status": "error", "code": "invalid_context_type", "version": self.version}
 
         module_name = context.get("module")
         if module_name is not None:
             if not isinstance(module_name, str) or not module_name.strip():
-                return {"status": "error", "code": "invalid_module_name"}
+                return {"status": "error", "code": "invalid_module_name", "version": self.version}
 
         # Execute in sandbox
         try:
@@ -150,6 +156,7 @@ class SchedulerCore4:
                 "status": "error",
                 "code": "sandbox_execution_failed",
                 "exception": str(exc),
+                "version": self.version,
             }
 
     # ---------------------------------------------------------
@@ -163,10 +170,11 @@ class SchedulerCore4:
             return [{
                 "status": "safe_mode",
                 "message": "Scheduler execution disabled in safe-mode.",
+                "version": self.version,
             }]
 
         if not self.active:
-            return [{"status": "error", "code": "scheduler_inactive"}]
+            return [{"status": "error", "code": "scheduler_inactive", "version": self.version}]
 
         results = []
         while self.queue:
@@ -181,9 +189,9 @@ class SchedulerCore4:
     def start(self):
         """Marks scheduler as active."""
         self.active = True
-        return {"status": "scheduler_started"}
+        return {"status": "scheduler_started", "version": self.version}
 
     def stop(self):
         """Stops scheduler."""
         self.active = False
-        return {"status": "scheduler_stopped"}
+        return {"status": "scheduler_stopped", "version": self.version}
