@@ -1,8 +1,8 @@
 """
-SIRIUS LOCAL AI – Reasoning Safety Guard 4.4.0 (PRO)
+SIRIUS LOCAL AI – Reasoning Safety Guard 4.5.0 (PRO)
 
 Účel:
-- bezpečnostná vrstva nad Reasoning Engine 4.4
+- bezpečnostná vrstva nad Reasoning Engine 4.5
 - kontroluje dotazy a kontext pred reasoningom
 - vynucuje:
     - offline režim
@@ -10,15 +10,15 @@ SIRIUS LOCAL AI – Reasoning Safety Guard 4.4.0 (PRO)
     - žiadne dynamické importy, eval, exec
     - žiadne systémové príkazy
 - 100 % deterministické, bez AI heuristiky
-- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
+- kompatibilné so Security Family 4.5 a Self‑Repair 4.5
 """
 
 from typing import Dict, Any, List
 
 
-class ReasoningSafetyGuard44:
+class ReasoningSafetyGuard45:
     """
-    Deterministic safety guard pre Reasoning Engine 4.4 (PRO).
+    Deterministic safety guard pre Reasoning Engine 4.5 (PRO).
     """
 
     def __init__(self):
@@ -48,15 +48,20 @@ class ReasoningSafetyGuard44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # CHECK QUERY
@@ -68,7 +73,7 @@ class ReasoningSafetyGuard44:
         """
 
         if not isinstance(query, str):
-            return {"status": "blocked", "code": "invalid_query_type"}
+            return {"status": "blocked", "code": "invalid_query_type", "version": "4.5"}
 
         if len(query) > self.max_query_length:
             return {
@@ -76,6 +81,7 @@ class ReasoningSafetyGuard44:
                 "code": "query_too_long",
                 "max_length": self.max_query_length,
                 "actual_length": len(query),
+                "version": "4.5",
             }
 
         lower_q = query.lower()
@@ -85,6 +91,7 @@ class ReasoningSafetyGuard44:
                     "status": "blocked",
                     "code": "forbidden_pattern",
                     "pattern": forbidden,
+                    "version": "4.5",
                 }
 
         return {"status": "ok"}
@@ -98,12 +105,12 @@ class ReasoningSafetyGuard44:
         """
 
         if not isinstance(context, dict):
-            return {"status": "blocked", "code": "invalid_context_type"}
+            return {"status": "blocked", "code": "invalid_context_type", "version": "4.5"}
 
         # Kontrola faktov
         for fact in context.get("facts", []):
             if not isinstance(fact, dict):
-                return {"status": "blocked", "code": "invalid_fact_type"}
+                return {"status": "blocked", "code": "invalid_fact_type", "version": "4.5"}
 
             value = str(fact.get("value", "")).lower()
 
@@ -115,6 +122,7 @@ class ReasoningSafetyGuard44:
                         "pattern": forbidden,
                         "fact_key": fact.get("key"),
                         "pack": fact.get("pack"),
+                        "version": "4.5",
                     }
 
         return {"status": "ok"}
@@ -129,7 +137,7 @@ class ReasoningSafetyGuard44:
         """
 
         if self.safe_mode:
-            return {"status": "blocked", "code": "safe_mode"}
+            return {"status": "blocked", "code": "safe_mode", "version": "4.5"}
 
         q_check = self.check_query(query)
         if q_check.get("status") != "ok":
@@ -137,6 +145,7 @@ class ReasoningSafetyGuard44:
                 "status": "blocked",
                 "stage": "query",
                 "details": q_check,
+                "version": "4.5",
             }
 
         c_check = self.check_context(context)
@@ -145,6 +154,7 @@ class ReasoningSafetyGuard44:
                 "status": "blocked",
                 "stage": "context",
                 "details": c_check,
+                "version": "4.5",
             }
 
         return {"status": "ok"}
@@ -160,4 +170,5 @@ class ReasoningSafetyGuard44:
             "degraded_mode": self.degraded_mode,
             "max_query_length": self.max_query_length,
             "forbidden_patterns_count": len(self.forbidden_substrings),
+            "version": "4.5",
         }
