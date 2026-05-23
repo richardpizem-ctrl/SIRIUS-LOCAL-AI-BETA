@@ -1,5 +1,5 @@
 # plugin.py
-# SIRIUS LOCAL AI – Notes Plugin 4.4.0
+# SIRIUS LOCAL AI – Notes Plugin 4.5.0
 # Safe, deterministic, sandboxed note storage module with integrity + health support
 
 from __future__ import annotations
@@ -10,7 +10,7 @@ import datetime
 
 class Plugin:
     """
-    Notes Plugin 4.4.0
+    Notes Plugin 4.5.0
 
     Responsibilities:
         - Provide NL commands for note operations
@@ -18,31 +18,31 @@ class Plugin:
         - Provide workflows
         - Provide AI Loop rules
         - Provide GUI elements
-        - Delegate ALL filesystem actions to SystemAgent 4.4
+        - Delegate ALL filesystem actions to SystemAgent 4.5
         - Deterministic, safe-mode aware, degraded-mode aware
-        - Plugin Integrity Hooks (4.4)
-        - Health Metadata (4.4)
-        - Self‑Repair Layer 4.4 compatibility
+        - Plugin Integrity Hooks (4.5)
+        - Health Metadata (4.5)
+        - Self‑Repair Layer 4.5 compatibility
     """
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
         self.agent = runtime_manager.get_system_agent()
 
-        # Runtime 4.4 modes
+        # Runtime 4.5 modes
         self.safe_mode = False
         self.degraded_mode = False
 
-        # 4.4 integrity + health
+        # 4.5 integrity + health
         self.integrity_ok = True
         self.health_status = "OK"
 
         self.storage = "notes_storage"
 
-        self.rm.logger.info("[PLUGIN:notes] Initialized (v4.4.0)")
+        self.rm.logger.info("[PLUGIN:notes] Initialized (v4.5.0)")
 
     # --------------------------------------------------------
-    # INTEGRITY HOOKS (4.4)
+    # INTEGRITY HOOKS (4.5)
     # --------------------------------------------------------
     def integrity_check(self):
         try:
@@ -57,7 +57,7 @@ class Plugin:
         return True
 
     # --------------------------------------------------------
-    # HEALTH METADATA (4.4)
+    # HEALTH METADATA (4.5)
     # --------------------------------------------------------
     def health(self):
         return {
@@ -68,7 +68,7 @@ class Plugin:
         }
 
     # --------------------------------------------------------
-    # NL COMMANDS (4.4)
+    # NL COMMANDS (4.5)
     # --------------------------------------------------------
     def nl_commands(self):
         return {
@@ -136,7 +136,7 @@ class Plugin:
         return self._execute(action)
 
     # --------------------------------------------------------
-    # AI TASKS (4.4)
+    # AI TASKS (4.5)
     # --------------------------------------------------------
     def ai_tasks(self):
         return {
@@ -205,7 +205,7 @@ class Plugin:
         return self._execute_ai(action)
 
     # --------------------------------------------------------
-    # WORKFLOWS (4.4)
+    # WORKFLOWS (4.5)
     # --------------------------------------------------------
     def workflows(self):
         return [
@@ -224,7 +224,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # AI LOOP RULES (4.4)
+    # AI LOOP RULES (4.5)
     # --------------------------------------------------------
     def ai_loop_rules(self):
         return [
@@ -238,7 +238,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # GUI ELEMENTS (4.4)
+    # GUI ELEMENTS (4.5)
     # --------------------------------------------------------
     def gui_elements(self):
         return [
@@ -256,7 +256,7 @@ class Plugin:
         ]
 
     # --------------------------------------------------------
-    # INTERNAL EXECUTION HELPERS (4.4)
+    # INTERNAL EXECUTION HELPERS (4.5)
     # --------------------------------------------------------
     def _execute(self, action):
         try:
@@ -275,7 +275,7 @@ class Plugin:
             return {"error": "Notes error"}
 
     # --------------------------------------------------------
-    # INTERNAL ERROR HANDLER (4.4)
+    # INTERNAL ERROR HANDLER (4.5)
     # --------------------------------------------------------
     def _handle_error(self, label, exception):
         self.degraded_mode = True
@@ -283,7 +283,7 @@ class Plugin:
         self.rm.logger.error(f"[NOTES] {label} error: {exception}")
 
     # --------------------------------------------------------
-    # SAFE-MODE CONTROL (4.4)
+    # SAFE-MODE CONTROL (4.5)
     # --------------------------------------------------------
     def enter_safe_mode(self):
         self.safe_mode = True
