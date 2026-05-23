@@ -1,5 +1,5 @@
-# education_engine_4_4.py
-# SIRIUS LOCAL AI – Education Engine 4.4.0 PRO
+# education_engine_4_5.py
+# SIRIUS LOCAL AI – Education Engine 4.5.0 PRO
 # Deterministic, safe-mode compatible explanation generator (Phase‑4/5 ready)
 
 from __future__ import annotations
@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import List, Literal
 
 # ---------------------------------------------------------
-# IDENTITY TYPES (Security Family 4.4)
+# IDENTITY TYPES (Security Family 4.5)
 # ---------------------------------------------------------
 
 IdentityType = Literal["OWNER", "FAMILY", "STRANGER"]
@@ -17,10 +17,10 @@ IdentityType = Literal["OWNER", "FAMILY", "STRANGER"]
 # IMPORTS (Static, Phase‑4 safe)
 # ---------------------------------------------------------
 
-from system_health_engine_4_4 import HealthReport44, HealthIssue44
-from driver_manager_engine_4_4 import DriverReport44, DriverIssue44
-from task_manager_engine_4_4 import TaskReport44, TaskIssue44
-from service_manager_engine_4_4 import ServiceReport44, ServiceIssue44
+from system_health_engine_4_5 import HealthReport45, HealthIssue45
+from driver_manager_engine_4_5 import DriverReport45, DriverIssue45
+from task_manager_engine_4_5 import TaskReport45, TaskIssue45
+from service_manager_engine_4_5 import ServiceReport45, ServiceIssue45
 
 
 # ---------------------------------------------------------
@@ -28,7 +28,7 @@ from service_manager_engine_4_4 import ServiceReport44, ServiceIssue44
 # ---------------------------------------------------------
 
 @dataclass
-class ExplanationBlock44:
+class ExplanationBlock45:
     """
     One explanation block for UI or console.
     Phase‑4: deterministic, sanitized, identity-aware.
@@ -40,13 +40,13 @@ class ExplanationBlock44:
 
 
 @dataclass
-class EducationBundle44:
+class EducationBundle45:
     """
     Complete explanation bundle for a diagnostic report.
     """
     identity: IdentityType
     summary: str
-    blocks: List[ExplanationBlock44]
+    blocks: List[ExplanationBlock45]
     safe_mode: bool = False
     degraded_mode: bool = False
 
@@ -55,16 +55,16 @@ class EducationBundle44:
 # ENGINE
 # ---------------------------------------------------------
 
-class EducationEngine44:
+class EducationEngine45:
     """
-    Education Engine 4.4.0 PRO
+    Education Engine 4.5.0 PRO
 
     Responsibilities:
         - Convert technical reports into human-readable explanations
         - Respect identity (OWNER / FAMILY / STRANGER)
         - Provide deterministic, safe-mode compatible output
         - Provide structured fallback behavior
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
         - Phase‑5 ready (extended identity model)
     """
 
@@ -76,7 +76,7 @@ class EducationEngine44:
     # PUBLIC API
     # ---------------------------------------------------------
 
-    def explain_system_health(self, identity: IdentityType, report: HealthReport44) -> EducationBundle44:
+    def explain_system_health(self, identity: IdentityType, report: HealthReport45) -> EducationBundle45:
         if self.safe_mode:
             return self._bundle_safe_mode(identity)
 
@@ -84,7 +84,7 @@ class EducationEngine44:
             summary = self._build_health_summary(identity, report)
             blocks = [self._explain_health_issue(identity, issue) for issue in report.issues]
 
-            return EducationBundle44(
+            return EducationBundle45(
                 identity=identity,
                 summary=summary,
                 blocks=blocks,
@@ -95,7 +95,7 @@ class EducationEngine44:
             self.degraded_mode = True
             return self._bundle_degraded(identity)
 
-    def explain_drivers(self, identity: IdentityType, report: DriverReport44) -> EducationBundle44:
+    def explain_drivers(self, identity: IdentityType, report: DriverReport45) -> EducationBundle45:
         if self.safe_mode:
             return self._bundle_safe_mode(identity)
 
@@ -103,7 +103,7 @@ class EducationEngine44:
             summary = self._build_driver_summary(identity, report)
             blocks = [self._explain_driver_issue(identity, issue) for issue in report.issues]
 
-            return EducationBundle44(
+            return EducationBundle45(
                 identity=identity,
                 summary=summary,
                 blocks=blocks,
@@ -114,7 +114,7 @@ class EducationEngine44:
             self.degraded_mode = True
             return self._bundle_degraded(identity)
 
-    def explain_tasks(self, identity: IdentityType, report: TaskReport44) -> EducationBundle44:
+    def explain_tasks(self, identity: IdentityType, report: TaskReport45) -> EducationBundle45:
         if self.safe_mode:
             return self._bundle_safe_mode(identity)
 
@@ -122,7 +122,7 @@ class EducationEngine44:
             summary = self._build_task_summary(identity, report)
             blocks = [self._explain_task_issue(identity, issue) for issue in report.issues]
 
-            return EducationBundle44(
+            return EducationBundle45(
                 identity=identity,
                 summary=summary,
                 blocks=blocks,
@@ -133,7 +133,7 @@ class EducationEngine44:
             self.degraded_mode = True
             return self._bundle_degraded(identity)
 
-    def explain_services(self, identity: IdentityType, report: ServiceReport44) -> EducationBundle44:
+    def explain_services(self, identity: IdentityType, report: ServiceReport45) -> EducationBundle45:
         if self.safe_mode:
             return self._bundle_safe_mode(identity)
 
@@ -141,7 +141,7 @@ class EducationEngine44:
             summary = self._build_service_summary(identity, report)
             blocks = [self._explain_service_issue(identity, issue) for issue in report.issues]
 
-            return EducationBundle44(
+            return EducationBundle45(
                 identity=identity,
                 summary=summary,
                 blocks=blocks,
@@ -156,8 +156,8 @@ class EducationEngine44:
     # SAFE-MODE / DEGRADED-MODE BUNDLES
     # ---------------------------------------------------------
 
-    def _bundle_safe_mode(self, identity: IdentityType) -> EducationBundle44:
-        return EducationBundle44(
+    def _bundle_safe_mode(self, identity: IdentityType) -> EducationBundle45:
+        return EducationBundle45(
             identity=identity,
             summary="Education Engine je v SAFE MODE. Diagnostické vysvetlenia sú dočasne vypnuté.",
             blocks=[],
@@ -165,8 +165,8 @@ class EducationEngine44:
             degraded_mode=False,
         )
 
-    def _bundle_degraded(self, identity: IdentityType) -> EducationBundle44:
-        return EducationBundle44(
+    def _bundle_degraded(self, identity: IdentityType) -> EducationBundle45:
+        return EducationBundle45(
             identity=identity,
             summary="Education Engine je v DEGRADED MODE. Niektoré vysvetlenia nemusia byť dostupné.",
             blocks=[],
@@ -178,7 +178,7 @@ class EducationEngine44:
     # SUMMARY BUILDERS (Phase‑4)
     # ---------------------------------------------------------
 
-    def _build_health_summary(self, identity: IdentityType, report: HealthReport44) -> str:
+    def _build_health_summary(self, identity: IdentityType, report: HealthReport45) -> str:
         score = getattr(report, "health_score", 0)
         base = f"Aktuálne zdravie systému je {score}/100."
 
@@ -191,7 +191,7 @@ class EducationEngine44:
 
         return self._identity_append(identity, base + " " + tone)
 
-    def _build_driver_summary(self, identity: IdentityType, report: DriverReport44) -> str:
+    def _build_driver_summary(self, identity: IdentityType, report: DriverReport45) -> str:
         count = len(report.issues)
         base = f"Nájdených bolo {count} problémov súvisiacich s ovládačmi."
 
@@ -202,7 +202,7 @@ class EducationEngine44:
 
         return self._identity_append(identity, base + tone)
 
-    def _build_task_summary(self, identity: IdentityType, report: TaskReport44) -> str:
+    def _build_task_summary(self, identity: IdentityType, report: TaskReport45) -> str:
         total = len(report.processes)
         base = f"V systéme beží približne {total} procesov."
 
@@ -213,7 +213,7 @@ class EducationEngine44:
 
         return self._identity_append(identity, base + " " + tone)
 
-    def _build_service_summary(self, identity: IdentityType, report: ServiceReport44) -> str:
+    def _build_service_summary(self, identity: IdentityType, report: ServiceReport45) -> str:
         total = len(report.services)
         base = f"Systémové služby: približne {total} aktívnych záznamov."
 
@@ -228,21 +228,21 @@ class EducationEngine44:
     # ISSUE EXPLANATIONS (Phase‑4)
     # ---------------------------------------------------------
 
-    def _explain_health_issue(self, identity: IdentityType, issue: HealthIssue44) -> ExplanationBlock44:
+    def _explain_health_issue(self, identity: IdentityType, issue: HealthIssue45) -> ExplanationBlock45:
         body = self._identity_append(identity, issue.description)
-        return ExplanationBlock44(issue.title, body, issue.severity, issue.suggested_actions)
+        return ExplanationBlock45(issue.title, body, issue.severity, issue.suggested_actions)
 
-    def _explain_driver_issue(self, identity: IdentityType, issue: DriverIssue44) -> ExplanationBlock44:
+    def _explain_driver_issue(self, identity: IdentityType, issue: DriverIssue45) -> ExplanationBlock45:
         body = self._identity_append(identity, issue.description)
-        return ExplanationBlock44(issue.title, body, issue.severity, issue.suggested_actions)
+        return ExplanationBlock45(issue.title, body, issue.severity, issue.suggested_actions)
 
-    def _explain_task_issue(self, identity: IdentityType, issue: TaskIssue44) -> ExplanationBlock44:
+    def _explain_task_issue(self, identity: IdentityType, issue: TaskIssue45) -> ExplanationBlock45:
         body = self._identity_append(identity, issue.description)
-        return ExplanationBlock44(issue.title, body, issue.severity, issue.suggested_actions)
+        return ExplanationBlock45(issue.title, body, issue.severity, issue.suggested_actions)
 
-    def _explain_service_issue(self, identity: IdentityType, issue: ServiceIssue44) -> ExplanationBlock44:
+    def _explain_service_issue(self, identity: IdentityType, issue: ServiceIssue45) -> ExplanationBlock45:
         body = self._identity_append(identity, issue.description)
-        return ExplanationBlock44(issue.title, body, issue.severity, issue.suggested_actions)
+        return ExplanationBlock45(issue.title, body, issue.severity, issue.suggested_actions)
 
     # ---------------------------------------------------------
     # IDENTITY-AWARE TEXT APPENDER
