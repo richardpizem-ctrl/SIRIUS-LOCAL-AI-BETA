@@ -1,7 +1,7 @@
 """
-SIRIUS LOCAL AI – Knowledge Pack Metadata Engine 4.4.0 (PRO)
+SIRIUS LOCAL AI – Knowledge Pack Metadata Engine 4.5.0 (PRO)
 
-KP Metadata 4.4 provides deterministic, offline‑safe metadata handling for
+KP Metadata 4.5 provides deterministic, offline‑safe metadata handling for
 Knowledge Packs. It enriches packs with:
 
 - Version info
@@ -14,25 +14,25 @@ Security Notes (PRO):
 - No dynamic imports, no eval, no reflection.
 - Metadata must be pure JSON/dict.
 - Fully offline, deterministic, isolated.
-- No real-time system calls allowed (Runtime 4.4 PRO rule).
+- No real-time system calls allowed (Runtime 4.5 PRO rule).
 """
 
 from typing import Dict, Any
 
 
-class KnowledgePackMetadata44:
+class KnowledgePackMetadata45:
     """
-    Deterministic metadata handler for Knowledge Packs 4.4.
+    Deterministic metadata handler for Knowledge Packs 4.5.
     """
 
-    VERSION = "4.4.0"
+    VERSION = "4.5.0"
 
     def __init__(self):
         self.initialized = False
         self.degraded_mode = False
         self.safe_mode = False
 
-        # Deterministic timestamp counter (Runtime 4.4 PRO requirement)
+        # Deterministic timestamp counter (Runtime 4.5 PRO requirement)
         self._counter = 1
 
     # ------------------------------------------------------------------
@@ -41,7 +41,7 @@ class KnowledgePackMetadata44:
     def _next_timestamp(self) -> int:
         """
         Deterministic timestamp generator.
-        Runtime 4.4 PRO forbids real-time calls.
+        Runtime 4.5 PRO forbids real-time calls.
         """
         ts = self._counter
         self._counter += 1
@@ -55,15 +55,20 @@ class KnowledgePackMetadata44:
     # ------------------------------------------------------------------
     def initialize(self):
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # ATTACH METADATA TO PACK
@@ -74,7 +79,11 @@ class KnowledgePackMetadata44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Metadata engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Metadata engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         try:
             meta = pack.metadata or {}
@@ -101,14 +110,20 @@ class KnowledgePackMetadata44:
                         "status": "error",
                         "code": "invalid_metadata_value",
                         "field": key,
+                        "version": "4.5",
                     }
 
             pack.metadata = meta
-            return {"status": "ok", "pack": pack}
+            return {"status": "ok", "pack": pack, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "attach_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "attach_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # MERGE METADATA
@@ -120,7 +135,11 @@ class KnowledgePackMetadata44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Metadata engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Metadata engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         try:
             meta = pack.metadata or {}
@@ -133,17 +152,23 @@ class KnowledgePackMetadata44:
                         "status": "error",
                         "code": "invalid_metadata_value",
                         "field": key,
+                        "version": "4.5",
                     }
 
             # Update timestamp deterministically
             meta["updated_at"] = self._next_timestamp()
 
             pack.metadata = meta
-            return {"status": "ok", "pack": pack}
+            return {"status": "ok", "pack": pack, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "merge_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "merge_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # STATUS
@@ -154,4 +179,5 @@ class KnowledgePackMetadata44:
             "initialized": self.initialized,
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
+            "version": "4.5",
         }
