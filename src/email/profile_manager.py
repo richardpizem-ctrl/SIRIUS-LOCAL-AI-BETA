@@ -4,17 +4,17 @@ import json
 
 class EmailProfileManager:
     """
-    EmailProfileManager 4.4
+    EmailProfileManager 4.5
     Handles creation, loading, listing, and deletion of
     email sender profiles for SIRIUS LOCAL AI.
 
-    New in 4.4:
-        - Deterministic Runtime4.4 behavior
-        - Strict profile name validation
+    Updated in 4.5:
+        - Deterministic Runtime4.5 behavior
+        - Strict profile name validation (unchanged)
         - Stable file operations with safe error handling
         - Deep-copy isolation for all operations
-        - Stable output contract for EmailManager 4.4
-        - Self‑Repair Layer 4.4 compatible metadata
+        - Stable output contract for EmailManager 4.5
+        - Self‑Repair Layer 4.5 compatible metadata
     """
 
     VALID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
