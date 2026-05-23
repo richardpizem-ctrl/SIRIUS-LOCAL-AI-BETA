@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – ENVOY 4.4 Package
+SIRIUS LOCAL AI – ENVOY 4.5 Package
 -----------------------------------
 
 Provides:
@@ -9,15 +9,15 @@ Provides:
 - EnvoyConverter4     (conversion to Knowledge Pack 2.0 format)
 
 This package handles external data ingestion, validation,
-quarantine isolation and safe conversion for Runtime 4.4.
+quarantine isolation and safe conversion for Runtime 4.5.
 
-Security Notes (Runtime 4.4):
+Security Notes (Runtime 4.5):
 - Only static imports are allowed.
 - No dynamic loading, no eval, no reflection.
 - __all__ must contain only verified public symbols.
 - This file must not contain executable logic.
-- Fully compatible with Security Family 4.4.
-- Self‑Repair 4.4 ready.
+- Fully compatible with Security Family 4.5.
+- Self‑Repair 4.5 ready.
 """
 
 # ---------------------------------------------------------
@@ -33,8 +33,8 @@ from .envoy_converter import EnvoyConverter4
 # PACKAGE METADATA
 # ---------------------------------------------------------
 
-ENVOY_VERSION = "4.4"
-ENVOY_SECURITY_FAMILY = "4.4"
+ENVOY_VERSION = "4.5"
+ENVOY_SECURITY_FAMILY = "4.5"
 ENVOY_SELF_REPAIR_READY = True
 ENVOY_OFFLINE_DETERMINISTIC = True
 SAFE_MODE_SUPPORTED = True
