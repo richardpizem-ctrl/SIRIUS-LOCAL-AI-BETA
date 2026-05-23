@@ -1,21 +1,21 @@
-# toolbar_4_4.py
-# SIRIUS LOCAL AI – UI Toolbar Component 4.4.0 PRO
+# toolbar_4_5.py
+# SIRIUS LOCAL AI – UI Toolbar Component 4.5.0 PRO
 # Deterministic, safe-mode compatible UI component (Phase‑4/5 ready)
 
-from .manager_4_4 import UIComponent44
+from .manager_4_5 import UIComponent45
 
 
-class Toolbar44(UIComponent44):
+class Toolbar45(UIComponent45):
     """
-    Toolbar 4.4.0 PRO
+    Toolbar 4.5.0 PRO
 
     Responsibilities:
         - Provide a simple toolbar UI component
         - Demonstrate Phase‑4 lifecycle behavior
         - Produce deterministic layout blocks
-        - Support safe-mode and degraded-mode (Security Family 4.4)
+        - Support safe-mode and degraded-mode (Security Family 4.5)
         - Offline-only, no side-effects
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
     """
 
     def __init__(self):
@@ -40,7 +40,7 @@ class Toolbar44(UIComponent44):
 
     def render(self):
         """
-        Return layout blocks for PixelLayoutEngine44.
+        Return layout blocks for PixelLayoutEngine45.
         Phase‑4 requires deterministic, structured output.
         """
 
