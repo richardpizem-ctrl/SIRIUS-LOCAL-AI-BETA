@@ -1,10 +1,10 @@
 """
-SIRIUS LOCAL AI – UI Sandbox 4.4.0 (PRO)
+SIRIUS LOCAL AI – UI Sandbox 4.5.0 (PRO)
 
-Hardened sandbox layer for UI Automation Engine 4.4.
+Hardened sandbox layer for UI Automation Engine 4.5.
 
 Responsibilities:
-- Enforce Security Family 4.4 rules for UI actions
+- Enforce Security Family 4.5 rules for UI actions
 - Mediate all OS‑level UI operations
 - Apply STRANGER‑mode and behavior‑based restrictions
 - Enforce time limits and action quotas
@@ -14,15 +14,15 @@ Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - All OS calls must go through verified capability wrappers.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any, Optional
 
 
-class UISandbox44:
+class UISandbox45:
     """
-    Hardened UI sandbox for Runtime 4.4 (PRO).
+    Hardened UI sandbox for Runtime 4.5 (PRO).
     All UI actions must go through this class.
     """
 
@@ -39,6 +39,8 @@ class UISandbox44:
         behavior_monitor=None,
         identity: str = "OWNER",
     ):
+        self.version: str = "4.5.0"
+
         self.capability_adapter = capability_adapter
         self.security_policy = security_policy
         self.time_limiter = time_limiter
@@ -54,12 +56,16 @@ class UISandbox44:
     # ---------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": self.version}
 
         # Capability adapter
         if not self.capability_adapter:
             self.degraded_mode = True
-            return {"status": "error", "code": "no_capability_adapter"}
+            return {
+                "status": "error",
+                "code": "no_capability_adapter",
+                "version": self.version,
+            }
 
         for m in self.REQUIRED_CAPABILITY_METHODS:
             if not hasattr(self.capability_adapter, m):
@@ -68,6 +74,7 @@ class UISandbox44:
                     "status": "error",
                     "code": "invalid_capability_adapter_interface",
                     "missing": m,
+                    "version": self.version,
                 }
 
         # Security policy (optional but validated if present)
@@ -79,6 +86,7 @@ class UISandbox44:
                         "status": "error",
                         "code": "invalid_security_policy_interface",
                         "missing": m,
+                        "version": self.version,
                     }
 
         # Time limiter (optional)
@@ -90,6 +98,7 @@ class UISandbox44:
                         "status": "error",
                         "code": "invalid_time_limiter_interface",
                         "missing": m,
+                        "version": self.version,
                     }
 
         # Behavior monitor (optional)
@@ -101,6 +110,7 @@ class UISandbox44:
                         "status": "error",
                         "code": "invalid_behavior_monitor_interface",
                         "missing": m,
+                        "version": self.version,
                     }
 
         try:
@@ -111,6 +121,7 @@ class UISandbox44:
                     "status": "error",
                     "code": "capability_init_failed",
                     "details": cap_res,
+                    "version": self.version,
                 }
 
             if self.security_policy:
@@ -121,6 +132,7 @@ class UISandbox44:
                         "status": "error",
                         "code": "policy_init_failed",
                         "details": pol_res,
+                        "version": self.version,
                     }
 
             if self.time_limiter:
@@ -131,6 +143,7 @@ class UISandbox44:
                         "status": "error",
                         "code": "time_limiter_init_failed",
                         "details": tl_res,
+                        "version": self.version,
                     }
 
             if self.behavior_monitor:
@@ -141,14 +154,20 @@ class UISandbox44:
                         "status": "error",
                         "code": "behavior_monitor_init_failed",
                         "details": bm_res,
+                        "version": self.version,
                     }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": self.version}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "exception", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "exception",
+                "exception": str(exc),
+                "version": self.version,
+            }
 
     # ---------------------------------------------------------------------
     # PUBLIC API – EXECUTE UI ACTION
@@ -166,10 +185,15 @@ class UISandbox44:
                 "action": action,
                 "element": element_ref,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         if not isinstance(element_ref, dict) or not isinstance(action, str):
-            return {"status": "error", "code": "invalid_arguments"}
+            return {
+                "status": "error",
+                "code": "invalid_arguments",
+                "version": self.version,
+            }
 
         if not self.initialized:
             init = self.initialize()
@@ -178,6 +202,7 @@ class UISandbox44:
                     "status": "error",
                     "code": "sandbox_not_initialized",
                     "details": init,
+                    "version": self.version,
                 }
 
         payload = payload or {}
@@ -195,6 +220,7 @@ class UISandbox44:
                         "layer": "policy",
                         "policy": policy_result,
                         "degraded_mode": self.degraded_mode,
+                        "version": self.version,
                     }
             except Exception as exc:
                 self.degraded_mode = True
@@ -202,6 +228,7 @@ class UISandbox44:
                     "status": "error",
                     "code": "policy_exception",
                     "exception": str(exc),
+                    "version": self.version,
                 }
 
         # 2. Time limit / quota check
@@ -217,6 +244,7 @@ class UISandbox44:
                         "layer": "time_limiter",
                         "time_limit": limit_result,
                         "degraded_mode": self.degraded_mode,
+                        "version": self.version,
                     }
             except Exception as exc:
                 self.degraded_mode = True
@@ -224,6 +252,7 @@ class UISandbox44:
                     "status": "error",
                     "code": "time_limiter_exception",
                     "exception": str(exc),
+                    "version": self.version,
                 }
 
         # 3. Execute via capability adapter
@@ -257,6 +286,7 @@ class UISandbox44:
                 "status": "ok",
                 "result": result,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         except Exception as exc:
@@ -265,4 +295,5 @@ class UISandbox44:
                 "status": "error",
                 "code": "capability_exception",
                 "exception": str(exc),
+                "version": self.version,
             }
