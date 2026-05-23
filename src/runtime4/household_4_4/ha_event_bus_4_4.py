@@ -1,17 +1,17 @@
 """
-SIRIUS LOCAL AI – Household Event Bus 4.4.0
+SIRIUS LOCAL AI – Household Event Bus 4.5.0
 
 Účel:
 - deterministický event systém pre domácnosť
 - žiadne async, žiadne vlákna, žiadne dynamické importy
 - 100 % offline, bezpečné
 - používaný modulmi:
-    - State Manager 4.4
-    - Routine Engine 4.4
-    - Task Planner 4.4
-    - Diagnostics 4.4
-    - Multi‑Step Executor 4.4
-    - Household Core 4.4
+    - State Manager 4.5
+    - Routine Engine 4.5
+    - Task Planner 4.5
+    - Diagnostics 4.5
+    - Multi‑Step Executor 4.5
+    - Household Core 4.5
 
 Event:
 {
@@ -22,18 +22,18 @@ Event:
 Handler:
 callable(event_name, payload)
 
-Security Family 4.4:
+Security Family 4.5:
 - žiadne nebezpečné typy
 - deterministické správanie
-- Self‑Repair 4.4 ready
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Callable
 
 
-class HouseholdEventBus44:
+class HouseholdEventBus45:
     """
-    Deterministic event bus pre Household Automation 4.4.
+    Deterministic event bus pre Household Automation 4.5.
     """
 
     def __init__(self):
@@ -69,51 +69,64 @@ class HouseholdEventBus44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.handlers = {}
             self.event_log = []
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {"status": "error", "exception": str(exc), "version": "4.5"}
 
     # ---------------------------------------------------------
     # REGISTER HANDLER
     # ---------------------------------------------------------
     def on(self, event_name: str, handler: Callable[[str, Dict[str, Any]], None]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Event bus disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Event bus disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_event_name(event_name):
-            return {"status": "error", "code": "invalid_event_name"}
+            return {"status": "error", "code": "invalid_event_name", "version": "4.5"}
 
         if not callable(handler):
-            return {"status": "error", "code": "invalid_handler"}
+            return {"status": "error", "code": "invalid_handler", "version": "4.5"}
 
         try:
             if event_name not in self.handlers:
                 self.handlers[event_name] = []
             self.handlers[event_name].append(handler)
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "handler_register_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "handler_register_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # EMIT EVENT
     # ---------------------------------------------------------
     def emit(self, event_name: str, payload: Dict[str, Any]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Event bus disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Event bus disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not self._validate_event_name(event_name):
-            return {"status": "error", "code": "invalid_event_name"}
+            return {"status": "error", "code": "invalid_event_name", "version": "4.5"}
 
         if not self._validate_payload(payload):
-            return {"status": "error", "code": "invalid_payload"}
+            return {"status": "error", "code": "invalid_payload", "version": "4.5"}
 
         # Log event
         self._log_event(event_name, payload)
@@ -127,7 +140,7 @@ class HouseholdEventBus44:
                     # Handler nesmie zabiť event bus
                     self.degraded_mode = True
 
-        return {"status": "ok", "degraded_mode": self.degraded_mode}
+        return {"status": "ok", "degraded_mode": self.degraded_mode, "version": "4.5"}
 
     # ---------------------------------------------------------
     # INTERNAL: LOG EVENT
@@ -146,10 +159,15 @@ class HouseholdEventBus44:
     # ---------------------------------------------------------
     def get_event_log(self) -> Dict[str, Any]:
         try:
-            return {"status": "ok", "events": list(self.event_log)}
+            return {"status": "ok", "events": list(self.event_log), "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "log_read_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "log_read_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # CLEAR LOG
@@ -157,10 +175,15 @@ class HouseholdEventBus44:
     def clear_log(self) -> Dict[str, Any]:
         try:
             self.event_log = []
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "log_clear_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "log_clear_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -173,4 +196,5 @@ class HouseholdEventBus44:
             "degraded_mode": self.degraded_mode,
             "registered_event_types": len(self.handlers),
             "log_size": len(self.event_log),
+            "version": "4.5",
         }
