@@ -1,8 +1,8 @@
 """
-Health Responses – Safe Recommendation Generator 4.4.0 (PRO)
+Health Responses – Safe Recommendation Generator 4.5.0 (PRO)
 ------------------------------------------------------------
 Generates non‑medical, offline, identity‑aware recommendations based on
-classified categories from health_rules_4_4.py.
+classified categories from health_rules_4_5.py.
 
 This module NEVER:
 - dáva diagnózy
@@ -13,7 +13,6 @@ Len bezpečné, všeobecné, deterministické odporúčania.
 """
 
 from typing import Dict
-
 
 # ---------------------------------------------------------------------
 # BASE RESPONSES (DETERMINISTIC, OFFLINE, NON‑MEDICAL)
@@ -27,9 +26,8 @@ BASE_RESPONSES = {
     "unknown": "Nie som si istý, čo presne cítiš. Skús mi to opísať trochu podrobnejšie.",
 }
 
-
 # ---------------------------------------------------------------------
-# IDENTITY‑AWARE SAFETY NOTES (Security Family 4.4)
+# IDENTITY‑AWARE SAFETY NOTES (Security Family 4.5)
 # ---------------------------------------------------------------------
 IDENTITY_NOTES = {
     "OWNER": "Ak by sa tvoj stav zhoršil, sleduj to a v prípade potreby kontaktuj odborníka.",
@@ -37,7 +35,6 @@ IDENTITY_NOTES = {
     "CHILD": "Ak sa necítiš dobre, povedz to dospelému, ktorému dôveruješ.",
     "STRANGER": "Ak sa necítiš dobre, skús si oddýchnuť a sleduj svoj stav.",
 }
-
 
 # ---------------------------------------------------------------------
 # PUBLIC API – BUILD SAFE RESPONSE
@@ -53,7 +50,8 @@ def build_response(category: str, context) -> Dict[str, str]:
         "message": str,
         "safety_note": str,
         "identity": str,
-        "degraded_mode": bool
+        "degraded_mode": bool,
+        "version": "4.5.0"
     }
     """
 
@@ -66,6 +64,7 @@ def build_response(category: str, context) -> Dict[str, str]:
             "safety_note": context.default_safety_note,
             "identity": context.identity,
             "degraded_mode": getattr(context, "degraded_mode", False),
+            "version": "4.5.0",
         }
 
     try:
@@ -80,6 +79,7 @@ def build_response(category: str, context) -> Dict[str, str]:
             "safety_note": safety_note,
             "identity": context.identity,
             "degraded_mode": getattr(context, "degraded_mode", False),
+            "version": "4.5.0",
         }
 
     except Exception as exc:
@@ -95,6 +95,7 @@ def build_response(category: str, context) -> Dict[str, str]:
             "identity": context.identity,
             "exception": str(exc),
             "degraded_mode": True,
+            "version": "4.5.0",
         }
 
 
