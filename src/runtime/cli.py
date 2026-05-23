@@ -7,16 +7,17 @@ from workflow.logger import WorkflowLogger
 
 class CLI:
     """
-    CLI for SIRIUS LOCAL AI 4.4
+    CLI for SIRIUS LOCAL AI 4.5
     ---------------------------
     - OWNER identity enforcement
     - Security Family integration
     - Pretty JSON output (deterministic)
     - Command metadata support
     - Dependency injection for managers
-    - Deterministic Runtime4.4 behavior
-    - Self‑Repair Layer 4.4 compatible
+    - Deterministic Runtime4.5 behavior
+    - Self‑Repair Layer 4.5 compatible
     - Stable error model
+    - Metadata version bumped to 4.5
     """
 
     def __init__(self, context, managers: dict):
@@ -46,7 +47,8 @@ class CLI:
         if len(argv) < 2:
             self._print_json({
                 "status": "error",
-                "message": "Usage: python sirius.py <command> [args...]"
+                "message": "Usage: python sirius.py <command> [args...]",
+                "cli_version": "4.5"
             })
             return
 
@@ -62,6 +64,7 @@ class CLI:
             registry = CommandRegistry._commands
             help_cmd = HelpCommand(registry, self.context)
             result = help_cmd.execute(args[0]) if args else help_cmd.execute()
+            result["cli_version"] = "4.5"
             self._print_json(result)
             return
 
@@ -74,7 +77,8 @@ class CLI:
             self.logger.error(f"Unknown command: {command_name}")
             self._print_json({
                 "status": "error",
-                "message": f"Unknown command: {command_name}"
+                "message": f"Unknown command: {command_name}",
+                "cli_version": "4.5"
             })
             return
 
@@ -88,7 +92,8 @@ class CLI:
                 "message": (
                     f"Command '{command_name}' requires identity "
                     f"'{required_identity}'."
-                )
+                ),
+                "cli_version": "4.5"
             })
             return
 
@@ -102,7 +107,8 @@ class CLI:
             self._print_json({
                 "status": "error",
                 "message": "Internal error: failed to initialize command.",
-                "details": str(exc)
+                "details": str(exc),
+                "cli_version": "4.5"
             })
             return
 
@@ -113,7 +119,8 @@ class CLI:
             self.logger.error(f"Validation failed for: {command_name}")
             self._print_json({
                 "status": "error",
-                "message": "Validation failed."
+                "message": "Validation failed.",
+                "cli_version": "4.5"
             })
             return
 
@@ -127,6 +134,7 @@ class CLI:
             if result is None:
                 result = {"status": "success"}
 
+            result["cli_version"] = "4.5"
             self._print_json(result)
 
         except Exception as exc:
@@ -134,7 +142,8 @@ class CLI:
             self._print_json({
                 "status": "error",
                 "message": "Execution failed.",
-                "details": str(exc)
+                "details": str(exc),
+                "cli_version": "4.5"
             })
             return
 
