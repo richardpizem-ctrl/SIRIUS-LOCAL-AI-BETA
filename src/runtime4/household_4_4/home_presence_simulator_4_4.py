@@ -1,23 +1,23 @@
 """
-SIRIUS LOCAL AI – Home Presence Simulator 4.4.0 (PRO)
+SIRIUS LOCAL AI – Home Presence Simulator 4.5.0 (PRO)
 
-Účel:
-- deterministická simulácia prítomnosti v domácnosti
-- žiadne AI heuristiky, žiadne náhodné generovanie
-- 100 % offline
+Purpose:
+- deterministic household presence simulation
+- no AI heuristics, no randomness
+- 100% offline
 
-Security Family 4.4:
-- deterministické správanie
-- safe‑mode kompatibilita
-- Self‑Repair 4.4 ready
+Security Family 4.5:
+- deterministic behavior
+- safe‑mode compatible
+- Self‑Repair 4.5 ready
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class HomePresenceSimulator44:
+class HomePresenceSimulator45:
     """
-    Deterministic presence simulator pre domácnosť.
+    Deterministic presence simulator for household automation 4.5.
     """
 
     def __init__(self, state_manager=None, event_bus=None):
@@ -28,10 +28,10 @@ class HomePresenceSimulator44:
         self.state_manager = state_manager
         self.event_bus = event_bus
 
-        # názov → scenár
+        # scenario_name → scenario definition
         self.scenarios: Dict[str, Dict[str, Any]] = {}
 
-        # aktuálne aktívny scenár
+        # currently active scenario
         self.active_scenario: Optional[str] = None
 
     # ---------------------------------------------------------
@@ -59,7 +59,7 @@ class HomePresenceSimulator44:
     # ---------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             modules = [self.state_manager, self.event_bus]
@@ -68,33 +68,45 @@ class HomePresenceSimulator44:
                     res = m.initialize()
                     if isinstance(res, dict) and res.get("status") == "error":
                         self.degraded_mode = True
-                        return {"status": "error", "code": "module_init_failed"}
+                        return {
+                            "status": "error",
+                            "code": "module_init_failed",
+                            "version": "4.5",
+                        }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # REGISTER SCENARIO
     # ---------------------------------------------------------
     def register_scenario(self, scenario: Dict[str, Any]) -> Dict[str, Any]:
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Presence simulator disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Presence simulator disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         name = scenario.get("name")
         steps = scenario.get("steps")
 
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name in self.scenarios:
-            return {"status": "error", "code": "scenario_exists"}
+            return {"status": "error", "code": "scenario_exists", "version": "4.5"}
 
         if not self._validate_steps(steps):
-            return {"status": "error", "code": "invalid_steps"}
+            return {"status": "error", "code": "invalid_steps", "version": "4.5"}
 
         try:
             self.scenarios[name] = scenario
@@ -105,31 +117,45 @@ class HomePresenceSimulator44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "register_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "register_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # LIST SCENARIOS
     # ---------------------------------------------------------
     def list_scenarios(self) -> Dict[str, Any]:
         try:
-            return {"status": "ok", "scenarios": list(self.scenarios.keys())}
+            return {
+                "status": "ok",
+                "scenarios": list(self.scenarios.keys()),
+                "version": "4.5",
+            }
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "list_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "list_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # ACTIVATE SCENARIO
     # ---------------------------------------------------------
     def activate(self, name: str) -> Dict[str, Any]:
         if not self._validate_str(name):
-            return {"status": "error", "code": "invalid_name"}
+            return {"status": "error", "code": "invalid_name", "version": "4.5"}
 
         if name not in self.scenarios:
-            return {"status": "error", "code": "scenario_not_found"}
+            return {"status": "error", "code": "scenario_not_found", "version": "4.5"}
 
         try:
             self.active_scenario = name
@@ -140,11 +166,16 @@ class HomePresenceSimulator44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "active": name}
+            return {"status": "ok", "active": name, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "activate_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "activate_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # DEACTIVATE SCENARIO
@@ -160,21 +191,26 @@ class HomePresenceSimulator44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "deactivate_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "deactivate_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # TICK – APPLY ACTIONS FOR GIVEN TIME
     # ---------------------------------------------------------
     def tick(self, time_str: str) -> Dict[str, Any]:
         if not self._validate_str(time_str):
-            return {"status": "error", "code": "invalid_time"}
+            return {"status": "error", "code": "invalid_time", "version": "4.5"}
 
         if not self.active_scenario:
-            return {"status": "ok", "applied": []}
+            return {"status": "ok", "applied": [], "version": "4.5"}
 
         try:
             scenario = self.scenarios[self.active_scenario]
@@ -214,11 +250,16 @@ class HomePresenceSimulator44:
                 except Exception:
                     self.degraded_mode = True
 
-            return {"status": "ok", "applied": applied}
+            return {"status": "ok", "applied": applied, "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "tick_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "tick_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ---------------------------------------------------------
     # STATUS
@@ -231,4 +272,5 @@ class HomePresenceSimulator44:
             "degraded_mode": self.degraded_mode,
             "active_scenario": self.active_scenario,
             "scenarios_count": len(self.scenarios),
+            "version": "4.5",
         }
