@@ -9,6 +9,11 @@ Responsible for:
 - Hash verification against integrity map
 - Detecting missing or modified files
 - Producing structured integrity reports
+
+Notes:
+- Deterministic, offline, isolated
+- No dynamic imports, no eval, no reflection
+- Fully compatible with Runtime 4.5
 """
 
 import os
@@ -23,9 +28,13 @@ class IntegrityScanner:
     """
 
     def __init__(self, integrity_map_path="config/integrity_map.json"):
+        self.version = "4.5.0"
         self.integrity_map_path = integrity_map_path
         self.integrity_map = self._load_integrity_map()
 
+    # ---------------------------------------------------------
+    # LOAD INTEGRITY MAP
+    # ---------------------------------------------------------
     def _load_integrity_map(self):
         """Loads the baseline integrity map from JSON."""
         if not os.path.exists(self.integrity_map_path):
@@ -37,6 +46,9 @@ class IntegrityScanner:
         except Exception:
             return {}
 
+    # ---------------------------------------------------------
+    # HASH FILE
+    # ---------------------------------------------------------
     def _hash_file(self, path):
         """Returns SHA256 hash of a file."""
         try:
@@ -48,16 +60,21 @@ class IntegrityScanner:
         except Exception:
             return None
 
+    # ---------------------------------------------------------
+    # SCAN MODULES
+    # ---------------------------------------------------------
     def scan(self):
         """
         Scans all files listed in the integrity map.
         Returns a structured integrity report.
         """
+
         if not self.integrity_map:
             return {
                 "status": "UNKNOWN",
                 "details": "Integrity map missing or unreadable",
                 "corrupted_modules": [],
+                "version": self.version,
             }
 
         corrupted = []
@@ -77,10 +94,12 @@ class IntegrityScanner:
                 "status": "OK",
                 "details": "All modules verified",
                 "corrupted_modules": [],
+                "version": self.version,
             }
 
         return {
             "status": "CORRUPTED",
             "details": f"{len(corrupted)} issues detected",
             "corrupted_modules": corrupted,
+            "version": self.version,
         }
