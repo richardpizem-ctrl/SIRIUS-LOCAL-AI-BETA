@@ -1,13 +1,13 @@
-# timeline_ui_4_4.py
-# SIRIUS LOCAL AI – TimelineUI 4.4.0 (Phase‑4 PRO)
+# timeline_ui_4_5.py
+# SIRIUS LOCAL AI – TimelineUI 4.5.0 (Phase‑4 PRO)
 # Deterministic, offline-only timeline logic for PixelLayoutEngine (Phase‑4)
 
 from typing import List, Dict, Any, Optional
 
 
-class TimelineUI44:
+class TimelineUI45:
     """
-    TimelineUI44 is the logical layer of the timeline.
+    TimelineUI45 is the logical layer of the timeline.
     It generates layout blocks for PixelLayoutEngine (Phase‑4).
 
     Features (Phase‑4 PRO):
@@ -21,7 +21,7 @@ class TimelineUI44:
         - selection box
         - deterministic, offline-only behavior
         - safe-mode & degraded-mode compatible
-        - Security Family 4.4 compliant
+        - Security Family 4.5 compliant
     """
 
     def __init__(self):
