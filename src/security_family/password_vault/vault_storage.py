@@ -1,36 +1,37 @@
 """
-VaultStorage – Runtime 4.4.0 (PRO)
+VaultStorage – Runtime 4.5.0 (PRO)
 ----------------------------------
-Encrypted JSON storage layer for Password Vault 4.4.
+Encrypted JSON storage layer for Password Vault 4.5.
 
 Features:
 - deterministic, offline‑only behavior
-- AES‑256‑GCM encryption/decryption (vault_crypto_4_4)
+- AES‑256‑GCM encryption/decryption (vault_crypto_4_5)
 - PBKDF2‑HMAC‑SHA256 master key derivation
 - identity‑aware, safe‑mode and degraded‑mode support
 - structured error handling
 - corruption‑tolerant read/write
-- Security Family 4.4 compliant
+- Security Family 4.5 compliant
 """
 
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from .vault_crypto_4_4 import encrypt_data_44, decrypt_data_44, derive_master_key_44
+from .vault_crypto_4_5 import encrypt_data_45, decrypt_data_45, derive_master_key_45
 
 
-class VaultStorage44:
+class VaultStorage45:
     """
-    Low‑level encrypted storage for PasswordVault44.
+    Low‑level encrypted storage for PasswordVault45.
     Deterministic, offline, identity‑aware.
     """
 
     def __init__(
         self,
         storage_path: str,
-        master_secret_env: str = "SIRIUS_VAULT_MASTER_4_4",
+        master_secret_env: str = "SIRIUS_VAULT_MASTER_4_5",
     ):
+        self.version = "4.5.0"
         self.path = Path(storage_path)
         self.master_secret_env = master_secret_env
 
@@ -53,8 +54,8 @@ class VaultStorage44:
 
         try:
             from os import getenv
-            secret = getenv(self.master_secret_env, "CHANGE_ME_MASTER_SECRET_4_4")
-            return derive_master_key_44(secret)
+            secret = getenv(self.master_secret_env, "CHANGE_ME_MASTER_SECRET_4_5")
+            return derive_master_key_45(secret)
         except Exception:
             self.degraded_mode = True
             return b"\x00" * 32
@@ -94,7 +95,7 @@ class VaultStorage44:
                 "ciphertext": bytes.fromhex(container.get("ciphertext", "")),
             }
 
-            decrypted = decrypt_data_44(payload, key)
+            decrypted = decrypt_data_45(payload, key)
 
             if decrypted.get("status") != "ok":
                 self.degraded_mode = True
@@ -115,7 +116,7 @@ class VaultStorage44:
 
         try:
             key = self._get_master_key()
-            encrypted = encrypt_data_44(data, key)
+            encrypted = encrypt_data_45(data, key)
 
             if encrypted.get("status") != "ok":
                 self.degraded_mode = True
