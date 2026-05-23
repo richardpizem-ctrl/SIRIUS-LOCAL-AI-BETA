@@ -4,21 +4,20 @@ from context.context_manager import ContextManager
 
 class ContextHistoryCommand(BaseCommand):
     """
-    ContextHistoryCommand 4.4
+    ContextHistoryCommand 4.5
     Displays the snapshot history of the context with optional limit.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic ordering
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Safe execution via BaseCommand.run()
-        - Stable output for Runtime4.4 and NL Router 4.4
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic ordering (unchanged)
+        - Stable output for Runtime4.5 and NL Router 4.5
+        - Unified error model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "context-history"
     description = "Displays the snapshot history of the context."
@@ -38,7 +37,7 @@ class ContextHistoryCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
