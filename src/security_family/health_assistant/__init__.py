@@ -1,22 +1,22 @@
 """
-SIRIUS LOCAL AI – Security Family / Health Assistant 4.4.0 (PRO)
+SIRIUS LOCAL AI – Security Family / Health Assistant 4.5.0 (PRO)
 
 Non‑medical, offline, deterministic helper for basic well‑being and
 "first‑aid style" recommendations. No diagnoses, no medication advice,
 no medical claims.
 
-Responsibilities (4.4.0):
+Responsibilities (4.5.0):
 - Accept natural‑language descriptions of how the user feels
 - Map them to safe, generic recommendation categories
 - Produce identity‑aware, sandbox‑safe responses
-- Enforce Security Family 4.4 rules
+- Enforce Security Family 4.5 rules
 - Support safe‑mode and degraded‑mode behavior
 - Deterministic, offline‑only rule engine
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from .health_rules import classify_health_state
@@ -24,12 +24,12 @@ from .health_responses import build_response
 from .health_context import HealthContext
 
 
-class HealthAssistant44:
+class HealthAssistant45:
     """
-    Entry point for the Health Assistant inside Security Family 4.4.
+    Entry point for the Health Assistant inside Security Family 4.5.
 
     Usage:
-        assistant = HealthAssistant44(identity="OWNER")
+        assistant = HealthAssistant45(identity="OWNER")
         reply = assistant.handle("bolí ma hlava a som unavený")
     """
 
@@ -40,6 +40,7 @@ class HealthAssistant44:
         if identity not in self.VALID_IDENTITIES:
             identity = "STRANGER"
 
+        self.version = "4.5.0"
         self.context = HealthContext(identity=identity)
 
         self.safe_mode: bool = False
@@ -60,7 +61,8 @@ class HealthAssistant44:
             "message": str,
             "safety_note": str,
             "identity": str,
-            "degraded_mode": bool
+            "degraded_mode": bool,
+            "version": "4.5.0"
         }
         """
 
@@ -73,6 +75,7 @@ class HealthAssistant44:
                 "safety_note": self.context.default_safety_note,
                 "identity": self.context.identity,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         try:
@@ -91,6 +94,7 @@ class HealthAssistant44:
                     "safety_note": self.context.default_safety_note,
                     "identity": self.context.identity,
                     "degraded_mode": self.degraded_mode,
+                    "version": self.version,
                 }
 
             # 1. Deterministic classification
@@ -106,6 +110,7 @@ class HealthAssistant44:
                 "safety_note": response["safety_note"],
                 "identity": self.context.identity,
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
         except Exception as exc:
@@ -121,7 +126,8 @@ class HealthAssistant44:
                 "identity": self.context.identity,
                 "exception": str(exc),
                 "degraded_mode": self.degraded_mode,
+                "version": self.version,
             }
 
 
-__all__ = ["HealthAssistant44"]
+__all__ = ["HealthAssistant45"]
