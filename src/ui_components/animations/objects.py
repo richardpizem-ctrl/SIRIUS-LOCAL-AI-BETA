@@ -1,12 +1,12 @@
-# objects_4_4.py
-# SIRIUS LOCAL AI – UI Drawable Objects 4.4.0 PRO
+# objects_4_5.py
+# SIRIUS LOCAL AI – UI Drawable Objects 4.5.0 PRO
 # Deterministic, safe-mode compatible drawing primitives for UI components
 
 from dataclasses import dataclass
 
 
 @dataclass
-class DrawableObject44:
+class DrawableObject45:
     """
     Base graphical object – all shapes inherit from this.
 
@@ -15,7 +15,7 @@ class DrawableObject44:
         - degraded-mode fallback
         - deterministic draw() behavior
         - PixelLayoutEngine Phase‑4 ready
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
         - Offline-only, no side-effects
     """
 
@@ -46,7 +46,7 @@ class DrawableObject44:
 # CIRCLE
 # ---------------------------------------------------------
 
-class Circle44(DrawableObject44):
+class Circle45(DrawableObject45):
     def __init__(self, x, y, radius, color):
         super().__init__(x, y, color)
         self.radius = radius
@@ -66,7 +66,7 @@ class Circle44(DrawableObject44):
 # RECTANGLE
 # ---------------------------------------------------------
 
-class Rectangle44(DrawableObject44):
+class Rectangle45(DrawableObject45):
     def __init__(self, x, y, width, height, color):
         super().__init__(x, y, color)
         self.width = width
@@ -87,7 +87,7 @@ class Rectangle44(DrawableObject44):
 # LINE
 # ---------------------------------------------------------
 
-class Line44(DrawableObject44):
+class Line45(DrawableObject45):
     def __init__(self, x, y, x2, y2, color):
         super().__init__(x, y, color)
         self.x2 = x2
