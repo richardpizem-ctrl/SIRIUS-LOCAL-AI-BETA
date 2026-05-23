@@ -1,18 +1,18 @@
-# confirm_4_4.py
-# SIRIUS LOCAL AI – ConfirmDialog 4.4.0 PRO
+# confirm_4_5.py
+# SIRIUS LOCAL AI – ConfirmDialog 4.5.0 PRO
 # Deterministic, offline-only confirmation dialog (UI Manager Phase‑4/5 compatible)
 
-class ConfirmDialog44:
+class ConfirmDialog45:
     """
-    ConfirmDialog 4.4.0 PRO
+    ConfirmDialog 4.5.0 PRO
 
     Responsibilities:
         - Provide deterministic confirmation results
-        - Integrate with UI Manager 4.4 (Phase‑4 logic, Phase‑5 ready)
+        - Integrate with UI Manager 4.5 (Phase‑4 logic, Phase‑5 ready)
         - Support safe-mode and degraded-mode
-        - Provide structured confirmation package (4.4 format)
+        - Provide structured confirmation package (4.5 format)
         - Offline-only, no side-effects
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
 
     This is a logic-layer mock.
     The real UI window will be injected by UI Manager Phase‑5.
