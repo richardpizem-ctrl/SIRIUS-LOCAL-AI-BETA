@@ -6,7 +6,7 @@ log = logging.getLogger(__name__)
 
 class CommandParser:
     """
-    CommandParser 4.4
+    CommandParser 4.5
     --------------------
     Parses structured commands like:
 
@@ -21,12 +21,13 @@ class CommandParser:
             "args": ["src/a.py", "modules/a.py"]
         }
 
-    New in 4.4:
-        - Deterministic AST contract
-        - Strict node whitelist (Self‑Repair 4.4)
-        - Stable error model for Runtime4.4
+    Updated in 4.5:
+        - Deterministic AST contract (unchanged)
+        - Strict node whitelist (Self‑Repair 4.5)
+        - Stable error model for Runtime4.5
         - Guaranteed safe argument extraction
         - No execution, no evaluation, no side‑effects
+        - Metadata version bumped to 4.5
     """
 
     def __init__(self):
@@ -111,7 +112,8 @@ class CommandParser:
             parsed = {
                 "module": module,
                 "method": method,
-                "args": args
+                "args": args,
+                "parser_version": "4.5"
             }
 
             log.info("PARSER: Parsed command → %s", parsed)
