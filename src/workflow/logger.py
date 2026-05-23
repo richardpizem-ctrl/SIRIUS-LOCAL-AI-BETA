@@ -1,5 +1,5 @@
-# workflow/logger_4_4.py
-# SIRIUS LOCAL AI – Workflow Logger 4.4.0 PRO
+# workflow/logger_4_5.py
+# SIRIUS LOCAL AI – Workflow Logger 4.5.0 PRO
 # Deterministic, safe-mode compatible logging subsystem (Phase‑4/5 ready)
 
 import datetime
@@ -7,17 +7,17 @@ import os
 from typing import Optional
 
 
-class WorkflowLogger44:
+class WorkflowLogger45:
     """
-    WorkflowLogger 4.4.0 PRO
+    WorkflowLogger 4.5.0 PRO
 
     Responsibilities:
         - Deterministic workflow logging
-        - Safe-mode and degraded-mode behavior (Security Family 4.4)
+        - Safe-mode and degraded-mode behavior (Security Family 4.5)
         - Error-safe file writes
         - Structured log formatting
         - Offline-only, no side-effects outside log file
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
         - Phase‑5 ready (sandbox logging hooks)
     """
 
@@ -36,7 +36,7 @@ class WorkflowLogger44:
         try:
             if not os.path.exists(self.log_file):
                 with open(self.log_file, "w", encoding="utf-8") as f:
-                    f.write("=== SIRIUS WORKFLOW LOG (4.4.0 PRO) ===\n")
+                    f.write("=== SIRIUS WORKFLOW LOG (4.5.0 PRO) ===\n")
         except Exception:
             self.degraded_mode = True
 
