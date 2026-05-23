@@ -9,6 +9,11 @@ Responsible for:
 - Logging repair actions
 - Tracking fallback behavior
 - Providing structured diagnostic history
+
+Notes:
+- Deterministic, offline, isolated
+- JSONL format for easy parsing
+- Fully compatible with Runtime 4.5
 """
 
 import os
@@ -24,18 +29,27 @@ class RepairLog:
     """
 
     def __init__(self, log_path="logs/self_repair.log"):
+        self.version = "4.5.0"
         self.log_path = log_path
         self._ensure_directory()
 
+    # ---------------------------------------------------------
+    # DIRECTORY ENSURANCE
+    # ---------------------------------------------------------
     def _ensure_directory(self):
         """Ensures that the log directory exists."""
         directory = os.path.dirname(self.log_path)
         if directory and not os.path.exists(directory):
             os.makedirs(directory, exist_ok=True)
 
+    # ---------------------------------------------------------
+    # WRITE ENTRY
+    # ---------------------------------------------------------
     def _write(self, entry: Dict[str, Any]):
         """Writes a single log entry as JSON."""
         entry["timestamp"] = datetime.utcnow().isoformat()
+        entry["version"] = self.version
+
         try:
             with open(self.log_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(entry, ensure_ascii=False) + "\n")
@@ -46,7 +60,6 @@ class RepairLog:
     # ---------------------------------------------------------
     # PUBLIC LOGGING METHODS
     # ---------------------------------------------------------
-
     def record_scan(self, scan_result: Dict[str, Any]):
         """Logs the result of an integrity scan."""
         self._write({
