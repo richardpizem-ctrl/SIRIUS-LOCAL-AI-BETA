@@ -1,14 +1,14 @@
 """
-SIRIUS LOCAL AI – Reasoning Rule Engine 4.4.0 (PRO)
+SIRIUS LOCAL AI – Reasoning Rule Engine 4.5.0 (PRO)
 
-Deterministic rule engine pre Reasoning Engine 4.4.
+Deterministic rule engine pre Reasoning Engine 4.5.
 
 Účel:
 - aplikácia jednoduchých IF–THEN pravidiel nad faktami
 - žiadne AI, žiadne heuristiky
 - 100 % offline, deterministické
 - pravidlá sú čisté JSON/dict štruktúry
-- kompatibilné so Security Family 4.4 a Self‑Repair 4.4
+- kompatibilné so Security Family 4.5 a Self‑Repair 4.5
 
 Pravidlo má formát:
 {
@@ -26,7 +26,7 @@ Pravidlo má formát:
 from typing import Dict, Any, List, Tuple
 
 
-class ReasoningRuleEngine44:
+class ReasoningRuleEngine45:
     """
     Deterministic rule engine (PRO).
     """
@@ -44,38 +44,43 @@ class ReasoningRuleEngine44:
     # ------------------------------------------------------------------
     def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5"}
 
         try:
             self.initialized = True
-            return {"status": "ok"}
+            return {"status": "ok", "version": "4.5"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "init_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "init_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # RULE VALIDATION
     # ------------------------------------------------------------------
     def _validate_rule(self, rule: Dict[str, Any]) -> Dict[str, Any]:
         if not isinstance(rule, dict):
-            return {"status": "error", "code": "invalid_rule_type"}
+            return {"status": "error", "code": "invalid_rule_type", "version": "4.5"}
 
         if "id" not in rule or not isinstance(rule["id"], str):
-            return {"status": "error", "code": "invalid_rule_id"}
+            return {"status": "error", "code": "invalid_rule_id", "version": "4.5"}
 
         if "if" not in rule or not isinstance(rule["if"], list):
-            return {"status": "error", "code": "invalid_rule_if"}
+            return {"status": "error", "code": "invalid_rule_if", "version": "4.5"}
 
         if "then" not in rule or not isinstance(rule["then"], dict):
-            return {"status": "error", "code": "invalid_rule_then"}
+            return {"status": "error", "code": "invalid_rule_then", "version": "4.5"}
 
         for cond in rule["if"]:
             if not isinstance(cond, dict):
-                return {"status": "error", "code": "invalid_condition_type"}
+                return {"status": "error", "code": "invalid_condition_type", "version": "4.5"}
 
             if "pack" not in cond or "key" not in cond or "equals" not in cond:
-                return {"status": "error", "code": "invalid_condition_fields"}
+                return {"status": "error", "code": "invalid_condition_fields", "version": "4.5"}
 
         return {"status": "ok"}
 
@@ -88,14 +93,18 @@ class ReasoningRuleEngine44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Rule registration disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Rule registration disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         valid = self._validate_rule(rule)
         if valid.get("status") != "ok":
             return valid
 
         self.registered_rules.append(rule)
-        return {"status": "ok", "rule_id": rule["id"]}
+        return {"status": "ok", "rule_id": rule["id"], "version": "4.5"}
 
     # ------------------------------------------------------------------
     # EXTRACT RULES (from context)
@@ -116,10 +125,14 @@ class ReasoningRuleEngine44:
         """
 
         if self.safe_mode:
-            return {"status": "safe_mode", "message": "Rule engine disabled in safe-mode."}
+            return {
+                "status": "safe_mode",
+                "message": "Rule engine disabled in safe-mode.",
+                "version": "4.5",
+            }
 
         if not isinstance(context, dict):
-            return {"status": "error", "code": "invalid_context_type"}
+            return {"status": "error", "code": "invalid_context_type", "version": "4.5"}
 
         try:
             facts = context.get("facts", [])
@@ -143,11 +156,17 @@ class ReasoningRuleEngine44:
                 "type": "rules",
                 "rules_applied": applied_rules,
                 "conclusions": conclusions,
+                "version": "4.5",
             }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "code": "apply_failed", "exception": str(exc)}
+            return {
+                "status": "error",
+                "code": "apply_failed",
+                "exception": str(exc),
+                "version": "4.5",
+            }
 
     # ------------------------------------------------------------------
     # RULE MATCHING
@@ -180,4 +199,5 @@ class ReasoningRuleEngine44:
             "safe_mode": self.safe_mode,
             "degraded_mode": self.degraded_mode,
             "registered_rules": len(self.registered_rules),
+            "version": "4.5",
         }
