@@ -1,18 +1,18 @@
-# animation_scenes_4_4.py
-# SIRIUS LOCAL AI – Animation Scenes 4.4.0 PRO
+# animation_scenes_4_5.py
+# SIRIUS LOCAL AI – Animation Scenes 4.5.0 PRO
 # Phase‑4 deterministic scene system (Phase‑5 ready)
 
-class BaseScene44:
+class BaseScene45:
     """
-    BaseScene 4.4.0 PRO
+    BaseScene 4.5.0 PRO
 
     Responsibilities:
         - Deterministic scene lifecycle
-        - Safe‑mode and degraded‑mode support (Security Family 4.4)
+        - Safe‑mode and degraded‑mode support (Security Family 4.5)
         - Structured update behavior
         - Host graphical objects (Phase‑5)
         - Offline-only, no side-effects
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
     """
 
     def __init__(self):
@@ -66,7 +66,7 @@ class BaseScene44:
 # MOVE SCENE
 # ---------------------------------------------------------
 
-class MoveScene44(BaseScene44):
+class MoveScene45(BaseScene45):
     """Animation for moving files (postman)."""
 
     def __init__(self):
@@ -81,7 +81,7 @@ class MoveScene44(BaseScene44):
 # COPY SCENE
 # ---------------------------------------------------------
 
-class CopyScene44(BaseScene44):
+class CopyScene45(BaseScene45):
     """Animation for copying (copy machine)."""
 
     def __init__(self):
@@ -96,7 +96,7 @@ class CopyScene44(BaseScene44):
 # DELETE SCENE
 # ---------------------------------------------------------
 
-class DeleteScene44(BaseScene44):
+class DeleteScene45(BaseScene45):
     """Animation for deleting (shredder)."""
 
     def __init__(self):
@@ -111,7 +111,7 @@ class DeleteScene44(BaseScene44):
 # CREATE FOLDER SCENE
 # ---------------------------------------------------------
 
-class CreateFolderScene44(BaseScene44):
+class CreateFolderScene45(BaseScene45):
     """Animation for creating a folder."""
 
     def __init__(self):
