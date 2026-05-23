@@ -1,5 +1,5 @@
-# task_manager_engine_4_4.py
-# SIRIUS LOCAL AI – Task Manager Engine 4.4.0 PRO
+# task_manager_engine_4_5.py
+# SIRIUS LOCAL AI – Task Manager Engine 4.5.0 PRO
 # Deterministic, sandboxed process diagnostics (Phase‑5 ready)
 
 from __future__ import annotations
@@ -10,15 +10,15 @@ import time
 import psutil
 
 
-TaskSeverity44 = Literal["info", "warning", "critical"]
+TaskSeverity45 = Literal["info", "warning", "critical"]
 
 
 # ---------------------------------------------------------
-# DATA STRUCTURES (4.4.0 PRO)
+# DATA STRUCTURES (4.5.0 PRO)
 # ---------------------------------------------------------
 
 @dataclass
-class TaskProcessInfo44:
+class TaskProcessInfo45:
     pid: int
     name: str
     cpu_percent: float
@@ -29,9 +29,9 @@ class TaskProcessInfo44:
 
 
 @dataclass
-class TaskIssue44:
+class TaskIssue45:
     id: str
-    severity: TaskSeverity44
+    severity: TaskSeverity45
     title: str
     description: str
     suggested_actions: List[str] = field(default_factory=list)
@@ -41,28 +41,28 @@ class TaskIssue44:
 
 
 @dataclass
-class TaskReport44:
+class TaskReport45:
     timestamp: float
-    processes: List[TaskProcessInfo44] = field(default_factory=list)
-    issues: List[TaskIssue44] = field(default_factory=list)
+    processes: List[TaskProcessInfo45] = field(default_factory=list)
+    issues: List[TaskIssue45] = field(default_factory=list)
     safe_mode: bool = False
     degraded_mode: bool = False
 
 
 # ---------------------------------------------------------
-# ENGINE 4.4.0 PRO
+# ENGINE 4.5.0 PRO
 # ---------------------------------------------------------
 
-class TaskManagerEngine44:
+class TaskManagerEngine45:
     """
-    Task Manager Engine 4.4.0 PRO
+    Task Manager Engine 4.5.0 PRO
 
     Responsibilities:
         - analyze running processes
         - detect high CPU/RAM usage
         - detect frozen processes
         - detect explorer restart candidates
-        - generate safe suggestions (executed via SystemAgent44)
+        - generate safe suggestions (executed via SystemAgent45)
         - deterministic, offline, sandbox-friendly
         - safe-mode and degraded-mode aware
         - Phase‑5 ready
@@ -88,10 +88,10 @@ class TaskManagerEngine44:
     # PUBLIC API
     # ---------------------------------------------------------
 
-    def analyze(self) -> TaskReport44:
+    def analyze(self) -> TaskReport45:
 
         if self.safe_mode:
-            return TaskReport44(
+            return TaskReport45(
                 timestamp=time.time(),
                 processes=[],
                 issues=[],
@@ -101,14 +101,14 @@ class TaskManagerEngine44:
 
         try:
             processes = self._collect_processes()
-            issues: List[TaskIssue44] = []
+            issues: List[TaskIssue45] = []
 
             issues.extend(self._detect_high_cpu_processes(processes))
             issues.extend(self._detect_high_ram_processes(processes))
             issues.extend(self._detect_not_responding(processes))
             issues.extend(self._detect_explorer_restart_candidate(processes))
 
-            return TaskReport44(
+            return TaskReport45(
                 timestamp=time.time(),
                 processes=processes,
                 issues=issues,
@@ -118,7 +118,7 @@ class TaskManagerEngine44:
 
         except Exception:
             self.degraded_mode = True
-            return TaskReport44(
+            return TaskReport45(
                 timestamp=time.time(),
                 processes=[],
                 issues=[],
@@ -130,8 +130,8 @@ class TaskManagerEngine44:
     # PROCESS COLLECTION (SANDBOXED)
     # ---------------------------------------------------------
 
-    def _collect_processes(self) -> List[TaskProcessInfo44]:
-        result: List[TaskProcessInfo44] = []
+    def _collect_processes(self) -> List[TaskProcessInfo45]:
+        result: List[TaskProcessInfo45] = []
 
         try:
             # First pass: initialize CPU counters
@@ -155,7 +155,7 @@ class TaskManagerEngine44:
                     is_critical = name.lower() in {n.lower() for n in self._critical_names}
 
                     result.append(
-                        TaskProcessInfo44(
+                        TaskProcessInfo45(
                             pid=p.pid,
                             name=name,
                             cpu_percent=cpu,
@@ -175,11 +175,11 @@ class TaskManagerEngine44:
         return result
 
     # ---------------------------------------------------------
-    # ANALYSIS HELPERS (4.4.0 PRO)
+    # ANALYSIS HELPERS (4.5.0 PRO)
     # ---------------------------------------------------------
 
-    def _detect_high_cpu_processes(self, processes: List[TaskProcessInfo44]) -> List[TaskIssue44]:
-        issues: List[TaskIssue44] = []
+    def _detect_high_cpu_processes(self, processes: List[TaskProcessInfo45]) -> List[TaskIssue45]:
+        issues: List[TaskIssue45] = []
         high_cpu = [p for p in processes if p.cpu_percent > 25.0 and not p.is_critical]
 
         if not high_cpu:
@@ -188,7 +188,7 @@ class TaskManagerEngine44:
         top = sorted(high_cpu, key=lambda p: p.cpu_percent, reverse=True)[:10]
 
         issues.append(
-            TaskIssue44(
+            TaskIssue45(
                 id="high_cpu_processes",
                 severity="warning",
                 title="Procesy s vysokým CPU zaťažením",
@@ -205,8 +205,8 @@ class TaskManagerEngine44:
 
         return issues
 
-    def _detect_high_ram_processes(self, processes: List[TaskProcessInfo44]) -> List[TaskIssue44]:
-        issues: List[TaskIssue44] = []
+    def _detect_high_ram_processes(self, processes: List[TaskProcessInfo45]) -> List[TaskIssue45]:
+        issues: List[TaskIssue45] = []
         high_ram = [p for p in processes if p.ram_percent > 5.0 and not p.is_critical]
 
         if not high_ram:
@@ -215,7 +215,7 @@ class TaskManagerEngine44:
         top = sorted(high_ram, key=lambda p: p.ram_percent, reverse=True)[:10]
 
         issues.append(
-            TaskIssue44(
+            TaskIssue45(
                 id="high_ram_processes",
                 severity="warning",
                 title="Procesy s vysokou spotrebou RAM",
@@ -232,15 +232,15 @@ class TaskManagerEngine44:
 
         return issues
 
-    def _detect_not_responding(self, processes: List[TaskProcessInfo44]) -> List[TaskIssue44]:
-        issues: List[TaskIssue44] = []
+    def _detect_not_responding(self, processes: List[TaskProcessInfo45]) -> List[TaskIssue45]:
+        issues: List[TaskIssue45] = []
         frozen = [p for p in processes if p.status.lower() == "not responding" and not p.is_critical]
 
         if not frozen:
             return issues
 
         issues.append(
-            TaskIssue44(
+            TaskIssue45(
                 id="not_responding_processes",
                 severity="warning",
                 title="Neodpovedajúce procesy",
@@ -256,8 +256,8 @@ class TaskManagerEngine44:
 
         return issues
 
-    def _detect_explorer_restart_candidate(self, processes: List[TaskProcessInfo44]) -> List[TaskIssue44]:
-        issues: List[TaskIssue44] = []
+    def _detect_explorer_restart_candidate(self, processes: List[TaskProcessInfo45]) -> List[TaskIssue45]:
+        issues: List[TaskIssue45] = []
         explorer = [p for p in processes if p.name.lower() == "explorer.exe"]
 
         if not explorer:
@@ -266,7 +266,7 @@ class TaskManagerEngine44:
         exp = explorer[0]
         if exp.cpu_percent > 20.0 or exp.ram_percent > 5.0:
             issues.append(
-                TaskIssue44(
+                TaskIssue45(
                     id="explorer_restart_suggestion",
                     severity="info",
                     title="Možný reštart Prieskumníka (explorer.exe)",
@@ -283,7 +283,7 @@ class TaskManagerEngine44:
         return issues
 
     # ---------------------------------------------------------
-    # SUMMARY FOR SYSTEM HEALTH ENGINE 4.4
+    # SUMMARY FOR SYSTEM HEALTH ENGINE 4.5
     # ---------------------------------------------------------
 
     def get_task_summary(self) -> Dict[str, Any]:
