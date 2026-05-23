@@ -9,17 +9,18 @@ log = logging.getLogger(__name__)
 
 class CommandRouter:
     """
-    CommandRouter 4.4
+    CommandRouter 4.5
     --------------------
     Routes parsed commands to the correct module and method.
 
-    New in 4.4:
-        - Deterministic routing contract
-        - Stable error model for Runtime4.4
+    Updated in 4.5:
+        - Deterministic routing contract (unchanged)
+        - Stable error model for Runtime4.5
         - Strict module/method validation
-        - Self‑Repair Layer 4.4 compatible output
+        - Self‑Repair Layer 4.5 compatible output
         - Guaranteed structured response
         - No side-effects outside module execution
+        - Metadata version bumped to 4.5
     """
 
     def __init__(self):
@@ -48,7 +49,8 @@ class CommandRouter:
             log.error("ROUTER: Invalid parsed command object.")
             return {
                 "status": "error",
-                "message": "Invalid parsed command."
+                "message": "Invalid parsed command.",
+                "router_version": "4.5"
             }
 
         module_name = parsed.get("module")
@@ -63,7 +65,8 @@ class CommandRouter:
             log.error("ROUTER: Unknown module '%s'", module_name)
             return {
                 "status": "error",
-                "message": f"Unknown module '{module_name}'."
+                "message": f"Unknown module '{module_name}'.",
+                "router_version": "4.5"
             }
 
         # -----------------------------
@@ -74,7 +77,8 @@ class CommandRouter:
             log.error("ROUTER: Unknown method '%s' in module '%s'", method_name, module_name)
             return {
                 "status": "error",
-                "message": f"Unknown method '{method_name}' in module '{module_name}'."
+                "message": f"Unknown method '{method_name}' in module '{module_name}'.",
+                "router_version": "4.5"
             }
 
         # -----------------------------
@@ -89,7 +93,8 @@ class CommandRouter:
                 "module": module_name,
                 "method": method_name,
                 "args": args,
-                "result": result
+                "result": result,
+                "router_version": "4.5"
             }
 
         except Exception as exc:
@@ -97,5 +102,6 @@ class CommandRouter:
             return {
                 "status": "error",
                 "message": f"Execution failed for {module_name}.{method_name}.",
-                "exception": str(exc)
+                "exception": str(exc),
+                "router_version": "4.5"
             }
