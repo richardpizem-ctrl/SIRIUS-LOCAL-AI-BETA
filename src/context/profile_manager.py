@@ -6,17 +6,17 @@ import re
 
 class ProfileManager:
     """
-    ProfileManager 4.4
+    ProfileManager 4.5
     Handles saving, loading, listing, deleting, and inspecting
     context profiles for SIRIUS LOCAL AI.
 
-    New in 4.4:
-        - Deterministic behavior for Runtime4.4
-        - Strict filename validation (stable, audit‑friendly)
-        - Deep‑copy safety for all operations
-        - Snapshot‑compatible structure
-        - max_history enforcement
-        - Stable, predictable structure for commands and Self‑Repair 4.4
+    Updated in 4.5:
+        - Deterministic behavior for Runtime4.5
+        - Strict filename validation (unchanged)
+        - Deep‑copy safety for all operations (unchanged)
+        - Snapshot‑compatible structure (unchanged)
+        - max_history enforcement (unchanged)
+        - Stable, predictable structure for commands and Self‑Repair 4.5
     """
 
     VALID_NAME = re.compile(r"^[A-Za-z0-9_\-]+$")
@@ -112,7 +112,7 @@ class ProfileManager:
 
         # Enforce max_history deterministically
         self.context.history = copy.deepcopy(
-            history[-self.context.max_history :]
+            history[-self.context.max_history:]
         )
 
         return True
