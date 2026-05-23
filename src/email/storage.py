@@ -5,16 +5,16 @@ from datetime import datetime
 
 class EmailStorage:
     """
-    EmailStorage 4.4
+    EmailStorage 4.5
     Handles low-level file operations for storing, loading,
     listing, and deleting emails in a deterministic and safe way.
 
-    New in 4.4:
-        - Deterministic Runtime4.4 behavior
-        - Strict filename contract
-        - Stable list ordering
-        - Safe JSON loading with structure validation
-        - Self‑Repair Layer 4.4 compatible metadata
+    Updated in 4.5:
+        - Deterministic Runtime4.5 behavior
+        - Strict filename contract (unchanged)
+        - Stable list ordering (unchanged)
+        - Safe JSON loading with structure validation (unchanged)
+        - Self‑Repair Layer 4.5 compatible metadata
         - Guaranteed return types (never throws)
     """
 
