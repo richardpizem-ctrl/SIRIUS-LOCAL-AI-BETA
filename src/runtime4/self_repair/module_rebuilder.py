@@ -8,6 +8,11 @@ Responsible for:
 - Rebuilding corrupted or missing modules
 - Restoring files from known-good baselines
 - Coordinating safe, deterministic reconstruction steps
+
+Notes:
+- Deterministic, offline, isolated
+- No dynamic imports, no eval, no reflection
+- Fully compatible with Runtime 4.5
 """
 
 import os
@@ -30,9 +35,13 @@ class ModuleRebuilder:
         :param baseline_root: Path to directory with known-good copies of modules.
         :param target_root:   Path to active runtime modules.
         """
+        self.version = "4.5.0"
         self.baseline_root = baseline_root
         self.target_root = target_root
 
+    # ---------------------------------------------------------
+    # PATH MAPPING
+    # ---------------------------------------------------------
     def _baseline_path_for(self, module: str, file_path: str) -> str:
         """
         Maps a runtime file path to its baseline counterpart.
@@ -42,16 +51,24 @@ class ModuleRebuilder:
         """
         # Naive mapping: replace 'src/runtime4' with 'baseline_runtime4'
         if file_path.startswith(self.target_root):
-            relative = file_path[len(self.target_root) :].lstrip("/\\")
+            relative = file_path[len(self.target_root):].lstrip("/\\")
             return os.path.join(self.baseline_root, relative)
+
+        # Fallback mapping
         return os.path.join(self.baseline_root, module, os.path.basename(file_path))
 
+    # ---------------------------------------------------------
+    # DIRECTORY ENSURANCE
+    # ---------------------------------------------------------
     def _ensure_directory(self, path: str) -> None:
         """Ensures that the parent directory for a file exists."""
         directory = os.path.dirname(path)
         if directory and not os.path.exists(directory):
             os.makedirs(directory, exist_ok=True)
 
+    # ---------------------------------------------------------
+    # FILE RESTORATION
+    # ---------------------------------------------------------
     def _restore_file(self, baseline: str, target: str) -> bool:
         """
         Restores a single file from baseline to target.
@@ -67,6 +84,9 @@ class ModuleRebuilder:
         except Exception:
             return False
 
+    # ---------------------------------------------------------
+    # REBUILD PROCESS
+    # ---------------------------------------------------------
     def rebuild(self, corrupted_modules: List[Tuple[str, str, str]]) -> List[Dict[str, Any]]:
         """
         Rebuilds all files marked as corrupted or missing.
@@ -87,6 +107,7 @@ class ModuleRebuilder:
                 "baseline": baseline_path,
                 "issue_type": issue_type,
                 "restored": success,
+                "version": self.version,
             }
             results.append(result)
 
