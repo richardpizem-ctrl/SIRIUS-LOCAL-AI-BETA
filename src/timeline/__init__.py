@@ -1,5 +1,5 @@
 """
-SIRIUS LOCAL AI – Timeline Package 4.4.0 (PRO)
+SIRIUS LOCAL AI – Timeline Package 4.5.0 (PRO)
 ----------------------------------------------
 Phase‑4 timeline subsystem for SIRIUS LOCAL AI.
 
@@ -15,27 +15,27 @@ Provides:
 Security Notes:
 - No dynamic imports allowed.
 - No side-effects during initialization.
-- Fully compatible with Security Family 4.4.
-- Self‑Repair 4.4 ready.
+- Fully compatible with Security Family 4.5.
+- Self‑Repair 4.5 ready.
 """
 
 # ---------------------------------------------------------
 # PACKAGE METADATA
 # ---------------------------------------------------------
 
-TIMELINE_VERSION: str = "4.4.0"
+TIMELINE_VERSION: str = "4.5.0"
 PIXEL_LAYOUT_ENGINE_COMPAT: str = "Phase‑4"
 UI_MANAGER_COMPAT: str = "Phase‑4"
-SECURITY_FAMILY_COMPAT: str = "4.4"
-SELF_REPAIR_COMPAT: str = "4.4"
+SECURITY_FAMILY_COMPAT: str = "4.5"
+SELF_REPAIR_COMPAT: str = "4.5"
 
 # ---------------------------------------------------------
 # SAFE EXPORT LIST (STATIC ONLY)
 # ---------------------------------------------------------
 
 __all__ = [
-    "timeline_ui_4_4",
-    "timeline_ui_component_4_4",
+    "timeline_ui_4_5",
+    "timeline_ui_component_4_5",
     "TIMELINE_VERSION",
     "PIXEL_LAYOUT_ENGINE_COMPAT",
     "UI_MANAGER_COMPAT",
