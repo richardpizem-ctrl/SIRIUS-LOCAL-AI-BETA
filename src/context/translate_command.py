@@ -4,21 +4,20 @@ from context.context_manager import ContextManager
 
 class ContextSetCommand(BaseCommand):
     """
-    ContextSetCommand 4.4
+    ContextSetCommand 4.5
     Sets a value in the system state with validation, snapshot,
     diff reporting, and safe merge.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
         - Deterministic diff structure
         - Snapshot before modification
-        - Extended audit (identity, params, risk, capabilities)
+        - Stable output for Runtime4.5 and NL Router 4.5
         - Unified error model
-        - Stable output for Runtime4.4 and NL Router 4.4
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "context-set"
     description = "Sets a value in the context state with validation, snapshot, and diff."
@@ -38,7 +37,7 @@ class ContextSetCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
@@ -78,8 +77,8 @@ class ContextSetCommand(BaseCommand):
         old_value = self.context.get_state(key)
         diff = None
 
-        # Only generate diff if old_value exists
-        if old_value is not None and old_value != value:
+        # Diff sa generuje vždy, keď sa hodnota mení (aj None → value)
+        if old_value != value:
             diff = {
                 "old": old_value,
                 "new": value
