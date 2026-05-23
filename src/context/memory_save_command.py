@@ -4,22 +4,22 @@ from context.context_manager import ContextManager
 
 class MemorySaveCommand(BaseCommand):
     """
-    MemorySaveCommand 4.4
+    MemorySaveCommand 4.5
     Saves a key-value pair into persistent memory with validation,
     snapshot creation, diff reporting, and safe merge into state.
 
-    New in 4.4:
-        - Integrity Hooks (Self‑Repair Layer 4.4)
-        - Health Metadata
-        - Deterministic diff structure
-        - Snapshot before modification
-        - Extended audit (identity, params, risk, capabilities)
-        - Unified error model
-        - Stable output for Runtime4.4 and NL Router 4.4
+    Updated in 4.5:
+        - Self‑Repair Layer 4.5 compatibility
+        - Deterministic diff structure (unchanged)
+        - Snapshot before modification (unchanged)
+        - Stable output for Runtime4.5 and NL Router 4.5
+        - Unified error model (unchanged)
+        - Integrity hooks (unchanged)
+        - Health metadata (unchanged)
     """
 
     # ---------------------------------------------------------
-    # METADATA (v4.4)
+    # METADATA (v4.5)
     # ---------------------------------------------------------
     name = "memory-save"
     description = "Saves a value into persistent memory and merges it into state."
@@ -39,7 +39,7 @@ class MemorySaveCommand(BaseCommand):
         self.context = context
 
     # ---------------------------------------------------------
-    # EXECUTION (4.4)
+    # EXECUTION (v4.5)
     # ---------------------------------------------------------
     def execute(self, *args, **kwargs):
         """
