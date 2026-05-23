@@ -1,5 +1,5 @@
-# engine_4_4.py
-# SIRIUS LOCAL AI – ORB ANIMATION SYSTEM 4.4.0 PRO
+# engine_4_5.py
+# SIRIUS LOCAL AI – ORB ANIMATION SYSTEM 4.5.0 PRO
 # Phase‑4 deterministic animation engine with Phase‑5 safety hooks
 
 from typing import Protocol, List
@@ -16,19 +16,19 @@ class Animatable(Protocol):
 # ------------------------------------------------------------
 # ANIMATION ENGINE – Phase‑4/5 core update loop
 # ------------------------------------------------------------
-class AnimationEngine44:
+class AnimationEngine45:
     """
-    AnimationEngine 4.4.0 PRO
+    AnimationEngine 4.5.0 PRO
 
     Responsibilities:
         - Deterministic update loop (Phase‑4)
-        - Safe‑mode and degraded‑mode support (Security Family 4.4)
+        - Safe‑mode and degraded‑mode support (Security Family 4.5)
         - Global animation governor
         - Object registry (Phase‑4)
         - Error‑safe update cycle
         - Offline-only behavior
         - Phase‑5 ready (sandbox, restricted-mode)
-        - Self‑Repair 4.4 compatible
+        - Self‑Repair 4.5 compatible
     """
 
     def __init__(self) -> None:
