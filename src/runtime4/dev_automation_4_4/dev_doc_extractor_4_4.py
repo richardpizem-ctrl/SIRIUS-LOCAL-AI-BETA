@@ -1,29 +1,29 @@
 """
-SIRIUS LOCAL AI – Developer Documentation Extractor 4.4.0
+SIRIUS LOCAL AI – Developer Documentation Extractor 4.5.0
 
-Deterministic, offline‑safe documentation extraction for Developer Automation 4.4.
+Deterministic, offline‑safe documentation extraction for Developer Automation 4.5.
 
 Features:
 - Extracting module docstrings
 - Extracting class/function docstrings
 - Extracting inline comments
 - Building structured documentation trees
-- Security‑aware extraction (Security Family 4.4)
+- Security‑aware extraction (Security Family 4.5)
 
 Security Notes:
 - Only static imports allowed.
 - No dynamic loading, no eval, no reflection.
 - No execution of source code; only static parsing.
-- Fully compatible with Security Family 4.4.
+- Fully compatible with Security Family 4.5.
 """
 
 from typing import Dict, Any, List, Optional
 
 
-class DevDocExtractor44:
+class DevDocExtractor45:
     """
-    Deterministic documentation extractor for Runtime 4.4.
-    Fully isolated, offline‑safe, and Self‑Repair 4.4 compatible.
+    Deterministic documentation extractor for Runtime 4.5.
+    Fully isolated, offline‑safe, and Self‑Repair 4.5 compatible.
     """
 
     def __init__(self, analyzer=None, security_policy=None):
@@ -36,29 +36,41 @@ class DevDocExtractor44:
     # ------------------------------------------------------------------
     # INITIALIZATION
     # ------------------------------------------------------------------
-    def initialize(self):
+    def initialize(self) -> Dict[str, Any]:
         if self.initialized:
-            return {"status": "already_initialized"}
+            return {"status": "already_initialized", "version": "4.5.0"}
 
         try:
             if self.analyzer:
                 res = self.analyzer.initialize()
                 if isinstance(res, dict) and res.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "exception": res}
+                    return {
+                        "status": "error",
+                        "exception": res,
+                        "version": "4.5.0",
+                    }
 
             if self.security_policy:
                 sec = self.security_policy.initialize()
                 if isinstance(sec, dict) and sec.get("status") == "error":
                     self.degraded_mode = True
-                    return {"status": "error", "exception": sec}
+                    return {
+                        "status": "error",
+                        "exception": sec,
+                        "version": "4.5.0",
+                    }
 
             self.initialized = True
-            return {"status": "initialized"}
+            return {"status": "initialized", "version": "4.5.0"}
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5.0",
+            }
 
     # ------------------------------------------------------------------
     # PUBLIC API – EXTRACT DOCUMENTATION
@@ -82,13 +94,18 @@ class DevDocExtractor44:
                     "status": "error",
                     "reason": "extractor_not_initialized",
                     "details": init_result,
+                    "version": "4.5.0",
                 }
 
         # Security policy check
         if self.security_policy:
             sec = self.security_policy.check_doc_extraction(options)
             if sec.get("status") != "allowed":
-                return {"status": "blocked", "policy": sec}
+                return {
+                    "status": "blocked",
+                    "policy": sec,
+                    "version": "4.5.0",
+                }
 
         try:
             documentation = {
@@ -98,11 +115,19 @@ class DevDocExtractor44:
                 "comments": self._extract_inline_comments(source_code),
             }
 
-            return {"status": "ok", "documentation": documentation}
+            return {
+                "status": "ok",
+                "documentation": documentation,
+                "version": "4.5.0",
+            }
 
         except Exception as exc:
             self.degraded_mode = True
-            return {"status": "error", "exception": str(exc)}
+            return {
+                "status": "error",
+                "exception": str(exc),
+                "version": "4.5.0",
+            }
 
     # ------------------------------------------------------------------
     # INTERNAL – MODULE DOCSTRING
@@ -114,7 +139,7 @@ class DevDocExtractor44:
 
         first = lines[0].strip()
         if first.startswith('"""') or first.startswith("'''"):
-            doc = []
+            doc: List[str] = []
             quote = first[:3]
             for line in lines[1:]:
                 if line.strip().startswith(quote):
@@ -128,7 +153,7 @@ class DevDocExtractor44:
     # INTERNAL – CLASS DOCSTRINGS
     # ------------------------------------------------------------------
     def _extract_class_docs(self, code: str) -> List[Dict[str, Any]]:
-        classes = []
+        classes: List[Dict[str, Any]] = []
         lines = code.splitlines()
 
         for i, line in enumerate(lines):
@@ -143,8 +168,8 @@ class DevDocExtractor44:
     # ------------------------------------------------------------------
     # INTERNAL – FUNCTION DOCSTRINGS
     # ------------------------------------------------------------------
-    def _extract_function_docs(self, code: str) -> List[Dict[str,Any]]:
-        funcs = []
+    def _extract_function_docs(self, code: str) -> List[Dict[str, Any]]:
+        funcs: List[Dict[str, Any]] = []
         lines = code.splitlines()
 
         for i, line in enumerate(lines):
@@ -160,7 +185,7 @@ class DevDocExtractor44:
     # INTERNAL – INLINE COMMENTS
     # ------------------------------------------------------------------
     def _extract_inline_comments(self, code: str) -> List[str]:
-        comments = []
+        comments: List[str] = []
         for line in code.splitlines():
             stripped = line.strip()
             if stripped.startswith("#"):
@@ -170,13 +195,17 @@ class DevDocExtractor44:
     # ------------------------------------------------------------------
     # INTERNAL – DOCSTRING AFTER CLASS/FUNCTION
     # ------------------------------------------------------------------
-    def _extract_following_docstring(self, lines: List[str], start: int) -> Optional[str]:
+    def _extract_following_docstring(
+        self,
+        lines: List[str],
+        start: int
+    ) -> Optional[str]:
         if start >= len(lines):
             return None
 
         line = lines[start].strip()
         if line.startswith('"""') or line.startswith("'''"):
-            doc = []
+            doc: List[str] = []
             quote = line[:3]
             for l in lines[start + 1:]:
                 if l.strip().startswith(quote):
