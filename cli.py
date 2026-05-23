@@ -1,16 +1,16 @@
-# cli_4_4.py
-# SIRIUS LOCAL AI – Command Line Interface (v4.4.0 PRO)
+# cli_4_5.py
+# SIRIUS LOCAL AI – Command Line Interface (v4.5.0 PRO)
 # Deterministic, safe-mode compatible CLI front-end (Phase‑5 ready)
 
 from __future__ import annotations
 
 import sys
-from runtime.runtime_manager_4_4 import RuntimeManager44
+from runtime.runtime_manager_4_5 import RuntimeManager45
 
 
-class SiriusCLI44:
+class SiriusCLI45:
     """
-    SIRIUS LOCAL AI — Command Line Interface (v4.4.0 PRO)
+    SIRIUS LOCAL AI — Command Line Interface (v4.5.0 PRO)
 
     Features:
         - Natural language commands
@@ -22,19 +22,19 @@ class SiriusCLI44:
     """
 
     def __init__(self):
-        self.rm = RuntimeManager44()
+        self.rm = RuntimeManager45()
         self.safe_mode = False
         self.degraded_mode = False
 
         try:
             self.rm.initialize()
-            self.rm.logger.info("CLI initialized (v4.4.0 PRO)")
+            self.rm.logger.info("CLI initialized (v4.5.0 PRO)")
         except Exception as exc:
             self.degraded_mode = True
             print(f"[CLI] Initialization failed: {exc}")
 
     # --------------------------------------------------------
-    # MAIN ENTRY (4.4.0 PRO)
+    # MAIN ENTRY (4.5.0 PRO)
     # --------------------------------------------------------
     def run(self, argv):
         if len(argv) < 2:
@@ -119,7 +119,7 @@ class SiriusCLI44:
             print("An internal error occurred. Check logs for details.")
 
     # --------------------------------------------------------
-    # HELPERS (4.4.0 PRO)
+    # HELPERS (4.5.0 PRO)
     # --------------------------------------------------------
     def _parse_args(self, items):
         """Convert key=value arguments into a dict."""
@@ -142,10 +142,10 @@ class SiriusCLI44:
 
     def _print_help(self):
         print("""
-SIRIUS CLI – available commands (v4.4.0 PRO):
+SIRIUS CLI – available commands (v4.5.0 PRO):
 
   sirius nl "<natural sentence>"
-      - processes natural language through the NL Router 4.4
+      - processes natural language through the NL Router 4.5
       - e.g. sirius nl "move vs code to the right"
 
   sirius task <goal> key=value key=value
@@ -166,5 +166,5 @@ SIRIUS CLI – available commands (v4.4.0 PRO):
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    cli = SiriusCLI44()
+    cli = SiriusCLI45()
     cli.run(sys.argv)
