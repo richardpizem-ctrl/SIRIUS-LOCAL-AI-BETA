@@ -3,17 +3,18 @@ from datetime import datetime
 
 class EmailRenderer:
     """
-    EmailRenderer 4.4
+    EmailRenderer 4.5
     Generates human‑readable email previews, full formatted output,
     and deterministic export text for SIRIUS LOCAL AI.
 
-    New in 4.4:
-        - Deterministic formatting contract
-        - Stable header ordering
-        - Safe handling of missing fields
-        - Self‑Repair Layer 4.4 compatible output
-        - Export timestamp normalization
-        - Guaranteed string output (no exceptions)
+    Updated in 4.5:
+        - Deterministic formatting contract (unchanged)
+        - Stable header ordering (unchanged)
+        - Safe handling of missing fields (unchanged)
+        - Self‑Repair Layer 4.5 compatible output
+        - Export timestamp normalization (unchanged)
+        - Guaranteed string output (unchanged)
+        - Metadata version bumped to 4.5
     """
 
     # ---------------------------------------------------------
@@ -45,7 +46,7 @@ class EmailRenderer:
     def render_full(self, email: dict) -> str:
         """
         Returns a full formatted email text.
-        Deterministic header ordering for Runtime4.4.
+        Deterministic header ordering for Runtime4.5.
         """
         to = email.get("to", "<unknown>")
         subject = email.get("subject", "<no subject>")
@@ -78,7 +79,7 @@ class EmailRenderer:
     def render_export(self, email: dict) -> str:
         """
         Returns a version of the email formatted for export.
-        Deterministic timestamp format for Self‑Repair 4.4.
+        Deterministic timestamp format for Self‑Repair 4.5.
         """
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
