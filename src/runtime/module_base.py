@@ -6,7 +6,7 @@ log = logging.getLogger(__name__)
 
 class ModuleBase:
     """
-    ModuleBase 4.4
+    ModuleBase 4.5
     ----------------
     - Unified lifecycle for all runtime modules
     - Deterministic structured telemetry
@@ -14,8 +14,8 @@ class ModuleBase:
     - Health checks (health() 2.0)
     - Dependency declaration
     - Security metadata (risk, identity, capabilities)
-    - Self‑Repair Layer 4.4 ready (safe-mode, degraded mode)
-    - Stable structured return values for Runtime4.4
+    - Self‑Repair Layer 4.5 ready (safe-mode, degraded mode)
+    - Stable structured return values for Runtime4.5
     """
 
     # --------------------------------------------------------
@@ -43,7 +43,7 @@ class ModuleBase:
         # Telemetry
         self.init_time = None
         self.start_time = None
-        self.stop_time = None
+               self.stop_time = None
         self.error_count = 0
 
         # Self‑Repair flags
@@ -66,6 +66,7 @@ class ModuleBase:
                 "module": self.name,
                 "action": action_name,
                 "duration": time.time() - t0,
+                "module_base_version": "4.5",
             }
         except Exception as exc:
             self.failed = True
@@ -77,6 +78,7 @@ class ModuleBase:
                 "action": action_name,
                 "duration": time.time() - t0,
                 "exception": str(exc),
+                "module_base_version": "4.5",
             }
 
     # --------------------------------------------------------
@@ -115,6 +117,7 @@ class ModuleBase:
                 "module": self.name,
                 "action": "start",
                 "message": msg,
+                "module_base_version": "4.5",
             }
 
         def _do():
@@ -138,6 +141,7 @@ class ModuleBase:
                 "module": self.name,
                 "action": "stop",
                 "message": "Module not running.",
+                "module_base_version": "4.5",
             }
 
         def _do():
@@ -167,7 +171,7 @@ class ModuleBase:
     def health(self):
         """
         Returns structured module health information.
-        Deterministic for Runtime4.4 / Self‑Repair 4.4.
+        Deterministic for Runtime4.5 / Self‑Repair 4.5.
         """
         return {
             "name": self.name,
@@ -189,4 +193,5 @@ class ModuleBase:
                 "capabilities": self.capabilities,
             },
             "depends_on": self.depends_on,
+            "module_base_version": "4.5",
         }
