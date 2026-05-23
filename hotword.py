@@ -1,31 +1,31 @@
-# hotword_4_3.py
-# SIRIUS LOCAL AI – Hotword Listener (v4.3.x)
+# hotword_4_5.py
+# SIRIUS LOCAL AI – Hotword Listener (v4.5.0 PRO)
 # Deterministic, safe-mode compatible, sandboxed hotword engine
 
 from __future__ import annotations
 
 import speech_recognition as sr
-from runtime.runtime_manager import RuntimeManager
-from runtime.plugin_loader_4_3 import PluginLoader43
-from runtime.nl_router_4_3 import NaturalLanguageRouter43
+from runtime.runtime_manager_4_5 import RuntimeManager45
+from runtime.plugin_loader_4_5 import PluginLoader45
+from runtime.nl_router_4_5 import NaturalLanguageRouter45
 
 
-class SiriusHotword43:
+class SiriusHotword45:
     """
-    SIRIUS LOCAL AI — Hotword Listener (v4.3.x)
+    SIRIUS LOCAL AI — Hotword Listener (v4.5.0 PRO)
 
     Features:
         - Listens for activation word "sirius"
         - After activation listens for a command
-        - Sends command to NL Router 4.3
+        - Sends command to NL Router 4.5
         - Safe-mode + degraded-mode support
         - Deterministic, isolated error handling
-        - Self‑Repair 4.4 ready
+        - Self‑Repair 4.5 ready
     """
 
     def __init__(self):
         # Runtime bootstrap
-        self.runtime = RuntimeManager()
+        self.runtime = RuntimeManager45()
         self.safe_mode = False
         self.degraded_mode = False
 
@@ -37,7 +37,7 @@ class SiriusHotword43:
 
         # Plugins
         try:
-            self.plugins = PluginLoader43(self.runtime)
+            self.plugins = PluginLoader45(self.runtime)
             self.plugins.load_all()
         except Exception as exc:
             self.degraded_mode = True
@@ -45,7 +45,7 @@ class SiriusHotword43:
 
         # NL Router
         try:
-            self.router = NaturalLanguageRouter43(self.runtime, self.plugins)
+            self.router = NaturalLanguageRouter45(self.runtime, self.plugins)
             self.router.initialize()
         except Exception as exc:
             self.degraded_mode = True
@@ -62,10 +62,10 @@ class SiriusHotword43:
         # Hotword
         self.hotword = "sirius"
 
-        self.runtime.logger.info("Hotword engine initialized (v4.3.x)")
+        self.runtime.logger.info("Hotword engine initialized (v4.5.0 PRO)")
 
     # --------------------------------------------------------
-    # SPEECH RECOGNITION (4.3.x)
+    # SPEECH RECOGNITION (4.5.0 PRO)
     # --------------------------------------------------------
     def listen(self):
         """Listen for hotword."""
@@ -96,7 +96,7 @@ class SiriusHotword43:
             return ""
 
     # --------------------------------------------------------
-    # LISTEN FOR COMMAND (4.3.x)
+    # LISTEN FOR COMMAND (4.5.0 PRO)
     # --------------------------------------------------------
     def listen_command(self):
         """Listen for command after hotword."""
@@ -118,10 +118,10 @@ class SiriusHotword43:
             return None
 
     # --------------------------------------------------------
-    # PROCESS COMMAND (4.3.x)
+    # PROCESS COMMAND (4.5.0 PRO)
     # --------------------------------------------------------
     def process(self, text):
-        """Send recognized text to NL Router 4.3."""
+        """Send recognized text to NL Router 4.5."""
         if not text:
             return
 
@@ -137,10 +137,10 @@ class SiriusHotword43:
             self.runtime.logger.error(f"[HOTWORD] NL processing error: {e}")
 
     # --------------------------------------------------------
-    # MAIN LOOP (4.3.x)
+    # MAIN LOOP (4.5.0 PRO)
     # --------------------------------------------------------
     def run(self):
-        header = "SIRIUS HOTWORD MODE — active (v4.3.x)"
+        header = "SIRIUS HOTWORD MODE — active (v4.5.0 PRO)"
         if self.safe_mode:
             header += " [SAFE MODE]"
         elif self.degraded_mode:
@@ -179,5 +179,5 @@ class SiriusHotword43:
 # ENTRY POINT
 # ============================================================
 if __name__ == "__main__":
-    hw = SiriusHotword43()
+    hw = SiriusHotword45()
     hw.run()
