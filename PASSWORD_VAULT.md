@@ -1,9 +1,9 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v4.4.0 PRO)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v4.5.0 PRO)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
 It serves as an architectural orientation map for the **Intelligent Runtime 4.x** architecture.
 
-Version **4.4.0 PRO** expands the module map with the upgraded **System Intelligence & UI Automation stack**, including **AITE 4.4**, **Workflow Engine 4.4**, **Knowledge Packs 4.4**, **UI Automation Engine 4.4**, and **System Agent 4.2**.
+Version **4.5.0 PRO** expands the module map with the upgraded **System Intelligence & UI Automation stack**, including **AITE 4.5**, **Workflow Engine 4.5**, **Knowledge Packs 4.5**, **UI Automation Engine 4.5**, and **System Agent 4.5**.
 
 All processing is fully local; no data leaves the user's PC.
 
@@ -19,11 +19,11 @@ All processing is fully local; no data leaves the user's PC.
 - enforcing capability boundaries  
 - event routing  
 - global system stability  
-- integration with Security Family 4.4  
+- integration with Security Family 4.5  
 - integration with Self‑Repair Layer  
 - deterministic execution  
-- UI Automation Engine 4.4 integration  
-- System Agent 4.2 routing for system‑level actions  
+- UI Automation Engine 4.5 integration  
+- System Agent 4.5 routing for system‑level actions  
 
 ---
 
@@ -35,8 +35,8 @@ All processing is fully local; no data leaves the user's PC.
 - safety checks  
 - rollback‑safe operations  
 - semantic routing (documents, code, schoolwork)  
-- integration with Schoolwork Engine 4.4  
-- integration with UI Automation Engine 4.4 (file‑based workflows)  
+- integration with Schoolwork Engine 4.5  
+- integration with UI Automation Engine 4.5 (file‑based workflows)  
 
 ---
 
@@ -50,8 +50,8 @@ All processing is fully local; no data leaves the user's PC.
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
 - identity‑aware filtering (OWNER / FAMILY / STRANGER)  
-- UI automation command routing (v4.4.0)  
-- System Agent 4.2‑aware command gating for system actions  
+- UI automation command routing (v4.5.0)  
+- System Agent 4.5‑aware command gating for system actions  
 
 ---
 
@@ -63,12 +63,12 @@ All processing is fully local; no data leaves the user's PC.
 - supporting multi‑step workflows  
 - providing contextual hints  
 - subject/difficulty metadata  
-- integration with Schoolwork Engine 4.4  
-- integration with UI Automation Engine 4.4 (contextual UI hints)  
+- integration with Schoolwork Engine 4.5  
+- integration with UI Automation Engine 4.5 (contextual UI hints)  
 
 ---
 
-# 5. Workflow Engine 4.x
+# 5. Workflow Engine 4.5
 **Purpose:** Deterministic multi‑step logic.  
 **Responsibilities:**
 - workflow state machine  
@@ -76,9 +76,9 @@ All processing is fully local; no data leaves the user's PC.
 - semantic transitions  
 - preventing invalid sequences  
 - SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 4.4  
-- integration with UIWorkflow 4.4  
-- System Agent 4.2 validation for system‑level workflows  
+- integration with Reasoning Engine 4.5  
+- integration with UIWorkflow 4.5  
+- System Agent 4.5 validation for system‑level workflows  
 
 ---
 
@@ -89,8 +89,8 @@ All processing is fully local; no data leaves the user's PC.
 - executing GUI actions  
 - identity indicators  
 - SCHOOLWORK indicators  
-- future tray/voice integration  
-- UI automation visual feedback (v4.4.0)  
+- tray/voice integration  
+- UI automation visual feedback (v4.5.0)  
 
 ---
 
@@ -103,7 +103,7 @@ All processing is fully local; no data leaves the user's PC.
 
 ---
 
-# 8. Automatic Input Triage Engine (AITE 4.4)
+# 8. Automatic Input Triage Engine (AITE 4.5)
 **Purpose:** Semantic detection and classification of all inputs.  
 **Responsibilities:**
 - detecting input type (text, image, code, document, installer)  
@@ -114,11 +114,11 @@ All processing is fully local; no data leaves the user's PC.
 - routing to correct modules  
 - metadata generation  
 - integration with FS‑AGENT, CME‑MEM  
-- integration with Schoolwork Engine 4.4  
-- integration with Reasoning Engine 4.4  
+- integration with Schoolwork Engine 4.5  
+- integration with Reasoning Engine 4.5  
 - ENVOY 4.0 support  
-- UI automation intent detection (v4.4.0)  
-- identity‑aware triage aligned with Security Family 4.4  
+- UI automation intent detection (v4.5.0)  
+- identity‑aware triage aligned with Security Family 4.5  
 
 ---
 
@@ -130,8 +130,8 @@ All processing is fully local; no data leaves the user's PC.
 - safe wrappers around OS operations  
 - multi‑step system actions  
 - identity‑aware restrictions  
-- UI automation OS‑level routing (v4.4.0)  
-- System Agent 4.2‑validated capability execution  
+- UI automation OS‑level routing (v4.5.0)  
+- System Agent 4.5‑validated capability execution  
 
 **Submodules:**
 - `file_ops`  
@@ -140,7 +140,7 @@ All processing is fully local; no data leaves the user's PC.
 - `audio_ops`  
 - `system_context`  
 - `automation_ops`  
-- `ui_capabilities_4_4` (UPDATED)  
+- `ui_capabilities_4_5` (UPDATED)  
 
 ---
 
@@ -168,8 +168,8 @@ All processing is fully local; no data leaves the user's PC.
 - predictable behavior  
 - integrating CME, FS‑AGENT, GUI  
 - SCHOOLWORK workflow routing  
-- UI automation workflow integration (v4.4.0)  
-- System Agent 4.2‑aware system workflows  
+- UI automation workflow integration (v4.5.0)  
+- System Agent 4.5‑aware system workflows  
 
 ---
 
@@ -184,8 +184,8 @@ All processing is fully local; no data leaves the user's PC.
 - registering GUI elements  
 - safe plugin isolation  
 - SCHOOLWORK‑aware plugin behavior  
-- UI automation plugin hooks (v4.4.0)  
-- identity‑aware plugin capabilities via Security Family 4.4  
+- UI automation plugin hooks (v4.5.0)  
+- identity‑aware plugin capabilities via Security Family 4.5  
 
 Official plugins include:
 - automation  
@@ -218,8 +218,8 @@ Official plugins include:
 - generating patch suggestions  
 - preventing uncontrolled modifications  
 - reporting system health to Runtime Core  
-- validating UI automation modules (v4.4.0)  
-- monitoring System Agent 4.2 and Security Family 4.4 integrity  
+- validating UI automation modules (v4.5.0)  
+- monitoring System Agent 4.5 and Security Family 4.5 integrity  
 
 **Submodules:**  
 - `health_check_engine.py`  
@@ -228,7 +228,7 @@ Official plugins include:
 
 ---
 
-# 15. Security Family 4.4 (Identity Engine 2.0)
+# 15. Security Family 4.5 (Identity Engine 2.1)
 **Purpose:** Behavior‑based identity and family safety layer.  
 **Responsibilities:**
 - OWNER / FAMILY / STRANGER identity  
@@ -239,13 +239,13 @@ Official plugins include:
 - Schoolwork Engine integration  
 - identity‑aware routing  
 - STRANGER‑mode restrictions  
-- UI automation identity gating (v4.4.0)  
-- System Agent 4.2 policy integration  
+- UI automation identity gating (v4.5.0)  
+- System Agent 4.5 policy integration  
 
 **Submodules:**
-- `identity_engine_v2.py`  
-- `behavior_audit_v2.py`  
-- `access_control_v2.py`  
+- `identity_engine_v2_1.py`  
+- `behavior_audit_v2_1.py`  
+- `access_control_v2_1.py`  
 - `family_mode_v2.py`  
 - `stranger_mode_v2.py`  
 - `time_limits_v2.py`  
@@ -262,11 +262,11 @@ Official plugins include:
 ## 16.4 SCHOOL_HELPER 4.0  
 ## 16.5 IMAGE_ANALYZER 4.0  
 ## 16.6 CONTEXT_ROUTER 4.0  
-## 16.7 KNOWLEDGE_PACKS 4.4  
+## 16.7 KNOWLEDGE_PACKS 4.5  
 
 ---
 
-# 17. PASSWORD_VAULT 4.0
+# 17. PASSWORD_VAULT 4.1
 **Purpose:** Secure offline credential storage.  
 **Responsibilities:**
 - AES‑256‑GCM encrypted vault  
@@ -277,17 +277,11 @@ Official plugins include:
 - deterministic API for workflows  
 - NL Router integration  
 - Runtime Core integration  
-- Security Family 4.4 + System Agent 4.2 enforcement for access  
-
-**Submodules:**
-- `vault_api.py`  
-- `vault_core.py`  
-- `vault_storage.py`  
-- `vault_crypto.py`  
+- Security Family 4.5 + System Agent 4.5 enforcement for access  
 
 ---
 
-# 18. UI Automation Engine 4.4 (UPDATED)
+# 18. UI Automation Engine 4.5 (UPDATED)
 **Purpose:** Semantic, deterministic UI automation with real OS‑level control.  
 **Responsibilities:**
 - fuzzy UI parsing  
@@ -296,27 +290,27 @@ Official plugins include:
 - deterministic fallback logic  
 - OS‑level routing  
 - safe sandboxed execution  
-- WIN‑CAP 4.4 integration  
-- System Agent 4.2 validation for all UI actions  
+- WIN‑CAP 4.5 integration  
+- System Agent 4.5 validation for all UI actions  
 - identity‑aware UI automation (OWNER / FAMILY / STRANGER)  
 
 **Submodules:**
-- `ui_parser_4_4.py`  
-- `ui_workflow_4_4.py`  
-- `ui_actions_4_4.py`  
-- `win_capabilities_4_4.py`  
+- `ui_parser_4_5.py`  
+- `ui_workflow_4_5.py`  
+- `ui_actions_4_5.py`  
+- `win_capabilities_4_5.py`  
 
 ---
 
-# 19. System Agent 4.2 (Safe Action Execution Layer)
+# 19. System Agent 4.5 (Safe Action Execution Layer)
 **Purpose:** Final gatekeeper for all system‑level and UI automation actions.  
 **Responsibilities:**
 - validating every system action  
-- enforcing identity rules from Security Family 4.4  
+- enforcing identity rules from Security Family 4.5  
 - blocking unsafe operations  
 - logging all sensitive actions  
 - ensuring deterministic, reversible behavior  
-- mediating between Runtime Core, WIN‑CAP, and UI Automation Engine 4.4  
+- mediating between Runtime Core, WIN‑CAP, and UI Automation Engine 4.5  
 
 ---
 
@@ -328,7 +322,7 @@ Official plugins include:
 - validator & policy filter  
 - safe payload delivery  
 - Knowledge Pack updates  
-- never bypassing Security Family 4.4 or System Agent 4.2  
+- never bypassing Security Family 4.5 or System Agent 4.5  
 
 ---
 
@@ -337,15 +331,15 @@ All modules communicate through:
 
 - Runtime Core 4.x  
 - NL Router 4.x  
-- Workflow Engine 4.x  
+- Workflow Engine 4.5  
 - CME‑MEM 4.x  
-- Security Family 4.4  
+- Security Family 4.5  
 - WIN‑CAP 4.x  
-- UI Automation Engine 4.4  
-- System Agent 4.2  
+- UI Automation Engine 4.5  
+- System Agent 4.5  
 
 ---
 
 # Document Status
-**Version:** 4.4.0 PRO  
-Updated to reflect the **4.3 → 4.4 transition**, the new **System Agent 4.2**, and the upgraded **UI Automation Engine 4.4**.
+**Version:** 4.5.0 PRO  
+Updated to reflect the **4.4 → 4.5 transition**, the new **System Agent 4.5**, and the upgraded **UI Automation Engine 4.5**.
