@@ -12,6 +12,11 @@
 
 ---
 
+## 🧠 Architecture Diagram (Runtime 4.5 PRO)
+![Architecture](docs/architecture/DIAGRAM (2).png)
+
+---
+
 # ⚠ ANTI‑CONFUSION BLOCK  
 SIRIUS LOCAL AI (ALFA/BETA/GAMA) is **pure software** — a fully local AI runtime for Windows 11.  
 It has **no connection** to:
@@ -210,4 +215,3 @@ MIT License.
 *(unchanged)*
 
 # 🔚 END OF README
-
