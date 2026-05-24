@@ -322,12 +322,7 @@ MIT License.
 
 
 
-Every clone pushes the project forward.  
-Every star shows that offline AI matters.  
-Every new user becomes part of a community that believes in **local, safe, predictable AI**.
 
-SIRIUS is not just software —  
-it is a movement toward **full control over your own AI**.
 
 ---
 
