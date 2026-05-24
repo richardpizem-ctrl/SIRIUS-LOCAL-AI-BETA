@@ -321,29 +321,6 @@ MIT License.
 
 
 
-# 🗺 ROADMAP (Updated)
-
-- **v4.0.0** – Intelligent Runtime 2.0 + Password Vault 4.0  
-- **v4.1.0** – System Intelligence Layer  
-- **v4.2.0** – UI Automation Engine  
-- **v4.3.0** – Semantic UI Automation Engine  
-- **v4.4.0 PRO** – Deterministic OS Automation + System Agent 4.2  
-- **v4.5.0 PRO** – System Intelligence Expansion + AITE 4.5 + UI Automation 4.5  
-- **v5.0.0** – Offline Knowledge Graph Reasoning  
-
----
-
-# ⭐ Why Developers Keep Cloning SIRIUS  
-SIRIUS LOCAL AI is growing because it represents something rare in today’s AI world —  
-a fully offline, deterministic, secure runtime built from the ground up by a single developer.
-
-People clone this project because they see:
-
-- **a new category of AI runtime, not just another tool**  
-- **modules that do not exist anywhere else**  
-- **real OS automation, not just text generation**  
-- **identity‑aware security with no equivalent**  
-- **a clean, modular architecture that expands with every version**  
 
 Every clone pushes the project forward.  
 Every star shows that offline AI matters.  
