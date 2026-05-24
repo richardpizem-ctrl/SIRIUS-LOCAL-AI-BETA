@@ -3,7 +3,7 @@
 
 SIRIUS ENVOY 4.0 is an **isolated online retrieval agent** that allows SIRIUS LOCAL AI to safely obtain information from the internet **without exposing the local AI runtime to any network communication**.
 
-This expanded **v4.4.0 edition** includes updated explanations reflecting the **4.3 → 4.4 PRO transition**, the new **UI Automation Engine 4.4**, the upgraded **System Agent 4.2**, and the hardened quarantine + validation pipeline.
+This expanded **v4.5.0 edition** includes updated explanations reflecting the **4.4 → 4.5 PRO transition**, the new **UI Automation Engine 4.5**, the upgraded **System Agent 4.5**, and the hardened quarantine + validation pipeline.
 
 This document explains:
 - what ENVOY is  
@@ -12,7 +12,7 @@ This document explains:
 - how the quarantine system functions  
 - how data flows into the local AI  
 - what ENVOY is strictly forbidden from doing  
-- how ENVOY integrates with Runtime 4.4.0 PRO  
+- how ENVOY integrates with Runtime 4.5.0 PRO  
 
 ---
 
@@ -144,9 +144,9 @@ ENVOY is strictly forbidden from:
 - bypassing safety rules  
 - modifying Knowledge Packs directly  
 - performing UI automation  
-- interacting with the **UI Automation Engine 4.4**  
-- bypassing **System Agent 4.2**  
-- bypassing **SECURITY FAMILY 4.4**  
+- interacting with the **UI Automation Engine 4.5**  
+- bypassing **System Agent 4.5**  
+- bypassing **SECURITY FAMILY 4.5**  
 
 ENVOY is a **one‑directional, outbound‑only, isolated process**.
 
@@ -168,21 +168,21 @@ All of this happens **without putting SIRIUS online**.
 
 ---
 
-# 🔗 7. Integration with Runtime 4.4.0 PRO
+# 🔗 7. Integration with Runtime 4.5.0 PRO
 
-With the introduction of **UI Automation Engine 4.4**, ENVOY’s role remains strictly informational.
+With the introduction of **UI Automation Engine 4.5**, ENVOY’s role remains strictly informational.
 
 ENVOY **does not**:
 - trigger UI actions  
-- interact with UIParser 4.4  
-- influence UIWorkflow 4.4  
+- interact with UIParser 4.5  
+- influence UIWorkflow 4.5  
 - bypass identity rules  
 - modify system‑level automation  
-- bypass System Agent 4.2  
+- bypass System Agent 4.5  
 
 ENVOY **does**:
-- provide sanitized text for Reasoning Engine 4.4  
-- update Knowledge Packs 4.4  
+- provide sanitized text for Reasoning Engine 4.5  
+- update Knowledge Packs 4.5  
 - support semantic workflows  
 - enrich academic and household modules  
 - operate under hardened quarantine rules  
@@ -198,14 +198,14 @@ ENVOY **does**:
 - no data passes without inspection  
 - no local data is ever transmitted  
 - everything is deterministic and auditable  
-- ENVOY cannot bypass UI Automation Engine 4.4  
-- ENVOY cannot bypass SECURITY FAMILY 4.4  
-- ENVOY cannot bypass System Agent 4.2  
+- ENVOY cannot bypass UI Automation Engine 4.5  
+- ENVOY cannot bypass SECURITY FAMILY 4.5  
+- ENVOY cannot bypass System Agent 4.5  
 - ENVOY cannot modify runtime behavior  
 
 ---
 
 # 📄 Document Status
 
-**Version:** 1.2.0 (Updated for Runtime 4.4.0 PRO)  
-This tutorial explains the purpose and operation of SIRIUS ENVOY 4.0 and its role in the expanded Runtime 4.4.0 architecture.
+**Version:** 1.3.0 (Updated for Runtime 4.5.0 PRO)  
+This tutorial explains the purpose and operation of SIRIUS ENVOY 4.0 and its role in the expanded Runtime 4.5.0 architecture.
