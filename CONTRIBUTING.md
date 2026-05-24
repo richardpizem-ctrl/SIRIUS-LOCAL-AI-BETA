@@ -1,4 +1,4 @@
-# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v4.4.0 EXPANDED)
+# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v4.5.0 EXPANDED)
 
 Thank you for your interest in contributing to **SIRIUS LOCAL AI**.  
 This document defines the rules, processes, and expectations for all contributors.  
@@ -7,7 +7,7 @@ The goal is to maintain a **clean, safe, modular, deterministic, and intelligent
 All processing is fully local.  
 No data leaves your PC.
 
-Version **4.4.0** expands these guidelines to include the new **UI Automation Engine 4.4**, the transition from **4.3 → 4.4 PRO**, upgraded safety‑critical modules, and hardened deterministic routing.
+Version **4.5.0** expands these guidelines to include the new **UI Automation Engine 4.5**, the transition from **4.4 → 4.5 PRO**, upgraded safety‑critical modules, and hardened deterministic routing.
 
 ---
 
@@ -25,14 +25,14 @@ Version **4.4.0** expands these guidelines to include the new **UI Automation En
 - **Deterministic, reversible behavior whenever possible**  
 - **Plugin System 4.x rules must be followed**  
 - **Safety‑critical modules must never be weakened or bypassed**, including:  
-  - SECURITY FAMILY 4.4  
-  - Identity Engine 2.0  
-  - Schoolwork Engine 4.4  
+  - SECURITY FAMILY 4.5  
+  - Identity Engine 2.1  
+  - Schoolwork Engine 4.5  
   - Time‑Limits Engine v2  
   - Self‑Repair & Health‑Check Layer  
-  - **UI Automation Engine 4.4 (UPDATED)**  
+  - **UI Automation Engine 4.5 (UPDATED)**  
 - **Reasoning Engine 4.x must not be misused or extended unsafely**  
-- **System Agent 4.2 must remain the final gatekeeper for all system actions**  
+- **System Agent 4.5 must remain the final gatekeeper for all system actions**  
 
 ---
 
@@ -69,12 +69,12 @@ Key rules:
 - no deep nesting — prefer early returns  
 - imports grouped: standard → third‑party → internal  
 - plugin code must follow Plugin API 4.x  
-- SECURITY FAMILY 4.4 code must follow safety‑first design  
-- SCHOOLWORK ENGINE 4.4 must remain intact and non‑bypassable  
+- SECURITY FAMILY 4.5 code must follow safety‑first design  
+- SCHOOLWORK ENGINE 4.5 must remain intact and non‑bypassable  
 - Reasoning Engine 4.x integrations must be deterministic and safe  
 - Self‑Repair Layer must not be disabled or bypassed  
-- **UI Automation Engine 4.4 integrations must follow deterministic fallback rules**  
-- **System Agent 4.2 must validate all system‑level actions**  
+- **UI Automation Engine 4.5 integrations must follow deterministic fallback rules**  
+- **System Agent 4.5 must validate all system‑level actions**  
 
 ---
 
@@ -99,25 +99,25 @@ If your change affects:
 - **Reasoning Engine 4.x** → test deterministic reasoning behavior  
 - **WIN‑CAP 4.x** → test safe fallback behavior  
 - **Plugin System 4.x** → test manifest, NL commands, tasks, workflows, GUI elements  
-- **UI Automation Engine 4.4** →  
+- **UI Automation Engine 4.5** →  
   - fuzzy matching behavior  
   - fallback logic  
   - deterministic retries  
   - safe OS‑level routing  
-- **SECURITY FAMILY 4.4** →  
+- **SECURITY FAMILY 4.5** →  
   - identity classification (OWNER / FAMILY / STRANGER)  
   - time‑limit enforcement v2  
   - schoolwork bypass logic  
   - safe‑mode restrictions  
   - STRANGER‑mode protections  
-- **Schoolwork Engine 4.4** →  
+- **Schoolwork Engine 4.5** →  
   - subject detection  
   - difficulty scoring  
   - bypass logic  
 - **Self‑Repair Layer** →  
   - integrity checks  
   - fallback behavior  
-- **System Agent 4.2** →  
+- **System Agent 4.5** →  
   - validation of all system actions  
   - deterministic safety enforcement  
 
@@ -140,12 +140,12 @@ Restrictions:
 - PRs must not introduce new dependencies without approval  
 - PRs must not break determinism or safety guarantees  
 - plugin PRs must include updated manifest if needed  
-- PRs must not weaken SECURITY FAMILY 4.4 protections  
-- PRs must not interfere with SCHOOLWORK ENGINE 4.4  
+- PRs must not weaken SECURITY FAMILY 4.5 protections  
+- PRs must not interfere with SCHOOLWORK ENGINE 4.5  
 - PRs must not disable or bypass the Self‑Repair Layer  
 - PRs must not misuse Reasoning Engine 4.x  
-- **PRs must not compromise UI Automation Engine 4.4 safety rules**  
-- **PRs must not bypass System Agent 4.2 validation**  
+- **PRs must not compromise UI Automation Engine 4.5 safety rules**  
+- **PRs must not bypass System Agent 4.5 validation**  
 
 ---
 
@@ -164,11 +164,11 @@ Restrictions:
 - plugins that violate Plugin API 4.x  
 - attempts to disable FAMILY mode, time limits, or schoolwork engine  
 - attempts to weaken STRANGER‑mode protections  
-- attempts to bypass Identity Engine 2.0  
+- attempts to bypass Identity Engine 2.1  
 - attempts to disable Self‑Repair Layer  
 - unsafe Reasoning Engine extensions  
 - **unsafe or non‑deterministic UI automation behavior**  
-- **attempts to bypass System Agent 4.2**  
+- **attempts to bypass System Agent 4.5**  
 
 ---
 
@@ -192,16 +192,16 @@ Guidelines:
 
 All contributions must respect:
 
-- **ARCHITECTURE.md (v4.4.0)**  
+- **ARCHITECTURE.md (v4.5.0)**  
 - **MODULE_MAP.md**  
 - **STYLEGUIDE.md**  
 - **SECURITY.md**  
 - **Plugin API 4.x**  
-- **SECURITY FAMILY 4.4 design rules**  
-- **Schoolwork Engine 4.4 rules**  
+- **SECURITY FAMILY 4.5 design rules**  
+- **Schoolwork Engine 4.5 rules**  
 - **Self‑Repair Layer requirements**  
-- **UI Automation Engine 4.4 specifications**  
-- **System Agent 4.2 safety model**  
+- **UI Automation Engine 4.5 specifications**  
+- **System Agent 4.5 safety model**  
 
 Breaking architectural boundaries requires prior approval.
 
@@ -220,9 +220,9 @@ Avoid vague messages like “update”, “fix stuff”, “changes”.
 
 ---
 
-# 10. 🧒 Family Safety Requirements (v4.4.0)
+# 10. 🧒 Family Safety Requirements (v4.5.0)
 
-Contributors must respect the integrity of the **SECURITY FAMILY 4.4** module:
+Contributors must respect the integrity of the **SECURITY FAMILY 4.5** module:
 
 - behavior‑based identity must remain deterministic  
 - FAMILY mode must remain safe and restricted  
@@ -230,10 +230,10 @@ Contributors must respect the integrity of the **SECURITY FAMILY 4.4** module:
 - **schoolwork must always be allowed**  
 - stranger‑mode must remain locked down  
 - OWNER‑level actions must remain protected  
-- Identity Engine 2.0 must not be weakened  
-- Schoolwork Engine 4.4 must remain intact  
-- UI Automation Engine 4.4 must not perform unsafe actions  
-- System Agent 4.2 must validate all system‑level actions  
+- Identity Engine 2.1 must not be weakened  
+- Schoolwork Engine 4.5 must remain intact  
+- UI Automation Engine 4.5 must not perform unsafe actions  
+- System Agent 4.5 must validate all system‑level actions  
 - no PR may weaken or circumvent these protections  
 
 Any PR affecting SECURITY FAMILY, SCHOOLWORK ENGINE, UI Automation Engine, or System Agent must include **explicit safety tests**.
@@ -248,5 +248,5 @@ All contributions are accepted only in accordance with the project’s **MIT Lic
 
 # 📌 Document Status
 
-Current version: **4.4.0 (Expanded)**  
-Updated to reflect the **4.3 → 4.4 transition** and the new **UI Automation Engine 4.4**.
+Current version: **4.5.0 (Expanded)**  
+Updated to reflect the **4.4 → 4.5 transition** and the new **UI Automation Engine 4.5**.
