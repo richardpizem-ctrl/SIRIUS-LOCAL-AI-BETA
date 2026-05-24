@@ -7,7 +7,9 @@ Version **4.0.0** introduced the Intelligent Runtime 2.0, Reasoning Engine 4.0, 
 
 Version **4.3.0** delivered the **Semantic UI Automation Engine**, completing the originally planned 4.2.0 release and expanding the runtime with UIParser 4.3, UIWorkflow 4.3, UIActions 4.3, and WinCapabilities 4.3.
 
-Version **4.4.0 PRO** upgrades the entire runtime into a **deterministic, system‑intelligent, safety‑hardened architecture**, including AITE 4.4, Reasoning Engine 4.4, Workflow Engine 4.4, Knowledge Packs 4.4, System Agent 4.2, and UI Automation Engine 4.4.
+Version **4.4.0 PRO** upgraded the runtime into a deterministic, system‑intelligent, safety‑hardened architecture.
+
+Version **4.5.0 PRO** completes the PRO‑tier upgrade with **unified deterministic routing**, **System Agent 4.5**, **AITE 4.5**, **UI Automation Engine 4.5**, **Knowledge Packs 4.5**, **Security Family 4.5**, and a fully stabilized **System Intelligence Layer 4.5**.
 
 The entire system runs **100% locally**, without external dependencies or cloud services.
 
@@ -22,14 +24,14 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 - [Release Notes](RELEASE_NOTES.md)
 - [Roadmap](ROADMAP.md)
 - [Security Family](SECURITY_FAMILY.md)
-- [AITE 4.4](AITE.md)
+- [AITE 4.5](AITE.md)
 - [ENVOY 4.0](ENVOY_TUTORIAL.md)
 - [Future Vision](FUTURE_VISION.md)
-- [Password Vault 4.0](PASSWORD_VAULT.md)
+- [Password Vault 4.1](PASSWORD_VAULT.md)
 
 ---
 
-## 🚀 Key Features (v4.4.0 PRO)
+## 🚀 Key Features (v4.5.0 PRO)
 
 ### **Intelligent Runtime 4.x**
 A fully upgraded runtime with:
@@ -39,8 +41,8 @@ A fully upgraded runtime with:
 - self‑repair integration  
 - capability isolation  
 - safe fallback states  
-- UI automation integration (v4.4.0)  
-- hardened System Agent 4.2 validation  
+- UI automation integration (v4.5.0)  
+- hardened System Agent 4.5 validation  
 
 ---
 
@@ -51,18 +53,18 @@ Each module is isolated and follows strict boundaries:
 - `context/` – semantic context engine  
 - `filesystem/` – safe file operations  
 - `runtime/` – Runtime Core 4.x  
-- `triage/` – AITE 4.4 (semantic triage)  
+- `triage/` – AITE 4.5 (semantic triage)  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
 - `ui_components/animations/` – animation engine  
 - `workflow/` – Workflow Engine 4.x  
 - `plugins/` – Plugin System 4.x  
-- `security_family/` – Identity Engine 2.0, time‑limits v2, schoolwork engine  
+- `security_family/` – Identity Engine 2.1, time‑limits v2, schoolwork engine  
 - `self_repair/` – Self‑Repair & Health‑Check Layer  
 - `knowledge_packs/` – Knowledge Packs 4.x  
 - `envoy/` – ENVOY 4.0 safe retrieval layer  
-- `ui_automation/` – **UI Automation Engine 4.4**  
-- `system_agent/` – System Agent 4.2 (safe action execution)  
+- `ui_automation/` – **UI Automation Engine 4.5**  
+- `system_agent/` – System Agent 4.5 (safe action execution)  
 
 The system is designed to be extended **without modifying the core**.
 
@@ -82,7 +84,7 @@ All official plugins are fully prepared for v4.x.
 
 ---
 
-### **Automatic Input Triage Engine (AITE 4.4)**
+### **Automatic Input Triage Engine (AITE 4.5)**
 AITE analyzes inputs, classifies them, and routes them to the correct modules.
 
 It ensures:
@@ -93,9 +95,9 @@ It ensures:
 - difficulty scoring  
 - identity‑aware routing  
 - deterministic behavior  
-- **Schoolwork Engine 4.4 — academic tasks always bypass FAMILY restrictions**  
-- **integration with SECURITY FAMILY 4.4**  
-- **integration with Reasoning Engine 4.4**  
+- **Schoolwork Engine 4.5 — academic tasks always bypass FAMILY restrictions**  
+- **integration with SECURITY FAMILY 4.5**  
+- **integration with Reasoning Engine 4.5**  
 
 ---
 
@@ -174,22 +176,22 @@ Developer‑level offline automation:
 
 ---
 
-### **UI Automation Engine 4.4 (UPDATED)**
-A major capability expanded in v4.4.0:
+### **UI Automation Engine 4.5 (UPDATED)**
+A major capability expanded in v4.5.0:
 
 - improved fuzzy UI parsing  
 - safer semantic UI actions  
 - deterministic fallback logic  
 - OS‑level routing  
 - sandbox‑protected execution  
-- WinCapabilities 4.4 integration  
-- System Agent 4.2 validation for all UI actions  
+- WinCapabilities 4.5 integration  
+- System Agent 4.5 validation for all UI actions  
 
 This engine replaces the originally planned v4.2.0 release.
 
 ---
 
-## 📁 Project Structure (v4.4.0)
+## 📁 Project Structure (v4.5.0)
 src/
 ├── commands/  
 ├── context/  
@@ -225,8 +227,8 @@ The project includes a complete testing plan:
 - SECURITY FAMILY identity tests  
 - SCHOOLWORK ENGINE tests  
 - self‑repair integrity tests  
-- UI Automation Engine 4.4 tests  
-- System Agent 4.2 validation tests  
+- UI Automation Engine 4.5 tests  
+- System Agent 4.5 validation tests  
 
 Details are in **TESTING_GUIDE.md**.
 
@@ -250,13 +252,14 @@ More in **PERFORMANCE_GUIDE.md**.
 
 ### **v4.0.0 – Intelligent Runtime 2.0 (Stable)**  
 ### **v4.3.0 – Semantic UI Automation Engine**  
-### **v4.4.0 – PRO Runtime Expansion (Current)**  
-- AITE 4.4  
-- Reasoning Engine 4.4  
-- Workflow Engine 4.4  
-- Knowledge Packs 4.4  
-- UI Automation Engine 4.4  
-- System Agent 4.2  
+### **v4.4.0 – PRO Runtime Expansion**  
+### **v4.5.0 – Unified PRO Runtime (Current)**  
+- AITE 4.5  
+- Reasoning Engine 4.5  
+- Workflow Engine 4.5  
+- Knowledge Packs 4.5  
+- UI Automation Engine 4.5  
+- System Agent 4.5  
 - deterministic system‑level intelligence  
 
 ---
