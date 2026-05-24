@@ -197,8 +197,8 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 ## 🔥 AITE 4.5 – Multimodal Semantic Triage
 - faster semantic routing  
 - improved OCR 4.5  
-- identity‑aware triage 3.2  
-- SCHOOLWORK bypass logic upgraded  
+ identity‑aware triage 3.2  
+- S-CHOOLWORK bypass logic upgraded  
 - deterministic classification  
 - improved mixed‑content detection  
 
@@ -313,3 +313,145 @@ MIT License.
 *(unchanged)*
 
 # 🔚 END OF README
+# 🟦 NEW IN VERSION 4.5.0 PRO  
+### **Deterministic System‑Intelligent Runtime Expansion (Next‑Gen Upgrade)**
+
+---
+
+## 🔥 AITE 4.5 – Multimodal Semantic Triage
+- faster semantic routing  
+- improved OCR 4.5  
+- identity‑aware triage 3.2  
+- SCHOOLWORK bypass logic upgraded  
+- deterministic classification  
+- improved mixed‑content detection  
+
+---
+
+## 🔥 Reasoning Engine 4.5 – Deterministic Reasoning Layer
+- bounded reasoning depth 2.0  
+- improved symbolic logic  
+- pack‑aware reasoning 3.0  
+- deterministic chain‑of‑thought  
+- SCHOOLWORK reasoning priority  
+- faster cached reasoning paths  
+
+---
+
+## 🔥 Workflow Engine 4.5 – Predictable Multi‑Step Logic
+- constant‑time transitions  
+- semantic caching 2.0  
+- identity‑aware workflow gating  
+- deterministic fallback logic  
+- UI automation workflow integration  
+- safer multi‑stage workflows  
+
+---
+
+## 🔥 Knowledge Packs 4.5 – Indexed Semantic Packs
+- faster lookups  
+- improved semantic linking  
+- deterministic pack‑to‑pack reasoning  
+- expanded household, school, and device packs  
+- pack integrity validation  
+
+---
+
+## 🔥 System Agent 4.5 – Safe Action Execution Layer
+- validates every system‑level action  
+- OWNER / FAMILY / STRANGER enforcement  
+- blocks unsafe OS operations  
+- logs sensitive actions  
+- mediates UI automation + WIN‑CAP  
+- deterministic, reversible execution  
+- identity‑aware OS control  
+
+---
+
+## 🔥 UI Automation Engine 4.5 – Real OS Automation
+- real Win32/UIA/WinRT routing  
+- deterministic fallback logic  
+- identity‑aware UI actions  
+- sandbox‑protected execution  
+- System Agent 4.5 validation  
+- safer OS‑level UI control  
+- improved fuzzy matching 4.5  
+
+---
+
+# 📊 UPDATED COMPARISON TABLE (4.5.0 PRO)
+
+| Framework | Offline Capability | Workflow Automation | Platform | Resource Usage | Best For |
+|----------|--------------------|----------------------|----------|----------------|----------|
+| **SIRIUS LOCAL AI (v4.5.0 PRO)** | ✅ Full offline | ✅ Semantic + deterministic + OS UI automation | Windows 11 | ⚖️ Moderate | Secure OS automation, deterministic workflows |
+| **Lemon AI** | ✅ Full offline | ✅ Multi‑step research & reasoning | Cross‑platform | 🔥 High | Research, multi‑model orchestration |
+| **Nanobrowser** | ⚠ Local only | ❌ Browser‑only automation | Chrome/Chromium | 🟢 Very low | Simple browser tasks |
+| **Browser‑Use + CrewAI** | ✅ Full offline | ✅ Enterprise multi‑agent workflows | Cross‑platform | 🔥🔥 Very high | Enterprise automation |
+| **Ollama / LocalAI** | ✅ Full offline | ⚠ Basic scripting workflows | Cross‑platform | ⚖️ Moderate–High | Local LLM inference |
+
+---
+
+# 🗺 ROADMAP (Updated)
+
+- **v4.0.0** – Intelligent Runtime 2.0 + Password Vault 4.0  
+- **v4.1.0** – System Intelligence Layer  
+- **v4.2.0** – UI Automation Engine  
+- **v4.3.0** – Semantic UI Automation Engine  
+- **v4.4.0 PRO** – Deterministic OS Automation + System Agent 4.2  
+- **v4.5.0 PRO** – System Intelligence Expansion + AITE 4.5 + UI Automation 4.5  
+- **v5.0.0** – Offline Knowledge Graph Reasoning  
+
+---
+
+# ⭐ Why Developers Keep Cloning SIRIUS  
+SIRIUS LOCAL AI is growing because it represents something rare in today’s AI world —  
+a fully offline, deterministic, secure runtime built from the ground up by a single developer.
+
+People clone this project because they see:
+
+- **a new category of AI runtime, not just another tool**  
+- **modules that do not exist anywhere else**  
+- **real OS automation, not just text generation**  
+- **identity‑aware security with no equivalent**  
+- **a clean, modular architecture that expands with every version**  
+
+Every clone pushes the project forward.  
+Every star shows that offline AI matters.  
+Every new user becomes part of a community that believes in **local, safe, predictable AI**.
+
+SIRIUS is not just software —  
+it is a movement toward **full control over your own AI**.
+
+---
+
+# 🛰 Envoy Module (Planned) – Secure Online Information Fetcher
+**Status:** Planned for v5.x**  
+**Goal:** Provide optional, permission‑based access to online information while preserving the offline‑first architecture.
+
+The Envoy module will act as a **controlled external agent** that can fetch information from the internet **only when explicitly approved by the user**.
+
+### 🔐 Envoy Security Flow (ASK → FETCH → QUARANTINE → DELIVER)
+
+```
+User Request
+    ↓
+ASK — explicit permission required
+    ↓
+FETCH — one isolated online request
+    ↓
+QUARANTINE — sanitize, validate, strip unsafe content
+    ↓
+DELIVER — safe data passed to Reasoning Engine
+```
+
+### Key Principles
+- **Never runs automatically**  
+- **Always asks for permission**  
+- **Single‑purpose, isolated fetch**  
+- **All data enters quarantine before use**  
+- **System Agent validates the entire process**  
+- **Offline mode remains default and untouched**
+
+Envoy will allow SIRIUS to access external information **without compromising determinism, safety, or identity‑aware control**.
+
+---
