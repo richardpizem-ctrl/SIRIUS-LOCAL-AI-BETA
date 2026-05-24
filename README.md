@@ -15,6 +15,29 @@
 ## 🧠 Architecture Diagram (Runtime 4.5 PRO)
 ![Architecture](diagram%20(2).png)
 
+---
+
+## 🗂 LEGEND — Architecture Modules (Runtime 4.5 PRO)
+
+### **Core Intelligence**
+- **AITE 4.5** — multimodálne smerovanie, OCR 4.5, identity triage 3.2  
+- **Reasoning Engine 4.5** — deterministické logické jadro, bounded reasoning 2.0  
+- **Knowledge Packs 4.5** — indexované semantické balíky, pack‑aware reasoning  
+
+### **Workflow & Execution**
+- **Workflow Engine 4.5** — predvídateľné viacstupňové workflow, semantic caching  
+- **Deterministic Execution Layer** — garantované správanie runtime  
+
+### **System & OS Control**
+- **System Agent 4.5** — validácia OS akcií, OWNER/FAMILY/STRANGER enforcement  
+- **OS Interaction Layer** — bezpečné systémové operácie, WIN‑CAP integrácia  
+
+### **UI Automation**
+- **UI Automation Engine 4.5** — Win32/UIA/WinRT automatizácia, identity‑aware UI actions  
+
+### **Security & Identity**
+- **Identity Layer** — enforcement identity pravidiel  
+- **Validation Layer** — bezpečnostné kontroly, blokovanie nebezpečných akcií  
 
 ---
 
