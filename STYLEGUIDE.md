@@ -1,225 +1,168 @@
-# 🎨 STYLEGUIDE – SIRIUS LOCAL AI  
-### v3.0.0 → 4.3.0 → **4.4.0 PRO (Expanded)**
+# 12. NEW IN VERSION 4.5.0 PRO — System‑Intelligent Styleguide Expansion
 
-This document defines the unified code style, naming conventions, module structure, and cleanliness rules for the SIRIUS LOCAL AI project.  
-Originally written for Runtime 3.0.0, it is now expanded to include the new architectural rules introduced in:
+Version **4.5.0 PRO** rozširuje pôvodný STYLEGUIDE o nové pravidlá pre:
 
-- **Runtime 4.0.0**  
-- **UI Automation Engine 4.2.0**  
-- **Semantic UI Automation Engine 4.3.0**  
-- **Deterministic OS Automation 4.4.0 PRO (NEW)**  
+- System Intelligence Layer 4.5  
+- System Agent 4.5  
+- UI Automation Engine 4.5  
+- Security Family 4.5  
+- Workflow Engine 4.5  
+- Knowledge Packs 4.5  
 
-All processing is fully local; no data leaves the user’s PC.
-
----
-
-# 1. Core Principles
-
-*(unchanged, plus new 4.4.0 rules)*
-
-- code must be clean, readable, modular  
-- no monolithic functions  
-- no magic constants  
-- no hidden side effects  
-- SRP everywhere  
-- security > convenience  
-- predictable behavior  
-- consistent structure  
-- minimal cognitive load  
-- Plugin API 3.0 compliance  
-- **SECURITY FAMILY isolation rules**  
-- **identity‑restricted logic must be deterministic and constant‑time**  
-- **UI Automation Engine (4.2–4.3) must follow deterministic, sandbox‑safe execution**  
-- **semantic UI actions must never bypass identity or sandbox rules**  
-- **System Agent 4.2 must validate all OS‑level actions** ← *NEW (4.4.0)*  
-- **OS‑level automation must be reversible and identity‑aware** ← *NEW (4.4.0)*  
-- **no module may call OS APIs directly — only through WinCapabilities 4.4** ← *NEW (4.4.0)*  
+Všetky staršie pravidlá ostávajú platné.  
+4.5.0 PRO iba dopĺňa nové povinné normy pre deterministickú, systémovo‑inteligentnú architektúru.
 
 ---
 
-# 2. Naming Conventions
+# 12.1 Core Principles (Expanded for 4.5.0 PRO)
 
-*(unchanged + new 4.4.0 modules)*
-
-## Variables
-- `lower_snake_case`
-
-## Functions
-- `lower_snake_case`
-
-## Classes / Modules
-- `PascalCase`
-
-### Reserved Names (4.2–4.3)
-- `UIGraph`, `UIParser`, `UIActions`, `UISandbox`, `UIWorkflow`, `WinCapabilities`
-
-### NEW Reserved Names (4.4.0 PRO)
-- `SystemAgent`  
-- `OSActionValidator`  
-- `OSRoutingContext`  
-- `DeterministicFallbackEngine`  
-- `IdentityGatekeeper`  
-
-These names are **reserved** and must not be repurposed.
-
-## Constants
-- `UPPER_SNAKE_CASE`
+### NEW (4.5.0 PRO)
+- všetky systémové akcie musia byť **prediktívne validované**  
+- System Intelligence Layer musí byť konzultovaný pred OS‑úrovňovými workflowmi  
+- identity‑aware logika musí byť **konzistentná naprieč všetkými modulmi**  
+- žiadne workflow nesmie bežať v **rizikovom OS stave**  
+- všetky moduly musia podporovať **deterministické fallbacky 2.0**  
+- reasoning musí byť **bounded, cacheovaný a pack‑aware 3.0**  
+- UI Automation musí používať **fuzzy matching 4.5**  
+- System Agent 4.5 je **jediný validátor OS akcií**  
 
 ---
 
-# 3. File & Folder Structure
+# 12.2 Naming Conventions (Expanded for 4.5.0 PRO)
 
-*(unchanged + new 4.4.0 folders)*
-/runtime
-/filesystem
-/commands
-/context
-/workflow
-/ui
-/email
-/ui_components
-/ui_components/animations
-/plugins
-/security_family
-/home_assistant
-/cooking_advisor
-/device_diagnostics
-/school_helper
-/image_analyzer
-/context_router
-/ui_automation
-/ui_automation/os
-/system_agent              ← NEW (4.4.0)
-/os_routing                ← NEW (4.4.0)
-/os_validation             ← NEW (4.4.0)
+### NEW Reserved Names (4.5.0 PRO)
+- `SystemIntelligenceLayer`  
+- `PredictiveSafetyEngine`  
+- `OSHealthMonitor`  
+- `RiskAnalyzer`  
+- `IdentityGatekeeperV2`  
+- `DeterministicFallbackEngineV2`  
 
-### NEW Rules (4.4.0 PRO)
-- **System Agent must be isolated from all modules except Runtime Core, Security Family, and WinCapabilities**  
-- **UI Automation Engine may not call OS APIs directly — only through WinCapabilities 4.4**  
-- **OS‑level modules must never bypass identity checks**  
-- **Workflow Engine 4.4 must route system workflows through System Agent**  
+Tieto názvy sú **rezervované** a nesmú byť použité na iné účely.
 
 ---
 
-# 4. Function Length
+# 12.3 File & Folder Structure (Expanded for 4.5.0 PRO)
 
-*(unchanged + new 4.4.0 rules)*
+### NEW Folders (4.5.0 PRO)
+/system_intelligence  
+/system_intelligence/diagnostics  
+/system_intelligence/predictive  
+/system_intelligence/risk_models  
+/system_agent_v2  
+/ui_automation/fallback_v2  
+/security_family_v2  
 
-### NEW (4.4.0 PRO)
-- OS‑level validation must be split into:
-  - `precheck_identity()`
-  - `precheck_safety()`
-  - `execute_action()`
-  - `postcheck_reversibility()`
-
-- no OS‑level function may exceed **40 lines**  
-- fallback logic must be deterministic and staged  
-
----
-
-# 5. Comments
-
-*(unchanged + new 4.4.0 rules)*
-
-### NEW (4.4.0 PRO)
-Comments must document:
-
-- System Agent validation steps  
-- OS‑level safety rules  
-- identity gating logic  
-- reversibility guarantees  
-- deterministic fallback stages  
+### NEW Rules (4.5.0 PRO)
+- System Intelligence Layer musí byť izolovaný od UI Automation  
+- System Agent 4.5 musí byť jediný modul s právom validovať OS akcie  
+- Workflow Engine 4.5 musí konzultovať OS stav pred vykonaním workflowu  
+- žiadny modul nesmie obchádzať System Intelligence Layer pri OS‑úrovňových rozhodnutiach  
 
 ---
 
-# 6. Error Messages
+# 12.4 Function Length (Expanded for 4.5.0 PRO)
 
-*(unchanged + new 4.4.0 rules)*
+### NEW (4.5.0 PRO)
+OS‑úrovňové funkcie musia byť rozdelené na:
 
-### NEW (4.4.0 PRO)
-OS‑level errors must follow:
+- `precheck_identity()`  
+- `precheck_system_state()` ← NEW  
+- `precheck_risk_level()` ← NEW  
+- `execute_action()`  
+- `postcheck_reversibility()`  
+- `postcheck_system_integrity()` ← NEW  
 
-- `"OS action blocked by System Agent – insufficient identity level."`  
-- `"OS operation rejected – reversibility not guaranteed."`  
-- `"Unsafe system action – requires OWNER identity."`  
-- `"OS routing failed – capability boundary exceeded."`  
-
----
-
-# 7. Security Rules in Code
-
-*(unchanged + new 4.4.0 rules)*
-
-### NEW (4.4.0 PRO)
-- all OS‑level actions must pass through `SystemAgent`  
-- no direct Win32/UIA/WinRT calls  
-- no privileged operations  
-- no kernel‑level access  
-- no bypass of identity gating  
-- no bypass of reversibility checks  
-- no implicit OS state modification  
-- no persistent hooks or listeners  
-- no background OS manipulation  
+Maximálna dĺžka OS‑úrovňovej funkcie: **45 riadkov**.
 
 ---
 
-# 8. Testing Requirements
+# 12.5 Comments (Expanded for 4.5.0 PRO)
 
-*(unchanged + new 4.4.0 rules)*
+### NEW (4.5.0 PRO)
+Komentáre musia obsahovať:
 
-### NEW (4.4.0 PRO)
-System Agent tests must include:
+- prediktívne bezpečnostné dôvody  
+- OS‑stavové podmienky  
+- rizikové faktory  
+- identity‑aware rozhodnutia  
+- fallback 2.0 logiku  
+- prečo bol workflow zastavený alebo presmerovaný  
 
-- identity gating tests  
-- reversibility tests  
-- OS safety boundary tests  
-- capability boundary tests  
-- deterministic fallback tests  
-- workflow → system routing tests  
+---
 
-UI Automation 4.4 tests must include:
+# 12.6 Error Messages (Expanded for 4.5.0 PRO)
 
-- OS routing tests  
-- WinCapabilities integration tests  
-- mis‑click prevention tests  
+### NEW (4.5.0 PRO)
+- `"OS action blocked – unsafe system state detected."`  
+- `"Operation rejected – predictive risk level too high."`  
+- `"System Agent 4.5: identity validation failed."`  
+- `"Workflow halted – system integrity not guaranteed."`  
+- `"UI action denied – fallback 2.0 engaged."`  
+
+---
+
+# 12.7 Security Rules in Code (Expanded for 4.5.0 PRO)
+
+### NEW (4.5.0 PRO)
+- všetky OS akcie musia prejsť cez `SystemAgentV2`  
+- System Intelligence Layer musí byť konzultovaný pred workflow spustením  
+- žiadne workflow nesmie bežať v rizikovom OS stave  
+- žiadne priame Win32/UIA/WinRT volania  
+- žiadne implicitné OS zmeny  
+- žiadne persistentné hooky  
+- žiadne background OS manipulácie  
+- žiadne obchádzanie identity‑aware logiky  
+
+---
+
+# 12.8 Testing Requirements (Expanded for 4.5.0 PRO)
+
+### NEW (4.5.0 PRO)
+System Intelligence Layer testy musia obsahovať:
+
+- OS health detection tests  
+- risk prediction tests  
+- unsafe state prevention tests  
+- workflow blocking tests  
+- fallback 2.0 tests  
+- System Agent 4.5 integration tests  
+
+UI Automation 4.5 testy musia obsahovať:
+
+- fuzzy matching 4.5 tests  
+- deterministic fallback 2.0 tests  
 - identity‑aware UI action tests  
+- WinCapabilities 4.5 routing tests  
 
 ---
 
-# 9. Logging Rules
+# 12.9 Logging Rules (Expanded for 4.5.0 PRO)
 
-*(unchanged + new 4.4.0 rules)*
+### NEW (4.5.0 PRO)
+System Intelligence Layer logging:
 
-### NEW (4.4.0 PRO)
-System Agent logging:
-
-- never log OS handles  
-- never log sensitive system paths  
-- log only semantic actions  
-- log identity level only as category (OWNER/FAMILY/STRANGER)  
-- log reversibility status  
-
----
-
-# 10. Formatting Rules
-(unchanged)
+- nikdy neukladať OS handles  
+- nikdy neukladať citlivé systémové cesty  
+- logovať iba semantické akcie  
+- logovať OS stav ako kategóriu (SAFE / WARNING / RISK)  
+- logovať prediktívne rizikové faktory  
+- logovať fallback 2.0 aktiváciu  
 
 ---
 
-# 11. Module Boundaries
+# 12.10 Module Boundaries (Expanded for 4.5.0 PRO)
 
-*(unchanged + new 4.4.0 rules)*
-
-### NEW (4.4.0 PRO)
-- **System Agent is the ONLY module allowed to validate OS‑level actions**  
-- **WinCapabilities 4.4 is the ONLY module allowed to touch OS APIs**  
-- **UI Automation Engine 4.4 must route all OS actions through System Agent**  
-- **Workflow Engine 4.4 must not execute OS actions directly**  
-- **Security Family 4.4 must be consulted before any OS‑level action**  
+### NEW (4.5.0 PRO)
+- **System Agent 4.5 je jediný validátor OS akcií**  
+- **System Intelligence Layer 4.5 je jediný modul, ktorý môže hodnotiť OS stav**  
+- **UI Automation Engine 4.5 musí používať fallback 2.0**  
+- **Workflow Engine 4.5 nesmie spustiť workflow v rizikovom OS stave**  
+- **Security Family 4.5 musí byť konzultovaná pred každou OS akciou**  
 
 ---
 
-# Document Status
+# Document Status (Updated)
 
-**Version:** 3.0.0 (Expanded to include 4.2.0, 4.3.0, and **4.4.0 PRO**)  
-This styleguide evolves with new modules and capabilities.
+**Version:** 3.0.0 (Expanded to include 4.2.0, 4.3.0, 4.4.0 PRO, and **4.5.0 PRO**)  
+This styleguide now includes all deterministic, OS‑aware, system‑intelligent rules introduced in Runtime 4.5.0 PRO.
