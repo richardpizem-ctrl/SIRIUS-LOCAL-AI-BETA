@@ -1,15 +1,15 @@
-# 📦 Installation Guide – SIRIUS LOCAL AI (v4.4.0 PRO)
+# 📦 Installation Guide – SIRIUS LOCAL AI (v4.5.0 PRO)
 
-SIRIUS LOCAL AI is a fully local, modular AI runtime built on the **Runtime 4.4.0 PRO architecture**.  
+SIRIUS LOCAL AI is a fully local, modular AI runtime built on the **Runtime 4.5.0 PRO architecture**.  
 The system is distributed as clean Python source code, intended for developers, testers, and advanced users.
 
-A packaged installer will be introduced in a future release.
+A packaged installer will be introduced in **version 5.0.0** (planned as a full `.EXE` build).
 
 All processing is fully local; **no data ever leaves your PC**.
 
 ---
 
-# ⚠️ System Notes (v4.4.0 PRO)
+# ⚠️ System Notes (v4.5.0 PRO)
 
 SIRIUS LOCAL AI interacts with Windows 10/11 system APIs through the **WIN‑CAP 4.x** capability layer, including:
 
@@ -19,12 +19,12 @@ SIRIUS LOCAL AI interacts with Windows 10/11 system APIs through the **WIN‑CAP
 - accessibility interfaces  
 - plugin‑driven system actions  
 - developer automation  
-- **Security Family 4.x** — identity engine, time‑limits, stranger‑mode, schoolwork engine  
-- **AITE 4.x** — semantic triage, OCR, subject detection  
-- **Reasoning Engine 4.x** — structured offline reasoning  
+- **Security Family 4.5** — identity engine, time‑limits, stranger‑mode, schoolwork engine  
+- **AITE 4.5** — semantic triage, OCR, subject detection  
+- **Reasoning Engine 4.5** — structured offline reasoning  
 - **Self‑Repair Layer 4.x** — integrity checks and safe fallback states  
-- **UI Automation Engine 4.3** — semantic UI parsing, workflow fallback, OS‑level routing  
-- **Runtime 4.4.0 PRO Stack** — deterministic, sandboxed, Phase‑5‑ready execution  
+- **UI Automation Engine 4.5** — semantic UI parsing, workflow fallback, OS‑level routing  
+- **Runtime 4.5.0 PRO Stack** — deterministic, sandboxed, Phase‑5‑ready execution  
 
 Windows Defender or SmartScreen may classify the runtime as an “Unknown App”.  
 Antivirus tools may generate false positives during development.
@@ -51,45 +51,46 @@ python sirius.py
 
 Developer mode provides full access to:
 
-- **Runtime Core 4.4.0 PRO**  
-- **Plugin System 4.4**  
-- **Workflow Engine 4.4**  
-- **Reasoning Engine 4.x**  
-- **GUI 4.4**  
-- **Tray 4.4**  
-- **Voice 4.4**  
-- **Hotword 4.4**  
-- **AI Loop 4.4**  
-- **SystemHealthEngine 4.4**  
-- **TaskManagerEngine 4.4**  
-- **ServiceManager 4.4**  
-- **SystemAgent 4.4**  
-- **AITE 4.x**  
+- **Runtime Core 4.5.0 PRO**  
+- **Plugin System 4.5**  
+- **Workflow Engine 4.5**  
+- **Reasoning Engine 4.5**  
+- **GUI 4.5**  
+- **Tray 4.5**  
+- **Voice 4.5**  
+- **Hotword 4.5**  
+- **AI Loop 4.5**  
+- **SystemHealthEngine 4.5**  
+- **TaskManagerEngine 4.5**  
+- **ServiceManager 4.5**  
+- **SystemAgent 4.5**  
+- **AITE 4.5**  
 - **WIN‑CAP 4.x**  
-- **Security Family 4.x**  
+- **Security Family 4.5**  
 - **Self‑Repair & Health‑Check Layer 4.x**  
-- **Knowledge Packs 4.x**  
-- **UI Automation Engine 4.3**  
+- **Knowledge Packs 4.5**  
+- **UI Automation Engine 4.5**  
 
 ---
 
 # 🛠️ Future Installation System (Planned)
 
-## v4.5.0 – System Intelligence Expansion
-- Driver Manager Engine 4.5  
-- Education Engine 4.5  
-- ENVOY Bridge Layer 2.0  
-- deeper integration with Runtime 4.4  
+## v4.6.0 – Self‑Repair Layer Integration
+- deeper diagnostic hooks  
+- pre‑launch validation  
+- safer fallback states  
+- improved corruption detection  
 
 ---
 
-## v5.0.0 – Intelligent Runtime Installer
+## v5.0.0 – Intelligent Runtime Installer (FULL .EXE PACKAGE)
 - performance‑optimized packaging  
 - optional UI/animation bundles  
 - tray/voice integration  
 - semantic triage extensions  
 - deeper identity learning  
 - pack‑aware installation logic  
+- **first official `.EXE` installer for SIRIUS LOCAL AI**  
 
 ---
 
@@ -107,17 +108,17 @@ This ensures long‑term stability even in packaged builds.
 
 ---
 
-# 📌 Status (v4.4.0 PRO)
+# 📌 Status (v4.5.0 PRO)
 
 Installation system: **Not yet implemented**  
-Packaging: **Planned for v4.5.0+**  
-Runtime: **Stable (4.4.0 PRO)**  
-Plugins: **Stable (4.4)**  
-Architecture: **Stable (4.4)**  
+Packaging: **Planned for v5.0.0 (.EXE)**  
+Runtime: **Stable (4.5.0 PRO)**  
+Plugins: **Stable (4.5)**  
+Architecture: **Stable (4.5)**  
 Security Family: **Fully integrated (identity engine, time‑limits, stranger‑mode, schoolwork engine)**  
-AITE: **Upgraded to v4.x with semantic triage + OCR**  
+AITE: **Upgraded to v4.5 with semantic triage + OCR**  
 WIN‑CAP: **Upgraded to 4.x**  
 Self‑Repair Layer: **Stable**  
 Knowledge Packs: **Semantic pack system**  
-UI Automation Engine: **Stable (4.3)**  
-ENVOY: **Base layer (Bridge Layer 2.0 coming in 4.5)**  
+UI Automation Engine: **Stable (4.5)**  
+ENVOY: **Base layer (Bridge Layer 2.0 coming in 4.6)**  
