@@ -1,237 +1,141 @@
-# 🔐 SECURITY POLICY – SIRIUS LOCAL AI  
-### v3.0.0 → 4.3.0 → **4.4.0 PRO (Expanded)**
+# 🔐 11.6 NEW SECURITY LAYER — Runtime 4.5.0 PRO
 
-This document defines the **security rules, guarantees, and responsibilities** for users and contributors of **SIRIUS LOCAL AI**.  
-Version **3.0.0** introduced identity‑based protection, Schoolwork Priority Mode, and the SECURITY FAMILY module.  
-Versions **4.2.0 and 4.3.0** expanded the model with **UI Sandbox**, **semantic UI safety**, and **OS‑aware action isolation**.  
-Version **4.4.0 PRO** introduces **System Agent 4.2**, **Security Family 4.4**, and **real OS‑level UI automation safety**.
+Version **4.5.0 PRO** rozširuje bezpečnostný model predstavený v 4.4.0 PRO.  
+Prináša **System Agent 4.5**, **Security Family 4.5**, **UI Automation Engine 4.5**,  
+a úplne nový **System Intelligence Layer 4.5** pre prediktívnu bezpečnosť.
 
-All processing is fully local; no data leaves the user’s PC.
+Nové komponenty:
 
----
-
-# 1. 🛡 Core Security Principles (v3.0.0)
-(unchanged)
-
----
-
-# 2. 🔒 Filesystem Safety Rules (FS‑AGENT 3.0)
-(unchanged)
+- **System Agent 4.5 (Expanded)**  
+- **Security Family 4.5 (Identity Engine 2.1)**  
+- **UI Automation Engine 4.5 (Deterministic OS Automation)**  
+- **WIN‑CAP 4.5 (Safer OS Capability Layer)**  
+- **System Intelligence Layer 4.5 (Predictive Safety)**  
 
 ---
 
-# 3. 🪟 Windows System Interaction Rules (WIN‑CAP 3.0)
-(unchanged)
+# 🔐 11.7 System Agent 4.5 – OS‑Level Security Gatekeeper (NEW)
 
----
-
-# 4. 🔍 Input Validation (AITE 3.0)
-(unchanged)
-
----
-
-# 5. 🧠 SECURITY FAMILY (Core Module – v3.0.0)
-
-The SECURITY FAMILY module provides **identity‑based safety**.
-
-### Identity Levels:
-- **OWNER** — full access  
-- **FAMILY** — restricted mode  
-- **STRANGER** — safe‑mode  
+System Agent 4.5 je evolúcia System Agent 4.2 a predstavuje **najsilnejší bezpečnostný modul v histórii SIRIUS LOCAL AI**.
 
 ### Responsibilities:
-- behavior‑based identity recognition  
-- offline learning (no biometrics, no cloud)  
-- restricted mode for children  
-- safe‑mode for unknown users  
-- protection of sensitive operations  
-- integration with NL Router, AITE, FS‑AGENT, WIN‑CAP  
-- **time‑based limits for children**  
-- **Schoolwork Priority Mode**  
-- **Password Vault 4.0 enforcement**  
+- validovať každú OS‑úroveň akcie  
+- aplikovať OWNER / FAMILY / STRANGER pravidlá  
+- blokovať rizikové alebo neautorizované operácie  
+- zabezpečiť reverzibilitu 2.0  
+- logovať citlivé systémové interakcie  
+- integrovať sa so System Intelligence Layer 4.5  
+- garantovať deterministické správanie  
 
 ### Security Guarantees:
-- deterministic identity classification  
-- no biometric data  
-- no background training loops  
-- constant‑time time‑limit checks  
-- instant schoolwork bypass  
-- no module may override SECURITY FAMILY decisions  
-
----
-
-# 6. 🔐 Password Vault 4.0 – Secure Credential Storage
-(unchanged)
-
----
-
-# 7. 🎓 Schoolwork Priority Mode (v3.0.0)
-(unchanged)
-
----
-
-# 8. 🧪 Security Testing Requirements
-(unchanged)
-
----
-
-# 9. 🛠️ Self‑Repair & Health‑Check Layer (Future Module)
-(unchanged)
-
----
-
-# 10. 🛡 NEW SECURITY SURFACE (v4.2.0 → v4.3.0)
-
-Versions **4.2.0 and 4.3.0** introduce the **UI Automation Engine**, which adds a new security layer.
-
----
-
-## 🔐 10.1 UI Sandbox Security (v4.2.0)
-(unchanged)
-
----
-
-## 🔐 10.2 Semantic UI Automation Security (v4.3.0)
-(unchanged)
-
----
-
-## 🔐 10.3 Threat Protections Added in 4.2–4.3
-(unchanged)
-
----
-
-# ⭐ 11. 🛡 NEW SECURITY LAYER — Runtime 4.4.0 PRO
-
-Version **4.4.0 PRO** introduces **system‑level security**, **OS‑aware identity enforcement**, and **deterministic action validation**.
-
-The new components are:
-
-- **System Agent 4.2**  
-- **Security Family 4.4**  
-- **UI Automation Engine 4.4 (real OS automation)**  
-- **WIN‑CAP 4.4**  
-- **Workflow Engine 4.4 security gating**  
-
----
-
-# 🔐 11.1 System Agent 4.2 – OS‑Level Security Gatekeeper (NEW)
-
-System Agent 4.2 is the **final authority** for all system‑level actions.
-
-### Responsibilities:
-- validate every OS‑level action  
-- enforce OWNER / FAMILY / STRANGER permissions  
-- block unsafe or destructive operations  
-- ensure reversibility of actions  
-- log sensitive system interactions  
-- mediate UI Automation + WIN‑CAP  
-- guarantee deterministic behavior  
-
-### Security Guarantees:
-- no direct OS access from any module  
-- no privileged operations  
-- no kernel‑level calls  
-- no raw Win32/UIA/WinRT access  
-- all system actions must pass through System Agent  
-- identity‑aware allow/deny evaluation  
-- SCHOOLWORK bypass preserved  
+- žiadny modul nemá priamy OS prístup  
+- žiadne privilegované operácie  
+- žiadne kernel‑level volania  
+- žiadny raw Win32/UIA/WinRT prístup  
+- všetky akcie musia prejsť cez System Agent 4.5  
+- identitne‑aware allow/deny rozhodovanie  
+- SCHOOLWORK bypass 3.0  
 
 ### Threat Protections:
-- blocks unauthorized system changes  
-- blocks privilege escalation  
-- blocks unverified UI automation  
-- blocks persistent hooks  
-- blocks background system manipulation  
-
-System Agent 4.2 is the **core of OS‑level safety** in Runtime 4.4.0 PRO.
+- blokovanie neautorizovaných systémových zmien  
+- blokovanie eskalácie privilégií  
+- blokovanie neoverenej UI automatizácie  
+- blokovanie perzistentných hookov  
+- blokovanie systémovej manipulácie  
 
 ---
 
-# 🔐 11.2 Security Family 4.4 – Hardened Identity Enforcement (NEW)
+# 🔐 11.8 Security Family 4.5 – Identity Enforcement 2.1 (NEW)
 
-Security Family 4.4 extends the identity model with:
+Security Family 4.5 posilňuje identitný model predstavený v 4.4.0 PRO.
 
 ### Enhancements:
-- deterministic identity gating for OS‑level actions  
-- stronger STRANGER‑mode restrictions  
-- SCHOOLWORK bypass logic 2.0  
-- identity‑aware UI automation  
-- integration with System Agent 4.2  
-- constant‑time permission evaluation  
+- identity‑aware gating 2.1  
+- SCHOOLWORK bypass 3.0  
+- rýchlejšia identifikácia používateľa  
+- silnejšie STRANGER‑mode obmedzenia  
+- bezpečnejšie FAMILY‑mode povolenia  
+- hlbšia integrácia so System Agent 4.5  
+- deterministické permission evaluation 2.0  
 
 ### Guarantees:
-- no module can bypass identity checks  
-- no system action without identity validation  
-- no unsafe fallback paths  
-
-Security Family 4.4 ensures **identity is enforced at every layer** of the runtime.
+- žiadny modul nemôže obísť identity enforcement  
+- žiadna OS akcia bez identity validácie  
+- žiadne nebezpečné fallback cesty  
 
 ---
 
-# 🔐 11.3 UI Automation Engine 4.4 – Real OS Automation Safety (NEW)
+# 🔐 11.9 UI Automation Engine 4.5 – Deterministic OS Automation Safety (NEW)
 
-UI Automation Engine 4.4 introduces **real OS‑level UI control**, protected by:
+UI Automation Engine 4.5 prináša najbezpečnejšiu verziu OS‑úrovňovej automatizácie.
 
 ### OS‑Level Safety:
-- all actions validated by System Agent  
-- deterministic fallback logic  
-- identity‑aware UI actions  
+- všetky akcie validované System Agent 4.5  
+- deterministické fallbacky 2.0  
+- identity‑aware UI actions 2.0  
 - sandbox‑protected execution  
-- no uncontrolled input injection  
-- no persistent hooks  
-- no global event listeners  
+- žiadne raw Win32/UIA/WinRT volania  
+- žiadne nekontrolované vstupy  
 
-### WinCapabilities 4.4:
-- safe adapter for Win32/UIA/WinRT  
-- deterministic routing  
-- unified audit logging  
-- no direct access to raw APIs  
+### WinCapabilities 4.5:
+- bezpečnejšie API adaptéry  
+- silnejšie identity‑aware obmedzenia  
+- audit logging 2.0  
+- deterministické OS routing pravidlá  
 
 ### Workflow Safety:
-- bounded retries  
-- deterministic fallback  
-- semantic target resolution  
-- mis‑click prevention  
-- identity‑aware gating  
-
-UI Automation Engine 4.4 is **safe by design**, with no ability to perform unsafe or privileged UI actions.
+- bezpečnejšie multi‑stage workflows  
+- mis‑click prevention 2.0  
+- bounded retries 2.0  
+- semantic target resolution 2.0  
 
 ---
 
-# 🔐 11.4 Workflow Engine 4.4 – Security‑Aware Execution (NEW)
+# 🔐 11.10 WIN‑CAP 4.5 – OS Capability Isolation (NEW)
 
-Workflow Engine 4.4 introduces:
+WIN‑CAP 4.5 poskytuje:
 
-- identity‑aware workflow gating  
-- deterministic state transitions  
-- safe fallback logic  
-- System Agent validation for system workflows  
-- prevention of unsafe multi‑step sequences  
-
----
-
-# 🔐 11.5 WIN‑CAP 4.4 – OS Capability Isolation (NEW)
-
-WIN‑CAP 4.4 provides:
-
-- safe wrappers for OS‑level actions  
-- deterministic capability boundaries  
-- identity‑aware system operations  
-- no privileged or kernel‑level access  
-- System Agent mediation  
+- bezpečnejšie OS capability wrappers  
+- deterministické capability boundaries  
+- identity‑aware systémové operácie  
+- žiadny privilegovaný alebo kernel‑level prístup  
+- System Agent 4.5 mediáciu  
 
 ---
 
-# 12. 📄 Document Status
+# 🔐 11.11 System Intelligence Layer 4.5 – Predictive Security (NEW)
 
-**Version:** **4.4.0 PRO (Expanded)**  
+System Intelligence Layer 4.5 pridáva **prediktívnu bezpečnosť**:
+
+### Capabilities:
+- detekcia systémových anomálií  
+- predikcia rizikových stavov  
+- bezpečné odporúčania  
+- integrácia so System Agent 4.5  
+- žiadne hlboké skeny počas workflowov  
+
+### Threat Protections:
+- detekcia neštandardných OS stavov  
+- detekcia rizikových procesov  
+- detekcia neautorizovaných zmien  
+- bezpečné návrhy opráv  
+
+---
+
+# 📄 Document Status (Updated)
+
+**Version:** **4.5.0 PRO (Expanded)**  
 This policy now includes:
 
 - Password Vault 4.0  
 - UI Sandbox 4.2.0  
 - Semantic UI Automation Security 4.3.0  
-- **System Agent 4.2 (NEW)**  
-- **Security Family 4.4 (NEW)**  
-- **UI Automation Engine 4.4 (NEW)**  
-- **WIN‑CAP 4.4 (NEW)**  
+- System Agent 4.2  
+- Security Family 4.4  
+- UI Automation Engine 4.4  
+- WIN‑CAP 4.4  
+- **System Agent 4.5 (NEW)**  
+- **Security Family 4.5 (NEW)**  
+- **UI Automation Engine 4.5 (NEW)**  
+- **WIN‑CAP 4.5 (NEW)**  
+- **System Intelligence Layer 4.5 (NEW)**  
