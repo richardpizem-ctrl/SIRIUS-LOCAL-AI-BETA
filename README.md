@@ -79,8 +79,7 @@ Knowledge Packs 4.5, Workflow Engine 4.5, Runtime 4.5 PRO,
 
 ---
 
-# ℹ️ ABOUT SIRIUS LOCAL AI (v4.3.0)
-*(Section preserved exactly as in the original README — unchanged.)*
+# ℹ️ ABOUT SIRIUS LOCAL AI (v4.5.0)
 
 SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for:
 
@@ -98,12 +97,12 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 
 ---
 
-# 🚀 UI Automation Engine – Runtime 4.2.0 (Released)
+# 🚀 UI Automation Engine – Runtime 4.2.0  
 *(Section preserved — unchanged.)*
 
 ---
 
-# 🚀 SIRIUS Runtime 4.3.0 – Semantic UI Automation Engine (Released)
+# 🚀 SIRIUS Runtime 4.3.0 – Semantic UI Automation Engine  
 *(Section preserved — unchanged.)*
 
 ---
@@ -111,11 +110,9 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for
 # 🟦 NEW IN VERSION 4.5.0 PRO  
 ### **Deterministic System‑Intelligent Runtime Expansion (Next‑Gen Upgrade)**
 
-Version **4.5.0 PRO** upgrades the entire runtime into a **system‑intelligent, OS‑aware, identity‑validated automation engine**, including:
-
 ---
 
-## 🔥 AITE 4.5 – Multimodal Semantic Triage (Upgraded)
+## 🔥 AITE 4.5 – Multimodal Semantic Triage
 - faster semantic routing  
 - improved OCR 4.5  
 - identity‑aware triage 3.2  
@@ -213,3 +210,4 @@ MIT License.
 *(unchanged)*
 
 # 🔚 END OF README
+
