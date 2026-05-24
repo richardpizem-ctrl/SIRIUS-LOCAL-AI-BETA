@@ -13,7 +13,7 @@
 ---
 
 ## 🧠 Architecture Diagram (Runtime 4.5 PRO)
-![Architecture](docs/architecture/DIAGRAM (2).png)
+![Architecture](diagram (2).png)
 
 ---
 
