@@ -1,41 +1,41 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (v4.1.0 → v4.4.0 EXPANDED)
+# 🏗 Architecture – SIRIUS LOCAL AI (v4.1.0 → v4.5.0 EXPANDED)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.4.0-purple">
+  <img src="https://img.shields.io/badge/version-4.5.0-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
-  <img src="https://img.shields.io/badge/runtime-Intelligent%204.4%20PRO-orange">
+  <img src="https://img.shields.io/badge/runtime-Intelligent%204.5%20PRO-orange">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI v4.4.0 expands the Intelligent Runtime 4.x architecture with a **fully upgraded System Intelligence Layer**, deeper semantic routing, improved identity‑aware safety, and new modules aligned with Runtime 4.4 PRO.
+SIRIUS LOCAL AI v4.5.0 expands the Intelligent Runtime 4.x architecture with a **fully upgraded System Intelligence Layer**, deeper semantic routing, improved identity‑aware safety, and new modules aligned with Runtime 4.5 PRO.
 
-This update builds on the 4.3 foundation and introduces stability, determinism, and PRO‑level system orchestration.
+This update builds on the 4.4 foundation and introduces stability, determinism, and PRO‑level system orchestration.
 
-New or upgraded in 4.4:
+New or upgraded in 4.5:
 
-- **System Health Engine 4.4**
-- **Driver Manager Engine 4.4**
-- **Task Manager Engine 4.4 PRO**
-- **Service Manager Engine 4.4**
-- **Education Engine 4.4**
-- **VYSLANEC 4.4 (Bridge Layer 3.1)**
-- **Password Vault 4.0 (Secure Identity‑Aware Credential Storage)**
-- **System Agent 4.2 (Safe Action Execution Layer)** ← *UPGRADED*
-- **AITE 4.4 (Multimodal Triage Engine)** ← *UPGRADED*
-- **Reasoning Engine 4.4**
-- **Knowledge Packs 4.4**
-- **Workflow Engine 4.4**
-- **FS‑AGENT 4.4**
-- **CME‑MEM 4.4**
+- **System Health Engine 4.5**
+- **Driver Manager Engine 4.5**
+- **Task Manager Engine 4.5 PRO**
+- **Service Manager Engine 4.5**
+- **Education Engine 4.5**
+- **VYSLANEC 4.5 (Bridge Layer 3.2)**
+- **Password Vault 4.1 (Secure Identity‑Aware Credential Storage)**
+- **System Agent 4.5 (Safe Action Execution Layer)** ← *UPGRADED*
+- **AITE 4.5 (Multimodal Triage Engine)** ← *UPGRADED*
+- **Reasoning Engine 4.5**
+- **Knowledge Packs 4.5**
+- **Workflow Engine 4.5**
+- **FS‑AGENT 4.5**
+- **CME‑MEM 4.5**
 
 All system‑level actions remain **fully local**, **identity‑aware**, and **safely routed** through VYSLANEC and System Agent.
 
 ---
 
-# 🛡 Stability Notice (v4.4.0)
+# 🛡 Stability Notice (v4.5.0)
 
-The System Intelligence Layer 4.4 guarantees:
+The System Intelligence Layer 4.5 guarantees:
 
 - safe system operations  
 - identity‑aware permissions  
@@ -45,15 +45,15 @@ The System Intelligence Layer 4.4 guarantees:
 - transparent explanations  
 - strict FAMILY‑safe behavior  
 - deterministic, predictable execution  
-- System Agent 4.2 validation for every action  
+- System Agent 4.5 validation for every action  
 - PRO‑level routing stability  
-- hardened sanitization layer (VYSLANEC 4.4)
+- hardened sanitization layer (VYSLANEC 4.5)
 
 This version elevates SIRIUS into a **PC‑aware intelligent runtime** with safe, explainable system control.
 
 ---
 
-# 🧩 Architectural Principles (v4.4.0)
+# 🧩 Architectural Principles (v4.5.0)
 
 - strict modular separation  
 - deterministic behavior  
@@ -66,15 +66,15 @@ This version elevates SIRIUS into a **PC‑aware intelligent runtime** with safe
 - semantic understanding of system state  
 - friendly education for every system action  
 - capability‑based access to Windows functions  
-- safe action execution pipeline (System Agent 4.2)  
+- safe action execution pipeline (System Agent 4.5)  
 - PRO‑level runtime orchestration  
 - stable fallback routing  
 
 ---
 
-# 🧱 Core Layers (v4.4.0)
+# 🧱 Core Layers (v4.5.0)
 
-## 1. Runtime Core 4.4 PRO
+## 1. Runtime Core 4.5 PRO
 Central orchestrator.
 
 Responsibilities:
@@ -84,53 +84,53 @@ Responsibilities:
 - capability enforcement  
 - identity integration  
 - self‑repair integration (pre‑hooks)  
-- System Agent 4.2 routing  
+- System Agent 4.5 routing  
 - deterministic execution pipeline  
 
 ---
 
-## 2. Natural Language Router 4.4
+## 2. Natural Language Router 4.5
 Improved semantic command routing with deeper intent detection and safer fallback logic.
 
 ---
 
-## 3. Filesystem Agent 4.4
+## 3. Filesystem Agent 4.5
 Deterministic FS operations with semantic routing and PRO‑level safety.
 
 ---
 
-## 4. Context Memory Engine 4.4
+## 4. Context Memory Engine 4.5
 Workflow context + semantic metadata with improved stability.
 
 ---
 
-## 5. Workflow Engine 4.4
+## 5. Workflow Engine 4.5
 Deterministic workflow logic with new automation triggers and safer execution.
 
 ---
 
-## 6. GUI Layer 4.4
+## 6. GUI Layer 4.5
 Modular UI with dynamic panels and improved runtime integration.
 
 ---
 
-## 7. AITE 4.4
+## 7. AITE 4.5
 Multimodal semantic triage (text, images, OCR, documents, code) with faster routing.
 
 ---
 
-## 8. WIN‑CAP 4.4
+## 8. WIN‑CAP 4.5
 Safe Windows capability layer with identity‑aware restrictions and hardened validation.
 
 ---
 
-# 🆕 SYSTEM INTELLIGENCE LAYER (v4.4.0)
+# 🆕 SYSTEM INTELLIGENCE LAYER (v4.5.0)
 
 A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, the ability to **diagnose**, **optimize**, **repair**, and **educate**, while maintaining strict safety.
 
 ---
 
-# 🔥 1. System Health Engine 4.4
+# 🔥 1. System Health Engine 4.5
 - hardware diagnostics  
 - thermal analysis  
 - storage health  
@@ -141,16 +141,16 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 2. Driver Manager Engine 4.4
+# 🔥 2. Driver Manager Engine 4.5
 - driver inventory  
 - version comparison  
 - missing/outdated driver detection  
-- safe update workflows (via VYSLANEC 4.4)  
+- safe update workflows (via VYSLANEC 4.5)  
 - improved compatibility checks  
 
 ---
 
-# 🔥 3. Task Manager Engine 4.4 PRO
+# 🔥 3. Task Manager Engine 4.5 PRO
 - process analysis  
 - CPU/RAM usage  
 - identity‑aware termination rules  
@@ -159,15 +159,15 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 4. Service Manager Engine 4.4
+# 🔥 4. Service Manager Engine 4.5
 - service state analysis  
 - safe start/stop/restart  
-- SYSTEM AGENT 4.2 validation  
+- SYSTEM AGENT 4.5 validation  
 - improved rollback safety  
 
 ---
 
-# 🔥 5. Education Engine 4.4
+# 🔥 5. Education Engine 4.5
 - explains every system action  
 - teaches Windows concepts  
 - provides safe alternatives  
@@ -176,7 +176,7 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 6. VYSLANEC 4.4 (Bridge Layer 3.1)
+# 🔥 6. VYSLANEC 4.5 (Bridge Layer 3.2)
 - safe bridge between runtime and Windows  
 - hardened sanitization layer  
 - identity‑aware filtering  
@@ -185,7 +185,7 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 7. System Agent 4.2 (Safe Action Execution Layer)
+# 🔥 7. System Agent 4.5 (Safe Action Execution Layer)
 Upgraded module introduced in Runtime 4.3.
 
 Responsibilities:
@@ -201,7 +201,7 @@ System Agent is the **final gatekeeper** before any Windows action.
 
 ---
 
-# 🔐 Password Vault 4.0 (Secure Credential Module)
+# 🔐 Password Vault 4.1 (Secure Credential Module)
 
 A fully local, encrypted, identity‑aware password storage system integrated into the SIRIUS Security Family.
 
@@ -233,31 +233,31 @@ A fully local, encrypted, identity‑aware password storage system integrated in
 
 ---
 
-# 🖼 Architecture Diagram (v4.4.0 Placeholder)
+# 🖼 Architecture Diagram (v4.5.0 Placeholder)
 
 <p align="center">
-  <img src="docs/architecture_diagram_v4_4_placeholder.png" width="600">
+  <img src="docs/architecture_diagram_v4_5_placeholder.png" width="600">
 </p>
 
 ---
 
-# 🔌 Module Interconnections (v4.4.0)
+# 🔌 Module Interconnections (v4.5.0)
 
 User Input  
 ↓  
-AITE 4.4 → FS‑AGENT 4.4 → CME‑MEM 4.4  
+AITE 4.5 → FS‑AGENT 4.5 → CME‑MEM 4.5  
 ↓  
-Workflow Engine 4.4  
+Workflow Engine 4.5  
 ↓  
-Runtime Core 4.4 PRO  
+Runtime Core 4.5 PRO  
 ↓  
-**System Intelligence Layer 4.4**  
+**System Intelligence Layer 4.5**  
 ↓  
-**System Agent 4.2 (safe action execution)**  
+**System Agent 4.5 (safe action execution)**  
 ↓  
-**Password Vault 4.0 (identity‑aware secure storage)**  
+**Password Vault 4.1 (identity‑aware secure storage)**  
 ↓  
-**VYSLANEC 4.4**  
+**VYSLANEC 4.5**  
 ↓  
 Windows 11 (safe, controlled)
 
@@ -265,5 +265,5 @@ Windows 11 (safe, controlled)
 
 # 📌 Document Status
 
-Current version: **4.4.0 (Expanded)**  
-Architecture is fully updated and aligned with Runtime 4.4.0 PRO.
+Current version: **4.5.0 (Expanded)**  
+Architecture is fully updated and aligned with Runtime 4.5.0 PRO.
