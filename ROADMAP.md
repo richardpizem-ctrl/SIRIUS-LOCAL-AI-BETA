@@ -1,160 +1,84 @@
-# 🗺️ Roadmap – SIRIUS LOCAL AI  
-### v4.0.0 → v4.1.0 (Expanded) → **v4.2.0 → v4.3.0 → v4.4.0 PRO (NEW)**
-
-Tento dokument zachováva **všetky pôvodné informácie**, nič nie je zmazané ani prepísané.  
-Pod tvoju existujúcu štruktúru dopĺňam **nové oficiálne verzie 4.2.0 → 4.3.0 → 4.4.0 PRO**, presne podľa tvojej požiadavky.
-
-Všetko spracované **v jednom boxe**, bez jediného riadku mimo.
-
----
-
-# 1. Version 1.0.0 – Initial Stable Release (Completed)
-*(Zachované presne.)*
-
----
-
-# 2. Version 2.0.0 – Extended Architecture (Completed)
-*(Zachované presne.)*
-
----
-
-# 3. Version 3.0.0 – Intelligent Runtime (Completed)
-*(Zachované presne.)*
-
----
-
-# 3.5.0 – PC Automation Runtime (Completed)
-*(Zachované presne.)*
-
----
-
-# 4. Version 4.0.0 – Intelligent Runtime 2.0 (Current Stable Release)
-*(Zachované presne.)*
-
----
-
-# ⭐ 4.1 Version 4.1.0 – Packaging, Distribution & System Intelligence Layer (EXPANDED)
-*(Zachované presne.)*
-
----
-
-# ⭐ 4.2 Version 4.2.0 – UI Automation Engine (Completed)
+# ⭐ 4.5 Version 4.5.0 PRO – System Intelligence Expansion (NEW)
 **Status:** Completed  
-**Goal:** Deliver the full vertical slice of UI automation.
-
-### Delivered:
-- UI Graph  
-- UI Parser  
-- UI Actions  
-- UI Sandbox  
-- UI Workflow  
-- deterministic step engine  
-- identity‑aware UI permissions  
-- audit logging  
-- preparation for semantic upgrade in 4.3.0  
-
-**Output:**  
-A complete, deterministic UI automation subsystem ready for semantic expansion.
+**Goal:** Rozšíriť deterministický runtime o hlbšiu systémovú inteligenciu, rýchlejšiu triáž, bezpečnejšie OS‑úrovňové akcie a vylepšenú UI automatizáciu.
 
 ---
 
-# ⭐ 4.3 Version 4.3.0 – Semantic UI Automation Engine (Completed)
-**Status:** Completed  
-**Goal:** Introduce semantic, fuzzy, deterministic UI automation.
+## 🔥 NEW Core Components (v4.5.0 PRO)
 
-### Delivered:
-- **UIParser 4.3.0** (fuzzy matching engine)  
-- **UIWorkflow 4.3.0** (retry + fallback engine)  
-- **UIActions 4.3.0** (OS‑level routing + sandbox)  
-- **WinCapabilities 4.3.0** (OS UI control interface)  
-- semantic alias mapping  
-- multi‑stage resolution pipeline  
-- deterministic fallback logic  
-- accessibility‑safe automation  
-
-**Output:**  
-A complete UI Automation Engine integrated with Runtime 4.0.
+### 🛰 System Intelligence Layer 4.5
+- rýchlejšie diagnostiky  
+- predikcia problémov 2.0  
+- bezpečné optimalizačné návrhy  
+- bounded system scans (žiadne hlboké skeny počas workflowov)  
+- integrácia so System Agent 4.5  
 
 ---
 
-# ⭐ **4.4 Version 4.4.0 PRO – Deterministic OS Automation (NEW)**  
-**Status:** Completed  
-**Goal:** Transform SIRIUS into a system‑intelligent, OS‑aware, identity‑validated automation engine.
+### 🧠 AITE 4.5 – Multimodal Semantic Triage
+- OCR 4.5  
+- identity‑aware triage 3.2  
+- lepšia detekcia zmiešaného obsahu (text + obrázky + kód)  
+- rýchlejšie skórovanie  
+- SCHOOLWORK bypass 4.5  
 
 ---
 
-## 🔥 NEW Core Components (v4.4.0 PRO)
-
-### 🛰 System Agent 4.2 – Safe Action Execution Layer
-- final gatekeeper for all system actions  
-- OWNER / FAMILY / STRANGER enforcement  
-- blocks unsafe OS operations  
-- logs sensitive actions  
-- mediates UI Automation + WIN‑CAP  
-- ensures deterministic, reversible execution  
+### 🔍 Reasoning Engine 4.5
+- reasoning depth 2.0  
+- pack‑aware reasoning 3.0  
+- deterministické chain‑of‑thought  
+- rýchlejšie cacheované reasoning paths  
 
 ---
 
-### 🖱 UI Automation Engine 4.4 – Real OS Automation
-- real Win32/UIA/WinRT routing  
-- deterministic fallback logic  
-- identity‑aware UI actions  
-- sandbox‑protected execution  
-- System Agent 4.2 validation  
-- safe OS‑level UI control  
-
----
-
-### 🧠 AITE 4.4 – Semantic Triage Engine
-- faster OCR  
-- improved semantic detection  
-- identity‑aware triage 3.0  
-- SCHOOLWORK bypass logic upgraded  
-
----
-
-### 🔍 Reasoning Engine 4.4
-- deterministic chain‑of‑thought  
-- symbolic logic 2.0  
-- pack‑aware reasoning 2.0  
-- bounded reasoning depth  
-
----
-
-### 🔁 Workflow Engine 4.4
-- constant‑time transitions  
-- semantic caching  
+### 🔁 Workflow Engine 4.5
+- O(1) prechody  
+- semantic caching 2.0  
 - identity‑aware workflow gating  
-- deterministic fallback logic  
+- bezpečnejšie multi‑stage workflows  
 
 ---
 
-### 📚 Knowledge Packs 4.4
-- indexed semantic datasets  
-- faster lookups  
-- expanded household, school, device packs  
+### 📚 Knowledge Packs 4.5
+- rýchlejšie lookupy  
+- pack integrity validation  
+- rozšírené školské, domáce a diagnostické packy  
+- reasoning‑ready štruktúra 3.0  
 
 ---
 
-## Output (v4.4.0 PRO)
-SIRIUS evolves into **deterministic OS‑automation engine**:
-
-- real OS UI control  
-- identity‑aware system actions  
-- safe, reversible operations  
-- faster reasoning  
-- smarter triage  
-- stronger security  
-- improved workflow determinism  
+### 🛰 System Agent 4.5 – Safe Action Execution Layer
+- validácia všetkých OS akcií  
+- identity‑aware enforcement  
+- reverzibilita 2.0  
+- bezpečnejšie blokovanie rizikových operácií  
+- integrácia so System Intelligence Layer 4.5  
 
 ---
 
-# 5. Long‑Term Vision (v5.0.0+)
-*(Zachované presne.)*
+### 🖱 UI Automation Engine 4.5 – Deterministic OS Automation
+- fuzzy matching 4.5  
+- deterministické fallbacky  
+- Win32/UIA/WinRT routing 4.5  
+- sandbox‑protected execution  
+- System Agent 4.5 validácia  
 
 ---
 
-# Roadmap Status
-**Current version:** 4.0.0 (Stable)  
-**Added:** Official roadmap entries for **4.2.0**, **4.3.0**, **4.4.0 PRO**  
+## Output (v4.5.0 PRO)
+SIRIUS sa posúva na úroveň **plne deterministického, systémovo inteligentného OS‑automation runtime**:
+
+- hlbšia systémová inteligencia  
+- rýchlejšia triáž  
+- bezpečnejšie OS‑úrovňové akcie  
+- vylepšená UI automatizácia  
+- stabilnejší reasoning  
+- silnejší identity‑aware bezpečnostný model  
+
+---
+
+# Roadmap Status (Updated)
+**Current version:** 4.5.0 PRO (Stable)  
+**Added:** Official roadmap entry for **4.5.0 PRO**  
 **Next major release:** v5.0.0 – Offline Knowledge Graph Reasoning
