@@ -1,236 +1,172 @@
-# 🧪 TESTING GUIDE – SIRIUS LOCAL AI  
-### v4.0.0 → 4.3.0 → **4.4.0 PRO (Expanded)**
+# Q2) **System Intelligence Layer 4.5 Tests — NEW (v4.5.0 PRO)**
 
-This document defines the testing strategy, procedures, and safety validation rules for the SIRIUS LOCAL AI project.  
-All tests are fully local and must be executed manually by the user.
+System Intelligence Layer 4.5 introduces **predictive OS‑state awareness**,  
+risk detection, and system‑context‑aware workflow routing.
 
-The system interacts with Windows 11 APIs, filesystem operations, window management, application control, identity‑based safety, schoolwork‑aware routing, UI automation, semantic UI reasoning, and — starting in **4.4.0 PRO** — **deterministic OS‑level automation validated by System Agent 4.2**.
-
-All behavior must remain deterministic, safe, and reversible.
-
----
-
-# 1. Testing Philosophy
-
-(unchanged, plus new 4.4.0 rules)
-
-- all tests must be reproducible  
-- no automated tests that modify the system without confirmation  
-- every test must validate safety, predictability, and reversibility  
-- tests must not rely on network access  
-- tests must not require external dependencies  
-- plugin tests must follow Plugin System 3.0 rules  
-- WIN‑CAP tests must validate permission boundaries  
-- workflows must behave deterministically  
-- identity‑restricted actions must be enforced  
-- **SECURITY FAMILY tests must validate identity, time‑limits, and schoolwork bypass logic**  
-- **Schoolwork Priority Mode must always override restrictions**  
-- **UI Automation Engine tests must validate sandbox rules, deterministic behavior, and safe OS‑level routing**  
-- **semantic UI tests must validate fuzzy matching, fallback logic, and confidence thresholds**  
-- **System Agent 4.2 tests must validate OS‑level safety, reversibility, and identity gating** ← *NEW (4.4.0)*  
-- **OS‑level automation must never bypass WinCapabilities 4.4** ← *NEW (4.4.0)*  
-
----
-
-# 2. Test Categories
-
-## A) Filesystem Tests (FS‑AGENT 3.0)
-(unchanged)
-
----
-
-## B) Natural Language Router Tests (NL Router 3.0)
-(unchanged)
-
----
-
-## C) Workflow Engine Tests (Workflow Engine 3.0)
-(unchanged)
-
----
-
-## D) GUI Tests (GUI Layer 3.0)
-(unchanged)
-
----
-
-## E) WIN‑CAP Tests (WIN‑CAP 3.0)
-(unchanged)
-
----
-
-## F) Plugin System Tests (Plugin System 3.0)
-(unchanged)
-
----
-
-## G) AI Loop Tests (AI Loop 3.0)
-(unchanged)
-
----
-
-## H) SECURITY FAMILY Tests (v4.0.0)
-(unchanged)
-
----
-
-## I) Household Modules Tests (v3.0.0)
-(unchanged)
-
----
-
-# J) UI Automation Engine Tests (v4.2.0)
-
-(unchanged)
-
----
-
-# K) Semantic UI Automation Tests (v4.3.0)
-
-(unchanged)
-
----
-
-# L) UI Workflow Tests (v4.3.0)
-
-(unchanged)
-
----
-
-# M) **System Agent 4.2 Tests (v4.4.0 PRO) — NEW**
-
-System Agent 4.2 is the **final OS‑level safety gatekeeper**.  
-These tests ensure that all system actions are:
-
-- identity‑validated  
-- reversible  
-- deterministic  
-- safe  
-- routed through WinCapabilities 4.4  
+These tests ensure that SIRIUS never executes workflows or OS‑level actions  
+in unsafe, unstable, or high‑risk system states.
 
 ### Validate:
-- identity gating (OWNER / FAMILY / STRANGER)  
-- OS‑level permission boundaries  
-- reversibility checks  
-- deterministic allow/deny logic  
-- safe routing of system actions  
-- rejection of unsafe operations  
-- correct mediation between UI Automation and OS  
+- OS health detection  
+- risk prediction accuracy  
+- unsafe state prevention  
+- workflow blocking in unsafe conditions  
+- deterministic system‑state evaluation  
+- integration with System Agent 4.5  
+- identity‑aware system context routing  
 
 ### Checklist:
-- OWNER actions must succeed only when safe  
-- FAMILY actions must be restricted  
-- STRANGER actions must be blocked  
+- unsafe OS states must block workflows  
+- OWNER workflows must still require safe OS conditions  
+- FAMILY/STRANGER workflows must be restricted further  
+- predictive risk detection must be deterministic  
+- fallback 2.0 must activate when risk is high  
+- logs must include system‑state category (SAFE / WARNING / RISK)  
+- no workflow may bypass System Intelligence Layer  
+
+---
+
+# Q3) **System Agent 4.5 Tests — NEW (v4.5.0 PRO)**
+
+System Agent 4.5 is the upgraded OS‑level safety gatekeeper.
+
+### Validate:
+- identity gating 2.0  
+- reversibility 2.0  
+- OS‑level permission boundaries  
+- predictive safety integration  
+- deterministic allow/deny logic 2.0  
+- safe routing of system actions  
+- rejection of unsafe or high‑risk operations  
+
+### Checklist:
+- OWNER actions succeed only when OS state is SAFE  
+- FAMILY actions restricted under WARNING  
+- STRANGER actions blocked under all OS states  
 - unsafe OS actions must be rejected  
-- every system action must appear in System Agent logs  
+- every system action must appear in System Agent 4.5 logs  
 - no direct OS calls may bypass System Agent  
 - reversibility must be confirmed before execution  
-- fallback logic must activate when OS denies an action  
+- fallback 2.0 must activate when OS denies an action  
 
 ---
 
-# N) **OS‑Level Automation Tests (WinCapabilities 4.4) — NEW**
+# Q4) **UI Automation Engine 4.5 Tests — NEW**
 
-These tests validate the new OS‑aware automation layer introduced in 4.4.0 PRO.
+UI Automation Engine 4.5 introduces deterministic OS automation 2.0.
 
 ### Validate:
+- fuzzy matching 4.5  
+- deterministic fallback 2.0  
+- identity‑aware UI actions 2.0  
 - safe Win32/UIA/WinRT routing  
-- deterministic OS‑level behavior  
-- identity‑aware OS actions  
-- capability boundaries  
-- safe fallback logic  
-- no privileged operations  
-- no kernel‑level access  
+- mis‑click prevention 2.0  
+- semantic target resolution 2.0  
 
 ### Checklist:
-- all OS actions must route through WinCapabilities  
+- all UI actions must route through System Agent 4.5  
+- fallback 2.0 must activate deterministically  
+- OWNER‑only UI actions must be enforced  
+- FAMILY/STRANGER must be restricted  
+- logs must include UI routing info  
 - no direct API calls from UIActions  
-- OWNER‑only OS actions must be enforced  
-- FAMILY/STRANGER must be blocked from system‑critical actions  
-- fallback must activate when OS denies access  
-- logs must include capability routing info  
 
 ---
 
-# O) **Workflow Engine 4.4 Tests — NEW**
+# Q5) **Workflow Engine 4.5 Tests — NEW**
 
-Workflow Engine 4.4 introduces identity‑aware, OS‑validated workflows.
+Workflow Engine 4.5 introduces **system‑aware, identity‑aware, OS‑validated workflows**.
 
 ### Validate:
 - deterministic state transitions  
-- identity‑aware workflow gating  
-- safe fallback logic  
-- System Agent validation for system workflows  
-- semantic caching  
-- no unsafe multi‑step sequences  
+- identity‑aware workflow gating 2.0  
+- system‑state‑aware workflow routing  
+- safe fallback logic 2.0  
+- System Agent 4.5 validation  
+- semantic caching 2.0  
 
 ### Checklist:
 - workflows must not execute OS actions directly  
-- every OS‑level step must pass through System Agent  
-- fallback must be deterministic  
+- every OS‑level step must pass through System Agent 4.5  
+- workflows must not run in unsafe OS states  
 - SCHOOLWORK workflows must bypass restrictions safely  
 - STRANGER workflows must be restricted  
 - OWNER workflows must remain reversible  
 
 ---
 
-# P) **AITE 4.4 Tests — NEW**
+# Q6) **AITE 4.5 Tests — NEW**
 
-AITE 4.4 improves semantic triage and identity‑aware routing.
+AITE 4.5 improves semantic triage, identity‑aware routing, and system‑context awareness.
 
 ### Validate:
-- faster OCR  
+- faster OCR 4.5  
 - improved semantic detection  
-- identity‑aware triage  
-- SCHOOLWORK bypass logic 2.0  
-- deterministic classification  
+- identity‑aware triage 3.2  
+- SCHOOLWORK bypass logic 4.5  
+- deterministic classification 2.0  
+- system‑context‑aware routing  
 
 ### Checklist:
 - triage must remain constant‑time  
 - SCHOOLWORK detection must override restrictions  
 - identity must influence routing  
-- no ambiguous classifications  
+- system state must influence routing  
 - deterministic results across runs  
 
 ---
 
-# Q) **Reasoning Engine 4.4 Tests — NEW**
+# Q7) **Reasoning Engine 4.5 Tests — NEW**
 
 ### Validate:
-- bounded reasoning depth  
+- bounded reasoning depth 2.0  
 - deterministic chain‑of‑thought  
-- symbolic logic 2.0  
-- pack‑aware reasoning 2.0  
+- symbolic logic 3.0  
+- pack‑aware reasoning 3.0  
+- cached reasoning paths  
 
 ### Checklist:
 - no unbounded reasoning  
 - no recursive loops  
 - deterministic results  
 - SCHOOLWORK reasoning must remain instant  
+- reasoning must adapt to OS state  
 
 ---
 
-# 3. Test Execution Rules
+# Q8) **Knowledge Packs 4.5 Tests — NEW**
 
-(unchanged)
+### Validate:
+- faster lookups  
+- improved semantic linking  
+- deterministic pack‑to‑pack reasoning  
+- pack integrity validation  
+- expanded school, household, device packs  
+
+### Checklist:
+- no ambiguous pack resolution  
+- deterministic pack selection  
+- identity‑aware pack access  
+- SCHOOLWORK packs must override restrictions  
 
 ---
 
-# 4. Logging Format
+# 5. Document Status (Updated)
 
-(unchanged)
-
----
-
-# 5. Document Status
-
-**Version:** **4.4.0 PRO (Expanded)**  
+**Version:** **4.5.0 PRO (Expanded)**  
 This guide now includes testing rules for:
 
 - UI Automation Engine 4.2.0  
 - Semantic UI Automation 4.3.0  
-- **System Agent 4.2**  
-- **WinCapabilities 4.4**  
-- **Workflow Engine 4.4**  
-- **AITE 4.4**  
-- **Reasoning Engine 4.4**  
+- System Agent 4.2  
+- WinCapabilities 4.4  
+- Workflow Engine 4.4  
+- AITE 4.4  
+- Reasoning Engine 4.4  
+- **System Intelligence Layer 4.5 (NEW)**  
+- **System Agent 4.5 (NEW)**  
+- **UI Automation Engine 4.5 (NEW)**  
+- **Workflow Engine 4.5 (NEW)**  
+- **AITE 4.5 (NEW)**  
+- **Reasoning Engine 4.5 (NEW)**  
+- **Knowledge Packs 4.5 (NEW)**  
