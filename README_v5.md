@@ -13,31 +13,31 @@
 ---
 
 # 🧠 What’s New in SIRIUS Runtime 5.x  
-SIRIUS 5.x predstavuje **najväčší skok v histórii projektu**:
+SIRIUS 5.x represents the **biggest leap in the history of the project**:
 
 ### ⭐ 1. Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
-- reasoning nad grafom znalostí  
-- kontextové prepojenia medzi entitami  
-- deterministické inference paths  
-- rýchlejšie odpovede bez modelov  
+- reasoning over a local knowledge graph  
+- contextual links between entities  
+- deterministic inference paths  
+- faster responses without models  
 
 ### ⭐ 2. Envoy Module 1.0 — Secure Online Fetch (Permission‑Based)
-- voliteľný online fetch  
+- optional online fetch  
 - ASK → FETCH → QUARANTINE → DELIVER  
-- funguje pre PC aj mobil  
-- identity‑aware bezpečnostný model  
-- žiadne automatické requesty  
+- works for both PC and mobile  
+- identity‑aware security model  
+- no automatic requests  
 
 ### ⭐ 3. Runtime 5.x Architecture
-- nové vrstvy pre Knowledge Graph  
-- prepracovaný Reasoning Engine 5.0  
-- Workflow Engine 5.0 s KG‑routingom  
-- System Agent 5.0 s rozšírenými pravidlami  
+- new layers for the Knowledge Graph  
+- redesigned Reasoning Engine 5.0  
+- Workflow Engine 5.0 with KG‑routing  
+- System Agent 5.0 with extended rules  
 
 ### ⭐ 4. Mobile Sync 2.0
-- PC ↔ Mobile SIRIUS komunikácia  
-- Envoy fetch pre obe strany  
-- bezpečný LAN Sync protokol  
+- PC ↔ Mobile SIRIUS communication  
+- Envoy fetch on both sides  
+- secure LAN Sync protocol  
 
 ---
 
@@ -47,33 +47,33 @@ SIRIUS 5.x predstavuje **najväčší skok v histórii projektu**:
 │  (entities, relations, facts) │
 └───────────────┬──────────────┘
 │
-┌─────────▼─────────┐
-│ Reasoning Engine   │
-│     5.0 PRO        │
-└─────────┬─────────┘
+┌───────▼────────┐
+│ Reasoning Engine│
+│     5.0 PRO     │
+└───────┬────────┘
 │
-┌─────────────────▼──────────────────┐
-│        Workflow Engine 5.0         │
-│  KG‑aware routing • deterministic  │
-└─────────────────┬──────────────────┘
+┌───────────────▼──────────────────┐
+│        Workflow Engine 5.0        │
+│  KG‑aware routing • deterministic │
+└───────────────┬──────────────────┘
 │
-┌─────────────────▼──────────────────┐
-│         System Agent 5.0           │
-│ identity rules • OS validation     │
-└─────────────────┬──────────────────┘
+┌───────────────▼──────────────────┐
+│         System Agent 5.0          │
+│ identity rules • OS validation    │
+└───────────────┬──────────────────┘
 │
-┌─────────────────▼──────────────────┐
-│     UI Automation Engine 5.0       │
-│ Win32/UIA/WinRT • deterministic    │
+┌───────────────▼──────────────────┐
+│     UI Automation Engine 5.0      │
+│ Win32/UIA/WinRT • deterministic   │
+└───────────────────────────────────┘
 
 ---
 
 # 🛰 Envoy Module 1.0 — Secure Online Information Fetcher  
 **Status:** Active in Runtime 5.x  
-**Goal:** Voliteľný, povolením riadený prístup k online informáciám.
+**Goal:** Optional, permission‑based access to online information.
 
 ### 🔐 Security Flow
-└────────────────────────────────────┘
 User Request
 ↓
 ASK — explicit permission required
@@ -82,28 +82,29 @@ FETCH — isolated online request
 ↓
 QUARANTINE — sanitize, validate, strip unsafe content
 ↓
-DELIVER — safe data to Reasoning Engine 
+DELIVER — safe data to the Reasoning Engine
+
 ### 🔁 PC ↔ Mobile Envoy Support
-- PC Envoy fetchuje pre mobil  
-- Mobilný Envoy fetchuje pre PC  
-- obojsmerná komunikácia cez LAN Sync  
-- System Agent kontroluje celý proces  
+- PC Envoy fetches for mobile  
+- Mobile Envoy fetches for PC  
+- two‑way LAN Sync communication  
+- System Agent validates the entire process  
 
 ---
 
 # 🧠 Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
 
-### Čo to prináša:
-- reasoning bez modelov  
-- okamžité odpovede  
-- nulová latencia  
-- nulové riziko halucinácií  
-- deterministické inference paths  
+### What it brings:
+- reasoning without models  
+- instant responses  
+- zero latency  
+- zero hallucination risk  
+- deterministic inference paths  
 
-### Príklady:
-- „Kto je rodič tejto entity?“  
-- „Aké sú súvisiace koncepty?“  
-- „Aký je najkratší vzťah medzi A a B?“  
+### Examples:
+- “Who is the parent of this entity?”  
+- “What concepts are related?”  
+- “What is the shortest relation between A and B?”  
 
 ---
 
@@ -111,45 +112,45 @@ DELIVER — safe data to Reasoning Engine
 - KG‑aware routing  
 - multi‑stage deterministic workflows  
 - identity‑aware gating  
-- integrácia s Envoy modulom  
+- Envoy integration  
 
 ---
 
 # 🛡 System Agent 5.0  
-- rozšírené identity pravidlá  
+- extended identity rules  
 - OWNER / FAMILY / STRANGER 2.0  
-- validácia OS akcií  
-- reverzibilita 3.0  
-- bezpečnostné politiky pre Envoy  
+- OS action validation  
+- reversibility 3.0  
+- Envoy security policies  
 
 ---
 
 # 🖱 UI Automation Engine 5.0  
-- rýchlejšie UIA/Win32/WinRT routing  
+- faster UIA/Win32/WinRT routing  
 - KG‑enhanced UI matching  
-- deterministické fallbacky  
-- System Agent validácia  
+- deterministic fallbacks  
+- System Agent validation  
 
 ---
 
 # 📦 Knowledge Packs 5.x  
-- KG‑ready štruktúra  
+- KG‑ready structure  
 - integrity validation 2.0  
-- rýchlejšie lookupy  
-- rozšírené školské, domáce, diagnostické packy  
+- faster lookups  
+- expanded school, home, diagnostic packs  
 
 ---
 
 # 🌍 Mobile Sync 2.0  
-- PC ↔ Mobile SIRIUS komunikácia  
-- Envoy fetch pre obe strany  
-- bezpečný LAN protokol  
-- identity‑aware synchronizácia  
+- PC ↔ Mobile SIRIUS communication  
+- Envoy fetch on both sides  
+- secure LAN protocol  
+- identity‑aware synchronization  
 
 ---
 
 # 📘 Installation (Runtime 5.x)
-*(prázdne — doplní sa po vydaní 5.0.0)*
+*(empty — will be filled after 5.0.0 release)*
 
 ---
 
@@ -159,7 +160,7 @@ MIT License.
 ---
 
 # 🤝 Contributions  
-Pull requesty sú vítané.
+Pull requests are welcome.
 
 ---
 
@@ -171,11 +172,12 @@ Pull requesty sú vítané.
 
 ---
 
-# 📦 Poznámka k inštalátorom  
-Inštalátory pre SIRIUS Runtime 5.x budú vydané **súbežne s dokončením posledných verzií GAMA 5.x**.  
-Budú obsahovať finálnu štruktúru modulov, stabilné API vrstvy, System Agent 5.0, Envoy 1.0, UI Automation Engine 5.0 a Knowledge Graph Runtime 1.0.  
-Uvoľnené budú **hneď po uzavretí posledných milestone verzií GAMA**, aby bola zaručená 100% kompatibilita.
+# 📦 Installer Note  
+Installers for SIRIUS Runtime 5.x will be released **in parallel with the final GAMA 5.x versions**.  
+They will include the final module structure, stable API layers, System Agent 5.0, Envoy 1.0, UI Automation Engine 5.0, and Knowledge Graph Runtime 1.0.  
+They will be published **immediately after the last GAMA milestone is completed** to ensure 100% compatibility.
 
 ---
 
 # 🏁 End of README_v5.md
+
