@@ -42,33 +42,29 @@ SIRIUS 5.x predstavuje **najväčší skok v histórii projektu**:
 ---
 
 # 🧩 Architecture Diagram (Runtime 5.x)
-
-```
-          ┌───────────────────────────────┐
-          │      Knowledge Graph 5.x      │
-          │  (entities, relations, facts) │
-          └───────────────┬──────────────┘
-                          │
-                ┌─────────▼─────────┐
-                │ Reasoning Engine   │
-                │     5.0 PRO        │
-                └─────────┬─────────┘
-                          │
-        ┌─────────────────▼──────────────────┐
-        │        Workflow Engine 5.0         │
-        │  KG‑aware routing • deterministic  │
-        └─────────────────┬──────────────────┘
-                          │
-        ┌─────────────────▼──────────────────┐
-        │         System Agent 5.0           │
-        │ identity rules • OS validation     │
-        └─────────────────┬──────────────────┘
-                          │
-        ┌─────────────────▼──────────────────┐
-        │     UI Automation Engine 5.0       │
-        │ Win32/UIA/WinRT • deterministic    │
-        └────────────────────────────────────┘
-```
+┌───────────────────────────────┐
+│      Knowledge Graph 5.x      │
+│  (entities, relations, facts) │
+└───────────────┬──────────────┘
+│
+┌─────────▼─────────┐
+│ Reasoning Engine   │
+│     5.0 PRO        │
+└─────────┬─────────┘
+│
+┌─────────────────▼──────────────────┐
+│        Workflow Engine 5.0         │
+│  KG‑aware routing • deterministic  │
+└─────────────────┬──────────────────┘
+│
+┌─────────────────▼──────────────────┐
+│         System Agent 5.0           │
+│ identity rules • OS validation     │
+└─────────────────┬──────────────────┘
+│
+┌─────────────────▼──────────────────┐
+│     UI Automation Engine 5.0       │
+│ Win32/UIA/WinRT • deterministic    │
 
 ---
 
@@ -77,18 +73,16 @@ SIRIUS 5.x predstavuje **najväčší skok v histórii projektu**:
 **Goal:** Voliteľný, povolením riadený prístup k online informáciám.
 
 ### 🔐 Security Flow
-```
+└────────────────────────────────────┘
 User Request
-    ↓
+↓
 ASK — explicit permission required
-    ↓
+↓
 FETCH — isolated online request
-    ↓
+↓
 QUARANTINE — sanitize, validate, strip unsafe content
-    ↓
-DELIVER — safe data to Reasoning Engine
-```
-
+↓
+DELIVER — safe data to Reasoning Engine 
 ### 🔁 PC ↔ Mobile Envoy Support
 - PC Envoy fetchuje pre mobil  
 - Mobilný Envoy fetchuje pre PC  
@@ -174,6 +168,13 @@ Pull requesty sú vítané.
 - **5.1.0** — Envoy 1.1 + Mobile Sync 2.1  
 - **5.2.0** — KG‑Enhanced UI Automation  
 - **6.0.0** — Self‑Repair Layer 2.0  
+
+---
+
+# 📦 Poznámka k inštalátorom  
+Inštalátory pre SIRIUS Runtime 5.x budú vydané **súbežne s dokončením posledných verzií GAMA 5.x**.  
+Budú obsahovať finálnu štruktúru modulov, stabilné API vrstvy, System Agent 5.0, Envoy 1.0, UI Automation Engine 5.0 a Knowledge Graph Runtime 1.0.  
+Uvoľnené budú **hneď po uzavretí posledných milestone verzií GAMA**, aby bola zaručená 100% kompatibilita.
 
 ---
 
