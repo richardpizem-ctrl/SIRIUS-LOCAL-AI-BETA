@@ -1,7 +1,12 @@
+---
+title: SIRIUS LOCAL AI Documentation
+layout: default
+---
+
 # SIRIUS‑LOCAL‑AI  
 **A fully modular, offline‑only AI runtime with intelligent reasoning, self‑repair, semantic triage, deterministic UI automation, and a next‑generation capability architecture.**
 
-SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, and full offline autonomy**.
+SIRIUS‑LOCAL‑AI is a next-generation local AI framework designed for **speed, stability, modularity, semantic intelligence, and full offline autonomy**.
 
 Version **4.0.0** introduced the Intelligent Runtime 2.0, Reasoning Engine 4.0, AITE 4.0, Security Family 4.0, Schoolwork Engine 4.0, Self‑Repair Layer, Knowledge Packs 4.0, and the ENVOY safe‑retrieval system.
 
