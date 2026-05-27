@@ -66,6 +66,27 @@
 
 ---
 
+## 🧩 Intent & Planning Layer 4.5 – Autonomous Task Continuation (NEW)
+**Status:** Added in 4.5.0 PRO**  
+**Goal:** Zaviesť nadstavbovú vrstvu nad Runtime Orchestration, ktorá umožní SIRIUS‑u chápať zámer úlohy, plánovať ďalšie kroky a autonómne pokračovať bez explicitných príkazov.
+
+### Funkcie:
+- Intent Detection 1.0 (rozpoznanie cieľa úlohy)  
+- Task Planner 1.0 (deterministické plánovanie krokov)  
+- Context Memory 1.0 (sledovanie stavu, progresu a chýb)  
+- Autonomous Step Execution 1.0 (pokračovanie bez zásahu používateľa)  
+- State Graph Engine 1.0 (stavové stroje pre komplexné úlohy)  
+- Integration Hook: `IntentPlanner.process(current_state)` nad Runtime Orchestration Layer  
+
+### Výsledok:
+- SIRIUS vie, **čo má nasledovať**  
+- SIRIUS vie, **čo je cieľ**  
+- SIRIUS vie, **čo je hotové a čo chýba**  
+- SIRIUS vie, **ako pokračovať autonómne**  
+- SIRIUS sa správa ako **operačný asistent**, nie len automat  
+
+---
+
 ## Output (v4.5.0 PRO)
 SIRIUS sa posúva na úroveň **plne deterministického, systémovo inteligentného OS‑automation runtime**:
 
@@ -75,6 +96,7 @@ SIRIUS sa posúva na úroveň **plne deterministického, systémovo inteligentn�
 - vylepšená UI automatizácia  
 - stabilnejší reasoning  
 - silnejší identity‑aware bezpečnostný model  
+- **nová autonómna vrstva pre pokračovanie úloh (Intent & Planning Layer)**  
 
 ---
 
