@@ -317,6 +317,43 @@ Delivered in v4.5.0:
 
 ---
 
+# 🧩 Intent & Planning Layer 4.5 – Autonomous Task Continuation (NEW)
+
+Version 4.5.0 introduces a new high‑level intelligence layer above the Runtime Orchestration system.  
+This layer enables SIRIUS to understand task intent, plan next steps, and continue autonomously without explicit user commands.
+
+### Purpose
+Transform SIRIUS from a deterministic automation engine into an **operating‑level assistant** capable of continuing multi‑step tasks on its own.
+
+### Core Features
+- **Intent Detection 1.0**  
+  Understands the goal of the current task based on context and system state.
+
+- **Task Planner 1.0**  
+  Deterministic step‑planning engine that breaks tasks into actionable stages.
+
+- **Context Memory 1.0**  
+  Tracks progress, missing steps, errors, and completion state.
+
+- **Autonomous Step Execution 1.0**  
+  Continues tasks without requiring additional user instructions.
+
+- **State Graph Engine 1.0**  
+  State‑machine‑based logic for complex, multi‑stage workflows.
+
+- **Integration Hook:**  
+  `IntentPlanner.process(current_state)`  
+  Runs above the Runtime Orchestration Layer and decides what should happen next.
+
+### Result
+- SIRIUS knows **what comes next**  
+- SIRIUS knows **what the final goal is**  
+- SIRIUS knows **what is done and what is missing**  
+- SIRIUS can **continue autonomously**  
+- SIRIUS behaves like a true **operating assistant**, not just an automation runtime  
+
+---
+
 # 🚀 6. Long‑Term Vision (Beyond v4.5.0)
 
 SIRIUS will evolve into:
