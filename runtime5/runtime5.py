@@ -6,6 +6,10 @@ from runtime5.workflow_engine_5 import WorkflowEngine5
 from runtime5.error_handler_5 import ErrorHandler5
 from runtime5.logging_5 import log5
 
+# NEW: Health + System Hooks
+from runtime5.health_monitor_5 import HealthMonitor5
+from runtime5.system_hooks_5 import SystemHooks5
+
 
 class Runtime5:
     """
@@ -41,7 +45,26 @@ class Runtime5:
         """
         Public safe entrypoint.
         Entire pipeline is wrapped in ErrorHandler5.
+        Includes:
+        - Health monitoring
+        - System hooks
         """
-        return ErrorHandler5.safe_execute(
-            lambda: self._process_internal(text)
-        )
+        try:
+            result = ErrorHandler5.safe_execute(
+                lambda: self._process_internal(text)
+            )
+
+            # Successful cycle
+            HealthMonitor5.record_success()
+            return result
+
+        except Exception as exc:
+            # Error cycle
+            HealthMonitor5.record_error(str(exc))
+            SystemHooks5.on_error(str(exc))
+
+            return {
+                "reasoning": None,
+                "workflow": None,
+                "error": str(exc)
+            }
