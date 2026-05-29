@@ -1,24 +1,26 @@
 # runtime5_cli.py
 
-from runtime5 import Runtime5, KnowledgeGraph
-from runtime5.kg_loader import KnowledgeGraphLoader
+from runtime5 import SystemAgent5
 
 def main():
-    kg = KnowledgeGraph()
-    loader = KnowledgeGraphLoader(kg)
-    loader.load_minimal_test_data()
+    agent = SystemAgent5()
 
-    rt = Runtime5(kg)
-
-    print("Runtime 5.x CLI — type 'exit' to quit.")
+    print("SystemAgent5 CLI — type 'exit' to quit.")
     while True:
         text = input("\n> ")
         if text.strip().lower() in ("exit", "quit"):
             break
 
-        output = rt.process(text)
-        print("\n[REASONING]:", output["reasoning"])
-        print("[WORKFLOW ]:", output["workflow"])
+        response = agent.handle_request(text)
+
+        print("\n=== INPUT ===")
+        print(response["input"])
+
+        print("\n=== REASONING ===")
+        print(response["reasoning"])
+
+        print("\n=== WORKFLOW ===")
+        print(response["workflow"])
 
 if __name__ == "__main__":
     main()
