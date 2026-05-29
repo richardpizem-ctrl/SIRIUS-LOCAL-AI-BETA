@@ -71,12 +71,12 @@
 **Goal:** Introduce a new layer above Runtime Orchestration that enables SIRIUS to understand task intent, plan next steps, and continue autonomously without explicit user commands.
 
 ### Features:
-- Intent Detection 1.0 (understanding the goal of a task)  
-- Task Planner 1.0 (deterministic step planning)  
-- Context Memory 1.0 (tracking state, progress, and errors)  
-- Autonomous Step Execution 1.0 (continuing without user input)  
-- State Graph Engine 1.0 (state machines for complex tasks)  
-- Integration Hook: `IntentPlanner.process(current_state)` above Runtime Orchestration Layer  
+- Intent Detection 1.0  
+- Task Planner 1.0  
+- Context Memory 1.0  
+- Autonomous Step Execution 1.0  
+- State Graph Engine 1.0  
+- Integration Hook: `IntentPlanner.process(current_state)`  
 
 ### Result:
 - SIRIUS knows **what comes next**  
@@ -96,14 +96,71 @@ SIRIUS evolves into a **fully deterministic, system‑intelligent OS‑automatio
 - improved UI automation  
 - more stable reasoning  
 - stronger identity‑aware security model  
-- **new autonomous task‑continuation layer (Intent & Planning Layer)**  
+- **new autonomous task‑continuation layer**  
 
 ---
 
-# Roadmap Status (Updated)
-**Current version:** 4.5.0 PRO (Stable)  
-**Added:** Official roadmap entry for **4.5.0 PRO**  
-**Next major release:** v5.0.0 – Offline Knowledge Graph Reasoning
+# ⭐ 5.0 Version 5.0.0 — Offline Knowledge Graph Reasoning (NEW)
+**Status:** Completed  
+**Goal:** Introduce the first fully offline, deterministic Knowledge Graph Reasoning Engine.
+
+---
+
+## 🔥 NEW Core Components (v5.0.0)
+
+### 🧠 Knowledge Graph Reasoning 1.0
+- offline reasoning  
+- deterministic inference paths  
+- zero hallucination risk  
+- entity‑relation traversal  
+- shortest‑path reasoning  
+- KG‑aware context building  
+
+---
+
+### 🔍 Reasoning Engine 5.0
+- KG‑integrated routing  
+- deterministic chain execution  
+- multi‑stage reasoning  
+- degraded‑mode awareness  
+- Envoy‑aware routing  
+
+---
+
+### 🔁 Workflow Engine 5.0
+- KG‑aware workflow routing  
+- multi‑stage deterministic workflows  
+- Envoy integration  
+- identity‑aware gating  
+
+---
+
+### 🛰 System Agent 5.0
+- extended identity rules  
+- OWNER / FAMILY / STRANGER 2.0  
+- OS‑action validation  
+- Envoy security policies  
+
+---
+
+### 📚 Knowledge Packs 5.x
+- KG‑ready structure  
+- integrity validation 2.0  
+- expanded school, home, diagnostic packs  
+
+---
+
+## Output (v5.0.0)
+SIRIUS gains **true offline intelligence**:
+
+- deterministic KG reasoning  
+- faster responses  
+- zero‑risk inference  
+- stable multi‑stage workflows  
+- Envoy‑ready architecture  
+
+---
+
 # ⭐ 5.1 Version 5.1.0 — Self‑Repair Layer 1.0 (NEW)
 **Status:** Planned  
 **Goal:** Introduce autonomous stability mechanisms that detect, isolate, and repair runtime issues without user intervention.
@@ -114,21 +171,21 @@ SIRIUS evolves into a **fully deterministic, system‑intelligent OS‑automatio
 
 ### 🛡 Self‑Repair Layer 1.0
 - autonomous detection of corrupted modules  
-- repair sandbox (safe isolated execution)  
-- fallback to healthy module versions  
-- repair cycles with progressive escalation  
-- repair logs + repair telemetry  
-- degraded → repaired state transitions  
+- repair sandbox  
+- fallback to healthy versions  
+- repair cycles  
+- repair logs + telemetry  
+- degraded → repaired transitions  
 - integration with HealthMonitor5  
 
 ---
 
 ### 🧠 Runtime Integrity Engine 1.0
 - module integrity scanning  
-- signature + checksum validation  
+- checksum validation  
 - dependency graph validation  
-- repair‑aware KG integrity checks  
-- safe rollback mechanism  
+- repair‑aware KG integrity  
+- safe rollback  
 
 ---
 
@@ -136,53 +193,46 @@ SIRIUS evolves into a **fully deterministic, system‑intelligent OS‑automatio
 - repair‑aware routing  
 - automatic workflow recovery  
 - safe retry logic  
-- degraded‑mode workflow continuation  
+- degraded‑mode continuation  
 
 ---
 
 ### 🛰 System Agent 5.1
-- repair‑aware OS action validation  
+- repair‑aware OS validation  
 - identity‑aware repair permissions  
-- blocking of unsafe repair operations  
-- repair sandbox enforcement  
+- blocking unsafe repair operations  
+- sandbox enforcement  
 
 ---
 
 ### 📚 Knowledge Packs 5.1
-- repair‑aware pack validation  
-- auto‑repair of missing or corrupted entities  
-- safe fallback to minimal packs  
-- improved pack integrity 3.1  
+- repair‑aware validation  
+- auto‑repair of corrupted entities  
+- fallback to minimal packs  
+- improved integrity 3.1  
 
 ---
 
 ## 🧩 Repair Orchestration Layer (NEW)
-**Status:** Added in 5.1.0**  
-**Goal:** Provide a deterministic orchestration layer that coordinates repair actions across runtime, KG, workflow, and system agent layers.
+**Goal:** Coordinate repair actions across runtime, KG, workflow, and system agent layers.
 
 ### Features:
 - Repair Planner 1.0  
 - Repair State Machine 1.0  
 - Repair Context Memory  
 - Multi‑stage repair workflows  
-- Integration Hook: `SelfRepair.process(error_state)` above Reasoning Engine  
-
-### Result:
-- SIRIUS dokáže **opraviť sám seba**  
-- SIRIUS vie **detegovať chyby skôr, než spôsobia pád**  
-- SIRIUS vie **pokračovať aj v degradovanom režime**  
-- SIRIUS vie **obnoviť runtime bez zásahu používateľa**  
+- Integration Hook: `SelfRepair.process(error_state)`  
 
 ---
 
 ## Output (v5.1.0)
-SIRIUS získava **autonómnu stabilitu**:
+SIRIUS gains **autonomous stability**:
 
-- runtime sa dokáže opraviť  
-- workflow sa dokáže zotaviť  
-- KG sa dokáže validovať a opraviť  
-- systémové akcie sú repair‑aware  
-- degradovaný režim je bezpečný a reverzibilný  
+- runtime can repair itself  
+- workflows recover automatically  
+- KG validates and repairs itself  
+- OS actions are repair‑aware  
+- degraded mode becomes reversible  
 
 ---
 
