@@ -4,17 +4,18 @@ from abc import ABC, abstractmethod
 from runtime5.logging_5 import log5
 from runtime5.health_monitor_5 import HealthMonitor5
 from runtime5.system_hooks_5 import SystemHooks5
+from runtime5.error_handler_5 import ErrorHandler5
 
 
 class BaseWorkflowStep5(ABC):
     """
     Base class for all Workflow Steps in Runtime 5.x.
     Provides:
-    - unified execute() wrapper
+    - unified safe_execute() wrapper
     - diagnostics
-    - error handling
+    - error isolation
     - degraded mode awareness
-    - compatibility with Self‑Repair Layer
+    - Self‑Repair Layer compatibility
     """
 
     @abstractmethod
@@ -39,10 +40,11 @@ class BaseWorkflowStep5(ABC):
         - diagnostics
         - error isolation
         - degraded mode support
+        - ErrorHandler5 compatibility
         """
         log5(f"[BaseWorkflowStep5] Running step: {self.__class__.__name__}")
 
-        try:
+        def _exec():
             output = self.execute(data)
 
             # Ensure degraded flag is always present
@@ -52,14 +54,13 @@ class BaseWorkflowStep5(ABC):
             HealthMonitor5.record_success()
             return output
 
-        except Exception as exc:
-            log5(f"[BaseWorkflowStep5] ERROR in {self.__class__.__name__}: {exc}")
-            HealthMonitor5.record_error(str(exc))
-            SystemHooks5.on_error(str(exc))
-
-            return {
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"step": self.__class__.__name__, "input": data},
+            fallback={
                 "action": self.__class__.__name__,
                 "payload": None,
-                "error": str(exc),
+                "error": f"Workflow step '{self.__class__.__name__}' failed.",
                 "degraded": HealthMonitor5.is_degraded()
             }
+        )
