@@ -3,7 +3,6 @@
 from runtime5.workflow_steps_5.base_step import BaseWorkflowStep5
 from runtime5.logging_5 import log5
 from runtime5.health_monitor_5 import HealthMonitor5
-from runtime5.system_hooks_5 import SystemHooks5
 
 
 class WorkflowContinueStep5(BaseWorkflowStep5):
@@ -15,26 +14,11 @@ class WorkflowContinueStep5(BaseWorkflowStep5):
     def execute(self, data: dict):
         log5("[WorkflowContinueStep5] Executing WORKFLOW_CONTINUE step...")
 
-        try:
-            output = {
-                "action": "WORKFLOW_CONTINUE",
-                "payload": data,
-                "degraded": HealthMonitor5.is_degraded()
-            }
+        output = {
+            "action": "WORKFLOW_CONTINUE",
+            "payload": data,
+            "degraded": HealthMonitor5.is_degraded()
+        }
 
-            log5(f"[WorkflowContinueStep5] Output: {output}")
-
-            HealthMonitor5.record_success()
-            return output
-
-        except Exception as exc:
-            log5(f"[WorkflowContinueStep5] ERROR: {exc}")
-            HealthMonitor5.record_error(str(exc))
-            SystemHooks5.on_error(str(exc))
-
-            return {
-                "action": "WORKFLOW_CONTINUE",
-                "payload": None,
-                "error": str(exc),
-                "degraded": HealthMonitor5.is_degraded()
-            }
+        log5(f"[WorkflowContinueStep5] Output: {output}")
+        return output
