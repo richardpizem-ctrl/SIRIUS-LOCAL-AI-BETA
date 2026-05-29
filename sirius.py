@@ -22,22 +22,27 @@ def main():
         print("SIRIUS 5.x – SystemAgent5 Mode (via sirius_4_5.py)")
         print("Type 'exit' to quit.\n")
 
-        while True:
-            text = input("> ")
-            if text.strip().lower() in ("exit", "quit"):
-                break
+        try:
+            while True:
+                text = input("> ")
+                if text.strip().lower() in ("exit", "quit"):
+                    break
 
-            response = agent.handle_request(text)
+                response = agent.handle_request(text)
 
-            print("\n=== INPUT ===")
-            print(response["input"])
+                print("\n=== INPUT ===")
+                print(response["input"])
 
-            print("\n=== REASONING ===")
-            print(response["reasoning"])
+                print("\n=== REASONING ===")
+                print(response["reasoning"])
 
-            print("\n=== WORKFLOW ===")
-            print(response["workflow"])
-            print("\n")
+                print("\n=== WORKFLOW ===")
+                print(response["workflow"])
+                print("\n")
+
+        finally:
+            # Ensure proper shutdown of Runtime5
+            agent.shutdown()
 
         return  # exit after runtime5 mode
 
