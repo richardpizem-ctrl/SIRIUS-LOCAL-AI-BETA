@@ -5,8 +5,6 @@ from runtime5.re_chain_executor_5 import REChainExecutor5
 from runtime5.workflow_engine_5 import WorkflowEngine5
 from runtime5.error_handler_5 import ErrorHandler5
 from runtime5.logging_5 import log5
-
-# NEW: Health + System Hooks
 from runtime5.health_monitor_5 import HealthMonitor5
 from runtime5.system_hooks_5 import SystemHooks5
 
@@ -15,16 +13,20 @@ class Runtime5:
     """
     Main orchestrator for Runtime 5.x
     Connects:
-    - Reasoning Engine 5.0
-    - Workflow Engine 5.0
-    - Knowledge Graph Runtime 1.0
+    - Reasoning Engine 5.x (via REChainExecutor5)
+    - Workflow Engine 5.x
+    - Knowledge Graph subsystem 5.x
     """
 
     def __init__(self, kg: KnowledgeGraph):
         self.kg = kg
         self.reasoning_chain = REChainExecutor5(kg)
         self.workflow = WorkflowEngine5()
+        log5("[Runtime5] Initialized Runtime 5.x orchestrator.")
 
+    # --------------------------------------------------------
+    # INTERNAL PIPELINE
+    # --------------------------------------------------------
     def _process_internal(self, text: str):
         log5("=== Runtime5 pipeline start ===")
 
@@ -38,9 +40,13 @@ class Runtime5:
 
         return {
             "reasoning": reasoning_output,
-            "workflow": workflow_output
+            "workflow": workflow_output,
+            "degraded": HealthMonitor5.is_degraded()
         }
 
+    # --------------------------------------------------------
+    # PUBLIC SAFE ENTRYPOINT
+    # --------------------------------------------------------
     def process(self, text: str):
         """
         Public safe entrypoint.
@@ -48,23 +54,20 @@ class Runtime5:
         Includes:
         - Health monitoring
         - System hooks
+        - degraded mode awareness
         """
-        try:
-            result = ErrorHandler5.safe_execute(
-                lambda: self._process_internal(text)
-            )
-
-            # Successful cycle
+        def _exec():
+            result = self._process_internal(text)
             HealthMonitor5.record_success()
             return result
 
-        except Exception as exc:
-            # Error cycle
-            HealthMonitor5.record_error(str(exc))
-            SystemHooks5.on_error(str(exc))
-
-            return {
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"input": text},
+            fallback={
                 "reasoning": None,
                 "workflow": None,
-                "error": str(exc)
+                "error": "Runtime5 pipeline failed.",
+                "degraded": HealthMonitor5.is_degraded()
             }
+        )
