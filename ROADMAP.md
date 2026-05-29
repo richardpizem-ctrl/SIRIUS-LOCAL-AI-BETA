@@ -104,3 +104,89 @@ SIRIUS evolves into a **fully deterministic, system‑intelligent OS‑automatio
 **Current version:** 4.5.0 PRO (Stable)  
 **Added:** Official roadmap entry for **4.5.0 PRO**  
 **Next major release:** v5.0.0 – Offline Knowledge Graph Reasoning
+# ⭐ 5.1 Version 5.1.0 — Self‑Repair Layer 1.0 (NEW)
+**Status:** Planned  
+**Goal:** Introduce autonomous stability mechanisms that detect, isolate, and repair runtime issues without user intervention.
+
+---
+
+## 🔥 NEW Core Components (v5.1.0)
+
+### 🛡 Self‑Repair Layer 1.0
+- autonomous detection of corrupted modules  
+- repair sandbox (safe isolated execution)  
+- fallback to healthy module versions  
+- repair cycles with progressive escalation  
+- repair logs + repair telemetry  
+- degraded → repaired state transitions  
+- integration with HealthMonitor5  
+
+---
+
+### 🧠 Runtime Integrity Engine 1.0
+- module integrity scanning  
+- signature + checksum validation  
+- dependency graph validation  
+- repair‑aware KG integrity checks  
+- safe rollback mechanism  
+
+---
+
+### 🔁 Workflow Engine 5.1
+- repair‑aware routing  
+- automatic workflow recovery  
+- safe retry logic  
+- degraded‑mode workflow continuation  
+
+---
+
+### 🛰 System Agent 5.1
+- repair‑aware OS action validation  
+- identity‑aware repair permissions  
+- blocking of unsafe repair operations  
+- repair sandbox enforcement  
+
+---
+
+### 📚 Knowledge Packs 5.1
+- repair‑aware pack validation  
+- auto‑repair of missing or corrupted entities  
+- safe fallback to minimal packs  
+- improved pack integrity 3.1  
+
+---
+
+## 🧩 Repair Orchestration Layer (NEW)
+**Status:** Added in 5.1.0**  
+**Goal:** Provide a deterministic orchestration layer that coordinates repair actions across runtime, KG, workflow, and system agent layers.
+
+### Features:
+- Repair Planner 1.0  
+- Repair State Machine 1.0  
+- Repair Context Memory  
+- Multi‑stage repair workflows  
+- Integration Hook: `SelfRepair.process(error_state)` above Reasoning Engine  
+
+### Result:
+- SIRIUS dokáže **opraviť sám seba**  
+- SIRIUS vie **detegovať chyby skôr, než spôsobia pád**  
+- SIRIUS vie **pokračovať aj v degradovanom režime**  
+- SIRIUS vie **obnoviť runtime bez zásahu používateľa**  
+
+---
+
+## Output (v5.1.0)
+SIRIUS získava **autonómnu stabilitu**:
+
+- runtime sa dokáže opraviť  
+- workflow sa dokáže zotaviť  
+- KG sa dokáže validovať a opraviť  
+- systémové akcie sú repair‑aware  
+- degradovaný režim je bezpečný a reverzibilný  
+
+---
+
+# Roadmap Status (Updated)
+**Current version:** 4.5.0 PRO (Stable)  
+**Next major release:** **5.0.0 – Offline Knowledge Graph Reasoning**  
+**Following release:** **5.1.0 – Self‑Repair Layer 1.0**
