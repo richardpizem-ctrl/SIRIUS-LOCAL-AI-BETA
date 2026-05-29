@@ -3,7 +3,6 @@
 from runtime5.workflow_steps_5.base_step import BaseWorkflowStep5
 from runtime5.logging_5 import log5
 from runtime5.health_monitor_5 import HealthMonitor5
-from runtime5.system_hooks_5 import SystemHooks5
 
 
 class ContextReturnStep5(BaseWorkflowStep5):
@@ -15,28 +14,26 @@ class ContextReturnStep5(BaseWorkflowStep5):
     def execute(self, data: dict):
         log5("[ContextReturnStep5] Executing RETURN_CONTEXT step...")
 
-        try:
-            context = data.get("result")
+        # ReasoningEngine5 produces:
+        # {
+        #   "intent": ...,
+        #   "entity": ...,
+        #   "route": "KG_REASONING",
+        #   "parent": ...,
+        #   "parent_chain": [...],
+        #   "degraded": ...
+        # }
 
-            output = {
-                "action": "RETURN_CONTEXT",
-                "context": context,
-                "degraded": HealthMonitor5.is_degraded()
-            }
+        parent = data.get("parent")
+        parent_chain = data.get("parent_chain", [])
 
-            log5(f"[ContextReturnStep5] Output: {output}")
+        output = {
+            "action": "RETURN_CONTEXT",
+            "entity": data.get("entity"),
+            "parent": parent,
+            "parent_chain": parent_chain,
+            "degraded": HealthMonitor5.is_degraded()
+        }
 
-            HealthMonitor5.record_success()
-            return output
-
-        except Exception as exc:
-            log5(f"[ContextReturnStep5] ERROR: {exc}")
-            HealthMonitor5.record_error(str(exc))
-            SystemHooks5.on_error(str(exc))
-
-            return {
-                "action": "RETURN_CONTEXT",
-                "context": None,
-                "error": str(exc),
-                "degraded": HealthMonitor5.is_degraded()
-            }
+        log5(f"[ContextReturnStep5] Output: {output}")
+        return output
