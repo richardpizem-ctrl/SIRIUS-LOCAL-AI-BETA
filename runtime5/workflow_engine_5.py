@@ -2,35 +2,39 @@
 
 from runtime5.workflow_step_registry_5 import WorkflowStepRegistry5
 from runtime5.logging_5 import log5
-
-# NEW: diagnostics + system hooks
 from runtime5.health_monitor_5 import HealthMonitor5
 from runtime5.system_hooks_5 import SystemHooks5
+from runtime5.error_handler_5 import ErrorHandler5
 
 
 class WorkflowEngine5:
     """
-    Workflow Engine 5.0
+    Workflow Engine 5.x
     Decides what action to take based on reasoning output
     and executes the correct workflow step.
     """
 
     def __init__(self):
         self.registry = WorkflowStepRegistry5()
+        log5("[WorkflowEngine5] Initialized Workflow Engine 5.x")
 
+    # --------------------------------------------------------
+    # EXECUTION
+    # --------------------------------------------------------
     def execute(self, reasoning_output: dict):
         log5("[WorkflowEngine5] Executing workflow step...")
 
-        try:
+        def _exec():
+            route = reasoning_output.get("route")
             intent = reasoning_output.get("intent")
             result = reasoning_output.get("result")
 
-            # Determine action
-            if intent == "KG_REASONING":
+            # Determine action based on route (from ReasoningEngine5)
+            if route == "KG_REASONING":
                 action = "RETURN_CONTEXT"
-            elif intent == "ENVOY":
+            elif route == "ENVOY":
                 action = "ENVOY_FETCH"
-            elif intent == "SYSTEM_AGENT":
+            elif route == "SYSTEM_AGENT":
                 action = "SYSTEM_ACTION"
             else:
                 action = "WORKFLOW_CONTINUE"
@@ -46,20 +50,21 @@ class WorkflowEngine5:
             output = step.execute(reasoning_output)
             log5(f"[WorkflowEngine5] Step output: {output}")
 
-            # Diagnostics: successful cycle
             HealthMonitor5.record_success()
 
-            return output
-
-        except Exception as exc:
-            # Diagnostics: error cycle
-            HealthMonitor5.record_error(str(exc))
-            SystemHooks5.on_error(str(exc))
-
-            log5(f"[WorkflowEngine5] ERROR: {exc}")
-
             return {
-                "error": str(exc),
-                "degraded": HealthMonitor5.is_degraded(),
-                "workflow": None
+                "action": action,
+                "output": output,
+                "degraded": HealthMonitor5.is_degraded()
             }
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"reasoning_output": reasoning_output},
+            fallback={
+                "action": None,
+                "output": None,
+                "error": "WorkflowEngine5 failed.",
+                "degraded": HealthMonitor5.is_degraded()
+            }
+        )
