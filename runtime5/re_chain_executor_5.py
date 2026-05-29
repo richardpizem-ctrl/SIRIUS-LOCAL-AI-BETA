@@ -6,9 +6,9 @@ from runtime5.reasoning_engine_5 import ReasoningEngine5
 from runtime5.kg_core import KnowledgeGraph
 from runtime5.logging_5 import log5
 
-# NEW: diagnostics + system hooks
 from runtime5.health_monitor_5 import HealthMonitor5
 from runtime5.system_hooks_5 import SystemHooks5
+from runtime5.error_handler_5 import ErrorHandler5
 
 
 class REChainExecutor5:
@@ -18,6 +18,11 @@ class REChainExecutor5:
     1. Intent resolution
     2. Context building
     3. Reasoning Engine execution
+
+    Provides:
+    - diagnostics
+    - degraded mode awareness
+    - Self‑Repair Layer compatibility
     """
 
     def __init__(self, kg: KnowledgeGraph):
@@ -26,10 +31,18 @@ class REChainExecutor5:
         self.context_builder = ContextBuilder5(kg)
         self.reasoning_engine = ReasoningEngine5(kg)
 
+        log5("[REChainExecutor5] Initialized reasoning pipeline.")
+
+    # --------------------------------------------------------
+    # EXECUTE PIPELINE
+    # --------------------------------------------------------
     def execute(self, text: str):
+        """
+        Full reasoning pipeline with diagnostics and safe execution.
+        """
         log5(f"[REChain] Input text: {text}")
 
-        try:
+        def _exec():
             # 1. Intent resolution
             intent = self.intent_resolver.resolve(text)
             log5(f"[REChain] Resolved intent: {intent}")
@@ -45,26 +58,24 @@ class REChainExecutor5:
             output = {
                 "intent": intent,
                 "context": context,
-                "result": result
+                "result": result,
+                "degraded": HealthMonitor5.is_degraded()
             }
 
             log5(f"[REChain] Final reasoning output: {output}")
 
-            # Diagnostics: successful cycle
             HealthMonitor5.record_success()
-
             return output
 
-        except Exception as exc:
-            # Diagnostics: error cycle
-            HealthMonitor5.record_error(str(exc))
-            SystemHooks5.on_error(str(exc))
-
-            log5(f"[REChain] ERROR: {exc}")
-
-            return {
+        # Safe execution wrapper
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"input": text},
+            fallback={
                 "intent": None,
                 "context": None,
                 "result": None,
-                "error": str(exc)
+                "error": "Reasoning pipeline failed.",
+                "degraded": HealthMonitor5.is_degraded()
             }
+        )
