@@ -46,11 +46,12 @@ class KGLoader:
 
             log5(f"[KGLoader] Loading pack: {path}")
 
-            with open(path, "r", encoding="utf-8") as f:
-                try:
+            # Load JSON safely
+            try:
+                with open(path, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                except Exception as exc:
-                    raise ValueError(f"Invalid JSON in pack '{filename}': {exc}")
+            except Exception as exc:
+                raise ValueError(f"Invalid JSON in pack '{filename}': {exc}")
 
             kg = KnowledgeGraph()
 
@@ -59,8 +60,14 @@ class KGLoader:
                 kg.add_entity(name, attrs)
 
             # Load relations
-            for src, rel, tgt in data.get("relations", []):
-                kg.add_relation(src, rel, tgt)
+            for rel in data.get("relations", []):
+                try:
+                    src = rel.get("source") if isinstance(rel, dict) else rel[0]
+                    relation = rel.get("relation") if isinstance(rel, dict) else rel[1]
+                    tgt = rel.get("target") if isinstance(rel, dict) else rel[2]
+                    kg.add_relation(src, relation, tgt)
+                except Exception as exc:
+                    log5(f"[KGLoader] Invalid relation skipped: {exc}")
 
             # Validate integrity
             integrity = KGIntegrity(kg).validate()
