@@ -1,17 +1,18 @@
-# 📦 Installation Guide – SIRIUS LOCAL AI (v4.5.0 PRO)
+# 📦 Installation Guide – SIRIUS LOCAL AI (v5.0.0)
 
-SIRIUS LOCAL AI is a fully local, modular AI runtime built on the **Runtime 4.5.0 PRO architecture**.  
+SIRIUS LOCAL AI is a fully local, modular AI runtime built on the **Runtime 5.0.0 architecture**, featuring the first generation of **Offline Knowledge Graph Reasoning**.
+
 The system is distributed as clean Python source code, intended for developers, testers, and advanced users.
 
-A packaged installer will be introduced in **version 5.0.0** (planned as a full `.EXE` build).
+A packaged installer (`.EXE`) is introduced in **version 5.0.0** and expanded in **5.1+**.
 
 All processing is fully local; **no data ever leaves your PC**.
 
 ---
 
-# ⚠️ System Notes (v4.5.0 PRO)
+# ⚠️ System Notes (v5.0.0)
 
-SIRIUS LOCAL AI interacts with Windows 10/11 system APIs through the **WIN‑CAP 4.x** capability layer, including:
+SIRIUS LOCAL AI interacts with Windows 11 system APIs through the **WIN‑CAP 5.x** capability layer, including:
 
 - filesystem operations  
 - window management  
@@ -19,12 +20,15 @@ SIRIUS LOCAL AI interacts with Windows 10/11 system APIs through the **WIN‑CAP
 - accessibility interfaces  
 - plugin‑driven system actions  
 - developer automation  
-- **Security Family 4.5** — identity engine, time‑limits, stranger‑mode, schoolwork engine  
-- **AITE 4.5** — semantic triage, OCR, subject detection  
-- **Reasoning Engine 4.5** — structured offline reasoning  
-- **Self‑Repair Layer 4.x** — integrity checks and safe fallback states  
-- **UI Automation Engine 4.5** — semantic UI parsing, workflow fallback, OS‑level routing  
-- **Runtime 4.5.0 PRO Stack** — deterministic, sandboxed, Phase‑5‑ready execution  
+- **Security Family 5.0** — identity engine, time‑limits, stranger‑mode, schoolwork engine  
+- **Reasoning Engine 5.0** — deterministic KG‑based reasoning  
+- **Workflow Engine 5.0** — KG‑aware routing  
+- **System Agent 5.0** — identity‑aware OS validation  
+- **HealthMonitor5** — degraded‑mode detection  
+- **ErrorHandler5** — safe execution wrapper  
+- **SystemHooks5** — runtime event hooks  
+- **Knowledge Graph Runtime 1.0** — offline entity‑relation reasoning  
+- **Envoy Bridge Layer 1.0** — permission‑based online fetch (optional)  
 
 Windows Defender or SmartScreen may classify the runtime as an “Unknown App”.  
 Antivirus tools may generate false positives during development.
@@ -47,54 +51,48 @@ git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA
 ### 5. Run the main entrypoint
 python sirius.py 
 ### 6. Optional: run individual modules for testing  
-(runtime, plugins, GUI, workflows, triage, security, self‑repair, UI automation)
+(runtime, plugins, GUI, workflows, KG, security, system agent, UI automation)
 
 Developer mode provides full access to:
 
-- **Runtime Core 4.5.0 PRO**  
-- **Plugin System 4.5**  
-- **Workflow Engine 4.5**  
-- **Reasoning Engine 4.5**  
-- **GUI 4.5**  
-- **Tray 4.5**  
-- **Voice 4.5**  
-- **Hotword 4.5**  
-- **AI Loop 4.5**  
-- **SystemHealthEngine 4.5**  
-- **TaskManagerEngine 4.5**  
-- **ServiceManager 4.5**  
-- **SystemAgent 4.5**  
-- **AITE 4.5**  
-- **WIN‑CAP 4.x**  
-- **Security Family 4.5**  
-- **Self‑Repair & Health‑Check Layer 4.x**  
-- **Knowledge Packs 4.5**  
-- **UI Automation Engine 4.5**  
+- **Runtime Core 5.0.0**  
+- **Workflow Engine 5.0**  
+- **Reasoning Engine 5.0**  
+- **Knowledge Graph Runtime 1.0**  
+- **System Agent 5.0**  
+- **HealthMonitor5**  
+- **ErrorHandler5**  
+- **SystemHooks5**  
+- **Plugin System 5.x**  
+- **Security Family 5.0**  
+- **Envoy Bridge Layer 1.0**  
+- **UI Automation Engine 4.5 (temporary until 5.x)**  
 
 ---
 
-# 🛠️ Future Installation System (Planned)
+# 🛠️ Future Installation System
 
-## v4.6.0 – Self‑Repair Layer Integration
-- deeper diagnostic hooks  
-- pre‑launch validation  
-- safer fallback states  
-- improved corruption detection  
-
----
-
-## v5.0.0 – Intelligent Runtime Installer (FULL .EXE PACKAGE)
+## ⭐ v5.0.0 – Intelligent Runtime Installer (FIRST .EXE PACKAGE)
 - performance‑optimized packaging  
 - optional UI/animation bundles  
 - tray/voice integration  
 - semantic triage extensions  
-- deeper identity learning  
-- pack‑aware installation logic  
+- identity‑aware installation logic  
+- KG‑aware initialization  
 - **first official `.EXE` installer for SIRIUS LOCAL AI**  
 
 ---
 
-## v6.0.0 – Self‑Repair Integrated Installer
+## ⭐ v5.1.0 – Self‑Repair Layer 1.0 Integration
+- repair sandbox  
+- module integrity scanning  
+- safe fallback states  
+- degraded → repaired transitions  
+- repair‑aware startup validation  
+
+---
+
+## ⭐ v6.0.0 – Self‑Repair Integrated Installer
 The installation system will integrate fully with the diagnostic layer:
 
 - integrity checks before startup  
@@ -108,17 +106,17 @@ This ensures long‑term stability even in packaged builds.
 
 ---
 
-# 📌 Status (v4.5.0 PRO)
+# 📌 Status (v5.0.0)
 
-Installation system: **Not yet implemented**  
-Packaging: **Planned for v5.0.0 (.EXE)**  
-Runtime: **Stable (4.5.0 PRO)**  
-Plugins: **Stable (4.5)**  
-Architecture: **Stable (4.5)**  
-Security Family: **Fully integrated (identity engine, time‑limits, stranger‑mode, schoolwork engine)**  
-AITE: **Upgraded to v4.5 with semantic triage + OCR**  
-WIN‑CAP: **Upgraded to 4.x**  
-Self‑Repair Layer: **Stable**  
-Knowledge Packs: **Semantic pack system**  
-UI Automation Engine: **Stable (4.5)**  
-ENVOY: **Base layer (Bridge Layer 2.0 coming in 4.6)**  
+Installation system: **In development (first .EXE in 5.0.0)**  
+Packaging: **In progress**  
+Runtime: **Stable (5.0.0)**  
+Plugins: **Stable (5.x)**  
+Architecture: **Stable (5.x)**  
+Security Family: **Integrated (identity engine, time‑limits, stranger‑mode, schoolwork engine)**  
+Reasoning Engine: **Upgraded to 5.0 (KG‑based)**  
+Workflow Engine: **Upgraded to 5.0 (KG‑aware)**  
+System Agent: **Upgraded to 5.0**  
+Knowledge Graph: **Runtime 1.0**  
+UI Automation Engine: **Stable (4.5 → 5.x planned)**  
+ENVOY: **Bridge Layer 1.0 (full fetch in 5.1)**  
