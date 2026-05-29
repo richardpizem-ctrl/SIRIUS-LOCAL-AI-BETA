@@ -42,53 +42,106 @@ SIRIUS 5.x represents the **biggest leap in the history of the project**:
 ---
 
 # 🧩 Architecture Diagram (Runtime 5.x)
-┌───────────────────────────────┐
-│      Knowledge Graph 5.x      │
-│  (entities, relations, facts) │
-└───────────────┬──────────────┘
-│
-┌───────▼────────┐
-│ Reasoning Engine│
-│     5.0 PRO     │
-└───────┬────────┘
-│
-┌───────────────▼──────────────────┐
-│        Workflow Engine 5.0        │
-│  KG‑aware routing • deterministic │
-└───────────────┬──────────────────┘
-│
-┌───────────────▼──────────────────┐
-│         System Agent 5.0          │
-│ identity rules • OS validation    │
-└───────────────┬──────────────────┘
-│
-┌───────────────▼──────────────────┐
-│     UI Automation Engine 5.0      │
-│ Win32/UIA/WinRT • deterministic   │
-└───────────────────────────────────┘
+┌───────────────────────────────┐  
+│      Knowledge Graph 5.x      │  
+│  (entities, relations, facts) │  
+└───────────────┬──────────────┘  
+                │  
+┌───────────────▼──────────────┐  
+│       Reasoning Engine 5.0    │  
+│            PRO Layer          │  
+└───────────────┬──────────────┘  
+                │  
+┌───────────────▼──────────────┐  
+│       Workflow Engine 5.0     │  
+│ KG‑aware routing • deterministic │  
+└───────────────┬──────────────┘  
+                │  
+┌───────────────▼──────────────┐  
+│        System Agent 5.0       │  
+│ identity rules • OS validation │  
+└───────────────┬──────────────┘  
+                │  
+┌───────────────▼──────────────┐  
+│    UI Automation Engine 5.0   │  
+│ Win32/UIA/WinRT • deterministic │  
+└───────────────────────────────┘  
 
 ---
 
 # 🛰 Envoy Module 1.0 — Secure Online Information Fetcher  
-**Status:** Active in Runtime 5.x  
-**Goal:** Optional, permission‑based access to online information.
+**Status:** Plánovaný cieľ pre verziu 5.x  
+**Cieľ:** Poskytnúť voliteľný, povolením riadený prístup k online informáciám pri zachovaní 100 % offline architektúry.
 
-### 🔐 Security Flow
+Envoy je **riadený externý agent**, ktorý môže vykonať **jednu izolovanú online požiadavku**, ale **len po výslovnom súhlase používateľa**.  
+Offline režim zostáva **predvolený**, nedotknutý a plne deterministický.
+
+---
+
+## 🔐 Envoy Security Flow (ASK → FETCH → QUARANTINE → DELIVER)
+
+```
 User Request
-↓
+      ↓
 ASK — explicit permission required
-↓
-FETCH — isolated online request
-↓
+      ↓
+FETCH — one isolated online request
+      ↓
 QUARANTINE — sanitize, validate, strip unsafe content
-↓
-DELIVER — safe data to the Reasoning Engine
+      ↓
+DELIVER — safe data passed to Reasoning Engine
+```
 
-### 🔁 PC ↔ Mobile Envoy Support
-- PC Envoy fetches for mobile  
-- Mobile Envoy fetches for PC  
-- two‑way LAN Sync communication  
-- System Agent validates the entire process  
+### Kľúčové princípy Envoy 1.0
+- **Nikdy nebeží automaticky**
+- **Vždy žiada o povolenie (ASK)**
+- **Jednoúčelové, izolované fetch operácie**
+- **Všetky dáta prechádzajú karanténou**
+- **System Agent overuje celý proces**
+- **Offline režim je predvolený a nedotknutý**
+- **Rešpektuje identitu používateľa (OWNER / FAMILY / STRANGER)**
+
+---
+
+## 🔁 PC ↔ Mobile Envoy Support (Runtime 5.x)
+- PC môže fetchovať pre mobil  
+- Mobil môže fetchovať pre PC  
+- Oba Envoy moduly používajú rovnaký bezpečnostný tok  
+- LAN Sync 2.0 prenáša len **karantenizované dáta**  
+- System Agent 5.0 validuje každú fázu  
+
+---
+
+## 🧠 Integrácia Envoy do Runtime 5.x
+
+### **Reasoning Engine 5.0**
+- prijíma len karantenizované dáta  
+- žiadne nevalidované informácie sa nedostanú do inference pipeline  
+
+### **Workflow Engine 5.0**
+- Envoy fetch je len jeden z krokov workflow  
+- KG‑routing rozhoduje, či je fetch vôbec potrebný  
+
+### **System Agent 5.0**
+- kontroluje identitu  
+- kontroluje povolenia  
+- kontroluje bezpečnostné pravidlá  
+- blokuje neautorizované fetch operácie  
+
+---
+
+## 🛡 Prečo Envoy neporušuje offline architektúru
+- Envoy **nie je internetový modul**  
+- Envoy **nie je prehliadač**  
+- Envoy **nie je AI model**  
+- Envoy **nie je automatický fetcher**
+
+Envoy je **riadený, jednorazový, povolením chránený agent**, ktorý:
+
+- nikdy nebeží bez súhlasu  
+- nikdy neukladá dáta  
+- nikdy neobchádza karanténu  
+- nikdy neovplyvňuje offline deterministiku  
 
 ---
 
@@ -180,4 +233,3 @@ They will be published **immediately after the last GAMA milestone is completed*
 ---
 
 # 🏁 End of README_v5.md
-
