@@ -1,4 +1,18 @@
-# ⭐ 4.5 Version 4.5.0 PRO – System Intelligence Expansion (NEW)
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.x → v6.x)
+
+This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
+into the **Unified Runtime 5.x** generation and the upcoming **Self‑Repair 6.x** era.
+
+All versions remain:
+- 100% offline  
+- deterministic  
+- identity‑aware  
+- safe for households and children  
+- fully local with optional Envoy fetch  
+
+---
+
+# ⭐ 4.5 Version 4.5.0 PRO – System Intelligence Expansion  
 **Status:** Completed  
 **Goal:** Expand the deterministic runtime with deeper system intelligence, faster triage, safer OS‑level actions, and improved UI automation.
 
@@ -10,19 +24,15 @@
 - faster diagnostics  
 - problem prediction 2.0  
 - safe optimization suggestions  
-- bounded system scans (no deep scans during workflows)  
-- integration with System Agent 4.5  
-
----
+- bounded system scans  
+- System Agent 4.5 integration  
 
 ### 🧠 AITE 4.5 – Multimodal Semantic Triage
 - OCR 4.5  
 - identity‑aware triage 3.2  
-- improved mixed‑content detection (text + images + code)  
+- improved mixed‑content detection  
 - faster scoring  
 - SCHOOLWORK bypass 4.5  
-
----
 
 ### 🔍 Reasoning Engine 4.5
 - reasoning depth 2.0  
@@ -30,45 +40,37 @@
 - deterministic chain‑of‑thought  
 - faster cached reasoning paths  
 
----
-
 ### 🔁 Workflow Engine 4.5
 - O(1) transitions  
 - semantic caching 2.0  
 - identity‑aware workflow gating  
 - safer multi‑stage workflows  
 
----
-
 ### 📚 Knowledge Packs 4.5
 - faster lookups  
 - pack integrity validation  
-- expanded school, home and diagnostic packs  
+- expanded school, home, diagnostic packs  
 - reasoning‑ready structure 3.0  
-
----
 
 ### 🛰 System Agent 4.5 – Safe Action Execution Layer
 - validation of all OS actions  
 - identity‑aware enforcement  
 - reversibility 2.0  
 - safer blocking of risky operations  
-- integration with System Intelligence Layer 4.5  
-
----
+- System Intelligence Layer integration  
 
 ### 🖱 UI Automation Engine 4.5 – Deterministic OS Automation
 - fuzzy matching 4.5  
 - deterministic fallbacks  
-- Win32/UIA/WinRT routing 4.5  
+- Win32/UIA/WinRT routing  
 - sandbox‑protected execution  
 - System Agent 4.5 validation  
 
 ---
 
-## 🧩 Intent & Planning Layer 4.5 – Autonomous Task Continuation (NEW)
-**Status:** Added in 4.5.0 PRO**  
-**Goal:** Introduce a new layer above Runtime Orchestration that enables SIRIUS to understand task intent, plan next steps, and continue autonomously without explicit user commands.
+## 🧩 Intent & Planning Layer 4.5 – Autonomous Task Continuation  
+**Status:** Completed  
+**Goal:** Enable SIRIUS to understand task intent, plan next steps, and continue autonomously.
 
 ### Features:
 - Intent Detection 1.0  
@@ -80,27 +82,27 @@
 
 ### Result:
 - SIRIUS knows **what comes next**  
-- SIRIUS knows **what the goal is**  
-- SIRIUS knows **what is done and what is missing**  
+- SIRIUS knows **the final goal**  
+- SIRIUS tracks **what is done and what is missing**  
 - SIRIUS can **continue autonomously**  
 - SIRIUS behaves like an **operating assistant**, not just an automation engine  
 
 ---
 
 ## Output (v4.5.0 PRO)
-SIRIUS evolves into a **fully deterministic, system‑intelligent OS‑automation runtime**:
+SIRIUS becomes a **fully deterministic, system‑intelligent OS‑automation runtime**:
 
 - deeper system intelligence  
 - faster triage  
 - safer OS‑level actions  
 - improved UI automation  
 - more stable reasoning  
-- stronger identity‑aware security model  
-- **new autonomous task‑continuation layer**  
+- stronger identity‑aware security  
+- autonomous task‑continuation layer  
 
 ---
 
-# ⭐ 5.0 Version 5.0.0 — Offline Knowledge Graph Reasoning (NEW)
+# ⭐ 5.0 Version 5.0.0 — Offline Knowledge Graph Reasoning  
 **Status:** Completed  
 **Goal:** Introduce the first fully offline, deterministic Knowledge Graph Reasoning Engine.
 
@@ -111,12 +113,10 @@ SIRIUS evolves into a **fully deterministic, system‑intelligent OS‑automatio
 ### 🧠 Knowledge Graph Reasoning 1.0
 - offline reasoning  
 - deterministic inference paths  
-- zero hallucination risk  
+- zero hallucination  
 - entity‑relation traversal  
 - shortest‑path reasoning  
 - KG‑aware context building  
-
----
 
 ### 🔍 Reasoning Engine 5.0
 - KG‑integrated routing  
@@ -125,23 +125,17 @@ SIRIUS evolves into a **fully deterministic, system‑intelligent OS‑automatio
 - degraded‑mode awareness  
 - Envoy‑aware routing  
 
----
-
 ### 🔁 Workflow Engine 5.0
 - KG‑aware workflow routing  
-- multi‑stage deterministic workflows  
+- deterministic multi‑stage workflows  
 - Envoy integration  
 - identity‑aware gating  
 
----
-
 ### 🛰 System Agent 5.0
 - extended identity rules  
-- OWNER / FAMILY / STRANGER 2.0  
+- OWNER / FAMILY / STRANGER 3.0  
 - OS‑action validation  
 - Envoy security policies  
-
----
 
 ### 📚 Knowledge Packs 5.x
 - KG‑ready structure  
@@ -161,7 +155,7 @@ SIRIUS gains **true offline intelligence**:
 
 ---
 
-# ⭐ 5.1 Version 5.1.0 — Self‑Repair Layer 1.0 (NEW)
+# ⭐ 5.1 Version 5.1.0 — Self‑Repair Layer 1.0  
 **Status:** Planned  
 **Goal:** Introduce autonomous stability mechanisms that detect, isolate, and repair runtime issues without user intervention.
 
@@ -174,11 +168,9 @@ SIRIUS gains **true offline intelligence**:
 - repair sandbox  
 - fallback to healthy versions  
 - repair cycles  
-- repair logs + telemetry  
+- repair logs  
 - degraded → repaired transitions  
 - integration with HealthMonitor5  
-
----
 
 ### 🧠 Runtime Integrity Engine 1.0
 - module integrity scanning  
@@ -187,23 +179,17 @@ SIRIUS gains **true offline intelligence**:
 - repair‑aware KG integrity  
 - safe rollback  
 
----
-
 ### 🔁 Workflow Engine 5.1
 - repair‑aware routing  
 - automatic workflow recovery  
 - safe retry logic  
 - degraded‑mode continuation  
 
----
-
 ### 🛰 System Agent 5.1
 - repair‑aware OS validation  
 - identity‑aware repair permissions  
 - blocking unsafe repair operations  
 - sandbox enforcement  
-
----
 
 ### 📚 Knowledge Packs 5.1
 - repair‑aware validation  
@@ -214,7 +200,7 @@ SIRIUS gains **true offline intelligence**:
 ---
 
 ## 🧩 Repair Orchestration Layer (NEW)
-**Goal:** Coordinate repair actions across runtime, KG, workflow, and system agent layers.
+Coordinates repair actions across runtime, KG, workflow, and system agent layers.
 
 ### Features:
 - Repair Planner 1.0  
@@ -236,7 +222,8 @@ SIRIUS gains **autonomous stability**:
 
 ---
 
-# Roadmap Status (Updated)
-**Current version:** 4.5.0 PRO (Stable)  
-**Next major release:** **5.0.0 – Offline Knowledge Graph Reasoning**  
-**Following release:** **5.1.0 – Self‑Repair Layer 1.0**
+# 📌 Roadmap Status (Updated)
+**Current version:** 5.0.0 UNIFIED (Stable)  
+**Next major release:** **5.1.0 – Self‑Repair Layer 1.0**  
+**Following release:** **6.0.0 – Self‑Repair Layer 2.0 (Autonomous Runtime Evolution)**
+
