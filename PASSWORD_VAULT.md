@@ -1,15 +1,27 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v4.5.0 PRO)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v5.0.0 UNIFIED)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the **Intelligent Runtime 4.x** architecture.
+It serves as an architectural orientation map for the **Unified Runtime 5.0** architecture.
 
-Version **4.5.0 PRO** expands the module map with the upgraded **System Intelligence & UI Automation stack**, including **AITE 4.5**, **Workflow Engine 4.5**, **Knowledge Packs 4.5**, **UI Automation Engine 4.5**, and **System Agent 4.5**.
+Version **5.0.0 UNIFIED** expands the module map with the upgraded **Unified Intelligence Stack**, including:
 
-All processing is fully local; no data leaves the user's PC.
+- **AITE 5.0 (Multimodal Semantic Triage)**  
+- **Reasoning Engine 5.0**  
+- **Workflow Engine 5.0**  
+- **Knowledge Packs 5.0**  
+- **UI Automation Engine 5.0**  
+- **System Agent 5.0**  
+- **Security Family 5.0 (Identity Engine 3.0)**  
+- **ENVOY 5.0**  
+- **Self‑Repair Layer 5.x**  
+- **Mobile Runtime 5.0**  
+- **Unified deterministic routing across PC + Mobile**  
+
+All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 1. Runtime Core 4.x
+# 1. Runtime Core 5.0 (Unified)
 **Purpose:** Central orchestrator of the entire system.  
 **Responsibilities:**
 - module initialization  
@@ -19,28 +31,29 @@ All processing is fully local; no data leaves the user's PC.
 - enforcing capability boundaries  
 - event routing  
 - global system stability  
-- integration with Security Family 4.5  
-- integration with Self‑Repair Layer  
+- integration with Security Family 5.0  
+- integration with Self‑Repair Layer 5.x  
 - deterministic execution  
-- UI Automation Engine 4.5 integration  
-- System Agent 4.5 routing for system‑level actions  
+- UI Automation Engine 5.0 integration  
+- System Agent 5.0 routing  
+- unified PC/Mobile behavior  
 
 ---
 
-# 2. Filesystem Agent (FS‑AGENT 4.x)
+# 2. Filesystem Agent (FS‑AGENT 5.0)
 **Purpose:** Safe, deterministic file operations.  
 **Responsibilities:**
 - moving, copying, deleting  
 - path validation  
-- safety checks  
 - rollback‑safe operations  
 - semantic routing (documents, code, schoolwork)  
-- integration with Schoolwork Engine 4.5  
-- integration with UI Automation Engine 4.5 (file‑based workflows)  
+- integration with Schoolwork Engine 5.0  
+- integration with UI Automation Engine 5.0  
+- unified PC/Mobile filesystem logic  
 
 ---
 
-# 3. Natural Language Router (NL Router 4.x)
+# 3. Natural Language Router (NL Router 5.0)
 **Purpose:** Semantic interpretation and routing of user commands.  
 **Responsibilities:**
 - command classification  
@@ -50,12 +63,12 @@ All processing is fully local; no data leaves the user's PC.
 - fallback interpretation  
 - preventing ambiguous or unsafe actions  
 - identity‑aware filtering (OWNER / FAMILY / STRANGER)  
-- UI automation command routing (v4.5.0)  
-- System Agent 4.5‑aware command gating for system actions  
+- UI automation command routing  
+- System Agent 5.0 validation for system‑level intents  
 
 ---
 
-# 4. Context Memory Engine (CME‑MEM 4.x)
+# 4. Context Memory Engine (CME‑MEM 5.0)
 **Purpose:** Semantic workflow context.  
 **Responsibilities:**
 - tracking recent actions  
@@ -63,12 +76,13 @@ All processing is fully local; no data leaves the user's PC.
 - supporting multi‑step workflows  
 - providing contextual hints  
 - subject/difficulty metadata  
-- integration with Schoolwork Engine 4.5  
-- integration with UI Automation Engine 4.5 (contextual UI hints)  
+- integration with Schoolwork Engine 5.0  
+- integration with UI Automation Engine 5.0  
+- unified PC/Mobile context memory  
 
 ---
 
-# 5. Workflow Engine 4.5
+# 5. Workflow Engine 5.0
 **Purpose:** Deterministic multi‑step logic.  
 **Responsibilities:**
 - workflow state machine  
@@ -76,13 +90,14 @@ All processing is fully local; no data leaves the user's PC.
 - semantic transitions  
 - preventing invalid sequences  
 - SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 4.5  
-- integration with UIWorkflow 4.5  
-- System Agent 4.5 validation for system‑level workflows  
+- integration with Reasoning Engine 5.0  
+- integration with UIWorkflow 5.0  
+- deterministic fallback behavior  
+- unified PC/Mobile workflows  
 
 ---
 
-# 6. GUI Layer 4.x
+# 6. GUI Layer 5.0
 **Purpose:** Modular user interface.  
 **Responsibilities:**
 - rendering plugin UI  
@@ -90,7 +105,8 @@ All processing is fully local; no data leaves the user's PC.
 - identity indicators  
 - SCHOOLWORK indicators  
 - tray/voice integration  
-- UI automation visual feedback (v4.5.0)  
+- UI automation visual feedback  
+- unified PC/Mobile UI  
 
 ---
 
@@ -103,8 +119,8 @@ All processing is fully local; no data leaves the user's PC.
 
 ---
 
-# 8. Automatic Input Triage Engine (AITE 4.5)
-**Purpose:** Semantic detection and classification of all inputs.  
+# 8. Automatic Input Triage Engine (AITE 5.0)
+**Purpose:** Multimodal semantic detection and classification of all inputs.  
 **Responsibilities:**
 - detecting input type (text, image, code, document, installer)  
 - OCR extraction  
@@ -114,24 +130,25 @@ All processing is fully local; no data leaves the user's PC.
 - routing to correct modules  
 - metadata generation  
 - integration with FS‑AGENT, CME‑MEM  
-- integration with Schoolwork Engine 4.5  
-- integration with Reasoning Engine 4.5  
-- ENVOY 4.0 support  
-- UI automation intent detection (v4.5.0)  
-- identity‑aware triage aligned with Security Family 4.5  
+- integration with Schoolwork Engine 5.0  
+- integration with Reasoning Engine 5.0  
+- ENVOY 5.0 support  
+- UI automation intent detection  
+- identity‑aware triage 4.0  
+- unified PC/Mobile triage  
 
 ---
 
-# 9. Windows System Capabilities Layer (WIN‑CAP 4.x)
-**Purpose:** Safe, abstracted access to Windows 11 system functions.  
+# 9. Windows System Capabilities Layer (WIN‑CAP 5.0)
+**Purpose:** Safe, abstracted access to Windows system functions.  
 **Responsibilities:**
 - exposing high‑level system capabilities  
 - enforcing permissions and allowed scopes  
 - safe wrappers around OS operations  
 - multi‑step system actions  
 - identity‑aware restrictions  
-- UI automation OS‑level routing (v4.5.0)  
-- System Agent 4.5‑validated capability execution  
+- UI automation OS‑level routing  
+- System Agent 5.0 enforcement  
 
 **Submodules:**
 - `file_ops`  
@@ -140,7 +157,7 @@ All processing is fully local; no data leaves the user's PC.
 - `audio_ops`  
 - `system_context`  
 - `automation_ops`  
-- `ui_capabilities_4_5` (UPDATED)  
+- `ui_capabilities_5_0`  
 
 ---
 
@@ -168,12 +185,12 @@ All processing is fully local; no data leaves the user's PC.
 - predictable behavior  
 - integrating CME, FS‑AGENT, GUI  
 - SCHOOLWORK workflow routing  
-- UI automation workflow integration (v4.5.0)  
-- System Agent 4.5‑aware system workflows  
+- UI automation workflow integration  
+- unified PC/Mobile workflow logic  
 
 ---
 
-# 12. Plugin System 4.x
+# 12. Plugin System 5.x
 **Purpose:** Extensible plugin ecosystem.  
 **Responsibilities:**
 - loading plugin manifests  
@@ -184,8 +201,8 @@ All processing is fully local; no data leaves the user's PC.
 - registering GUI elements  
 - safe plugin isolation  
 - SCHOOLWORK‑aware plugin behavior  
-- UI automation plugin hooks (v4.5.0)  
-- identity‑aware plugin capabilities via Security Family 4.5  
+- UI automation plugin hooks  
+- unified PC/Mobile plugin behavior  
 
 Official plugins include:
 - automation  
@@ -198,7 +215,7 @@ Official plugins include:
 
 ---
 
-# 13. AI Loop 4.x
+# 13. AI Loop 5.0
 **Purpose:** Autonomous interval‑based logic.  
 **Responsibilities:**
 - executing plugin heartbeat rules  
@@ -206,10 +223,11 @@ Official plugins include:
 - deterministic scheduling  
 - error protection  
 - SCHOOLWORK‑aware timing  
+- unified PC/Mobile loop behavior  
 
 ---
 
-# 14. Self‑Repair & Health‑Check Layer (v4.x)
+# 14. Self‑Repair & Health‑Check Layer (5.x)
 **Purpose:** Diagnostics and safe automatic recovery.  
 **Responsibilities:**  
 - checking integrity of core modules  
@@ -218,8 +236,9 @@ Official plugins include:
 - generating patch suggestions  
 - preventing uncontrolled modifications  
 - reporting system health to Runtime Core  
-- validating UI automation modules (v4.5.0)  
-- monitoring System Agent 4.5 and Security Family 4.5 integrity  
+- validating UI automation modules  
+- integration with System Agent 5.0  
+- unified PC/Mobile diagnostics  
 
 **Submodules:**  
 - `health_check_engine.py`  
@@ -228,45 +247,45 @@ Official plugins include:
 
 ---
 
-# 15. Security Family 4.5 (Identity Engine 2.1)
+# 15. Security Family 5.0 (Identity Engine 3.0)
 **Purpose:** Behavior‑based identity and family safety layer.  
 **Responsibilities:**
 - OWNER / FAMILY / STRANGER identity  
 - behavior‑based recognition  
 - safe‑mode for unknown users  
 - restricted mode for children  
-- time‑limits v2  
+- time‑limits v3  
 - Schoolwork Engine integration  
 - identity‑aware routing  
 - STRANGER‑mode restrictions  
-- UI automation identity gating (v4.5.0)  
-- System Agent 4.5 policy integration  
+- UI automation identity gating  
+- System Agent 5.0 enforcement  
 
 **Submodules:**
-- `identity_engine_v2_1.py`  
-- `behavior_audit_v2_1.py`  
-- `access_control_v2_1.py`  
-- `family_mode_v2.py`  
-- `stranger_mode_v2.py`  
-- `time_limits_v2.py`  
-- `schoolwork_engine.py`  
-- `profile_store_v2.json`  
+- `identity_engine_3_0.py`  
+- `behavior_audit_3_0.py`  
+- `access_control_3_0.py`  
+- `family_mode_v3.py`  
+- `stranger_mode_v3.py`  
+- `time_limits_v3.py`  
+- `schoolwork_engine_5_0.py`  
+- `profile_store_v3.json`  
 
 ---
 
-# 16. Intelligent Runtime Modules (v4.x)
+# 16. Intelligent Runtime Modules (v5.0)
 
-## 16.1 HOME_ASSISTANT 4.0  
-## 16.2 COOKING_ADVISOR 4.0  
-## 16.3 DEVICE_DIAGNOSTICS 2.0  
-## 16.4 SCHOOL_HELPER 4.0  
-## 16.5 IMAGE_ANALYZER 4.0  
-## 16.6 CONTEXT_ROUTER 4.0  
-## 16.7 KNOWLEDGE_PACKS 4.5  
+## 16.1 HOME_ASSISTANT 5.0  
+## 16.2 COOKING_ADVISOR 5.0  
+## 16.3 DEVICE_DIAGNOSTICS 3.0  
+## 16.4 SCHOOL_HELPER 5.0  
+## 16.5 IMAGE_ANALYZER 5.0  
+## 16.6 CONTEXT_ROUTER 5.0  
+## 16.7 KNOWLEDGE_PACKS 5.0  
 
 ---
 
-# 17. PASSWORD_VAULT 4.1
+# 17. PASSWORD_VAULT 5.0
 **Purpose:** Secure offline credential storage.  
 **Responsibilities:**
 - AES‑256‑GCM encrypted vault  
@@ -277,69 +296,103 @@ Official plugins include:
 - deterministic API for workflows  
 - NL Router integration  
 - Runtime Core integration  
-- Security Family 4.5 + System Agent 4.5 enforcement for access  
 
 ---
 
-# 18. UI Automation Engine 4.5 (UPDATED)
-**Purpose:** Semantic, deterministic UI automation with real OS‑level control.  
+# 18. UI Automation Engine 5.0
+**Purpose:** Semantic, deterministic UI automation.  
 **Responsibilities:**
-- fuzzy UI parsing  
+- improved fuzzy UI parsing  
 - semantic alias mapping  
 - multi‑stage resolution pipeline  
 - deterministic fallback logic  
 - OS‑level routing  
 - safe sandboxed execution  
-- WIN‑CAP 4.5 integration  
-- System Agent 4.5 validation for all UI actions  
-- identity‑aware UI automation (OWNER / FAMILY / STRANGER)  
+- WIN‑CAP 5.0 integration  
+- System Agent 5.0 validation  
+- unified PC/Mobile automation  
 
 **Submodules:**
-- `ui_parser_4_5.py`  
-- `ui_workflow_4_5.py`  
-- `ui_actions_4_5.py`  
-- `win_capabilities_4_5.py`  
+- `ui_parser_5_0.py`  
+- `ui_workflow_5_0.py`  
+- `ui_actions_5_0.py`  
+- `win_capabilities_5_0.py`  
 
 ---
 
-# 19. System Agent 4.5 (Safe Action Execution Layer)
-**Purpose:** Final gatekeeper for all system‑level and UI automation actions.  
+# 19. System Agent 5.0
+**Purpose:** Final gatekeeper for all system‑level actions.  
 **Responsibilities:**
 - validating every system action  
-- enforcing identity rules from Security Family 4.5  
+- enforcing identity rules  
 - blocking unsafe operations  
-- logging all sensitive actions  
-- ensuring deterministic, reversible behavior  
-- mediating between Runtime Core, WIN‑CAP, and UI Automation Engine 4.5  
+- deterministic safety enforcement  
+- logging system actions  
+- protecting OS‑level automation  
+- unified PC/Mobile execution  
+
+**Submodules:**
+- `agent_core_5_0.py`  
+- `agent_rules_5_0.py`  
+- `agent_validation_5_0.py`  
 
 ---
 
-# 20. SIRIUS ENVOY 4.0 (Safe Retrieval Layer)
-**Purpose:** Safe, outbound‑only online retrieval.  
+# 20. SIRIUS ENVOY 5.0 (Safe External Retrieval)
+**Purpose:** Safe, outbound‑only external retrieval.  
 **Responsibilities:**  
 - scraper layer  
 - quarantine sandbox  
 - validator & policy filter  
 - safe payload delivery  
 - Knowledge Pack updates  
-- never bypassing Security Family 4.5 or System Agent 4.5  
+- identity‑aware sanitization  
+- unified PC/Mobile behavior  
 
 ---
 
-# 21. Module Interconnections
+# 21. System Intelligence Layer 5.0
+**Purpose:** Cross‑platform diagnostics and safe optimization.  
+**Responsibilities:**
+- hardware analysis  
+- driver checks  
+- service health  
+- process analysis  
+- optimization suggestions  
+- deterministic system workflows  
+- System Agent 5.0 enforcement  
+- unified PC/Mobile diagnostics  
+
+---
+
+# 22. Mobile Runtime 5.0
+**Purpose:** Unified mobile execution layer.  
+**Responsibilities:**
+- mobile‑optimized workflows  
+- mobile filesystem logic  
+- mobile UI automation  
+- mobile AITE integration  
+- mobile reasoning integration  
+
+---
+
+# 23. Module Interconnections
 All modules communicate through:
 
-- Runtime Core 4.x  
-- NL Router 4.x  
-- Workflow Engine 4.5  
-- CME‑MEM 4.x  
-- Security Family 4.5  
-- WIN‑CAP 4.x  
-- UI Automation Engine 4.5  
-- System Agent 4.5  
+- Runtime Core 5.0  
+- NL Router 5.0  
+- Workflow Engine 5.0  
+- CME‑MEM 5.0  
+- Security Family 5.0  
+- WIN‑CAP 5.0  
+- UI Automation Engine 5.0  
+- System Agent 5.0  
+- ENVOY 5.0  
+- Self‑Repair Layer 5.x  
+- Mobile Runtime 5.0  
 
 ---
 
 # Document Status
-**Version:** 4.5.0 PRO  
-Updated to reflect the **4.4 → 4.5 transition**, the new **System Agent 4.5**, and the upgraded **UI Automation Engine 4.5**.
+**Version:** 5.0.0 UNIFIED  
+Updated to reflect the **4.x → 5.0 transition**, new **System Agent 5.0**, and the **Unified Runtime Architecture**.
