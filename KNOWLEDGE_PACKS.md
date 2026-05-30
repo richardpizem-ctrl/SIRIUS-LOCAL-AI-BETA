@@ -1,15 +1,20 @@
 # SIRIUS‑LOCAL‑AI  
-**A fully modular, offline‑only AI runtime with intelligent reasoning, self‑repair, semantic triage, deterministic UI automation, and a next‑generation capability architecture.**
+**A fully modular, offline‑only AI runtime with unified reasoning, self‑repair, multimodal triage, deterministic UI automation, and a next‑generation capability architecture.**
 
 SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, and full offline autonomy**.
 
-Version **4.0.0** introduced the Intelligent Runtime 2.0, Reasoning Engine 4.0, AITE 4.0, Security Family 4.0, Schoolwork Engine 4.0, Self‑Repair Layer, Knowledge Packs 4.0, and the ENVOY safe‑retrieval system.
+Version **5.0.0** introduces the **Unified Runtime Architecture**, merging PC and Mobile logic into a single deterministic, identity‑aware, multimodal AI operating layer.
 
-Version **4.3.0** delivered the **Semantic UI Automation Engine**, completing the originally planned 4.2.0 release and expanding the runtime with UIParser 4.3, UIWorkflow 4.3, UIActions 4.3, and WinCapabilities 4.3.
+This release replaces the entire 4.x architecture with:
 
-Version **4.4.0 PRO** upgraded the runtime into a deterministic, system‑intelligent, safety‑hardened architecture.
-
-Version **4.5.0 PRO** completes the PRO‑tier upgrade with **unified deterministic routing**, **System Agent 4.5**, **AITE 4.5**, **UI Automation Engine 4.5**, **Knowledge Packs 4.5**, **Security Family 4.5**, and a fully stabilized **System Intelligence Layer 4.5**.
+- unified execution pipeline  
+- deterministic reasoning  
+- identity‑aware system control  
+- multimodal semantic triage  
+- safe OS automation  
+- cross‑platform module consistency  
+- hardened security boundaries  
+- PRO‑level orchestration  
 
 The entire system runs **100% locally**, without external dependencies or cloud services.
 
@@ -24,16 +29,16 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 - [Release Notes](RELEASE_NOTES.md)
 - [Roadmap](ROADMAP.md)
 - [Security Family](SECURITY_FAMILY.md)
-- [AITE 4.5](AITE.md)
-- [ENVOY 4.0](ENVOY_TUTORIAL.md)
+- [AITE 5.0](AITE.md)
+- [ENVOY 5.0](ENVOY_TUTORIAL.md)
 - [Future Vision](FUTURE_VISION.md)
-- [Password Vault 4.1](PASSWORD_VAULT.md)
+- [Password Vault 5.0](PASSWORD_VAULT.md)
 
 ---
 
-## 🚀 Key Features (v4.5.0 PRO)
+## 🚀 Key Features (v5.0.0 UNIFIED)
 
-### **Intelligent Runtime 4.x**
+### **Unified Runtime 5.0**
 A fully upgraded runtime with:
 - deterministic execution  
 - semantic routing  
@@ -41,36 +46,39 @@ A fully upgraded runtime with:
 - self‑repair integration  
 - capability isolation  
 - safe fallback states  
-- UI automation integration (v4.5.0)  
-- hardened System Agent 4.5 validation  
+- unified PC + Mobile behavior  
+- hardened System Agent 5.0 validation  
+- ENVOY 5.0 sanitization  
+- deterministic UI automation (v5.0)  
 
 ---
 
-### **Modular Architecture (v4.x)**
+### **Modular Architecture (v5.0)**
 Each module is isolated and follows strict boundaries:
 
 - `commands/` – NL routing and command logic  
 - `context/` – semantic context engine  
 - `filesystem/` – safe file operations  
-- `runtime/` – Runtime Core 4.x  
-- `triage/` – AITE 4.5 (semantic triage)  
+- `runtime/` – Runtime Core 5.0  
+- `triage/` – AITE 5.0 (multimodal triage)  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
 - `ui_components/animations/` – animation engine  
-- `workflow/` – Workflow Engine 4.x  
-- `plugins/` – Plugin System 4.x  
-- `security_family/` – Identity Engine 2.1, time‑limits v2, schoolwork engine  
-- `self_repair/` – Self‑Repair & Health‑Check Layer  
-- `knowledge_packs/` – Knowledge Packs 4.x  
-- `envoy/` – ENVOY 4.0 safe retrieval layer  
-- `ui_automation/` – **UI Automation Engine 4.5**  
-- `system_agent/` – System Agent 4.5 (safe action execution)  
+- `workflow/` – Workflow Engine 5.0  
+- `plugins/` – Plugin System 5.x  
+- `security_family/` – Identity Engine 3.0, time‑limits v3, schoolwork engine  
+- `self_repair/` – Self‑Repair Layer 5.x  
+- `knowledge_packs/` – Knowledge Packs 5.0  
+- `envoy/` – ENVOY 5.0 safe retrieval layer  
+- `ui_automation/` – **UI Automation Engine 5.0**  
+- `system_agent/` – System Agent 5.0 (safe action execution)  
+- `mobile_runtime/` – Mobile Runtime 5.0  
 
 The system is designed to be extended **without modifying the core**.
 
 ---
 
-### **Plugin System 4.x**
+### **Plugin System 5.x**
 Plugins can define:
 
 - NL commands  
@@ -80,28 +88,28 @@ Plugins can define:
 - GUI elements  
 - pack‑aware logic  
 
-All official plugins are fully prepared for v4.x.
+All official plugins are fully prepared for v5.x.
 
 ---
 
-### **Automatic Input Triage Engine (AITE 4.5)**
+### **Automatic Input Triage Engine (AITE 5.0)**
 AITE analyzes inputs, classifies them, and routes them to the correct modules.
 
 It ensures:
 
-- semantic input understanding  
+- multimodal semantic understanding  
 - OCR extraction  
 - subject detection  
 - difficulty scoring  
 - identity‑aware routing  
 - deterministic behavior  
-- **Schoolwork Engine 4.5 — academic tasks always bypass FAMILY restrictions**  
-- **integration with SECURITY FAMILY 4.5**  
-- **integration with Reasoning Engine 4.5**  
+- **Schoolwork Engine 5.0 — academic tasks always bypass FAMILY restrictions**  
+- **integration with SECURITY FAMILY 5.0**  
+- **integration with Reasoning Engine 5.0**  
 
 ---
 
-### **Reasoning Engine 4.x**
+### **Reasoning Engine 5.0**
 A structured reasoning layer:
 
 - step‑by‑step reasoning  
@@ -110,10 +118,11 @@ A structured reasoning layer:
 - semantic breakdown  
 - pack‑aware reasoning  
 - deterministic logic  
+- unified PC/Mobile behavior  
 
 ---
 
-### **Self‑Repair & Health‑Check Layer**
+### **Self‑Repair Layer 5.x**
 Ensures long‑term stability:
 
 - integrity checks  
@@ -122,10 +131,11 @@ Ensures long‑term stability:
 - fallback states  
 - dependency validation  
 - system‑wide health reporting  
+- unified PC/Mobile diagnostics  
 
 ---
 
-### **Knowledge Packs 4.x**
+### **Knowledge Packs 5.0**
 Offline knowledge expansions:
 
 - household  
@@ -140,20 +150,21 @@ All packs are semantic and reasoning‑ready.
 
 ---
 
-### **SIRIUS ENVOY 4.0 – Safe Online Retrieval**
+### **SIRIUS ENVOY 5.0 – Safe External Retrieval**
 Optional isolated agent for safe external lookups:
 
 - outbound‑only  
 - quarantine sandbox  
 - scraper layer  
 - validator & policy filter  
+- identity‑aware sanitization  
 - safe payload delivery  
 
 ENVOY never sends local data outward.
 
 ---
 
-### **Workflow Engine 4.x**
+### **Workflow Engine 5.0**
 Manages:
 
 - multi‑step processes  
@@ -162,10 +173,11 @@ Manages:
 - safe command execution  
 - deterministic state changes  
 - SCHOOLWORK workflow prioritization  
+- unified PC/Mobile workflows  
 
 ---
 
-### **PC Automation Runtime 4.x**
+### **Unified Automation Runtime 5.0**
 Developer‑level offline automation:
 
 - filesystem automation  
@@ -173,25 +185,25 @@ Developer‑level offline automation:
 - code workflows  
 - structured command parsing  
 - command routing  
+- deterministic UI automation  
 
 ---
 
-### **UI Automation Engine 4.5 (UPDATED)**
-A major capability expanded in v4.5.0:
+### **UI Automation Engine 5.0 (UPDATED)**
+A major capability expanded in v5.0.0:
 
 - improved fuzzy UI parsing  
 - safer semantic UI actions  
 - deterministic fallback logic  
 - OS‑level routing  
 - sandbox‑protected execution  
-- WinCapabilities 4.5 integration  
-- System Agent 4.5 validation for all UI actions  
-
-This engine replaces the originally planned v4.2.0 release.
+- WinCapabilities 5.0 integration  
+- System Agent 5.0 validation for all UI actions  
+- unified PC/Mobile automation  
 
 ---
 
-## 📁 Project Structure (v4.5.0)
+## 📁 Project Structure (v5.0.0)
 src/
 ├── commands/  
 ├── context/  
@@ -208,6 +220,7 @@ src/
 ├── ui_automation/  
 ├── system_agent/  
 ├── workflow/  
+├── mobile_runtime/  
 ├── plugins/  
 └── sirius.py  
 
@@ -227,8 +240,9 @@ The project includes a complete testing plan:
 - SECURITY FAMILY identity tests  
 - SCHOOLWORK ENGINE tests  
 - self‑repair integrity tests  
-- UI Automation Engine 4.5 tests  
-- System Agent 4.5 validation tests  
+- UI Automation Engine 5.0 tests  
+- System Agent 5.0 validation tests  
+- ENVOY 5.0 sanitization tests  
 
 Details are in **TESTING_GUIDE.md**.
 
@@ -243,6 +257,7 @@ The system is optimized for:
 - minimal thread blocking  
 - efficient event routing  
 - deterministic reasoning  
+- unified PC/Mobile performance  
 
 More in **PERFORMANCE_GUIDE.md**.
 
@@ -250,17 +265,16 @@ More in **PERFORMANCE_GUIDE.md**.
 
 ## 🗓️ Release Plan
 
-### **v4.0.0 – Intelligent Runtime 2.0 (Stable)**  
-### **v4.3.0 – Semantic UI Automation Engine**  
-### **v4.4.0 – PRO Runtime Expansion**  
-### **v4.5.0 – Unified PRO Runtime (Current)**  
-- AITE 4.5  
-- Reasoning Engine 4.5  
-- Workflow Engine 4.5  
-- Knowledge Packs 4.5  
-- UI Automation Engine 4.5  
-- System Agent 4.5  
+### **v5.0.0 – Unified Runtime Architecture (Current)**  
+- AITE 5.0  
+- Reasoning Engine 5.0  
+- Workflow Engine 5.0  
+- Knowledge Packs 5.0  
+- UI Automation Engine 5.0  
+- System Agent 5.0  
+- ENVOY 5.0  
 - deterministic system‑level intelligence  
+- unified PC/Mobile execution  
 
 ---
 
