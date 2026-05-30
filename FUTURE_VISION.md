@@ -1,18 +1,32 @@
-# 🌟 Future Vision (v4.5.0 and Beyond)
+# 🌟 Future Vision (v5.0.0 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, and fully local.
 
-This expanded **v4.5.0 edition** includes the completed **UI Automation Engine 4.5**, the transition from **4.4 → 4.5 PRO**, upgraded system‑intelligence modules, and strengthened long‑term goals.
+This **v5.0.0 unified edition** reflects the transition from the 4.x architecture to the **Unified Runtime 5.0**, including:
+
+- unified PC + Mobile runtime  
+- deterministic multimodal reasoning  
+- AITE 5.0  
+- System Agent 5.0  
+- Security Family 5.0  
+- ENVOY 5.0  
+- Self‑Repair Layer 5.x  
+- Knowledge Packs 5.0  
+- UI Automation Engine 5.0  
+- Intent & Planning Layer 5.0  
 
 This document describes:
-1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0 → v4.5.0)  
+
+1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0 → v4.5.0 → v5.0.0)  
 2. **What v4.0.0 introduced**  
 3. **What v4.3.0 added**  
 4. **What v4.4.0 expanded**  
 5. **What v4.5.0 stabilized**  
-6. **Long‑term direction (v5.0.0 and beyond)**  
+6. **What v5.0.0 unified**  
+7. **Long‑term direction (v6.0.0 and beyond)**  
 
 All features remain:
+
 - 100% offline  
 - family‑safe  
 - deterministic  
@@ -52,7 +66,6 @@ Delivered:
 - WIN‑CAP 2.0  
 - deterministic execution  
 - plugin ecosystem  
-- documentation refresh  
 - foundation for SECURITY FAMILY  
 
 **Purpose:** Create a fully modular, extensible, safe runtime.
@@ -78,10 +91,9 @@ Delivered:
 
 # 🚀 2. Version 4.0.0 – Intelligent Runtime 2.0
 
-Version 4.0.0 is the largest upgrade in the project’s history.  
-It introduces **semantic intelligence**, **self‑repair**, **offline reasoning**, and **safe online retrieval**.
+Version 4.0.0 introduced **semantic intelligence**, **self‑repair**, **offline reasoning**, and **safe external retrieval**.
 
-Delivered in v4.0.0:
+Delivered:
 
 ## 🧠 Reasoning Engine 4.0
 - step‑by‑step reasoning  
@@ -98,7 +110,7 @@ Delivered in v4.0.0:
 - semantic understanding  
 - subject detection  
 - difficulty scoring  
-- identity‑aware triage 2.0  
+- identity‑aware triage  
 - schoolwork engine integration  
 - ENVOY 4.0 integration  
 - reasoning‑aware routing  
@@ -112,8 +124,6 @@ Delivered in v4.0.0:
 - schoolwork engine  
 - safe‑mode for unknown users  
 - restricted mode for children  
-- identity‑aware routing  
-- integration with all v4 modules  
 
 ---
 
@@ -125,8 +135,6 @@ Delivered in v4.0.0:
 - dependency validation  
 - system‑wide health reporting  
 
-Ensures long‑term stability.
-
 ---
 
 ## 📚 Knowledge Packs 4.0
@@ -134,7 +142,6 @@ Ensures long‑term stability.
 - semantic linking  
 - subject‑aware routing  
 - reasoning‑ready datasets  
-- household, cooking, school, device, safety packs  
 
 ---
 
@@ -143,7 +150,6 @@ Ensures long‑term stability.
 - detects schoolwork  
 - detects device issues  
 - detects developer tasks  
-- routes to correct v4 modules  
 
 ---
 
@@ -152,7 +158,6 @@ Ensures long‑term stability.
 - difficulty scoring  
 - reasoning integration  
 - schoolwork bypass  
-- identity‑aware academic logic  
 
 ---
 
@@ -161,217 +166,151 @@ Ensures long‑term stability.
 - editor integration  
 - code workflows  
 - structured command parsing  
-- command routing  
-- Runtime Core 4.0 integration  
-
-Transforms SIRIUS into a **developer‑level offline automation assistant**.
 
 ---
 
-## 🌐 SIRIUS ENVOY 4.0 – Safe Online Retrieval Layer
-Although SIRIUS remains a **100% offline AI runtime**, ENVOY provides:
+## 🌐 SIRIUS ENVOY 4.0 – Safe External Retrieval
+ENVOY provides:
 
 - safe access to educational content  
 - safe health information  
 - definitions, facts, summaries  
 - dynamic Knowledge Pack updates  
 
-### ENVOY Pipeline:
-1. Envoy Client (outbound‑only)  
+Pipeline:
+1. Envoy Client  
 2. Scraper Layer  
 3. Quarantine Sandbox  
-4. Validator & Policy Filter  
+4. Validator  
 5. Safe Payload Delivery  
-
-ENVOY never sends local data outward.
 
 ---
 
-# 🚀 3. Version 4.3.0 – Semantic UI Automation Engine (NEW)
-
-The originally planned **4.2.0** release was replaced by a full, expanded version:
-
-> **Version 4.3.0 – Complete UI Automation Engine**
+# 🚀 3. Version 4.3.0 – Semantic UI Automation Engine
 
 Delivered:
 
-### 🔍 UIParser 4.3.0
-- fuzzy matching  
-- semantic alias mapping  
-- confidence scoring  
-- deterministic element resolution  
+### 🔍 UIParser 4.3  
+### 🔁 UIWorkflow 4.3  
+### 🖱️ UIActions 4.3  
+### 🪟 WinCapabilities 4.3  
 
-### 🔁 UIWorkflow 4.3.0
-- retry engine  
-- fallback logic  
-- multi‑stage resolution pipeline  
-- confidence‑based routing  
-
-### 🖱️ UIActions 4.3.0
-- unified action interface  
-- sandbox‑protected execution  
-- OS‑level routing  
-- deterministic fallback behavior  
-
-### 🪟 WinCapabilities 4.3.0
-- safe OS adapter  
-- deterministic stubs  
-- unified logging  
-- ready for Win32/UIA/WinRT integration  
-
-**Purpose:**  
-Extend SIRIUS into semantic, deterministic UI automation while preserving safety and identity rules.
+Purpose: deterministic, semantic UI automation.
 
 ---
 
 # 🚀 4. Version 4.4.0 – PRO Runtime Expansion
 
-Version 4.4.0 upgrades the entire Runtime 4.x architecture into the **PRO tier**, focusing on stability, determinism, and system‑level intelligence.
+Delivered:
 
-Delivered in v4.4.0:
-
-### 🧠 Reasoning Engine 4.4
-- improved structured reasoning  
-- safer academic logic  
-- deterministic fallback behavior  
-
-### 🧩 AITE 4.4
-- faster multimodal triage  
-- improved OCR  
-- deeper subject graph  
-- identity‑aware triage 3.1  
-- safer routing  
-
-### 🛡 SECURITY FAMILY 4.4
-- hardened STRANGER mode  
-- improved FAMILY restrictions  
-- safer OWNER‑level actions  
-- integration with System Agent 4.2  
-
-### 🧰 System Agent 4.2
-- final gatekeeper for all system actions  
-- deterministic validation  
-- hardened safety rules  
-
-### 🪟 UI Automation Engine 4.4
-- improved fuzzy matching  
-- safer fallback logic  
-- deterministic retries  
-- PRO‑level OS routing  
-
-### 📦 Knowledge Packs 4.4
-- improved semantic linking  
-- safer educational content  
-- deterministic pack updates  
-
-### 🧱 System Intelligence Layer 4.4
-- improved diagnostics  
-- safer optimization suggestions  
-- deterministic system‑level workflows  
+- Reasoning Engine 4.4  
+- AITE 4.4  
+- SECURITY FAMILY 4.4  
+- System Agent 4.2  
+- UI Automation Engine 4.4  
+- Knowledge Packs 4.4  
+- System Intelligence Layer 4.4  
 
 ---
 
-# 🚀 5. Version 4.5.0 – Unified PRO Runtime (NEW)
+# 🚀 5. Version 4.5.0 – Unified PRO Runtime
 
-Version 4.5.0 completes the PRO‑tier upgrade and unifies the entire runtime under the **4.5 architecture**.
+Delivered:
 
-Delivered in v4.5.0:
+- Reasoning Engine 4.5  
+- AITE 4.5  
+- SECURITY FAMILY 4.5  
+- System Agent 4.5  
+- UI Automation Engine 4.5  
+- Knowledge Packs 4.5  
+- System Intelligence Layer 4.5  
 
-### 🧠 Reasoning Engine 4.5
-- more stable reasoning  
-- safer fallback logic  
-- improved academic solver  
+---
 
-### 🧩 AITE 4.5
-- faster multimodal triage  
-- improved OCR  
-- deeper semantic graph  
-- identity‑aware triage 3.2  
+# 🧩 6. Version 5.0.0 – Unified Runtime Architecture (NEW)
 
-### 🛡 SECURITY FAMILY 4.5
-- hardened identity engine  
-- safer FAMILY restrictions  
-- STRANGER‑mode isolation  
+Version 5.0.0 merges PC and Mobile logic into a **single deterministic runtime**.
+
+Delivered:
+
+### 🧠 Reasoning Engine 5.0
+- unified PC/Mobile reasoning  
+- deterministic logic  
+- safer fallback behavior  
+
+### 🧩 AITE 5.0
+- multimodal semantic triage  
+- deeper subject graph  
+- identity‑aware triage 4.0  
+- unified routing  
+
+### 🛡 SECURITY FAMILY 5.0
+- Identity Engine 3.0  
+- time‑limits v3  
+- STRANGER‑mode hardening  
 - OWNER‑level protection  
 
-### 🧰 System Agent 4.5
+### 🧰 System Agent 5.0
+- final gatekeeper  
 - deterministic validation  
-- hardened safety rules  
-- final gatekeeper for all system actions  
+- unified PC/Mobile execution  
 
-### 🪟 UI Automation Engine 4.5
+### 🪟 UI Automation Engine 5.0
 - deterministic retries  
 - safer fallback logic  
-- improved semantic resolution  
-- PRO‑level OS routing  
+- unified PC/Mobile automation  
 
-### 📦 Knowledge Packs 4.5
-- safer pack updates  
+### 📦 Knowledge Packs 5.0
+- safer updates  
 - improved semantic linking  
-- deterministic content validation  
+- deterministic validation  
 
-### 🧱 System Intelligence Layer 4.5
-- improved diagnostics  
-- safer optimization suggestions  
-- deterministic workflows  
+### 🌐 ENVOY 5.0
+- hardened quarantine  
+- identity‑aware sanitization  
+- unified PC/Mobile behavior  
+
+### 🧱 Self‑Repair Layer 5.x
+- unified diagnostics  
+- cross‑platform integrity checks  
 
 ---
 
-# 🧩 Intent & Planning Layer 4.5 – Autonomous Task Continuation (NEW)
+# 🧩 Intent & Planning Layer 5.0 – Autonomous Task Continuation
 
-Version 4.5.0 introduces a new high‑level intelligence layer above the Runtime Orchestration system.  
-This layer enables SIRIUS to understand task intent, plan next steps, and continue autonomously without explicit user commands.
-
-### Purpose
-Transform SIRIUS from a deterministic automation engine into an **operating‑level assistant** capable of continuing multi‑step tasks on its own.
+Version 5.0 introduces a new high‑level intelligence layer:
 
 ### Core Features
-- **Intent Detection 1.0**  
-  Understands the goal of the current task based on context and system state.
-
-- **Task Planner 1.0**  
-  Deterministic step‑planning engine that breaks tasks into actionable stages.
-
-- **Context Memory 1.0**  
-  Tracks progress, missing steps, errors, and completion state.
-
-- **Autonomous Step Execution 1.0**  
-  Continues tasks without requiring additional user instructions.
-
-- **State Graph Engine 1.0**  
-  State‑machine‑based logic for complex, multi‑stage workflows.
-
-- **Integration Hook:**  
-  `IntentPlanner.process(current_state)`  
-  Runs above the Runtime Orchestration Layer and decides what should happen next.
+- **Intent Detection 2.0**  
+- **Task Planner 2.0**  
+- **Context Memory 2.0**  
+- **Autonomous Step Execution 2.0**  
+- **State Graph Engine 2.0**  
 
 ### Result
-- SIRIUS knows **what comes next**  
-- SIRIUS knows **what the final goal is**  
-- SIRIUS knows **what is done and what is missing**  
-- SIRIUS can **continue autonomously**  
-- SIRIUS behaves like a true **operating assistant**, not just an automation runtime  
+SIRIUS becomes a **true operating‑level assistant** capable of:
+
+- understanding goals  
+- planning next steps  
+- continuing tasks autonomously  
+- tracking progress  
+- recovering from errors  
 
 ---
 
-# 🚀 6. Long‑Term Vision (Beyond v4.5.0)
+# 🚀 7. Long‑Term Vision (Beyond v5.0.0)
 
-SIRIUS will evolve into:
-
-## 🧠 5.0.0 – Offline Intelligence at Scale
-- advanced reasoning  
-- offline knowledge graphs  
-- pack‑to‑pack reasoning  
-- symbolic logic engine  
-- multi‑subject academic solver  
-- **Version 5.0 planned as a fully packaged `.EXE` application**
+## 🧠 6.0.0 – Self‑Repair Intelligence
+- autonomous repair engine  
+- dependency healing  
+- runtime self‑diagnostics  
+- cross‑module recovery  
 
 ---
 
 ## 🏠 Household AI Evolution
 - autonomous household workflows  
 - multi‑step task planning  
-- safety‑aware automation  
 - deeper device diagnostics  
 - offline object recognition 2.0  
 
@@ -382,12 +321,10 @@ SIRIUS will evolve into:
 - behavior‑based safety  
 - dynamic time‑limits  
 - child‑safe knowledge packs  
-- STRANGER‑mode hardening  
 
 ---
 
 ## 🧰 Developer Automation Expansion
-- real OS‑level UI automation (4.5+)  
 - IDE integration  
 - code refactoring engine  
 - offline documentation packs  
@@ -402,7 +339,7 @@ SIRIUS will evolve into:
 
 ---
 
-## 🔌 Plugin Ecosystem 5.0
+## 🔌 Plugin Ecosystem 6.0
 - advanced plugin sandboxing  
 - semantic plugin manifests  
 - reasoning‑aware plugin APIs  
@@ -411,5 +348,5 @@ SIRIUS will evolve into:
 
 # 📄 Document Status
 
-Current version: **v4.5.0 (Expanded)**  
-Updated to reflect the **4.4 → 4.5 transition** and the new **UI Automation Engine 4.5**.
+Current version: **v5.0.0 (Unified)**  
+Updated to reflect the **4.x → 5.0 transition** and the new **Unified Runtime Architecture**.
