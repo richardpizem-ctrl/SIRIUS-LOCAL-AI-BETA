@@ -1,141 +1,176 @@
-# 🔐 11.6 NEW SECURITY LAYER — Runtime 4.5.0 PRO
+# 🔐 11.6 NEW SECURITY LAYER — Runtime 5.0.0 UNIFIED
 
-Version **4.5.0 PRO** rozširuje bezpečnostný model predstavený v 4.4.0 PRO.  
-Prináša **System Agent 4.5**, **Security Family 4.5**, **UI Automation Engine 4.5**,  
-a úplne nový **System Intelligence Layer 4.5** pre prediktívnu bezpečnosť.
+Version **5.0.0 UNIFIED** expands the security model introduced in 4.5.0 PRO.  
+It introduces **System Agent 5.0**, **Security Family 5.0**, **UI Automation Engine 5.0**,  
+**WIN‑CAP 5.0**, and the new **System Intelligence Layer 5.0** for predictive, identity‑aware security.
 
-Nové komponenty:
+New components:
 
-- **System Agent 4.5 (Expanded)**  
-- **Security Family 4.5 (Identity Engine 2.1)**  
-- **UI Automation Engine 4.5 (Deterministic OS Automation)**  
-- **WIN‑CAP 4.5 (Safer OS Capability Layer)**  
-- **System Intelligence Layer 4.5 (Predictive Safety)**  
+- **System Agent 5.0 (Expanded)**  
+- **Security Family 5.0 (Identity Engine 3.0)**  
+- **UI Automation Engine 5.0 (Deterministic OS Automation)**  
+- **WIN‑CAP 5.0 (Safer OS Capability Layer)**  
+- **System Intelligence Layer 5.0 (Predictive Safety)**  
+- **Envoy 1.0 Security Model (Permission‑Based Fetch)**  
+- **Unified PC/Mobile identity enforcement**  
 
 ---
 
-# 🔐 11.7 System Agent 4.5 – OS‑Level Security Gatekeeper (NEW)
+# 🔐 11.7 System Agent 5.0 – OS‑Level Security Gatekeeper (NEW)
 
-System Agent 4.5 je evolúcia System Agent 4.2 a predstavuje **najsilnejší bezpečnostný modul v histórii SIRIUS LOCAL AI**.
+System Agent 5.0 is the evolution of System Agent 4.5 and represents  
+**the strongest OS‑level security module in the history of SIRIUS LOCAL AI**.
 
 ### Responsibilities:
-- validovať každú OS‑úroveň akcie  
-- aplikovať OWNER / FAMILY / STRANGER pravidlá  
-- blokovať rizikové alebo neautorizované operácie  
-- zabezpečiť reverzibilitu 2.0  
-- logovať citlivé systémové interakcie  
-- integrovať sa so System Intelligence Layer 4.5  
-- garantovať deterministické správanie  
+- validate every OS‑level action  
+- enforce OWNER / FAMILY / STRANGER 3.0 rules  
+- block risky or unauthorized operations  
+- guarantee reversibility 3.0  
+- log sensitive system interactions  
+- integrate with System Intelligence Layer 5.0  
+- enforce Envoy 1.0 permission model  
+- guarantee deterministic, unified PC/Mobile behavior  
 
 ### Security Guarantees:
-- žiadny modul nemá priamy OS prístup  
-- žiadne privilegované operácie  
-- žiadne kernel‑level volania  
-- žiadny raw Win32/UIA/WinRT prístup  
-- všetky akcie musia prejsť cez System Agent 4.5  
-- identitne‑aware allow/deny rozhodovanie  
-- SCHOOLWORK bypass 3.0  
+- no module has direct OS access  
+- no privileged operations  
+- no kernel‑level calls  
+- no raw Win32/UIA/WinRT access  
+- all actions must pass through System Agent 5.0  
+- identity‑aware allow/deny decisions  
+- SCHOOLWORK bypass 4.0  
+- Envoy fetch validation  
 
 ### Threat Protections:
-- blokovanie neautorizovaných systémových zmien  
-- blokovanie eskalácie privilégií  
-- blokovanie neoverenej UI automatizácie  
-- blokovanie perzistentných hookov  
-- blokovanie systémovej manipulácie  
+- blocking unauthorized system modifications  
+- blocking privilege escalation attempts  
+- blocking unverified UI automation  
+- blocking persistent hooks  
+- blocking system manipulation  
+- blocking unauthorized Envoy fetch attempts  
 
 ---
 
-# 🔐 11.8 Security Family 4.5 – Identity Enforcement 2.1 (NEW)
+# 🔐 11.8 Security Family 5.0 – Identity Enforcement 3.0 (NEW)
 
-Security Family 4.5 posilňuje identitný model predstavený v 4.4.0 PRO.
+Security Family 5.0 strengthens the identity model introduced in 4.5.0 PRO  
+and unifies identity enforcement across PC and Mobile.
 
 ### Enhancements:
-- identity‑aware gating 2.1  
-- SCHOOLWORK bypass 3.0  
-- rýchlejšia identifikácia používateľa  
-- silnejšie STRANGER‑mode obmedzenia  
-- bezpečnejšie FAMILY‑mode povolenia  
-- hlbšia integrácia so System Agent 4.5  
-- deterministické permission evaluation 2.0  
+- identity‑aware gating 3.0  
+- SCHOOLWORK bypass 4.0  
+- faster user identification  
+- stronger STRANGER‑mode restrictions  
+- safer FAMILY‑mode permissions  
+- deeper integration with System Agent 5.0  
+- deterministic permission evaluation 3.0  
+- unified PC/Mobile identity logic  
 
 ### Guarantees:
-- žiadny modul nemôže obísť identity enforcement  
-- žiadna OS akcia bez identity validácie  
-- žiadne nebezpečné fallback cesty  
+- no module can bypass identity enforcement  
+- no OS action without identity validation  
+- no unsafe fallback paths  
+- no Envoy fetch without identity approval  
 
 ---
 
-# 🔐 11.9 UI Automation Engine 4.5 – Deterministic OS Automation Safety (NEW)
+# 🔐 11.9 UI Automation Engine 5.0 – Deterministic OS Automation Safety (NEW)
 
-UI Automation Engine 4.5 prináša najbezpečnejšiu verziu OS‑úrovňovej automatizácie.
+UI Automation Engine 5.0 introduces the safest OS‑level automation system ever released.
 
 ### OS‑Level Safety:
-- všetky akcie validované System Agent 4.5  
-- deterministické fallbacky 2.0  
-- identity‑aware UI actions 2.0  
+- all actions validated by System Agent 5.0  
+- deterministic fallback logic 3.0  
+- identity‑aware UI actions 3.0  
 - sandbox‑protected execution  
-- žiadne raw Win32/UIA/WinRT volania  
-- žiadne nekontrolované vstupy  
+- no raw Win32/UIA/WinRT calls  
+- no uncontrolled inputs  
+- unified PC/Mobile automation  
 
-### WinCapabilities 4.5:
-- bezpečnejšie API adaptéry  
-- silnejšie identity‑aware obmedzenia  
-- audit logging 2.0  
-- deterministické OS routing pravidlá  
+### WinCapabilities 5.0:
+- safer API adapters  
+- stronger identity‑aware restrictions  
+- audit logging 3.0  
+- deterministic OS routing rules  
+- KG‑aware UI matching  
 
 ### Workflow Safety:
-- bezpečnejšie multi‑stage workflows  
-- mis‑click prevention 2.0  
-- bounded retries 2.0  
-- semantic target resolution 2.0  
+- safer multi‑stage workflows  
+- mis‑click prevention 3.0  
+- bounded retries 3.0  
+- semantic target resolution 3.0  
+- System Agent 5.0 validation at every step  
 
 ---
 
-# 🔐 11.10 WIN‑CAP 4.5 – OS Capability Isolation (NEW)
+# 🔐 11.10 WIN‑CAP 5.0 – OS Capability Isolation (NEW)
 
-WIN‑CAP 4.5 poskytuje:
+WIN‑CAP 5.0 provides:
 
-- bezpečnejšie OS capability wrappers  
-- deterministické capability boundaries  
-- identity‑aware systémové operácie  
-- žiadny privilegovaný alebo kernel‑level prístup  
-- System Agent 4.5 mediáciu  
+- safer OS capability wrappers  
+- deterministic capability boundaries  
+- identity‑aware system operations  
+- no privileged or kernel‑level access  
+- System Agent 5.0 mediation  
+- unified PC/Mobile capability logic  
 
 ---
 
-# 🔐 11.11 System Intelligence Layer 4.5 – Predictive Security (NEW)
+# 🔐 11.11 System Intelligence Layer 5.0 – Predictive Security (NEW)
 
-System Intelligence Layer 4.5 pridáva **prediktívnu bezpečnosť**:
+System Intelligence Layer 5.0 adds **predictive security** and unified diagnostics.
 
 ### Capabilities:
-- detekcia systémových anomálií  
-- predikcia rizikových stavov  
-- bezpečné odporúčania  
-- integrácia so System Agent 4.5  
-- žiadne hlboké skeny počas workflowov  
+- detection of system anomalies  
+- prediction of risky states  
+- safe optimization suggestions  
+- integration with System Agent 5.0  
+- no deep scans during workflows  
+- unified PC/Mobile diagnostics  
 
 ### Threat Protections:
-- detekcia neštandardných OS stavov  
-- detekcia rizikových procesov  
-- detekcia neautorizovaných zmien  
-- bezpečné návrhy opráv  
+- detection of abnormal OS states  
+- detection of risky processes  
+- detection of unauthorized changes  
+- safe repair recommendations  
+- integration with Self‑Repair Layer 5.x  
+
+---
+
+# 🔐 11.12 Envoy 1.0 – Permission‑Based Secure Fetch (NEW)
+
+Envoy 1.0 introduces a **controlled, identity‑aware, permission‑based** fetch model.
+
+### Security Flow:
+**ASK → FETCH → QUARANTINE → DELIVER**
+
+### Protections:
+- outbound‑only  
+- identity‑aware permissions  
+- System Agent 5.0 validation  
+- quarantine sandbox  
+- validator & policy filter  
+- no local data ever transmitted  
+- unified PC/Mobile Envoy logic  
+
+Envoy **never runs automatically** and **never bypasses offline mode**.
 
 ---
 
 # 📄 Document Status (Updated)
 
-**Version:** **4.5.0 PRO (Expanded)**  
+**Version:** **5.0.0 UNIFIED (Expanded)**  
 This policy now includes:
 
-- Password Vault 4.0  
-- UI Sandbox 4.2.0  
-- Semantic UI Automation Security 4.3.0  
-- System Agent 4.2  
-- Security Family 4.4  
-- UI Automation Engine 4.4  
-- WIN‑CAP 4.4  
-- **System Agent 4.5 (NEW)**  
-- **Security Family 4.5 (NEW)**  
-- **UI Automation Engine 4.5 (NEW)**  
-- **WIN‑CAP 4.5 (NEW)**  
-- **System Intelligence Layer 4.5 (NEW)**  
+- Password Vault 5.0  
+- UI Sandbox 5.0  
+- Semantic UI Automation Security 5.0  
+- System Agent 5.0  
+- Security Family 5.0  
+- UI Automation Engine 5.0  
+- WIN‑CAP 5.0  
+- System Intelligence Layer 5.0  
+- Envoy 1.0  
+- Self‑Repair Layer 5.x (integration hooks)  
+- Unified PC/Mobile identity enforcement  
+
