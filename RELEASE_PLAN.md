@@ -1,194 +1,183 @@
-# 🟦 NEW: RELEASE NOTES – SIRIUS LOCAL AI v4.4.0 PRO
-### (Doplnené — nič zo starého textu nebolo zmenené)
+# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.0.0 UNIFIED  
+### The Largest Architectural Upgrade Since the Creation of SIRIUS
 
-Verzia **4.4.0 PRO** predstavuje najväčší upgrade od 4.0.0.  
-Prináša **deterministickú OS‑úroveň automatizácie**, **vylepšené reasoning**,  
-**rýchlejšiu triáž**, **silnejší bezpečnostný model** a **System Agent 4.2** ako nový bezpečnostný gatekeeper.
+Version **5.0.0 UNIFIED** represents the most significant evolution of SIRIUS LOCAL AI to date.  
+It introduces a **unified PC + Mobile runtime**, **Knowledge Graph Reasoning**,  
+a redesigned **System Agent 5.0**, a new **Envoy 1.0 secure fetch module**,  
+and a fully upgraded **deterministic automation + reasoning stack**.
 
----
-
-# 🚀 What’s New in v4.4.0 PRO
-
-## 🔥 1. AITE 4.4 – Multimodal Semantic Triage Engine
-- rýchlejšie OCR  
-- presnejšia detekcia úloh  
-- identity‑aware triage 3.0  
-- SCHOOLWORK bypass vylepšený  
-- deterministické skórovanie  
+This release builds directly on the foundations of **4.4.0 PRO** and **4.5.0 PRO**,  
+but elevates the entire system into a new generation of offline intelligence.
 
 ---
 
-## 🔥 2. Reasoning Engine 4.4 – Deterministic Reasoning Layer
-- pevne limitovaná reasoning hĺbka  
-- vylepšené symbolické pravidlá  
-- pack‑aware reasoning 2.0  
-- deterministické chain‑of‑thought  
-- školské úlohy majú prioritu  
+# 🚀 What’s New in v5.0.0 UNIFIED
+
+## 🔥 1. Knowledge Graph Reasoning 1.0 (KG‑Reasoning)
+A completely new reasoning engine powered by a local knowledge graph.
+
+- deterministic inference paths  
+- entity‑relation graph traversal  
+- zero hallucination  
+- instant responses  
+- offline symbolic reasoning  
+- pack‑aware KG integration  
+
+This is the foundation of SIRIUS’s future offline intelligence.
 
 ---
 
-## 🔥 3. Workflow Engine 4.4 – Predictable Multi‑Step Logic
-- prechodové stavy sú O(1)  
-- caching pre semantic transitions  
-- identity‑aware workflow gating  
-- deterministické fallbacky  
-- integrácia s UI Automation 4.4  
+## 🔥 2. AITE 5.0 – Multimodal Semantic Triage (Unified)
+The fastest and most accurate AITE ever released.
+
+- unified PC/Mobile triage  
+- deeper semantic graph  
+- improved OCR 5.0  
+- identity‑aware triage 4.0  
+- SCHOOLWORK bypass 5.0  
+- KG‑aware semantic tagging  
+- deterministic routing  
 
 ---
 
-## 🔥 4. Knowledge Packs 4.4 – Indexed Semantic Packs
-- rýchlejšie lookupy  
-- lepšie prepojenie medzi packmi  
-- rozšírené školské, domáce a diagnostické packy  
-- reasoning‑ready štruktúra  
+## 🔥 3. Reasoning Engine 5.0 – Unified Deterministic Reasoning
+A fully redesigned reasoning layer.
+
+- KG‑aware inference  
+- deterministic chain‑of‑thought  
+- bounded reasoning depth  
+- pack‑aware reasoning 3.0  
+- unified PC/Mobile behavior  
+- faster cached reasoning paths  
 
 ---
 
-## 🔥 5. System Agent 4.2 – Safe Action Execution Layer
-**Najdôležitejšia novinka v 4.4.0 PRO.**
+## 🔥 4. Workflow Engine 5.0 – KG‑Aware Multi‑Step Logic
+The most stable workflow engine in the project’s history.
 
-- validuje každý systémový príkaz  
-- OWNER / FAMILY / STRANGER enforcement  
-- blokuje nebezpečné operácie  
-- loguje citlivé akcie  
-- sprostredkuje UI Automation + WIN‑CAP  
-- garantuje reverzibilitu a deterministiku  
+- O(1) transitions  
+- semantic caching 3.0  
+- identity‑aware gating  
+- deterministic fallback logic  
+- Envoy fetch as a workflow step  
+- unified PC/Mobile workflows  
 
 ---
 
-## 🔥 6. UI Automation Engine 4.4 – Real OS Automation
-**Prvýkrát v histórii SIRIUS: skutočná OS‑úroveň UI automatizácia.**
+## 🔥 5. System Agent 5.0 – Safe Action Execution Layer
+The most important security upgrade in the 5.x generation.
 
-- Win32/UIA/WinRT routing  
-- deterministické fallbacky  
+- validates every OS‑level action  
+- OWNER / FAMILY / STRANGER 3.0  
+- blocks unsafe operations  
+- guarantees reversibility 3.0  
+- mediates UI Automation + WIN‑CAP  
+- enforces Envoy security  
+- unified PC/Mobile execution  
+
+System Agent 5.0 is the **final gatekeeper** of the entire runtime.
+
+---
+
+## 🔥 6. UI Automation Engine 5.0 – Deterministic OS Automation
+A major upgrade to the automation stack.
+
+- Win32 / UIA / WinRT routing  
+- KG‑enhanced UI matching  
+- deterministic fallback logic  
 - identity‑aware UI actions  
 - sandbox‑protected execution  
-- System Agent 4.2 validácia  
-- bezpečné OS‑level UI ovládanie  
+- System Agent 5.0 validation  
+- unified PC/Mobile automation  
 
 ---
 
-# 🧩 Additional Improvements in 4.4.0 PRO
+## 🔥 7. Knowledge Packs 5.0 – KG‑Ready Packs
+A complete redesign of the pack system.
 
-### ✔ Rýchlejšie NL routing  
-### ✔ Vylepšené identity checks (Security Family 4.4)  
-### ✔ Stabilnejší Self‑Repair Layer  
-### ✔ Optimalizované WIN‑CAP 4.4 capability boundaries  
-### ✔ Vylepšené plugin API pre UI automation  
-### ✔ Rozšírené logovanie (deterministické, krátke, bezpečné)  
+- KG‑ready structure  
+- integrity validation 2.0  
+- faster lookups  
+- expanded school, home, and diagnostic packs  
+- deterministic pack linking  
+
+---
+
+## 🔥 8. ENVOY 5.0 – Secure External Retrieval (ASK → FETCH → QUARANTINE → DELIVER)
+The first official version of the secure fetch module.
+
+- permission‑based online fetch  
+- outbound‑only  
+- quarantine sandbox  
+- validator & policy filter  
+- identity‑aware restrictions  
+- System Agent 5.0 enforcement  
+- unified PC/Mobile behavior  
+
+Offline mode remains **default**.
+
+---
+
+## 🔥 9. Mobile Runtime 5.0 – Unified Mobile Execution Layer
+For the first time ever:
+
+- PC ↔ Mobile SIRIUS communication  
+- LAN Sync 2.0  
+- Mobile AITE  
+- Mobile Reasoning Engine  
+- Mobile UI Automation  
+- Mobile Envoy  
+
+---
+
+## 🔥 10. System Intelligence Layer 5.0 – Unified Diagnostics
+Upgraded system‑level intelligence:
+
+- hardware analysis  
+- driver checks  
+- service health  
+- process analysis  
+- optimization suggestions  
+- deterministic system workflows  
+- System Agent 5.0 enforcement  
+
+---
+
+# 🧩 Additional Improvements in 5.0.0 UNIFIED
+
+### ✔ Faster NL routing  
+### ✔ Improved identity checks (Security Family 5.0)  
+### ✔ More stable Self‑Repair Layer 5.x  
+### ✔ Optimized WIN‑CAP 5.0 capability boundaries  
+### ✔ Expanded plugin API for KG‑Reasoning  
+### ✔ Deterministic, short, safe logging  
+### ✔ Unified PC/Mobile execution pipeline  
 
 ---
 
 # 📊 Compatibility
-- Plne kompatibilné s Runtime 4.0 → 4.4  
-- Žiadne breaking changes  
-- Žiadna migrácia nevyžadovaná  
+- Fully compatible with Runtime 4.0 → 5.0  
+- No breaking changes  
+- No migration required  
+- Mobile Runtime 5.0 is optional  
 
 ---
 
-# 📌 Release Status (4.4.0 PRO)
-**Version:** 4.4.0 PRO  
+# 📌 Release Status (5.0.0 UNIFIED)
+**Version:** 5.0.0 UNIFIED  
 **Stage:** Stable  
-**Release Date:** 2026‑07‑XX  
+**Release Date:** 2026‑XX‑XX  
 
 ---
 
 # 🏁 Summary
-Verzia **4.4.0 PRO** transformuje SIRIUS LOCAL AI na:
+Version **5.0.0 UNIFIED** transforms SIRIUS LOCAL AI into:
 
-- deterministický OS‑úrovňový automatizačný engine  
-- bezpečný, identity‑aware runtime  
-- rýchlejší, presnejší a stabilnejší systém  
-- plne lokálny AI framework pre Windows 11  
-
----
-
-# 🔚 END OF RELEASE NOTES
-
-
-# 🟦 NEW: RELEASE NOTES – SIRIUS LOCAL AI v4.5.0 PRO
-### (Nová sekcia — všetky staršie verzie ostávajú bezo zmeny)
-
-Verzia **4.5.0 PRO** nadväzuje na 4.4.0 PRO a rozširuje runtime o nové systémové inteligentné moduly, rýchlejšiu triáž, bezpečnejšie OS‑úrovňové akcie a vylepšenú deterministickú UI automatizáciu.
-
----
-
-# 🚀 What’s New in v4.5.0 PRO
-
-## 🔥 1. System Intelligence Layer 4.5
-- rýchlejšie diagnostiky  
-- predikcia problémov 2.0  
-- bezpečné optimalizačné návrhy  
-- bounded system scans  
-- integrácia so System Agent 4.5  
-
----
-
-## 🔥 2. AITE 4.5 – Multimodal Semantic Triage
-- OCR 4.5  
-- identity‑aware triage 3.2  
-- lepšia detekcia zmiešaného obsahu  
-- rýchlejšie skórovanie  
-- SCHOOLWORK bypass 4.5  
-
----
-
-## 🔥 3. Reasoning Engine 4.5
-- reasoning depth 2.0  
-- pack‑aware reasoning 3.0  
-- deterministické chain‑of‑thought  
-- rýchlejšie cacheované reasoning paths  
-
----
-
-## 🔥 4. Workflow Engine 4.5
-- O(1) prechody  
-- semantic caching 2.0  
-- identity‑aware workflow gating  
-- bezpečnejšie multi‑stage workflows  
-
----
-
-## 🔥 5. Knowledge Packs 4.5
-- rýchlejšie lookupy  
-- pack integrity validation  
-- rozšírené školské, domáce a diagnostické packy  
-
----
-
-## 🔥 6. System Agent 4.5
-- validácia všetkých OS akcií  
-- identity‑aware enforcement  
-- reverzibilita 2.0  
-- bezpečnejšie blokovanie rizikových operácií  
-
----
-
-## 🔥 7. UI Automation Engine 4.5
-- fuzzy matching 4.5  
-- deterministické fallbacky  
-- Win32/UIA/WinRT routing 4.5  
-- sandbox‑protected execution  
-- System Agent 4.5 validácia  
-
----
-
-# 📌 Release Status (4.5.0 PRO)
-**Version:** 4.5.0 PRO  
-**Stage:** Stable  
-**Release Date:** 2026‑08‑XX  
-
----
-
-# 🏁 Summary
-Verzia **4.5.0 PRO** rozširuje 4.4.0 PRO o:
-
-- hlbšiu systémovú inteligenciu  
-- rýchlejšiu triáž  
-- bezpečnejšie OS‑úrovňové akcie  
-- vylepšenú UI automatizáciu  
-- stabilnejší reasoning  
-- silnejší identity‑aware bezpečnostný model  
+- a unified PC + Mobile runtime  
+- a deterministic reasoning engine powered by a Knowledge Graph  
+- a secure, identity‑aware OS automation framework  
+- a faster, more stable, more intelligent offline system  
+- a next‑generation local AI platform for Windows 11 and mobile devices  
 
 ---
 
