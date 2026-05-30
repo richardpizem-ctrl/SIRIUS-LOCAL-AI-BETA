@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "4.4.0"
-date-released: 2026-05-21
+version: "5.0.0"
+date-released: 2026-06-01
 
 authors:
   - family-names: "Pizem"
@@ -15,61 +15,60 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 4.4"
-  - "runtime core 4.4 PRO"
-  - "plugin system 4.0"
-  - "workflow engine 4.4"
-  - "reasoning engine 4.4"
+  - "intelligent runtime 5.0"
+  - "runtime core 5.0 unified"
+  - "plugin system 5.0"
+  - "workflow engine 5.0"
+  - "reasoning engine 5.0"
   - "semantic triage"
-  - "AITE 4.4"
-  - "knowledge packs 4.4"
+  - "AITE 5.0"
+  - "knowledge packs 5.0"
   - "secure local processing"
   - "Windows automation"
+  - "mobile automation"
   - "context-aware automation"
   - "family safety"
-  - "identity engine 2.0"
-  - "SECURITY FAMILY 4.4"
-  - "schoolwork engine 4.4"
-  - "time-limits engine v2"
-  - "self-repair layer (planned)"
-  - "health-check engine 4.4"
-  - "PC automation runtime 4.4"
-  - "ENVOY 4.4"
-  - "safe online retrieval"
+  - "identity engine 3.0"
+  - "SECURITY FAMILY 5.0"
+  - "schoolwork engine 5.0"
+  - "time-limits engine v3"
+  - "self-repair layer 5.x"
+  - "health-check engine 5.0"
+  - "PC automation runtime 5.0"
+  - "Mobile Runtime 5.0"
+  - "ENVOY 5.0"
+  - "safe external retrieval"
   - "household assistant modules"
   - "semantic routing"
   - "deterministic execution"
-  - "UI automation engine 4.4"
-  - "UIParser 4.4"
-  - "UIWorkflow 4.4"
-  - "UIActions 4.4"
-  - "WinCapabilities 4.4"
+  - "UI automation engine 5.0"
+  - "UIParser 5.0"
+  - "UIWorkflow 5.0"
+  - "UIActions 5.0"
+  - "WinCapabilities 5.0"
   - "semantic UI automation"
-  - "runtime 4.3 to 4.4 transition"
+  - "runtime 4.x to 5.0 transition"
 
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, and semantic automation.
-  Version 4.0.0 introduced the Intelligent Runtime architecture, including Runtime Core 4.0,
-  Plugin System 4.0, Workflow Engine 4.0, Reasoning Engine 4.0, GUI 4.0, AITE 4.0,
-  and upgraded household-oriented modules such as HOME_ASSISTANT 4.0, COOKING_ADVISOR 4.0,
-  SCHOOL_HELPER 4.0, DEVICE_DIAGNOSTICS 4.0, IMAGE_ANALYZER 4.0, and CONTEXT_ROUTER 4.0.
+  Version 5.0.0 introduces the Unified Runtime Architecture, merging PC and Mobile
+  logic into a single deterministic, identity-aware, multimodal AI operating layer.
 
-  SECURITY FAMILY 4.0 introduced identity and family safety layers providing OWNER/FAMILY/STRANGER
-  identity levels, time-limits v2 for children, safe-mode for unknown users, and a Schoolwork Engine
-  ensuring unrestricted access to academic tasks.
+  The Runtime Core 5.0 provides unified orchestration, deterministic execution,
+  capability-based access control, and identity-aware routing across all modules.
+  AITE 5.0 delivers multimodal semantic triage for text, images, OCR, documents,
+  code, and schoolwork, enabling instant and safe routing of all user inputs.
 
-  The system operates entirely on the user's machine, without any cloud dependencies
+  SECURITY FAMILY 5.0 expands identity and family safety layers with OWNER/FAMILY/
+  STRANGER identity levels, time-limits v3, safe-mode for unknown users, and a
+  Schoolwork Engine ensuring unrestricted access to academic tasks.
+
+  The system operates entirely on the user's device, without any cloud dependencies
   or external data transmission. All modules follow strict security boundaries,
   deterministic behavior, semantic understanding, and predictable execution rules.
 
-  Between versions 4.2.0 and 4.3.0, SIRIUS introduced the complete Semantic UI Automation Engine,
-  including UIParser 4.3, UIWorkflow 4.3, UIActions 4.3, and WinCapabilities 4.3.
-  This upgrade replaced the originally planned 4.2.0 release and delivered a full,
-  deterministic UI automation pipeline integrated with Runtime Core 4.0.
-
-  Version 4.4.0 expands the Intelligent Runtime into the PRO tier, introducing improved
-  system intelligence, hardened safety layers, deterministic routing, upgraded AITE 4.4,
-  Workflow Engine 4.4, Reasoning Engine 4.4, ENVOY 4.4, FS‑AGENT 4.4, CME‑MEM 4.4,
-  and System Agent 4.2. These upgrades prepare the architecture for the upcoming
-  Self‑Repair Layer in version 6.0.0.
+  Version 5.0.0 upgrades the entire runtime stack, including Workflow Engine 5.0,
+  Reasoning Engine 5.0, ENVOY 5.0, FS‑AGENT 5.0, CME‑MEM 5.0, System Agent 5.0,
+  and Password Vault 5.0. These upgrades prepare the architecture for the upcoming
+  Self‑Repair Layer in the 5.x → 6.0 transition.
