@@ -357,10 +357,11 @@ DELIVER — safe data passed to Reasoning Engine
 Envoy will allow SIRIUS to access external information **without compromising determinism, safety, or identity‑aware control**.
 
 ---
-> **Documentation Notice (README 5.xx Available)**  
-> This section describes an early, planned version of the Envoy module.  
-> A fully updated and expanded documentation set is now maintained in **README 5.xx**,  
-> which includes the latest architecture details, security flow, permission model,  
-> quarantine pipeline, and integration rules for Envoy in the SIRIUS Runtime.  
+> **Documentation Notice — Updated README 5.xx Available**  
+> This section describes an early planned concept of the Envoy module.  
+> The SIRIUS Runtime 5.x architecture now uses a fully updated and  
+> dedicated documentation set in **README 5.xx**, which contains the  
+> latest specifications, security flows, permission logic, quarantine  
+> pipeline, and integration rules for all 5.x modules.  
 >  
 > For accurate and up‑to‑date information, please refer to **README 5.xx**.
