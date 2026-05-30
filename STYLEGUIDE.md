@@ -1,168 +1,206 @@
-# 12. NEW IN VERSION 4.5.0 PRO — System‑Intelligent Styleguide Expansion
+# 12. NEW IN VERSION 5.0.0 UNIFIED — System‑Intelligent Styleguide Expansion
 
-Version **4.5.0 PRO** rozširuje pôvodný STYLEGUIDE o nové pravidlá pre:
+Version **5.0.0 UNIFIED** expands the original STYLEGUIDE with new rules for:
 
-- System Intelligence Layer 4.5  
-- System Agent 4.5  
-- UI Automation Engine 4.5  
-- Security Family 4.5  
-- Workflow Engine 4.5  
-- Knowledge Packs 4.5  
+- System Intelligence Layer 5.0  
+- System Agent 5.0  
+- UI Automation Engine 5.0  
+- Security Family 5.0 (Identity Engine 3.0)  
+- Workflow Engine 5.0  
+- Knowledge Packs 5.0  
+- Knowledge Graph Reasoning 1.0  
+- Envoy 1.0 (permission‑based fetch)  
+- Unified PC/Mobile Runtime  
 
-Všetky staršie pravidlá ostávajú platné.  
-4.5.0 PRO iba dopĺňa nové povinné normy pre deterministickú, systémovo‑inteligentnú architektúru.
-
----
-
-# 12.1 Core Principles (Expanded for 4.5.0 PRO)
-
-### NEW (4.5.0 PRO)
-- všetky systémové akcie musia byť **prediktívne validované**  
-- System Intelligence Layer musí byť konzultovaný pred OS‑úrovňovými workflowmi  
-- identity‑aware logika musí byť **konzistentná naprieč všetkými modulmi**  
-- žiadne workflow nesmie bežať v **rizikovom OS stave**  
-- všetky moduly musia podporovať **deterministické fallbacky 2.0**  
-- reasoning musí byť **bounded, cacheovaný a pack‑aware 3.0**  
-- UI Automation musí používať **fuzzy matching 4.5**  
-- System Agent 4.5 je **jediný validátor OS akcií**  
+All previous rules remain valid.  
+Version 5.0.0 UNIFIED **adds mandatory norms** for deterministic, system‑intelligent, KG‑aware architecture.
 
 ---
 
-# 12.2 Naming Conventions (Expanded for 4.5.0 PRO)
+# 12.1 Core Principles (Expanded for 5.0.0 UNIFIED)
 
-### NEW Reserved Names (4.5.0 PRO)
-- `SystemIntelligenceLayer`  
+### NEW (5.0.0)
+- all OS‑level actions must be **predictively validated**  
+- System Intelligence Layer 5.0 must be consulted before OS‑level workflows  
+- identity‑aware logic must be **consistent across PC + Mobile**  
+- no workflow may run in a **risky OS state**  
+- all modules must support **deterministic fallback logic 3.0**  
+- reasoning must be **bounded, cached, KG‑aware, and pack‑aware 4.0**  
+- UI Automation must use **fuzzy matching 5.0**  
+- System Agent 5.0 is the **only validator of OS actions**  
+- Envoy fetch must follow **ASK → FETCH → QUARANTINE → DELIVER**  
+- no module may bypass KG‑Reasoning when semantic inference is required  
+
+---
+
+# 12.2 Naming Conventions (Expanded for 5.0.0 UNIFIED)
+
+### NEW Reserved Names (5.0.0)
+- `SystemIntelligenceLayer5`  
 - `PredictiveSafetyEngine`  
-- `OSHealthMonitor`  
-- `RiskAnalyzer`  
-- `IdentityGatekeeperV2`  
-- `DeterministicFallbackEngineV2`  
+- `OSHealthMonitor5`  
+- `RiskAnalyzer5`  
+- `IdentityGatekeeperV3`  
+- `DeterministicFallbackEngineV3`  
+- `KGReasoningEngine`  
+- `EnvoyPermissionManager`  
 
-Tieto názvy sú **rezervované** a nesmú byť použité na iné účely.
+These names are **reserved** and must not be used for unrelated modules.
 
 ---
 
-# 12.3 File & Folder Structure (Expanded for 4.5.0 PRO)
+# 12.3 File & Folder Structure (Expanded for 5.0.0 UNIFIED)
 
-### NEW Folders (4.5.0 PRO)
+### NEW Folders (5.0.0)
 /system_intelligence  
 /system_intelligence/diagnostics  
 /system_intelligence/predictive  
 /system_intelligence/risk_models  
-/system_agent_v2  
-/ui_automation/fallback_v2  
-/security_family_v2  
+/system_agent_v3  
+/ui_automation/fallback_v3  
+/security_family_v3  
+/kg_reasoning  
+/envoy  
 
-### NEW Rules (4.5.0 PRO)
-- System Intelligence Layer musí byť izolovaný od UI Automation  
-- System Agent 4.5 musí byť jediný modul s právom validovať OS akcie  
-- Workflow Engine 4.5 musí konzultovať OS stav pred vykonaním workflowu  
-- žiadny modul nesmie obchádzať System Intelligence Layer pri OS‑úrovňových rozhodnutiach  
+### NEW Rules (5.0.0)
+- System Intelligence Layer must be isolated from UI Automation  
+- System Agent 5.0 must be the only module allowed to validate OS actions  
+- Workflow Engine 5.0 must consult OS state before executing workflows  
+- no module may bypass System Intelligence Layer for OS‑level decisions  
+- KG‑Reasoning must be used for semantic inference  
+- Envoy must never run without explicit permission  
 
 ---
 
-# 12.4 Function Length (Expanded for 4.5.0 PRO)
+# 12.4 Function Length (Expanded for 5.0.0 UNIFIED)
 
-### NEW (4.5.0 PRO)
-OS‑úrovňové funkcie musia byť rozdelené na:
+### NEW (5.0.0)
+OS‑level functions must be split into:
 
 - `precheck_identity()`  
-- `precheck_system_state()` ← NEW  
-- `precheck_risk_level()` ← NEW  
+- `precheck_system_state()`  
+- `precheck_risk_level()`  
+- `precheck_envoy_permissions()` ← NEW  
 - `execute_action()`  
 - `postcheck_reversibility()`  
-- `postcheck_system_integrity()` ← NEW  
+- `postcheck_system_integrity()`  
+- `postcheck_kg_consistency()` ← NEW  
 
-Maximálna dĺžka OS‑úrovňovej funkcie: **45 riadkov**.
-
----
-
-# 12.5 Comments (Expanded for 4.5.0 PRO)
-
-### NEW (4.5.0 PRO)
-Komentáre musia obsahovať:
-
-- prediktívne bezpečnostné dôvody  
-- OS‑stavové podmienky  
-- rizikové faktory  
-- identity‑aware rozhodnutia  
-- fallback 2.0 logiku  
-- prečo bol workflow zastavený alebo presmerovaný  
+Maximum length of OS‑level function: **45 lines**.
 
 ---
 
-# 12.6 Error Messages (Expanded for 4.5.0 PRO)
+# 12.5 Comments (Expanded for 5.0.0 UNIFIED)
 
-### NEW (4.5.0 PRO)
+### NEW (5.0.0)
+Comments must include:
+
+- predictive safety reasoning  
+- OS‑state conditions  
+- risk factors  
+- identity‑aware decisions  
+- fallback 3.0 logic  
+- KG‑aware reasoning notes  
+- Envoy permission checks  
+- why a workflow was halted or redirected  
+
+---
+
+# 12.6 Error Messages (Expanded for 5.0.0 UNIFIED)
+
+### NEW (5.0.0)
 - `"OS action blocked – unsafe system state detected."`  
 - `"Operation rejected – predictive risk level too high."`  
-- `"System Agent 4.5: identity validation failed."`  
+- `"System Agent 5.0: identity validation failed."`  
 - `"Workflow halted – system integrity not guaranteed."`  
-- `"UI action denied – fallback 2.0 engaged."`  
+- `"UI action denied – fallback 3.0 engaged."`  
+- `"Envoy request denied – permission not granted."`  
+- `"KG reasoning aborted – inconsistent pack state."`  
 
 ---
 
-# 12.7 Security Rules in Code (Expanded for 4.5.0 PRO)
+# 12.7 Security Rules in Code (Expanded for 5.0.0 UNIFIED)
 
-### NEW (4.5.0 PRO)
-- všetky OS akcie musia prejsť cez `SystemAgentV2`  
-- System Intelligence Layer musí byť konzultovaný pred workflow spustením  
-- žiadne workflow nesmie bežať v rizikovom OS stave  
-- žiadne priame Win32/UIA/WinRT volania  
-- žiadne implicitné OS zmeny  
-- žiadne persistentné hooky  
-- žiadne background OS manipulácie  
-- žiadne obchádzanie identity‑aware logiky  
+### NEW (5.0.0)
+- all OS actions must pass through `SystemAgentV3`  
+- System Intelligence Layer must be consulted before workflow execution  
+- no workflow may run in a risky OS state  
+- no direct Win32/UIA/WinRT calls  
+- no implicit OS modifications  
+- no persistent hooks  
+- no background OS manipulation  
+- no bypassing identity‑aware logic  
+- no Envoy fetch without ASK → FETCH → QUARANTINE → DELIVER  
+- KG‑Reasoning must validate semantic consistency  
 
 ---
 
-# 12.8 Testing Requirements (Expanded for 4.5.0 PRO)
+# 12.8 Testing Requirements (Expanded for 5.0.0 UNIFIED)
 
-### NEW (4.5.0 PRO)
-System Intelligence Layer testy musia obsahovať:
+### NEW (5.0.0)
+System Intelligence Layer tests must include:
 
 - OS health detection tests  
 - risk prediction tests  
 - unsafe state prevention tests  
 - workflow blocking tests  
-- fallback 2.0 tests  
-- System Agent 4.5 integration tests  
+- fallback 3.0 tests  
+- System Agent 5.0 integration tests  
 
-UI Automation 4.5 testy musia obsahovať:
+UI Automation 5.0 tests must include:
 
-- fuzzy matching 4.5 tests  
-- deterministic fallback 2.0 tests  
+- fuzzy matching 5.0 tests  
+- deterministic fallback 3.0 tests  
 - identity‑aware UI action tests  
-- WinCapabilities 4.5 routing tests  
+- WinCapabilities 5.0 routing tests  
+- KG‑enhanced UI matching tests  
+
+KG‑Reasoning tests must include:
+
+- entity‑relation traversal  
+- shortest‑path reasoning  
+- pack‑to‑pack consistency  
+- deterministic inference validation  
+
+Envoy tests must include:
+
+- ASK permission tests  
+- quarantine validation tests  
+- identity‑aware fetch tests  
+- System Agent 5.0 enforcement tests  
 
 ---
 
-# 12.9 Logging Rules (Expanded for 4.5.0 PRO)
+# 12.9 Logging Rules (Expanded for 5.0.0 UNIFIED)
 
-### NEW (4.5.0 PRO)
+### NEW (5.0.0)
 System Intelligence Layer logging:
 
-- nikdy neukladať OS handles  
-- nikdy neukladať citlivé systémové cesty  
-- logovať iba semantické akcie  
-- logovať OS stav ako kategóriu (SAFE / WARNING / RISK)  
-- logovať prediktívne rizikové faktory  
-- logovať fallback 2.0 aktiváciu  
+- never store OS handles  
+- never store sensitive system paths  
+- log only semantic actions  
+- log OS state as SAFE / WARNING / RISK  
+- log predictive risk factors  
+- log fallback 3.0 activation  
+- log Envoy permission decisions  
+- log KG‑consistency warnings  
 
 ---
 
-# 12.10 Module Boundaries (Expanded for 4.5.0 PRO)
+# 12.10 Module Boundaries (Expanded for 5.0.0 UNIFIED)
 
-### NEW (4.5.0 PRO)
-- **System Agent 4.5 je jediný validátor OS akcií**  
-- **System Intelligence Layer 4.5 je jediný modul, ktorý môže hodnotiť OS stav**  
-- **UI Automation Engine 4.5 musí používať fallback 2.0**  
-- **Workflow Engine 4.5 nesmie spustiť workflow v rizikovom OS stave**  
-- **Security Family 4.5 musí byť konzultovaná pred každou OS akciou**  
+### NEW (5.0.0)
+- **System Agent 5.0 is the only validator of OS actions**  
+- **System Intelligence Layer 5.0 is the only module allowed to evaluate OS state**  
+- **UI Automation Engine 5.0 must use fallback 3.0**  
+- **Workflow Engine 5.0 must not run in risky OS states**  
+- **Security Family 5.0 must be consulted before every OS action**  
+- **Envoy 1.0 must never bypass identity or System Agent validation**  
+- **KG‑Reasoning must validate semantic consistency before inference**  
 
 ---
 
 # Document Status (Updated)
 
-**Version:** 3.0.0 (Expanded to include 4.2.0, 4.3.0, 4.4.0 PRO, and **4.5.0 PRO**)  
-This styleguide now includes all deterministic, OS‑aware, system‑intelligent rules introduced in Runtime 4.5.0 PRO.
+**Version:** 4.0.0 → 4.2.0 → 4.3.0 → 4.4.0 PRO → 4.5.0 PRO → **5.0.0 UNIFIED**  
+This styleguide now includes all deterministic, OS‑aware, KG‑aware, system‑intelligent rules introduced in Runtime 5.0.0 UNIFIED.
