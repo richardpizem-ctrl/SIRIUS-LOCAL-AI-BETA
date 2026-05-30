@@ -1,79 +1,72 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (v4.1.0 → v4.5.0 EXPANDED)
+# 🏗 Architecture – SIRIUS LOCAL AI (v5.0.0 — Unified Runtime Architecture)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.5.0-purple">
+  <img src="https://img.shields.io/badge/version-5.0.0-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
-  <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
-  <img src="https://img.shields.io/badge/runtime-Intelligent%204.5%20PRO-orange">
+  <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
+  <img src="https://img.shields.io/badge/runtime-Intelligent%205.0%20Unified-orange">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI v4.5.0 expands the Intelligent Runtime 4.x architecture with **deep PC‑level intelligence**, **safe system control**, **semantic reasoning**, and **identity‑aware execution**.  
-This version upgrades the **System Intelligence Layer**, **System Agent**, **AITE**, and all core runtime modules to PRO‑level stability.
+SIRIUS LOCAL AI v5.0.0 introduces the **Unified Runtime Architecture**, merging PC and Mobile logic into a single deterministic, modular, identity‑aware AI operating layer.
 
-New or upgraded modules in 4.5:
+Version 5.0 replaces the older 4.x architecture with:
 
-- **System Health Engine 4.5**
-- **Driver Manager Engine 4.5**
-- **Task Manager Engine 4.5 PRO**
-- **Service Manager Engine 4.5**
-- **Education Engine 4.5**
-- **VYSLANEC 4.5 (Bridge Layer 3.2)**
-- **System Agent 4.5 (Safe Action Execution Layer)** ← UPGRADED
-- **Password Vault 4.1**
-- **AITE 4.5 (Multimodal Triage Engine)** ← UPGRADED
-- **Reasoning Engine 4.5**
-- **Knowledge Packs 4.5**
-- **Workflow Engine 4.5**
-- **FS‑AGENT 4.5**
-- **CME‑MEM 4.5**
+- unified execution pipeline  
+- deterministic reasoning  
+- identity‑aware system control  
+- multimodal triage  
+- safe OS automation  
+- cross‑platform module consistency  
+- PRO‑level orchestration  
+- hardened security boundaries  
 
-All processing remains **100% local**, **offline**, and **identity‑aware**.
+This is the largest architectural upgrade in the history of SIRIUS.
 
 ---
 
-# 🛡 Stability Notice (v4.5.0)
+# 🛡 Stability & Safety (v5.0.0)
 
-The System Intelligence Layer 4.5 guarantees:
+The **System Intelligence Layer 5.0** guarantees:
 
 - safe system‑level operations  
-- identity‑aware permissions  
+- identity‑aware permissions (OWNER / FAMILY / STRANGER)  
 - deterministic, reversible actions  
 - no direct kernel access  
 - no hidden automation  
 - safe driver handling  
 - safe process and service control  
-- System Agent 4.5 validation for every action  
-- transparent explanations for all system operations  
-- hardened sanitization layer (VYSLANEC 4.5)  
-- PRO‑level routing stability  
+- System Agent 5 validation for every action  
+- transparent explanations  
+- hardened sanitization (ENVOY 5)  
+- unified PC/Mobile behavior  
 
-This version introduces **PC‑level intelligence** while preserving the strict safety model of Runtime 4.x.
+SIRIUS Runtime 5.0 is a **PC‑aware and Mobile‑aware intelligent runtime** with strict safety and explainability.
 
 ---
 
-# 🧩 Architectural Principles (v4.5.0)
+# 🧩 Architectural Principles (v5.0.0)
 
 - strict modular separation  
 - deterministic behavior  
 - identity‑aware access control  
 - FAMILY‑safe operation  
 - SCHOOLWORK always allowed  
-- no direct network communication  
-- no direct system access (VYSLANEC + System Agent required)  
+- no direct system access (ENVOY + System Agent required)  
 - reversible, predictable actions  
 - semantic reasoning for system health  
-- friendly education for every action  
-- capability‑based access to Windows  
-- safe action execution pipeline (System Agent 4.5)  
-- PRO‑level runtime orchestration  
+- capability‑based access to Windows & Mobile  
+- safe action execution pipeline  
+- unified PC/Mobile architecture  
+- stable fallback routing  
+- offline‑only execution  
 
 ---
 
-# 🧱 Core Layers (v4.5.0)
+# 🧱 Core Layers (v5.0.0)
 
-## 1. Runtime Core 4.5 PRO
-Central orchestrator.
+## 1. Runtime Core 5.0 (Unified)
+Central orchestrator for all modules.
 
 Responsibilities:
 - module lifecycle  
@@ -81,75 +74,128 @@ Responsibilities:
 - workflow dispatch  
 - capability enforcement  
 - identity integration  
-- self‑repair integration (pre‑hooks)  
-- System Agent 4.5 routing  
+- self‑repair pre‑hooks  
+- System Agent 5 routing  
 - deterministic execution pipeline  
+- unified PC/Mobile behavior  
 
 ---
 
-## 2. Natural Language Router 4.5
-Improved semantic command routing with deeper intent detection and safer fallback logic.
+## 2. Natural Language Router 5.0
+Deep semantic intent detection with:
+
+- safer fallback logic  
+- deterministic routing  
+- identity‑aware filtering  
+- cross‑platform consistency  
 
 ---
 
-## 3. Filesystem Agent 4.5
-Deterministic FS operations with semantic routing and PRO‑level safety.
+## 3. Filesystem Agent 5.0
+Deterministic FS operations with:
+
+- semantic routing  
+- safe write rules  
+- OWNER/FAMILY/STRANGER restrictions  
+- unified PC/Mobile FS logic  
 
 ---
 
-## 4. Context Memory Engine 4.5
-Workflow context + semantic metadata with improved stability.
+## 4. Context Memory Engine 5.0 (CME‑MEM 5)
+Stores:
+
+- workflow context  
+- semantic metadata  
+- subject/difficulty tags  
+- multimodal metadata  
+- deterministic memory snapshots  
 
 ---
 
-## 5. Workflow Engine 4.5
-Deterministic workflow logic with new automation triggers and safer execution.
+## 5. Workflow Engine 5.0
+Upgraded deterministic workflow engine with:
+
+- automation workflows  
+- schoolwork workflows  
+- code workflows  
+- system workflows  
+- identity‑aware gating  
+- safe execution pipeline  
 
 ---
 
-## 6. GUI Layer 4.5
-Modular UI with dynamic panels and improved runtime integration.
+## 6. GUI Layer 5.0
+Modular UI with:
+
+- dynamic panels  
+- unified PC/Mobile rendering  
+- real‑time module integration  
 
 ---
 
-## 7. AITE 4.5
-Multimodal semantic triage (text, images, OCR, documents, code) with faster routing and improved accuracy.
+## 7. AITE 5.0 (Automatic Input Triage Engine)
+Multimodal semantic triage:
+
+- text  
+- images  
+- OCR  
+- documents  
+- code  
+- schoolwork  
+- mixed content  
+
+AITE 5.0 routes all inputs safely and deterministically.
 
 ---
 
-## 8. WIN‑CAP 4.5
-Safe Windows capability layer with identity‑aware restrictions and hardened validation.
+## 8. WIN‑CAP 5.0 (Windows Capability Layer)
+Safe Windows capability layer with:
+
+- identity‑aware restrictions  
+- hardened validation  
+- deterministic capability mapping  
 
 ---
 
-# 🆕 SYSTEM INTELLIGENCE LAYER (v4.5.0)
+# 🆕 SYSTEM INTELLIGENCE LAYER (v5.0.0)
 
-A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, the ability to **diagnose**, **optimize**, **repair**, and **educate**, while maintaining strict safety.
+A fully upgraded architectural layer enabling SIRIUS to:
+
+- understand the PC  
+- understand the Mobile device  
+- diagnose  
+- optimize  
+- repair  
+- educate  
+- enforce identity rules  
+- execute safe actions  
+
+All while remaining 100% offline and deterministic.
 
 ---
 
-# 🔥 1. System Health Engine 4.5
+# 🔥 1. System Health Engine 5.0
 
 ### Responsibilities:
 - monitor CPU / RAM / DISK / NETWORK  
 - detect frozen processes  
-- detect system bottlenecks  
+- detect bottlenecks  
 - detect failing services  
 - detect missing/corrupted drivers  
 - predict upcoming failures  
 - generate optimization suggestions  
 - trigger safe repairs via System Agent  
-- produce a PC Health Score  
+- produce a unified Health Score  
 
 ### Safety:
 - no direct system access  
-- all actions routed through System Agent + VYSLANEC  
+- all actions routed through System Agent + ENVOY  
 - identity‑aware restrictions  
 - full user confirmation  
 
 ---
 
-# 🔥 2. Driver Manager Engine 4.5
+# 🔥 2. Driver Manager Engine 5.0
 
 ### Responsibilities:
 - detect missing drivers  
@@ -157,7 +203,6 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 - detect outdated drivers  
 - install INF packages  
 - extract ZIP/EXE installers  
-- detect new files in Downloads  
 - verify driver integrity  
 - guide user to official manufacturer sites  
 - provide friendly explanations  
@@ -170,7 +215,7 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 3. Task Manager Engine 4.5 PRO
+# 🔥 3. Task Manager Engine 5.0 PRO
 
 ### Responsibilities:
 - restart Windows Explorer  
@@ -188,7 +233,7 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 4. Service Manager Engine 4.5
+# 🔥 4. Service Manager Engine 5.0
 
 ### Responsibilities:
 - restart Windows Audio  
@@ -205,7 +250,7 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 5. Education Engine 4.5
+# 🔥 5. Education Engine 5.0
 
 ### Responsibilities:
 - explain why a process is safe to terminate  
@@ -217,10 +262,10 @@ A fully upgraded architectural layer that gives SIRIUS **awareness of the PC**, 
 
 ---
 
-# 🔥 6. VYSLANEC 4.5 (Bridge Layer 3.2)
+# 🔥 6. ENVOY 5 (Bridge Layer)
 
 ### Purpose:
-A controlled, auditable bridge between SIRIUS and Windows.
+A controlled, auditable bridge between SIRIUS and the OS.
 
 ### Responsibilities:
 - execute all system actions  
@@ -233,72 +278,70 @@ A controlled, auditable bridge between SIRIUS and Windows.
 
 ### Guarantees:
 - SIRIUS never touches the system directly  
-- Windows always has final control  
+- OS always has final control  
 - all actions are safe, predictable, reversible  
 
 ---
 
-# 🔥 7. System Agent 4.5 (Safe Action Execution Layer)
-
-Upgraded module introduced in Runtime 4.3.
+# 🔥 7. System Agent 5 (Safe Action Execution Layer)
 
 ### Responsibilities:
-- validates every system action  
-- checks identity (OWNER/FAMILY/STRANGER)  
-- enforces safety rules  
-- logs all actions  
-- blocks unsafe operations  
-- ensures deterministic behavior  
+- validate every system action  
+- check identity (OWNER/FAMILY/STRANGER)  
+- enforce safety rules  
+- log all actions  
+- block unsafe operations  
+- ensure deterministic behavior  
 
-System Agent is the **final gatekeeper** before any Windows action.
+System Agent is the **final gatekeeper** before any OS action.
 
 ---
 
-# 🔐 Password Vault 4.1 (Secure Credential Module)
+# 🔐 Password Vault 5.0 (Secure Credential Module)
 
 ### Responsibilities:
 - AES‑256‑GCM encrypted credential storage  
 - PBKDF2‑HMAC‑SHA256 master key derivation  
 - offline, file‑based vault container  
 - OWNER‑only write access  
-- FAMILY read‑only access  
+- FAMILY read‑only  
 - STRANGER blocked  
 - deterministic API for workflows  
 - safe routing through Runtime Core  
 
 ---
 
-# 🖼 Architecture Diagram (v4.5.0 Placeholder)
+# 🖼 Architecture Diagram (v5.0.0 Placeholder)
 
 <p align="center">
-  <img src="docs/architecture_diagram_v4_5_placeholder.png" width="600">
+  <img src="docs/architecture_diagram_v5_placeholder.png" width="600">
 </p>
 
 ---
 
-# 🔌 Module Interconnections (v4.5.0)
+# 🔌 Module Interconnections (v5.0.0)
 
 User Input  
 ↓  
-AITE 4.5 → FS‑AGENT 4.5 → CME‑MEM 4.5  
+AITE 5.0 → FS‑AGENT 5.0 → CME‑MEM 5.0  
 ↓  
-Workflow Engine 4.5  
+Workflow Engine 5.0  
 ↓  
-Runtime Core 4.5 PRO  
+Runtime Core 5.0  
 ↓  
-**System Intelligence Layer 4.5**  
+**System Intelligence Layer 5.0**  
 ↓  
-**System Agent 4.5 (safe action execution)**  
+**System Agent 5 (safe action execution)**  
 ↓  
-**Password Vault 4.1 (identity‑aware secure storage)**  
+**Password Vault 5.0 (identity‑aware secure storage)**  
 ↓  
-**VYSLANEC 4.5**  
+**ENVOY 5**  
 ↓  
-Windows 11 (safe, controlled)
+Windows 11 / Android / iOS (safe, controlled)
 
 ---
 
 # 📌 Document Status
 
-Current version: **4.5.0 (Expanded)**  
-Architecture is fully updated and aligned with Runtime 4.5.0 PRO.
+Current version: **5.0.0 (Unified Architecture)**  
+Architecture is fully updated and aligned with Runtime 5.0.0.
