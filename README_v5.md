@@ -1,11 +1,11 @@
 # 🚀 SIRIUS LOCAL AI — Runtime 5.x  
-### Next‑Generation Local AI Runtime for Windows 11  
-### Offline Knowledge Graph Reasoning • Deterministic OS Automation • Envoy Online Fetch Module
+### Next‑Generation Local AI Runtime for Windows 11 & Mobile  
+### Offline Knowledge Graph Reasoning • Deterministic OS Automation • Envoy Secure Fetch Module
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-5.x-blue">
   <img src="https://img.shields.io/badge/license-MIT-green">
-  <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
+  <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
   <img src="https://img.shields.io/badge/runtime-Intelligent%20Runtime%205.x-purple">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
@@ -13,35 +13,62 @@
 ---
 
 # 🧠 What’s New in SIRIUS Runtime 5.x  
-SIRIUS 5.x represents the **biggest leap in the history of the project**:
+SIRIUS 5.x represents the **largest architectural leap in the project’s history**, introducing:
 
-### ⭐ 1. Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
-- reasoning over a local knowledge graph  
-- contextual links between entities  
-- deterministic inference paths  
-- faster responses without models  
+---
 
-### ⭐ 2. Envoy Module 1.0 — Secure Online Fetch (Permission‑Based)
-- optional online fetch  
+## ⭐ 1. Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
+A fully offline reasoning engine powered by a local knowledge graph:
+
+- entity‑based reasoning  
+- relation‑aware inference  
+- deterministic logic paths  
+- zero hallucination risk  
+- instant responses  
+- no models required  
+
+---
+
+## ⭐ 2. Envoy Module 1.0 — Secure Online Fetch (Permission‑Based)
+A **controlled, permission‑based** external fetch module:
+
 - ASK → FETCH → QUARANTINE → DELIVER  
-- works for both PC and mobile  
-- identity‑aware security model  
+- outbound‑only  
+- identity‑aware  
 - no automatic requests  
+- no local data ever sent out  
+- unified PC & Mobile behavior  
 
-### ⭐ 3. Runtime 5.x Architecture
-- new layers for the Knowledge Graph  
-- redesigned Reasoning Engine 5.0  
-- Workflow Engine 5.0 with KG‑routing  
-- System Agent 5.0 with extended rules  
+Offline mode remains **default** and **untouched**.
 
-### ⭐ 4. Mobile Sync 2.0
-- PC ↔ Mobile SIRIUS communication  
+---
+
+## ⭐ 3. Unified Runtime 5.x Architecture
+A complete redesign of the runtime stack:
+
+- Knowledge Graph Layer  
+- Reasoning Engine 5.0  
+- Workflow Engine 5.0  
+- System Agent 5.0  
+- UI Automation Engine 5.0  
+- Mobile Runtime 5.0  
+- unified deterministic routing  
+
+---
+
+## ⭐ 4. Mobile Sync 2.0
+Secure cross‑device communication:
+
+- PC ↔ Mobile SIRIUS  
+- LAN Sync 2.0  
 - Envoy fetch on both sides  
-- secure LAN Sync protocol  
+- identity‑aware synchronization  
 
 ---
 
 # 🧩 Architecture Diagram (Runtime 5.x)
+
+```
 ┌───────────────────────────────┐  
 │      Knowledge Graph 5.x      │  
 │  (entities, relations, facts) │  
@@ -49,12 +76,12 @@ SIRIUS 5.x represents the **biggest leap in the history of the project**:
                 │  
 ┌───────────────▼──────────────┐  
 │       Reasoning Engine 5.0    │  
-│            PRO Layer          │  
+│        KG‑aware inference     │  
 └───────────────┬──────────────┘  
                 │  
 ┌───────────────▼──────────────┐  
 │       Workflow Engine 5.0     │  
-│ KG‑aware routing • deterministic │  
+│ KG‑routing • deterministic     │  
 └───────────────┬──────────────┘  
                 │  
 ┌───────────────▼──────────────┐  
@@ -64,17 +91,19 @@ SIRIUS 5.x represents the **biggest leap in the history of the project**:
                 │  
 ┌───────────────▼──────────────┐  
 │    UI Automation Engine 5.0   │  
-│ Win32/UIA/WinRT • deterministic │  
+│ Win32/UIA/WinRT • deterministic│  
 └───────────────────────────────┘  
+```
 
 ---
 
 # 🛰 Envoy Module 1.0 — Secure Online Information Fetcher  
-**Status:** Plánovaný cieľ pre verziu 5.x  
-**Cieľ:** Poskytnúť voliteľný, povolením riadený prístup k online informáciám pri zachovaní 100 % offline architektúry.
+**Status:** Introduced in Runtime 5.x  
+**Purpose:** Provide optional, permission‑based access to online information while preserving the offline‑first architecture.
 
-Envoy je **riadený externý agent**, ktorý môže vykonať **jednu izolovanú online požiadavku**, ale **len po výslovnom súhlase používateľa**.  
-Offline režim zostáva **predvolený**, nedotknutý a plne deterministický.
+Envoy is a **controlled external agent** that performs **one isolated fetch** only after explicit user approval.
+
+Offline mode remains **default**.
 
 ---
 
@@ -92,94 +121,98 @@ QUARANTINE — sanitize, validate, strip unsafe content
 DELIVER — safe data passed to Reasoning Engine
 ```
 
-### Kľúčové princípy Envoy 1.0
-- **Nikdy nebeží automaticky**
-- **Vždy žiada o povolenie (ASK)**
-- **Jednoúčelové, izolované fetch operácie**
-- **Všetky dáta prechádzajú karanténou**
-- **System Agent overuje celý proces**
-- **Offline režim je predvolený a nedotknutý**
-- **Rešpektuje identitu používateľa (OWNER / FAMILY / STRANGER)**
+### Core Principles
+- never runs automatically  
+- always requires explicit permission  
+- outbound‑only  
+- identity‑aware  
+- all data passes through quarantine  
+- System Agent 5.0 validates every step  
+- offline determinism preserved  
 
 ---
 
 ## 🔁 PC ↔ Mobile Envoy Support (Runtime 5.x)
-- PC môže fetchovať pre mobil  
-- Mobil môže fetchovať pre PC  
-- Oba Envoy moduly používajú rovnaký bezpečnostný tok  
-- LAN Sync 2.0 prenáša len **karantenizované dáta**  
-- System Agent 5.0 validuje každú fázu  
+- PC can fetch for Mobile  
+- Mobile can fetch for PC  
+- both use identical security flow  
+- LAN Sync 2.0 transfers only sanitized data  
+- System Agent 5.0 validates all operations  
 
 ---
 
-## 🧠 Integrácia Envoy do Runtime 5.x
+# 🧠 Integration of Envoy into Runtime 5.x
 
 ### **Reasoning Engine 5.0**
-- prijíma len karantenizované dáta  
-- žiadne nevalidované informácie sa nedostanú do inference pipeline  
+- accepts only sanitized data  
+- no unverified content enters inference  
 
 ### **Workflow Engine 5.0**
-- Envoy fetch je len jeden z krokov workflow  
-- KG‑routing rozhoduje, či je fetch vôbec potrebný  
+- Envoy fetch is a controlled workflow step  
+- KG‑routing decides if fetch is needed  
 
 ### **System Agent 5.0**
-- kontroluje identitu  
-- kontroluje povolenia  
-- kontroluje bezpečnostné pravidlá  
-- blokuje neautorizované fetch operácie  
+- enforces identity rules  
+- validates permissions  
+- blocks unauthorized fetches  
 
 ---
 
-## 🛡 Prečo Envoy neporušuje offline architektúru
-- Envoy **nie je internetový modul**  
-- Envoy **nie je prehliadač**  
-- Envoy **nie je AI model**  
-- Envoy **nie je automatický fetcher**
+# 🛡 Why Envoy Does NOT Break Offline Architecture
+Envoy is **not**:
 
-Envoy je **riadený, jednorazový, povolením chránený agent**, ktorý:
+- a browser  
+- an internet module  
+- an AI model  
+- an automatic fetcher  
 
-- nikdy nebeží bez súhlasu  
-- nikdy neukladá dáta  
-- nikdy neobchádza karanténu  
-- nikdy neovplyvňuje offline deterministiku  
+Envoy is:
+
+- permission‑based  
+- isolated  
+- outbound‑only  
+- quarantined  
+- identity‑aware  
+- deterministic  
+
+Offline mode remains the **default and primary mode**.
 
 ---
 
 # 🧠 Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
 
-### What it brings:
-- reasoning without models  
+### Capabilities:
+- relation‑aware inference  
+- entity graph traversal  
+- deterministic logic  
+- zero hallucination  
 - instant responses  
-- zero latency  
-- zero hallucination risk  
-- deterministic inference paths  
 
-### Examples:
-- “Who is the parent of this entity?”  
-- “What concepts are related?”  
-- “What is the shortest relation between A and B?”  
+### Example Queries:
+- “What is the relation between A and B?”  
+- “Which concepts are connected to X?”  
+- “What is the shortest path between these entities?”  
 
 ---
 
 # 🔁 Workflow Engine 5.0  
 - KG‑aware routing  
-- multi‑stage deterministic workflows  
+- deterministic multi‑stage workflows  
 - identity‑aware gating  
 - Envoy integration  
 
 ---
 
 # 🛡 System Agent 5.0  
-- extended identity rules  
-- OWNER / FAMILY / STRANGER 2.0  
+- OWNER / FAMILY / STRANGER 3.0  
 - OS action validation  
 - reversibility 3.0  
-- Envoy security policies  
+- Envoy security enforcement  
 
 ---
 
 # 🖱 UI Automation Engine 5.0  
-- faster UIA/Win32/WinRT routing  
+- faster Win32/UIA/WinRT routing  
 - KG‑enhanced UI matching  
 - deterministic fallbacks  
 - System Agent validation  
@@ -203,7 +236,7 @@ Envoy je **riadený, jednorazový, povolením chránený agent**, ktorý:
 ---
 
 # 📘 Installation (Runtime 5.x)
-*(empty — will be filled after 5.0.0 release)*
+*(To be published after final 5.0.0 release)*
 
 ---
 
@@ -226,9 +259,13 @@ Pull requests are welcome.
 ---
 
 # 📦 Installer Note  
-Installers for SIRIUS Runtime 5.x will be released **in parallel with the final GAMA 5.x versions**.  
-They will include the final module structure, stable API layers, System Agent 5.0, Envoy 1.0, UI Automation Engine 5.0, and Knowledge Graph Runtime 1.0.  
-They will be published **immediately after the last GAMA milestone is completed** to ensure 100% compatibility.
+Installers for SIRIUS Runtime 5.x will be released **after the final GAMA 5.x milestone**, ensuring full compatibility with:
+
+- System Agent 5.0  
+- Envoy 1.0  
+- UI Automation Engine 5.0  
+- Knowledge Graph Runtime 1.0  
+- Unified Runtime 5.x  
 
 ---
 
