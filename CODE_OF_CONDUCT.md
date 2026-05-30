@@ -1,19 +1,19 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v4.5.0 EXPANDED)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.0.0 UNIFIED)
 
 This project follows a professional, respectful, and safety‑oriented standard of behavior.  
 The goal is to maintain a **safe, friendly, and productive environment** for all contributors and all users of SIRIUS LOCAL AI — including households, families, and children.
 
-Version **4.5.0** expands the Code of Conduct to reflect:
+Version **5.0.0** expands the Code of Conduct to reflect the **Unified Runtime Architecture**, including:
 
-- the new **UI Automation Engine 4.5.0**  
-- the transition from **4.4.0 → 4.5.0 PRO**  
-- upgraded safety‑critical modules  
-- Identity Engine 2.1  
-- SECURITY FAMILY 4.5  
-- Schoolwork Engine 4.5  
-- System Agent 4.5  
-- deterministic UI automation behavior  
-- hardened routing and PRO‑level safety  
+- **UI Automation Engine 5.0**  
+- **Runtime 5.0 Unified (PC + Mobile)**  
+- **Identity Engine 3.0**  
+- **SECURITY FAMILY 5.0**  
+- **Schoolwork Engine 5.0**  
+- **System Agent 5.0**  
+- **ENVOY 5.0 (Bridge Layer)**  
+- **deterministic cross‑platform automation**  
+- **hardened routing and 5.x safety model**  
 
 ---
 
@@ -29,12 +29,13 @@ Version **4.5.0** expands the Code of Conduct to reflect:
 - maintain clarity, professionalism, and transparency  
 - support safe and responsible use of AI technologies  
 - respect safety‑critical modules such as:  
-  - **SECURITY FAMILY 4.5**  
-  - **Identity Engine 2.1**  
-  - **Schoolwork Engine 4.5**  
-  - **Time‑Limits Engine v2**  
-  - **Self‑Repair & Health‑Check Layer**  
-  - **UI Automation Engine 4.5.0** (UPDATED)  
+  - **SECURITY FAMILY 5.0**  
+  - **Identity Engine 3.0**  
+  - **Schoolwork Engine 5.0**  
+  - **Time‑Limits Engine v3**  
+  - **Self‑Repair Layer 5.x**  
+  - **UI Automation Engine 5.0**  
+  - **System Agent 5.0**  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -55,7 +56,8 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - respecting FAMILY‑safe design and identity‑based protections  
 - ensuring SCHOOLWORK‑related features remain unrestricted and safe  
 - preserving deterministic, safe, offline‑only behavior  
-- respecting the **UI Automation Engine 4.5.0** safety boundaries  
+- respecting the **UI Automation Engine 5.0** safety boundaries  
+- ensuring **System Agent 5.0** remains the final gatekeeper  
 - ensuring PRO‑level routing and safety are not weakened  
 
 ---
@@ -79,9 +81,10 @@ These principles ensure that collaboration remains focused, respectful, and effe
   - Schoolwork Engine bypass  
 - modifying SECURITY FAMILY logic to weaken protections  
 - disabling or interfering with the Self‑Repair Layer  
-- abusing or misusing the **UI Automation Engine 4.5.0** to perform unsafe actions  
+- abusing or misusing the **UI Automation Engine 5.0** to perform unsafe actions  
 - attempting to circumvent deterministic UI automation safeguards  
-- weakening System Agent 4.5 validation rules  
+- weakening **System Agent 5.0** validation rules  
+- attempting to bypass ENVOY 5.0 sanitization  
 
 Such behavior harms the community and will not be tolerated.
 
@@ -101,8 +104,9 @@ Project maintainers have the right and responsibility to:
 - ensure that safety modules remain uncompromised  
 - reject contributions that weaken identity‑based protections  
 - prevent unsafe modifications to SCHOOLWORK ENGINE or SECURITY FAMILY  
-- ensure that **UI Automation Engine 4.5.0** remains deterministic and safe  
-- ensure System Agent 4.5 remains the final gatekeeper  
+- ensure that **UI Automation Engine 5.0** remains deterministic and safe  
+- ensure **System Agent 5.0** remains the final gatekeeper  
+- ensure ENVOY 5.0 sanitization is never bypassed  
 
 Maintainers act to protect the long‑term health of the project.
 
@@ -140,9 +144,10 @@ Severity depends on:
 - whether it was intentional  
 - whether it is repeated  
 - whether it involved attempts to bypass FAMILY or SCHOOLWORK protections  
-- whether it attempted to weaken SECURITY FAMILY or Identity Engine 2.1  
-- whether it attempted to misuse or compromise the **UI Automation Engine 4.5.0**  
-- whether it attempted to bypass System Agent 4.5  
+- whether it attempted to weaken SECURITY FAMILY or Identity Engine 3.0  
+- whether it attempted to misuse or compromise the **UI Automation Engine 5.0**  
+- whether it attempted to bypass **System Agent 5.0**  
+- whether it attempted to bypass **ENVOY 5.0**  
 
 Maintainers will always act in good faith and fairness.
 
@@ -158,18 +163,20 @@ This Code of Conduct applies to:
 - project‑related communication outside GitHub  
 - any interaction representing the project  
 - all modules including safety‑critical components:  
-  - **SECURITY FAMILY 4.5**  
-  - **Identity Engine 2.1**  
-  - **Schoolwork Engine 4.5**  
-  - **Time‑Limits Engine v2**  
-  - **Self‑Repair & Health‑Check Layer**  
-  - **UI Automation Engine 4.5.0**  
+  - **SECURITY FAMILY 5.0**  
+  - **Identity Engine 3.0**  
+  - **Schoolwork Engine 5.0**  
+  - **Time‑Limits Engine v3**  
+  - **Self‑Repair Layer 5.x**  
+  - **UI Automation Engine 5.0**  
+  - **System Agent 5.0**  
+  - **ENVOY 5.0**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (v4.5.0)
+# 8. 🧒 Family & Safety Considerations (v5.0.0)
 
-SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 4.5** module designed to:
+SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 5.0** module designed to:
 
 - protect children using the system  
 - enforce time‑based limits for minors  
@@ -178,9 +185,10 @@ SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 4.5** module designed to:
 - guarantee that **schoolwork is always allowed**  
 - maintain STRANGER‑mode protections for unknown users  
 - ensure OWNER‑level actions remain restricted  
-- integrate with Identity Engine 2.1 for behavior‑based recognition  
+- integrate with Identity Engine 3.0 for behavior‑based recognition  
 - ensure UI automation cannot perform unsafe actions without identity validation  
-- ensure System Agent 4.5 validates all system‑level actions  
+- ensure **System Agent 5.0** validates all system‑level actions  
+- ensure ENVOY 5.0 sanitizes all system requests  
 
 Contributors must **not** attempt to weaken, bypass, or disable these protections.
 
@@ -195,4 +203,4 @@ and help maintain a respectful, safe, and productive environment for all users �
 
 ---
 
-**Document Status:** v4.5.0 (Expanded)
+**Document Status:** v5.0.0 (Unified)
