@@ -22,27 +22,33 @@ class SiriusCLI45:
     """
 
     def __init__(self):
-        self.rm = RuntimeManager45()
-        self.safe_mode = False
-        self.degraded_mode = False
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
         try:
+            self.rm = RuntimeManager45()
             self.rm.initialize()
             self.rm.logger.info("CLI initialized (v4.5.0 PRO)")
         except Exception as exc:
             self.degraded_mode = True
             print(f"[CLI] Initialization failed: {exc}")
+            self.rm = None
 
     # --------------------------------------------------------
     # MAIN ENTRY (4.5.0 PRO)
     # --------------------------------------------------------
     def run(self, argv):
+        if self.rm is None:
+            print("[CLI] Runtime unavailable. CLI cannot operate.")
+            return
+
         if len(argv) < 2:
             self._print_help()
             return
 
         command = argv[1].lower()
 
+        # SAFE MODE LIMITATIONS
         if self.safe_mode:
             print("SIRIUS CLI is in SAFE MODE. Only 'context' and 'help' are available.")
             if command not in {"context", "help"}:
@@ -55,6 +61,10 @@ class SiriusCLI45:
             # ----------------------------------------------------
             if command == "nl":
                 text = " ".join(argv[2:])
+                if not text.strip():
+                    print("Missing natural language input.")
+                    return
+
                 result = self.rm.handle_nl(text)
                 self._print_result(result)
                 return
@@ -110,12 +120,14 @@ class SiriusCLI45:
                 self._print_help()
                 return
 
+            # UNKNOWN COMMAND
             print(f"Unknown command: {command}")
             self._print_help()
 
         except Exception as e:
             self.degraded_mode = True
-            self.rm.logger.error(f"CLI error: {e}")
+            if self.rm:
+                self.rm.logger.error(f"CLI error: {e}")
             print("An internal error occurred. Check logs for details.")
 
     # --------------------------------------------------------
