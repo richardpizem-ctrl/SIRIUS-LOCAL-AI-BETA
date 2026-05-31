@@ -1,6 +1,6 @@
 # ai_loop_4_5.py
 # SIRIUS LOCAL AI – Autonomous Runtime Loop 4.5.0 PRO
-# Deterministic, safe-mode compatible, sandboxed AI loop (Phase‑5 ready)
+# Deterministic, safe‑mode compatible, sandboxed AI loop (Phase‑5 ready)
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ import threading
 import psutil
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+
 from runtime.runtime_manager_4_5 import RuntimeManager45
 
 
@@ -44,15 +45,20 @@ class SiriusAILoop45:
     Responsibilities:
         - Filesystem monitoring (sandboxed)
         - System monitoring (safe, deterministic)
-        - Rule-based autonomous actions (AI-aware)
+        - Rule-based autonomous actions
         - RuntimeManager45 task dispatch
         - Safe-mode + degraded-mode support
         - Phase‑5 / Self‑Repair 4.5 ready
     """
 
     def __init__(self):
-        self.rm = RuntimeManager45()
-        self.rm.initialize()
+        # Runtime bootstrap
+        try:
+            self.rm = RuntimeManager45()
+            self.rm.initialize()
+        except Exception as exc:
+            print(f"[AI LOOP] Runtime init failed: {exc}")
+            raise
 
         self.observer = Observer()
         self.rules = self._load_rules()
