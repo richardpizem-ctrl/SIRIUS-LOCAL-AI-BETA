@@ -24,18 +24,23 @@ class SiriusVoice45:
     """
 
     def __init__(self):
-        self.safe_mode = False
-        self.degraded_mode = False
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
+        # ----------------------------------------------------
         # Runtime bootstrap
+        # ----------------------------------------------------
         try:
             self.runtime = RuntimeManager45()
             self.runtime.initialize()
         except Exception as exc:
             self.degraded_mode = True
             print(f"[VOICE] Runtime init failed: {exc}")
+            raise
 
+        # ----------------------------------------------------
         # Plugins
+        # ----------------------------------------------------
         try:
             self.plugins = PluginLoader45(self.runtime)
             self.plugins.load_all()
@@ -43,7 +48,9 @@ class SiriusVoice45:
             self.degraded_mode = True
             self.runtime.logger.error(f"[VOICE] Plugin load error: {exc}")
 
+        # ----------------------------------------------------
         # NL Router
+        # ----------------------------------------------------
         try:
             self.router = NaturalLanguageRouter45(self.runtime, self.plugins)
             self.router.initialize()
@@ -51,7 +58,9 @@ class SiriusVoice45:
             self.degraded_mode = True
             self.runtime.logger.error(f"[VOICE] NL Router init error: {exc}")
 
+        # ----------------------------------------------------
         # Speech Recognition
+        # ----------------------------------------------------
         try:
             self.recognizer = sr.Recognizer()
             self.microphone = sr.Microphone()
@@ -64,7 +73,7 @@ class SiriusVoice45:
     # --------------------------------------------------------
     # SPEECH RECOGNITION (4.5.0 PRO)
     # --------------------------------------------------------
-    def listen(self):
+    def listen(self) -> str | None:
         """Listen to microphone and return recognized text."""
         if self.safe_mode:
             return None
@@ -95,7 +104,7 @@ class SiriusVoice45:
     # --------------------------------------------------------
     # PROCESS COMMAND (4.5.0 PRO)
     # --------------------------------------------------------
-    def process(self, text):
+    def process(self, text: str | None) -> None:
         """Send recognized text to NL Router 4.5."""
         if not text:
             return
@@ -114,7 +123,7 @@ class SiriusVoice45:
     # --------------------------------------------------------
     # MAIN LOOP (4.5.0 PRO)
     # --------------------------------------------------------
-    def run(self):
+    def run(self) -> None:
         """Continuous voice listening loop."""
         header = "SIRIUS Voice Control — active (v4.5.0 PRO)"
         if self.safe_mode:
@@ -140,10 +149,10 @@ class SiriusVoice45:
     # --------------------------------------------------------
     # SAFE-MODE CONTROL
     # --------------------------------------------------------
-    def enter_safe_mode(self):
+    def enter_safe_mode(self) -> None:
         self.safe_mode = True
 
-    def exit_safe_mode(self):
+    def exit_safe_mode(self) -> None:
         self.safe_mode = False
 
 
