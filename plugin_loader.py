@@ -26,18 +26,18 @@ class PluginLoader45:
 
     def __init__(self, runtime_manager):
         self.rm = runtime_manager
-        self.plugins = {}
+        self.plugins: dict[str, object] = {}
         self.plugin_dir = "plugins"
 
-        self.safe_mode = False
-        self.degraded_mode = False
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
         self.rm.logger.info("PluginLoader initialized (v4.5.0 PRO)")
 
     # --------------------------------------------------------
     # MAIN LOADER (4.5.0 PRO)
     # --------------------------------------------------------
-    def load_all(self):
+    def load_all(self) -> None:
         """Load all plugins from /plugins directory."""
         if self.safe_mode:
             self.rm.logger.warning("PluginLoader in SAFE MODE — skipping plugin load")
@@ -86,7 +86,7 @@ class PluginLoader45:
     # --------------------------------------------------------
     # MANIFEST LOADING (4.5.0 PRO)
     # --------------------------------------------------------
-    def _load_manifest(self, path):
+    def _load_manifest(self, path: str) -> dict:
         """Load and parse manifest.json."""
         try:
             with open(path, "r", encoding="utf-8") as f:
@@ -98,7 +98,7 @@ class PluginLoader45:
     # --------------------------------------------------------
     # MANIFEST VALIDATION (4.5.0 PRO)
     # --------------------------------------------------------
-    def _validate_manifest(self, manifest, folder):
+    def _validate_manifest(self, manifest: dict, folder: str) -> bool:
         """Validate manifest.json according to Phase‑5 rules."""
         required = ["name", "version", "author", "entry"]
 
@@ -126,7 +126,7 @@ class PluginLoader45:
     # --------------------------------------------------------
     # DYNAMIC MODULE IMPORT (4.5.0 PRO)
     # --------------------------------------------------------
-    def _load_module(self, folder):
+    def _load_module(self, folder: str):
         """Import plugin module dynamically (sandboxed)."""
         try:
             module_name = f"plugins.{folder}.plugin"
@@ -138,7 +138,7 @@ class PluginLoader45:
     # --------------------------------------------------------
     # PLUGIN REGISTRATION (4.5.0 PRO)
     # --------------------------------------------------------
-    def _register_plugin(self, plugin, manifest):
+    def _register_plugin(self, plugin, manifest: dict) -> None:
         """Register plugin capabilities into RuntimeManager45."""
 
         # NL commands
@@ -188,8 +188,8 @@ class PluginLoader45:
     # --------------------------------------------------------
     # SAFE-MODE CONTROL
     # --------------------------------------------------------
-    def enter_safe_mode(self):
+    def enter_safe_mode(self) -> None:
         self.safe_mode = True
 
-    def exit_safe_mode(self):
+    def exit_safe_mode(self) -> None:
         self.safe_mode = False
