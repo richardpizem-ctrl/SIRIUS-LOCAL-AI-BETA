@@ -1,33 +1,124 @@
-# Baseline version of PluginManager
-# This file is a clean, unmodified reference copy.
-# Version: 4.5.0
+# Runtime4 Plugin Manager
+# Phase‑5 Ready Module
+# Version: 4.5.0 PRO
+
+from __future__ import annotations
+
 
 class PluginManager:
-    def __init__(self, logger):
-        self.logger = logger
-        self.plugins = {}
+    """
+    SIRIUS LOCAL AI — Plugin Manager (v4.5.0 PRO)
 
+    Responsibilities:
+        - Register and manage plugin lifecycle
+        - Deterministic, safe-mode compatible initialization/shutdown
+        - Phase‑5 ready (isolated, no exception leakage)
+        - Works with PluginBase and PluginLoader45
+    """
+
+    def __init__(self, logger=None):
+        self.logger = logger
+        self.plugins: dict[str, object] = {}
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
+
+        if self.logger:
+            self.logger.log("[PluginManager] Initialized (v4.5.0 PRO)")
+
+    # --------------------------------------------------------
+    # REGISTER PLUGIN
+    # --------------------------------------------------------
     def register(self, plugin) -> None:
         """
-        Baseline version:
-        Only defines the interface and expected behavior.
-        No active plugin registration logic is implemented here.
+        Register a plugin safely.
         """
-        self.logger.log(f"[Baseline] PluginManager.register() called for: {plugin.name}")
-        self.plugins[plugin.name] = plugin
+        try:
+            if self.safe_mode:
+                if self.logger:
+                    self.logger.log(f"[PluginManager] SAFE MODE → blocked register('{plugin.name}')")
+                return
 
+            self.plugins[plugin.name] = plugin
+
+            if self.logger:
+                self.logger.log(f"[PluginManager] Registered plugin: {plugin.name}")
+
+        except Exception as exc:
+            self.degraded_mode = True
+            if self.logger:
+                self.logger.log(f"[PluginManager] register() error: {exc}")
+
+    # --------------------------------------------------------
+    # INITIALIZE ALL PLUGINS
+    # --------------------------------------------------------
     def initialize_all(self) -> bool:
         """
-        Baseline version:
-        Always returns True without performing real initialization.
+        Initialize all registered plugins safely.
         """
-        self.logger.log("[Baseline] PluginManager.initialize_all() called.")
-        return True
+        try:
+            if self.safe_mode:
+                if self.logger:
+                    self.logger.log("[PluginManager] SAFE MODE → initialize_all() blocked")
+                return False
 
+            if self.logger:
+                self.logger.log("[PluginManager] Initializing all plugins")
+
+            for name, plugin in self.plugins.items():
+                ok = plugin.initialize()
+                if not ok:
+                    if self.logger:
+                        self.logger.log(f"[PluginManager] Plugin init failed: {name}")
+                    self.degraded_mode = True
+
+            return True
+
+        except Exception as exc:
+            self.degraded_mode = True
+            if self.logger:
+                self.logger.log(f"[PluginManager] initialize_all() error: {exc}")
+            return False
+
+    # --------------------------------------------------------
+    # SHUTDOWN ALL PLUGINS
+    # --------------------------------------------------------
     def shutdown_all(self) -> bool:
         """
-        Baseline version:
-        Always returns True without performing real shutdown.
+        Shutdown all registered plugins safely.
         """
-        self.logger.log("[Baseline] PluginManager.shutdown_all() called.")
-        return True
+        try:
+            if self.safe_mode:
+                if self.logger:
+                    self.logger.log("[PluginManager] SAFE MODE → shutdown_all() blocked")
+                return False
+
+            if self.logger:
+                self.logger.log("[PluginManager] Shutting down all plugins")
+
+            for name, plugin in self.plugins.items():
+                ok = plugin.shutdown()
+                if not ok:
+                    if self.logger:
+                        self.logger.log(f"[PluginManager] Plugin shutdown failed: {name}")
+                    self.degraded_mode = True
+
+            return True
+
+        except Exception as exc:
+            self.degraded_mode = True
+            if self.logger:
+                self.logger.log(f"[PluginManager] shutdown_all() error: {exc}")
+            return False
+
+    # --------------------------------------------------------
+    # SAFE-MODE CONTROL
+    # --------------------------------------------------------
+    def enter_safe_mode(self):
+        self.safe_mode = True
+        if self.logger:
+            self.logger.log("[PluginManager] SAFE MODE enabled")
+
+    def exit_safe_mode(self):
+        self.safe_mode = False
+        if self.logger:
+            self.logger.log("[PluginManager] SAFE MODE disabled")
