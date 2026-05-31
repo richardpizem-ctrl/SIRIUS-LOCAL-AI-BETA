@@ -30,10 +30,12 @@ class SiriusTray45:
     """
 
     def __init__(self):
-        self.safe_mode = False
-        self.degraded_mode = False
+        self.safe_mode: bool = False
+        self.degraded_mode: bool = False
 
+        # ----------------------------------------------------
         # Runtime bootstrap
+        # ----------------------------------------------------
         try:
             self.rm = RuntimeManager45()
             self.rm.initialize()
@@ -41,8 +43,12 @@ class SiriusTray45:
         except Exception as exc:
             self.degraded_mode = True
             print(f"[TRAY] Initialization failed: {exc}")
+            # tray can still run in degraded mode
+            self.rm = None
 
+        # ----------------------------------------------------
         # Tray icon
+        # ----------------------------------------------------
         self.icon = pystray.Icon(
             "SIRIUS",
             self._create_icon(),
@@ -77,43 +83,51 @@ class SiriusTray45:
     def open_gui(self, icon, item):
         """Launch GUI using python (sandboxed)."""
         if self.safe_mode:
-            self.rm.logger.warning("GUI launch blocked: SAFE MODE")
+            if self.rm:
+                self.rm.logger.warning("GUI launch blocked: SAFE MODE")
             return
 
         try:
             python = sys.executable
             gui_path = pathlib.Path(__file__).parent / "gui_4_5.py"
             subprocess.Popen([python, str(gui_path)])
-            self.rm.logger.info("GUI launched from tray")
+            if self.rm:
+                self.rm.logger.info("GUI launched from tray")
         except Exception as e:
             self.degraded_mode = True
-            self.rm.logger.error(f"Tray GUI launch error: {e}")
+            if self.rm:
+                self.rm.logger.error(f"Tray GUI launch error: {e}")
 
     def restart_sirius(self, icon, item):
         """Restart entire SIRIUS runtime safely."""
         if self.safe_mode:
-            self.rm.logger.warning("Restart blocked: SAFE MODE")
+            if self.rm:
+                self.rm.logger.warning("Restart blocked: SAFE MODE")
             return
 
         try:
             python = sys.executable
             sirius_path = pathlib.Path(__file__).parent / "sirius_4_5.py"
             subprocess.Popen([python, str(sirius_path)])
-            self.rm.logger.info("SIRIUS restarted from tray")
+            if self.rm:
+                self.rm.logger.info("SIRIUS restarted from tray")
             os._exit(0)
         except Exception as e:
             self.degraded_mode = True
-            self.rm.logger.error(f"Tray restart error: {e}")
+            if self.rm:
+                self.rm.logger.error(f"Tray restart error: {e}")
 
     def toggle_safe_mode(self, icon, item):
         """Toggle safe mode."""
         self.safe_mode = not self.safe_mode
         state = "ON" if self.safe_mode else "OFF"
-        self.rm.logger.info(f"Tray safe mode toggled → {state}")
+        if self.rm:
+            self.rm.logger.info(f"Tray safe mode toggled → {state}")
 
     def exit_app(self, icon, item):
         """Stop tray icon."""
-        self.rm.logger.info("Tray exit requested")
+        if self.rm:
+            self.rm.logger.info("Tray exit requested")
         icon.stop()
 
     # --------------------------------------------------------
@@ -127,7 +141,8 @@ class SiriusTray45:
         elif self.degraded_mode:
             header += " [DEGRADED MODE]"
 
-        self.rm.logger.info(header)
+        if self.rm:
+            self.rm.logger.info(header)
 
         threading.Thread(target=self.icon.run, daemon=True).start()
 
