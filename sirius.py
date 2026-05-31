@@ -5,22 +5,27 @@
 from __future__ import annotations
 
 import sys
+
+# Runtime 4.5 line
 from runtime.cli_4_5 import SiriusCLI45
 from runtime.runtime_manager_4_5 import RuntimeManager45
 
-# NEW: Runtime 5.x System Agent
-from runtime5 import SystemAgent5
+# Runtime 5.1 line (optional mode)
+from runtime5_cli import Runtime5CLI
 
 
 # ============================================================
 # MAIN ENTRY (v4.5.0 PRO)
 # ============================================================
 def main():
-    # Optional: Runtime5 mode
+    # --------------------------------------------------------
+    # OPTIONAL: Runtime 5.1 MODE
+    # --------------------------------------------------------
     if "--runtime5" in sys.argv:
-        agent = SystemAgent5()
-        print("SIRIUS 5.x – SystemAgent5 Mode (via sirius_4_5.py)")
+        print("SIRIUS LOCAL AI – Runtime 5.1 MODE")
         print("Type 'exit' to quit.\n")
+
+        cli5 = Runtime5CLI()
 
         try:
             while True:
@@ -28,30 +33,23 @@ def main():
                 if text.strip().lower() in ("exit", "quit"):
                     break
 
-                response = agent.handle_request(text)
+                # Runtime5 CLI handles commands internally
+                cli5.run(["runtime5", text])
 
-                print("\n=== INPUT ===")
-                print(response["input"])
+        except KeyboardInterrupt:
+            print("\n[Runtime5] Shutdown requested.")
 
-                print("\n=== REASONING ===")
-                print(response["reasoning"])
+        return  # exit after Runtime5 mode
 
-                print("\n=== WORKFLOW ===")
-                print(response["workflow"])
-                print("\n")
-
-        finally:
-            # Ensure proper shutdown of Runtime5
-            agent.shutdown()
-
-        return  # exit after runtime5 mode
-
-    # Default: Runtime 4.5.0 PRO
+    # --------------------------------------------------------
+    # DEFAULT: Runtime 4.5.0 PRO
+    # --------------------------------------------------------
     rm = RuntimeManager45()
 
     safe_mode = False
     degraded_mode = False
 
+    # Runtime initialization
     try:
         rm.initialize()
         rm.logger.info("SIRIUS LOCAL AI – Entry point started (v4.5.0 PRO)")
@@ -59,7 +57,7 @@ def main():
         degraded_mode = True
         print(f"[ENTRY] Runtime initialization failed: {exc}")
 
-    # Start CLI (safe-mode aware)
+    # CLI startup
     try:
         cli = SiriusCLI45()
         if safe_mode:
