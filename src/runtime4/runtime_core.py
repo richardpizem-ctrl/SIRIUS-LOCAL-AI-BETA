@@ -37,6 +37,12 @@ from service_manager_engine_4_1 import ServiceManagerEngine41
 from education_engine_4_1 import EducationEngine41
 from system_agent_4_1 import SystemAgent41
 
+# -------------------------------------------------------------------------
+# RUNTIME4 ORCHESTRATOR – STATIC IMPORT
+# -------------------------------------------------------------------------
+
+from runtime4.runtime_manager.runtime_manager45 import RuntimeManager45
+
 
 class RuntimeCore45:
     """
@@ -85,6 +91,8 @@ class RuntimeCore45:
         integrity_hash=None,
         crash_analyzer=None,
         repair_suggestions=None,
+        # Runtime4 orchestrator (Task/Service/Health pipeline)
+        runtime_manager: Optional[RuntimeManager45] = None,
     ):
         # Core subsystems
         self.scheduler = scheduler
@@ -123,6 +131,9 @@ class RuntimeCore45:
         self.integrity_hash = integrity_hash
         self.crash_analyzer = crash_analyzer
         self.repair_suggestions = repair_suggestions
+
+        # Runtime4 orchestrator
+        self.runtime_manager: Optional[RuntimeManager45] = runtime_manager
 
         # System Intelligence Layer 4.1
         self.health_engine_41 = SystemHealthEngine41()
@@ -221,6 +232,11 @@ class RuntimeCore45:
             self._init_reasoning()
             self._init_automation()
             self._init_diagnostics()
+
+            # Spusti RuntimeManager45, ak je prítomný
+            if self.runtime_manager is not None:
+                self.runtime_manager.start_runtime()
+
             self._initialized = True
             return {"status": "initialized", "degraded_mode": self.degraded_mode, "version": "4.5.0"}
         except Exception as exc:
@@ -387,3 +403,24 @@ class RuntimeCore45:
                 })
 
         return actions
+
+    # ---------------------------------------------------------------------
+    # RUNTIME STEP – DIAGNOSTICS + RUNTIME MANAGER TICK
+    # ---------------------------------------------------------------------
+    def runtime_step(self, identity: str = "OWNER") -> Dict[str, Any]:
+        """
+        One deterministic runtime step:
+        - runs full diagnostics (System Intelligence Layer 4.1)
+        - runs RuntimeManager45.tick() if available
+        """
+        diag = self.run_full_diagnostics(identity=identity)
+
+        if self.runtime_manager is not None:
+            self.runtime_manager.tick()
+
+        return {
+            "status": "ok",
+            "diagnostics": diag,
+            "degraded_mode": self.degraded_mode,
+            "version": "4.5.0",
+        }
