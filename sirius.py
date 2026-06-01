@@ -1,6 +1,26 @@
-# sirius_4_5.py
+# ============================================================
+# PATH BOOTSTRAP (musí byť úplne hore, pred všetkými importmi)
+# ============================================================
+import os
+import sys
+
+# Absolútna cesta k priečinku, kde leží tento štartovací skript
+root_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Pridaj root do sys.path
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
+
+# Pridaj src/ ak existuje
+src_dir = os.path.join(root_dir, "src")
+if os.path.exists(src_dir) and src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
+
+# ============================================================
 # SIRIUS LOCAL AI – Main Entry Point (v4.5.0 PRO)
 # Deterministic, safe-mode compatible bootstrap (Phase‑5 ready)
+# ============================================================
 
 from __future__ import annotations
 
