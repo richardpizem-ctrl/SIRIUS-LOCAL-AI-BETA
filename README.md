@@ -365,3 +365,22 @@ Envoy will allow SIRIUS to access external information **without compromising de
 > pipeline, and integration rules for all 5.x modules.  
 >  
 > For accurate and up‑to‑date information, please refer to **README 5.xx**.
+## ⚠️ IMPORTANT NOTICE (For Anyone Downloading This Project)
+
+SIRIUS LOCAL AI is my personal research project.
+It is NOT a ready-to-run product.
+
+If you want to run it, you must configure the following on your own:
+- correct Python version
+- correct folder structure identical to mine
+- PATH bootstrap
+- Runtime 4.5 / 5.x modules
+- missing configuration files
+- identity rules and behavior rules
+- environment-specific settings
+
+This repository is provided AS-IS.
+No support is provided.
+No guarantees.
+No troubleshooting.
+🔚 END OF README
