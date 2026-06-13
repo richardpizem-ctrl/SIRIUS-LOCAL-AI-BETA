@@ -43,13 +43,42 @@ All modules operate offline with strict safety boundaries, deterministic behavio
 Python 3.12 is **not supported** due to library incompatibilities.
 
 ### 2. Install required Python packages
-pip install watchdog psutil dearpygui pyaudio speechrecognition pyttsx3 colorama 
+```
+pip install watchdog psutil dearpygui pyaudio speechrecognition pyttsx3 colorama
+```
+
 ### 3. Clone the repository
-git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA 
+```
+git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA
+```
+
 ### 4. Open the project in VS Code or any terminal
 
 ### 5. Run the main entrypoint
-python sirius.py 
+```
+python sirius.py
+```
+
+---
+
+# ⚠️ Important Note — SIRIUS runs through CLI
+
+SIRIUS LOCAL AI is executed **via the command line (CLI)**.  
+The runtime does not start automatically through a graphical launcher unless the optional UI module is enabled.
+
+Running through CLI ensures:
+
+- correct initialization of Runtime 5.x  
+- proper loading of the Knowledge Graph  
+- activation of System Agent 5.0  
+- deterministic workflow routing  
+- correct plugin and capability loading  
+- safe Envoy Bridge Layer initialization  
+
+Using the CLI is the **official and recommended method** for all developers and testers.
+
+---
+
 ### 6. Optional: run individual modules for testing  
 (runtime, plugins, GUI, workflows, KG, security, system agent, UI automation)
 
