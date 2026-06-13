@@ -268,5 +268,28 @@ Installers for SIRIUS Runtime 5.x will be released **after the final GAMA 5.x mi
 - Unified Runtime 5.x  
 
 ---
+# 📦 Release Asset Notice (Runtime 5.2.0 PRO)
+
+This release includes the official build:
+
+### ✔ **SIRIUS-LOCAL-AI-BETA.zip**  
+A complete Runtime 5.2.0 PRO package containing:
+
+- Runtime 5.x modules  
+- ENVOY Level 8 (final version)  
+- TRIAZ pipeline  
+- WorkflowEngine5  
+- ReasoningEngine5 (stabilized version)  
+- Knowledge Graph fixes  
+- Logging & error-handling improvements  
+- Full documentation (README, INSTALLATION, ROADMAP, RELEASE NOTES, etc.)
+
+SHA256 signature:
+
+```
+523a2a4e3e63594e064a44a2a352657ce26471f2dc2248da6a5580670aa50f6c
+```
+
+The ZIP file is attached directly in GitHub Releases as the **primary build** of this version.
 
 # 🏁 End of README_v5.md
