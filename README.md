@@ -191,5 +191,3 @@ MIT License.
 Pull requests are welcome.
 
 # 🔚 END OF README
-
-
