@@ -1,18 +1,18 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.0.0 UNIFIED)
+# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.3.0 UNIFIED)
 
-This document defines the performance model, optimization rules, and runtime guarantees of the **Unified Runtime 5.0** architecture.
+This document defines the performance model, optimization rules, and runtime guarantees of the **Unified Runtime 5.3** architecture.
 
-Version **5.0.0 UNIFIED** expands the original 4.x performance rules with:
+Version **5.3.0 UNIFIED** expands the original 5.0 rules with:
 
-- **AITE 5.0 (faster multimodal semantic triage, unified PC/Mobile)**  
-- **Reasoning Engine 5.0 (bounded deterministic reasoning, unified caching)**  
-- **Workflow Engine 5.0 (constant‑time transitions, cross‑platform safety)**  
-- **Knowledge Packs 5.0 (indexed semantic lookups, unified pack linking)**  
-- **UI Automation Engine 5.0 (deterministic OS automation, unified fallback)**  
-- **System Agent 5.0 (identity‑aware, constant‑time validation)**  
-- **Security Family 5.0 (Identity Engine 3.0, hardened identity checks)**  
-- **System Intelligence Layer 5.0 (faster diagnostics, bounded system scans)**  
-- **Mobile Runtime 5.0 (optimized mobile execution)**  
+- **AITE 5.3 (faster multimodal semantic triage, unified PC/Mobile)**  
+- **Workflow Engine 5.3 (constant‑time transitions, KG‑aware routing)**  
+- **Knowledge Graph Runtime 1.x (indexed entity‑relation reasoning)**  
+- **System Agent 5 (constant‑time identity validation)**  
+- **Security Family 5.x (Identity Engine 3.0, hardened checks)**  
+- **Self‑Repair Layer 5.x (bounded diagnostics, safe fallback)**  
+- **System Intelligence Layer 5.3 (cached system context)**  
+- **Mobile Runtime 5.3 (optimized mobile execution)**  
+- **UI Automation Engine 5.0 (deterministic fallback, unified routing)**  
 
 All processing is fully local; no data leaves the user's device.
 
@@ -28,19 +28,19 @@ All processing is fully local; no data leaves the user's device.
 - minimal overhead in all operations  
 - plugin execution must follow strict performance rules  
 - SCHOOLWORK workflows must remain instant  
-- **Security Family 5.0 must not introduce latency or blocking behavior**  
+- **Security Family 5.x must not introduce latency or blocking behavior**  
 - identity checks must remain constant‑time  
 - STRANGER‑mode restrictions must be lightweight  
 - Self‑Repair Layer must run only in safe, controlled intervals  
 - Reasoning Engine must remain bounded and deterministic  
-- **System Agent 5.0 validation must be O(1)**  
+- **System Agent 5 validation must be O(1)**  
 - **UI Automation Engine 5.0 must not block the runtime**  
-- **System Intelligence Layer 5.0 must not perform deep scans during active workflows**  
+- **System Intelligence Layer 5.3 must not perform deep scans during active workflows**  
 - unified PC/Mobile performance must remain consistent  
 
 ---
 
-# 2. Runtime Guarantees (Runtime 5.0)
+# 2. Runtime Guarantees (Runtime 5.3)
 
 - no race conditions  
 - no parallel writes  
@@ -49,20 +49,20 @@ All processing is fully local; no data leaves the user's device.
 - no unpredictable system modifications  
 - event routing is O(1)  
 - plugin loading is cached and isolated  
-- AI Loop 5.0 uses safe interval scheduling  
+- AI Loop 5.x uses safe interval scheduling  
 - SCHOOLWORK Engine must not delay routing  
 - **identity checks remain O(1)**  
 - **time‑limit checks remain O(1)**  
 - Self‑Repair checks must be lightweight  
 - semantic routing must remain constant‑time  
-- **System Agent 5.0 must validate actions in constant time**  
+- **System Agent 5 must validate actions in constant time**  
 - **UI Automation Engine 5.0 fallback logic must be bounded**  
-- **System Intelligence Layer 5.0 must use cached system context**  
+- **System Intelligence Layer 5.3 must use cached system context**  
 - unified PC/Mobile execution must not introduce overhead  
 
 ---
 
-# 3. Filesystem Performance (FS‑AGENT 5.0)
+# 3. Filesystem Performance (FS‑AGENT 5.3)
 
 Rules:
 
@@ -73,16 +73,16 @@ Rules:
 - ensure rollback‑safe operations  
 - minimize disk I/O during workflows  
 - SCHOOLWORK files must route instantly  
-- **Security Family 5.0 must not slow down FS‑AGENT operations**  
+- **Security Family 5.x must not slow down FS‑AGENT operations**  
 - identity‑restricted file operations must remain O(1)  
 - semantic file classification must be lightweight  
-- **System Agent 5.0 must not add overhead to FS operations**  
-- **System Intelligence Layer 5.0 must not trigger deep scans during FS workflows**  
+- **System Agent 5 must not add overhead to FS operations**  
+- **System Intelligence Layer 5.3 must not trigger deep scans during FS workflows**  
 - unified PC/Mobile filesystem logic must remain fast  
 
 ---
 
-# 4. WIN‑CAP Performance (WIN‑CAP 5.0)
+# 4. WIN‑CAP Performance (WIN‑CAP 5.x)
 
 - window operations must be atomic  
 - app detection must be cached  
@@ -95,12 +95,12 @@ Rules:
 - STRANGER‑mode checks must be constant‑time  
 - automation operations must remain bounded  
 - **UI Automation Engine 5.0 must use cached capability lookups**  
-- **System Intelligence Layer 5.0 must avoid redundant system calls**  
+- **System Intelligence Layer 5.3 must avoid redundant system calls**  
 - unified PC/Mobile capability logic must remain consistent  
 
 ---
 
-# 5. UI Performance (GUI 5.0)
+# 5. UI Performance (GUI 5.3)
 
 - no heavy rendering  
 - animations must be lightweight and optional  
@@ -116,7 +116,7 @@ Rules:
 
 ---
 
-# 6. Workflow Performance (Workflow Engine 5.0)
+# 6. Workflow Performance (Workflow Engine 5.3)
 
 - workflows must not recompute state  
 - context memory must be minimal  
@@ -127,13 +127,13 @@ Rules:
 - SCHOOLWORK workflows must bypass restrictions without overhead  
 - **identity‑restricted workflows must remain lightweight**  
 - semantic transitions must be cached  
-- **System Agent 5.0 validation must not slow workflow transitions**  
-- **System Intelligence Layer 5.0 must not interrupt workflow execution**  
+- **System Agent 5 validation must not slow workflow transitions**  
+- **System Intelligence Layer 5.3 must not interrupt workflow execution**  
 - unified PC/Mobile workflows must remain consistent  
 
 ---
 
-# 7. AI Loop Performance (AI Loop 5.0)
+# 7. AI Loop Performance (AI Loop 5.x)
 
 - interval tasks must be short  
 - no blocking operations  
@@ -146,12 +146,12 @@ Rules:
 - Self‑Repair checks must run in low‑impact intervals  
 - Reasoning Engine hooks must be bounded  
 - **UI Automation Engine 5.0 must not run inside the AI Loop**  
-- **System Intelligence Layer 5.0 must run diagnostics only in low‑impact windows**  
+- **System Intelligence Layer 5.3 must run diagnostics only in low‑impact windows**  
 - unified PC/Mobile loop behavior must remain stable  
 
 ---
 
-# 8. Reasoning Engine Performance (v5.0.0)
+# 8. Reasoning Engine Performance (v5.3)
 
 - reasoning depth must be capped  
 - no unbounded chain‑of‑thought  
@@ -160,7 +160,7 @@ Rules:
 - no recursive rule expansion without limits  
 - SCHOOLWORK reasoning must remain instant  
 - identity‑restricted reasoning must not add overhead  
-- **AITE 5.0 must pre‑compute semantic tags for faster reasoning**  
+- **AITE 5.3 must pre‑compute semantic tags for faster reasoning**  
 - **Reasoning Engine 5.0 must use cached pack indexes**  
 - unified PC/Mobile reasoning must remain deterministic  
 
@@ -175,10 +175,10 @@ Rules:
 - avoid logging inside tight loops  
 - plugin logs must follow the same rules  
 - SCHOOLWORK events must not log academic content  
-- **Security Family 5.0 must not log identity data or behavior patterns**  
+- **Security Family 5.x must not log identity data or behavior patterns**  
 - Self‑Repair logs must be minimal and safe  
 - **UI Automation Engine 5.0 logs must be constant‑time**  
-- **System Intelligence Layer 5.0 logs must avoid repeated system queries**  
+- **System Intelligence Layer 5.3 logs must avoid repeated system queries**  
 
 ---
 
@@ -191,14 +191,14 @@ Rules:
 - AI tasks must be optimized  
 - plugins must not introduce heavy operations  
 - SCHOOLWORK‑aware plugins must remain instant  
-- **plugins must not bypass or slow down Security Family 5.0 checks**  
+- **plugins must not bypass or slow down Security Family 5.x checks**  
 - reasoning hooks must be bounded  
-- **System Agent 5.0 must validate plugin actions instantly**  
+- **System Agent 5 must validate plugin actions instantly**  
 - unified PC/Mobile plugin behavior must remain efficient  
 
 ---
 
-# 11. Security Family Performance (v5.0.0)
+# 11. Security Family Performance (v5.3)
 
 ### Identity Engine 3.0
 - identity classification must be constant‑time  
@@ -206,7 +206,7 @@ Rules:
 - no background training loops  
 - no scanning of large datasets  
 - STRANGER detection must be instant  
-- **System Agent 5.0 must enforce identity rules without overhead**
+- **System Agent 5 must enforce identity rules without overhead**
 
 ### Time‑Limits Engine v3
 - time checks must be O(1)  
@@ -215,7 +215,7 @@ Rules:
 - no repeated disk writes  
 - FAMILY mode transitions must be instant  
 
-### Schoolwork Engine 5.0
+### Schoolwork Engine 5.x
 - schoolwork detection must be lightweight  
 - no deep semantic loops  
 - bypass logic must be instant  
@@ -229,7 +229,7 @@ Rules:
 
 ---
 
-# 12. Self‑Repair & Health‑Check Layer (v5.0.0)
+# 12. Self‑Repair & Health‑Check Layer (v5.3)
 
 - integrity checks must be lightweight  
 - no deep scanning of source code  
@@ -238,14 +238,14 @@ Rules:
 - patch suggestions must be pre‑computed  
 - health reports must be instant  
 - no repeated disk I/O  
-- **System Agent 5.0 integrity must be checked in constant‑time**  
+- **System Agent 5 integrity must be checked in constant‑time**  
 - **UI Automation Engine 5.0 modules must be validated without overhead**  
-- **System Intelligence Layer 5.0 must avoid heavy diagnostics during workflows**  
+- **System Intelligence Layer 5.3 must avoid heavy diagnostics during workflows**  
 - unified PC/Mobile diagnostics must remain efficient  
 
 ---
 
 # Document Status
 
-**Version:** 5.0.0 UNIFIED  
-Performance rules are fully aligned with the Unified Runtime 5.0 architecture and prepared for future enhancements in v6.0.0.
+**Version:** 5.3.0 UNIFIED  
+Performance rules are fully aligned with the Unified Runtime 5.3 architecture and prepared for future enhancements in v6.0.0.
