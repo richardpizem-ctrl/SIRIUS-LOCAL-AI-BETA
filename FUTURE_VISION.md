@@ -1,29 +1,27 @@
-# 🌟 Future Vision (v5.0.0 and Beyond)
+# 🌟 Future Vision (v5.3.0 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, and fully local.
 
-This **v5.0.0 unified edition** reflects the transition from the 4.x architecture to the **Unified Runtime 5.0**, including:
+This **v5.3 unified edition** reflects the upgraded Runtime 5.x architecture, including:
 
-- unified PC + Mobile runtime  
-- deterministic multimodal reasoning  
-- AITE 5.0  
-- System Agent 5.0  
-- Security Family 5.0  
-- ENVOY 5.0  
+- Unified PC + Mobile runtime  
+- Deterministic multimodal reasoning  
+- AITE 5.3  
+- System Agent 5  
+- Security Family 5.x  
+- ENVOY Execution Layer 5  
+- ENVOY Permission Layer 5  
 - Self‑Repair Layer 5.x  
-- Knowledge Packs 5.0  
+- Knowledge Graph 5.x  
 - UI Automation Engine 5.0  
-- Intent & Planning Layer 5.0  
+- Intent & Planning Layer 5.x  
 
 This document describes:
 
-1. **What has already been delivered** (v1.0.0 → v2.0.0 → v3.0.0 → v4.0.0 → v4.5.0 → v5.0.0)  
-2. **What v4.0.0 introduced**  
-3. **What v4.3.0 added**  
-4. **What v4.4.0 expanded**  
-5. **What v4.5.0 stabilized**  
-6. **What v5.0.0 unified**  
-7. **Long‑term direction (v6.0.0 and beyond)**  
+1. **What has already been delivered** (v1.0.0 → v5.3.0)  
+2. **What each major version introduced**  
+3. **What Runtime 5.3 unifies and stabilizes**  
+4. **Long‑term direction (v6.0.0 and beyond)**  
 
 All features remain:
 
@@ -95,94 +93,15 @@ Version 4.0.0 introduced **semantic intelligence**, **self‑repair**, **offline
 
 Delivered:
 
-## 🧠 Reasoning Engine 4.0
-- step‑by‑step reasoning  
-- academic explanations  
-- code analysis  
-- semantic breakdown  
-- integration with AITE 4.0  
-- integration with Knowledge Packs 4.0  
-
----
-
-## 🧩 AITE 4.0 – Semantic Triage Engine
-- OCR  
-- semantic understanding  
-- subject detection  
-- difficulty scoring  
-- identity‑aware triage  
-- schoolwork engine integration  
-- ENVOY 4.0 integration  
-- reasoning‑aware routing  
-
----
-
-## 🔐 Security Family 4.0 (Identity Engine 2.0)
-- OWNER / FAMILY / STRANGER identity  
-- behavior‑based recognition  
-- time‑limits v2  
-- schoolwork engine  
-- safe‑mode for unknown users  
-- restricted mode for children  
-
----
-
-## 🧱 Self‑Repair & Health‑Check Layer
-- integrity checks  
-- corruption detection  
-- safe automatic repairs  
-- fallback states  
-- dependency validation  
-- system‑wide health reporting  
-
----
-
-## 📚 Knowledge Packs 4.0
-- offline knowledge expansions  
-- semantic linking  
-- subject‑aware routing  
-- reasoning‑ready datasets  
-
----
-
-## 🧭 Context Router 4.0
-- detects household tasks  
-- detects schoolwork  
-- detects device issues  
-- detects developer tasks  
-
----
-
-## 🧠 Schoolwork Engine 4.0
-- subject detection  
-- difficulty scoring  
-- reasoning integration  
-- schoolwork bypass  
-
----
-
-## 🧰 PC Automation Runtime 4.0
-- filesystem automation  
-- editor integration  
-- code workflows  
-- structured command parsing  
-
----
-
-## 🌐 SIRIUS ENVOY 4.0 – Safe External Retrieval
-ENVOY provides:
-
-- safe access to educational content  
-- safe health information  
-- definitions, facts, summaries  
-- dynamic Knowledge Pack updates  
-
-Pipeline:
-1. Envoy Client  
-2. Scraper Layer  
-3. Quarantine Sandbox  
-4. Validator  
-5. Safe Payload Delivery  
+## 🧠 Reasoning Engine 4.0  
+## 🧩 AITE 4.0 – Semantic Triage  
+## 🔐 Security Family 4.0  
+## 🧱 Self‑Repair & Health‑Check Layer  
+## 📚 Knowledge Packs 4.0  
+## 🧭 Context Router 4.0  
+## 🧠 Schoolwork Engine 4.0  
+## 🧰 PC Automation Runtime 4.0  
+## 🌐 SIRIUS ENVOY 4.0  
 
 ---
 
@@ -190,10 +109,10 @@ Pipeline:
 
 Delivered:
 
-### 🔍 UIParser 4.3  
-### 🔁 UIWorkflow 4.3  
-### 🖱️ UIActions 4.3  
-### 🪟 WinCapabilities 4.3  
+- UIParser 4.3  
+- UIWorkflow 4.3  
+- UIActions 4.3  
+- WinCapabilities 4.3  
 
 Purpose: deterministic, semantic UI automation.
 
@@ -227,80 +146,71 @@ Delivered:
 
 ---
 
-# 🧩 6. Version 5.0.0 – Unified Runtime Architecture (NEW)
+# 🧩 6. Version 5.0.0 – Unified Runtime Architecture
 
-Version 5.0.0 merges PC and Mobile logic into a **single deterministic runtime**.
+Version 5.0.0 merged PC and Mobile logic into a **single deterministic runtime**.
 
 Delivered:
 
-### 🧠 Reasoning Engine 5.0
-- unified PC/Mobile reasoning  
-- deterministic logic  
-- safer fallback behavior  
+- Reasoning Engine 5.0  
+- AITE 5.0  
+- SECURITY FAMILY 5.0  
+- System Agent 5.0  
+- UI Automation Engine 5.0  
+- Knowledge Packs 5.0  
+- ENVOY 5.0  
+- Self‑Repair Layer 5.x  
 
-### 🧩 AITE 5.0
-- multimodal semantic triage  
+---
+
+# 🚀 7. Version 5.3.0 – Stabilized Unified Runtime (NEW)
+
+Version 5.3.0 is the **most stable and optimized release** of the Unified Runtime 5.x architecture.
+
+Delivered:
+
+### 🧠 AITE 5.3  
+- improved multimodal triage  
 - deeper subject graph  
-- identity‑aware triage 4.0  
-- unified routing  
-
-### 🛡 SECURITY FAMILY 5.0
-- Identity Engine 3.0  
-- time‑limits v3  
-- STRANGER‑mode hardening  
-- OWNER‑level protection  
-
-### 🧰 System Agent 5.0
-- final gatekeeper  
-- deterministic validation  
-- unified PC/Mobile execution  
-
-### 🪟 UI Automation Engine 5.0
-- deterministic retries  
 - safer fallback logic  
-- unified PC/Mobile automation  
+- unified PC/Mobile routing  
 
-### 📦 Knowledge Packs 5.0
-- safer updates  
-- improved semantic linking  
+### 🔁 Workflow Engine 5.3  
+- deterministic transitions  
+- safer fallback states  
+- ENVOY workflow integration  
+- SCHOOLWORK workflow priority  
+
+### 🌐 ENVOY Execution + Permission Layers 5  
+- identity‑aware permission checks  
+- hardened quarantine  
+- safer scraping  
+- deterministic output  
+
+### 📚 Knowledge Graph 5.x  
+- stabilized semantic linking  
+- safer pack updates  
 - deterministic validation  
 
-### 🌐 ENVOY 5.0
-- hardened quarantine  
-- identity‑aware sanitization  
-- unified PC/Mobile behavior  
+### 🛡 System Agent 5  
+- unified PC/Mobile execution  
+- deterministic OS‑level validation  
+- final gatekeeper for all actions  
 
-### 🧱 Self‑Repair Layer 5.x
+### 🧱 Self‑Repair Layer 5.x  
 - unified diagnostics  
 - cross‑platform integrity checks  
 
----
-
-# 🧩 Intent & Planning Layer 5.0 – Autonomous Task Continuation
-
-Version 5.0 introduces a new high‑level intelligence layer:
-
-### Core Features
-- **Intent Detection 2.0**  
-- **Task Planner 2.0**  
-- **Context Memory 2.0**  
-- **Autonomous Step Execution 2.0**  
-- **State Graph Engine 2.0**  
-
-### Result
-SIRIUS becomes a **true operating‑level assistant** capable of:
-
-- understanding goals  
-- planning next steps  
-- continuing tasks autonomously  
-- tracking progress  
-- recovering from errors  
+### 🧠 Intent & Planning Layer 5.x  
+- improved goal detection  
+- safer autonomous continuation  
+- deterministic planning  
 
 ---
 
-# 🚀 7. Long‑Term Vision (Beyond v5.0.0)
+# 🚀 8. Long‑Term Vision (Beyond v5.3.0)
 
-## 🧠 6.0.0 – Self‑Repair Intelligence
+## 🧠 6.0.0 – Self‑Repair Intelligence 2.0
 - autonomous repair engine  
 - dependency healing  
 - runtime self‑diagnostics  
@@ -348,5 +258,5 @@ SIRIUS becomes a **true operating‑level assistant** capable of:
 
 # 📄 Document Status
 
-Current version: **v5.0.0 (Unified)**  
-Updated to reflect the **4.x → 5.0 transition** and the new **Unified Runtime Architecture**.
+Current version: **v5.3.0 (Unified)**  
+Updated to reflect the **5.0 → 5.3 transition** and the stabilized **Unified Runtime Architecture 5.x**.
