@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "5.0.0"
-date-released: 2026-06-01
+version: "5.3.0"
+date-released: 2026-06-20
 
 authors:
   - family-names: "Pizem"
@@ -15,52 +15,54 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 5.0"
-  - "runtime core 5.0 unified"
-  - "plugin system 5.0"
-  - "workflow engine 5.0"
+  - "intelligent runtime 5.3"
+  - "runtime core 5.3 unified"
+  - "plugin system 5.x"
+  - "workflow engine 5.3"
   - "reasoning engine 5.0"
-  - "semantic triage"
-  - "AITE 5.0"
-  - "knowledge packs 5.0"
+  - "semantic triage 5.3"
+  - "AITE 5.3"
+  - "knowledge graph 5.x"
   - "secure local processing"
   - "Windows automation"
   - "mobile automation"
   - "context-aware automation"
-  - "family safety"
+  - "family safety 5.x"
   - "identity engine 3.0"
-  - "SECURITY FAMILY 5.0"
-  - "schoolwork engine 5.0"
+  - "SECURITY FAMILY 5.x"
+  - "schoolwork engine 5.3"
   - "time-limits engine v3"
-  - "self-repair layer 5.x"
-  - "health-check engine 5.0"
-  - "PC automation runtime 5.0"
-  - "Mobile Runtime 5.0"
-  - "ENVOY 5.0"
+  - "self-repair layer 5.4"
+  - "health-check engine 5.3"
+  - "PC automation runtime 5.3"
+  - "Mobile Runtime 5.3"
+  - "ENVOY Execution Layer 5"
+  - "ENVOY Permission Layer 5"
   - "safe external retrieval"
   - "household assistant modules"
   - "semantic routing"
   - "deterministic execution"
   - "UI automation engine 5.0"
-  - "UIParser 5.0"
-  - "UIWorkflow 5.0"
-  - "UIActions 5.0"
-  - "WinCapabilities 5.0"
+  - "UIParser 5.x"
+  - "UIWorkflow 5.x"
+  - "UIActions 5.x"
+  - "WinCapabilities 5.x"
   - "semantic UI automation"
-  - "runtime 4.x to 5.0 transition"
+  - "runtime 4.x to 5.x transition"
 
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, and semantic automation.
-  Version 5.0.0 introduces the Unified Runtime Architecture, merging PC and Mobile
-  logic into a single deterministic, identity-aware, multimodal AI operating layer.
+  Version 5.3.0 introduces major stability improvements, including the ENVOY Execution
+  Layer 5, ENVOY Permission Layer 5, optimized Workflow Engine 5.3, stabilized Knowledge
+  Graph 5.x modules, and improved multimodal triage through AITE 5.3.
 
-  The Runtime Core 5.0 provides unified orchestration, deterministic execution,
-  capability-based access control, and identity-aware routing across all modules.
-  AITE 5.0 delivers multimodal semantic triage for text, images, OCR, documents,
-  code, and schoolwork, enabling instant and safe routing of all user inputs.
+  The Unified Runtime Architecture 5.x merges PC and Mobile logic into a single,
+  deterministic, identity-aware operating layer. The Runtime Core 5.3 provides unified
+  orchestration, deterministic execution, capability-based access control, and identity-
+  aware routing across all modules.
 
-  SECURITY FAMILY 5.0 expands identity and family safety layers with OWNER/FAMILY/
+  SECURITY FAMILY 5.x expands identity and family safety layers with OWNER/FAMILY/
   STRANGER identity levels, time-limits v3, safe-mode for unknown users, and a
   Schoolwork Engine ensuring unrestricted access to academic tasks.
 
@@ -68,7 +70,7 @@ abstract: >
   or external data transmission. All modules follow strict security boundaries,
   deterministic behavior, semantic understanding, and predictable execution rules.
 
-  Version 5.0.0 upgrades the entire runtime stack, including Workflow Engine 5.0,
-  Reasoning Engine 5.0, ENVOY 5.0, FS‑AGENT 5.0, CME‑MEM 5.0, System Agent 5.0,
-  and Password Vault 5.0. These upgrades prepare the architecture for the upcoming
-  Self‑Repair Layer in the 5.x → 6.0 transition.
+  Version 5.3.0 upgrades the entire runtime stack, including Workflow Engine 5.3,
+  Reasoning Engine 5.0, ENVOY 5, FS‑AGENT 5, CME‑MEM 5, System Agent 5, and Password
+  Vault 5.0. These upgrades prepare the architecture for the upcoming Self‑Repair
+  Layer in the 5.x → 6.0 transition.
