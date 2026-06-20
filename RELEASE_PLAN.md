@@ -1,183 +1,191 @@
-# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.0.0 UNIFIED  
-### The Largest Architectural Upgrade Since the Creation of SIRIUS
+# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.3.0 UNIFIED  
+### The Most Refined, Stable and Deterministic Runtime in the SIRIUS Ecosystem
 
-Version **5.0.0 UNIFIED** represents the most significant evolution of SIRIUS LOCAL AI to date.  
-It introduces a **unified PC + Mobile runtime**, **Knowledge Graph Reasoning**,  
-a redesigned **System Agent 5.0**, a new **Envoy 1.0 secure fetch module**,  
-and a fully upgraded **deterministic automation + reasoning stack**.
+Version **5.3.0 UNIFIED** builds directly on the foundations of **5.0.0 UNIFIED**,  
+bringing major improvements in performance, determinism, safety, multimodal triage,  
+workflow stability, and Knowledge Graph–based reasoning.
 
-This release builds directly on the foundations of **4.4.0 PRO** and **4.5.0 PRO**,  
-but elevates the entire system into a new generation of offline intelligence.
-
----
-
-# 🚀 What’s New in v5.0.0 UNIFIED
-
-## 🔥 1. Knowledge Graph Reasoning 1.0 (KG‑Reasoning)
-A completely new reasoning engine powered by a local knowledge graph.
-
-- deterministic inference paths  
-- entity‑relation graph traversal  
-- zero hallucination  
-- instant responses  
-- offline symbolic reasoning  
-- pack‑aware KG integration  
-
-This is the foundation of SIRIUS’s future offline intelligence.
+This release finalizes the **Unified Runtime 5.x Architecture**,  
+strengthens **System Agent 5**, expands **AITE 5.3**,  
+and introduces the most stable **Workflow Engine 5.3** to date.
 
 ---
 
-## 🔥 2. AITE 5.0 – Multimodal Semantic Triage (Unified)
-The fastest and most accurate AITE ever released.
+# 🚀 What’s New in v5.3.0 UNIFIED
 
-- unified PC/Mobile triage  
-- deeper semantic graph  
-- improved OCR 5.0  
-- identity‑aware triage 4.0  
-- SCHOOLWORK bypass 5.0  
-- KG‑aware semantic tagging  
-- deterministic routing  
+## 🔥 1. AITE 5.3 – Multimodal Semantic Triage (Faster, Deeper, Unified)
+The fastest and most precise AITE ever released.
 
----
-
-## 🔥 3. Reasoning Engine 5.0 – Unified Deterministic Reasoning
-A fully redesigned reasoning layer.
-
-- KG‑aware inference  
-- deterministic chain‑of‑thought  
-- bounded reasoning depth  
-- pack‑aware reasoning 3.0  
+- accelerated multimodal routing  
+- deeper semantic tagging  
+- improved OCR 5.3  
+- KG‑aware triage  
+- SCHOOLWORK bypass 5.x  
+- identity‑aware triage 5.x  
 - unified PC/Mobile behavior  
-- faster cached reasoning paths  
+- optimized mixed‑content detection  
 
 ---
 
-## 🔥 4. Workflow Engine 5.0 – KG‑Aware Multi‑Step Logic
-The most stable workflow engine in the project’s history.
+## 🔥 2. Workflow Engine 5.3 – KG‑Aware Multi‑Step Logic
+A major stability and performance upgrade.
 
 - O(1) transitions  
-- semantic caching 3.0  
-- identity‑aware gating  
 - deterministic fallback logic  
-- Envoy fetch as a workflow step  
+- KG‑enhanced workflow routing  
+- identity‑aware gating  
+- ENVOY 5 workflow steps (ASK → FETCH → QUARANTINE → DELIVER)  
 - unified PC/Mobile workflows  
+- improved error‑recovery logic  
 
 ---
 
-## 🔥 5. System Agent 5.0 – Safe Action Execution Layer
-The most important security upgrade in the 5.x generation.
+## 🔥 3. System Agent 5 – Hardened Safe Action Execution
+The core safety layer of the entire runtime.
 
 - validates every OS‑level action  
 - OWNER / FAMILY / STRANGER 3.0  
 - blocks unsafe operations  
 - guarantees reversibility 3.0  
 - mediates UI Automation + WIN‑CAP  
-- enforces Envoy security  
+- enforces ENVOY 5 permissions  
 - unified PC/Mobile execution  
+- constant‑time validation (O(1))  
 
-System Agent 5.0 is the **final gatekeeper** of the entire runtime.
-
----
-
-## 🔥 6. UI Automation Engine 5.0 – Deterministic OS Automation
-A major upgrade to the automation stack.
-
-- Win32 / UIA / WinRT routing  
-- KG‑enhanced UI matching  
-- deterministic fallback logic  
-- identity‑aware UI actions  
-- sandbox‑protected execution  
-- System Agent 5.0 validation  
-- unified PC/Mobile automation  
+System Agent 5 remains the **final gatekeeper** of SIRIUS.
 
 ---
 
-## 🔥 7. Knowledge Packs 5.0 – KG‑Ready Packs
-A complete redesign of the pack system.
+## 🔥 4. Knowledge Graph Runtime 1.x – Faster Symbolic Reasoning
+A refined KG‑Reasoning engine.
 
-- KG‑ready structure  
-- integrity validation 2.0  
-- faster lookups  
-- expanded school, home, and diagnostic packs  
-- deterministic pack linking  
+- faster entity‑relation lookups  
+- deterministic inference paths  
+- expanded pack‑aware reasoning  
+- zero hallucination  
+- instant symbolic responses  
+- unified PC/Mobile reasoning  
 
 ---
 
-## 🔥 8. ENVOY 5.0 – Secure External Retrieval (ASK → FETCH → QUARANTINE → DELIVER)
-The first official version of the secure fetch module.
+## 🔥 5. ENVOY 5 – Execution + Permission Layers
+ENVOY is now a two‑layer system:
 
-- permission‑based online fetch  
+### **Permission Layer**
+- identity‑aware fetch rules  
+- OWNER‑only high‑risk fetch  
+- FAMILY‑safe educational fetch  
+- STRANGER‑mode blocked  
+
+### **Execution Layer**
 - outbound‑only  
 - quarantine sandbox  
 - validator & policy filter  
-- identity‑aware restrictions  
-- System Agent 5.0 enforcement  
-- unified PC/Mobile behavior  
+- safe JSON payload delivery  
+- System Agent 5 enforcement  
 
 Offline mode remains **default**.
 
 ---
 
-## 🔥 9. Mobile Runtime 5.0 – Unified Mobile Execution Layer
-For the first time ever:
+## 🔥 6. UI Automation Engine 5.0 – Stabilized for 5.3
+A refined automation layer.
 
-- PC ↔ Mobile SIRIUS communication  
-- LAN Sync 2.0  
-- Mobile AITE  
-- Mobile Reasoning Engine  
-- Mobile UI Automation  
-- Mobile Envoy  
+- faster fuzzy matching  
+- deterministic fallback logic  
+- KG‑enhanced aliasing  
+- identity‑aware UI actions  
+- sandbox‑protected execution  
+- unified PC/Mobile automation  
 
 ---
 
-## 🔥 10. System Intelligence Layer 5.0 – Unified Diagnostics
-Upgraded system‑level intelligence:
+## 🔥 7. System Intelligence Layer 5.3 – Unified Diagnostics
+Improved system‑level intelligence:
 
 - hardware analysis  
 - driver checks  
 - service health  
 - process analysis  
 - optimization suggestions  
+- cached system context  
 - deterministic system workflows  
-- System Agent 5.0 enforcement  
+- System Agent 5 enforcement  
 
 ---
 
-# 🧩 Additional Improvements in 5.0.0 UNIFIED
+## 🔥 8. Mobile Runtime 5.3 – Unified Mobile Execution Layer
+The most stable mobile runtime to date.
 
-### ✔ Faster NL routing  
-### ✔ Improved identity checks (Security Family 5.0)  
-### ✔ More stable Self‑Repair Layer 5.x  
-### ✔ Optimized WIN‑CAP 5.0 capability boundaries  
+- faster workflows  
+- optimized filesystem logic  
+- Mobile AITE 5.3  
+- Mobile Reasoning Engine 5.0  
+- Mobile UI Automation  
+- Mobile ENVOY 5  
+
+---
+
+## 🔥 9. Security Family 5.x – Hardened Identity Engine 3.0
+Improved safety and identity logic.
+
+- faster identity classification  
+- stronger STRANGER‑mode  
+- SCHOOLWORK bypass optimized  
+- time‑limits v3 stabilized  
+- behavior‑based recognition improved  
+
+---
+
+## 🔥 10. Self‑Repair Layer 5.x – Faster, Safer, Smarter
+- faster integrity checks  
+- safer fallback states  
+- repair suggestions 2.0  
+- validation of System Agent 5  
+- validation of UI Automation Engine  
+- unified PC/Mobile diagnostics  
+
+---
+
+# 🧩 Additional Improvements in 5.3.0 UNIFIED
+
+### ✔ Faster NL routing (NL Router 5.3)  
+### ✔ Optimized WIN‑CAP 5.x capability boundaries  
 ### ✔ Expanded plugin API for KG‑Reasoning  
 ### ✔ Deterministic, short, safe logging  
 ### ✔ Unified PC/Mobile execution pipeline  
+### ✔ Faster SCHOOLWORK workflows  
+### ✔ O(1) identity checks in Security Family 5.x  
 
 ---
 
 # 📊 Compatibility
-- Fully compatible with Runtime 4.0 → 5.0  
+- Fully compatible with 5.0 → 5.3  
 - No breaking changes  
 - No migration required  
-- Mobile Runtime 5.0 is optional  
+- Mobile Runtime 5.3 is optional  
+- ENVOY 5 is optional (default OFF)  
 
 ---
 
-# 📌 Release Status (5.0.0 UNIFIED)
-**Version:** 5.0.0 UNIFIED  
+# 📌 Release Status (5.3.0 UNIFIED)
+**Version:** 5.3.0 UNIFIED  
 **Stage:** Stable  
 **Release Date:** 2026‑XX‑XX  
 
 ---
 
 # 🏁 Summary
-Version **5.0.0 UNIFIED** transforms SIRIUS LOCAL AI into:
+Version **5.3.0 UNIFIED** elevates SIRIUS LOCAL AI into a new era of:
 
-- a unified PC + Mobile runtime  
-- a deterministic reasoning engine powered by a Knowledge Graph  
-- a secure, identity‑aware OS automation framework  
-- a faster, more stable, more intelligent offline system  
-- a next‑generation local AI platform for Windows 11 and mobile devices  
+- faster, more stable deterministic execution  
+- deeper Knowledge Graph reasoning  
+- stronger identity‑aware safety  
+- faster multimodal triage  
+- unified PC + Mobile architecture  
+- secure ENVOY 5 fetch model  
+
+SIRIUS continues to be the most advanced **offline AI runtime** for Windows 11 and mobile devices.
 
 ---
 
