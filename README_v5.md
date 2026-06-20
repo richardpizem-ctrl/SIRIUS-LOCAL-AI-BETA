@@ -3,7 +3,7 @@
 ### Offline Knowledge Graph Reasoning • Deterministic OS Automation • Envoy Secure Fetch Module
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-5.x-blue">
+  <img src="https://img.shields.io/badge/version-5.3.0-blue">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
   <img src="https://img.shields.io/badge/runtime-Intelligent%20Runtime%205.x-purple">
@@ -12,24 +12,31 @@
 
 ---
 
-# 🧠 What’s New in SIRIUS Runtime 5.x  
-SIRIUS 5.x represents the **largest architectural leap in the project’s history**, introducing:
+# 🧠 What’s New in SIRIUS Runtime 5.3  
+Runtime **5.3** is the most stable and optimized release of the 5.x generation.  
+It introduces:
+
+- improved ENVOY layers  
+- faster workflow execution  
+- stabilized Knowledge Graph modules  
+- cleaner architecture  
+- preparation for Runtime 5.4 (Self‑Repair Layer)
 
 ---
 
-## ⭐ 1. Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
+# ⭐ 1. Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
 A fully offline reasoning engine powered by a local knowledge graph:
 
 - entity‑based reasoning  
 - relation‑aware inference  
 - deterministic logic paths  
-- zero hallucination risk  
+- zero hallucination  
 - instant responses  
-- no models required  
+- no online models required  
 
 ---
 
-## ⭐ 2. Envoy Module 1.0 — Secure Online Fetch (Permission‑Based)
+# ⭐ 2. ENVOY Module 1.0 — Secure Permission‑Based Fetch
 A **controlled, permission‑based** external fetch module:
 
 - ASK → FETCH → QUARANTINE → DELIVER  
@@ -39,11 +46,11 @@ A **controlled, permission‑based** external fetch module:
 - no local data ever sent out  
 - unified PC & Mobile behavior  
 
-Offline mode remains **default** and **untouched**.
+Offline mode remains **default**.
 
 ---
 
-## ⭐ 3. Unified Runtime 5.x Architecture
+# ⭐ 3. Unified Runtime 5.x Architecture
 A complete redesign of the runtime stack:
 
 - Knowledge Graph Layer  
@@ -52,11 +59,11 @@ A complete redesign of the runtime stack:
 - System Agent 5.0  
 - UI Automation Engine 5.0  
 - Mobile Runtime 5.0  
-- unified deterministic routing  
+- deterministic routing across all modules  
 
 ---
 
-## ⭐ 4. Mobile Sync 2.0
+# ⭐ 4. Mobile Sync 2.0
 Secure cross‑device communication:
 
 - PC ↔ Mobile SIRIUS  
@@ -68,80 +75,62 @@ Secure cross‑device communication:
 
 # 🧩 Architecture Diagram (Runtime 5.x)
 
-```
-┌───────────────────────────────┐  
-│      Knowledge Graph 5.x      │  
-│  (entities, relations, facts) │  
-└───────────────┬──────────────┘  
-                │  
-┌───────────────▼──────────────┐  
-│       Reasoning Engine 5.0    │  
-│        KG‑aware inference     │  
-└───────────────┬──────────────┘  
-                │  
-┌───────────────▼──────────────┐  
-│       Workflow Engine 5.0     │  
-│ KG‑routing • deterministic     │  
-└───────────────┬──────────────┘  
-                │  
-┌───────────────▼──────────────┐  
-│        System Agent 5.0       │  
-│ identity rules • OS validation │  
-└───────────────┬──────────────┘  
-                │  
-┌───────────────▼──────────────┐  
-│    UI Automation Engine 5.0   │  
-│ Win32/UIA/WinRT • deterministic│  
-└───────────────────────────────┘  
-```
-
+┌───────────────────────────────┐
+│      Knowledge Graph 5.x      │
+│  (entities, relations, facts) │
+└───────────────┬──────────────┘
+│
+┌───────────────▼──────────────┐
+│       Reasoning Engine 5.0    │
+│        KG‑aware inference     │
+└───────────────┬──────────────┘
+│
+┌───────────────▼──────────────┐
+│       Workflow Engine 5.0     │
+│ KG‑routing • deterministic     │
+└───────────────┬──────────────┘
+│
+┌───────────────▼──────────────┐
+│        System Agent 5.0       │
+│ identity rules • OS validation │
+└───────────────┬──────────────┘
+│
+┌───────────────▼──────────────┐
+│    UI Automation Engine 5.0   │
+│ Win32/UIA/WinRT • deterministic│
+└───────────────────────────────┘ 
 ---
 
 # 🛰 Envoy Module 1.0 — Secure Online Information Fetcher  
-**Status:** Introduced in Runtime 5.x  
+**Status:** Active in Runtime 5.3  
 **Purpose:** Provide optional, permission‑based access to online information while preserving the offline‑first architecture.
 
-Envoy is a **controlled external agent** that performs **one isolated fetch** only after explicit user approval.
-
-Offline mode remains **default**.
+Envoy performs **one isolated fetch** only after explicit user approval.
 
 ---
 
 ## 🔐 Envoy Security Flow (ASK → FETCH → QUARANTINE → DELIVER)
-
-```
 User Request
-      ↓
+↓
 ASK — explicit permission required
-      ↓
+↓
 FETCH — one isolated online request
-      ↓
+↓
 QUARANTINE — sanitize, validate, strip unsafe content
-      ↓
+↓
 DELIVER — safe data passed to Reasoning Engine
-```
 
 ### Core Principles
-- never runs automatically  
-- always requires explicit permission  
+- never automatic  
+- always permission‑based  
 - outbound‑only  
 - identity‑aware  
-- all data passes through quarantine  
+- all data sanitized  
 - System Agent 5.0 validates every step  
-- offline determinism preserved  
 
 ---
 
-## 🔁 PC ↔ Mobile Envoy Support (Runtime 5.x)
-- PC can fetch for Mobile  
-- Mobile can fetch for PC  
-- both use identical security flow  
-- LAN Sync 2.0 transfers only sanitized data  
-- System Agent 5.0 validates all operations  
-
----
-
-# 🧠 Integration of Envoy into Runtime 5.x
+# 🧠 Integration of Envoy into Runtime 5.3
 
 ### **Reasoning Engine 5.0**
 - accepts only sanitized data  
@@ -175,23 +164,7 @@ Envoy is:
 - identity‑aware  
 - deterministic  
 
-Offline mode remains the **default and primary mode**.
-
----
-
-# 🧠 Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
-
-### Capabilities:
-- relation‑aware inference  
-- entity graph traversal  
-- deterministic logic  
-- zero hallucination  
-- instant responses  
-
-### Example Queries:
-- “What is the relation between A and B?”  
-- “Which concepts are connected to X?”  
-- “What is the shortest path between these entities?”  
+Offline mode remains the **primary mode**.
 
 ---
 
@@ -236,7 +209,7 @@ Offline mode remains the **default and primary mode**.
 ---
 
 # 📘 Installation (Runtime 5.x)
-*(To be published after final 5.0.0 release)*
+*(To be published after final 5.x milestone)*
 
 ---
 
@@ -251,45 +224,30 @@ Pull requests are welcome.
 ---
 
 # 🧭 Roadmap (5.x → 6.x)
-- **5.0.0** — Knowledge Graph Reasoning  
-- **5.1.0** — Envoy 1.1 + Mobile Sync 2.1  
-- **5.2.0** — KG‑Enhanced UI Automation  
-- **6.0.0** — Self‑Repair Layer 2.0  
+- **5.3.0** — ENVOY improvements, KG stability, workflow optimizations  
+- **5.4.0** — Self‑Repair Layer 1.0  
+- **5.5.0** — Family Security v2  
+- **6.0.0** — Self‑Repair Layer 2.0 + Autonomous Diagnostics  
 
 ---
 
-# 📦 Installer Note  
-Installers for SIRIUS Runtime 5.x will be released **after the final GAMA 5.x milestone**, ensuring full compatibility with:
-
-- System Agent 5.0  
-- Envoy 1.0  
-- UI Automation Engine 5.0  
-- Knowledge Graph Runtime 1.0  
-- Unified Runtime 5.x  
-
----
-# 📦 Release Asset Notice (Runtime 5.2.0 PRO)
+# 📦 Release Asset Notice (Runtime 5.3.0)
 
 This release includes the official build:
 
-### ✔ **SIRIUS-LOCAL-AI-BETA.zip**  
-A complete Runtime 5.2.0 PRO package containing:
+### ✔ **SIRIUS-LOCAL-AI-5.3.zip**  
+A complete Runtime 5.3 package containing:
 
 - Runtime 5.x modules  
-- ENVOY Level 8 (final version)  
-- TRIAZ pipeline  
-- WorkflowEngine5  
-- ReasoningEngine5 (stabilized version)  
-- Knowledge Graph fixes  
+- ENVOY Execution Layer 5  
+- ENVOY Permission Layer 5  
+- WorkflowEngine5 (optimized)  
+- ReasoningEngine5 (stabilized)  
+- Knowledge Graph modules  
 - Logging & error-handling improvements  
 - Full documentation (README, INSTALLATION, ROADMAP, RELEASE NOTES, etc.)
 
 SHA256 signature:
-
-```
 523a2a4e3e63594e064a44a2a352657ce26471f2dc2248da6a5580670aa50f6c
-```
 
 The ZIP file is attached directly in GitHub Releases as the **primary build** of this version.
-
-# 🏁 End of README_v5.md
