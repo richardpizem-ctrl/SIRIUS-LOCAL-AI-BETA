@@ -1,66 +1,42 @@
-# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.0.0 UNIFIED  
-### The Largest Architectural Upgrade in Project History
+# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.3.0 UNIFIED
+### The Unified Runtime Matures — Faster, Safer, Deterministic
 
-Verzia **5.0.0 UNIFIED** predstavuje najväčší skok v histórii SIRIUS LOCAL AI.  
-Po prvýkrát sa celý runtime spája do **jednotnej PC + Mobile architektúry**,  
-pribúda **Knowledge Graph Reasoning**, **Envoy 1.0**, **System Agent 5.0**,  
-a kompletne prepracovaný **Unified Runtime 5.x Stack**.
-
----
-
-# 🚀 What’s New in v5.0.0 UNIFIED
-
-## 🔥 1. Knowledge Graph Reasoning 1.0 (KG‑Reasoning)
-Úplne nový reasoning engine založený na lokálnom znalostnom grafe.
-
-- reasoning bez modelov  
-- nulová latencia  
-- nulová halucinácia  
-- deterministické inference paths  
-- entity → relations → facts  
-- okamžité odpovede  
-
-Toto je základ budúceho **offline symbolického AI** v SIRIUS.
+Verzia **5.3.0 UNIFIED** predstavuje najstabilnejšiu a najvýkonnejšiu verziu SIRIUS LOCAL AI.  
+Nadväzuje na 5.0.0 UNIFIED, rozširuje Knowledge Graph Reasoning, zrýchľuje Workflow Engine,  
+posilňuje System Agent 5 a zavádza **AITE 5.3**, **Workflow Engine 5.3**,  
+**System Intelligence Layer 5.3**, **Mobile Runtime 5.3** a **ENVOY 5 (Execution + Permission Layers)**.
 
 ---
 
-## 🔥 2. AITE 5.0 – Multimodal Semantic Triage (Unified)
-Najrýchlejšia a najpresnejšia verzia AITE.
+# 🚀 What’s New in v5.3.0 UNIFIED
 
-- multimodálna triáž (text, obrázky, dokumenty, kód)  
-- hlbšia sémantika  
-- identity‑aware triage 4.0  
-- školské úlohy vždy bypassujú FAMILY obmedzenia  
-- jednotné správanie na PC aj Mobile  
-- integrácia s KG‑Reasoning  
+## 🔥 1. AITE 5.3 – Multimodal Semantic Triage (Faster, Unified)
+Najrýchlejšia verzia AITE v histórii projektu.
 
----
-
-## 🔥 3. Reasoning Engine 5.0 – Unified Deterministic Reasoning
-Kompletne prepracovaný reasoning layer.
-
-- KG‑aware inference  
-- deterministické chain‑of‑thought  
-- pack‑aware reasoning 3.0  
-- bounded reasoning depth  
-- offline academic solver  
+- zrýchlené multimodálne spracovanie  
+- lepšia detekcia školských úloh  
+- presnejšie sémantické tagovanie  
+- KG‑aware triage  
+- identity‑aware triage 5.x  
 - jednotné PC/Mobile správanie  
+- optimalizované OCR a mixed‑content routing  
 
 ---
 
-## 🔥 4. Workflow Engine 5.0 – KG‑Aware Deterministic Workflows
+## 🔥 2. Workflow Engine 5.3 – KG‑Aware Deterministic Workflows
 Najstabilnejší workflow engine doteraz.
 
-- KG‑routing  
 - O(1) transitions  
-- identity‑aware gating  
+- KG‑enhanced routing  
 - deterministic fallback logic  
-- Envoy fetch ako workflow step  
+- identity‑aware gating  
+- ENVOY workflow steps (ASK → FETCH → QUARANTINE → DELIVER)  
 - unified PC/Mobile workflows  
+- optimalizované pre Reasoning Engine 5.0  
 
 ---
 
-## 🔥 5. System Agent 5.0 – Safe Action Execution Layer
+## 🔥 3. System Agent 5 – Hardened Safe Action Execution
 Najdôležitejší bezpečnostný modul verzie 5.x.
 
 - validuje každý OS‑level príkaz  
@@ -68,64 +44,58 @@ Najdôležitejší bezpečnostný modul verzie 5.x.
 - blokuje nebezpečné operácie  
 - garantuje reverzibilitu 3.0  
 - integruje UI Automation + WIN‑CAP  
-- kontroluje Envoy fetch operácie  
+- kontroluje ENVOY fetch operácie  
 - jednotné PC/Mobile správanie  
+- konštantný čas validácie (O(1))  
 
-System Agent 5.0 je **finálny gatekeeper** celého runtime.
-
----
-
-## 🔥 6. UI Automation Engine 5.0 – Deterministic OS Automation
-Najväčší upgrade UI Automation od verzie 4.3.
-
-- Win32 / UIA / WinRT routing  
-- KG‑enhanced UI matching  
-- deterministické fallbacky  
-- identity‑aware UI actions  
-- sandbox‑protected execution  
-- System Agent 5.0 validácia  
-- jednotná PC/Mobile automatizácia  
+System Agent 5 je **finálny gatekeeper** celého runtime.
 
 ---
 
-## 🔥 7. Knowledge Packs 5.0 – KG‑Ready Packs
-Kompletne prepracované packy.
+## 🔥 4. Knowledge Graph Runtime 1.x – Faster Symbolic Reasoning
+Vylepšený KG‑Reasoning:
 
-- KG‑ready štruktúra  
-- integrity validation 2.0  
 - rýchlejšie lookupy  
-- rozšírené školské, domáce, diagnostické packy  
-- reasoning‑ready formát  
+- optimalizované entity‑relation indexy  
+- deterministické inference paths  
+- rozšírené pack‑aware reasoning  
+- okamžité odpovede bez modelov  
+- nulová halucinácia  
 
 ---
 
-## 🔥 8. ENVOY 5.0 – Secure External Retrieval (ASK → FETCH → QUARANTINE → DELIVER)
-Prvá verzia bezpečného fetch modulu.
+## 🔥 5. ENVOY 5 – Execution + Permission Layers
+ENVOY je teraz dvojvrstvový:
 
-- voliteľný, povolením riadený fetch  
+### **Permission Layer**
+- identity‑aware fetch rules  
+- OWNER‑only high‑risk fetch  
+- FAMILY‑safe educational fetch  
+- STRANGER‑mode blokovaný  
+
+### **Execution Layer**
 - outbound‑only  
-- karanténa + validácia  
-- identity‑aware bezpečnostný model  
-- System Agent 5.0 kontrola  
-- jednotné PC/Mobile správanie  
+- karanténa  
+- validácia  
+- sanitizácia  
+- bezpečný JSON payload  
 
 Offline režim zostáva **predvolený**.
 
 ---
 
-## 🔥 9. Mobile Runtime 5.0 – Unified Mobile Execution Layer
-Po prvýkrát v histórii SIRIUS:
+## 🔥 6. UI Automation Engine 5.0 – Stabilized for 5.3
+Vylepšenia pre 5.3:
 
-- PC ↔ Mobile SIRIUS komunikácia  
-- LAN Sync 2.0  
-- Mobile AITE  
-- Mobile Reasoning Engine  
-- Mobile UI Automation  
-- Mobile Envoy  
+- rýchlejšie fuzzy matching  
+- deterministické fallbacky  
+- KG‑enhanced UI aliasing  
+- System Agent 5 validácia  
+- jednotná PC/Mobile automatizácia  
 
 ---
 
-## 🔥 10. System Intelligence Layer 5.0 – Unified Diagnostics
+## 🔥 7. System Intelligence Layer 5.3 – Unified Diagnostics
 Vylepšené diagnostické moduly:
 
 - hardware analysis  
@@ -133,46 +103,84 @@ Vylepšené diagnostické moduly:
 - service health  
 - process analysis  
 - optimization suggestions  
+- cached system context  
 - deterministic system workflows  
-- System Agent 5.0 enforcement  
+- System Agent 5 enforcement  
 
 ---
 
-# 🧩 Additional Improvements in 5.0.0 UNIFIED
+## 🔥 8. Mobile Runtime 5.3 – Unified Mobile Execution Layer
+Najväčší upgrade mobilnej vetvy od 5.0:
 
-### ✔ Rýchlejší NL routing  
-### ✔ Vylepšené identity checks (Security Family 5.0)  
-### ✔ Stabilnejší Self‑Repair Layer 5.x  
-### ✔ Optimalizované WIN‑CAP 5.0 capability boundaries  
+- rýchlejšie workflowy  
+- optimalizované filesystem operácie  
+- Mobile AITE 5.3  
+- Mobile Reasoning Engine 5.0  
+- Mobile UI Automation  
+- Mobile ENVOY 5  
+
+---
+
+## 🔥 9. Security Family 5.x – Hardened Identity Engine 3.0
+Vylepšenia:
+
+- rýchlejšia identifikácia používateľa  
+- lepšie behaviorálne signály  
+- STRANGER‑mode hardening  
+- SCHOOLWORK bypass optimalizovaný  
+- časové limity v3 stabilizované  
+
+---
+
+## 🔥 10. Self‑Repair Layer 5.x – Faster, Safer, Smarter
+- rýchlejšie integrity checks  
+- bezpečné fallback states  
+- repair suggestions 2.0  
+- validácia UI Automation Engine  
+- validácia System Agent 5  
+- unified PC/Mobile diagnostics  
+
+---
+
+# 🧩 Additional Improvements in 5.3.0 UNIFIED
+
+### ✔ Rýchlejší NL routing (NL Router 5.3)  
+### ✔ Optimalizované WIN‑CAP 5.x capability boundaries  
 ### ✔ Vylepšené plugin API pre KG‑Reasoning  
 ### ✔ Rozšírené logovanie (deterministické, krátke, bezpečné)  
 ### ✔ Unified PC/Mobile execution pipeline  
+### ✔ Rýchlejšie SCHOOLWORK workflows  
+### ✔ O(1) identity checks v Security Family 5.x  
 
 ---
 
 # 📊 Compatibility
-- Plne kompatibilné s Runtime 4.0 → 5.0  
+- Plne kompatibilné s 5.0 → 5.3  
 - Žiadne breaking changes  
-- Žiadna migrácia nevyžadovaná  
-- Mobile Runtime 5.0 je voliteľný doplnok  
+- Mobile Runtime 5.3 je voliteľný doplnok  
+- ENVOY 5 je voliteľný, predvolene vypnutý  
 
 ---
 
-# 📌 Release Status (5.0.0 UNIFIED)
-**Version:** 5.0.0 UNIFIED  
+# 📌 Release Status (5.3.0 UNIFIED)
+**Version:** 5.3.0 UNIFIED  
 **Stage:** Stable  
 **Release Date:** 2026‑XX‑XX  
 
 ---
 
 # 🏁 Summary
-Verzia **5.0.0 UNIFIED** transformuje SIRIUS LOCAL AI na:
+Verzia **5.3.0 UNIFIED** posúva SIRIUS LOCAL AI na novú úroveň:
 
-- jednotný PC + Mobile runtime  
-- deterministický reasoning engine s Knowledge Graphom  
-- bezpečný, identity‑aware OS automation framework  
-- rýchlejší, presnejší a stabilnejší systém  
-- plne lokálny AI framework pre Windows 11 aj mobilné zariadenia  
+- rýchlejší, stabilnejší, deterministickejší runtime  
+- vylepšený Knowledge Graph Reasoning  
+- bezpečnejší System Agent 5  
+- rýchlejšie workflowy  
+- lepšia multimodálna triáž  
+- jednotná PC + Mobile architektúra  
+- bezpečný ENVOY 5 fetch model  
+
+SIRIUS sa stáva najpokročilejším **offline AI runtime** pre Windows 11 aj mobilné zariadenia.
 
 ---
 
