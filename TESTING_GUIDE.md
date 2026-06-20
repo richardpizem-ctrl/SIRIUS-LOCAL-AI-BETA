@@ -1,40 +1,105 @@
-# Q2) **System Intelligence Layer 5.3 Tests — UPDATED (v5.3.0 UNIFIED)**
+# 🧪 TESTING GUIDE — SIRIUS LOCAL AI (v5.3.0 UNIFIED)
 
-System Intelligence Layer 5.3 introduces **predictive OS‑state awareness**,  
-risk detection, KG‑aware context evaluation, degraded‑mode detection,  
-and unified PC/Mobile workflow routing.
+This document defines the **complete testing framework** for the Unified Runtime 5.3 architecture.  
+It replaces all previous 4.x and 5.0 testing rules with a **deterministic, system‑intelligent,  
+identity‑aware, KG‑aware, repair‑aware** testing model.
 
-These tests ensure that SIRIUS never executes workflows or OS‑level actions  
-in unsafe, unstable, degraded, or high‑risk system states.
+All tests must pass on:
+
+- Windows 11 (PC)
+- Mobile Runtime 5.3 (Android subsystem / mobile shell)
+- LAN Sync 2.0 environments
+- Offline mode (default)
+- Optional Envoy 5 mode (permission‑based)
+
+---
+
+# ⭐ 1. Testing Philosophy (Updated for 5.3)
+
+### Core principles:
+- **determinism over speed**
+- **identity‑aware behavior**
+- **predictive OS‑state awareness**
+- **KG‑aware semantic validation**
+- **repair‑aware execution**
+- **no unsafe OS actions**
+- **no workflows in degraded OS states**
+- **no bypassing System Agent 5**
+- **no bypassing System Intelligence Layer 5.3**
+- **no unbounded reasoning**
+- **no nondeterministic UI automation**
+
+All tests must confirm that SIRIUS behaves **identically** across PC + Mobile.
+
+---
+
+# ⭐ 2. Test Categories (v5.3)
+
+1. **System Intelligence Layer 5.3 Tests**  
+2. **System Agent 5 Tests**  
+3. **UI Automation Engine 5.3 Tests**  
+4. **Workflow Engine 5.3 Tests**  
+5. **AITE 5.3 Tests**  
+6. **Reasoning Engine 5.3 Tests**  
+7. **Knowledge Packs 5.3 Tests**  
+8. **Filesystem Agent 5.0 Tests**  
+9. **Security Family 5.x Tests**  
+10. **Envoy 5 Tests**  
+11. **Self‑Repair Layer 5.x Tests**  
+12. **Unified PC/Mobile Runtime Tests**  
+
+---
+
+# ⭐ Q1) **General Determinism Tests — REQUIRED FOR ALL MODULES**
+
+### Validate:
+- deterministic outputs across runs  
+- no nondeterministic branching  
+- no randomization  
+- no time‑dependent logic  
+- no OS‑dependent divergence  
+- no mobile‑only or PC‑only behavior  
+
+### Checklist:
+- same input → same output  
+- same workflow → same transitions  
+- same UI target → same resolution  
+- same KG query → same inference path  
+- same OS state → same safety decision  
+
+---
+
+# ⭐ Q2) **System Intelligence Layer 5.3 Tests — UPDATED**
+
+System Intelligence Layer 5.3 introduces predictive OS‑state awareness,  
+risk detection, degraded‑mode detection, and KG‑aware context evaluation.
 
 ### Validate:
 - OS health detection (PC + Mobile)
 - KG‑aware risk prediction
-- degraded‑mode detection (Self‑Repair Layer 5.x)
+- degraded‑mode detection
 - unsafe state prevention
 - workflow blocking in unsafe or degraded conditions
 - deterministic system‑state evaluation
-- integration with System Agent 5 (hardened)
+- integration with System Agent 5
 - identity‑aware system context routing
 - Envoy 5 permission influence on system state
 
 ### Checklist:
 - unsafe OS states must block workflows
 - degraded mode must block OS‑level actions
-- OWNER workflows still require SAFE OS conditions
-- FAMILY/STRANGER workflows must be restricted further
-- predictive risk detection must be deterministic
+- OWNER workflows require SAFE OS conditions
+- FAMILY/STRANGER workflows restricted under WARNING
 - fallback 3.1 must activate when risk is high
-- logs must include system‑state category (SAFE / WARNING / RISK / DEGRADED)
-- no workflow may bypass System Intelligence Layer
+- logs must include SAFE / WARNING / RISK / DEGRADED
 - KG‑Reasoning must validate system‑context consistency
-- Self‑Repair Layer must be triggered when integrity issues are detected
+- Self‑Repair Layer must trigger on integrity issues
 
 ---
 
-# Q3) **System Agent 5 Tests — UPDATED (v5.3.0 UNIFIED)**
+# ⭐ Q3) **System Agent 5 Tests — UPDATED**
 
-System Agent 5 is the hardened OS‑level safety gatekeeper for PC + Mobile.
+System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ### Validate:
 - identity gating 3.1
@@ -48,24 +113,19 @@ System Agent 5 is the hardened OS‑level safety gatekeeper for PC + Mobile.
 - Envoy 5 permission enforcement
 
 ### Checklist:
-- OWNER actions succeed only when OS state is SAFE
-- FAMILY actions restricted under WARNING
-- STRANGER actions blocked under all OS states
+- OWNER actions allowed only in SAFE state
+- FAMILY restricted under WARNING
+- STRANGER blocked always
 - unsafe OS actions must be rejected
-- degraded‑mode must block all OS actions
-- every system action must appear in System Agent 5 logs
-- no direct OS calls may bypass System Agent
-- reversibility must be confirmed before execution
-- fallback 3.1 must activate when OS denies an action
-- Envoy fetch must be blocked without ASK permission
-- repair‑aware validation must run before execution
+- degraded‑mode blocks all OS actions
+- all actions logged
+- no direct OS calls bypass System Agent
+- fallback 3.1 activates on denial
+- Envoy fetch blocked without ASK permission
 
 ---
 
-# Q4) **UI Automation Engine 5.3 Tests — UPDATED**
-
-UI Automation Engine 5.3 introduces deterministic OS automation 3.1  
-with KG‑enhanced UI matching, identity‑aware actions, and unified PC/Mobile behavior.
+# ⭐ Q4) **UI Automation Engine 5.3 Tests — UPDATED**
 
 ### Validate:
 - fuzzy matching 5.3
@@ -78,20 +138,18 @@ with KG‑enhanced UI matching, identity‑aware actions, and unified PC/Mobile 
 - degraded‑mode blocking
 
 ### Checklist:
-- all UI actions must route through System Agent 5
-- fallback 3.1 must activate deterministically
-- OWNER‑only UI actions must be enforced
-- FAMILY/STRANGER must be restricted
-- degraded‑mode must block UI actions
-- logs must include UI routing info
+- all UI actions route through System Agent 5
+- fallback 3.1 activates deterministically
+- OWNER‑only UI actions enforced
+- FAMILY/STRANGER restricted
+- degraded‑mode blocks UI actions
+- logs include UI routing info
 - no direct API calls from UIActions
-- KG‑Reasoning must validate ambiguous UI targets
+- KG‑Reasoning validates ambiguous UI targets
 
 ---
 
-# Q5) **Workflow Engine 5.3 Tests — UPDATED**
-
-Workflow Engine 5.3 introduces **system‑aware, identity‑aware, KG‑aware, repair‑aware workflows**.
+# ⭐ Q5) **Workflow Engine 5.3 Tests — UPDATED**
 
 ### Validate:
 - deterministic state transitions
@@ -104,27 +162,24 @@ Workflow Engine 5.3 introduces **system‑aware, identity‑aware, KG‑aware, r
 - semantic caching 3.1
 
 ### Checklist:
-- workflows must not execute OS actions directly
-- every OS‑level step must pass through System Agent 5
-- workflows must not run in unsafe or degraded OS states
-- SCHOOLWORK workflows must bypass restrictions safely
-- STRANGER workflows must be restricted
-- OWNER workflows must remain reversible
-- KG‑Reasoning must validate workflow context
-- Self‑Repair Layer must validate workflow integrity
+- workflows never execute OS actions directly
+- all OS steps pass through System Agent 5
+- workflows blocked in unsafe or degraded states
+- SCHOOLWORK workflows bypass restrictions safely
+- STRANGER workflows restricted
+- OWNER workflows reversible
+- KG‑Reasoning validates workflow context
+- Self‑Repair Layer validates workflow integrity
 
 ---
 
-# Q6) **AITE 5.3 Tests — UPDATED**
-
-AITE 5.3 improves semantic triage, identity‑aware routing, KG‑aware tagging,  
-and unified PC/Mobile system‑context awareness.
+# ⭐ Q6) **AITE 5.3 Tests — UPDATED**
 
 ### Validate:
 - faster OCR 5.3
 - improved semantic detection
 - identity‑aware triage 4.1
-- SCHOOLWORK bypass logic 5.x
+- SCHOOLWORK bypass 5.x
 - deterministic classification 3.1
 - system‑context‑aware routing
 - KG‑aware semantic tagging
@@ -132,16 +187,16 @@ and unified PC/Mobile system‑context awareness.
 
 ### Checklist:
 - triage must remain constant‑time
-- SCHOOLWORK detection must override restrictions
-- identity must influence routing
-- system state must influence routing
-- degraded mode must restrict routing
-- KG‑Reasoning must influence routing
+- SCHOOLWORK detection overrides restrictions
+- identity influences routing
+- system state influences routing
+- degraded mode restricts routing
+- KG‑Reasoning influences routing
 - deterministic results across runs
 
 ---
 
-# Q7) **Reasoning Engine 5.3 Tests — UPDATED**
+# ⭐ Q7) **Reasoning Engine 5.3 Tests — UPDATED**
 
 ### Validate:
 - bounded reasoning depth 3.1
@@ -157,14 +212,14 @@ and unified PC/Mobile system‑context awareness.
 - no unbounded reasoning
 - no recursive loops
 - deterministic results
-- SCHOOLWORK reasoning must remain instant
-- reasoning must adapt to OS state
-- reasoning must validate KG consistency
-- reasoning must detect degraded‑mode inconsistencies
+- SCHOOLWORK reasoning instant
+- reasoning adapts to OS state
+- KG consistency validated
+- degraded‑mode inconsistencies detected
 
 ---
 
-# Q8) **Knowledge Packs 5.3 Tests — UPDATED**
+# ⭐ Q8) **Knowledge Packs 5.3 Tests — UPDATED**
 
 ### Validate:
 - faster lookups
@@ -179,27 +234,110 @@ and unified PC/Mobile system‑context awareness.
 - no ambiguous pack resolution
 - deterministic pack selection
 - identity‑aware pack access
-- SCHOOLWORK packs must override restrictions
-- KG‑Reasoning must validate pack consistency
-- degraded‑mode must block unsafe pack usage
+- SCHOOLWORK packs override restrictions
+- KG‑Reasoning validates pack consistency
+- degraded‑mode blocks unsafe pack usage
 
 ---
 
-# 5. Document Status (Updated)
+# ⭐ Q9) **Filesystem Agent 5.0 Tests**
 
-**Version:** **5.3.0 UNIFIED (Expanded)**  
+### Validate:
+- safe path validation
+- rollback‑safe operations
+- identity‑aware file access
+- SCHOOLWORK file prioritization
+- deterministic routing
+- System Agent 5 validation
+
+### Checklist:
+- no raw filesystem calls
+- no destructive operations without reversibility
+- no access outside identity scope
+- no operations in degraded mode
+
+---
+
+# ⭐ Q10) **Security Family 5.x Tests**
+
+### Validate:
+- identity classification 3.1
+- constant‑time identity checks
+- SCHOOLWORK bypass logic
+- STRANGER‑mode restrictions
+- FAMILY‑mode safe boundaries
+
+### Checklist:
+- identity must influence all routing
+- no OS action without identity validation
+- no bypass of Security Family logic
+
+---
+
+# ⭐ Q11) **Envoy 5 Tests**
+
+### Validate:
+- ASK → FETCH → QUARANTINE → VALIDATE → DELIVER
+- identity‑aware permissions
+- System Agent 5 enforcement
+- safe payload validation
+- no local data transmission
+
+### Checklist:
+- no automatic fetch
+- no bypass of ASK permission
+- quarantine must isolate payloads
+- System Agent must approve delivery
+
+---
+
+# ⭐ Q12) **Self‑Repair Layer 5.x Tests**
+
+### Validate:
+- corrupted module detection
+- degraded‑mode isolation
+- repair suggestion generation
+- repair‑aware workflow continuation
+- KG‑integrity repair
+
+### Checklist:
+- degraded mode must block unsafe actions
+- repair must restore SAFE state
+- logs must include repair context
+
+---
+
+# ⭐ Q13) **Unified PC/Mobile Runtime Tests**
+
+### Validate:
+- identical behavior across PC + Mobile
+- identical identity logic
+- identical workflow transitions
+- identical KG reasoning
+- identical UI automation semantics (where supported)
+
+### Checklist:
+- no platform‑specific divergence
+- no mobile‑only logic
+- no PC‑only logic
+- LAN Sync 2.0 must not affect determinism
+
+---
+
+# 📄 Document Status (Updated)
+
+**Version:** **5.3.0 UNIFIED (Complete Rewrite)**  
 This guide now includes testing rules for:
 
-- UI Automation Engine 5.3  
-- Semantic UI Automation 5.3  
+- System Intelligence Layer 5.3  
 - System Agent 5  
-- WinCapabilities 5.3  
+- UI Automation Engine 5.3  
 - Workflow Engine 5.3  
 - AITE 5.3  
 - Reasoning Engine 5.3  
 - Knowledge Packs 5.3  
-- **System Intelligence Layer 5.3 (UPDATED)**  
-- **KG‑Reasoning 1.1 (UPDATED)**  
-- **Envoy 5 (UPDATED)**  
-- **Self‑Repair Layer 5.x (NEW)**  
-- **Unified PC/Mobile Runtime (UPDATED)**
+- Filesystem Agent 5.0  
+- Security Family 5.x  
+- Envoy 5  
+- Self‑Repair Layer 5.x  
+- Unified PC/Mobile Runtime  
