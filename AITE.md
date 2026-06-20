@@ -1,227 +1,242 @@
-# ⚙️ Automatic Input Triage Engine (AITE) — v5.0.0  
-**SIRIUS‑LOCAL‑AI Runtime 5.0 — Unified PC & Mobile Architecture**
+# ⚙️ Automatic Input Triage Engine (AITE) — v5.3.0  
+SIRIUS‑LOCAL‑AI Runtime 5.3 — Unified PC & Mobile Architecture
 
-AITE v5.0.0 is the fully redesigned next‑generation triage module built for the **Runtime 5.0 Unified Architecture**, with focus on:
+AITE v5.3.0 je najnovšia generácia triage modulu navrhnutá pre Runtime 5.x.  
+Je to centrálna vrstva, ktorá okamžite rozpozná, čo používateľ vložil,  
+čo to znamená, aké pravidlá identity platia, a kam má byť obsah odoslaný.
 
-- deep multimodal semantic understanding  
-- faster extraction  
-- identity‑aware routing  
-- safe deterministic decision‑making  
-- unified behavior across PC and Mobile  
-- 100% offline execution  
-
-AITE 5.0 ensures the system instantly understands *any* input — text, images, documents, screenshots, code, schoolwork, or mixed multimodal content — and routes it to the correct Runtime5 subsystem.
+AITE 5.3 je plne offline, deterministický a integrovaný so všetkými Runtime 5.x modulmi.
 
 ---
 
-# 🚀 MODULE STATUS — v5.0.0 (FULL UPGRADE)
+# 🚀 MODULE STATUS — v5.3.0 (FULL UPGRADE)
 
-AITE 5.0 is fully aligned with the new Runtime 5.0 architecture:
+AITE 5.3 je plne zosúladený s Runtime 5.3 architektúrou:
 
-- **Reasoning Engine 5**  
-- **Workflow Engine 5**  
-- **Knowledge Packs 5**  
-- **Security Family 5**  
-- **System Agent 5**  
-- **FS‑Agent 5**  
-- **CME‑MEM 5**  
-- **Event Engine 5**  
-- **Pack Integrity 5**  
-- **Mobile Runtime 5**  
+- Reasoning Engine 5.0  
+- Workflow Engine 5.0  
+- Knowledge Graph 5.x  
+- System Agent 5.0  
+- ENVOY Execution Layer 5  
+- ENVOY Permission Layer 5  
+- FS‑Agent 5  
+- CME‑MEM 5  
+- Event Engine 5  
+- Pack Integrity 5  
+- Mobile Runtime 5  
 
-## 🔥 What’s New in v5.0.0
+AITE 5.3 je **produkčne stabilný** a je jedným z hlavných pilierov Runtime 5.x.
 
-- **Multimodal Semantic Engine 5** — deeper semantic extraction, higher accuracy  
-- **OCR Engine 5** — faster, more stable, mobile‑optimized  
-- **SubjectGraph 5** — expanded academic subject graph  
-- **Difficulty Engine 5** — more stable schoolwork difficulty scoring  
-- **Identity Gate 4.0** — updated OWNER / FAMILY / STRANGER rules  
-- **Schoolwork Engine 5** — deeper detection, lower latency  
-- **Reasoning Bridge 5** — improved structured reasoning integration  
-- **Workflow Bridge 5** — new workflow triggers for code, school, automation  
-- **Knowledge Packs 5** — more accurate domain routing  
-- **Metadata Graph 5** — richer semantic tagging  
-- **FS‑Agent 5 Hooks** — safer file routing  
-- **System Agent 5** — deterministic action execution  
-- **Event Engine 5** — new multimodal event triggers  
+---
 
-## Always Guaranteed
+# 🔥 What’s New in v5.3.0
 
+### Multimodal Semantic Engine 5.3
+- hlbšia extrakcia významu  
+- stabilnejšie spracovanie zmiešaného obsahu  
+- rýchlejšie rozhodovanie  
+
+### OCR Engine 5.3
+- zrýchlené spracovanie obrázkov  
+- lepšia stabilita pri mobilných vstupoch  
+
+### SubjectGraph 5.3
+- rozšírené akademické domény  
+- presnejšia klasifikácia školských úloh  
+
+### Difficulty Engine 5.3
+- stabilnejšie skórovanie obtiažnosti  
+- lepšia detekcia školských úloh  
+
+### Identity Gate 4.1
+- aktualizované pravidlá OWNER / FAMILY / STRANGER  
+- lepšia ochrana pri STRANGER režime  
+
+### Schoolwork Engine 5.3
+- rýchlejšia detekcia školských úloh  
+- presnejšie bypass pravidlá  
+
+### Reasoning Bridge 5.3
+- lepšia integrácia s Reasoning Engine 5  
+- stabilnejšie prepojenie na KG 5.x  
+
+### Workflow Bridge 5.3
+- nové workflow triggery  
+- lepšia integrácia s ENVOY fetch workflowmi  
+
+### Metadata Graph 5.3
+- bohatšie metadáta  
+- presnejšie tagovanie  
+
+### FS‑Agent 5 Hooks
+- bezpečnejšie presúvanie súborov  
+- lepšie pravidlá identity  
+
+### Always Guaranteed
 - 100% offline  
-- deterministic behavior  
-- safe routing  
-- predictable execution  
-
-AITE 5.0 is production‑ready and a core pillar of Runtime 5.0.
+- deterministické spracovanie  
+- predvídateľné rozhodovanie  
 
 ---
 
 # 1. Module Purpose
 
-AITE 5.0 automatically determines:
+AITE 5.3 automaticky určuje:
 
-- **what the input is**  
-- **what it contains**  
-- **what the user intends**  
-- **which subsystem should handle it**  
-- **which identity rules apply**  
-- **whether schoolwork bypass must activate**  
+- čo je vstup  
+- čo obsahuje  
+- čo používateľ zamýšľa  
+- ktorý modul je zodpovedný  
+- aké identity pravidlá platia  
+- či sa má aktivovať školský bypass  
+- či je potrebné workflow  
+- či je potrebné reasoning  
+- či je potrebný ENVOY fetch  
 
-Supported input types:
+Podporované vstupy:
 
 - text  
-- images / photos / screenshots  
-- documents (pdf, docx, txt, pptx)  
-- applications / installers  
-- code files  
-- schoolwork (deep detection)  
-- mixed content  
-- OCR‑extracted content  
-- multimodal data  
+- obrázky / fotky / screenshoty  
+- dokumenty (pdf, docx, txt, pptx)  
+- aplikácie / inštalátory  
+- kód  
+- školské úlohy  
+- zmiešaný multimodálny obsah  
+- OCR extrahovaný text  
 
 ---
 
 # 2. Module Functions
 
-## 2.1 Input Recognition (Engine 5)
-
-AITE 5.0 recognizes:
+## 2.1 Input Recognition (Engine 5.3)
+AITE 5.3 rozpoznáva:
 
 - plain text  
-- formatted text  
-- code (Python, JS, C#, C++, HTML, CSS…)  
-- images: png, jpg, jpeg, webp, gif  
-- screenshots  
-- documents: pdf, docx, txt, pptx  
-- installers: exe, msi, zip, apk, dmg  
-- schoolwork  
-- mixed content  
-- OCR extraction  
-- semantic meaning + intent  
-
----
+- formátovaný text  
+- kód (Python, JS, C#, C++, HTML, CSS…)  
+- obrázky (png, jpg, jpeg, webp, gif)  
+- dokumenty (pdf, docx, txt, pptx)  
+- inštalátory (exe, msi, zip, apk)  
+- školské úlohy  
+- zmiešaný obsah  
+- OCR extrakciu  
+- sémantický význam + zámer  
 
 ## 2.2 Semantic Routing Logic
+AITE 5.3 určuje:
 
-AITE 5.0 determines:
-
-- correct storage location  
-- semantic metadata  
-- subject classification  
-- difficulty level  
-- responsible module  
-- workflow triggers  
-- identity restrictions  
-- schoolwork bypass  
-- Reasoning Engine 5 tasks  
+- správne úložisko  
+- sémantické metadáta  
+- predmetovú klasifikáciu  
+- obtiažnosť  
+- zodpovedný modul  
+- workflow triggery  
+- identity obmedzenia  
+- školský bypass  
+- Reasoning Engine 5 úlohy  
 - Knowledge Packs 5 routing  
-- Event Engine 5 triggers  
-
----
+- Event Engine 5 triggery  
 
 ## 2.3 Integration with Other Modules
 
-### 🔹 FS‑AGENT 5  
-- safe file operations  
-- semantic folder routing  
+### FS‑AGENT 5  
+- bezpečné operácie so súbormi  
+- sémantické smerovanie  
 
-### 🔹 CME‑MEM 5  
-- semantic metadata graph  
-- subject tags  
-- difficulty tags  
+### CME‑MEM 5  
+- metadátový graf  
+- predmetové tagy  
 
-### 🔹 Workflow Engine 5  
+### Workflow Engine 5  
 - multi‑step workflows  
-- schoolwork workflows  
-- code workflows  
-- automation workflows  
+- školské workflowy  
+- kódové workflowy  
 
-### 🔹 Security Family 5  
+### Security Family 5  
 - identity‑aware triage  
-- schoolwork bypass  
-- STRANGER restrictions  
+- STRANGER obmedzenia  
 
-### 🔹 System Agent 5  
-- safe action execution  
-- deterministic behavior  
+### System Agent 5  
+- bezpečné akcie  
+- deterministické správanie  
 
-### 🔹 Reasoning Engine 5  
-- structured analysis  
-- step‑by‑step reasoning  
+### Reasoning Engine 5  
+- štruktúrovaná analýza  
+- krokové reasoning  
 
-### 🔹 Knowledge Packs 5  
-- domain‑specific routing  
-- subject‑aware processing  
+### Knowledge Packs 5  
+- doménové smerovanie  
+- predmetová logika  
 
-### 🔹 Event Engine 5  
-- multimodal event triggers  
-- workflow event triggers  
+### Event Engine 5  
+- multimodálne eventy  
+- workflow eventy  
 
 ---
 
 # 3. Module Architecture
 
-## 3.1 Components (v5.0)
+## 3.1 Components (v5.3)
 
-- **InputClassifier 5** — detects type + semantic category  
-- **OCRExtractor 5** — extracts text from images  
-- **SemanticAnalyzer 5** — meaning, intent, subject  
-- **DifficultyEstimator 5** — academic difficulty scoring  
-- **SubjectDetector 5** — subject classification  
-- **InputRouter 5** — selects destination module  
-- **MetadataBuilder 5** — builds semantic metadata  
-- **AITEController 5** — orchestrates triage  
-- **SchoolworkDetector 5** — deep schoolwork detection  
-- **IdentityGate 4.0** — OWNER / FAMILY / STRANGER logic  
-- **ReasoningBridge 5** — reasoning integration  
-- **WorkflowBridge 5** — workflow triggers  
-- **EventBridge 5** — Runtime5 event integration  
+- **InputClassifier 5.3** — typ + kategória  
+- **OCRExtractor 5.3** — extrakcia textu  
+- **SemanticAnalyzer 5.3** — význam + zámer  
+- **DifficultyEstimator 5.3** — obtiažnosť  
+- **SubjectDetector 5.3** — predmet  
+- **InputRouter 5.3** — cieľový modul  
+- **MetadataBuilder 5.3** — metadáta  
+- **AITEController 5.3** — orchestrácia  
+- **SchoolworkDetector 5.3** — školské úlohy  
+- **IdentityGate 4.1** — identity logika  
+- **ReasoningBridge 5.3** — reasoning integrácia  
+- **WorkflowBridge 5.3** — workflow triggery  
+- **EventBridge 5.3** — event integrácia  
 
----
-
-## 3.2 Processing Flow (v5.0)
-
-1. User inserts text / image / file / screenshot  
-2. **InputClassifier 5** determines type  
-3. **OCRExtractor 5** (if image)  
-4. **SemanticAnalyzer 5** extracts meaning + intent  
-5. **SchoolworkDetector 5** checks for academic content  
-6. **DifficultyEstimator 5** assigns difficulty  
-7. **SubjectDetector 5** identifies subject  
-8. **IdentityGate 4.0** evaluates identity  
-   - OWNER → full access  
-   - FAMILY → time‑limits, but schoolwork bypass  
-   - STRANGER → restricted mode  
-9. If schoolwork → **bypass FAMILY time limits**  
-10. **InputRouter 5** selects target module  
-11. **FS‑Agent 5** moves/saves file  
-12. **CME‑MEM 5** stores metadata  
-13. **Workflow Engine 5** may trigger workflows  
-14. **Reasoning Engine 5** may analyze content  
-15. **Security Family 5** logs behavior  
-16. **System Agent 5** executes safe actions  
+## 3.2 Processing Flow (v5.3)
+User inserts input
+↓
+InputClassifier 5.3
+↓
+OCRExtractor 5.3 (if image)
+↓
+SemanticAnalyzer 5.3
+↓
+SchoolworkDetector 5.3
+↓
+DifficultyEstimator 5.3
+↓
+SubjectDetector 5.3
+↓
+IdentityGate 4.1
+↓
+InputRouter 5.3
+↓
+FS‑Agent 5 / CME‑MEM 5
+↓
+Workflow Engine 5
+↓
+Reasoning Engine 5
+↓
+System Agent 5
 
 ---
 
 # 4. Future Extensions (5.x)
 
-- multimodal triage  
-- handwriting recognition  
-- video frame analysis  
+- multimodal handwriting  
+- video frame triage  
 - real‑time OCR stream  
-- deeper subject graph  
-- adaptive difficulty scoring  
-- STRANGER auto‑blocking for sensitive content  
-- multi‑user triage profiles  
-- self‑learning triage patterns  
+- hlbší SubjectGraph  
+- adaptívne skórovanie  
+- STRANGER auto‑blocking  
+- multi‑user profily  
+- samoučiace triage vzory  
 
 ---
 
-# 5. Module Status — v5.0.0
+# 5. Module Status — v5.3.0
 
-AITE v5.0 is **fully upgraded**, stable, and production‑ready in Runtime 5.0.
-
-It is a **core pillar** of the intelligent runtime, tightly integrated with:
+AITE 5.3 je plne stabilný, produkčne pripravený a integrovaný s:
 
 - Runtime Core 5  
 - Security Family 5  
@@ -235,4 +250,4 @@ It is a **core pillar** of the intelligent runtime, tightly integrated with:
 - Pack Integrity 5  
 - System Agent 5  
 
-AITE 5.0 ensures that **every input is understood, classified, analyzed, and safely routed — instantly and offline.**
+AITE 5.3 zaručuje, že každý vstup je pochopený, analyzovaný a bezpečne smerovaný — okamžite a offline.
