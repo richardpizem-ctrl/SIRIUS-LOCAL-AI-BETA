@@ -1,19 +1,20 @@
-# 🌐 SIRIUS ENVOY 5.0 – Tutorial & Concept Guide
-### Safe External Retrieval Layer for SIRIUS LOCAL AI (Unified Runtime 5.0)
+# 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide
+### Safe External Retrieval Layer for SIRIUS LOCAL AI (Unified Runtime 5.3)
 
-SIRIUS ENVOY 5.0 is an **isolated external‑retrieval agent** that allows SIRIUS LOCAL AI to safely obtain information from the internet **without exposing the local AI runtime to any network communication**.
+SIRIUS ENVOY 5 is an **isolated external‑retrieval agent** that allows SIRIUS LOCAL AI to safely obtain information from the internet **without exposing the local AI runtime to any network communication**.
 
-This **v5.0.0 unified edition** reflects the transition from the 4.x architecture to the **Unified Runtime 5.0**, including:
+This **v5.3 unified edition** reflects the upgraded Runtime 5.x architecture, including:
 
-- ENVOY 5.0 (hardened bridge layer)  
-- System Agent 5.0  
+- ENVOY Execution Layer 5  
+- ENVOY Permission Layer 5  
+- System Agent 5  
 - Identity Engine 3.0  
-- Security Family 5.0  
-- AITE 5.0  
-- Knowledge Packs 5.0  
+- Security Family 5.x  
+- AITE 5.3  
+- Knowledge Graph 5.x  
 - Unified PC + Mobile runtime  
 - Deterministic cross‑platform routing  
-- Stronger quarantine + validation pipeline  
+- Hardened quarantine + validation pipeline  
 
 This document explains:
 
@@ -23,11 +24,11 @@ This document explains:
 - how the quarantine system functions  
 - how data flows into the local AI  
 - what ENVOY is strictly forbidden from doing  
-- how ENVOY integrates with Runtime 5.0 Unified Architecture  
+- how ENVOY integrates with Runtime 5.3 Unified Architecture  
 
 ---
 
-# 🧩 1. What Is SIRIUS ENVOY 5.0?
+# 🧩 1. What Is SIRIUS ENVOY 5?
 
 ENVOY is a **small external process** with a single purpose:
 
@@ -68,11 +69,18 @@ ENVOY enables this **without compromising offline safety**.
 
 ---
 
-# 🧱 3. ENVOY 5.0 Architecture
+# 🧱 3. ENVOY 5 Architecture (Runtime 5.3)
 
-ENVOY consists of five hardened layers:
+ENVOY consists of **six hardened layers**:
 
-## 3.1 Envoy Client (Outbound‑Only)
+## 3.1 ENVOY Permission Layer 5
+- validates every request  
+- checks identity context  
+- enforces OWNER/FAMILY/STRANGER rules  
+- blocks unauthorized fetches  
+- ensures user confirmation  
+
+## 3.2 Envoy Client (Outbound‑Only)
 - the only process allowed to access the internet  
 - cannot access local files  
 - cannot access runtime memory  
@@ -80,14 +88,14 @@ ENVOY consists of five hardened layers:
 - outbound‑only, no inbound channels  
 - unified PC/Mobile behavior  
 
-## 3.2 Scraper Layer
+## 3.3 Scraper Layer
 - extracts clean text  
 - removes HTML, scripts, ads, trackers  
 - normalizes content  
 - strips formatting and embedded objects  
 - blocks binary or executable content  
 
-## 3.3 Quarantine Sandbox
+## 3.4 Quarantine Sandbox
 - fully isolated environment  
 - checks structure and format  
 - detects unsafe patterns  
@@ -95,29 +103,29 @@ ENVOY consists of five hardened layers:
 - prevents any executable or active content  
 - enforces strict content‑type rules  
 
-## 3.4 Validator & Policy Filter
+## 3.5 Validator & Policy Filter
 - enforces safety rules  
 - flags uncertain information  
 - filters restricted topics  
 - ensures consistency  
 - removes dangerous or unverifiable content  
-- applies Security Family 5.0 rules  
+- applies Security Family 5.x rules  
 
-## 3.5 Safe Payload Delivery
+## 3.6 Safe Payload Delivery
 - produces **clean text**  
 - structured JSON  
 - ready for local AI modules  
-- compatible with Knowledge Packs 5.0  
+- compatible with Knowledge Graph 5.x  
 - deterministic, predictable output  
 
 ---
 
-# 🔄 4. How ENVOY Works – Step by Step
+# 🔄 4. How ENVOY Works – Step by Step (Runtime 5.3)
 
 ## 1️⃣ User makes a request  
 Example: “Update the Cooking Pack with information about rice.”
 
-## 2️⃣ Local AI creates an ENVOY task  
+## 2️⃣ Runtime creates an ENVOY task  
 Contains only:
 
 - topic  
@@ -125,16 +133,19 @@ Contains only:
 - safety rules  
 - identity context  
 
-## 3️⃣ ENVOY goes online  
+## 3️⃣ Permission Layer 5 validates the request  
+If not allowed → blocked.
+
+## 4️⃣ ENVOY goes online  
 Retrieves information based on the task.
 
-## 4️⃣ Scraper Layer cleans the data  
+## 5️⃣ Scraper Layer cleans the data  
 Only text remains.
 
-## 5️⃣ Quarantine Sandbox isolates the content  
+## 6️⃣ Quarantine Sandbox isolates the content  
 Everything is checked.
 
-## 6️⃣ Validator applies safety rules  
+## 7️⃣ Validator applies safety rules  
 Removes:
 
 - dangerous advice  
@@ -144,14 +155,14 @@ Removes:
 - scripts, HTML, links  
 - unsafe or ambiguous content  
 
-## 7️⃣ Data is converted into Pack format  
+## 8️⃣ Data is converted into Pack format  
 Examples:
 
 - `facts.json`  
 - `glossary.json`  
 - `rules.json`  
 
-## 8️⃣ Local AI receives clean, safe content  
+## 9️⃣ Local AI receives clean, safe content  
 Knowledge Pack is updated locally.
 
 ---
@@ -170,17 +181,19 @@ ENVOY is strictly forbidden from:
 - modifying Knowledge Packs directly  
 - performing UI automation  
 - interacting with the **UI Automation Engine 5.0**  
-- bypassing **System Agent 5.0**  
-- bypassing **SECURITY FAMILY 5.0**  
+- bypassing **System Agent 5**  
+- bypassing **SECURITY FAMILY 5.x**  
 - bypassing **Identity Engine 3.0**  
 - altering runtime behavior  
 - triggering OS‑level actions  
+- accessing identity data  
+- accessing local files  
 
 ENVOY is a **one‑directional, outbound‑only, isolated process**.
 
 ---
 
-# 🧠 6. How ENVOY Supports Knowledge Packs
+# 🧠 6. How ENVOY Supports Knowledge Graph 5.x
 
 ENVOY enables:
 
@@ -197,25 +210,25 @@ All of this happens **without putting SIRIUS online**.
 
 ---
 
-# 🔗 7. Integration with Runtime 5.0 Unified Architecture
+# 🔗 7. Integration with Runtime 5.3 Unified Architecture
 
-With the introduction of **Unified Runtime 5.0**, ENVOY’s role remains strictly informational.
+With the introduction of **Unified Runtime 5.3**, ENVOY’s role remains strictly informational.
 
 ENVOY **does not**:
 
 - trigger UI actions  
-- interact with UIParser 5.0  
-- influence UIWorkflow 5.0  
+- interact with UIParser 5.x  
+- influence UIWorkflow 5.x  
 - bypass identity rules  
 - modify system‑level automation  
-- bypass System Agent 5.0  
+- bypass System Agent 5  
 - bypass ENVOY sanitization rules  
 - modify runtime behavior  
 
 ENVOY **does**:
 
 - provide sanitized text for Reasoning Engine 5.0  
-- update Knowledge Packs 5.0  
+- update Knowledge Graph Packs 5.x  
 - support semantic workflows  
 - enrich academic and household modules  
 - operate under hardened quarantine rules  
@@ -223,7 +236,7 @@ ENVOY **does**:
 
 ---
 
-# 🔐 8. Security Guarantees
+# 🔐 8. Security Guarantees (Runtime 5.3)
 
 - 100% offline runtime  
 - ENVOY is isolated  
@@ -233,8 +246,8 @@ ENVOY **does**:
 - no local data is ever transmitted  
 - everything is deterministic and auditable  
 - ENVOY cannot bypass UI Automation Engine 5.0  
-- ENVOY cannot bypass SECURITY FAMILY 5.0  
-- ENVOY cannot bypass System Agent 5.0  
+- ENVOY cannot bypass SECURITY FAMILY 5.x  
+- ENVOY cannot bypass System Agent 5  
 - ENVOY cannot modify runtime behavior  
 - ENVOY cannot access identity data  
 - ENVOY cannot access local files  
@@ -243,5 +256,5 @@ ENVOY **does**:
 
 # 📄 Document Status
 
-**Version:** 2.0.0 (Updated for Runtime 5.0 Unified Architecture)  
-This tutorial explains the purpose and operation of SIRIUS ENVOY 5.0 and its role in the unified Runtime 5.0 architecture.
+**Version:** 3.0.0 (Updated for Runtime 5.3 Unified Architecture)  
+This tutorial explains the purpose and operation of SIRIUS ENVOY 5 and its role in the unified Runtime 5.3 architecture.
