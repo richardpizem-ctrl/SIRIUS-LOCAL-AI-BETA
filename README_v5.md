@@ -24,6 +24,21 @@ It introduces:
 
 ---
 
+# 🔮 What’s Coming in Runtime 5.4  
+Runtime **5.4** introduces the first version of the **Self‑Repair Layer 1.0**, bringing higher stability and deterministic recovery to the 5.x generation.
+
+### Key features in 5.4:
+- module integrity scanning  
+- automatic dependency correction  
+- workflow recovery logic  
+- ENVOY Permission Layer 5 — extended validation  
+- Knowledge Graph consistency checks  
+- preparation for Runtime 6.0 Modular Kernel  
+
+Runtime 5.4 is the transition bridge between 5.x and 6.x.
+
+---
+
 # ⭐ 1. Offline Knowledge Graph Reasoning (KG‑Reasoning 1.0)
 A fully offline reasoning engine powered by a local knowledge graph:
 
@@ -75,30 +90,31 @@ Secure cross‑device communication:
 
 # 🧩 Architecture Diagram (Runtime 5.x)
 
-┌───────────────────────────────┐
-│      Knowledge Graph 5.x      │
-│  (entities, relations, facts) │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│       Reasoning Engine 5.0    │
-│        KG‑aware inference     │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│       Workflow Engine 5.0     │
-│ KG‑routing • deterministic     │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│        System Agent 5.0       │
-│ identity rules • OS validation │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│    UI Automation Engine 5.0   │
-│ Win32/UIA/WinRT • deterministic│
-└───────────────────────────────┘ 
+┌───────────────────────────────┐  
+│      Knowledge Graph 5.x      │  
+│  (entities, relations, facts) │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│       Reasoning Engine 5.0    │  
+│        KG‑aware inference     │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│       Workflow Engine 5.0     │  
+│ KG‑routing • deterministic     │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│        System Agent 5.0       │  
+│ identity rules • OS validation │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│    UI Automation Engine 5.0   │  
+│ Win32/UIA/WinRT • deterministic│  
+└───────────────────────────────┘  
+
 ---
 
 # 🛰 Envoy Module 1.0 — Secure Online Information Fetcher  
@@ -110,14 +126,14 @@ Envoy performs **one isolated fetch** only after explicit user approval.
 ---
 
 ## 🔐 Envoy Security Flow (ASK → FETCH → QUARANTINE → DELIVER)
-User Request
-↓
-ASK — explicit permission required
-↓
-FETCH — one isolated online request
-↓
-QUARANTINE — sanitize, validate, strip unsafe content
-↓
+User Request  
+↓  
+ASK — explicit permission required  
+↓  
+FETCH — one isolated online request  
+↓  
+QUARANTINE — sanitize, validate, strip unsafe content  
+↓  
 DELIVER — safe data passed to Reasoning Engine
 
 ### Core Principles
@@ -208,6 +224,32 @@ Offline mode remains the **primary mode**.
 
 ---
 
+# 🚀 Runtime 6.0 Preview  
+Runtime **6.0** is the next major generation of the SIRIUS architecture, focused on multimodal analysis, modular kernel design, and advanced safety.
+
+### Planned features in 6.0:
+- **Modular Kernel 6.0**  
+  - sandboxed modules  
+  - deterministic kernel‑routing  
+  - unified error layer  
+  - Self‑Repair Layer 2.0 integration  
+
+- **Hybrid Multimodal Analyzer 6.0**  
+  - audio/MIDI analysis  
+  - image structure analyzer  
+  - video frame semantic extractor  
+  - KG‑aware multimodal linking  
+
+- **Family Security 6.0 — Behavior Engine**  
+  - StrangerMode 3.0  
+  - SchoolMode 3.0  
+  - TimeLimits 3.0  
+  - behavior pattern detection  
+
+Runtime 6.0 defines the future of SIRIUS as a local multimodal diagnostic system.
+
+---
+
 # 📘 Installation (Runtime 5.x)
 *(To be published after final 5.x milestone)*
 
@@ -225,9 +267,9 @@ Pull requests are welcome.
 
 # 🧭 Roadmap (5.x → 6.x)
 - **5.3.0** — ENVOY improvements, KG stability, workflow optimizations  
-- **5.4.0** — Self‑Repair Layer 1.0  
+- **5.4.0** — Self‑Repair Layer 1.0 + Permission Layer upgrades  
 - **5.5.0** — Family Security v2  
-- **6.0.0** — Self‑Repair Layer 2.0 + Autonomous Diagnostics  
+- **6.0.0** — Modular Kernel 6.0 + Hybrid Multimodal Analyzer + Behavior Engine  
 
 ---
 
@@ -247,7 +289,7 @@ A complete Runtime 5.3 package containing:
 - Logging & error-handling improvements  
 - Full documentation (README, INSTALLATION, ROADMAP, RELEASE NOTES, etc.)
 
-SHA256 signature:
+SHA256 signature:  
 523a2a4e3e63594e064a44a2a352657ce26471f2dc2248da6a5580670aa50f6c
 
 The ZIP file is attached directly in GitHub Releases as the **primary build** of this version.
