@@ -28,30 +28,10 @@ Runtime 5.x is a **fully offline**, **deterministic**, **modular** AI runtime de
 ---
 
 # 🧩 Architecture Diagram (Runtime 5.x)
-┌───────────────────────────────┐
-│      Knowledge Graph 5.x      │
-│  (entities, relations, facts) │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│       Reasoning Engine 5.0    │
-│        KG‑aware inference     │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│       Workflow Engine 5.0     │
-│ KG‑routing • deterministic     │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│        System Agent 5.0       │
-│ identity rules • OS validation │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│    UI Automation Engine 5.0   │
-│ Win32/UIA/WinRT • deterministic│
-└───────────────────────────────┘
+
+<p align="center">
+  <img src="https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/blob/main/diagram%20(3).png?raw=true" width="900">
+</p>
 
 ---
 
@@ -95,6 +75,7 @@ Runtime 5.x is a **fully offline**, **deterministic**, **modular** AI runtime de
 
 ### Security Flow  
 ASK → FETCH → QUARANTINE → DELIVER 
+
 ### Principles  
 - never automatic  
 - outbound‑only  
