@@ -1,297 +1,306 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (v5.3.0 — Unified Runtime)
+# 🏗 Architecture – SIRIUS LOCAL AI (Runtime 6.0 — Modular Kernel Generation)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-5.3.0-purple">
+  <img src="https://img.shields.io/badge/version-6.0.0--draft-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
-  <img src="https://img.shields.io/badge/runtime-Intelligent%205.3%20Unified-orange">
+  <img src="https://img.shields.io/badge/runtime-Modular%20Kernel%206.x-red">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI v5.3.0 introduces the **Unified Runtime Architecture 5.x**, merging PC and Mobile logic into a single deterministic, modular, identity‑aware AI operating layer.
+SIRIUS LOCAL AI Runtime 6.0 introduces the **Modular Kernel Architecture**, a complete redesign of the internal execution model.  
+This generation focuses on:
 
-Version 5.3 replaces the older 5.0 architecture with:
+- deterministic multimodal analysis  
+- sandboxed module isolation  
+- kernel‑level routing  
+- Self‑Repair Layer 2.0  
+- Family Security Behavior Engine 6.0  
+- reduced complexity  
+- long‑term maintainability  
+- full offline operation  
 
-- ENVOY Execution Layer 5  
-- ENVOY Permission Layer 5  
-- stabilized Knowledge Graph 5.x  
-- deterministic workflow routing  
-- identity‑aware OS control  
-- multimodal triage 5.3  
-- safe OS automation  
-- cross‑platform module consistency  
-- hardened security boundaries  
-
-This is the most stable and optimized architecture in the history of SIRIUS.
+This is the most advanced architecture ever created for SIRIUS.
 
 ---
 
-# 🛡 Stability & Safety (v5.3.0)
+# 🧩 Architectural Principles (Runtime 6.0)
 
-The **System Intelligence Layer 5.3** guarantees:
-
-- safe system operations  
-- identity‑aware permissions (OWNER / FAMILY / STRANGER)  
-- no direct kernel access  
-- no hidden automation  
-- reversible actions  
-- transparent explanations  
-- strict FAMILY‑safe behavior  
-- deterministic, predictable execution  
-- System Agent 5 validation for every action  
-- hardened sanitization (ENVOY 5)  
-- cross‑platform consistency (PC + Mobile)  
-
-SIRIUS Runtime 5.3 is a **PC‑aware and Mobile‑aware intelligent runtime** with strict safety and explainability.
-
----
-
-# 🧩 Architectural Principles (v5.3.0)
-
-- strict modular separation  
-- deterministic behavior  
+- strict kernel–module separation  
+- deterministic execution pipeline  
+- multimodal analysis (audio, MIDI, image, video)  
 - identity‑aware access control  
-- FAMILY‑safe operation  
-- SCHOOLWORK always allowed  
-- no direct system access (System Agent + ENVOY required)  
-- reversible, predictable actions  
-- semantic understanding of system state  
-- capability‑based access to Windows & Mobile functions  
-- safe action execution pipeline  
-- unified PC/Mobile architecture  
-- stable fallback routing  
-- offline‑only execution  
+- zero cloud dependency  
+- reversible and predictable behavior  
+- sandboxed modules with isolated memory  
+- unified PC/Mobile logic  
+- kernel‑level error handling  
+- Self‑Repair integration at every stage  
 
 ---
 
-# 🧱 Core Layers (v5.3.0)
+# 🧱 Core Layers (Runtime 6.0)
 
-## 1. Runtime Core 5.3 (Unified)
-The central orchestrator for all modules.
+## 1. Modular Kernel 6.0 (Core Execution Layer)
+The heart of Runtime 6.0.
 
 Responsibilities:
-- module lifecycle  
-- workflow dispatch  
-- plugin loading  
+- module sandboxing  
+- kernel‑level routing  
+- unified error layer  
+- deterministic execution  
 - capability enforcement  
 - identity integration  
-- self‑repair pre‑hooks  
-- System Agent 5 routing  
-- deterministic execution pipeline  
-- unified PC/Mobile behavior  
+- Self‑Repair Layer 2.0 hooks  
+- multimodal pipeline orchestration  
+
+The kernel ensures **predictable, safe, reversible** behavior across all platforms.
 
 ---
 
-## 2. Natural Language Router 5.3
-Deep semantic intent detection with:
+## 2. Hybrid Multimodal Analyzer 6.0
+A new analysis engine capable of processing:
 
-- safer fallback logic  
-- deterministic routing  
-- identity‑aware command filtering  
-- cross‑platform consistency  
+### Audio / MIDI
+- tone extraction  
+- rhythm segmentation  
+- MIDI normalization  
+- pattern detection  
 
----
+### Image
+- object detection  
+- structural segmentation  
+- visual feature extraction  
 
-## 3. Filesystem Agent 5.3
-Deterministic FS operations with:
+### Video
+- frame‑by‑frame semantic analysis  
+- event detection  
+- temporal segmentation  
 
-- semantic routing  
-- safe write rules  
-- OWNER/FAMILY/STRANGER restrictions  
-- unified PC/Mobile FS logic  
+### KG‑Aware Linking
+- multimodal fact creation  
+- entity linking  
+- deterministic inference  
 
----
-
-## 4. Context Memory Engine 5.3 (CME‑MEM 5)
-Stores:
-
-- workflow context  
-- semantic metadata  
-- subject/difficulty tags  
-- multimodal metadata  
-- deterministic memory snapshots  
+This module transforms raw data into structured, safe, deterministic knowledge.
 
 ---
 
-## 5. Workflow Engine 5.3
-Upgraded deterministic workflow engine with:
+## 3. Self‑Repair Layer 2.0
+Second‑generation autonomous repair system.
 
-- automation workflows  
-- schoolwork workflows  
-- code workflows  
+Capabilities:
+- module integrity scanning  
+- dependency healing  
+- workflow reconstruction  
+- kernel‑level recovery  
+- anomaly detection  
+- repair routing  
+- rollback‑safe execution  
+
+Self‑Repair 2.0 ensures long‑term stability and resilience.
+
+---
+
+## 4. Family Security Engine 6.0 (Behavior Engine)
+A fully redesigned safety system.
+
+Features:
+- behavior pattern detection  
+- StrangerMode 3.0  
+- SchoolMode 3.0  
+- TimeLimits 3.0  
+- identity‑aware rules  
+- KG‑linked safety inference  
+
+This engine ensures **family‑safe, predictable, explainable** behavior.
+
+---
+
+## 5. Workflow Engine 6.0
+A deterministic workflow system built on top of the Modular Kernel.
+
+Responsibilities:
+- multimodal workflows  
 - system workflows  
+- diagnostic workflows  
 - identity‑aware gating  
 - safe execution pipeline  
-- ENVOY workflow integration  
+- kernel‑validated routing  
 
 ---
 
-## 6. GUI Layer 5.3
-Modular UI with:
+## 6. Context Memory Engine 6.0 (CME‑MEM 6)
+Stores:
+- multimodal metadata  
+- workflow context  
+- semantic tags  
+- identity‑linked memory  
+- deterministic snapshots  
+
+---
+
+## 7. GUI Layer 6.0
+A modular, futuristic UI with:
 
 - dynamic panels  
-- unified PC/Mobile rendering  
 - real‑time module integration  
+- unified PC/Mobile rendering  
+- diagnostic visualizations  
 
 ---
 
-## 7. AITE 5.3 (Automatic Input Triage Engine)
-Multimodal semantic triage:
-
-- text  
-- images  
-- OCR  
-- documents  
-- code  
-- schoolwork  
-- mixed content  
-
-AITE 5.3 routes all inputs safely and deterministically.
-
----
-
-## 8. WIN‑CAP 5.3 (Windows Capability Layer)
-Safe Windows capability layer with:
+## 8. WIN‑CAP 6.0 (Windows Capability Layer)
+Safe Windows capability mapping with:
 
 - identity‑aware restrictions  
-- hardened validation  
-- deterministic capability mapping  
+- deterministic capability routing  
+- kernel‑validated access  
 
 ---
 
-# 🆕 SYSTEM INTELLIGENCE LAYER (v5.3.0)
+# 🧠 SYSTEM INTELLIGENCE LAYER (Runtime 6.0)
 
-A fully upgraded architectural layer enabling SIRIUS to:
+The intelligence layer enables SIRIUS to:
 
-- understand the PC  
-- understand the Mobile device  
+- understand the system  
 - diagnose  
 - optimize  
 - repair  
-- educate  
 - enforce identity rules  
 - execute safe actions  
+- analyze multimodal data  
 
-All while remaining 100% offline and deterministic.
+All while remaining **100% offline**.
 
 ---
 
-# 🔥 1. System Health Engine 5.3
+# 🔥 System Health Engine 6.0
 - hardware diagnostics  
 - thermal analysis  
 - storage health  
 - RAM/CPU load  
 - bottleneck detection  
-- safe optimization suggestions  
-- unified PC/Mobile metrics  
+- multimodal diagnostic linking  
 
 ---
 
-# 🔥 2. Driver Manager Engine 5.3
+# 🔥 Driver Manager Engine 6.0
 - driver inventory  
 - version comparison  
-- missing/outdated driver detection  
-- safe update workflows (via ENVOY 5)  
 - compatibility checks  
+- safe update workflows  
+- kernel‑validated operations  
 
 ---
 
-# 🔥 3. Task Manager Engine 5.3 PRO
+# 🔥 Task Manager Engine 6.0 PRO
 - process analysis  
 - CPU/RAM usage  
-- identity‑aware termination rules  
-- FAMILY‑safe restrictions  
-- deterministic process routing  
+- identity‑aware termination  
+- deterministic routing  
 
 ---
 
-# 🔥 4. Service Manager Engine 5.3
+# 🔥 Service Manager Engine 6.0
 - service state analysis  
 - safe start/stop/restart  
-- System Agent 5 validation  
-- rollback safety  
+- rollback‑safe operations  
 
 ---
 
-# 🔥 5. Education Engine 5.3
+# 🔥 Education Engine 6.0
 - explains every system action  
 - teaches Windows & Mobile concepts  
 - provides safe alternatives  
-- FAMILY‑friendly mode  
-- improved clarity  
+- family‑friendly mode  
 
 ---
 
-# 🔥 6. ENVOY 5 (Execution + Permission Layers)
+# 🔥 ENVOY 6 (Execution + Permission Layers)
 - safe bridge between runtime and OS  
 - hardened sanitization  
 - identity‑aware filtering  
 - deterministic routing  
-- no direct system access allowed  
+- no direct system access  
 
 ---
 
-# 🔥 7. System Agent 5 (Safe Action Execution Layer)
+# 🔥 System Agent 6 (Safe Action Execution Layer)
 The **final gatekeeper** before any OS action.
 
 Responsibilities:
-- validates every system action  
-- checks identity (OWNER/FAMILY/STRANGER)  
+- validates every action  
+- checks identity  
 - enforces safety rules  
 - logs all actions  
 - blocks unsafe operations  
 - ensures deterministic behavior  
-- unified PC/Mobile execution  
 
 ---
 
-# 🔐 Password Vault 5.0 (Secure Credential Module)
+# 🔐 Password Vault 6.0 (Secure Credential Module)
+A fully local, encrypted, identity‑aware password storage system.
 
-A fully local, encrypted, identity‑aware password storage system integrated into the SIRIUS Security Family.
-
-### Responsibilities:
-- AES‑256‑GCM encrypted storage  
+Features:
+- AES‑256‑GCM encryption  
 - PBKDF2‑HMAC‑SHA256 master key  
 - offline vault container  
 - OWNER‑only write access  
 - FAMILY read‑only  
 - STRANGER blocked  
-- deterministic API for workflows  
-- safe routing through Runtime Core  
+- deterministic API  
 
 ---
 
-# 🖼 Architecture Diagram (v5.3.0 Placeholder)
+# 🖼 Architecture Diagram (Runtime 6.0)
 
-<p align="center">
-  <img src="docs/architecture_diagram_v5_placeholder.png" width="600">
-</p>
+```
+┌───────────────────────────────┐
+│       Hybrid Multimodal       │
+│           Analyzer 6.0        │
+└───────────────┬──────────────┘
+                │
+┌───────────────▼──────────────┐
+│        Modular Kernel 6.0     │
+│ sandbox • routing • errors    │
+└───────────────┬──────────────┘
+                │
+┌───────────────▼──────────────┐
+│     Self‑Repair Layer 2.0     │
+│ integrity • recovery • heal   │
+└───────────────┬──────────────┘
+                │
+┌───────────────▼──────────────┐
+│   Family Security Engine 6.0  │
+│ behavior • identity • rules   │
+└───────────────────────────────┘
+```
 
 ---
 
-# 🔌 Module Interconnections (v5.3.0)
+# 🔌 Module Interconnections (Runtime 6.0)
 
 User Input  
 ↓  
-AITE 5.3 → FS‑AGENT 5.3 → CME‑MEM 5.3  
+Hybrid Multimodal Analyzer 6.0  
 ↓  
-Workflow Engine 5.3  
+Workflow Engine 6.0  
 ↓  
-Runtime Core 5.3  
+Modular Kernel 6.0  
 ↓  
-**System Intelligence Layer 5.3**  
+Self‑Repair Layer 2.0  
 ↓  
-**System Agent 5 (safe action execution)**  
+System Intelligence Layer 6.0  
 ↓  
-**Password Vault 5.0 (identity‑aware secure storage)**  
+System Agent 6  
 ↓  
-**ENVOY 5**  
+ENVOY 6  
 ↓  
 Windows 11 / Android / iOS (safe, controlled)
 
 ---
 
-# 📌 Document Status
-
-Current version: **5.3.0 (Unified Architecture)**  
-Architecture is fully updated and aligned with Runtime 5.3.0.
+# 📌 Document Status  
+Current version: **6.0.0 (Draft Architecture)**  
+Architecture is aligned with the Runtime 6.0 roadmap and future multimodal capabilities.
