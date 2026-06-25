@@ -1,8 +1,5 @@
 # 📦 Installation Guide – SIRIUS LOCAL AI (v5.4.0)
 
-> **PREPAČ:**  
-> Tento dokument bol aktualizovaný z verzie 5.3.0 na **5.4.0**, aby odrážal najnovšie zmeny v Runtime 5.4, vrátane ENVOY 5.4, KG‑LIGHT, Self‑Repair Layer 5.4 a aktualizovaných systémových modulov.  
-> Ak si používal staršiu verziu, všetko je teraz zosúladené s aktuálnym runtime.
 
 SIRIUS LOCAL AI is a fully local, modular AI runtime built on the  
 **Unified Runtime 5.4 architecture**, featuring:
