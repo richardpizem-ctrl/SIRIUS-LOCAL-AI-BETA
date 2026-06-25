@@ -162,6 +162,46 @@ SHA256 signature:
 
 ---
 
+# 🛠️ Upcoming Features (Runtime 5.4.1)
+
+The following critical safety and priority systems are currently in development  
+and will be delivered in **Runtime 5.4.1**:
+
+### 🔵 Schoolwork Priority Override  
+A high‑priority academic mode that bypasses:
+- TimeLimits  
+- Night Mode  
+- FamilySafetyRules  
+- identity restrictions  
+
+This ensures students can study for exams, maturita, projects, and homework  
+even late at night without being blocked.
+
+### 🔴 Health Emergency Override  
+A top‑priority emergency mode that activates instantly when detecting  
+health‑related or first‑aid queries.  
+This mode will:
+- bypass ALL restrictions  
+- ignore identity  
+- ignore time limits  
+- provide immediate first‑aid guidance  
+
+### 🟣 FamilySafetyRules Improvements  
+Refinements to prevent OWNER from being blocked during legitimate use,  
+while keeping children fully protected.
+
+### 🟡 TimeLimits Adjustments  
+New logic for:
+- OWNER bypass  
+- Schoolwork mode exceptions  
+- Health emergency exceptions  
+- nighttime behavior recognition  
+
+These features are actively being implemented and tested  
+and will be included in **Runtime 5.4.1**.
+
+---
+
 # 🛠️ Installation
 
 1. Download the ZIP from **Releases**  
