@@ -1,9 +1,9 @@
-# 🚀 SIRIUS LOCAL AI — Runtime 5.3  
-### Modular Local AI Runtime for Windows 11  
+# 🚀 SIRIUS LOCAL AI — Runtime 5.4
+### Modular Local AI Runtime for Windows 11
 ### Fully offline, deterministic, semantic AI runtime for workflows, automation, reasoning, and safe command execution.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-5.3.0-blue">
+  <img src="https://img.shields.io/badge/version-5.4.0-blue">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
   <img src="https://img.shields.io/badge/architecture-Intelligent%20Runtime%205.x-purple">
@@ -12,16 +12,21 @@
 
 ---
 
-# 🧠 Runtime 5.3 — Overview  
-SIRIUS Runtime 5.3 is the most stable and optimized release of the 5.x generation.  
-It introduces:
+# 🧠 Runtime 5.4 — Overview
+SIRIUS Runtime 5.4 is the most stable and complete release of the 5.x generation.
 
-- ENVOY Execution Layer 5  
-- ENVOY Permission Layer 5  
-- stabilized Knowledge Graph modules  
-- faster workflow execution  
-- deterministic routing  
-- preparation for Runtime 5.4 (Self‑Repair Layer)
+This version introduces:
+
+- fully stabilized **ENVOY 5.4 pipeline**  
+- **KG‑LIGHT** module with neighbor discovery  
+- improved Workflow Engine 5.x routing  
+- improved Reasoning Engine KG routing  
+- **Self‑Repair Layer 5.4** with degraded‑mode detection  
+- integrated **BehaviorFilter 5.x**  
+- integrated **FamilySafetyRules 5.x**  
+- fixed Knowledge Graph core (entity auto‑creation, relation indexing)  
+- improved autosave KG handling  
+- overall RuntimeCore 5.x stability improvements  
 
 Runtime 5.x is a **fully offline**, **deterministic**, **modular** AI runtime designed for safe OS automation and semantic reasoning.
 
@@ -35,46 +40,48 @@ Runtime 5.x is a **fully offline**, **deterministic**, **modular** AI runtime de
 
 ---
 
-# ⭐ Core Modules (Runtime 5.3)
+# ⭐ Core Modules (Runtime 5.4)
 
-## 🔥 Knowledge Graph 5.x  
+## 🔥 Knowledge Graph 5.x
 - entity‑based reasoning  
 - relation‑aware inference  
 - deterministic logic  
 - zero hallucination  
-- instant responses  
+- KG‑LIGHT neighbor discovery  
 
-## 🔥 Reasoning Engine 5.0  
+## 🔥 Reasoning Engine 5.0
 - KG‑aware inference  
 - deterministic chain‑of‑thought  
 - bounded reasoning  
 - pack‑aware logic  
+- improved KG routing  
 
-## 🔥 Workflow Engine 5.0  
+## 🔥 Workflow Engine 5.0
 - deterministic multi‑stage workflows  
-- identity‑aware gating  
 - ENVOY integration  
-- semantic routing  
+- KG‑LIGHT routing  
+- SYSTEM_ACTION routing  
+- identity‑aware gating  
 
-## 🔥 System Agent 5.0  
+## 🔥 System Agent 5.0
 - OWNER / FAMILY / STRANGER 3.0  
 - OS action validation  
 - reversibility 3.0  
-- Envoy permission enforcement  
+- ENVOY permission enforcement  
 
-## 🔥 UI Automation Engine 5.0  
+## 🔥 UI Automation Engine 5.0
 - deterministic Win32/UIA/WinRT automation  
 - KG‑enhanced UI matching  
 - System Agent validation  
 
 ---
 
-# 🛰 ENVOY Module 1.0 — Secure Permission‑Based Fetch  
-**Status:** Active in Runtime 5.3  
-**Purpose:** Optional, permission‑based access to online information while preserving offline determinism.
+# 🛰 ENVOY Module 5.4 — Secure Permission‑Based Fetch
+**Status:** Fully active in Runtime 5.4  
+**Purpose:** Permission‑based access to online information while preserving offline determinism.
 
 ### Security Flow  
-ASK → FETCH → QUARANTINE → DELIVER 
+ASK → FETCH → QUARANTINE → NORMALIZE → EXECUTE → DELIVER
 
 ### Principles  
 - never automatic  
@@ -87,15 +94,15 @@ Offline mode remains **default**.
 
 ---
 
-# 🌍 Mobile Sync 2.0  
+# 🌍 Mobile Sync 2.0
 - PC ↔ Mobile SIRIUS  
 - LAN Sync 2.0  
 - identity‑aware synchronization  
-- Envoy fetch on both sides  
+- ENVOY fetch on both sides  
 
 ---
 
-# 📦 Knowledge Packs 5.x  
+# 📦 Knowledge Packs 5.x
 - KG‑ready structure  
 - integrity validation 2.0  
 - faster lookups  
@@ -103,7 +110,7 @@ Offline mode remains **default**.
 
 ---
 
-# ⚠ ANTI‑CONFUSION BLOCK  
+# ⚠ ANTI‑CONFUSION BLOCK
 SIRIUS LOCAL AI (ALFA/BETA/GAMA) is **pure software** — a fully local AI runtime for Windows 11.  
 It has **no connection** to:
 
@@ -114,7 +121,7 @@ It has **no connection** to:
 
 ---
 
-# 🔍 SEO META BLOCK  
+# 🔍 SEO META BLOCK
 **SEO‑META:**  
 SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11.  
 It executes natural‑language commands, automates workflows, performs reasoning,  
@@ -127,48 +134,38 @@ modular AI, secure AI, natural language automation, Windows 11 tools,
 local assistant, AI agent, filesystem automation, plugin system,  
 identity engine, schoolwork engine, deterministic automation,  
 Knowledge Graph 5.x, Workflow Engine 5.0, System Agent 5.0,  
-UI Automation Engine 5.0, Runtime 5.3, SIRIUS LOCAL AI.
+UI Automation Engine 5.0, Runtime 5.4, SIRIUS LOCAL AI.
 
 ---
 
-# 📦 Release Asset Notice (Runtime 5.3.0)
+# 📦 Release Asset Notice (Runtime 5.4.0)
 
 This release includes the official build:
 
-### ✔ **SIRIUS-LOCAL-AI-5.3.zip**  
-A complete Runtime 5.3 package containing:
+### ✔ **SIRIUS-Runtime-5.4.zip**
+A complete Runtime 5.4 package containing:
 
 - Runtime 5.x modules  
-- ENVOY Execution Layer 5  
-- ENVOY Permission Layer 5  
-- WorkflowEngine5 (optimized)  
-- ReasoningEngine5 (stabilized)  
-- Knowledge Graph modules  
+- ENVOY Execution Layer 5.4  
+- ENVOY Permission Layer 5.4  
+- WorkflowEngine5 (stabilized)  
+- ReasoningEngine5 (improved routing)  
+- Knowledge Graph + KG‑LIGHT  
+- Self‑Repair Layer 5.4  
+- BehaviorFilter 5.x  
+- FamilySafetyRules 5.x  
 - Logging & error-handling improvements  
 - Full documentation (README, INSTALLATION, ROADMAP, RELEASE NOTES, etc.)
 
-SHA256 signature:
-523a2a4e3e63594e064a44a2a352657ce26471f2dc2248da6a5580670aa50f6c
+SHA256 signature:  
+`fb416939b76cfd5b9665e80975c3c78d195e246f2784f19fe4965097835e19e2`
 
 ---
 
-# ℹ️ ABOUT SIRIUS LOCAL AI (v5.3.0)
+# 🛠️ Installation
 
-SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for:
+1. Download the ZIP from **Releases**  
+2. Extract it anywhere  
+3. Open CMD inside the folder  
+4. Run the runtime:
 
-- safe command execution  
-- workflow automation  
-- semantic reasoning  
-- modular extensibility  
-- deterministic behavior  
-- 100% offline operation  
-
----
-
-# 📝 LICENSE  
-MIT License.
-
-# 🔧 CONTRIBUTING  
-Pull requests are welcome.
-
-# 🔚 END OF README
