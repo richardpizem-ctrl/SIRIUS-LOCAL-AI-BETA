@@ -1,26 +1,31 @@
-# 📦 Installation Guide – SIRIUS LOCAL AI (v5.3.0)
+# 📦 Installation Guide – SIRIUS LOCAL AI (v5.4.0)
 
-SIRIUS LOCAL AI is a fully local, modular AI runtime built on the **Unified Runtime 5.3 architecture**, featuring:
+> **PREPAČ:**  
+> Tento dokument bol aktualizovaný z verzie 5.3.0 na **5.4.0**, aby odrážal najnovšie zmeny v Runtime 5.4, vrátane ENVOY 5.4, KG‑LIGHT, Self‑Repair Layer 5.4 a aktualizovaných systémových modulov.  
+> Ak si používal staršiu verziu, všetko je teraz zosúladené s aktuálnym runtime.
 
-- AITE 5.3 (multimodal semantic triage)  
-- Workflow Engine 5.3  
+SIRIUS LOCAL AI is a fully local, modular AI runtime built on the  
+**Unified Runtime 5.4 architecture**, featuring:
+
+- AITE 5.4 (multimodal semantic triage)  
+- Workflow Engine 5.x (improved routing for KG‑LIGHT & ENVOY)  
 - Reasoning Engine 5.0  
-- Knowledge Graph 5.x  
-- ENVOY Execution + Permission Layers 5  
+- Knowledge Graph 5.x + **KG‑LIGHT**  
+- ENVOY Execution + Permission Layers 5.4  
 - System Agent 5  
 - Security Family 5.x  
-- Self‑Repair Layer 5.x  
+- **Self‑Repair Layer 5.4**  
 - Deterministic UI Automation Engine 5.0  
 
 The system is distributed as clean Python source code, intended for developers, testers, and advanced users.
 
-A packaged installer (`.EXE`) is introduced in **5.x** and expanded in **5.3+**.
+A packaged installer (`.EXE`) is introduced in **5.x** and expanded in **5.4+**.
 
 All processing is fully local; **no data ever leaves your PC**.
 
 ---
 
-# ⚠️ System Notes (v5.3.0)
+# ⚠️ System Notes (v5.4.0)
 
 SIRIUS LOCAL AI interacts with Windows 11 system APIs through the **WIN‑CAP 5.x** capability layer, including:
 
@@ -32,13 +37,13 @@ SIRIUS LOCAL AI interacts with Windows 11 system APIs through the **WIN‑CAP 5.
 - developer automation  
 - **Security Family 5.x** — identity engine, time‑limits, stranger‑mode, schoolwork engine  
 - **Reasoning Engine 5.0** — deterministic KG‑based reasoning  
-- **Workflow Engine 5.3** — deterministic routing  
+- **Workflow Engine 5.x** — deterministic routing with KG‑LIGHT  
 - **System Agent 5** — identity‑aware OS validation  
 - **HealthMonitor5** — degraded‑mode detection  
 - **ErrorHandler5** — safe execution wrapper  
 - **SystemHooks5** — runtime event hooks  
 - **Knowledge Graph Runtime 1.x** — offline entity‑relation reasoning  
-- **ENVOY Execution + Permission Layers 5** — permission‑based online fetch (optional)  
+- **ENVOY Execution + Permission Layers 5.4** — permission‑based online fetch (optional)  
 
 Windows Defender or SmartScreen may classify the runtime as an “Unknown App”.  
 Antivirus tools may generate false positives during development.
@@ -58,8 +63,8 @@ pip install watchdog psutil dearpygui pyaudio speechrecognition pyttsx3 colorama
 git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA 
 ### 4. Open the project in VS Code or any terminal
 
-### 5. Run the main entrypoint
-python sirius.py 
+### 5. Run the main entrypoint (Runtime 5.x)
+python runtime5_cli.py 
 ---
 
 # ⚠️ Important Note — SIRIUS runs through CLI
@@ -69,7 +74,7 @@ The runtime does not start automatically through a graphical launcher unless the
 
 Running through CLI ensures:
 
-- correct initialization of Runtime 5.3  
+- correct initialization of Runtime 5.4  
 - proper loading of the Knowledge Graph  
 - activation of System Agent 5  
 - deterministic workflow routing  
@@ -86,36 +91,24 @@ Using the CLI is the **official and recommended method** for all developers and 
 
 Developer mode provides full access to:
 
-- **Runtime Core 5.3**  
-- **Workflow Engine 5.3**  
+- **Runtime Core 5.4**  
+- **Workflow Engine 5.x**  
 - **Reasoning Engine 5.0**  
-- **Knowledge Graph Runtime 1.x**  
+- **Knowledge Graph Runtime 1.x + KG‑LIGHT**  
 - **System Agent 5**  
 - **HealthMonitor5**  
 - **ErrorHandler5**  
 - **SystemHooks5**  
 - **Plugin System 5.x**  
 - **Security Family 5.x**  
-- **ENVOY Execution + Permission Layers 5**  
+- **ENVOY Execution + Permission Layers 5.4**  
 - **UI Automation Engine 5.0**  
 
 ---
 
 # 🛠️ Future Installation System
 
-## ⭐ v5.3.0 – Intelligent Runtime Installer (STABLE)
-- performance‑optimized packaging  
-- optional UI/animation bundles  
-- tray/voice integration  
-- semantic triage extensions  
-- identity‑aware installation logic  
-- KG‑aware initialization  
-- ENVOY permission setup  
-- **stable `.EXE` installer for SIRIUS LOCAL AI**  
-
----
-
-## ⭐ v5.4.0 – Self‑Repair Layer Integration
+## ⭐ v5.4.0 – Self‑Repair Layer Integration (CURRENT)
 - repair sandbox  
 - module integrity scanning  
 - safe fallback states  
@@ -138,18 +131,18 @@ This ensures long‑term stability even in packaged builds.
 
 ---
 
-# 📌 Status (v5.3.0)
+# 📌 Status (v5.4.0)
 
-Installation system: **Stable (5.3.0)**  
+Installation system: **Stable (5.4.0)**  
 Packaging: **Stable**  
-Runtime: **Stable (5.3.0)**  
+Runtime: **Stable (5.4.0)**  
 Plugins: **Stable (5.x)**  
 Architecture: **Unified Runtime 5.x**  
 Security Family: **Integrated (identity engine, time‑limits, stranger‑mode, schoolwork engine)**  
 Reasoning Engine: **Stable (5.0)**  
-Workflow Engine: **Stable (5.3)**  
+Workflow Engine: **Stable (5.x)**  
 System Agent: **Stable (5)**  
-Knowledge Graph: **Runtime 1.x**  
+Knowledge Graph: **Runtime 1.x + KG‑LIGHT**  
 UI Automation Engine: **Stable (5.0)**  
-ENVOY: **Execution + Permission Layers 5**  
-Self‑Repair: **Layer 5.x active**  
+ENVOY: **Execution + Permission Layers 5.4**  
+Self‑Repair: **Layer 5.4 active**
