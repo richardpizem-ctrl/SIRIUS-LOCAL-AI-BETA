@@ -168,4 +168,27 @@ SHA256 signature:
 2. Extract it anywhere  
 3. Open CMD inside the folder  
 4. Run the runtime:
+python runtime5_cli.py
 
+---
+
+# ℹ️ ABOUT SIRIUS LOCAL AI (v5.4.0)
+
+SIRIUS LOCAL AI is a fully local, modular AI runtime for Windows 11 designed for:
+
+- safe command execution  
+- workflow automation  
+- semantic reasoning  
+- modular extensibility  
+- deterministic behavior  
+- 100% offline operation  
+
+---
+
+# 📝 LICENSE  
+MIT License.
+
+# 🔧 CONTRIBUTING  
+Pull requests are welcome.
+
+# 🔚 END OF README
