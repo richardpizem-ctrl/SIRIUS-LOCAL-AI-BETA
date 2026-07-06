@@ -1,5 +1,5 @@
 # 🚀 SIRIUS LOCAL AI — Runtime 6.0  
-### Next‑Generation Modular Kernel • Hybrid Multimodal Analyzer • Deterministic Local AI  
+### Modular Kernel • Hybrid Multimodal Analyzer • Deterministic Local AI  
 ### Fully Offline Architecture • Zero Cloud Dependency • Secure Family Behavior Engine
 
 <p align="center">
@@ -13,14 +13,16 @@
 ---
 
 # 🌌 Introduction — The Next Evolution of SIRIUS  
-Runtime **6.0** represents the largest architectural leap in the history of the SIRIUS project.  
-It introduces a completely new generation of core systems:
+Runtime **6.0** represents the largest architectural leap in the history of SIRIUS.  
+It builds directly on the **Unified Reasoning & Explainability Architecture 5.5**, adding:
 
 - **Modular Kernel 6.0**  
-- **Hybrid Multimodal Analyzer**  
+- **Hybrid Multimodal Analyzer 6.0**  
 - **Family Security Behavior Engine 6.0**  
 - **Self‑Repair Layer 2.0**  
-- **Deterministic multimodal architecture**
+- **Deterministic multimodal architecture**  
+- **Explainability‑aware multimodal inference**  
+- **KG‑linked multimodal fact creation**  
 
 The goal of Runtime 6.0 is to create a **local multimodal diagnostic system** capable of analyzing:
 
@@ -31,35 +33,39 @@ The goal of Runtime 6.0 is to create a **local multimodal diagnostic system** ca
 - structured data  
 - KG facts  
 
-…all **without generating content**, fully deterministic, fully offline.
+…all **without generating content**, fully deterministic, fully offline, fully explainable.
 
 ---
 
 # 🧠 Hybrid Multimodal Analyzer 6.0  
-A new analysis module capable of processing multiple data types.
+A new multimodal analysis engine capable of processing multiple data types with deterministic, explainable logic.
 
 ### 🔊 Audio / MIDI Analyzer  
 - tone extraction  
 - rhythmic segmentation  
 - MIDI normalization  
 - pattern detection  
+- KG‑linked audio entities  
 
 ### 🖼 Image Structure Analyzer  
 - object detection  
 - structural segmentation  
 - visual feature extraction  
 - KG‑linked visual entities  
+- explainability traces for each detection  
 
 ### 🎞 Video Frame Semantic Extractor  
 - frame‑by‑frame analysis  
 - event detection  
 - temporal segmentation  
 - behavioral pattern recognition  
+- deterministic inference paths  
 
 ### 🔗 KG‑Aware Multimodal Linking  
 - multimodal fact creation  
 - entity linking  
-- deterministic inference paths  
+- deterministic inference  
+- KG_EXPLAIN integration  
 
 ---
 
@@ -74,6 +80,7 @@ A redesigned system kernel focused on stability, isolation, and long‑term main
 - Self‑Repair Layer 2.0 integration  
 - reduced module complexity  
 - high stability for future versions  
+- explainability‑aware kernel routing  
 
 ---
 
@@ -87,6 +94,7 @@ A new generation of the SIRIUS home protection system.
 - TimeLimits 3.0  
 - identity‑aware rules  
 - KG‑linked safety inference  
+- explainability for every safety decision  
 
 Goal: **zero false positives**, maximum predictability.
 
@@ -101,32 +109,30 @@ The second generation of autonomous runtime repair.
 - kernel‑level recovery  
 - anomaly detection  
 - repair‑routing logic  
+- explainability for repair decisions  
 
 ---
 
 # 🧭 Architecture Diagram (Runtime 6.0)
-
-```
 ┌───────────────────────────────┐
 │       Hybrid Multimodal       │
 │           Analyzer 6.0        │
 └───────────────┬──────────────┘
-                │
+│
 ┌───────────────▼──────────────┐
 │        Modular Kernel 6.0     │
 │ sandbox • routing • errors    │
 └───────────────┬──────────────┘
-                │
+│
 ┌───────────────▼──────────────┐
 │     Self‑Repair Layer 2.0     │
 │ integrity • recovery • heal   │
 └───────────────┬──────────────┘
-                │
+│
 ┌───────────────▼──────────────┐
 │   Family Security Engine 6.0  │
 │ behavior • identity • rules   │
 └───────────────────────────────┘
-```
 
 ---
 
