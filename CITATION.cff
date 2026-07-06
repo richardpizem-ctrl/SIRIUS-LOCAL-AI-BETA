@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "5.3.0"
-date-released: 2026-06-20
+version: "5.5.0"
+date-released: 2026-07-06
 
 authors:
   - family-names: "Pizem"
@@ -15,14 +15,23 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 5.3"
-  - "runtime core 5.3 unified"
+  - "intelligent runtime 5.5"
+  - "runtime core 5.5 unified"
   - "plugin system 5.x"
-  - "workflow engine 5.3"
-  - "reasoning engine 5.0"
-  - "semantic triage 5.3"
-  - "AITE 5.3"
+  - "workflow engine 5.5"
+  - "reasoning engine 5.5"
+  - "explainability engine 5.5"
+  - "KG_EXPLAIN"
+  - "multi-hop inference"
+  - "inheritance reasoning"
+  - "transitive reasoning"
+  - "proof tree foundation"
+  - "confidence scoring"
+  - "rule chaining"
+  - "semantic triage 5.5"
+  - "AITE 5.5"
   - "knowledge graph 5.x"
+  - "KG comfort commands"
   - "secure local processing"
   - "Windows automation"
   - "mobile automation"
@@ -30,12 +39,12 @@ keywords:
   - "family safety 5.x"
   - "identity engine 3.0"
   - "SECURITY FAMILY 5.x"
-  - "schoolwork engine 5.3"
+  - "schoolwork engine 5.5"
   - "time-limits engine v3"
   - "self-repair layer 5.4"
-  - "health-check engine 5.3"
-  - "PC automation runtime 5.3"
-  - "Mobile Runtime 5.3"
+  - "health-check engine 5.5"
+  - "PC automation runtime 5.5"
+  - "Mobile Runtime 5.5"
   - "ENVOY Execution Layer 5"
   - "ENVOY Permission Layer 5"
   - "safe external retrieval"
@@ -49,18 +58,22 @@ keywords:
   - "WinCapabilities 5.x"
   - "semantic UI automation"
   - "runtime 4.x to 5.x transition"
+  - "explainable AI"
+  - "symbolic reasoning"
+  - "XAI"
 
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
-  deterministic execution of commands, workflows, plugins, and semantic automation.
-  Version 5.3.0 introduces major stability improvements, including the ENVOY Execution
-  Layer 5, ENVOY Permission Layer 5, optimized Workflow Engine 5.3, stabilized Knowledge
-  Graph 5.x modules, and improved multimodal triage through AITE 5.3.
+  deterministic execution of commands, workflows, plugins, reasoning tasks, and
+  semantic automation. Version 5.5.0 introduces the largest intelligence upgrade
+  in the history of the runtime, including the KG_EXPLAIN explainability engine,
+  multi-hop inference, inheritance reasoning, transitive reasoning, proof tree
+  foundations, confidence scoring, and rule chaining.
 
   The Unified Runtime Architecture 5.x merges PC and Mobile logic into a single,
-  deterministic, identity-aware operating layer. The Runtime Core 5.3 provides unified
-  orchestration, deterministic execution, capability-based access control, and identity-
-  aware routing across all modules.
+  deterministic, identity-aware operating layer. The Runtime Core 5.5 provides
+  unified orchestration, deterministic execution, capability-based access control,
+  identity-aware routing, and explainability-aware workflow dispatch.
 
   SECURITY FAMILY 5.x expands identity and family safety layers with OWNER/FAMILY/
   STRANGER identity levels, time-limits v3, safe-mode for unknown users, and a
@@ -68,9 +81,10 @@ abstract: >
 
   The system operates entirely on the user's device, without any cloud dependencies
   or external data transmission. All modules follow strict security boundaries,
-  deterministic behavior, semantic understanding, and predictable execution rules.
+  deterministic behavior, semantic understanding, explainability, and predictable
+  execution rules.
 
-  Version 5.3.0 upgrades the entire runtime stack, including Workflow Engine 5.3,
-  Reasoning Engine 5.0, ENVOY 5, FS‑AGENT 5, CME‑MEM 5, System Agent 5, and Password
-  Vault 5.0. These upgrades prepare the architecture for the upcoming Self‑Repair
-  Layer in the 5.x → 6.0 transition.
+  Version 5.5.0 upgrades the entire runtime stack, including Workflow Engine 5.5,
+  Reasoning Engine 5.5, KG_EXPLAIN, ENVOY 5, FS‑AGENT 5, CME‑MEM 5, System Agent 5,
+  and Password Vault 5.0. These upgrades prepare the architecture for the upcoming
+  Modular Kernel Architecture in the 5.x → 6.0 transition.
