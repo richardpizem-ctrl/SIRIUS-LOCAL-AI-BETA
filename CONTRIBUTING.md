@@ -1,32 +1,36 @@
-# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v5.3.0 UNIFIED)
+# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v5.5.0 UNIFIED)
 
 Thank you for your interest in contributing to **SIRIUS LOCAL AI**.  
 This document defines the rules, processes, and expectations for all contributors.  
-The goal is to maintain a **clean, safe, modular, deterministic, and intelligent** local AI system built on the **Unified Runtime 5.3 architecture**.
+The goal is to maintain a **clean, safe, modular, deterministic, explainable, and intelligent** local AI system built on the **Unified Reasoning & Explainability Architecture 5.5**.
 
 All processing is fully local.  
 No data leaves your device.
 
-Version **5.3.0** updates these guidelines to include:
+Version **5.5.0** updates these guidelines to include:
 
-- **Unified Runtime Architecture 5.x (PC + Mobile)**  
-- **ENVOY Execution Layer 5**  
-- **ENVOY Permission Layer 5**  
-- **Workflow Engine 5.3**  
-- **Knowledge Graph 5.x**  
-- **AITE 5.3**  
+- **Unified Reasoning & Explainability Architecture 5.x**  
+- **KG_EXPLAIN (Explainability Engine)**  
+- **Reasoning Engine 5.5 (multi-hop, inheritance, transitivity)**  
+- **Proof Tree Foundations**  
+- **Confidence Foundations**  
+- **Rule Chaining Foundations**  
+- **Workflow Engine 5.5 (explain routing)**  
+- **Knowledge Graph 5.x (comfort commands)**  
+- **AITE 5.5 (semantic + explainability triage)**  
 - **Identity Engine 3.0**  
 - **SECURITY FAMILY 5.x**  
-- **Schoolwork Engine 5.3**  
+- **Schoolwork Engine 5.5**  
 - **System Agent 5**  
 - hardened deterministic routing  
-- cross‑platform safety rules  
+- cross-platform safety rules  
 
 ---
 
 # 1. 🔐 Core Principles
 
 - **Security has absolute priority**  
+- **Explainability must remain transparent and deterministic**  
 - **No action may bypass user confirmations**  
 - **Modular architecture must remain clean and separated**  
 - **All contributions must respect existing module APIs**  
@@ -37,16 +41,17 @@ Version **5.3.0** updates these guidelines to include:
 - **No circular imports**  
 - **Deterministic, reversible behavior whenever possible**  
 - **Plugin System 5.x rules must be followed**  
-- **Safety‑critical modules must never be weakened or bypassed**, including:  
+- **Safety-critical modules must never be weakened or bypassed**, including:  
   - SECURITY FAMILY 5.x  
   - Identity Engine 3.0  
-  - Schoolwork Engine 5.3  
-  - Time‑Limits Engine v3  
-  - Self‑Repair Layer 5.x  
-  - **UI Automation Engine 5.0**  
-  - **System Agent 5**  
-- **Reasoning Engine 5.x must not be misused or extended unsafely**  
-- **ENVOY Execution/Permission Layers 5 must never be bypassed**  
+  - Schoolwork Engine 5.5  
+  - Time-Limits Engine v3  
+  - Self-Repair Layer 5.x  
+  - UI Automation Engine 5.0  
+  - System Agent 5  
+  - ENVOY Execution/Permission Layers 5  
+- **Reasoning Engine 5.5 must not be misused or extended unsafely**  
+- **KG_EXPLAIN must remain transparent and correct**  
 
 ---
 
@@ -54,7 +59,7 @@ Version **5.3.0** updates these guidelines to include:
 
 1. **Fork** the repository  
 2. **Create a new branch** for your change  
-3. **Implement** the change according to the Runtime 5.3 architecture  
+3. **Implement** the change according to the Runtime 5.5 architecture  
 4. **Test** it in your local environment (PC or Mobile)  
 5. **Submit a Pull Request** with a clear description  
 
@@ -81,15 +86,16 @@ Key rules:
 - functions ideally 5–25 lines  
 - no monolithic modules  
 - no deep nesting — prefer early returns  
-- imports grouped: standard → third‑party → internal  
+- imports grouped: standard → third-party → internal  
 - plugin code must follow Plugin API 5.x  
-- SECURITY FAMILY 5.x code must follow safety‑first design  
-- SCHOOLWORK ENGINE 5.3 must remain intact and non‑bypassable  
-- Reasoning Engine 5.x integrations must be deterministic and safe  
-- Self‑Repair Layer 5.x must not be disabled or bypassed  
-- **UI Automation Engine 5.0 integrations must follow deterministic fallback rules**  
-- **System Agent 5 must validate all system‑level actions**  
-- **ENVOY 5 must sanitize all system requests**  
+- SECURITY FAMILY 5.x code must follow safety-first design  
+- SCHOOLWORK ENGINE 5.5 must remain intact and non-bypassable  
+- Reasoning Engine 5.5 integrations must be deterministic and safe  
+- Self-Repair Layer 5.x must not be disabled or bypassed  
+- UI Automation Engine 5.0 integrations must follow deterministic fallback rules  
+- System Agent 5 must validate all system-level actions  
+- ENVOY 5 must sanitize all system requests  
+- KG_EXPLAIN output must remain transparent and correct  
 
 ---
 
@@ -100,7 +106,7 @@ Every change must include:
 - basic functional tests  
 - verification of security constraints  
 - input validation  
-- error‑state testing  
+- error-state testing  
 - predictable behavior under invalid inputs  
 - no silent failures  
 - no destructive operations without confirmation  
@@ -108,28 +114,34 @@ Every change must include:
 
 If your change affects:
 
-- **FS‑AGENT 5.x** → test path validation, safety prompts  
+- **FS-AGENT 5.x** → test path validation, safety prompts  
 - **NL Router 5.x** → test semantic routing and ambiguity handling  
-- **Workflow Engine 5.3** → test semantic transitions  
-- **Reasoning Engine 5.x** → test deterministic reasoning behavior  
-- **WIN‑CAP 5.x** → test safe fallback behavior  
+- **Workflow Engine 5.5** → test semantic transitions + explain routing  
+- **Reasoning Engine 5.5** →  
+  - multi-hop inference  
+  - inheritance reasoning  
+  - transitive reasoning  
+  - deterministic rule chaining  
+  - proof tree nodes  
+  - confidence scoring  
+- **WIN-CAP 5.x** → test safe fallback behavior  
 - **Plugin System 5.x** → test manifest, NL commands, tasks, workflows, GUI elements  
 - **UI Automation Engine 5.0** →  
   - fuzzy matching behavior  
   - fallback logic  
   - deterministic retries  
-  - safe OS‑level routing  
+  - safe OS-level routing  
 - **SECURITY FAMILY 5.x** →  
   - identity classification (OWNER / FAMILY / STRANGER)  
-  - time‑limit enforcement v3  
+  - time-limit enforcement v3  
   - schoolwork bypass logic  
-  - safe‑mode restrictions  
-  - STRANGER‑mode protections  
-- **Schoolwork Engine 5.3** →  
+  - safe-mode restrictions  
+  - STRANGER-mode protections  
+- **Schoolwork Engine 5.5** →  
   - subject detection  
   - difficulty scoring  
   - bypass logic  
-- **Self‑Repair Layer 5.x** →  
+- **Self-Repair Layer 5.x** →  
   - integrity checks  
   - fallback behavior  
 - **System Agent 5** →  
@@ -139,6 +151,9 @@ If your change affects:
   - sanitization  
   - identity filtering  
   - safe routing  
+- **KG_EXPLAIN** →  
+  - correct inference history  
+  - deterministic explanation output  
 
 ---
 
@@ -153,25 +168,26 @@ A valid PR must include:
 
 Restrictions:
 
-- no large PRs — prefer smaller, well‑structured steps  
+- no large PRs — prefer smaller, well-structured steps  
 - PRs must **not** modify the architecture without prior discussion  
 - PRs must follow module boundaries  
 - PRs must not introduce new dependencies without approval  
 - PRs must not break determinism or safety guarantees  
 - plugin PRs must include updated manifest if needed  
 - PRs must not weaken SECURITY FAMILY 5.x protections  
-- PRs must not interfere with SCHOOLWORK ENGINE 5.3  
-- PRs must not disable or bypass the Self‑Repair Layer  
-- PRs must not misuse Reasoning Engine 5.x  
-- **PRs must not compromise UI Automation Engine 5.0 safety rules**  
-- **PRs must not bypass System Agent 5 validation**  
-- **PRs must not bypass ENVOY Execution/Permission Layers 5**  
+- PRs must not interfere with SCHOOLWORK ENGINE 5.5  
+- PRs must not disable or bypass the Self-Repair Layer  
+- PRs must not misuse Reasoning Engine 5.5  
+- PRs must not compromise UI Automation Engine 5.0 safety rules  
+- PRs must not bypass System Agent 5 validation  
+- PRs must not bypass ENVOY Execution/Permission Layers 5  
+- PRs must not distort or hide KG_EXPLAIN inference history  
 
 ---
 
 # 6. ❌ What We Do Not Accept
 
-- network‑based features  
+- network-based features  
 - automatic actions without confirmation  
 - bypassing security rules  
 - monolithic modules  
@@ -179,17 +195,18 @@ Restrictions:
 - hidden background tasks  
 - features that break modularity  
 - unsafe filesystem or system operations  
-- code that relies on OS‑specific hacks  
+- code that relies on OS-specific hacks  
 - contributions that reduce clarity or predictability  
 - plugins that violate Plugin API 5.x  
 - attempts to disable FAMILY mode, time limits, or schoolwork engine  
-- attempts to weaken STRANGER‑mode protections  
+- attempts to weaken STRANGER-mode protections  
 - attempts to bypass Identity Engine 3.0  
-- attempts to disable Self‑Repair Layer  
+- attempts to disable Self-Repair Layer  
 - unsafe Reasoning Engine extensions  
-- **unsafe or non‑deterministic UI automation behavior**  
-- **attempts to bypass System Agent 5**  
-- **attempts to bypass ENVOY 5**  
+- unsafe or non-deterministic UI automation behavior  
+- attempts to bypass System Agent 5  
+- attempts to bypass ENVOY 5  
+- attempts to manipulate KG_EXPLAIN output  
 
 ---
 
@@ -213,17 +230,18 @@ Guidelines:
 
 All contributions must respect:
 
-- **ARCHITECTURE.md (v5.3.0)**  
+- **ARCHITECTURE.md (v5.5.0)**  
 - **MODULE_MAP.md**  
 - **STYLEGUIDE.md**  
 - **SECURITY.md**  
 - **Plugin API 5.x**  
 - **SECURITY FAMILY 5.x design rules**  
-- **Schoolwork Engine 5.3 rules**  
-- **Self‑Repair Layer 5.x requirements**  
+- **Schoolwork Engine 5.5 rules**  
+- **Self-Repair Layer 5.x requirements**  
 - **UI Automation Engine 5.0 specifications**  
 - **System Agent 5 safety model**  
 - **ENVOY 5 sanitization rules**  
+- **KG_EXPLAIN explainability rules**  
 
 Breaking architectural boundaries requires prior approval.
 
@@ -233,33 +251,33 @@ Breaking architectural boundaries requires prior approval.
 
 Use clear, structured commit messages:
 
-- feat: added new workflow validation  
-- fix: corrected path validation in FS‑AGENT  
-- refactor: simplified NL routing logic  
+- feat: added explainability routing  
+- fix: corrected KG attribute pipeline  
+- refactor: simplified reasoning rule chaining  
 - docs: updated INSTALLATION.md  
 
 Avoid vague messages like “update”, “fix stuff”, “changes”.
 
 ---
 
-# 10. 🧒 Family Safety Requirements (v5.3.0)
+# 10. 🧒 Family Safety Requirements (v5.5.0)
 
 Contributors must respect the integrity of the **SECURITY FAMILY 5.x** module:
 
-- behavior‑based identity must remain deterministic  
+- behavior-based identity must remain deterministic  
 - FAMILY mode must remain safe and restricted  
-- time‑limits v3 must not be bypassable  
+- time-limits v3 must not be bypassable  
 - **schoolwork must always be allowed**  
-- stranger‑mode must remain locked down  
-- OWNER‑level actions must remain protected  
+- stranger-mode must remain locked down  
+- OWNER-level actions must remain protected  
 - Identity Engine 3.0 must not be weakened  
-- Schoolwork Engine 5.3 must remain intact  
+- Schoolwork Engine 5.5 must remain intact  
 - UI Automation Engine 5.0 must not perform unsafe actions  
-- System Agent 5 must validate all system‑level actions  
+- System Agent 5 must validate all system-level actions  
 - ENVOY 5 must sanitize all system requests  
-- no PR may weaken or circumvent these protections  
+- KG_EXPLAIN must remain transparent and correct  
 
-Any PR affecting SECURITY FAMILY, SCHOOLWORK ENGINE, UI Automation Engine, ENVOY, or System Agent must include **explicit safety tests**.
+Any PR affecting SECURITY FAMILY, SCHOOLWORK ENGINE, UI Automation Engine, ENVOY, System Agent, or KG_EXPLAIN must include **explicit safety tests**.
 
 ---
 
@@ -271,5 +289,4 @@ All contributions are accepted only in accordance with the project’s **MIT Lic
 
 # 📌 Document Status
 
-Current version: **5.3.0 (Unified)**  
-Updated to reflect the **5.0 → 5.3 transition** and the new **Unified Runtime Architecture 5.x**.
+Current version: **5.5.0 (Unified Reasoning & Explainability Architecture)**
