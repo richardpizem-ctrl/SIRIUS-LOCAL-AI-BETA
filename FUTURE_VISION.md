@@ -1,12 +1,17 @@
-# 🌟 Future Vision (v5.3.0 and Beyond)
+# 🌟 Future Vision (v5.5.0 and Beyond)
 
-SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, and fully local.
+SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, explainable, and fully local.
 
-This **v5.3 unified edition** reflects the upgraded Runtime 5.x architecture, including:
+This **v5.5 unified edition** reflects the upgraded Unified Reasoning & Explainability Architecture 5.x, including:
 
 - Unified PC + Mobile runtime  
 - Deterministic multimodal reasoning  
-- AITE 5.3  
+- KG_EXPLAIN (Explainability Engine)  
+- Reasoning Engine 5.5 (multi‑hop, inheritance, transitivity)  
+- Proof Tree foundations  
+- Confidence scoring foundations  
+- Rule chaining foundations  
+- AITE 5.5  
 - System Agent 5  
 - Security Family 5.x  
 - ENVOY Execution Layer 5  
@@ -18,9 +23,9 @@ This **v5.3 unified edition** reflects the upgraded Runtime 5.x architecture, in
 
 This document describes:
 
-1. **What has already been delivered** (v1.0.0 → v5.3.0)  
+1. **What has already been delivered** (v1.0.0 → v5.5.0)  
 2. **What each major version introduced**  
-3. **What Runtime 5.3 unifies and stabilizes**  
+3. **What Runtime 5.5 unifies and stabilizes**  
 4. **Long‑term direction (v6.0.0 and beyond)**  
 
 All features remain:
@@ -28,6 +33,7 @@ All features remain:
 - 100% offline  
 - family‑safe  
 - deterministic  
+- explainable  
 - under full user control  
 - modular and replaceable  
 - identity‑aware  
@@ -163,9 +169,7 @@ Delivered:
 
 ---
 
-# 🚀 7. Version 5.3.0 – Stabilized Unified Runtime (NEW)
-
-Version 5.3.0 is the **most stable and optimized release** of the Unified Runtime 5.x architecture.
+# 🚀 7. Version 5.3.0 – Stabilized Unified Runtime
 
 Delivered:
 
@@ -208,13 +212,65 @@ Delivered:
 
 ---
 
-# 🚀 8. Long‑Term Vision (Beyond v5.3.0)
+# 🚀 8. Version 5.5.0 – Unified Reasoning & Explainability Architecture (NEW)
+
+Version 5.5.0 introduces the **largest intelligence upgrade in SIRIUS history**.
+
+Delivered:
+
+## 🧠 Reasoning Engine 5.5  
+- multi‑hop inference  
+- inheritance reasoning  
+- transitive reasoning  
+- deterministic rule chaining  
+- proof tree foundations  
+- confidence scoring foundations  
+- KG_EXPLAIN integration  
+
+## 🔍 KG_EXPLAIN (Explainability Engine)  
+- step‑by‑step inference explanation  
+- rule‑based justification  
+- confidence reporting  
+- proof tree generation  
+- deterministic explainability  
+
+## 🧩 AITE 5.5  
+- semantic + explainability triage  
+- “prečo … ?” detection  
+- improved multimodal routing  
+- safer fallback logic  
+
+## 🔁 Workflow Engine 5.5  
+- explainability routing  
+- deterministic transitions  
+- safer fallback states  
+
+## 📚 Knowledge Graph 5.x  
+- comfort commands  
+- improved attribute pipeline  
+- improved auto‑creation  
+- improved KG‑Light routing  
+
+## 🛡 Security Family 5.x  
+- identity‑aware explainability  
+- safer STRANGER mode  
+- SCHOOLWORK always allowed  
+
+## 🌐 ENVOY 5  
+- explainability traces  
+- deterministic sanitization  
+- hardened quarantine  
+
+---
+
+# 🚀 9. Long‑Term Vision (Beyond v5.5.0)
 
 ## 🧠 6.0.0 – Self‑Repair Intelligence 2.0
 - autonomous repair engine  
 - dependency healing  
 - runtime self‑diagnostics  
 - cross‑module recovery  
+- kernel‑level repair logic  
 
 ---
 
@@ -258,5 +314,5 @@ Delivered:
 
 # 📄 Document Status
 
-Current version: **v5.3.0 (Unified)**  
-Updated to reflect the **5.0 → 5.3 transition** and the stabilized **Unified Runtime Architecture 5.x**.
+Current version: **v5.5.0 (Unified Reasoning & Explainability Architecture)**  
+Updated to reflect the **5.0 → 5.5 transition** and the expanded **Unified Runtime Architecture 5.x**.
