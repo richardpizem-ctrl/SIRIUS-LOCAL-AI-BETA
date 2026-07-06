@@ -1,400 +1,236 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v5.3.0 UNIFIED)
+# 🔐 PASSWORD VAULT 5.5 — Secure Local Credential Module
+### Fully Offline • AES‑256‑GCM • Identity‑Aware • Deterministic • Explainability‑Ready
 
-This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the **Unified Runtime 5.3** architecture.
+PASSWORD VAULT 5.5 is the official secure credential storage module of  
+**SIRIUS LOCAL AI — Unified Reasoning & Explainability Architecture 5.5**.
 
-Version **5.3.0 UNIFIED** expands the module map with the upgraded **Unified Intelligence Stack**, including:
+It provides **fully offline, encrypted, identity‑aware, deterministic** password storage  
+with strict OWNER/FAMILY/STRANGER access rules and complete integration with:
 
-- **AITE 5.3 (Multimodal Semantic Triage)**  
-- **Reasoning Engine 5.0 (stabilized)**  
-- **Workflow Engine 5.3**  
-- **Knowledge Graph 5.x**  
-- **UI Automation Engine 5.0**  
-- **System Agent 5**  
-- **Security Family 5.x (Identity Engine 3.0)**  
-- **ENVOY 5 (Execution + Permission Layers)**  
-- **Self‑Repair Layer 5.x**  
-- **Mobile Runtime 5.3**  
-- **Unified deterministic routing across PC + Mobile**  
+- Runtime Core 5.5  
+- NL Router 5.5  
+- Workflow Engine 5.5  
+- Reasoning Engine 5.5  
+- KG_EXPLAIN (Explainability Engine)  
+- Security Family 5.x  
+- System Agent 5  
+- Self‑Repair Layer 5.x  
 
-All processing is fully local; no data leaves the user's device.
-
----
-
-# 1. Runtime Core 5.3 (Unified)
-**Purpose:** Central orchestrator of the entire system.  
-**Responsibilities:**
-- module initialization  
-- lifecycle management  
-- plugin loading  
-- task and workflow dispatch  
-- enforcing capability boundaries  
-- event routing  
-- global system stability  
-- integration with Security Family 5.x  
-- integration with Self‑Repair Layer 5.x  
-- deterministic execution  
-- UI Automation Engine 5.0 integration  
-- System Agent 5 routing  
-- ENVOY permission enforcement  
-- unified PC/Mobile behavior  
+All vault operations are **local-only**, never transmitted, never synced, never exposed.
 
 ---
 
-# 2. Filesystem Agent (FS‑AGENT 5.3)
-**Purpose:** Safe, deterministic file operations.  
-**Responsibilities:**
-- moving, copying, deleting  
-- path validation  
-- rollback‑safe operations  
-- semantic routing (documents, code, schoolwork)  
-- integration with Schoolwork Engine 5.x  
-- integration with UI Automation Engine 5.0  
-- unified PC/Mobile filesystem logic  
+# 🧩 1. Purpose
 
----
+The PASSWORD VAULT 5.5 module provides:
 
-# 3. Natural Language Router (NL Router 5.3)
-**Purpose:** Semantic interpretation and routing of user commands.  
-**Responsibilities:**
-- command classification  
-- semantic extraction  
-- routing to modules or plugins  
-- plugin NL command detection  
-- fallback interpretation  
-- preventing ambiguous or unsafe actions  
-- identity‑aware filtering (OWNER / FAMILY / STRANGER)  
-- UI automation command routing  
-- System Agent 5 validation for system‑level intents  
-
----
-
-# 4. Context Memory Engine (CME‑MEM 5.3)
-**Purpose:** Semantic workflow context.  
-**Responsibilities:**
-- tracking recent actions  
-- storing semantic tags  
-- supporting multi‑step workflows  
-- providing contextual hints  
-- subject/difficulty metadata  
-- integration with Schoolwork Engine 5.x  
-- integration with UI Automation Engine 5.0  
-- unified PC/Mobile context memory  
-
----
-
-# 5. Workflow Engine 5.3
-**Purpose:** Deterministic multi‑step logic.  
-**Responsibilities:**
-- workflow state machine  
-- plugin workflow execution  
-- semantic transitions  
-- preventing invalid sequences  
-- SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 5.0  
-- integration with UIWorkflow 5.0  
-- deterministic fallback behavior  
-- unified PC/Mobile workflows  
-- ENVOY workflow integration  
-
----
-
-# 6. GUI Layer 5.3
-**Purpose:** Modular user interface.  
-**Responsibilities:**
-- rendering plugin UI  
-- executing GUI actions  
-- identity indicators  
-- SCHOOLWORK indicators  
-- tray/voice integration  
-- UI automation visual feedback  
-- unified PC/Mobile UI  
-
----
-
-# 7. Email Composer
-**Purpose:** Generating email text (without sending).  
-**Responsibilities:**
-- email drafts  
-- structured responses  
-- professional text generation  
-
----
-
-# 8. Automatic Input Triage Engine (AITE 5.3)
-**Purpose:** Multimodal semantic detection and classification of all inputs.  
-**Responsibilities:**
-- detecting input type (text, image, code, document, installer)  
-- OCR extraction  
-- semantic analysis  
-- subject detection  
-- difficulty scoring  
-- routing to correct modules  
-- metadata generation  
-- integration with FS‑AGENT, CME‑MEM  
-- integration with Schoolwork Engine 5.x  
-- integration with Reasoning Engine 5.0  
-- ENVOY 5 support  
-- UI automation intent detection  
-- identity‑aware triage  
-- unified PC/Mobile triage  
-
----
-
-# 9. Windows System Capabilities Layer (WIN‑CAP 5.x)
-**Purpose:** Safe, abstracted access to Windows system functions.  
-**Responsibilities:**
-- exposing high‑level system capabilities  
-- enforcing permissions and allowed scopes  
-- safe wrappers around OS operations  
-- multi‑step system actions  
-- identity‑aware restrictions  
-- UI automation OS‑level routing  
-- System Agent 5 enforcement  
-
-**Submodules:**
-- `file_ops`  
-- `app_ops`  
-- `window_ops`  
-- `audio_ops`  
-- `system_context`  
-- `automation_ops`  
-- `ui_capabilities_5_x`  
-
----
-
-# 10. UI Components
-**Purpose:** Modular UI building blocks.  
-**Responsibilities:**
-- reusable UI elements  
-- layout components  
-- visual helpers  
-- animation hooks  
-
-**Subfolder: `animations/`**
-- `animation_engine.py`  
-- `animation_objects.py`  
-- `animation_scenes.py`  
-- `animation_manager.py`  
-
----
-
-# 11. Workflow Module
-**Purpose:** High‑level workflow logic.  
-**Responsibilities:**
-- orchestrating multi‑step operations  
-- validating transitions  
-- predictable behavior  
-- integrating CME, FS‑AGENT, GUI  
-- SCHOOLWORK workflow routing  
-- UI automation workflow integration  
-- unified PC/Mobile workflow logic  
-
----
-
-# 12. Plugin System 5.x
-**Purpose:** Extensible plugin ecosystem.  
-**Responsibilities:**
-- loading plugin manifests  
-- registering NL commands  
-- registering AI tasks  
-- registering workflows  
-- registering reasoning hooks  
-- registering GUI elements  
-- safe plugin isolation  
-- SCHOOLWORK‑aware plugin behavior  
-- UI automation plugin hooks  
-- unified PC/Mobile plugin behavior  
-
-Official plugins include:
-- automation  
-- clipboard  
-- file_manager  
-- notes  
-- system_tools  
-- translator  
-- developer_tools  
-
----
-
-# 13. AI Loop 5.x
-**Purpose:** Autonomous interval‑based logic.  
-**Responsibilities:**
-- executing plugin heartbeat rules  
-- safe periodic tasks  
-- deterministic scheduling  
-- error protection  
-- SCHOOLWORK‑aware timing  
-- unified PC/Mobile loop behavior  
-
----
-
-# 14. Self‑Repair & Health‑Check Layer (5.x)
-**Purpose:** Diagnostics and safe automatic recovery.  
-**Responsibilities:**  
-- checking integrity of core modules  
-- detecting corrupted states, missing files, invalid configs  
-- performing safe automatic repairs  
-- generating patch suggestions  
-- preventing uncontrolled modifications  
-- reporting system health to Runtime Core  
-- validating UI automation modules  
-- integration with System Agent 5  
-- unified PC/Mobile diagnostics  
-
-**Submodules:**  
-- `health_check_engine.py`  
-- `self_repair_safe.py`  
-- `repair_suggestions.py`  
-
----
-
-# 15. Security Family 5.x (Identity Engine 3.0)
-**Purpose:** Behavior‑based identity and family safety layer.  
-**Responsibilities:**
-- OWNER / FAMILY / STRANGER identity  
-- behavior‑based recognition  
-- safe‑mode for unknown users  
-- restricted mode for children  
-- time‑limits v3  
-- Schoolwork Engine integration  
-- identity‑aware routing  
-- STRANGER‑mode restrictions  
-- UI automation identity gating  
-- System Agent 5 enforcement  
-
-**Submodules:**
-- `identity_engine_3_0.py`  
-- `behavior_audit_3_0.py`  
-- `access_control_3_0.py`  
-- `family_mode_v3.py`  
-- `stranger_mode_v3.py`  
-- `time_limits_v3.py`  
-- `schoolwork_engine_5_x.py`  
-- `profile_store_v3.json`  
-
----
-
-# 16. Intelligent Runtime Modules (v5.3)
-
-## 16.1 HOME_ASSISTANT 5.3  
-## 16.2 COOKING_ADVISOR 5.3  
-## 16.3 DEVICE_DIAGNOSTICS 5.3  
-## 16.4 SCHOOL_HELPER 5.3  
-## 16.5 IMAGE_ANALYZER 5.3  
-## 16.6 CONTEXT_ROUTER 5.3  
-## 16.7 KNOWLEDGE_PACKS 5.x  
-
----
-
-# 17. PASSWORD_VAULT 5.0
-**Purpose:** Secure offline credential storage.  
-**Responsibilities:**
-- AES‑256‑GCM encrypted vault  
-- PBKDF2‑HMAC‑SHA256 master key derivation  
+- secure offline credential storage  
+- deterministic access rules  
+- identity‑aware protection  
 - OWNER‑only write access  
 - FAMILY read‑only access  
 - STRANGER blocked  
-- deterministic API for workflows  
+- safe integration with workflows  
+- explainability for every vault action  
+- compatibility with KG‑EXPLAIN (why an action was allowed or denied)  
+
+It is designed for **maximum safety**, **zero cloud dependency**, and **predictable behavior**.
+
+---
+
+# 🔐 2. Security Model (v5.5)
+
+### Encryption
+- **AES‑256‑GCM**  
+- **PBKDF2‑HMAC‑SHA256** master key derivation  
+- random salt per vault  
+- deterministic encryption pipeline  
+- secure vault container (`vault.dat`)  
+
+### Identity Rules
+- **OWNER** → full access (read/write/delete)  
+- **FAMILY** → read‑only  
+- **STRANGER** → blocked  
+- **Unknown identity** → blocked + safe‑mode  
+
+### Explainability Integration
+Every vault action produces explainability metadata:
+
+- why the action was allowed  
+- which identity rule applied  
+- which System Agent rule validated the action  
+- which Security Family rule restricted or permitted access  
+- deterministic KG_EXPLAIN trace  
+
+---
+
+# 🧱 3. Module Responsibilities
+
+### Core Responsibilities
+- secure credential storage  
+- deterministic encryption/decryption  
+- identity‑aware access control  
+- safe vault updates  
+- safe vault reads  
+- safe vault deletion  
+- workflow integration  
 - NL Router integration  
-- Runtime Core integration  
+- System Agent validation  
+- explainability trace generation  
+
+### Additional Responsibilities (v5.5)
+- KG_EXPLAIN integration  
+- Reasoning Engine 5.5 justification for access  
+- Self‑Repair Layer vault integrity checks  
+- Security Family 5.x identity enforcement  
+- deterministic fallback behavior  
 
 ---
 
-# 18. UI Automation Engine 5.0
-**Purpose:** Semantic, deterministic UI automation.  
-**Responsibilities:**
-- improved fuzzy UI parsing  
-- semantic alias mapping  
-- multi‑stage resolution pipeline  
-- deterministic fallback logic  
-- OS‑level routing  
-- safe sandboxed execution  
-- WIN‑CAP 5.x integration  
-- System Agent 5 validation  
-- unified PC/Mobile automation  
+# 🗂️ 4. Vault Structure
 
-**Submodules:**
-- `ui_parser_5_0.py`  
-- `ui_workflow_5_0.py`  
-- `ui_actions_5_0.py`  
-- `win_capabilities_5_x.py`  
+The vault is stored as:
+vault/
+├── vault.dat              # encrypted credential container
+├── vault_meta.json        # metadata (non-sensitive)
+├── vault_salt.bin         # PBKDF2 salt
+└── vault_integrity.json   # Self‑Repair Layer integrity markers
 
----
+### vault.dat
+Encrypted AES‑256‑GCM blob containing:
 
-# 19. System Agent 5
-**Purpose:** Final gatekeeper for all system‑level actions.  
-**Responsibilities:**
-- validating every system action  
-- enforcing identity rules  
-- blocking unsafe operations  
-- deterministic safety enforcement  
-- logging system actions  
-- protecting OS‑level automation  
-- unified PC/Mobile execution  
+- service name  
+- username  
+- password  
+- tags  
+- creation timestamp  
+- update timestamp  
 
-**Submodules:**
-- `agent_core_5.py`  
-- `agent_rules_5.py`  
-- `agent_validation_5.py`  
+### vault_meta.json
+Contains:
+
+- number of entries  
+- last update  
+- deterministic metadata  
+- explainability flags  
+
+No sensitive data is stored here.
 
 ---
 
-# 20. SIRIUS ENVOY 5 (Execution + Permission Layers)
-**Purpose:** Safe, outbound‑only external retrieval.  
-**Responsibilities:**  
-- permission layer (identity‑aware)  
-- scraper layer  
-- quarantine sandbox  
-- validator & policy filter  
-- safe payload delivery  
-- Knowledge Pack updates  
-- unified PC/Mobile behavior  
+# 🧠 5. Integration with Unified Runtime 5.5
+
+PASSWORD VAULT 5.5 integrates with:
+
+### 🔵 NL Router 5.5
+- “save password for …”  
+- “show my password for …”  
+- “delete password for …”  
+- identity‑aware routing  
+- explain intent detection  
+
+### 🔵 Workflow Engine 5.5
+- multi‑step vault workflows  
+- safe confirmation steps  
+- deterministic fallback states  
+- explainability routing  
+
+### 🔵 Reasoning Engine 5.5
+- rule‑based justification  
+- identity reasoning  
+- permission reasoning  
+- KG_EXPLAIN integration  
+
+### 🔵 Security Family 5.x
+- OWNER/FAMILY/STRANGER rules  
+- time‑limits safe‑mode  
+- child‑safe restrictions  
+
+### 🔵 System Agent 5
+- final validation  
+- safe execution  
+- logging  
+- deterministic enforcement  
+
+### 🔵 Self‑Repair Layer 5.x
+- vault integrity scanning  
+- corruption detection  
+- safe repair suggestions  
 
 ---
 
-# 21. System Intelligence Layer 5.3
-**Purpose:** Cross‑platform diagnostics and safe optimization.  
-**Responsibilities:**
-- hardware analysis  
-- driver checks  
-- service health  
-- process analysis  
-- optimization suggestions  
-- deterministic system workflows  
-- System Agent 5 enforcement  
-- unified PC/Mobile diagnostics  
+# 🛡️ 6. Access Rules (v5.5)
 
----
+| Identity Level | Read | Write | Delete | Notes |
+|----------------|------|-------|--------|-------|
+| **OWNER**      | ✔️   | ✔️    | ✔️     | Full access |
+| **FAMILY**     | ✔️   | ❌    | ❌     | Read‑only |
+| **STRANGER**   | ❌    | ❌    | ❌     | Fully blocked |
+| **Unknown**    | ❌    | ❌    | ❌     | Safe‑mode restrictions |
 
-# 22. Mobile Runtime 5.3
-**Purpose:** Unified mobile execution layer.  
-**Responsibilities:**
-- mobile‑optimized workflows  
-- mobile filesystem logic  
-- mobile UI automation  
-- mobile AITE integration  
-- mobile reasoning integration  
+All access is validated by:
 
----
-
-# 23. Module Interconnections
-All modules communicate through:
-
-- Runtime Core 5.3  
-- NL Router 5.3  
-- Workflow Engine 5.3  
-- CME‑MEM 5.3  
 - Security Family 5.x  
-- WIN‑CAP 5.x  
-- UI Automation Engine 5.0  
 - System Agent 5  
-- ENVOY 5  
-- Self‑Repair Layer 5.x  
-- Mobile Runtime 5.3  
+- KG_EXPLAIN (explainability trace)  
 
 ---
 
-# Document Status
-**Version:** 5.3.0 UNIFIED  
-Updated to reflect the **5.0 → 5.3 transition**, new **ENVOY Layers**, and the stabilized **Unified Runtime Architecture 5.x**.
+# 🧪 7. Self‑Repair Layer Integration
+
+PASSWORD VAULT 5.5 supports:
+
+- vault integrity checks  
+- missing file detection  
+- corrupted vault detection  
+- safe fallback vault creation  
+- deterministic repair suggestions  
+- explainability for repair actions  
+
+---
+
+# 🧩 8. API (Deterministic)
+
+### `vault.save(service, username, password)`
+- OWNER only  
+- encrypted write  
+- explainability trace  
+
+### `vault.get(service)`
+- OWNER + FAMILY  
+- decrypted read  
+- explainability trace  
+
+### `vault.delete(service)`
+- OWNER only  
+- safe deletion  
+- explainability trace  
+
+### `vault.list()`
+- OWNER + FAMILY  
+- metadata only  
+- no sensitive data exposed  
+
+---
+
+# 🔒 9. Safety Guarantees
+
+PASSWORD VAULT 5.5 guarantees:
+
+- 100% offline operation  
+- zero cloud dependency  
+- zero telemetry  
+- zero external sync  
+- deterministic encryption  
+- deterministic access rules  
+- identity‑aware protection  
+- explainability for every action  
+- safe fallback behavior  
+- Self‑Repair Layer protection  
+
+---
+
+# 📄 Document Status
+
+**Version:** 5.5.0 (Unified Reasoning & Explainability Architecture)  
+Updated to reflect the **5.3 → 5.5 transition**, new **Explainability Engine**, expanded **Reasoning Engine**, and the stabilized **Unified Runtime Architecture 5.x**.
