@@ -1,12 +1,13 @@
-# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.3 → v6.x)
-### Evolution of the Unified Runtime Architecture
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v6.x)
+### Evolution of the Unified Reasoning & Explainability Architecture
 
 This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
-into the **Unified Runtime 5.x** generation and the upcoming **Self‑Repair 6.x** era.
+into the **Unified Runtime 5.x** generation and the upcoming **Runtime 6.x Modular Kernel Era**.
 
 All versions remain:
 - 100% offline  
 - deterministic  
+- explainable  
 - identity‑aware  
 - safe for households and children  
 - fully local with optional ENVOY fetch  
@@ -113,19 +114,19 @@ Goal: Introduce the first fully offline, deterministic Knowledge Graph Reasoning
 - deterministic chain execution  
 - multi‑stage reasoning  
 - degraded‑mode awareness  
-- Envoy‑aware routing  
+- ENVOY‑aware routing  
 
 ### 🔁 Workflow Engine 5.0
 - KG‑aware workflow routing  
 - deterministic multi‑stage workflows  
-- Envoy integration  
+- ENVOY integration  
 - identity‑aware gating  
 
 ### 🛰 System Agent 5.0
 - extended identity rules  
 - OWNER / FAMILY / STRANGER 3.0  
 - OS‑action validation  
-- Envoy security policies  
+- ENVOY security policies  
 
 ### 📚 Knowledge Packs 5.x
 - KG‑ready structure  
@@ -140,76 +141,95 @@ SIRIUS gains true offline intelligence:
 - faster responses  
 - zero‑risk inference  
 - stable multi‑stage workflows  
-- Envoy‑ready architecture  
+- ENVOY‑ready architecture  
 
 ---
 
-# ⭐ 5.3 — Version 5.3.0 UNIFIED  
-### Stability, Performance, Determinism  
+# ⭐ 5.5 — Version 5.5.0 UNIFIED  
+### Unified Reasoning & Explainability Architecture  
 **Status:** Current Stable Release
 
-Goal: Refine the Unified Runtime 5.x architecture with faster triage, stronger safety, improved KG reasoning, and more stable workflows.
+Goal: Introduce full explainability, multi‑hop reasoning, deterministic inference, and explainability‑aware workflows.
 
 ---
 
-## 🔥 NEW Core Components (v5.3.0)
+## 🔥 NEW Core Components (v5.5.0)
 
-### 🧠 AITE 5.3 – Multimodal Semantic Triage
-- accelerated multimodal routing  
+### 🧠 AITE 5.5 – Semantic + Explainability Multimodal Triage
+- faster multimodal routing  
 - deeper semantic tagging  
-- improved OCR 5.3  
+- explain‑intent detection  
 - KG‑aware triage  
 - SCHOOLWORK bypass 5.x  
 - unified PC/Mobile behavior  
 
-### 🔁 Workflow Engine 5.3
+### 🔁 Workflow Engine 5.5
 - O(1) transitions  
 - deterministic fallback logic  
+- KG_EXPLAIN routing  
 - ENVOY 5 workflow steps  
 - improved error‑recovery  
 - unified PC/Mobile workflows  
+
+### 🧠 Reasoning Engine 5.5
+- multi‑hop inference  
+- inheritance reasoning  
+- transitive reasoning  
+- deterministic rule chaining  
+- proof tree foundations  
+- confidence scoring  
+- KG_EXPLAIN integration  
 
 ### 🛰 System Agent 5 (Hardened)
 - constant‑time validation (O(1))  
 - stronger identity rules  
 - safer OS‑level actions  
 - ENVOY 5 enforcement  
+- explainability for every decision  
 
-### 🧠 Knowledge Graph Runtime 1.x (Optimized)
+### 📚 Knowledge Graph Runtime 5.x (Optimized)
 - faster entity‑relation lookups  
-- expanded pack‑aware reasoning  
-- zero hallucination  
+- expanded comfort commands  
+- improved attribute pipeline  
+- KG‑LIGHT routing  
+- explainability‑ready fact generation  
 
-### 🌐 ENVOY 5 – Permission + Execution Layers
+### 🌐 ENVOY 5 – Permission + Execution Layers + Explainability Traces
 - identity‑aware fetch rules  
 - outbound‑only execution  
 - quarantine sandbox  
 - validator & policy filter  
 - safe JSON payload  
+- explainability traces  
 
-### 📱 Mobile Runtime 5.3
+### 📱 Mobile Runtime 5.5
 - faster workflows  
 - optimized filesystem logic  
-- Mobile AITE 5.3  
-- Mobile Reasoning Engine  
+- Mobile AITE 5.5  
+- Mobile Reasoning Engine 5.5  
 - Mobile UI Automation  
+- Mobile ENVOY 5  
+- Mobile KG_EXPLAIN  
 
 ### 🛡 Security Family 5.x
 - faster identity classification  
 - stronger STRANGER‑mode  
 - optimized time‑limits v3  
+- explainability for identity decisions  
 
 ### 🛠 Self‑Repair Layer 5.x
 - faster integrity checks  
 - repair suggestions 2.0  
 - unified PC/Mobile diagnostics  
+- explainability for repair actions  
 
 ---
 
-## Output (v5.3.0)
+## Output (v5.5.0)
 SIRIUS gains:
-- faster deterministic runtime  
-- more stable workflows  
+- full explainability (KG_EXPLAIN)  
+- deeper symbolic reasoning  
+- deterministic multi‑hop inference  
 - stronger System Agent 5  
 - faster multimodal triage  
 - secure ENVOY 5 fetch model  
@@ -218,25 +238,42 @@ SIRIUS gains:
 ---
 
 # ⭐ 6.0 — Version 6.0.0  
-### Self‑Repair Layer 2.0 — Autonomous Runtime Evolution  
+### Modular Kernel + Hybrid Multimodal Analyzer + Self‑Repair 2.0  
 **Status:** Planned
 
-Goal: Introduce autonomous evolutionary stability — the runtime can repair, optimize, and adapt itself.
+Goal: Introduce autonomous evolutionary stability — the runtime can repair, optimize, and analyze multimodal data deterministically.
 
 ---
 
 ## 🔥 Planned Core Components (v6.0.0)
 
-### 🛡 Self‑Repair Layer 2.0
-- autonomous repair cycles  
-- behavior‑based repair triggers  
-- deep integrity graph  
-- multi‑module repair orchestration  
+### 🧠 Hybrid Multimodal Analyzer 6.0
+- audio/MIDI analysis  
+- image structure analysis  
+- video frame semantic extraction  
+- KG‑linked multimodal facts  
+- deterministic multimodal inference  
 
-### 🧠 Runtime Evolution Engine 1.0
-- behavior‑based optimization  
-- adaptive workflow tuning  
-- self‑improving capability routing  
+### 🧩 Modular Kernel 6.0
+- sandboxed modules  
+- kernel‑level routing  
+- unified error layer  
+- deterministic execution pipeline  
+- reduced module complexity  
+
+### 🛡 Family Security Engine 6.0
+- behavior‑pattern detection  
+- StrangerMode 3.0  
+- SchoolMode 3.0  
+- TimeLimits 3.0  
+- KG‑linked safety inference  
+
+### 🔧 Self‑Repair Layer 2.0
+- autonomous repair cycles  
+- deep integrity graph  
+- dependency healing  
+- kernel‑level recovery  
+- anomaly detection  
 
 ### 🔁 Workflow Engine 6.0
 - self‑optimizing transitions  
@@ -258,12 +295,12 @@ Goal: Introduce autonomous evolutionary stability — the runtime can repair, op
 SIRIUS gains:
 - autonomous stability  
 - autonomous repairs  
-- autonomous optimization  
-- evolutionary runtime  
+- multimodal diagnostics  
+- evolutionary runtime behavior  
 
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.3.0 UNIFIED (Stable)  
-**Next major release:** 6.0.0 – Self‑Repair Layer 2.0  
-**Long‑term direction:** Autonomous Runtime Evolution
+**Current version:** 5.5.0 UNIFIED (Stable)  
+**Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
+**Long‑term direction:** Autonomous Runtime Evolution (6.x → 7.x)
