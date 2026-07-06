@@ -1,18 +1,22 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.3.0 UNIFIED)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.5.0 UNIFIED)
 
 This project follows a professional, respectful, and safety‑oriented standard of behavior.  
-The goal is to maintain a **safe, friendly, and productive environment** for all contributors and all users of SIRIUS LOCAL AI — including households, families, and children.
+The goal is to maintain a **safe, friendly, and productive environment** for all contributors  
+and all users of SIRIUS LOCAL AI — including households, families, and children.
 
-Version **5.3.0** updates the Code of Conduct to reflect the **Unified Runtime Architecture 5.x**, including:
+Version **5.5.0** updates the Code of Conduct to reflect the **Unified Reasoning & Explainability Architecture 5.x**, including:
 
-- **ENVOY Execution Layer 5**  
-- **ENVOY Permission Layer 5**  
-- **Workflow Engine 5.3**  
-- **Knowledge Graph 5.x**  
-- **AITE 5.3**  
+- **KG_EXPLAIN (Explainability Engine)**  
+- **Reasoning Engine 5.5 (multi-hop, inheritance, transitivity)**  
+- **Proof Tree Foundations**  
+- **Confidence Foundations**  
+- **Rule Chaining Foundations**  
+- **Workflow Engine 5.5 (explain routing)**  
+- **Knowledge Graph 5.x (comfort commands)**  
+- **AITE 5.5 (semantic + explainability triage)**  
 - **Identity Engine 3.0**  
 - **SECURITY FAMILY 5.x**  
-- **Schoolwork Engine 5.3**  
+- **Schoolwork Engine 5.5**  
 - **System Agent 5**  
 - **deterministic cross‑platform automation**  
 - **hardened routing and 5.x safety model**  
@@ -33,12 +37,14 @@ Version **5.3.0** updates the Code of Conduct to reflect the **Unified Runtime A
 - respect safety‑critical modules such as:  
   - **SECURITY FAMILY 5.x**  
   - **Identity Engine 3.0**  
-  - **Schoolwork Engine 5.3**  
+  - **Schoolwork Engine 5.5**  
   - **Time‑Limits Engine v3**  
   - **Self‑Repair Layer 5.x**  
   - **UI Automation Engine 5.0**  
   - **System Agent 5**  
   - **ENVOY Execution/Permission Layers 5**  
+  - **KG_EXPLAIN (Explainability Engine)**  
+  - **Reasoning Engine 5.5**  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -62,7 +68,9 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - respecting the **UI Automation Engine 5.0** safety boundaries  
 - ensuring **System Agent 5** remains the final gatekeeper  
 - ensuring ENVOY 5 sanitization and permission logic are not weakened  
-- ensuring PRO‑level routing and safety remain intact  
+- ensuring KG_EXPLAIN remains transparent and safe  
+- ensuring reasoning rules (multi-hop, inheritance, transitivity) are not misused  
+- ensuring proof tree and confidence logic remain deterministic  
 
 ---
 
@@ -90,6 +98,8 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - weakening **System Agent 5** validation rules  
 - attempting to bypass ENVOY Execution/Permission Layer sanitization  
 - introducing unsafe workflows or unsafe OS‑level actions  
+- injecting unsafe reasoning rules or explainability overrides  
+- manipulating KG_EXPLAIN to hide or distort inference history  
 
 Such behavior harms the community and will not be tolerated.
 
@@ -112,6 +122,8 @@ Project maintainers have the right and responsibility to:
 - ensure that **UI Automation Engine 5.0** remains deterministic and safe  
 - ensure **System Agent 5** remains the final gatekeeper  
 - ensure ENVOY 5 sanitization and permission logic are never bypassed  
+- ensure KG_EXPLAIN remains transparent and correct  
+- ensure reasoning rules remain deterministic and safe  
 
 Maintainers act to protect the long‑term health of the project.
 
@@ -153,6 +165,7 @@ Severity depends on:
 - whether it attempted to misuse or compromise the **UI Automation Engine 5.0**  
 - whether it attempted to bypass **System Agent 5**  
 - whether it attempted to bypass **ENVOY Execution/Permission Layers 5**  
+- whether it attempted to manipulate KG_EXPLAIN or reasoning rules  
 
 Maintainers will always act in good faith and fairness.
 
@@ -170,16 +183,18 @@ This Code of Conduct applies to:
 - all modules including safety‑critical components:  
   - **SECURITY FAMILY 5.x**  
   - **Identity Engine 3.0**  
-  - **Schoolwork Engine 5.3**  
+  - **Schoolwork Engine 5.5**  
   - **Time‑Limits Engine v3**  
   - **Self‑Repair Layer 5.x**  
   - **UI Automation Engine 5.0**  
   - **System Agent 5**  
   - **ENVOY Execution/Permission Layers 5**  
+  - **KG_EXPLAIN**  
+  - **Reasoning Engine 5.5**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (v5.3.0)
+# 8. 🧒 Family & Safety Considerations (v5.5.0)
 
 SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 5.x** module designed to:
 
@@ -194,6 +209,8 @@ SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 5.x** module designed to:
 - ensure UI automation cannot perform unsafe actions without identity validation  
 - ensure **System Agent 5** validates all system‑level actions  
 - ensure ENVOY 5 sanitizes all system requests  
+- ensure KG_EXPLAIN provides transparent inference history  
+- ensure reasoning rules remain deterministic and safe  
 
 Contributors must **not** attempt to weaken, bypass, or disable these protections.
 
@@ -208,4 +225,4 @@ and help maintain a respectful, safe, and productive environment for all users �
 
 ---
 
-**Document Status:** v5.3.0 (Unified)
+**Document Status:** v5.5.0 (Unified Reasoning & Explainability Architecture)
