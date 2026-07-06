@@ -4,23 +4,29 @@ layout: default
 ---
 
 # SIRIUS‑LOCAL‑AI  
-**A fully modular, offline‑only AI runtime with unified reasoning, ENVOY 5, multimodal triage 5.3, deterministic UI automation, and a next‑generation capability architecture.**
+**A fully modular, offline‑only AI runtime with unified reasoning, explainability (XAI), KG_EXPLAIN, multimodal triage 5.5, deterministic UI automation, and a next‑generation capability architecture.**
 
-SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, and full offline autonomy**.
+SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, explainability, and full offline autonomy**.
 
-Version **5.3.0** introduces the most stable and optimized generation of the Unified Runtime Architecture 5.x, merging PC and Mobile logic into a single deterministic, identity‑aware, multimodal AI operating layer.
+Version **5.5.0** introduces the most advanced generation of the Unified Runtime Architecture 5.x, merging PC and Mobile logic into a single deterministic, identity‑aware, multimodal, explainable AI operating layer.
 
-This release replaces the older 5.0 architecture with:
+This release replaces the older 5.3 architecture with:
 
-- ENVOY Execution Layer 5  
-- ENVOY Permission Layer 5  
-- stabilized Knowledge Graph 5.x  
-- deterministic workflow routing  
+- KG_EXPLAIN (Explainability Engine)  
+- Reasoning Engine 5.5 (multi‑hop, inheritance, transitivity)  
+- Proof Tree foundations  
+- Confidence scoring foundations  
+- Rule chaining foundations  
+- Workflow Engine 5.5 (explain routing)  
+- expanded Knowledge Graph 5.x comfort commands  
+- improved KG attribute pipeline  
+- improved KG auto‑creation  
+- improved KG Light routing  
+- improved AITE 5.5 semantic + explainability triage  
+- hardened deterministic routing  
 - identity‑aware system control  
-- multimodal semantic triage 5.3  
 - safe OS automation  
 - cross‑platform module consistency  
-- hardened security boundaries  
 - PRO‑level orchestration  
 
 The entire system runs **100% locally**, without external dependencies or cloud services.
@@ -36,20 +42,21 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 - [Release Notes](RELEASE_NOTES.md)
 - [Roadmap](ROADMAP.md)
 - [Security Family](SECURITY_FAMILY.md)
-- [AITE 5.3](AITE.md)
+- [AITE 5.5](AITE.md)
 - [ENVOY 5](ENVOY_TUTORIAL.md)
 - [Future Vision](FUTURE_VISION.md)
 - [Password Vault 5.0](PASSWORD_VAULT.md)
 
 ---
 
-## 🚀 Key Features (v5.3.0 UNIFIED)
+## 🚀 Key Features (v5.5.0 UNIFIED)
 
-### **Unified Runtime 5.3**
+### **Unified Runtime 5.5**
 A fully upgraded runtime with:
 
 - deterministic execution  
 - semantic routing  
+- explainability routing (KG_EXPLAIN)  
 - identity‑aware logic  
 - self‑repair integration  
 - capability isolation  
@@ -61,18 +68,18 @@ A fully upgraded runtime with:
 
 ---
 
-### **Modular Architecture (v5.3)**
+### **Modular Architecture (v5.5)**
 Each module is isolated and follows strict boundaries:
 
 - `commands/` – NL routing and command logic  
 - `context/` – semantic context engine  
 - `filesystem/` – safe file operations  
-- `runtime/` – Runtime Core 5.3  
-- `triage/` – AITE 5.3 (multimodal triage)  
+- `runtime/` – Runtime Core 5.5  
+- `triage/` – AITE 5.5 (semantic + explainability triage)  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
 - `ui_components/animations/` – animation engine  
-- `workflow/` – Workflow Engine 5.3  
+- `workflow/` – Workflow Engine 5.5  
 - `plugins/` – Plugin System 5.x  
 - `security_family/` – Identity Engine 3.0, time‑limits v3, schoolwork engine  
 - `self_repair/` – Self‑Repair Layer 5.x  
@@ -80,7 +87,7 @@ Each module is isolated and follows strict boundaries:
 - `envoy/` – ENVOY Execution + Permission Layers 5  
 - `ui_automation/` – **UI Automation Engine 5.0**  
 - `system_agent/` – System Agent 5  
-- `mobile_runtime/` – Mobile Runtime 5.3  
+- `mobile_runtime/` – Mobile Runtime 5.5  
 
 The system is designed to be extended **without modifying the core**.
 
@@ -100,7 +107,7 @@ All official plugins are fully prepared for v5.x.
 
 ---
 
-### **Automatic Input Triage Engine (AITE 5.3)**
+### **Automatic Input Triage Engine (AITE 5.5)**
 AITE analyzes inputs, classifies them, and routes them to the correct modules.
 
 It ensures:
@@ -111,20 +118,24 @@ It ensures:
 - difficulty scoring  
 - identity‑aware routing  
 - deterministic behavior  
-- **Schoolwork Engine 5.3 — academic tasks always bypass FAMILY restrictions**  
+- **Schoolwork Engine 5.5 — academic tasks always bypass FAMILY restrictions**  
 - **integration with SECURITY FAMILY 5.x**  
-- **integration with Reasoning Engine 5.0**  
-- **integration with Workflow Engine 5.3**  
+- **integration with Reasoning Engine 5.5**  
+- **integration with Workflow Engine 5.5**  
+- **explainability detection (“preco … ?”)**  
 
 ---
 
-### **Reasoning Engine 5.0**
-A structured reasoning layer:
+### **Reasoning Engine 5.5**
+A structured symbolic reasoning layer:
 
-- step‑by‑step reasoning  
-- academic explanations  
-- code analysis  
-- semantic breakdown  
+- multi‑hop inference  
+- inheritance reasoning  
+- transitive reasoning  
+- deterministic rule chaining  
+- proof tree foundations  
+- confidence scoring foundations  
+- KG_EXPLAIN integration  
 - pack‑aware reasoning  
 - deterministic logic  
 - unified PC/Mobile behavior  
@@ -155,7 +166,7 @@ Offline knowledge expansions:
 - troubleshooting  
 - definitions & facts  
 
-All packs are semantic and reasoning‑ready.
+All packs are semantic, reasoning‑ready, and explainability‑ready.
 
 ---
 
@@ -172,7 +183,7 @@ ENVOY never sends local data outward.
 
 ---
 
-### **Workflow Engine 5.3**
+### **Workflow Engine 5.5**
 Manages:
 
 - multi‑step processes  
@@ -181,11 +192,12 @@ Manages:
 - safe command execution  
 - deterministic state changes  
 - SCHOOLWORK workflow prioritization  
+- explainability routing  
 - unified PC/Mobile workflows  
 
 ---
 
-### **Unified Automation Runtime 5.3**
+### **Unified Automation Runtime 5.5**
 Developer‑level offline automation:
 
 - filesystem automation  
@@ -211,7 +223,7 @@ A major capability expanded in v5.x:
 
 ---
 
-## 📁 Project Structure (v5.3.0)
+## 📁 Project Structure (v5.5.0)
 src/
 ├── commands/  
 ├── context/  
@@ -251,6 +263,8 @@ The project includes a complete testing plan:
 - UI Automation Engine 5.0 tests  
 - System Agent 5 validation tests  
 - ENVOY 5 sanitization tests  
+- KG_EXPLAIN explainability tests  
+- Reasoning Engine 5.5 rule tests  
 
 Details are in **TESTING_GUIDE.md**.
 
@@ -273,11 +287,12 @@ More in **PERFORMANCE_GUIDE.md**.
 
 ## 🗓️ Release Plan
 
-### **v5.3.0 – Unified Runtime Architecture (Current)**  
-- AITE 5.3  
-- Reasoning Engine 5.0  
-- Workflow Engine 5.3  
+### **v5.5.0 – Unified Reasoning & Explainability Architecture (Current)**  
+- AITE 5.5  
+- Reasoning Engine 5.5  
+- Workflow Engine 5.5  
 - Knowledge Graph 5.x  
+- KG_EXPLAIN  
 - UI Automation Engine 5.0  
 - System Agent 5  
 - ENVOY Execution/Permission Layers 5  
