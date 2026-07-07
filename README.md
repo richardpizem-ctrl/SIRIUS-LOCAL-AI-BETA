@@ -38,6 +38,44 @@ Runtime 5.x remains **fully offline**, **deterministic**, **modular**, and desig
 
 ---
 
+# 🧪 Runtime Initialization Proof (VISUAL_CMD.md)
+
+To help all cloners understand that SIRIUS Runtime 5.x is a **real executing system**
+and not theoretical architecture, the repository includes a full initialization log:
+
+👉 **VISUAL_CMD.md**
+
+This file contains the exact CMD output produced when the runtime is launched:
+C:\Users\<username>\SIRIUS-LOCAL-AI-BETA>python runtime5_cli.py
+
+The log shows:
+
+- RuntimeCore 5.x initialization  
+- ENVOY Permission Layer activation  
+- PolicyEngine5 rule loading  
+- Knowledge Graph (Unified Schema) initialization  
+- entity creation and attribute assignment  
+- relation creation  
+- KGExportImport5 autoload  
+- KGQuery, KGReasoner, KGRouter, KGLight initialization  
+- ENVOY quarantine, normalization and execution layers  
+- WorkflowStepRegistry5 (30+ deterministic workflow steps)  
+- Self-Repair Layer 5.4 activation  
+- SystemAgent5 initialization  
+- ReasoningEngine5 rule registration  
+- InputParser5 loading from the real filesystem path  
+- BehaviorFilter, FamilySafetyRules, ContextualBehaviorEngine initialization  
+- Runtime5CLI ready (v5.3.0 → Runtime 5.5 unified)
+
+This file serves as **official proof** that SIRIUS Runtime 5.x is fully functional,
+modular, deterministic, and actively executing all internal systems exactly as
+documented in this README.
+
+If your local clone does not produce the same initialization structure,
+your installation is incomplete or corrupted.
+
+---
+
 # 🧩 Architecture Diagram (Runtime 5.x)
 
 <p align="center">
@@ -176,7 +214,8 @@ A complete Runtime 5.5 package containing:
 2. Extract it anywhere  
 3. Open CMD inside the folder  
 4. Run the runtime:
-python runtime5_cli.py 
+python runtime5_cli.py
+
 ---
 
 # ℹ️ ABOUT SIRIUS LOCAL AI (v5.5.0)
