@@ -1,5 +1,5 @@
 # 🚀 SIRIUS LOCAL AI — Runtime 5.5.0
-### Modular Local AI Runtime for Windows 11
+### Modular Local AI Runtime for Windows 11  
 ### Fully offline, deterministic, semantic AI runtime for workflows, automation, reasoning, and explainability (XAI).
 
 <p align="center">
@@ -76,10 +76,10 @@ your installation is incomplete or corrupted.
 
 ---
 
-# 🧩 Architecture Diagram (Runtime 5.x)
+# 🧩 Architecture Diagram (Runtime 5.5)
 
 <p align="center">
-  <img src="https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/blob/main/diagram%20(3).png?raw=true" width="900">
+  <img src="https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/blob/main/diagram%20(5).png?raw=true" width="900">
 </p>
 
 ---
@@ -214,8 +214,7 @@ A complete Runtime 5.5 package containing:
 2. Extract it anywhere  
 3. Open CMD inside the folder  
 4. Run the runtime:
-python runtime5_cli.py
-
+python runtime5_cli.py 
 ---
 
 # ℹ️ ABOUT SIRIUS LOCAL AI (v5.5.0)
@@ -238,3 +237,4 @@ MIT License.
 Pull requests are welcome.
 
 # 🔚 END OF README
+
