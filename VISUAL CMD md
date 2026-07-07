@@ -1,4 +1,16 @@
-C:\Users\richa\SIRIUS-LOCAL-AI-BETA>python runtime5_cli.py
+# SIRIUS Runtime 5.x – Expected Initialization Output
+# This is how it MUST look when a user clones, updates and runs the project.
+
+When a user clones the repository and runs:
+
+C:\Users\<username>\SIRIUS-LOCAL-AI-BETA>python runtime5_cli.py
+
+the following initialization log MUST appear.  
+If your output differs, your installation is incomplete or corrupted.
+
+-------------------------------------------------------------------------------
+SIRIUS Runtime 5.x – Initialization Log (Reference Output)
+-------------------------------------------------------------------------------
 
 [RUNTIME5 2026-07-06 14:55:39] [INFO] [RuntimeCore] Initializing Runtime 5.x
 [RUNTIME5 2026-07-06 14:55:39] [INFO] [PermissionLayer5] Initialized ENVOY Permission Layer 5.x
@@ -6,7 +18,7 @@ C:\Users\richa\SIRIUS-LOCAL-AI-BETA>python runtime5_cli.py
 [RUNTIME5 2026-07-06 14:55:39] [INFO] [PermissionLayer5] PolicyEngine5 loaded.
 
 --- Knowledge Graph Initialization -------------------------------------------
-[RUNTIME5 2026-07-06 14:55:39] [INFO] [KnowledgeGraph] Initialized KG Core (Unified Schema)
+[RUNTIME5] [KG] Initialized KG Core (Unified Schema)
 
 # Entities
 [RUNTIME5] [KG] Added entity: earth
@@ -103,7 +115,7 @@ C:\Users\richa\SIRIUS-LOCAL-AI-BETA>python runtime5_cli.py
 [RUNTIME5] [RRE] Registered rule: DedicsnostVlastnostiRule
 [RUNTIME5] [RRE] Registered rule: TranzitivneRelacieRule
 
->>> DEBUG: NOVÝ PARSER JE NAČÍTANÝ
+>>> DEBUG: NEW PARSER LOADED
 >>> LOADED InputParser5 FROM: C:\Users\richa\SIRIUS-LOCAL-AI-BETA\runtime5\input_parser_5.py
 
 [RUNTIME5] [InputParser5] Initialized Input Parser 5.x
