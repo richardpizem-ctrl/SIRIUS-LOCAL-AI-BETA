@@ -128,3 +128,94 @@ SIRIUS Runtime 5.x – Initialization Log (Reference Output)
 
 Runtime5 CLI ready.
 = v5.5.
+TOTAL VISUAL 
+C:\Users\richa\SIRIUS-LOCAL-AI-BETA>python runtime5_cli.py
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RuntimeCore] Initializing Runtime 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [PermissionLayer5] Initialized ENVOY Permission Layer 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [PolicyEngine5] Loaded 4 rules.
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [PermissionLayer5] PolicyEngine5 loaded.
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KnowledgeGraph] Initialized KG Core (Unified Schema)
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: earth
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: earth.type = planet
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: earth.mass = 5.97e24
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: earth.radius = 6371km
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: earth.inferred_type = planet_orbiting_star
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: sun
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: sun.type = star
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: moon
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: moon.type = planet
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: moon.orbits_star = True
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: moon.inferred_root = sun
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: moon.inferred_type = planet_orbiting_star
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: pes
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: pes.type = zviera
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Set attribute: pes.ma_fyzicka_vlastnost = True
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: chlpaty
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: fyzicka_vlastnost
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: cicavec
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added entity: zviera
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: earth -[orbits]-> sun
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: moon -[orbits]-> earth
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: pes -[ma_vlastnost]-> chlpaty
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: chlpaty -[dedicnost]-> fyzicka_vlastnost
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: pes -[je_v]-> cicavec
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: cicavec -[je_v]-> zviera
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: moon -[orbits]-> sun
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KG] Added relation: pes -[je_v]-> zviera
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KGExportImport5] AUTOLOAD completed: entities=8, relations=8
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RuntimeCore] AUTOLOAD completed → autosave_kg.json (entities=8, relations=8)
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KGQuery] Initialized query engine (Unified Schema).
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KGReasoner] Initialized reasoning engine.
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KGRouter] Initialized KG router 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [KGLight5] Initialized KG Light module
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [EnvoyQuarantine5] Initialized minimal quarantine store
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [EnvoyNormalizer5] Initialized normalizer 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [EnvoyExecutionLayer5] Initialized ENVOY Execution Layer 5.x (shared runtime)
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: WORKFLOW_CONTINUE
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: ENVOY_LEVEL1
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: COMPARE
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_LIGHT
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_ADD
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_REMOVE
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_RELATE
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_RELATIONS
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_VIEW
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_PATH
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_QUERY
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_EXPORT
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_IMPORT
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_BACKUP
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_RESTORE
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_SET
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_GET
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_LIST
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_SEARCH
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_ATTRIBUTES
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: REASON_ORBITS
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_UNSET
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_RENAME
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_EXISTS
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_STATS
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_DELETE
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: REASON_INFER
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Registered step: KG_EXPLAIN
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowStepRegistry5] Default steps initialized
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [WorkflowEngine5] Initialized workflow engine.
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [SelfRepair5] Initialized self-repair layer 5.4
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [SystemAgent5] Initializing system agent
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [ReasoningEngine5] Initialized reasoning engine.
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RRE] Registered rule: OrbitTypeInferenceRule
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RRE] Registered rule: AutoTypeInferenceRule
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RRE] Registered rule: MultiHopOrbitInferenceRule
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RRE] Registered rule: DedicsnostVlastnostiRule
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RRE] Registered rule: TranzitivneRelacieRule
+>>> DEBUG: NOVÝ PARSER JE NAČÍTANÝ
+>>> LOADED InputParser5 FROM: C:\Users\richa\SIRIUS-LOCAL-AI-BETA\runtime5\input_parser_5.py
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [InputParser5] Initialized Input Parser 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [BehaviorFilter5] Initialized behavior filter 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [FamilySafetyRules5_x] Initialized Family Safety Rules 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [ContextualBehaviorEngine5] Initialized
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [RuntimeCore] Initialization complete
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [BehaviorFilter5] Initialized behavior filter 5.x
+[RUNTIME5 2026-07-06 14:55:39] [INFO] [Runtime5CLI] Initialized (v5.3.0)
+Runtime5 CLI ready.
