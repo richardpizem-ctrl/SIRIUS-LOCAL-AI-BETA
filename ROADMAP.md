@@ -1,8 +1,9 @@
-# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v6.x)
-### Evolution of the Unified Reasoning & Explainability Architecture
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6 → v6.x)
+### Evolution of the Unified Reasoning & Deep Explainability Architecture
 
 This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
-into the **Unified Runtime 5.x** generation and the upcoming **Runtime 6.x Modular Kernel Era**.
+into the **Unified Runtime 5.x** generation, the new **Unified KG + Deep Explainability 5.6 Era**,  
+and the upcoming **Runtime 6.x Modular Kernel Era**.
 
 All versions remain:
 - 100% offline  
@@ -147,7 +148,7 @@ SIRIUS gains true offline intelligence:
 
 # ⭐ 5.5 — Version 5.5.0 UNIFIED  
 ### Unified Reasoning & Explainability Architecture  
-**Status:** Current Stable Release
+**Status:** Completed
 
 Goal: Introduce full explainability, multi‑hop reasoning, deterministic inference, and explainability‑aware workflows.
 
@@ -237,11 +238,76 @@ SIRIUS gains:
 
 ---
 
+# ⭐ 5.6 — Version 5.6.0 UNIFIED  
+### Unified KG Architecture + Deep Explainability + Multi‑Hop Reasoning  
+**Status:** Current Stable Release
+
+Goal: Introduce a fully redesigned Knowledge Graph stack, deep explainability (XAI),  
+multi‑hop inference, unified traversal, and complete integration of the reasoning engine  
+with the workflow layer.
+
+---
+
+## 🔥 NEW Core Components (v5.6.0)
+
+### 🧠 Unified Knowledge Graph 5.6
+- redesigned KG Core (stable, consistent, no cycles)  
+- KG Query (multi‑hop traversal, inbound/outbound, neighbors)  
+- KG Explore (colored ASCII tree, contextual graph view)  
+- KG Explain (local attribute & relation explanation)  
+- KG Explain Deep (deep reasoning, proof trees, evidence trees)  
+- unified traversal context  
+- full integration with ReasoningEngine 5.6  
+
+### 🔍 Deep Explainability (XAI)
+- proof trees (ASCII + HTML)  
+- evidence trees  
+- applied rules  
+- reasoning metrics  
+- confidence scoring  
+- multi‑hop categorization and deduction  
+
+### 🧠 Reasoning Engine 5.6
+- deep inference  
+- multi‑hop reasoning  
+- rule chaining  
+- KG‑linked traversal  
+- deterministic explainability output  
+
+### 🔁 Workflow Engine 5.6
+- KG_EXPLAIN_DEEP routing  
+- deterministic multi‑stage workflows  
+- improved fallback logic  
+- explainability‑aware transitions  
+
+### 🛠 InputParser5 (KG Commands)
+- unified KG command parsing  
+- natural language “why” detection  
+- stable KG comfort commands  
+
+### 📁 KG Export / Import
+- stable reasoning JSON export  
+- improved autoload  
+- autosave KG prepared  
+
+---
+
+## Output (v5.6.0)
+SIRIUS gains:
+- deep explainability  
+- unified KG architecture  
+- stable multi‑hop reasoning  
+- deterministic traversal  
+- fully integrated KG → Reasoning → Workflow pipeline  
+
+---
+
 # ⭐ 6.0 — Version 6.0.0  
 ### Modular Kernel + Hybrid Multimodal Analyzer + Self‑Repair 2.0  
 **Status:** Planned
 
-Goal: Introduce autonomous evolutionary stability — the runtime can repair, optimize, and analyze multimodal data deterministically.
+Goal: Introduce autonomous evolutionary stability — the runtime can repair, optimize,  
+and analyze multimodal data deterministically.
 
 ---
 
@@ -301,6 +367,6 @@ SIRIUS gains:
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.5.0 UNIFIED (Stable)  
+**Current version:** 5.6.0 UNIFIED (Stable)  
 **Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
 **Long‑term direction:** Autonomous Runtime Evolution (6.x → 7.x)
