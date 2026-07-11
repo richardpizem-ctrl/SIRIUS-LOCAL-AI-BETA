@@ -10,8 +10,8 @@
 
 SIRIUS LOCAL AI Runtime 6.0 introduces the **Modular Kernel Architecture**, a complete redesign
 of the internal execution model. This generation builds directly on the breakthroughs of
-Runtime 5.5.0 — including explainability (XAI), multi-hop reasoning, inheritance logic,
-transitive inference, proof trees, confidence scoring, and rule chaining.
+Runtime 5.6.0 — including unified KG architecture, deep explainability (XAI), multi-hop reasoning,
+proof trees, evidence trees, deterministic traversal, confidence scoring, and rule chaining.
 
 Runtime 6.0 focuses on:
 
@@ -20,7 +20,7 @@ Runtime 6.0 focuses on:
 - kernel-level routing  
 - Self-Repair Layer 2.0  
 - Family Security Engine 6.0  
-- reduced complexity  
+- reduced module complexity  
 - long-term maintainability  
 - full offline operation  
 - explainability-first reasoning  
@@ -44,6 +44,7 @@ This is the most advanced architecture ever created for SIRIUS.
 - Self-Repair integration at every stage  
 - explainability-first design (XAI)  
 - KG-linked multimodal inference  
+- deep explainability for all module outputs  
 
 ---
 
@@ -140,7 +141,7 @@ Responsibilities:
 - identity-aware gating  
 - safe execution pipeline  
 - kernel-validated routing  
-- explainability routing (KG_EXPLAIN)  
+- explainability routing (KG_EXPLAIN_DEEP)  
 - proof tree integration  
 
 ---
@@ -153,6 +154,7 @@ Stores:
 - identity-linked memory  
 - deterministic snapshots  
 - explainability traces  
+- KG traversal context  
 
 ---
 
@@ -164,6 +166,7 @@ A modular, futuristic UI with:
 - unified PC/Mobile rendering  
 - diagnostic visualizations  
 - explainability visualizer (proof tree view)  
+- KG tree viewer  
 
 ---
 
@@ -189,6 +192,7 @@ The intelligence layer enables SIRIUS to:
 - execute safe actions  
 - analyze multimodal data  
 - explain every inference  
+- integrate KG reasoning into diagnostics  
 
 All while remaining **100% offline**.
 
@@ -202,6 +206,7 @@ All while remaining **100% offline**.
 - bottleneck detection  
 - multimodal diagnostic linking  
 - explainable diagnostics  
+- KG-linked health inference  
 
 ---
 
@@ -221,6 +226,7 @@ All while remaining **100% offline**.
 - identity-aware termination  
 - deterministic routing  
 - explainability for process actions  
+- KG-linked process inference  
 
 ---
 
@@ -229,6 +235,7 @@ All while remaining **100% offline**.
 - safe start/stop/restart  
 - rollback-safe operations  
 - explainable service actions  
+- KG-linked service inference  
 
 ---
 
@@ -262,6 +269,7 @@ Responsibilities:
 - blocks unsafe operations  
 - ensures deterministic behavior  
 - explainability for every decision  
+- KG-linked safety inference  
 
 ---
 
@@ -280,25 +288,25 @@ Features:
 ---
 
 # 🖼 Architecture Diagram (Runtime 6.0)
-┌───────────────────────────────┐
-│       Hybrid Multimodal       │
-│           Analyzer 6.0        │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│        Modular Kernel 6.0     │
-│ sandbox • routing • errors    │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│     Self-Repair Layer 2.0     │
-│ integrity • recovery • heal   │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│   Family Security Engine 6.0  │
-│ behavior • identity • rules   │
-└───────────────────────────────┘
+┌───────────────────────────────┐  
+│       Hybrid Multimodal       │  
+│           Analyzer 6.0        │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│        Modular Kernel 6.0     │  
+│ sandbox • routing • errors    │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│     Self-Repair Layer 2.0     │  
+│ integrity • recovery • heal   │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│   Family Security Engine 6.0  │  
+│ behavior • identity • rules   │  
+└───────────────────────────────┘  
 
 ---
 
@@ -327,4 +335,4 @@ Windows 11 / Android / iOS (safe, controlled)
 # 📌 Document Status  
 Current version: **6.0.0 (Draft Architecture)**  
 Architecture is aligned with the Runtime 6.0 roadmap and the new explainability,
-reasoning, and multimodal capabilities introduced in Runtime 5.5.0.
+reasoning, and multimodal capabilities introduced in Runtime 5.6.0.
