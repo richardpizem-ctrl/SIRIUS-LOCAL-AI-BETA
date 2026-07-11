@@ -1,6 +1,7 @@
 # SIRIUS LOCAL AI — Version 5.6.0
 Deep Explainability • Unified Knowledge Graph Architecture • Multi-Hop Reasoning
 
+![SIRIUS Futuristicky](SIRIUS%20KOCAL%20FUTURISTICKY%20OBR.png)
 ![SIRIUS Architecture Diagram](diagram%20(4).png)
 
 SIRIUS LOCAL AI is a fully local, offline-capable symbolic AI system built on top of
