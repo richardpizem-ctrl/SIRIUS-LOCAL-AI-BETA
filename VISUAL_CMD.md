@@ -133,3 +133,4 @@ Exiting Runtime5 CLI.
 [RUNTIME5 2026-07-11 09:35:55] [INFO] [KGExportImport5] EXPORT OK → autosave_kg.json
 [RUNTIME5 2026-07-11 09:35:55] [INFO] [SystemHooks5] AUTOSAVE completed → autosave_kg.json (11 entities, 9 relations)
 [RUNTIME5 2026-07-11 09:35:55] [INFO] [RuntimeCore] Shutdown complete.
+=v5.6.
