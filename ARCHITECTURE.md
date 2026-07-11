@@ -1,36 +1,36 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (Runtime 6.0 — Modular Kernel Generation)
+# 🏗 Architecture – SIRIUS LOCAL AI (Runtime 6.x — Modular Kernel Generation, Planned)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-6.0.0--draft-purple">
+  <img src="https://img.shields.io/badge/version-6.x--planned-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
   <img src="https://img.shields.io/badge/runtime-Modular%20Kernel%206.x-red">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-SIRIUS LOCAL AI Runtime 6.0 introduces the **Modular Kernel Architecture**, a complete redesign
-of the internal execution model. This generation builds directly on the breakthroughs of
-Runtime 5.6.0 — including unified KG architecture, deep explainability (XAI), multi-hop reasoning,
-proof trees, evidence trees, deterministic traversal, confidence scoring, and rule chaining.
+The SIRIUS LOCAL AI Runtime 6.x generation is a **planned future architecture**, built directly
+on top of the breakthroughs introduced in Runtime 5.6.0 — including the Unified Knowledge Graph,
+Deep Explainability, multi-hop reasoning, proof trees, evidence trees, deterministic traversal,
+and rule chaining.
 
-Runtime 6.0 focuses on:
+Runtime 6.x will focus on:
 
 - deterministic multimodal analysis  
 - sandboxed module isolation  
 - kernel-level routing  
 - Self-Repair Layer 2.0  
-- Family Security Engine 6.0  
+- Family Security Engine 6.x  
 - reduced module complexity  
 - long-term maintainability  
 - full offline operation  
 - explainability-first reasoning  
 - multimodal KG integration  
 
-This is the most advanced architecture ever created for SIRIUS.
+This is the planned next-generation architecture for SIRIUS.
 
 ---
 
-# 🧩 Architectural Principles (Runtime 6.0)
+# 🧩 Architectural Principles (Runtime 6.x Planned)
 
 - strict kernel–module separation  
 - deterministic execution pipeline  
@@ -44,16 +44,13 @@ This is the most advanced architecture ever created for SIRIUS.
 - Self-Repair integration at every stage  
 - explainability-first design (XAI)  
 - KG-linked multimodal inference  
-- deep explainability for all module outputs  
 
 ---
 
-# 🧱 Core Layers (Runtime 6.0)
+# 🧱 Core Layers (Runtime 6.x Planned)
 
-## 1. Modular Kernel 6.0 (Core Execution Layer)
-The heart of Runtime 6.0.
-
-Responsibilities:
+## 1. Modular Kernel 6.x (Core Execution Layer)
+Planned responsibilities:
 - module sandboxing  
 - kernel-level routing  
 - unified error layer  
@@ -65,12 +62,10 @@ Responsibilities:
 - explainability-aware routing  
 - KG-linked module communication  
 
-The kernel ensures **predictable, safe, reversible** behavior across all platforms.
-
 ---
 
-## 2. Hybrid Multimodal Analyzer 6.0
-A new analysis engine capable of processing:
+## 2. Hybrid Multimodal Analyzer 6.x
+Planned multimodal capabilities:
 
 ### Audio / MIDI
 - tone extraction  
@@ -92,15 +87,11 @@ A new analysis engine capable of processing:
 - multimodal fact creation  
 - entity linking  
 - deterministic inference  
-- explainability hooks (proof tree nodes)  
-
-This module transforms raw data into structured, safe, deterministic knowledge.
+- explainability hooks  
 
 ---
 
-## 3. Self-Repair Layer 2.0
-Second-generation autonomous repair system.
-
+## 3. Self-Repair Layer 2.0 (Planned)
 Capabilities:
 - module integrity scanning  
 - dependency healing  
@@ -111,13 +102,9 @@ Capabilities:
 - rollback-safe execution  
 - KG-consistency validation  
 
-Self-Repair 2.0 ensures long-term stability and resilience.
-
 ---
 
-## 4. Family Security Engine 6.0 (Behavior Engine)
-A fully redesigned safety system.
-
+## 4. Family Security Engine 6.x (Planned)
 Features:
 - behavior pattern detection  
 - StrangerMode 3.0  
@@ -127,13 +114,9 @@ Features:
 - KG-linked safety inference  
 - explainable safety decisions  
 
-This engine ensures **family-safe, predictable, explainable** behavior.
-
 ---
 
-## 5. Workflow Engine 6.0
-A deterministic workflow system built on top of the Modular Kernel.
-
+## 5. Workflow Engine 6.x (Planned)
 Responsibilities:
 - multimodal workflows  
 - system workflows  
@@ -141,12 +124,12 @@ Responsibilities:
 - identity-aware gating  
 - safe execution pipeline  
 - kernel-validated routing  
-- explainability routing (KG_EXPLAIN_DEEP)  
+- explainability routing  
 - proof tree integration  
 
 ---
 
-## 6. Context Memory Engine 6.0 (CME-MEM 6)
+## 6. Context Memory Engine 6.x (Planned)
 Stores:
 - multimodal metadata  
 - workflow context  
@@ -158,21 +141,19 @@ Stores:
 
 ---
 
-## 7. GUI Layer 6.0
-A modular, futuristic UI with:
-
+## 7. GUI Layer 6.x (Planned)
+Features:
 - dynamic panels  
 - real-time module integration  
 - unified PC/Mobile rendering  
 - diagnostic visualizations  
-- explainability visualizer (proof tree view)  
+- explainability visualizer  
 - KG tree viewer  
 
 ---
 
-## 8. WIN-CAP 6.0 (Windows Capability Layer)
+## 8. WIN-CAP 6.x (Planned)
 Safe Windows capability mapping with:
-
 - identity-aware restrictions  
 - deterministic capability routing  
 - kernel-validated access  
@@ -180,9 +161,9 @@ Safe Windows capability mapping with:
 
 ---
 
-# 🧠 SYSTEM INTELLIGENCE LAYER (Runtime 6.0)
+# 🧠 SYSTEM INTELLIGENCE LAYER (Runtime 6.x Planned)
 
-The intelligence layer enables SIRIUS to:
+The planned intelligence layer will enable SIRIUS to:
 
 - understand the system  
 - diagnose  
@@ -198,141 +179,28 @@ All while remaining **100% offline**.
 
 ---
 
-# 🔥 System Health Engine 6.0
-- hardware diagnostics  
-- thermal analysis  
-- storage health  
-- RAM/CPU load  
-- bottleneck detection  
-- multimodal diagnostic linking  
-- explainable diagnostics  
-- KG-linked health inference  
-
----
-
-# 🔥 Driver Manager Engine 6.0
-- driver inventory  
-- version comparison  
-- compatibility checks  
-- safe update workflows  
-- kernel-validated operations  
-- explainable driver decisions  
-
----
-
-# 🔥 Task Manager Engine 6.0 PRO
-- process analysis  
-- CPU/RAM usage  
-- identity-aware termination  
-- deterministic routing  
-- explainability for process actions  
-- KG-linked process inference  
-
----
-
-# 🔥 Service Manager Engine 6.0
-- service state analysis  
-- safe start/stop/restart  
-- rollback-safe operations  
-- explainable service actions  
-- KG-linked service inference  
-
----
-
-# 🔥 Education Engine 6.0
-- explains every system action  
-- teaches Windows & Mobile concepts  
-- provides safe alternatives  
-- family-friendly mode  
-- KG-linked educational reasoning  
-
----
-
-# 🔥 ENVOY 6 (Execution + Permission Layers)
-- safe bridge between runtime and OS  
-- hardened sanitization  
-- identity-aware filtering  
-- deterministic routing  
-- no direct system access  
-- explainability-aware permission logs  
-
----
-
-# 🔥 System Agent 6 (Safe Action Execution Layer)
-The **final gatekeeper** before any OS action.
-
-Responsibilities:
-- validates every action  
-- checks identity  
-- enforces safety rules  
-- logs all actions  
-- blocks unsafe operations  
-- ensures deterministic behavior  
-- explainability for every decision  
-- KG-linked safety inference  
-
----
-
-# 🔐 Password Vault 6.0 (Secure Credential Module)
-A fully local, encrypted, identity-aware password storage system.
-
-Features:
-- AES-256-GCM encryption  
-- PBKDF2-HMAC-SHA256 master key  
-- offline vault container  
-- OWNER-only write access  
-- FAMILY read-only  
-- STRANGER blocked  
-- deterministic API  
-
----
-
-# 🖼 Architecture Diagram (Runtime 6.0)
-┌───────────────────────────────┐  
-│       Hybrid Multimodal       │  
-│           Analyzer 6.0        │  
-└───────────────┬──────────────┘  
-│  
-┌───────────────▼──────────────┐  
-│        Modular Kernel 6.0     │  
-│ sandbox • routing • errors    │  
-└───────────────┬──────────────┘  
-│  
-┌───────────────▼──────────────┐  
-│     Self-Repair Layer 2.0     │  
-│ integrity • recovery • heal   │  
-└───────────────┬──────────────┘  
-│  
-┌───────────────▼──────────────┐  
-│   Family Security Engine 6.0  │  
-│ behavior • identity • rules   │  
-└───────────────────────────────┘  
-
----
-
-# 🔌 Module Interconnections (Runtime 6.0)
+# 🔌 Module Interconnections (Runtime 6.x Planned)
 
 User Input  
 ↓  
-Hybrid Multimodal Analyzer 6.0  
+Hybrid Multimodal Analyzer 6.x  
 ↓  
-Workflow Engine 6.0  
+Workflow Engine 6.x  
 ↓  
-Modular Kernel 6.0  
+Modular Kernel 6.x  
 ↓  
 Self-Repair Layer 2.0  
 ↓  
-System Intelligence Layer 6.0  
+System Intelligence Layer 6.x  
 ↓  
-System Agent 6  
+System Agent 6.x  
 ↓  
-ENVOY 6  
+ENVOY 6.x  
 ↓  
 Windows 11 / Android / iOS (safe, controlled)
 
 ---
 
 # 📌 Document Status  
-Current version: **6.0.0 (Draft Architecture)**  
-Architecture is aligned with the Runtime 6.0 roadmap and the new explainability,
-reasoning, and multimodal capabilities introduced in Runtime 5.6.0.
+Current version: **6.x (Planned Architecture)**  
+This document outlines the *future* direction of SIRIUS, based on the foundations introduced in Runtime 5.6.0.
