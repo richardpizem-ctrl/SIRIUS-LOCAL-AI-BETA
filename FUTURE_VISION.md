@@ -1,31 +1,31 @@
-# 🌟 Future Vision (v5.5.0 and Beyond)
+# 🌟 Future Vision (v5.6.1 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, explainable, and fully local.
 
-This **v5.5 unified edition** reflects the upgraded Unified Reasoning & Explainability Architecture 5.x, including:
+This **v5.6.1 unified edition** reflects the upgraded Unified Reasoning & Deep Explainability Architecture 5.x, including:
 
 - Unified PC + Mobile runtime  
 - Deterministic multimodal reasoning  
-- KG_EXPLAIN (Explainability Engine)  
-- Reasoning Engine 5.5 (multi‑hop, inheritance, transitivity)  
-- Proof Tree foundations  
-- Confidence scoring foundations  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)  
+- Reasoning Engine 5.6 (multi‑hop, inheritance, transitivity)  
+- Proof Tree + Evidence Tree foundations  
+- Confidence scoring model  
 - Rule chaining foundations  
-- AITE 5.5  
+- AITE 5.6  
 - System Agent 5  
 - Security Family 5.x  
 - ENVOY Execution Layer 5  
 - ENVOY Permission Layer 5  
 - Self‑Repair Layer 5.x  
-- Knowledge Graph 5.x  
+- Unified Knowledge Graph 5.6  
 - UI Automation Engine 5.0  
 - Intent & Planning Layer 5.x  
 
 This document describes:
 
-1. **What has already been delivered** (v1.0.0 → v5.5.0)  
+1. **What has already been delivered** (v1.0.0 → v5.6.1)  
 2. **What each major version introduced**  
-3. **What Runtime 5.5 unifies and stabilizes**  
+3. **What Runtime 5.6.1 unifies and stabilizes**  
 4. **Long‑term direction (v6.0.0 and beyond)**  
 
 All features remain:
@@ -212,9 +212,9 @@ Delivered:
 
 ---
 
-# 🚀 8. Version 5.5.0 – Unified Reasoning & Explainability Architecture (NEW)
+# 🚀 8. Version 5.5.0 – Unified Reasoning & Explainability Architecture
 
-Version 5.5.0 introduces the **largest intelligence upgrade in SIRIUS history**.
+Version 5.5.0 introduced the **largest intelligence upgrade in SIRIUS history**.
 
 Delivered:
 
@@ -263,7 +263,60 @@ Delivered:
 
 ---
 
-# 🚀 9. Long‑Term Vision (Beyond v5.5.0)
+# 🚀 9. Version 5.6.1 – Deep Explainability + Unified KG Architecture
+
+Version 5.6.1 finalizes the **Unified Knowledge Graph 5.6**, expands deep explainability, and stabilizes multi‑hop reasoning.
+
+Delivered:
+
+### 🧠 Reasoning Engine 5.6  
+- multi‑hop inference  
+- inheritance reasoning  
+- transitive reasoning  
+- deterministic rule chaining  
+- proof tree + evidence tree generation  
+- confidence scoring  
+- KG_EXPLAIN_DEEP integration  
+
+### 🔍 KG_EXPLAIN_DEEP  
+- deep inference explanation  
+- multi‑layer reasoning trees  
+- evidence‑based justification  
+- deterministic traversal context  
+
+### 🧩 AITE 5.6  
+- improved multimodal semantic triage  
+- deeper explainability detection  
+- safer fallback logic  
+- unified PC/Mobile routing  
+
+### 🔁 Workflow Engine 5.6  
+- deep explainability routing  
+- deterministic transitions  
+- safer fallback states  
+
+### 📚 Unified Knowledge Graph 5.6  
+- stabilized KG Core  
+- improved KG Query  
+- improved KG Explore  
+- improved KG comfort commands  
+- improved attribute pipeline  
+- improved autoload  
+- deterministic multi‑hop traversal  
+
+### 🛡 Security Family 5.x  
+- identity‑aware explainability  
+- safer STRANGER mode  
+- SCHOOLWORK always allowed  
+
+### 🌐 ENVOY 5  
+- deep explainability traces  
+- deterministic sanitization  
+- hardened quarantine  
+
+---
+
+# 🚀 10. Long‑Term Vision (Beyond v5.6.1)
 
 ## 🧠 6.0.0 – Self‑Repair Intelligence 2.0
 - autonomous repair engine  
@@ -314,5 +367,5 @@ Delivered:
 
 # 📄 Document Status
 
-Current version: **v5.5.0 (Unified Reasoning & Explainability Architecture)**  
-Updated to reflect the **5.0 → 5.5 transition** and the expanded **Unified Runtime Architecture 5.x**.
+Current version: **v5.6.1 (Unified Reasoning & Deep Explainability Architecture)**  
+Updated to reflect the **5.0 → 5.6.1 transition** and the expanded **Unified Runtime Architecture 5.x**.
