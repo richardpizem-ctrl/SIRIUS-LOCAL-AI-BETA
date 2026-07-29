@@ -1,24 +1,24 @@
-# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.5.0 UNIFIED  
+# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.6.1 UNIFIED  
 ### The Most Advanced, Stable and Fully Explainable Runtime in the SIRIUS Ecosystem
 
-Version **5.5.0 UNIFIED** builds directly on the foundations of **5.3.0 UNIFIED**,  
-introducing the **Unified Reasoning & Explainability Architecture 5.5** — the largest  
-intelligence upgrade in the history of SIRIUS LOCAL AI.
+Version **5.6.1 UNIFIED** builds directly on the foundations of **5.5.0 UNIFIED**,  
+introducing the fully stabilized **Unified Reasoning & Deep Explainability Architecture 5.6** —  
+the most deterministic, reliable, and enterprise‑ready intelligence upgrade in the history of SIRIUS LOCAL AI.
 
-This release strengthens **System Agent 5**, expands **AITE 5.5**,  
-introduces **KG_EXPLAIN**, upgrades **Workflow Engine 5.5**,  
-and delivers the most deterministic symbolic reasoning engine ever released.
+This release strengthens **System Agent 5**, expands **AITE 5.6**,  
+enhances **KG_EXPLAIN & KG_EXPLAIN_DEEP**, upgrades **Workflow Engine 5.6**,  
+and delivers the most stable symbolic reasoning engine ever released.
 
 ---
 
-# 🚀 What’s New in v5.5.0 UNIFIED
+# 🚀 What’s New in v5.6.1 UNIFIED
 
-## 🔥 1. AITE 5.5 – Semantic + Explainability Multimodal Triage
-The fastest and most precise AITE to date.
+## 🔥 1. AITE 5.6 – Semantic + Explainability Multimodal Triage
+The most stable and precise AITE to date.
 
 - accelerated multimodal routing  
 - deeper semantic tagging  
-- improved OCR 5.5  
+- improved OCR 5.6  
 - explain‑intent detection (“why…?”)  
 - KG‑aware triage  
 - SCHOOLWORK bypass 5.x  
@@ -26,25 +26,27 @@ The fastest and most precise AITE to date.
 - unified PC/Mobile behavior  
 - optimized mixed‑content detection  
 - deterministic explainability metadata  
+- stabilized NL intent detection  
 
 ---
 
-## 🔥 2. Workflow Engine 5.5 – Explainability‑Aware Multi‑Step Logic
-A major stability and intelligence upgrade.
+## 🔥 2. Workflow Engine 5.6 – Explainability‑Aware Multi‑Step Logic
+A fully stabilized workflow engine with deterministic routing.
 
 - O(1) transitions  
 - deterministic fallback logic  
 - KG‑enhanced workflow routing  
 - identity‑aware gating  
-- explainability routing (KG_EXPLAIN)  
+- explainability routing (KG_EXPLAIN + KG_EXPLAIN_DEEP)  
 - ENVOY 5 workflow steps (ASK → FETCH → QUARANTINE → DELIVER)  
 - unified PC/Mobile workflows  
 - improved error‑recovery logic  
+- complete step registry for KG, reasoning, ENVOY, and system operations  
 
 ---
 
-## 🔥 3. Reasoning Engine 5.5 – Multi‑Hop Symbolic Intelligence
-A breakthrough in deterministic reasoning.
+## 🔥 3. Reasoning Engine 5.6 – Multi‑Hop Symbolic Intelligence
+A breakthrough in deterministic reasoning stability.
 
 - multi‑hop inference  
 - inheritance reasoning  
@@ -56,6 +58,7 @@ A breakthrough in deterministic reasoning.
 - pack‑aware reasoning  
 - zero hallucination  
 - unified PC/Mobile reasoning  
+- stabilized rule execution pipeline  
 
 ---
 
@@ -76,8 +79,8 @@ System Agent 5 remains the **final gatekeeper** of SIRIUS.
 
 ---
 
-## 🔥 5. Knowledge Graph Runtime 5.x – Faster, Smarter, Explainable
-A refined KG‑Reasoning engine.
+## 🔥 5. Knowledge Graph Runtime 5.6 – Faster, Smarter, Fully Explainable
+A refined and stabilized KG‑Reasoning engine.
 
 - faster entity‑relation lookups  
 - deterministic inference paths  
@@ -87,11 +90,12 @@ A refined KG‑Reasoning engine.
 - zero hallucination  
 - instant symbolic responses  
 - explainability‑ready fact generation  
+- stabilized KG autoload (autosave_kg.json)  
 
 ---
 
 ## 🔥 6. ENVOY 5 – Execution + Permission Layers + Explainability Traces
-ENVOY is now fully explainability‑aware.
+ENVOY is now fully explainability‑aware and stabilized.
 
 ### **Permission Layer**
 - identity‑aware fetch rules  
@@ -112,7 +116,7 @@ Offline mode remains **default**.
 
 ---
 
-## 🔥 7. UI Automation Engine 5.0 – Stabilized for 5.5
+## 🔥 7. UI Automation Engine 5.0 – Stabilized for 5.6
 A refined automation layer.
 
 - faster fuzzy matching  
@@ -125,7 +129,7 @@ A refined automation layer.
 
 ---
 
-## 🔥 8. System Intelligence Layer 5.5 – Unified Diagnostics
+## 🔥 8. System Intelligence Layer 5.6 – Unified Diagnostics
 Improved system‑level intelligence:
 
 - hardware analysis  
@@ -140,13 +144,13 @@ Improved system‑level intelligence:
 
 ---
 
-## 🔥 9. Mobile Runtime 5.5 – Unified Mobile Execution Layer
+## 🔥 9. Mobile Runtime 5.6 – Unified Mobile Execution Layer
 The most stable mobile runtime to date.
 
 - faster workflows  
 - optimized filesystem logic  
-- Mobile AITE 5.5  
-- Mobile Reasoning Engine 5.5  
+- Mobile AITE 5.6  
+- Mobile Reasoning Engine 5.6  
 - Mobile UI Automation  
 - Mobile ENVOY 5  
 - Mobile KG_EXPLAIN  
@@ -176,9 +180,9 @@ Improved safety and identity logic.
 
 ---
 
-# 🧩 Additional Improvements in 5.5.0 UNIFIED
+# 🧩 Additional Improvements in 5.6.1 UNIFIED
 
-### ✔ Faster NL routing (NL Router 5.5)  
+### ✔ Faster NL routing (NL Router 5.6)  
 ### ✔ Optimized WIN‑CAP 5.x capability boundaries  
 ### ✔ Expanded plugin API for KG‑Reasoning  
 ### ✔ Deterministic, short, safe logging  
@@ -189,28 +193,36 @@ Improved safety and identity logic.
 
 ---
 
+# ⚙ CLI Update (IMPORTANT)
+SIRIUS Runtime 5.6.1 is now launched via:
+python runtime5_cli.py
+
+*(Updated from the old 5.5/5.6.0 command: `python -m runtime5.runtime5_cli`.)*
+
+---
+
 # 📊 Compatibility
-- Fully compatible with 5.0 → 5.5  
+- Fully compatible with 5.0 → 5.6  
 - No breaking changes  
 - No migration required  
-- Mobile Runtime 5.5 is optional  
+- Mobile Runtime 5.6 is optional  
 - ENVOY 5 is optional (default OFF)  
 
 ---
 
-# 📌 Release Status (5.5.0 UNIFIED)
-**Version:** 5.5.0 UNIFIED  
+# 📌 Release Status (5.6.1 UNIFIED)
+**Version:** 5.6.1 UNIFIED  
 **Stage:** Stable  
-**Release Date:** 2026‑XX‑XX  
+**Release Date:** 2026‑07‑29  
 
 ---
 
 # 🏁 Summary
-Version **5.5.0 UNIFIED** elevates SIRIUS LOCAL AI into a new era of:
+Version **5.6.1 UNIFIED** elevates SIRIUS LOCAL AI into a new era of:
 
 - faster, more stable deterministic execution  
 - deeper symbolic reasoning  
-- full explainability (KG_EXPLAIN)  
+- full explainability (KG_EXPLAIN + KG_EXPLAIN_DEEP)  
 - stronger identity‑aware safety  
 - faster multimodal triage  
 - unified PC + Mobile architecture  
