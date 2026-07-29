@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "5.5.0"
-date-released: 2026-07-06
+version: "5.6.1"
+date-released: 2026-07-29
 
 authors:
   - family-names: "Pizem"
@@ -15,22 +15,24 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 5.5"
-  - "runtime core 5.5 unified"
+  - "intelligent runtime 5.6"
+  - "runtime core 5.6 unified"
   - "plugin system 5.x"
-  - "workflow engine 5.5"
-  - "reasoning engine 5.5"
-  - "explainability engine 5.5"
+  - "workflow engine 5.6"
+  - "reasoning engine 5.6"
+  - "explainability engine 5.6"
   - "KG_EXPLAIN"
+  - "KG_EXPLAIN_DEEP"
   - "multi-hop inference"
   - "inheritance reasoning"
   - "transitive reasoning"
   - "proof tree foundation"
+  - "evidence trees"
   - "confidence scoring"
   - "rule chaining"
-  - "semantic triage 5.5"
-  - "AITE 5.5"
-  - "knowledge graph 5.x"
+  - "semantic triage 5.6"
+  - "AITE 5.6"
+  - "unified knowledge graph 5.6"
   - "KG comfort commands"
   - "secure local processing"
   - "Windows automation"
@@ -39,12 +41,12 @@ keywords:
   - "family safety 5.x"
   - "identity engine 3.0"
   - "SECURITY FAMILY 5.x"
-  - "schoolwork engine 5.5"
+  - "schoolwork engine 5.6"
   - "time-limits engine v3"
-  - "self-repair layer 5.4"
-  - "health-check engine 5.5"
-  - "PC automation runtime 5.5"
-  - "Mobile Runtime 5.5"
+  - "self-repair layer 5.x"
+  - "health-check engine 5.6"
+  - "PC automation runtime 5.6"
+  - "Mobile Runtime 5.6"
   - "ENVOY Execution Layer 5"
   - "ENVOY Permission Layer 5"
   - "safe external retrieval"
@@ -57,7 +59,7 @@ keywords:
   - "UIActions 5.x"
   - "WinCapabilities 5.x"
   - "semantic UI automation"
-  - "runtime 4.x to 5.x transition"
+  - "runtime 5.x stabilized"
   - "explainable AI"
   - "symbolic reasoning"
   - "XAI"
@@ -65,14 +67,15 @@ keywords:
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, reasoning tasks, and
-  semantic automation. Version 5.5.0 introduces the largest intelligence upgrade
-  in the history of the runtime, including the KG_EXPLAIN explainability engine,
-  multi-hop inference, inheritance reasoning, transitive reasoning, proof tree
-  foundations, confidence scoring, and rule chaining.
+  semantic automation. Version 5.6.1 finalizes the stabilized logic layer of the
+  Unified Runtime Architecture 5.x, delivering a fully unified Knowledge Graph,
+  deep explainability (KG_EXPLAIN & KG_EXPLAIN_DEEP), multi-hop inference,
+  inheritance reasoning, transitive reasoning, proof tree generation, evidence
+  trees, confidence scoring, and deterministic rule chaining.
 
-  The Unified Runtime Architecture 5.x merges PC and Mobile logic into a single,
-  deterministic, identity-aware operating layer. The Runtime Core 5.5 provides
-  unified orchestration, deterministic execution, capability-based access control,
+  The Unified Runtime Architecture 5.6 merges PC and Mobile logic into a single,
+  deterministic, identity-aware operating layer. Runtime Core 5.6 provides unified
+  orchestration, deterministic execution, capability-based access control,
   identity-aware routing, and explainability-aware workflow dispatch.
 
   SECURITY FAMILY 5.x expands identity and family safety layers with OWNER/FAMILY/
@@ -84,7 +87,7 @@ abstract: >
   deterministic behavior, semantic understanding, explainability, and predictable
   execution rules.
 
-  Version 5.5.0 upgrades the entire runtime stack, including Workflow Engine 5.5,
-  Reasoning Engine 5.5, KG_EXPLAIN, ENVOY 5, FS‑AGENT 5, CME‑MEM 5, System Agent 5,
-  and Password Vault 5.0. These upgrades prepare the architecture for the upcoming
-  Modular Kernel Architecture in the 5.x → 6.0 transition.
+  Version 5.6.1 upgrades the entire runtime stack, including Workflow Engine 5.6,
+  Reasoning Engine 5.6, KG_EXPLAIN, KG_EXPLAIN_DEEP, ENVOY 5, FS‑AGENT 5, CME‑MEM 5,
+  System Agent 5, and Password Vault 5.0. These upgrades prepare the architecture
+  for the upcoming Modular Kernel Architecture in the 5.x → 6.0 transition.
