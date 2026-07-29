@@ -1,23 +1,23 @@
-# ⚙️ Automatic Input Triage Engine (AITE) — v5.5.0  
-SIRIUS‑LOCAL‑AI Runtime 5.5 — Unified PC & Mobile Architecture
+# ⚙️ Automatic Input Triage Engine (AITE) — v5.6.1  
+SIRIUS‑LOCAL‑AI Runtime 5.6.1 — Unified PC & Mobile Architecture
 
-AITE v5.5.0 is the newest generation of the triage module designed for Runtime 5.x.  
+AITE v5.6.1 is the newest generation of the triage module designed for Runtime 5.x.  
 It is the central layer that instantly understands what the user inserted,  
 what it means, which identity rules apply, and where the content must be routed.
 
-AITE 5.5 is fully offline, deterministic, and integrated with all Runtime 5.x modules.
+AITE 5.6.1 is fully offline, deterministic, and integrated with all Runtime 5.6.1 modules.
 
 ---
 
-# 🚀 MODULE STATUS — v5.5.0 (MAJOR UPGRADE)
+# 🚀 MODULE STATUS — v5.6.1 (STABILIZED UPGRADE)
 
-AITE 5.5 is fully aligned with the upgraded Runtime 5.5 architecture:
+AITE 5.6.1 is fully aligned with the upgraded Runtime 5.6.1 architecture:
 
-- Reasoning Engine 5.5  
-- Workflow Engine 5.5  
-- Knowledge Graph 5.x  
-- KG_EXPLAIN (new)  
-- System Agent 5.0  
+- Reasoning Engine 5.6  
+- Workflow Engine 5.6  
+- Unified Knowledge Graph 5.6  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP  
+- System Agent 5  
 - ENVOY Execution Layer 5  
 - ENVOY Permission Layer 5  
 - FS‑Agent 5  
@@ -26,60 +26,69 @@ AITE 5.5 is fully aligned with the upgraded Runtime 5.5 architecture:
 - Pack Integrity 5  
 - Mobile Runtime 5  
 
-AITE 5.5 is **production‑stable** and remains one of the core pillars of Runtime 5.x.
+AITE 5.6.1 is **production‑stable** and remains one of the core pillars of Runtime 5.x.
 
 ---
 
-# 🔥 What’s New in v5.5.0
+# 🔥 What’s New in v5.6.1
 
-### Multimodal Semantic Engine 5.5
+### Multimodal Semantic Engine 5.6
 - deeper semantic extraction  
 - improved mixed‑content stability  
 - faster decision pipeline  
 - explainability‑aware semantic tagging  
+- stabilized NL intent detection  
 
-### OCR Engine 5.5
+### OCR Engine 5.6
 - faster image processing  
 - improved mobile input stability  
 - better text normalization for reasoning  
+- stabilized OCR routing  
 
-### SubjectGraph 5.5
+### SubjectGraph 5.6
 - expanded academic domains  
 - improved schoolwork classification  
-- better integration with KG_EXPLAIN  
+- better integration with KG_EXPLAIN & KG_EXPLAIN_DEEP  
 
-### Difficulty Engine 5.5
+### Difficulty Engine 5.6
 - more accurate difficulty scoring  
 - improved schoolwork detection  
+- stabilized scoring pipeline  
 
-### Identity Gate 4.2
+### Identity Gate 4.3
 - updated OWNER / FAMILY / STRANGER rules  
-- improved STRANGER protection  
+- stronger STRANGER protection  
 - explainability‑aware identity routing  
+- stabilized identity transitions  
 
-### Schoolwork Engine 5.5
+### Schoolwork Engine 5.6
 - faster schoolwork detection  
 - improved bypass logic  
-- better integration with Reasoning Engine 5.5  
+- better integration with Reasoning Engine 5.6  
+- stabilized academic routing  
 
-### Reasoning Bridge 5.5
+### Reasoning Bridge 5.6
 - full integration with new reasoning rules  
 - supports inheritance, transitivity, multi‑hop inference  
-- supports KG_EXPLAIN  
+- supports KG_EXPLAIN & KG_EXPLAIN_DEEP  
+- stabilized rule chaining  
 
-### Workflow Bridge 5.5
+### Workflow Bridge 5.6
 - new workflow triggers  
 - explainability routing  
 - improved ENVOY fetch workflows  
+- stabilized multi‑stage routing  
 
-### Metadata Graph 5.5
+### Metadata Graph 5.6
 - richer metadata  
 - improved semantic tagging  
 - explainability‑aware metadata  
+- stabilized metadata graph  
 
 ### FS‑Agent 5 Hooks
 - safer file operations  
 - improved identity rules  
+- deterministic routing  
 
 ### Always Guaranteed
 - 100% offline  
@@ -90,7 +99,7 @@ AITE 5.5 is **production‑stable** and remains one of the core pillars of Runti
 
 # 1. Module Purpose
 
-AITE 5.5 automatically determines:
+AITE 5.6.1 automatically determines:
 
 - what the input is  
 - what it contains  
@@ -100,7 +109,7 @@ AITE 5.5 automatically determines:
 - whether schoolwork bypass should activate  
 - whether workflow is needed  
 - whether reasoning is needed  
-- whether KG_EXPLAIN is needed  
+- whether KG_EXPLAIN or KG_EXPLAIN_DEEP is needed  
 - whether ENVOY fetch is needed  
 
 Supported inputs:
@@ -118,8 +127,8 @@ Supported inputs:
 
 # 2. Module Functions
 
-## 2.1 Input Recognition (Engine 5.5)
-AITE 5.5 recognizes:
+## 2.1 Input Recognition (Engine 5.6)
+AITE 5.6.1 recognizes:
 
 - plain text  
 - formatted text  
@@ -134,7 +143,7 @@ AITE 5.5 recognizes:
 - explainability triggers  
 
 ## 2.2 Semantic Routing Logic
-AITE 5.5 determines:
+AITE 5.6.1 determines:
 
 - correct storage  
 - semantic metadata  
@@ -144,8 +153,8 @@ AITE 5.5 determines:
 - workflow triggers  
 - identity restrictions  
 - schoolwork bypass  
-- Reasoning Engine 5.5 tasks  
-- KG_EXPLAIN activation  
+- Reasoning Engine 5.6 tasks  
+- KG_EXPLAIN / KG_EXPLAIN_DEEP activation  
 - Knowledge Packs 5 routing  
 - Event Engine 5 triggers  
 
@@ -159,7 +168,7 @@ AITE 5.5 determines:
 - metadata graph  
 - subject tags  
 
-### Workflow Engine 5.5  
+### Workflow Engine 5.6  
 - multi‑step workflows  
 - schoolwork workflows  
 - code workflows  
@@ -173,7 +182,7 @@ AITE 5.5 determines:
 - safe actions  
 - deterministic behavior  
 
-### Reasoning Engine 5.5  
+### Reasoning Engine 5.6  
 - structured analysis  
 - step‑based reasoning  
 - explainability integration  
@@ -190,51 +199,51 @@ AITE 5.5 determines:
 
 # 3. Module Architecture
 
-## 3.1 Components (v5.5)
+## 3.1 Components (v5.6)
 
-- **InputClassifier 5.5** — type + category  
-- **OCRExtractor 5.5** — text extraction  
-- **SemanticAnalyzer 5.5** — meaning + intent  
-- **DifficultyEstimator 5.5** — difficulty  
-- **SubjectDetector 5.5** — subject  
-- **ExplainabilityDetector 5.5** — detects “why?” queries  
-- **InputRouter 5.5** — target module  
-- **MetadataBuilder 5.5** — metadata  
-- **AITEController 5.5** — orchestration  
-- **SchoolworkDetector 5.5** — schoolwork  
-- **IdentityGate 4.2** — identity logic  
-- **ReasoningBridge 5.5** — reasoning integration  
-- **WorkflowBridge 5.5** — workflow triggers  
-- **EventBridge 5.5** — event integration  
+- **InputClassifier 5.6** — type + category  
+- **OCRExtractor 5.6** — text extraction  
+- **SemanticAnalyzer 5.6** — meaning + intent  
+- **DifficultyEstimator 5.6** — difficulty  
+- **SubjectDetector 5.6** — subject  
+- **ExplainabilityDetector 5.6** — detects “why?” queries  
+- **InputRouter 5.6** — target module  
+- **MetadataBuilder 5.6** — metadata  
+- **AITEController 5.6** — orchestration  
+- **SchoolworkDetector 5.6** — schoolwork  
+- **IdentityGate 4.3** — identity logic  
+- **ReasoningBridge 5.6** — reasoning integration  
+- **WorkflowBridge 5.6** — workflow triggers  
+- **EventBridge 5.6** — event integration  
 
-## 3.2 Processing Flow (v5.5)
+## 3.2 Processing Flow (v5.6)
 User inserts input  
 ↓  
-InputClassifier 5.5  
+InputClassifier 5.6  
 ↓  
-OCRExtractor 5.5 (if image)  
+OCRExtractor 5.6 (if image)  
 ↓  
-SemanticAnalyzer 5.5  
+SemanticAnalyzer 5.6  
 ↓  
-ExplainabilityDetector 5.5  
+ExplainabilityDetector 5.6  
 ↓  
-SchoolworkDetector 5.5  
+SchoolworkDetector 5.6  
 ↓  
-DifficultyEstimator 5.5  
+DifficultyEstimator 5.6  
 ↓  
-SubjectDetector 5.5  
+SubjectDetector 5.6  
 ↓  
-IdentityGate 4.2  
+IdentityGate 4.3  
 ↓  
-InputRouter 5.5  
+InputRouter 5.6  
 ↓  
 FS‑Agent 5 / CME‑MEM 5  
 ↓  
-Workflow Engine 5.5  
+Workflow Engine 5.6  
 ↓  
-Reasoning Engine 5.5  
+Reasoning Engine 5.6  
 ↓  
-KG_EXPLAIN (if needed)  
+KG_EXPLAIN / KG_EXPLAIN_DEEP (if needed)  
 ↓  
 System Agent 5  
 
@@ -253,21 +262,21 @@ System Agent 5
 
 ---
 
-# 5. Module Status — v5.5.0
+# 5. Module Status — v5.6.1
 
-AITE 5.5 is fully stable, production‑ready, and integrated with:
+AITE 5.6.1 is fully stable, production‑ready, and integrated with:
 
 - Runtime Core 5  
 - Security Family 5  
 - Schoolwork Engine 5  
-- Reasoning Engine 5.5  
-- KG_EXPLAIN  
+- Reasoning Engine 5.6  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - Knowledge Packs 5  
-- Workflow Engine 5.5  
+- Workflow Engine 5.6  
 - FS‑Agent 5  
 - CME‑MEM 5  
 - Event Engine 5  
 - Pack Integrity 5  
 - System Agent 5  
 
-AITE 5.5 guarantees that every input is understood, analyzed, and safely routed — instantly and offline.
+AITE 5.6.1 guarantees that every input is understood, analyzed, and safely routed — instantly and offline.
