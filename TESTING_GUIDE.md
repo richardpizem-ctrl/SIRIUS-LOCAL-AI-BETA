@@ -1,55 +1,56 @@
-# 🧪 TESTING GUIDE — SIRIUS LOCAL AI (v5.5.0 UNIFIED)
+# 🧪 TESTING GUIDE — SIRIUS LOCAL AI (v5.6.1 UNIFIED)
 
-This document defines the **complete testing framework** for the Unified Reasoning & Explainability Runtime 5.5 architecture.  
-It replaces all previous 4.x, 5.0, and 5.3 testing rules with a **deterministic, explainable,  
+This document defines the **complete testing framework** for the Unified Reasoning, Deep Explainability & Unified KG Runtime 5.6 architecture.  
+It replaces all previous 4.x, 5.0, 5.3, and 5.5 testing rules with a **deterministic, explainable,  
 system‑intelligent, identity‑aware, KG‑aware, repair‑aware** testing model.
 
 All tests must pass on:
 
 - Windows 11 (PC)
-- Mobile Runtime 5.5 (Android subsystem / mobile shell)
+- Mobile Runtime 5.6 (Android subsystem / mobile shell)
 - LAN Sync 2.0 environments
 - Offline mode (default)
-- Optional Envoy 5 mode (permission‑based + explainability)
+- Optional Envoy 5 mode (permission‑based + deep explainability)
 
 ---
 
-# ⭐ 1. Testing Philosophy (Updated for 5.5)
+# ⭐ 1. Testing Philosophy (Updated for 5.6.1)
 
 ### Core principles:
-- **determinism over speed**
-- **identity‑aware behavior**
-- **predictive OS‑state awareness**
-- **KG‑aware semantic validation**
-- **KG_EXPLAIN explainability validation**
-- **repair‑aware execution**
-- **no unsafe OS actions**
-- **no workflows in degraded OS states**
-- **no bypassing System Agent 5**
-- **no bypassing System Intelligence Layer 5.5**
-- **no bypassing KG‑Reasoning**
-- **no unbounded reasoning**
-- **no nondeterministic UI automation**
+- **determinism over speed**  
+- **identity‑aware behavior**  
+- **predictive OS‑state awareness**  
+- **KG‑aware semantic validation**  
+- **KG_EXPLAIN + KG_EXPLAIN_DEEP explainability validation**  
+- **repair‑aware execution**  
+- **no unsafe OS actions**  
+- **no workflows in degraded OS states**  
+- **no bypassing System Agent 5**  
+- **no bypassing System Intelligence Layer 5.6**  
+- **no bypassing Unified KG Reasoning 5.6**  
+- **no unbounded reasoning**  
+- **no nondeterministic UI automation**  
 
 All tests must confirm that SIRIUS behaves **identically** across PC + Mobile.
 
 ---
 
-# ⭐ 2. Test Categories (v5.5)
+# ⭐ 2. Test Categories (v5.6.1)
 
-1. **System Intelligence Layer 5.5 Tests**  
+1. **System Intelligence Layer 5.6 Tests**  
 2. **System Agent 5 Tests**  
-3. **UI Automation Engine 5.5 Tests**  
-4. **Workflow Engine 5.5 Tests**  
-5. **AITE 5.5 Tests**  
-6. **Reasoning Engine 5.5 Tests**  
-7. **Knowledge Packs 5.5 Tests**  
-8. **Filesystem Agent 5.0 Tests**  
-9. **Security Family 5.x Tests**  
-10. **Envoy 5 Tests**  
-11. **Self‑Repair Layer 5.x Tests**  
-12. **Unified PC/Mobile Runtime Tests**  
-13. **KG_EXPLAIN Explainability Tests** ← NEW  
+3. **UI Automation Engine 5.6 Tests**  
+4. **Workflow Engine 5.6 Tests**  
+5. **AITE 5.6 Tests**  
+6. **Reasoning Engine 5.6 Tests**  
+7. **Unified Knowledge Graph 5.6 Tests**  
+8. **Knowledge Packs 5.6 Tests**  
+9. **Filesystem Agent 5.0 Tests**  
+10. **Security Family 5.x Tests**  
+11. **Envoy 5 Tests**  
+12. **Self‑Repair Layer 5.x Tests**  
+13. **Unified PC/Mobile Runtime Tests**  
+14. **KG_EXPLAIN + KG_EXPLAIN_DEEP Explainability Tests** ← NEW  
 
 ---
 
@@ -74,22 +75,23 @@ All tests must confirm that SIRIUS behaves **identically** across PC + Mobile.
 
 ---
 
-# ⭐ Q2) **System Intelligence Layer 5.5 Tests — UPDATED**
+# ⭐ Q2) **System Intelligence Layer 5.6 Tests — UPDATED**
 
-System Intelligence Layer 5.5 introduces predictive OS‑state awareness,  
-risk detection, degraded‑mode detection, explainability traces, and KG‑aware context evaluation.
+System Intelligence Layer 5.6 introduces predictive OS‑state awareness,  
+risk detection, degraded‑mode detection, deep explainability traces,  
+and KG‑aware context evaluation.
 
 ### Validate:
-- OS health detection (PC + Mobile)
-- KG‑aware risk prediction
-- degraded‑mode detection
-- unsafe state prevention
-- workflow blocking in unsafe or degraded conditions
-- deterministic system‑state evaluation
-- integration with System Agent 5
-- identity‑aware system context routing
-- Envoy 5 permission influence on system state
-- KG_EXPLAIN explainability traces
+- OS health detection (PC + Mobile)  
+- KG‑aware risk prediction  
+- degraded‑mode detection  
+- unsafe state prevention  
+- workflow blocking in unsafe or degraded conditions  
+- deterministic system‑state evaluation  
+- integration with System Agent 5  
+- identity‑aware system context routing  
+- Envoy 5 permission influence on system state  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces  
 
 ### Checklist:
 - unsafe OS states must block workflows  
@@ -98,8 +100,8 @@ risk detection, degraded‑mode detection, explainability traces, and KG‑aware
 - FAMILY/STRANGER workflows restricted under WARNING  
 - fallback 3.2 must activate when risk is high  
 - logs must include SAFE / WARNING / RISK / DEGRADED  
-- KG‑Reasoning must validate system‑context consistency  
-- KG_EXPLAIN must justify system‑state decisions  
+- Unified KG must validate system‑context consistency  
+- KG_EXPLAIN_DEEP must justify system‑state decisions  
 - Self‑Repair Layer must trigger on integrity issues  
 
 ---
@@ -118,7 +120,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - rejection of unsafe or high‑risk operations  
 - degraded‑mode blocking  
 - Envoy 5 permission enforcement  
-- KG_EXPLAIN explainability traces  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces  
 
 ### Checklist:
 - OWNER actions allowed only in SAFE state  
@@ -134,10 +136,10 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ---
 
-# ⭐ Q4) **UI Automation Engine 5.5 Tests — UPDATED**
+# ⭐ Q4) **UI Automation Engine 5.6 Tests — UPDATED**
 
 ### Validate:
-- fuzzy matching 5.5  
+- fuzzy matching 5.6  
 - deterministic fallback 3.2  
 - identity‑aware UI actions 3.2  
 - safe Win32/UIA/WinRT routing  
@@ -145,7 +147,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - semantic target resolution 3.2  
 - KG‑enhanced UI matching  
 - degraded‑mode blocking  
-- KG_EXPLAIN explainability traces  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces  
 
 ### Checklist:
 - all UI actions route through System Agent 5  
@@ -155,12 +157,12 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - degraded‑mode blocks UI actions  
 - logs include UI routing info  
 - no direct API calls from UIActions  
-- KG‑Reasoning validates ambiguous UI targets  
+- Unified KG validates ambiguous UI targets  
 - explainability trace must justify UI selection  
 
 ---
 
-# ⭐ Q5) **Workflow Engine 5.5 Tests — UPDATED**
+# ⭐ Q5) **Workflow Engine 5.6 Tests — UPDATED**
 
 ### Validate:
 - deterministic state transitions  
@@ -168,7 +170,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - system‑state‑aware workflow routing  
 - degraded‑mode workflow blocking  
 - KG‑aware workflow planning  
-- explainability routing (KG_EXPLAIN)  
+- deep explainability routing (KG_EXPLAIN_DEEP)  
 - safe fallback logic 3.2  
 - System Agent 5 validation  
 - semantic caching 3.2  
@@ -180,16 +182,16 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - SCHOOLWORK workflows bypass restrictions safely  
 - STRANGER workflows restricted  
 - OWNER workflows reversible  
-- KG‑Reasoning validates workflow context  
-- KG_EXPLAIN must justify workflow transitions  
+- Unified KG validates workflow context  
+- KG_EXPLAIN_DEEP must justify workflow transitions  
 - Self‑Repair Layer validates workflow integrity  
 
 ---
 
-# ⭐ Q6) **AITE 5.5 Tests — UPDATED**
+# ⭐ Q6) **AITE 5.6 Tests — UPDATED**
 
 ### Validate:
-- faster OCR 5.5  
+- faster OCR 5.6  
 - improved semantic detection  
 - identity‑aware triage 4.2  
 - SCHOOLWORK bypass 5.x  
@@ -198,7 +200,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - KG‑aware semantic tagging  
 - degraded‑mode routing restrictions  
 - explain‑intent detection  
-- KG_EXPLAIN traces  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces  
 
 ### Checklist:
 - triage must remain constant‑time  
@@ -206,13 +208,13 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - identity influences routing  
 - system state influences routing  
 - degraded mode restricts routing  
-- KG‑Reasoning influences routing  
+- Unified KG influences routing  
 - explainability trace must justify routing  
 - deterministic results across runs  
 
 ---
 
-# ⭐ Q7) **Reasoning Engine 5.5 Tests — UPDATED**
+# ⭐ Q7) **Reasoning Engine 5.6 Tests — UPDATED**
 
 ### Validate:
 - multi‑hop inference  
@@ -221,11 +223,11 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - deterministic rule chaining  
 - bounded reasoning depth 3.2  
 - pack‑aware reasoning 4.2  
-- KG‑integrated inference  
+- Unified KG‑integrated inference  
 - cached reasoning paths  
 - Envoy‑aware reasoning  
 - repair‑aware reasoning  
-- KG_EXPLAIN proof‑tree generation  
+- KG_EXPLAIN_DEEP proof‑tree generation  
 
 ### Checklist:
 - no unbounded reasoning  
@@ -239,7 +241,30 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ---
 
-# ⭐ Q8) **Knowledge Packs 5.5 Tests — UPDATED**
+# ⭐ Q8) **Unified Knowledge Graph 5.6 Tests — UPDATED**
+
+### Validate:
+- multi‑hop traversal  
+- inbound/outbound neighbor consistency  
+- KG Explore tree correctness  
+- KG Explain attribute correctness  
+- KG Explain Deep reasoning correctness  
+- pack‑to‑pack consistency  
+- deterministic KG traversal  
+- repair‑aware KG validation  
+
+### Checklist:
+- no cycles in KG Core  
+- deterministic KG Query results  
+- KG Explore tree must match KG Query  
+- KG Explain must match KG attributes  
+- KG Explain Deep must match reasoning path  
+- degraded‑mode blocks unsafe KG usage  
+- explainability trace must justify KG traversal  
+
+---
+
+# ⭐ Q9) **Knowledge Packs 5.6 Tests — UPDATED**
 
 ### Validate:
 - faster lookups  
@@ -249,20 +274,20 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - expanded school, household, device packs  
 - KG‑ready structure  
 - repair‑aware pack validation  
-- KG_EXPLAIN metadata  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP metadata  
 
 ### Checklist:
 - no ambiguous pack resolution  
 - deterministic pack selection  
 - identity‑aware pack access  
 - SCHOOLWORK packs override restrictions  
-- KG‑Reasoning validates pack consistency  
+- Unified KG validates pack consistency  
 - degraded‑mode blocks unsafe pack usage  
 - explainability trace must justify pack selection  
 
 ---
 
-# ⭐ Q9) **Filesystem Agent 5.0 Tests**
+# ⭐ Q10) **Filesystem Agent 5.0 Tests**
 
 ### Validate:
 - safe path validation  
@@ -280,7 +305,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ---
 
-# ⭐ Q10) **Security Family 5.x Tests**
+# ⭐ Q11) **Security Family 5.x Tests**
 
 ### Validate:
 - identity classification 3.2  
@@ -288,7 +313,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - SCHOOLWORK bypass logic  
 - STRANGER‑mode restrictions  
 - FAMILY‑mode safe boundaries  
-- KG_EXPLAIN identity traces  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP identity traces  
 
 ### Checklist:
 - identity must influence all routing  
@@ -298,7 +323,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ---
 
-# ⭐ Q11) **Envoy 5 Tests**
+# ⭐ Q12) **Envoy 5 Tests**
 
 ### Validate:
 - ASK → FETCH → QUARANTINE → VALIDATE → DELIVER  
@@ -306,7 +331,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 - System Agent 5 enforcement  
 - safe payload validation  
 - no local data transmission  
-- KG_EXPLAIN explainability traces  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces  
 
 ### Checklist:
 - no automatic fetch  
@@ -317,7 +342,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ---
 
-# ⭐ Q12) **Self‑Repair Layer 5.x Tests**
+# ⭐ Q13) **Self‑Repair Layer 5.x Tests**
 
 ### Validate:
 - corrupted module detection  
@@ -335,7 +360,7 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ---
 
-# ⭐ Q13) **Unified PC/Mobile Runtime Tests**
+# ⭐ Q14) **Unified PC/Mobile Runtime Tests**
 
 ### Validate:
 - identical behavior across PC + Mobile  
@@ -353,10 +378,11 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 ---
 
-# ⭐ Q14) **KG_EXPLAIN Explainability Tests — NEW**
+# ⭐ Q15) **KG_EXPLAIN + KG_EXPLAIN_DEEP Explainability Tests — NEW**
 
 ### Validate:
 - proof‑tree generation  
+- evidence‑tree generation  
 - confidence scoring  
 - rule‑chain consistency  
 - workflow explainability  
@@ -378,19 +404,20 @@ System Agent 5 is the hardened OS‑level safety gatekeeper.
 
 # 📄 Document Status (Updated)
 
-**Version:** **5.5.0 UNIFIED (Complete Rewrite)**  
+**Version:** **5.6.1 UNIFIED (Complete Rewrite)**  
 This guide now includes testing rules for:
 
-- System Intelligence Layer 5.5  
+- System Intelligence Layer 5.6  
 - System Agent 5  
-- UI Automation Engine 5.5  
-- Workflow Engine 5.5  
-- AITE 5.5  
-- Reasoning Engine 5.5  
-- Knowledge Packs 5.5  
+- UI Automation Engine 5.6  
+- Workflow Engine 5.6  
+- AITE 5.6  
+- Reasoning Engine 5.6  
+- Unified Knowledge Graph 5.6  
+- Knowledge Packs 5.6  
 - Filesystem Agent 5.0  
 - Security Family 5.x  
 - Envoy 5  
 - Self‑Repair Layer 5.x  
 - Unified PC/Mobile Runtime  
-- KG_EXPLAIN Explainability Engine
+- KG_EXPLAIN + KG_EXPLAIN_DEEP Explainability Engines
