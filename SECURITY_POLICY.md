@@ -1,20 +1,21 @@
-# 🔐 11.6 NEW SECURITY LAYER — Runtime 5.5.0 UNIFIED
+# 🔐 11.6 NEW SECURITY LAYER — Runtime 5.6.1 UNIFIED
 
-Version **5.5.0 UNIFIED** significantly expands and hardens the security model introduced in 5.0.0.  
-It upgrades **System Agent 5**, **Security Family 5.x**, **UI Automation Engine 5.5**,  
-**WIN‑CAP 5.x**, **System Intelligence Layer 5.5**, and the **ENVOY 5** permission model with full explainability.
+Version **5.6.1 UNIFIED** significantly expands and hardens the security model introduced in 5.0.0.  
+It upgrades **System Agent 5**, **Security Family 5.x**, **UI Automation Engine 5.6**,  
+**WIN‑CAP 5.x**, **System Intelligence Layer 5.6**, and the **ENVOY 5** permission model  
+with **full deep explainability (KG_EXPLAIN + KG_EXPLAIN_DEEP)**.
 
-New components in 5.5:
+New components in 5.6:
 
-- **System Agent 5 (Hardened + Explainability)**
-- **Security Family 5.x (Identity Engine 3.2)**
-- **UI Automation Engine 5.5 (Deterministic + Explainable OS Automation)**
-- **WIN‑CAP 5.x (Safer OS Capability Layer)**
-- **System Intelligence Layer 5.5 (Predictive + Explainable Safety)**
-- **ENVOY 5 Security Model (Permission‑Based Fetch + Explainability Traces)**
-- **Self‑Repair Layer 5.x (Security‑Aware Integrity Checks)**
-- **Unified PC/Mobile identity enforcement**
-- **KG_EXPLAIN integration across all security modules**
+- **System Agent 5 (Hardened + Deep Explainability)**  
+- **Security Family 5.x (Identity Engine 3.2)**  
+- **UI Automation Engine 5.6 (Deterministic + Explainable OS Automation)**  
+- **WIN‑CAP 5.x (Safer OS Capability Layer)**  
+- **System Intelligence Layer 5.6 (Predictive + Deep Explainable Safety)**  
+- **ENVOY 5 Security Model (Permission‑Based Fetch + Deep Explainability Traces)**  
+- **Self‑Repair Layer 5.x (Security‑Aware Integrity Checks)**  
+- **Unified PC/Mobile identity enforcement**  
+- **KG_EXPLAIN + KG_EXPLAIN_DEEP integration across all security modules**
 
 All processing is fully local.  
 No data leaves the device unless explicitly permitted through:
@@ -24,7 +25,7 @@ No data leaves the device unless explicitly permitted through:
 
 ---
 
-# 🔐 11.7 System Agent 5 — Hardened OS‑Level Security Gatekeeper (UPDATED for 5.5)
+# 🔐 11.7 System Agent 5 — Hardened OS‑Level Security Gatekeeper (UPDATED for 5.6)
 
 System Agent 5 is the strongest OS‑level security module in the history of SIRIUS LOCAL AI.
 
@@ -34,12 +35,12 @@ System Agent 5 is the strongest OS‑level security module in the history of SIR
 - block risky or unauthorized operations  
 - guarantee reversibility 3.2  
 - log sensitive system interactions  
-- integrate with System Intelligence Layer 5.5  
+- integrate with System Intelligence Layer 5.6  
 - enforce ENVOY 5 permission model  
-- generate KG_EXPLAIN traces for every decision  
+- generate KG_EXPLAIN + KG_EXPLAIN_DEEP traces for every decision  
 - guarantee deterministic unified PC/Mobile behavior  
 
-### Security Guarantees (5.5):
+### Security Guarantees (5.6):
 - no module has direct OS access  
 - no privileged operations  
 - no kernel‑level calls  
@@ -48,7 +49,7 @@ System Agent 5 is the strongest OS‑level security module in the history of SIR
 - constant‑time identity validation  
 - SCHOOLWORK bypass 5.x  
 - ENVOY 5 fetch validation  
-- explainability for every allowed/blocked action  
+- deep explainability for every allowed/blocked action  
 
 ### Threat Protections:
 - blocking unauthorized system modifications  
@@ -57,16 +58,16 @@ System Agent 5 is the strongest OS‑level security module in the history of SIR
 - blocking persistent hooks  
 - blocking system manipulation  
 - blocking unauthorized ENVOY fetch attempts  
-- explainability traces for all security events  
+- KG_EXPLAIN_DEEP traces for all security events  
 
 ---
 
-# 🔐 11.8 Security Family 5.x — Identity Enforcement 3.2 (UPDATED for 5.5)
+# 🔐 11.8 Security Family 5.x — Identity Enforcement 3.2 (UPDATED for 5.6)
 
 Security Family 5.x strengthens the identity model introduced in 5.0  
 and unifies identity enforcement across PC and Mobile.
 
-### Enhancements (5.5):
+### Enhancements (5.6):
 - identity‑aware gating 3.2  
 - SCHOOLWORK bypass 5.x (deterministic + explainable)  
 - faster user identification (O(1))  
@@ -74,7 +75,7 @@ and unifies identity enforcement across PC and Mobile.
 - safer FAMILY‑mode permissions  
 - deeper integration with System Agent 5  
 - deterministic permission evaluation 3.2  
-- KG_EXPLAIN traces for identity decisions  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces for identity decisions  
 - unified PC/Mobile identity logic  
 
 ### Guarantees:
@@ -82,13 +83,13 @@ and unifies identity enforcement across PC and Mobile.
 - no OS action without identity validation  
 - no unsafe fallback paths  
 - no ENVOY fetch without identity approval  
-- explainability for every identity‑based restriction  
+- deep explainability for every identity‑based restriction  
 
 ---
 
-# 🔐 11.9 UI Automation Engine 5.5 — Deterministic OS Automation Safety (UPDATED)
+# 🔐 11.9 UI Automation Engine 5.6 — Deterministic OS Automation Safety (UPDATED)
 
-UI Automation Engine 5.5 introduces the safest and most deterministic automation system ever released.
+UI Automation Engine 5.6 introduces the safest and most deterministic automation system ever released.
 
 ### OS‑Level Safety:
 - all actions validated by System Agent 5  
@@ -98,7 +99,7 @@ UI Automation Engine 5.5 introduces the safest and most deterministic automation
 - no raw Win32/UIA/WinRT calls  
 - no uncontrolled inputs  
 - unified PC/Mobile automation  
-- KG_EXPLAIN traces for UI actions  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces for UI actions  
 
 ### WinCapabilities 5.x:
 - safer API adapters  
@@ -113,7 +114,7 @@ UI Automation Engine 5.5 introduces the safest and most deterministic automation
 - bounded retries 3.2  
 - semantic target resolution 3.2  
 - System Agent 5 validation at every step  
-- explainability for workflow automation  
+- deep explainability for workflow automation  
 
 ---
 
@@ -127,13 +128,13 @@ WIN‑CAP 5.x provides:
 - no privileged or kernel‑level access  
 - System Agent 5 mediation  
 - unified PC/Mobile capability logic  
-- explainability for capability routing  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP explainability for capability routing  
 
 ---
 
-# 🔐 11.11 System Intelligence Layer 5.5 — Predictive + Explainable Security (UPDATED)
+# 🔐 11.11 System Intelligence Layer 5.6 — Predictive + Deep Explainable Security (UPDATED)
 
-System Intelligence Layer 5.5 adds **predictive security**, unified diagnostics,  
+System Intelligence Layer 5.6 adds **predictive security**, unified diagnostics,  
 and faster anomaly detection.
 
 ### Capabilities:
@@ -143,7 +144,7 @@ and faster anomaly detection.
 - integration with System Agent 5  
 - no deep scans during workflows  
 - unified PC/Mobile diagnostics  
-- KG_EXPLAIN traces for anomaly detection  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces for anomaly detection  
 
 ### Threat Protections:
 - detection of abnormal OS states  
@@ -154,10 +155,10 @@ and faster anomaly detection.
 
 ---
 
-# 🔐 11.12 ENVOY 5 — Permission‑Based Secure Fetch + Explainability (UPDATED)
+# 🔐 11.12 ENVOY 5 — Permission‑Based Secure Fetch + Deep Explainability (UPDATED)
 
 ENVOY 5 introduces a hardened, identity‑aware, permission‑based fetch model  
-with full explainability.
+with full deep explainability.
 
 ### Security Flow:
 **ASK → FETCH → QUARANTINE → VALIDATE → DELIVER**
@@ -171,13 +172,13 @@ with full explainability.
 - no local data ever transmitted  
 - unified PC/Mobile Envoy logic  
 - deterministic safe‑payload format  
-- KG_EXPLAIN traces for permission + validation  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces for permission + validation  
 
 ENVOY never runs automatically and never bypasses offline mode.
 
 ---
 
-# 🔐 11.13 Self‑Repair Layer 5.x — Security Integration (UPDATED for 5.5)
+# 🔐 11.13 Self‑Repair Layer 5.x — Security Integration (UPDATED for 5.6)
 
 Self‑Repair Layer 5.x integrates directly with the security stack.
 
@@ -188,7 +189,7 @@ Self‑Repair Layer 5.x integrates directly with the security stack.
 - repair suggestions 2.0  
 - degraded‑mode isolation  
 - unified PC/Mobile repair logic  
-- KG_EXPLAIN traces for repair decisions  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP traces for repair decisions  
 
 ### Threat Protections:
 - blocking execution when critical modules are corrupted  
@@ -200,18 +201,18 @@ Self‑Repair Layer 5.x integrates directly with the security stack.
 
 # 📄 Document Status (Updated)
 
-**Version:** **5.5.0 UNIFIED (Expanded)**  
+**Version:** **5.6.1 UNIFIED (Expanded)**  
 This policy now includes:
 
 - Security Family 5.x  
 - System Agent 5  
-- UI Automation Engine 5.5  
+- UI Automation Engine 5.6  
 - UI Sandbox 5.0  
-- Semantic UI Automation Security 5.5  
+- Semantic UI Automation Security 5.6  
 - WIN‑CAP 5.x  
-- System Intelligence Layer 5.5  
+- System Intelligence Layer 5.6  
 - ENVOY 5  
-- Password Vault 5.0  
+- Password Vault 5.6  
 - Self‑Repair Layer 5.x  
 - Unified PC/Mobile identity enforcement  
-- KG_EXPLAIN explainability integration
+- KG_EXPLAIN & KG_EXPLAIN_DEEP integration
