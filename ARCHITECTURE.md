@@ -9,9 +9,9 @@
 </p>
 
 The SIRIUS LOCAL AI Runtime 6.x generation is a **planned future architecture**, built directly
-on top of the breakthroughs introduced in Runtime 5.6.0 — including the Unified Knowledge Graph,
+on top of the breakthroughs introduced in Runtime **5.6.1** — including the Unified Knowledge Graph,
 Deep Explainability, multi-hop reasoning, proof trees, evidence trees, deterministic traversal,
-and rule chaining.
+rule chaining, stabilized workflow routing, and the fully unified logic layer.
 
 Runtime 6.x will focus on:
 
@@ -203,4 +203,4 @@ Windows 11 / Android / iOS (safe, controlled)
 
 # 📌 Document Status  
 Current version: **6.x (Planned Architecture)**  
-This document outlines the *future* direction of SIRIUS, based on the foundations introduced in Runtime 5.6.0.
+This document outlines the *future* direction of SIRIUS, based on the foundations introduced in Runtime **5.6.1**.
