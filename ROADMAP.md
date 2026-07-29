@@ -238,7 +238,7 @@ SIRIUS gains:
 
 ---
 
-# ⭐ 5.6 — Version 5.6.0 UNIFIED  
+# ⭐ 5.6 — Version 5.6.1 UNIFIED  
 ### Unified KG Architecture + Deep Explainability + Multi‑Hop Reasoning  
 **Status:** Current Stable Release
 
@@ -248,7 +248,7 @@ with the workflow layer.
 
 ---
 
-## 🔥 NEW Core Components (v5.6.0)
+## 🔥 NEW Core Components (v5.6.1)
 
 ### 🧠 Unified Knowledge Graph 5.6
 - redesigned KG Core (stable, consistent, no cycles)  
@@ -292,7 +292,7 @@ with the workflow layer.
 
 ---
 
-## Output (v5.6.0)
+## Output (v5.6.1)
 SIRIUS gains:
 - deep explainability  
 - unified KG architecture  
@@ -367,6 +367,6 @@ SIRIUS gains:
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.6.0 UNIFIED (Stable)  
+**Current version:** 5.6.1 UNIFIED (Stable)  
 **Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
 **Long‑term direction:** Autonomous Runtime Evolution (6.x → 7.x)
