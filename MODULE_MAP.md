@@ -1,17 +1,17 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v5.5.0 UNIFIED)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v5.6.1 UNIFIED)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the **Unified Reasoning & Explainability Architecture 5.5**.
+It serves as an architectural orientation map for the **Unified Reasoning & Deep Explainability Architecture 5.6**.
 
-Version **5.5.0 UNIFIED** expands the module map with:
+Version **5.6.1 UNIFIED** expands and stabilizes the module map with:
 
-- **AITE 5.5 (Semantic + Explainability Multimodal Triage)**  
-- **Workflow Engine 5.5 (Explainability Routing)**  
-- **Reasoning Engine 5.5 (multi‑hop, inheritance, transitivity)**  
-- **KG_EXPLAIN (Explainability Engine)**  
-- **Knowledge Graph 5.x + KG‑LIGHT (improved)**  
+- **AITE 5.6 (Semantic + Deep Explainability Multimodal Triage)**  
+- **Workflow Engine 5.6 (Deep Explainability Routing)**  
+- **Reasoning Engine 5.6 (multi‑hop, inheritance, transitivity, rule chaining)**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
+- **Unified Knowledge Graph 5.6 + KG‑LIGHT (stabilized)**  
 - **Expanded KG Comfort Commands**  
-- **ENVOY Execution + Permission Layers 5 (Explainability Traces)**  
+- **ENVOY Execution + Permission Layers 5 (Deep Explainability Traces)**  
 - **System Agent 5**  
 - **Security Family 5.x (Identity Engine 3.0)**  
 - **Self‑Repair Layer 5.x**  
@@ -22,13 +22,13 @@ All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 1. Runtime Core 5.5 (Unified)
+# 1. Runtime Core 5.6 (Unified)
 **Purpose:** Central orchestrator of the entire system.  
 **Responsibilities:**
 - module initialization  
 - lifecycle management  
 - plugin loading  
-- workflow + explainability dispatch  
+- workflow + deep explainability dispatch  
 - enforcing capability boundaries  
 - event routing  
 - global system stability  
@@ -36,27 +36,27 @@ All processing is fully local; no data leaves the user's device.
 - integration with Self‑Repair Layer 5.x  
 - deterministic execution  
 - System Agent 5 routing  
-- KG_EXPLAIN routing  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP routing  
 - UI Automation Engine 5.0 integration  
 - unified PC/Mobile behavior  
 - ENVOY permission enforcement  
 
 ---
 
-# 2. Filesystem Agent (FS‑AGENT 5.5)
+# 2. Filesystem Agent (FS‑AGENT 5.6)
 **Purpose:** Safe, deterministic file operations.  
 **Responsibilities:**
 - moving, copying, deleting  
 - path validation  
 - rollback‑safe operations  
 - semantic routing (documents, code, schoolwork)  
-- integration with Schoolwork Engine 5.x  
+- integration with Schoolwork Engine 5.6  
 - integration with UI Automation Engine 5.0  
 - unified PC/Mobile filesystem logic  
 
 ---
 
-# 3. Natural Language Router (NL Router 5.5)
+# 3. Natural Language Router (NL Router 5.6)
 **Purpose:** Semantic interpretation and routing of user commands.  
 **Responsibilities:**
 - command classification  
@@ -72,7 +72,7 @@ All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 4. Context Memory Engine (CME‑MEM 5.5)
+# 4. Context Memory Engine (CME‑MEM 5.6)
 **Purpose:** Semantic workflow context.  
 **Responsibilities:**
 - tracking recent actions  
@@ -81,22 +81,22 @@ All processing is fully local; no data leaves the user's device.
 - providing contextual hints  
 - subject/difficulty metadata  
 - explainability traces  
-- integration with Schoolwork Engine 5.x  
+- integration with Schoolwork Engine 5.6  
 - integration with UI Automation Engine 5.0  
 - unified PC/Mobile context memory  
 
 ---
 
-# 5. Workflow Engine 5.5
-**Purpose:** Deterministic multi‑step logic with explainability.  
+# 5. Workflow Engine 5.6
+**Purpose:** Deterministic multi‑step logic with deep explainability.  
 **Responsibilities:**
 - workflow state machine  
 - plugin workflow execution  
 - semantic transitions  
 - preventing invalid sequences  
 - SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 5.5  
-- integration with KG_EXPLAIN  
+- integration with Reasoning Engine 5.6  
+- integration with KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - integration with UIWorkflow 5.0  
 - deterministic fallback behavior  
 - unified PC/Mobile workflows  
@@ -104,7 +104,7 @@ All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 6. GUI Layer 5.5
+# 6. GUI Layer 5.6
 **Purpose:** Modular user interface.  
 **Responsibilities:**
 - rendering plugin UI  
@@ -127,8 +127,8 @@ All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 8. Automatic Input Triage Engine (AITE 5.5)
-**Purpose:** Multimodal semantic + explainability detection and classification.  
+# 8. Automatic Input Triage Engine (AITE 5.6)
+**Purpose:** Multimodal semantic + deep explainability detection and classification.  
 **Responsibilities:**
 - detecting input type (text, image, code, document, installer)  
 - OCR extraction  
@@ -139,8 +139,8 @@ All processing is fully local; no data leaves the user's device.
 - routing to correct modules  
 - metadata generation  
 - integration with FS‑AGENT, CME‑MEM  
-- integration with Schoolwork Engine 5.x  
-- integration with Reasoning Engine 5.5  
+- integration with Schoolwork Engine 5.6  
+- integration with Reasoning Engine 5.6  
 - ENVOY 5 support  
 - UI automation intent detection  
 - identity‑aware triage  
@@ -282,14 +282,14 @@ Official plugins include:
 
 ---
 
-# 16. Intelligent Runtime Modules (v5.5)
+# 16. Intelligent Runtime Modules (v5.6)
 
-## 16.1 HOME_ASSISTANT 5.5  
-## 16.2 COOKING_ADVISOR 5.5  
-## 16.3 DEVICE_DIAGNOSTICS 5.5  
-## 16.4 SCHOOL_HELPER 5.5  
-## 16.5 IMAGE_ANALYZER 5.5  
-## 16.6 CONTEXT_ROUTER 5.5  
+## 16.1 HOME_ASSISTANT 5.6  
+## 16.2 COOKING_ADVISOR 5.6  
+## 16.3 DEVICE_DIAGNOSTICS 5.6  
+## 16.4 SCHOOL_HELPER 5.6  
+## 16.5 IMAGE_ANALYZER 5.6  
+## 16.6 CONTEXT_ROUTER 5.6  
 ## 16.7 KNOWLEDGE_PACKS 5.x  
 
 ---
@@ -354,14 +354,14 @@ Official plugins include:
 - scraper layer  
 - quarantine sandbox  
 - validator & policy filter  
-- explainability traces  
+- deep explainability traces  
 - safe payload delivery  
 - Knowledge Pack updates  
 - unified PC/Mobile behavior  
 
 ---
 
-# 21. System Intelligence Layer 5.5
+# 21. System Intelligence Layer 5.6
 **Purpose:** Cross‑platform diagnostics and safe optimization.  
 **Responsibilities:**
 - hardware analysis  
@@ -376,7 +376,7 @@ Official plugins include:
 
 ---
 
-# 22. Mobile Runtime 5.5
+# 22. Mobile Runtime 5.6
 **Purpose:** Unified mobile execution layer.  
 **Responsibilities:**
 - mobile‑optimized workflows  
@@ -384,28 +384,28 @@ Official plugins include:
 - mobile UI automation  
 - mobile AITE integration  
 - mobile reasoning integration  
-- mobile KG_EXPLAIN integration  
+- mobile KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
 
 ---
 
 # 23. Module Interconnections
 All modules communicate through:
 
-- Runtime Core 5.5  
-- NL Router 5.5  
-- Workflow Engine 5.5  
-- CME‑MEM 5.5  
+- Runtime Core 5.6  
+- NL Router 5.6  
+- Workflow Engine 5.6  
+- CME‑MEM 5.6  
 - Security Family 5.x  
 - WIN‑CAP 5.x  
 - UI Automation Engine 5.0  
 - System Agent 5  
 - ENVOY 5  
-- KG_EXPLAIN  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - Self‑Repair Layer 5.x  
-- Mobile Runtime 5.5  
+- Mobile Runtime 5.6  
 
 ---
 
 # Document Status
-**Version:** 5.5.0 UNIFIED  
-Updated to reflect the **5.3 → 5.5 transition**, new **Explainability Engine**, expanded **Reasoning Engine**, and the stabilized **Unified Runtime Architecture 5.x**.
+**Version:** 5.6.1 UNIFIED  
+Updated to reflect the **5.5 → 5.6.1 transition**, new **Deep Explainability Engine**, expanded **Reasoning Engine**, and the stabilized **Unified Runtime Architecture 5.x**.
