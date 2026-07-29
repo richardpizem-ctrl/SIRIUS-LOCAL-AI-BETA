@@ -1,4 +1,4 @@
-# 📦 Installation Guide – SIRIUS LOCAL AI (v5.6.0)
+# 📦 Installation Guide – SIRIUS LOCAL AI (v5.6.1)
 
 SIRIUS LOCAL AI is a fully local, modular AI runtime built on the  
 **Unified Reasoning & Deep Explainability Architecture 5.6**, featuring:
@@ -14,15 +14,14 @@ SIRIUS LOCAL AI is a fully local, modular AI runtime built on the
 - Self‑Repair Layer 5.x  
 - Deterministic UI Automation Engine 5.0  
 
-The system is distributed as clean Python source code, intended for developers, testers, and advanced users.
-
+The system is distributed as clean Python source code, intended for developers, testers, and advanced users.  
 A packaged installer (`.EXE`) is introduced in **5.x** and expanded in **5.5+**.
 
 All processing is fully local; **no data ever leaves your PC**.
 
 ---
 
-# ⚠️ System Notes (v5.6.0)
+# ⚠️ System Notes (v5.6.1)
 
 SIRIUS LOCAL AI interacts with Windows 11 system APIs through the **WIN‑CAP 5.x** capability layer, including:
 
@@ -56,18 +55,17 @@ All modules operate offline with strict safety boundaries, deterministic behavio
 Python 3.12 is **not supported** due to library incompatibilities.
 
 ### 2. Install required Python packages
-
-pip install watchdog psutil dearpygui pyaudio speechrecognition pyttsx3 colorama 
+pip install watchdog psutil dearpygui pyaudio speechrecognition pyttsx3 colorama
 
 ### 3. Clone the repository
-
-git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA 
+git clone https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA
 
 ### 4. Open the project in VS Code or any terminal
 
-### 5. Run the main entrypoint (Runtime 5.6)
+### 5. Run the main entrypoint (Runtime 5.6.1)
+python runtime5_cli.py
 
-python -m runtime5.runtime5_cli 
+*(Updated for 5.6.1 — CLI is no longer launched via `python -m runtime5.runtime5_cli`.)*
 
 ---
 
@@ -78,7 +76,7 @@ The runtime does not start automatically through a graphical launcher unless the
 
 Running through CLI ensures:
 
-- correct initialization of Runtime 5.6  
+- correct initialization of Runtime 5.6.1  
 - proper loading of the Unified Knowledge Graph  
 - activation of System Agent 5  
 - deterministic workflow routing  
@@ -115,7 +113,7 @@ Developer mode provides full access to:
 
 # 🛠️ Future Installation System
 
-## ⭐ v5.6.0 – Deep Explainability Integration (CURRENT)
+## ⭐ v5.6.1 – Deep Explainability Integration (CURRENT)
 - explainability‑aware startup  
 - repair sandbox  
 - module integrity scanning  
@@ -127,6 +125,7 @@ Developer mode provides full access to:
 ---
 
 ## ⭐ v6.0.0 – Self‑Repair Integrated Installer
+
 The installation system will integrate fully with the diagnostic layer:
 
 - integrity checks before startup  
@@ -141,11 +140,11 @@ This ensures long‑term stability even in packaged builds.
 
 ---
 
-# 📌 Status (v5.6.0)
+# 📌 Status (v5.6.1)
 
-Installation system: **Stable (5.6.0)**  
+Installation system: **Stable (5.6.1)**  
 Packaging: **Stable**  
-Runtime: **Stable (5.6.0)**  
+Runtime: **Stable (5.6.1)**  
 Plugins: **Stable (5.x)**  
 Architecture: **Unified Reasoning & Deep Explainability Architecture 5.6**  
 Security Family: **Integrated (identity engine, time‑limits, stranger‑mode, schoolwork engine)**  
