@@ -14,7 +14,7 @@
 
 # 🌌 Introduction — The Next Evolution of SIRIUS  
 Runtime **6.0** represents the largest architectural leap in the history of SIRIUS.  
-It builds directly on the **Unified Reasoning & Explainability Architecture 5.5**, adding:
+It builds directly on the **Unified Reasoning & Deep Explainability Architecture 5.6.1**, adding:
 
 - **Modular Kernel 6.0**  
 - **Hybrid Multimodal Analyzer 6.0**  
@@ -23,6 +23,9 @@ It builds directly on the **Unified Reasoning & Explainability Architecture 5.5*
 - **Deterministic multimodal architecture**  
 - **Explainability‑aware multimodal inference**  
 - **KG‑linked multimodal fact creation**  
+- **Unified Knowledge Graph 5.6 integration**  
+- **Reasoning Engine 5.6 deep inference hooks**  
+- **KG_EXPLAIN_DEEP evidence‑based reasoning**  
 
 The goal of Runtime 6.0 is to create a **local multimodal diagnostic system** capable of analyzing:
 
@@ -46,26 +49,27 @@ A new multimodal analysis engine capable of processing multiple data types with 
 - MIDI normalization  
 - pattern detection  
 - KG‑linked audio entities  
+- explainability traces for each inference  
 
 ### 🖼 Image Structure Analyzer  
 - object detection  
 - structural segmentation  
 - visual feature extraction  
 - KG‑linked visual entities  
-- explainability traces for each detection  
+- KG_EXPLAIN_DEEP evidence trees  
 
 ### 🎞 Video Frame Semantic Extractor  
 - frame‑by‑frame analysis  
 - event detection  
 - temporal segmentation  
 - behavioral pattern recognition  
-- deterministic inference paths  
+- deterministic multi‑hop inference  
 
 ### 🔗 KG‑Aware Multimodal Linking  
 - multimodal fact creation  
 - entity linking  
 - deterministic inference  
-- KG_EXPLAIN integration  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP integration  
 
 ---
 
@@ -81,6 +85,7 @@ A redesigned system kernel focused on stability, isolation, and long‑term main
 - reduced module complexity  
 - high stability for future versions  
 - explainability‑aware kernel routing  
+- unified PC/Mobile logic  
 
 ---
 
@@ -95,6 +100,8 @@ A new generation of the SIRIUS home protection system.
 - identity‑aware rules  
 - KG‑linked safety inference  
 - explainability for every safety decision  
+- deterministic STRANGER‑mode  
+- child‑safe SCHOOLWORK bypass  
 
 Goal: **zero false positives**, maximum predictability.
 
@@ -109,29 +116,30 @@ The second generation of autonomous runtime repair.
 - kernel‑level recovery  
 - anomaly detection  
 - repair‑routing logic  
-- explainability for repair decisions  
+- KG_EXPLAIN_DEEP explainability for repair decisions  
+- unified PC/Mobile diagnostics  
 
 ---
 
 # 🧭 Architecture Diagram (Runtime 6.0)
-┌───────────────────────────────┐
-│       Hybrid Multimodal       │
-│           Analyzer 6.0        │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│        Modular Kernel 6.0     │
-│ sandbox • routing • errors    │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│     Self‑Repair Layer 2.0     │
-│ integrity • recovery • heal   │
-└───────────────┬──────────────┘
-│
-┌───────────────▼──────────────┐
-│   Family Security Engine 6.0  │
-│ behavior • identity • rules   │
+┌───────────────────────────────┐  
+│       Hybrid Multimodal       │  
+│           Analyzer 6.0        │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│        Modular Kernel 6.0     │  
+│ sandbox • routing • errors    │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│     Self‑Repair Layer 2.0     │  
+│ integrity • recovery • heal   │  
+└───────────────┬──────────────┘  
+│  
+┌───────────────▼──────────────┐  
+│   Family Security Engine 6.0  │  
+│ behavior • identity • rules   │  
 └───────────────────────────────┘
 
 ---
