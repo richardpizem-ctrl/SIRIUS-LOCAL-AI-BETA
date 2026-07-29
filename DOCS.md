@@ -4,30 +4,30 @@ layout: default
 ---
 
 # SIRIUS‑LOCAL‑AI  
-**A fully modular, offline‑only AI runtime with unified reasoning, explainability (XAI), KG_EXPLAIN, multimodal triage 5.5, deterministic UI automation, and a next‑generation capability architecture.**
+**A fully modular, offline‑only AI runtime with unified reasoning, deep explainability (XAI), KG_EXPLAIN & KG_EXPLAIN_DEEP, multimodal triage 5.6, deterministic UI automation, and a next‑generation capability architecture.**
 
-SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, explainability, and full offline autonomy**.
+SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, deep explainability, and full offline autonomy**.
 
-Version **5.5.0** introduces the most advanced generation of the Unified Runtime Architecture 5.x, merging PC and Mobile logic into a single deterministic, identity‑aware, multimodal, explainable AI operating layer.
+Version **5.6.1** introduces the most advanced generation of the Unified Runtime Architecture 5.x, merging PC and Mobile logic into a single deterministic, identity‑aware, multimodal, explainable AI operating layer.
 
-This release replaces the older 5.3 architecture with:
+This release replaces the older 5.5 architecture with:
 
-- KG_EXPLAIN (Explainability Engine)  
-- Reasoning Engine 5.5 (multi‑hop, inheritance, transitivity)  
-- Proof Tree foundations  
-- Confidence scoring foundations  
-- Rule chaining foundations  
-- Workflow Engine 5.5 (explain routing)  
-- expanded Knowledge Graph 5.x comfort commands  
-- improved KG attribute pipeline  
-- improved KG auto‑creation  
-- improved KG Light routing  
-- improved AITE 5.5 semantic + explainability triage  
-- hardened deterministic routing  
-- identity‑aware system control  
-- safe OS automation  
-- cross‑platform module consistency  
-- PRO‑level orchestration  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
+- **Reasoning Engine 5.6 (multi‑hop, inheritance, transitivity)**  
+- **Proof Tree + Evidence Tree foundations**  
+- **Confidence scoring model**  
+- **Rule chaining foundations**  
+- **Workflow Engine 5.6 (explainability routing)**  
+- **Unified Knowledge Graph 5.6 (comfort commands, stabilized autoload)**  
+- **improved KG attribute pipeline**  
+- **improved KG auto‑creation**  
+- **improved KG Light routing**  
+- **improved AITE 5.6 semantic + explainability triage**  
+- **hardened deterministic routing**  
+- **identity‑aware system control**  
+- **safe OS automation**  
+- **cross‑platform module consistency**  
+- **PRO‑level orchestration**  
 
 The entire system runs **100% locally**, without external dependencies or cloud services.
 
@@ -42,21 +42,21 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 - [Release Notes](RELEASE_NOTES.md)
 - [Roadmap](ROADMAP.md)
 - [Security Family](SECURITY_FAMILY.md)
-- [AITE 5.5](AITE.md)
+- [AITE 5.6](AITE.md)
 - [ENVOY 5](ENVOY_TUTORIAL.md)
 - [Future Vision](FUTURE_VISION.md)
 - [Password Vault 5.0](PASSWORD_VAULT.md)
 
 ---
 
-## 🚀 Key Features (v5.5.0 UNIFIED)
+## 🚀 Key Features (v5.6.1 UNIFIED)
 
-### **Unified Runtime 5.5**
+### **Unified Runtime 5.6**
 A fully upgraded runtime with:
 
 - deterministic execution  
 - semantic routing  
-- explainability routing (KG_EXPLAIN)  
+- explainability routing (KG_EXPLAIN & KG_EXPLAIN_DEEP)  
 - identity‑aware logic  
 - self‑repair integration  
 - capability isolation  
@@ -68,18 +68,18 @@ A fully upgraded runtime with:
 
 ---
 
-### **Modular Architecture (v5.5)**
+### **Modular Architecture (v5.6)**
 Each module is isolated and follows strict boundaries:
 
 - `commands/` – NL routing and command logic  
 - `context/` – semantic context engine  
 - `filesystem/` – safe file operations  
-- `runtime/` – Runtime Core 5.5  
-- `triage/` – AITE 5.5 (semantic + explainability triage)  
+- `runtime/` – Runtime Core 5.6  
+- `triage/` – AITE 5.6 (semantic + explainability triage)  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
 - `ui_components/animations/` – animation engine  
-- `workflow/` – Workflow Engine 5.5  
+- `workflow/` – Workflow Engine 5.6  
 - `plugins/` – Plugin System 5.x  
 - `security_family/` – Identity Engine 3.0, time‑limits v3, schoolwork engine  
 - `self_repair/` – Self‑Repair Layer 5.x  
@@ -87,7 +87,7 @@ Each module is isolated and follows strict boundaries:
 - `envoy/` – ENVOY Execution + Permission Layers 5  
 - `ui_automation/` – **UI Automation Engine 5.0**  
 - `system_agent/` – System Agent 5  
-- `mobile_runtime/` – Mobile Runtime 5.5  
+- `mobile_runtime/` – Mobile Runtime 5.6  
 
 The system is designed to be extended **without modifying the core**.
 
@@ -107,7 +107,7 @@ All official plugins are fully prepared for v5.x.
 
 ---
 
-### **Automatic Input Triage Engine (AITE 5.5)**
+### **Automatic Input Triage Engine (AITE 5.6)**
 AITE analyzes inputs, classifies them, and routes them to the correct modules.
 
 It ensures:
@@ -118,15 +118,15 @@ It ensures:
 - difficulty scoring  
 - identity‑aware routing  
 - deterministic behavior  
-- **Schoolwork Engine 5.5 — academic tasks always bypass FAMILY restrictions**  
+- **Schoolwork Engine 5.6 — academic tasks always bypass FAMILY restrictions**  
 - **integration with SECURITY FAMILY 5.x**  
-- **integration with Reasoning Engine 5.5**  
-- **integration with Workflow Engine 5.5**  
-- **explainability detection (“preco … ?”)**  
+- **integration with Reasoning Engine 5.6**  
+- **integration with Workflow Engine 5.6**  
+- **explainability detection (“prečo … ?”)**  
 
 ---
 
-### **Reasoning Engine 5.5**
+### **Reasoning Engine 5.6**
 A structured symbolic reasoning layer:
 
 - multi‑hop inference  
@@ -134,8 +134,9 @@ A structured symbolic reasoning layer:
 - transitive reasoning  
 - deterministic rule chaining  
 - proof tree foundations  
-- confidence scoring foundations  
-- KG_EXPLAIN integration  
+- evidence tree generation  
+- confidence scoring  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
 - pack‑aware reasoning  
 - deterministic logic  
 - unified PC/Mobile behavior  
@@ -183,7 +184,7 @@ ENVOY never sends local data outward.
 
 ---
 
-### **Workflow Engine 5.5**
+### **Workflow Engine 5.6**
 Manages:
 
 - multi‑step processes  
@@ -197,7 +198,7 @@ Manages:
 
 ---
 
-### **Unified Automation Runtime 5.5**
+### **Unified Automation Runtime 5.6**
 Developer‑level offline automation:
 
 - filesystem automation  
@@ -223,7 +224,7 @@ A major capability expanded in v5.x:
 
 ---
 
-## 📁 Project Structure (v5.5.0)
+## 📁 Project Structure (v5.6.1)
 src/
 ├── commands/  
 ├── context/  
@@ -263,8 +264,8 @@ The project includes a complete testing plan:
 - UI Automation Engine 5.0 tests  
 - System Agent 5 validation tests  
 - ENVOY 5 sanitization tests  
-- KG_EXPLAIN explainability tests  
-- Reasoning Engine 5.5 rule tests  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP explainability tests  
+- Reasoning Engine 5.6 rule tests  
 
 Details are in **TESTING_GUIDE.md**.
 
@@ -287,12 +288,12 @@ More in **PERFORMANCE_GUIDE.md**.
 
 ## 🗓️ Release Plan
 
-### **v5.5.0 – Unified Reasoning & Explainability Architecture (Current)**  
-- AITE 5.5  
-- Reasoning Engine 5.5  
-- Workflow Engine 5.5  
-- Knowledge Graph 5.x  
-- KG_EXPLAIN  
+### **v5.6.1 – Unified Reasoning & Deep Explainability Architecture (Current)**  
+- AITE 5.6  
+- Reasoning Engine 5.6  
+- Workflow Engine 5.6  
+- Unified Knowledge Graph 5.6  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - UI Automation Engine 5.0  
 - System Agent 5  
 - ENVOY Execution/Permission Layers 5  
