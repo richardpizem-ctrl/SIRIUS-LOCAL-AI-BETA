@@ -1,20 +1,20 @@
-# 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide (Runtime 5.5 Unified)
-### Safe External Retrieval Layer for SIRIUS LOCAL AI (Unified Reasoning & Explainability Architecture 5.5)
+# 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide (Runtime 5.6.1 Unified)
+### Safe External Retrieval Layer for SIRIUS LOCAL AI (Unified Reasoning & Deep Explainability Architecture 5.6)
 
 SIRIUS ENVOY 5 is an **isolated external‑retrieval agent** that allows SIRIUS LOCAL AI to safely obtain information from the internet **without exposing the local AI runtime to any network communication**.
 
-This **v5.5 unified edition** reflects the upgraded Runtime 5.x architecture, including:
+This **v5.6.1 unified edition** reflects the upgraded Runtime 5.x architecture, including:
 
 - ENVOY Execution Layer 5  
 - ENVOY Permission Layer 5  
 - System Agent 5  
 - Identity Engine 3.0  
 - Security Family 5.x  
-- AITE 5.5  
-- Knowledge Graph 5.x  
-- KG_EXPLAIN (Explainability Engine)  
-- Reasoning Engine 5.5 (multi‑hop, inheritance, transitivity)  
-- Workflow Engine 5.5 (explain routing)  
+- AITE 5.6  
+- Unified Knowledge Graph 5.6  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP  
+- Reasoning Engine 5.6 (multi‑hop, inheritance, transitivity)  
+- Workflow Engine 5.6 (explainability routing)  
 - Unified PC + Mobile runtime  
 - Deterministic cross‑platform routing  
 - Hardened quarantine + validation pipeline  
@@ -27,7 +27,7 @@ This document explains:
 - how the quarantine system functions  
 - how data flows into the local AI  
 - what ENVOY is strictly forbidden from doing  
-- how ENVOY integrates with Runtime 5.5 Unified Architecture  
+- how ENVOY integrates with Runtime 5.6.1 Unified Architecture  
 
 ---
 
@@ -72,7 +72,7 @@ ENVOY enables this **without compromising offline safety**.
 
 ---
 
-# 🧱 3. ENVOY 5 Architecture (Runtime 5.5)
+# 🧱 3. ENVOY 5 Architecture (Runtime 5.6.1)
 
 ENVOY consists of **six hardened layers**:
 
@@ -82,7 +82,7 @@ ENVOY consists of **six hardened layers**:
 - enforces OWNER/FAMILY/STRANGER rules  
 - blocks unauthorized fetches  
 - ensures user confirmation  
-- integrates with KG_EXPLAIN for explainability of permission decisions  
+- integrates with KG_EXPLAIN & KG_EXPLAIN_DEEP for explainability of permission decisions  
 
 ## 3.2 Envoy Client (Outbound‑Only)
 - the only process allowed to access the internet  
@@ -106,7 +106,7 @@ ENVOY consists of **six hardened layers**:
 - blocks unknown data types  
 - prevents any executable or active content  
 - enforces strict content‑type rules  
-- logs explainability traces for KG_EXPLAIN  
+- logs explainability traces for KG_EXPLAIN & KG_EXPLAIN_DEEP  
 
 ## 3.5 Validator & Policy Filter
 - enforces safety rules  
@@ -121,12 +121,12 @@ ENVOY consists of **six hardened layers**:
 - produces **clean text**  
 - structured JSON  
 - ready for local AI modules  
-- compatible with Knowledge Graph 5.x  
+- compatible with Unified Knowledge Graph 5.6  
 - deterministic, predictable output  
 
 ---
 
-# 🔄 4. How ENVOY Works – Step by Step (Runtime 5.5)
+# 🔄 4. How ENVOY Works – Step by Step (Runtime 5.6.1)
 
 ## 1️⃣ User makes a request  
 Example: “Update the Cooking Pack with information about rice.”
@@ -199,7 +199,7 @@ ENVOY is a **one‑directional, outbound‑only, isolated process**.
 
 ---
 
-# 🧠 6. How ENVOY Supports Knowledge Graph 5.x
+# 🧠 6. How ENVOY Supports Knowledge Graph 5.6
 
 ENVOY enables:
 
@@ -216,7 +216,7 @@ All of this happens **without putting SIRIUS online**.
 
 ---
 
-# 🔗 7. Integration with Runtime 5.5 Unified Architecture
+# 🔗 7. Integration with Runtime 5.6.1 Unified Architecture
 
 ENVOY’s role remains strictly informational.
 
@@ -233,17 +233,17 @@ ENVOY **does not**:
 
 ENVOY **does**:
 
-- provide sanitized text for Reasoning Engine 5.5  
+- provide sanitized text for Reasoning Engine 5.6  
 - update Knowledge Graph Packs 5.x  
 - support semantic workflows  
 - enrich academic and household modules  
 - operate under hardened quarantine rules  
 - follow unified PC/Mobile behavior  
-- produce explainability traces for KG_EXPLAIN  
+- produce explainability traces for KG_EXPLAIN & KG_EXPLAIN_DEEP  
 
 ---
 
-# 🔐 8. Security Guarantees (Runtime 5.5)
+# 🔐 8. Security Guarantees (Runtime 5.6.1)
 
 - 100% offline runtime  
 - ENVOY is isolated  
@@ -259,11 +259,11 @@ ENVOY **does**:
 - ENVOY cannot access identity data  
 - ENVOY cannot access local files  
 - ENVOY cannot influence reasoning rules  
-- ENVOY cannot alter KG_EXPLAIN output  
+- ENVOY cannot alter KG_EXPLAIN or KG_EXPLAIN_DEEP output  
 
 ---
 
 # 📄 Document Status
 
-**Version:** 5.5.0 (Updated for Unified Reasoning & Explainability Architecture)  
-This tutorial explains the purpose and operation of SIRIUS ENVOY 5 and its role in the unified Runtime 5.5 architecture.
+**Version:** 5.6.1 (Unified Reasoning & Deep Explainability Architecture)  
+This tutorial explains the purpose and operation of SIRIUS ENVOY 5 and its role in the unified Runtime 5.6.1 architecture.
