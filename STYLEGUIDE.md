@@ -1,63 +1,66 @@
-# 12. NEW IN VERSION 5.5.0 UNIFIED — System‑Intelligent Styleguide Expansion
+# 12. NEW IN VERSION 5.6.1 UNIFIED — System‑Intelligent Styleguide Expansion
 
-Version **5.5.0 UNIFIED** expands the original STYLEGUIDE with new rules for:
+Version **5.6.1 UNIFIED** expands the original STYLEGUIDE with new rules for:
 
-- System Intelligence Layer 5.5  
-- System Agent 5 (Hardened + Explainability)  
-- UI Automation Engine 5.5  
+- System Intelligence Layer 5.6  
+- System Agent 5 (Hardened + Deep Explainability)  
+- UI Automation Engine 5.6  
 - Security Family 5.x (Identity Engine 3.2)  
-- Workflow Engine 5.5  
-- Knowledge Packs 5.5  
-- Knowledge Graph Reasoning 5.5  
-- KG_EXPLAIN (Explainability Engine)  
-- ENVOY 5 (permission‑based + explainability fetch)  
+- Workflow Engine 5.6  
+- Unified Knowledge Graph 5.6  
+- Reasoning Engine 5.6  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP  
+- ENVOY 5 (permission‑based + deep explainability fetch)  
 - Self‑Repair Layer 5.x  
 - Unified PC/Mobile Runtime  
 
 All previous rules remain valid.  
-Version 5.5.0 UNIFIED **adds mandatory norms** for deterministic, explainable, system‑intelligent, KG‑aware, repair‑aware architecture.
+Version 5.6.1 UNIFIED **adds mandatory norms** for deterministic, explainable, system‑intelligent, KG‑aware, repair‑aware architecture.
 
 ---
 
-# 12.1 Core Principles (Expanded for 5.5.0 UNIFIED)
+# 12.1 Core Principles (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
-- all OS‑level actions must be **predictively validated** using System Intelligence Layer 5.5  
+### NEW (5.6.1)
+- all OS‑level actions must be **predictively validated** using System Intelligence Layer 5.6  
 - System Agent 5 is the **only validator** of OS‑level actions  
 - identity‑aware logic must be **constant‑time and unified across PC + Mobile**  
 - no workflow may run in a **risky or degraded OS state**  
 - all modules must support **deterministic fallback logic 3.2**  
-- reasoning must be **bounded, cached, KG‑aware, pack‑aware 4.2, and repair‑aware**  
-- UI Automation must use **fuzzy matching 5.5**  
+- reasoning must be **bounded, cached, KG‑aware, pack‑aware, and repair‑aware**  
+- UI Automation must use **fuzzy matching 5.6**  
 - ENVOY fetch must follow **ASK → FETCH → QUARANTINE → VALIDATE → DELIVER**  
 - no module may bypass KG‑Reasoning when semantic inference is required  
-- KG_EXPLAIN must be used for explainability in reasoning, workflows, and OS‑level decisions  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP must be used for explainability in reasoning, workflows, and OS‑level decisions  
 - Self‑Repair Layer 5.x must be consulted when degraded mode is detected  
+- Unified KG 5.6 must validate semantic consistency before inference  
+- Workflow Engine 5.6 must use **KG_EXPLAIN_DEEP routing**  
 
 ---
 
-# 12.2 Naming Conventions (Expanded for 5.5.0 UNIFIED)
+# 12.2 Naming Conventions (Expanded for 5.6.1 UNIFIED)
 
-### NEW Reserved Names (5.5.0)
-- `SystemIntelligenceLayer5`  
-- `PredictiveSafetyEngine`  
-- `OSHealthMonitor5`  
-- `RiskAnalyzer5`  
+### NEW Reserved Names (5.6.1)
+- `SystemIntelligenceLayer5_6`  
+- `PredictiveSafetyEngine6`  
+- `OSHealthMonitor5_6`  
+- `RiskAnalyzer5_6`  
 - `IdentityGatekeeperV3_2`  
 - `DeterministicFallbackEngineV3_2`  
-- `KGReasoningEngineV5_5`  
-- `KGExplainEngine5`  
+- `KGReasoningEngineV5_6`  
+- `KGExplainEngine5_6`  
+- `KGExplainDeepEngine5_6`  
 - `EnvoyPermissionManager5`  
-- `RepairAwareRouter5`  
-- `DegradedModeController5`  
+- `RepairAwareRouter5_6`  
+- `DegradedModeController5_6`  
 
 These names are **reserved** and must not be used for unrelated modules.
 
 ---
 
-# 12.3 File & Folder Structure (Expanded for 5.5.0 UNIFIED)
+# 12.3 File & Folder Structure (Expanded for 5.6.1 UNIFIED)
 
-### NEW Folders (5.5.0)
+### NEW Folders (5.6.1)
 /system_intelligence  
 /system_intelligence/diagnostics  
 /system_intelligence/predictive  
@@ -65,26 +68,28 @@ These names are **reserved** and must not be used for unrelated modules.
 /system_agent_v3_2  
 /ui_automation/fallback_v3_2  
 /security_family_v3_2  
-/kg_reasoning_v5_5  
+/kg_reasoning_v5_6  
 /kg_explain  
+/kg_explain_deep  
 /envoy_v5  
 /self_repair_v5  
 
-### NEW Rules (5.5.0)
+### NEW Rules (5.6.1)
 - System Intelligence Layer must be isolated from UI Automation  
 - System Agent 5 must be the only module allowed to validate OS actions  
-- Workflow Engine 5.5 must consult OS state + KG_EXPLAIN before executing workflows  
+- Workflow Engine 5.6 must consult OS state + KG_EXPLAIN_DEEP before executing workflows  
 - no module may bypass System Intelligence Layer for OS‑level decisions  
 - KG‑Reasoning must be used for semantic inference  
-- KG_EXPLAIN must be used for explainability  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP must be used for explainability  
 - ENVOY 5 must never run without explicit permission  
 - Self‑Repair Layer 5.x must validate module integrity before execution  
+- Unified KG 5.6 must validate traversal consistency  
 
 ---
 
-# 12.4 Function Length (Expanded for 5.5.0 UNIFIED)
+# 12.4 Function Length (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
+### NEW (5.6.1)
 OS‑level functions must be split into:
 
 - `precheck_identity()`  
@@ -92,21 +97,21 @@ OS‑level functions must be split into:
 - `precheck_risk_level()`  
 - `precheck_envoy_permissions()`  
 - `precheck_repair_state()`  
-- `precheck_explainability_context()` ← NEW  
+- `precheck_explainability_context()`  
 - `execute_action()`  
 - `postcheck_reversibility()`  
 - `postcheck_system_integrity()`  
 - `postcheck_kg_consistency()`  
 - `postcheck_repair_consistency()`  
-- `postcheck_explainability_trace()` ← NEW  
+- `postcheck_explainability_trace()`  
 
 Maximum length of OS‑level function: **45 lines**.
 
 ---
 
-# 12.5 Comments (Expanded for 5.5.0 UNIFIED)
+# 12.5 Comments (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
+### NEW (5.6.1)
 Comments must include:
 
 - predictive safety reasoning  
@@ -115,16 +120,16 @@ Comments must include:
 - identity‑aware decisions  
 - fallback 3.2 logic  
 - KG‑aware reasoning notes  
-- KG_EXPLAIN explainability notes  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP explainability notes  
 - ENVOY permission checks  
 - repair‑aware decisions  
 - why a workflow was halted or redirected  
 
 ---
 
-# 12.6 Error Messages (Expanded for 5.5.0 UNIFIED)
+# 12.6 Error Messages (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
+### NEW (5.6.1)
 - `"OS action blocked – unsafe system state detected."`  
 - `"Operation rejected – predictive risk level too high."`  
 - `"System Agent 5: identity validation failed."`  
@@ -134,13 +139,13 @@ Comments must include:
 - `"KG reasoning aborted – inconsistent pack state."`  
 - `"Execution blocked – degraded mode active."`  
 - `"Repair required – module integrity compromised."`  
-- `"Explainability trace incomplete – action rejected."` ← NEW  
+- `"Explainability trace incomplete – action rejected."`  
 
 ---
 
-# 12.7 Security Rules in Code (Expanded for 5.5.0 UNIFIED)
+# 12.7 Security Rules in Code (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
+### NEW (5.6.1)
 - all OS actions must pass through `SystemAgentV3_2`  
 - System Intelligence Layer must be consulted before workflow execution  
 - no workflow may run in a risky or degraded OS state  
@@ -151,14 +156,14 @@ Comments must include:
 - no bypassing identity‑aware logic  
 - no ENVOY fetch without ASK → FETCH → QUARANTINE → VALIDATE → DELIVER  
 - KG‑Reasoning must validate semantic consistency  
-- KG_EXPLAIN must validate explainability consistency  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP must validate explainability consistency  
 - Self‑Repair Layer must validate module integrity before execution  
 
 ---
 
-# 12.8 Testing Requirements (Expanded for 5.5.0 UNIFIED)
+# 12.8 Testing Requirements (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
+### NEW (5.6.1)
 System Intelligence Layer tests must include:
 
 - OS health detection tests  
@@ -168,16 +173,16 @@ System Intelligence Layer tests must include:
 - fallback 3.2 tests  
 - System Agent 5 integration tests  
 - degraded‑mode detection tests  
-- explainability trace validation tests  
+- deep explainability trace validation tests  
 
-UI Automation 5.5 tests must include:
+UI Automation 5.6 tests must include:
 
-- fuzzy matching 5.5 tests  
+- fuzzy matching 5.6 tests  
 - deterministic fallback 3.2 tests  
 - identity‑aware UI action tests  
 - WinCapabilities 5.x routing tests  
 - KG‑enhanced UI matching tests  
-- explainability trace tests  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP trace tests  
 
 KG‑Reasoning tests must include:
 
@@ -187,7 +192,7 @@ KG‑Reasoning tests must include:
 - pack‑to‑pack consistency  
 - deterministic inference validation  
 - repair‑aware reasoning tests  
-- KG_EXPLAIN proof‑tree validation  
+- KG_EXPLAIN_DEEP proof‑tree validation  
 
 ENVOY 5 tests must include:
 
@@ -196,7 +201,7 @@ ENVOY 5 tests must include:
 - identity‑aware fetch tests  
 - System Agent 5 enforcement tests  
 - safe‑payload validation tests  
-- explainability trace tests  
+- deep explainability trace tests  
 
 Self‑Repair Layer tests must include:
 
@@ -208,9 +213,9 @@ Self‑Repair Layer tests must include:
 
 ---
 
-# 12.9 Logging Rules (Expanded for 5.5.0 UNIFIED)
+# 12.9 Logging Rules (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
+### NEW (5.6.1)
 System Intelligence Layer logging:
 
 - never store OS handles  
@@ -226,22 +231,22 @@ System Intelligence Layer logging:
 
 ---
 
-# 12.10 Module Boundaries (Expanded for 5.5.0 UNIFIED)
+# 12.10 Module Boundaries (Expanded for 5.6.1 UNIFIED)
 
-### NEW (5.5.0)
+### NEW (5.6.1)
 - **System Agent 5 is the only validator of OS actions**  
-- **System Intelligence Layer 5.5 is the only module allowed to evaluate OS state**  
-- **UI Automation Engine 5.5 must use fallback 3.2**  
-- **Workflow Engine 5.5 must not run in risky or degraded OS states**  
+- **System Intelligence Layer 5.6 is the only module allowed to evaluate OS state**  
+- **UI Automation Engine 5.6 must use fallback 3.2**  
+- **Workflow Engine 5.6 must not run in risky or degraded OS states**  
 - **Security Family 5.x must be consulted before every OS action**  
 - **ENVOY 5 must never bypass identity or System Agent validation**  
-- **KG‑Reasoning must validate semantic consistency before inference**  
-- **KG_EXPLAIN must validate explainability consistency**  
+- **Unified KG 5.6 must validate semantic consistency before inference**  
+- **KG_EXPLAIN + KG_EXPLAIN_DEEP must validate explainability consistency**  
 - **Self‑Repair Layer 5.x must validate module integrity before execution**  
 
 ---
 
 # Document Status (Updated)
 
-**Version:** 4.0.0 → 4.2.0 → 4.3.0 → 4.4.0 PRO → 4.5.0 PRO → 5.0.0 UNIFIED → 5.3.0 UNIFIED → **5.5.0 UNIFIED**  
-This styleguide now includes all deterministic, OS‑aware, KG‑aware, explainability‑aware, system‑intelligent, repair‑aware rules introduced in Runtime 5.5.0 UNIFIED.
+**Version:** 4.0.0 → 4.2.0 → 4.3.0 → 4.4.0 PRO → 4.5.0 PRO → 5.0.0 UNIFIED → 5.3.0 UNIFIED → 5.5.0 UNIFIED → **5.6.1 UNIFIED**  
+This styleguide now includes all deterministic, OS‑aware, KG‑aware, deep‑explainability‑aware, system‑intelligent, repair‑aware rules introduced in Runtime 5.6.1 UNIFIED.
