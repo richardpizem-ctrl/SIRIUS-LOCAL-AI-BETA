@@ -1,20 +1,20 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.5.0 UNIFIED)
+# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.6.1 UNIFIED)
 
 This document defines the performance model, optimization rules, and runtime guarantees of the  
-**Unified Reasoning & Explainability Architecture 5.5**.
+**Unified Reasoning & Deep Explainability Architecture 5.6**.
 
-Version **5.5.0 UNIFIED** expands the original 5.3 rules with:
+Version **5.6.1 UNIFIED** expands the original 5.5 rules with:
 
-- **AITE 5.5 (faster semantic + explainability multimodal triage)**  
-- **Workflow Engine 5.5 (constant‑time transitions, explainability routing)**  
-- **Reasoning Engine 5.5 (multi‑hop, inheritance, transitivity, rule chaining)**  
-- **KG_EXPLAIN (Explainability Engine)**  
-- **Knowledge Graph Runtime 1.x + KG‑LIGHT (improved indexing)**  
+- **AITE 5.6 (faster semantic + deep explainability multimodal triage)**  
+- **Workflow Engine 5.6 (constant‑time transitions, deep explainability routing)**  
+- **Reasoning Engine 5.6 (multi‑hop, inheritance, transitivity, rule chaining)**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
+- **Unified Knowledge Graph 5.6 + KG‑LIGHT (stabilized indexing)**  
 - **System Agent 5 (constant‑time identity + permission validation)**  
 - **Security Family 5.x (Identity Engine 3.0, hardened checks)**  
 - **Self‑Repair Layer 5.x (bounded diagnostics, safe fallback)**  
-- **System Intelligence Layer 5.5 (cached system context, explainability traces)**  
-- **Mobile Runtime 5.5 (optimized mobile execution)**  
+- **System Intelligence Layer 5.6 (cached system context, deep explainability traces)**  
+- **Mobile Runtime 5.6 (optimized mobile execution)**  
 - **UI Automation Engine 5.0 (deterministic fallback, unified routing)**  
 
 All processing is fully local; no data leaves the user's device.
@@ -37,14 +37,14 @@ All processing is fully local; no data leaves the user's device.
 - Self‑Repair Layer must run only in safe, controlled intervals  
 - Reasoning Engine must remain bounded and deterministic  
 - **System Agent 5 validation must be O(1)**  
-- **KG_EXPLAIN must generate explanations in bounded time**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP must generate explanations in bounded time**  
 - **UI Automation Engine 5.0 must not block the runtime**  
-- **System Intelligence Layer 5.5 must not perform deep scans during active workflows**  
+- **System Intelligence Layer 5.6 must not perform deep scans during active workflows**  
 - unified PC/Mobile performance must remain consistent  
 
 ---
 
-# 2. Runtime Guarantees (Runtime 5.5)
+# 2. Runtime Guarantees (Runtime 5.6)
 
 - no race conditions  
 - no parallel writes  
@@ -60,14 +60,14 @@ All processing is fully local; no data leaves the user's device.
 - Self‑Repair checks must be lightweight  
 - semantic routing must remain constant‑time  
 - **System Agent 5 must validate actions in constant time**  
-- **KG_EXPLAIN must produce deterministic, bounded explanations**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP must produce deterministic, bounded explanations**  
 - **UI Automation Engine 5.0 fallback logic must be bounded**  
-- **System Intelligence Layer 5.5 must use cached system context**  
+- **System Intelligence Layer 5.6 must use cached system context**  
 - unified PC/Mobile execution must not introduce overhead  
 
 ---
 
-# 3. Filesystem Performance (FS‑AGENT 5.5)
+# 3. Filesystem Performance (FS‑AGENT 5.6)
 
 Rules:
 
@@ -82,7 +82,7 @@ Rules:
 - identity‑restricted file operations must remain O(1)  
 - semantic file classification must be lightweight  
 - **System Agent 5 must not add overhead to FS operations**  
-- **System Intelligence Layer 5.5 must not trigger deep scans during FS workflows**  
+- **System Intelligence Layer 5.6 must not trigger deep scans during FS workflows**  
 - unified PC/Mobile filesystem logic must remain fast  
 
 ---
@@ -100,12 +100,12 @@ Rules:
 - STRANGER‑mode checks must be constant‑time  
 - automation operations must remain bounded  
 - **UI Automation Engine 5.0 must use cached capability lookups**  
-- **System Intelligence Layer 5.5 must avoid redundant system calls**  
+- **System Intelligence Layer 5.6 must avoid redundant system calls**  
 - unified PC/Mobile capability logic must remain consistent  
 
 ---
 
-# 5. UI Performance (GUI 5.5)
+# 5. UI Performance (GUI 5.6)
 
 - no heavy rendering  
 - animations must be lightweight and optional  
@@ -122,7 +122,7 @@ Rules:
 
 ---
 
-# 6. Workflow Performance (Workflow Engine 5.5)
+# 6. Workflow Performance (Workflow Engine 5.6)
 
 - workflows must not recompute state  
 - context memory must be minimal  
@@ -134,8 +134,8 @@ Rules:
 - **identity‑restricted workflows must remain lightweight**  
 - semantic transitions must be cached  
 - **System Agent 5 validation must not slow workflow transitions**  
-- **KG_EXPLAIN must generate workflow explanations in bounded time**  
-- **System Intelligence Layer 5.5 must not interrupt workflow execution**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP must generate workflow explanations in bounded time**  
+- **System Intelligence Layer 5.6 must not interrupt workflow execution**  
 - unified PC/Mobile workflows must remain consistent  
 
 ---
@@ -152,14 +152,14 @@ Rules:
 - **time‑limit checks must be constant‑time**  
 - Self‑Repair checks must run in low‑impact intervals  
 - Reasoning Engine hooks must be bounded  
-- **KG_EXPLAIN must not run inside the AI Loop**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP must not run inside the AI Loop**  
 - **UI Automation Engine 5.0 must not run inside the AI Loop**  
-- **System Intelligence Layer 5.5 must run diagnostics only in low‑impact windows**  
+- **System Intelligence Layer 5.6 must run diagnostics only in low‑impact windows**  
 - unified PC/Mobile loop behavior must remain stable  
 
 ---
 
-# 8. Reasoning Engine Performance (v5.5)
+# 8. Reasoning Engine Performance (v5.6)
 
 - reasoning depth must be capped  
 - no unbounded chain‑of‑thought  
@@ -168,9 +168,9 @@ Rules:
 - no recursive rule expansion without limits  
 - SCHOOLWORK reasoning must remain instant  
 - identity‑restricted reasoning must not add overhead  
-- **AITE 5.5 must pre‑compute semantic tags for faster reasoning**  
-- **Reasoning Engine 5.5 must use cached pack indexes**  
-- **KG_EXPLAIN must generate deterministic proof trees**  
+- **AITE 5.6 must pre‑compute semantic tags for faster reasoning**  
+- **Reasoning Engine 5.6 must use cached pack indexes**  
+- **KG_EXPLAIN_DEEP must generate deterministic proof + evidence trees**  
 - unified PC/Mobile reasoning must remain deterministic  
 
 ---
@@ -187,8 +187,8 @@ Rules:
 - **Security Family 5.x must not log identity data or behavior patterns**  
 - Self‑Repair logs must be minimal and safe  
 - **UI Automation Engine 5.0 logs must be constant‑time**  
-- **System Intelligence Layer 5.5 logs must avoid repeated system queries**  
-- **KG_EXPLAIN logs must remain bounded and deterministic**  
+- **System Intelligence Layer 5.6 logs must avoid repeated system queries**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP logs must remain bounded and deterministic**  
 
 ---
 
@@ -204,12 +204,12 @@ Rules:
 - **plugins must not bypass or slow down Security Family 5.x checks**  
 - reasoning hooks must be bounded  
 - **System Agent 5 must validate plugin actions instantly**  
-- **KG_EXPLAIN must not be triggered unnecessarily**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP must not be triggered unnecessarily**  
 - unified PC/Mobile plugin behavior must remain efficient  
 
 ---
 
-# 11. Security Family Performance (v5.5)
+# 11. Security Family Performance (v5.6)
 
 ### Identity Engine 3.0
 - identity classification must be constant‑time  
@@ -226,7 +226,7 @@ Rules:
 - no repeated disk writes  
 - FAMILY mode transitions must be instant  
 
-### Schoolwork Engine 5.x
+### Schoolwork Engine 5.6
 - schoolwork detection must be lightweight  
 - no deep semantic loops  
 - bypass logic must be instant  
@@ -240,7 +240,7 @@ Rules:
 
 ---
 
-# 12. Self‑Repair & Health‑Check Layer (v5.5)
+# 12. Self‑Repair & Health‑Check Layer (v5.6)
 
 - integrity checks must be lightweight  
 - no deep scanning of source code  
@@ -251,13 +251,13 @@ Rules:
 - no repeated disk I/O  
 - **System Agent 5 integrity must be checked in constant‑time**  
 - **UI Automation Engine 5.0 modules must be validated without overhead**  
-- **System Intelligence Layer 5.5 must avoid heavy diagnostics during workflows**  
-- **KG_EXPLAIN must not slow down repair logic**  
+- **System Intelligence Layer 5.6 must avoid heavy diagnostics during workflows**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP must not slow down repair logic**  
 - unified PC/Mobile diagnostics must remain efficient  
 
 ---
 
 # Document Status
 
-**Version:** 5.5.0 UNIFIED  
-Performance rules are fully aligned with the Unified Reasoning & Explainability Architecture 5.5 and prepared for future enhancements in v6.0.0.
+**Version:** 5.6.1 UNIFIED  
+Performance rules are fully aligned with the Unified Reasoning & Deep Explainability Architecture 5.6 and prepared for future enhancements in v6.0.0.
