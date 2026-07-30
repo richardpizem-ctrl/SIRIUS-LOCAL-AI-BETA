@@ -1,332 +1,174 @@
-# SIRIUS Customs Gate (COLNIK) – Security & Architecture Tutorial
+# SIRIUS Kýklos Gate (COLNIK) – Primitive Decision Gate Tutorial
 
 ## 1. Overview
 
-The **SIRIUS Customs Gate (COLNIK)** is the central security and access‑control module in the SIRIUS runtime.  
-Its primary purpose is to:
+The **SIRIUS Kýklos Gate (COLNIK)** is the final, primitive decision gate in the SIRIUS runtime.  
+Its purpose is extremely simple: **it decides whether a command is ALLOWED or DENIED**.
 
-- **Control what enters and leaves the system** (requests, data, commands, agents).
-- **Enforce security policies** across all layers (identity, permissions, KG, runtime).
-- **Protect the core reasoning and KG engine** from malformed, malicious, or unauthorized operations.
-- **Provide explainable decisions** about why something was allowed, blocked, or transformed.
+COLNIK does not perform reasoning, KG operations, workflow transformations, or autonomy logic.  
+It is a single checkpoint placed directly above the autonomy layer.
 
-Think of COLNIK as a **border checkpoint** for the entire SIRIUS ecosystem.
-
----
-
-## 2. High‑level responsibilities
-
-COLNIK will:
-
-- **Inspect** every incoming request (from user, agent, API, or subsystem).
-- **Validate** identity, permissions, and intent.
-- **Classify** the request (safe, risky, unknown, forbidden).
-- **Apply policies** (allow, deny, sanitize, escalate, log).
-- **Route** the request to the correct subsystem (KG, parser, workflow, reasoning).
-- **Log and explain** every critical decision for auditing and debugging.
-
-When fully implemented, **no critical operation** in SIRIUS will bypass COLNIK.
+COLNIK relies on existing security modules to make its decision.  
+It does not replace them — it only uses their results.
 
 ---
 
-## 3. Security layers (current and planned)
+## 2. Why COLNIK Is Primitive
 
-COLNIK is not a single check—it is a **stack of security layers**.  
-Below is an overview of the layers we already have conceptually integrated, and what they do.
+SIRIUS already contains multiple advanced security modules:
 
-### 3.1 Identity Layer
+- **PermissionLayer5**  
+- **PolicyEngine5**  
+- **BehaviorFilter5**  
+- **FamilySafetyRules5_x**  
+- **ContextualBehaviorEngine5**
 
-**Purpose:**  
-Verify *who* is making the request.
+These modules:
 
-**Responsibilities:**
+- know the rules  
+- evaluate policies  
+- filter unsafe behavior  
+- enforce safety  
+- analyze context  
 
-- Check **user identity** (local user, system agent, external caller).
-- Distinguish between:
-  - Human user
-  - Internal SIRIUS agent (e.g., SYSTEM_AGENT, ENVOY)
-  - External integration (future)
-- Attach identity metadata to the request (who, when, origin).
+COLNIK does **not** duplicate their work.  
+Instead, COLNIK uses their outputs to make one final decision:
 
-**Effect:**  
-No anonymous critical operations. Every action is tied to an identity.
+> **Should this command be allowed to reach autonomy?**
 
----
-
-### 3.2 Role & Permission Layer
-
-**Purpose:**  
-Verify *what* the identity is allowed to do.
-
-**Responsibilities:**
-
-- Map identity to **roles** (e.g., `admin`, `developer`, `runtime`, `agent`, `read-only`).
-- Check **permissions** for:
-  - KG operations (KG_SET, KG_GET, KG_RELATE, KG_REMOVE_RELATION, etc.)
-  - Runtime operations (start/stop modules, pipelines)
-  - Configuration changes (policies, env, security settings)
-- Enforce **least privilege**:
-  - Only allow the minimum required actions.
-  - Block or downgrade dangerous operations.
-
-**Effect:**  
-Even a valid identity cannot perform actions outside its role.
+This keeps the architecture clean and future-proof.
 
 ---
 
-### 3.3 Policy Layer (ENVOY / Security Policies)
+## 3. Execution Pipeline
 
-**Purpose:**  
-Apply **high‑level security rules** and policies.
+This is the exact pipeline we agreed on:
+User Command
+↓
+InputParser
+↓
+Workflow
+↓
+KÝKLOS GATE (COLNIK)
+↓
+┌───────────────┐
+│   ALLOW        │
+│   or DENY      │
+└───────────────┘
+↓
+Autonomy
+↓
+Execution
 
-**Responsibilities:**
-
-- Use **policy files** (e.g., `policies_envoy.json`) to define:
-  - Allowed operations per role.
-  - Forbidden combinations (e.g., `KG_REMOVE_RELATION` + `admin` without justification).
-  - Sensitive entities and relations in the KG.
-- Enforce **global rules**:
-  - No direct modification of core ontology without explicit override.
-  - No destructive operations without logging and explanation.
-  - No bypass of COLNIK for critical paths.
-
-**Effect:**  
-Security is **configurable** and **centralized**, not hard‑coded.
-
----
-
-### 3.4 Input Validation & Sanitization Layer
-
-**Purpose:**  
-Protect the system from malformed or dangerous input.
-
-**Responsibilities:**
-
-- Validate **syntax** of commands (KG, parser, workflow).
-- Validate **structure** of data (entities, relations, attributes).
-- Sanitize:
-  - Unexpected tokens
-  - Dangerous patterns
-  - Oversized payloads
-- Reject or transform input that could:
-  - Break the runtime
-  - Corrupt the KG
-  - Cause infinite loops or runaway workflows
-
-**Effect:**  
-Only **well‑formed, safe input** reaches the core modules.
+COLNIK is the **final checkpoint** before any autonomous action is executed.
 
 ---
 
-### 3.5 Runtime Safety Layer
+## 4. Security Modules Protecting COLNIK
 
-**Purpose:**  
-Protect the **runtime pipeline** and modules.
+COLNIK is primitive, but it is protected by **five core security modules** that already exist in SIRIUS:
 
-**Responsibilities:**
+### 4.1 PermissionLayer5
+Checks whether the identity (user or agent) has the required permissions.  
+Outputs: **ALLOW / DENY / REQUIRE-CONFIRMATION**
 
-- Check whether the requested operation:
-  - Starts/stops critical modules (KG, ReasoningEngine, WorkflowEngine, Parser).
-  - Modifies runtime configuration.
-  - Changes system behavior in a persistent way.
-- Enforce:
-  - Safe restart patterns
-  - Controlled updates
-  - Guardrails around self‑modifying behavior
+### 4.2 PolicyEngine5
+Evaluates global and local policies from `policies_envoy.json`.  
+Outputs: **ALLOWED-BY-POLICY / BLOCKED-BY-POLICY**
 
-**Effect:**  
-The system remains stable even under heavy or experimental usage.
+### 4.3 BehaviorFilter5
+Filters unsafe or suspicious behavior patterns.  
+Outputs: **SAFE / RISKY / BLOCK**
 
----
+### 4.4 FamilySafetyRules5_x
+Applies safety rules for sensitive operations (KG mutations, runtime changes).  
+Outputs: **SAFE / UNSAFE**
 
-### 3.6 Knowledge Graph Protection Layer
-
-**Purpose:**  
-Protect the **KG core** from unsafe operations.
-
-**Responsibilities:**
-
-- Guard:
-  - Core ontology entities
-  - System relations
-  - Security‑critical nodes (e.g., identity, roles, policies)
-- Restrict:
-  - Bulk deletions
-  - Structural changes to ontology
-  - Cross‑domain relations that break consistency
-- Require:
-  - Justification for sensitive changes
-  - Logging and explainability for KG mutations
-
-**Effect:**  
-The KG remains **consistent, safe, and explainable** over time.
+### 4.5 ContextualBehaviorEngine5
+Analyzes context, environment, and system state.  
+Outputs: **CONTEXT-OK / CONTEXT-NOT-OK**
 
 ---
 
-### 3.7 Explainability & Logging Layer
+## 5. How COLNIK Uses These Modules
 
-**Purpose:**  
-Make every critical decision **traceable and understandable**.
+COLNIK does not run complex logic.  
+It simply collects the outputs of the modules above and performs a primitive evaluation:
+IF PermissionLayer5 == ALLOW
+AND PolicyEngine5 == ALLOWED
+AND BehaviorFilter5 == SAFE
+AND FamilySafetyRules5_x == SAFE
+AND ContextualBehaviorEngine5 == CONTEXT-OK
+THEN
+ALLOW
+ELSE
+DENY
 
-**Responsibilities:**
-
-- Log:
-  - Who requested what
-  - Which layer blocked or allowed it
-  - Why the decision was made
-- Provide:
-  - Human‑readable explanations (for debugging and audits)
-  - Machine‑readable logs (for future analysis)
-- Integrate with:
-  - SIRIUS explain commands (KG_EXPLAIN, KG_EXPLAIN_DEEP)
-  - System diagnostics
-
-**Effect:**  
-Security is not a black box—every decision can be inspected.
+This is the entire decision mechanism.
 
 ---
 
-## 4. How COLNIK will work end‑to‑end (when finished)
+## 6. What COLNIK Actually Does
 
-### 4.1 Request lifecycle
+COLNIK asks a small set of primitive questions:
 
-1. **Incoming request**  
-   - From user, agent, or external system.
-   - Contains: command, parameters, context.
+### 6.1 Identity Check
+Is the command truly coming from the user or a trusted agent?
 
-2. **Identity check**  
-   - Who is calling?  
-   - Attach identity metadata.
+### 6.2 Permission Check
+Does the caller have the right to perform this action?
 
-3. **Role & permission check**  
-   - What is this identity allowed to do?  
-   - If not allowed → **deny + log + explain**.
+### 6.3 Policy Check
+Does any global or local policy forbid this action?
 
-4. **Policy evaluation (ENVOY)**  
-   - Apply global and local policies.  
-   - If policy forbids → **deny + log + explain**.
+### 6.4 Safety Check
+Would executing this command harm the runtime or KG?
 
-5. **Input validation & sanitization**  
-   - Check syntax, structure, size.  
-   - If invalid → **reject or sanitize**.
+### 6.5 Confirmation Check
+Does this command require explicit user confirmation?
 
-6. **Runtime & KG safety checks**  
-   - Is this operation safe for the runtime and KG?  
-   - If risky → **require justification, escalate, or block**.
-
-7. **Routing to subsystem**  
-   - KG operations → KG module  
-   - Parser operations → Parser module  
-   - Workflow operations → WorkflowEngine  
-   - Reasoning operations → ReasoningEngine
-
-8. **Execution**  
-   - Subsystem performs the requested operation.
-
-9. **Logging & explanation**  
-   - COLNIK records:
-     - identity
-     - operation
-     - decision path
-     - outcome
-   - Optionally returns an explanation to the caller.
+### 6.6 Final Decision
+- **ALLOW** → forward to autonomy  
+- **DENY** → block, log, explain  
 
 ---
 
-### 4.2 Example: KG_RELATE request
+## 7. COLNIK vs. Security Modules
 
-**User request:**  
-`KG_RELATE(entityA, entityB, relation="depends_on")`
+| Component | Purpose |
+|----------|---------|
+| PermissionLayer5 | Knows what is allowed |
+| PolicyEngine5 | Applies global/local policies |
+| BehaviorFilter5 | Filters unsafe behavior |
+| FamilySafetyRules5_x | Safety rules for sensitive operations |
+| ContextualBehaviorEngine5 | Context-aware evaluation |
+| **COLNIK** | **Final ALLOW/DENY decision** |
 
-**COLNIK flow:**
-
-- Identity: user = `developer`
-- Role & permissions: `developer` can modify KG, but not core ontology.
-- Policy: relation `depends_on` is allowed for non‑core entities.
-- Validation: entities exist, relation is valid.
-- KG safety: no core nodes involved, no forbidden pattern.
-- Routing: forward to KG module.
-- Execution: KG creates relation.
-- Logging: record who, what, when, and why it was allowed.
+COLNIK is not a security layer — it is a **decision gate**.
 
 ---
 
-## 5. Purpose of COLNIK in the SIRIUS architecture
+## 8. Future Expansion (6.x → 8.x)
 
-COLNIK is the **security spine** of SIRIUS:
+COLNIK will remain primitive, but new checks will be added:
 
-- It ensures that **every critical action** is:
-  - authenticated
-  - authorized
-  - validated
-  - policy‑checked
-  - safe for runtime and KG
-  - logged and explainable
+- deeper policy evaluation  
+- KG structural safety checks  
+- agent-level permissions  
+- external API safety  
+- multi-user environment rules  
+- autonomous agent restrictions  
 
-- It allows SIRIUS to:
-  - grow in complexity without losing control
-  - host autonomous agents safely
-  - expose APIs without compromising integrity
-  - debug and audit decisions after the fact
-
-In short:
-
-> **COLNIK makes SIRIUS safe, controlled, and trustworthy—without killing flexibility.**
+The core ALLOW/DENY logic never changes.
 
 ---
 
-## 6. Current status vs. future state
+## 9. Summary
 
-### Current (foundation in place)
+- COLNIK is a **primitive decision gate**, not a complex module.  
+- It sits **above autonomy** and decides ALLOW/DENY.  
+- It uses existing security modules (PermissionLayer, PolicyEngine, BehaviorFilter…).  
+- It ensures every command is safe before execution.  
+- It keeps the SIRIUS runtime stable and future-proof.
 
-- Conceptual layers defined (identity, roles, policies, validation, KG safety, logging).
-- Basic security checks integrated into:
-  - KG commands
-  - runtime operations
-- Policy files (e.g., `policies_envoy.json`) planned/partially used.
-- Logging and explainability integrated at KG level.
-
-### Future (full implementation)
-
-- All requests pass through COLNIK by default.
-- Full role‑based access control across all modules.
-- Configurable policies for:
-  - KG
-  - runtime
-  - agents
-  - external integrations
-- Strong input validation and sanitization.
-- Complete KG protection for core ontology.
-- Unified logging and explainability for all security decisions.
-- Ready for:
-  - autonomous agents
-  - external APIs
-  - multi‑user environments
-
----
-
-## 7. How to use this document in GitHub
-
-This tutorial is meant to be:
-
-- A **high‑level architectural overview** of COLNIK.
-- A **security design document** for contributors.
-- A **reference** for implementing and extending:
-  - identity checks
-  - role & permission logic
-  - policy evaluation
-  - validation and sanitization
-  - KG protection
-  - logging and explainability
-
-You can place it in:
-
-- `docs/security/colnik_overview.md`  
-- or `docs/architecture/colnik_security_layers.md`
-
-So that anyone joining the project understands:
-
-- **what COLNIK is**,  
-- **why it exists**,  
-- **what layers it has**,  
-- **and how it will behave when fully implemented.**
+This is the final, correct architecture of the Kýklos Gate.
