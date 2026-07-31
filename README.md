@@ -1,3 +1,26 @@
+# ⚠️ Important Notice – Missing Parser in Previous ZIP (Resolved)
+
+During packaging of the earlier ZIP release, the file **InputParser5.py**
+(the main parser for Runtime 5.x) was unintentionally omitted.
+This caused the distributed ZIP to appear incomplete and led to confusion
+for users attempting to run the full SIRIUS Runtime 5.6.1 environment.
+
+The issue has now been fully resolved.
+
+The correct and up‑to‑date **InputParser5.py** is available directly
+in the root of this GitHub repository.
+Users who downloaded the ZIP can simply add the parser manually:
+
+runtime5/parser/InputParser5.py
+
+This restores full functionality of the Runtime 5.6.1 logic layer.
+
+Future releases will include the parser automatically to prevent
+similar issues. Thank you to the community for your patience and support.
+
+
+---
+
 # SIRIUS LOCAL AI — Version 5.6.1  
 Enterprise‑Grade Symbolic Reasoning • Unified Knowledge Graph Platform • Multi‑Layer Explainability
 
