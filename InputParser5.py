@@ -66,6 +66,25 @@ class InputParser5:
             "normalized": clean,
         }
 
+                # ====================================================
+        # ⭐⭐⭐ FIX: Slovenské otázky "čo je X" ⭐⭐⭐
+        # ====================================================
+        if clean.startswith("čo je "):
+            parts = clean.split()
+            if len(parts) >= 3:
+                entity = parts[-1]
+                return {
+                    "intent": "kg.view",
+                    "entity": entity,
+                    "args": {
+                        "entity": entity,
+                        "mode": "developer",
+                    },
+                }
+
+           
+
+        
         # ====================================================
         # ⭐⭐⭐ KG RELATE (OPRAVENÉ) ⭐⭐⭐
         # ====================================================
