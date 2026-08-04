@@ -4,6 +4,13 @@ Enterprise‑Grade Symbolic Reasoning • Unified Knowledge Graph Platform • M
 ![SIRIUS Futuristicky](SIRIUS%20KOCAL%20FUTURISTICKY%20OBR.png)
 ![SIRIUS Architecture Diagram](diagram%20(4).png)
 
+### 🧭 Philosophy of SIRIUS
+“To err is human… and among AI, they say that to err is algorithmic.”
+
+SIRIUS embraces this principle: mistakes are not failures — they are data, signals, and opportunities for refinement.
+
+---
+
 SIRIUS LOCAL AI 5.6.2 delivers a fully stabilized, enterprise‑ready symbolic AI runtime designed for
 high‑reliability environments, offline operation, and deterministic reasoning. Built on the SIRIUS Runtime 5.x
 architecture, this release consolidates the unified Knowledge Graph platform, multi‑hop inference engine,
