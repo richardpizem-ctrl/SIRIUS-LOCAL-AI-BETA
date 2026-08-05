@@ -149,3 +149,74 @@ COLNÍK povoľuje.
 Workflow vykoná.
 
 Toto je pevná súčasť architektúry SIRIUS 6.x.
+AUTONOMY/
+│
+├── core/                       ← mozog autonómie
+│   ├── monitor.py              ← pozorovanie PC / SIRIUS
+│   ├── analyzer.py             ← analýza monitorovaných dát
+│   ├── proposer.py             ← tvorba návrhov
+│   └── json_format.py          ← jednotný Request/Response formát
+│
+├── modules/                    ← schopnosti autonómie
+│   ├── navigation.py
+│   ├── triage_folders.py
+│   ├── triage_duplicates.py
+│   ├── terminal_assistant.py
+│   └── detection.py
+│
+├── ipc/                        ← hranica medzi procesmi
+│   ├── send_to_colnik.py
+│   └── receive_responses.py
+│
+└── autonomy.py                 ← hlavný vstupný bod              AUTONOMY PROCESS
+                    │
+                    ▼
+              monitor.py
+                    │
+                    ▼
+             analyzer.py
+                    │
+                    ▼
+             proposer.py
+                    │
+                    ▼
+             json_format.py
+                    │
+                    ▼
+          send_to_colnik.py
+                    │
+                    ▼
+             ┌────────────┐
+             │  COLNÍK    │
+             └─────┬──────┘
+                   │
+          ALLOW / DENY /
+       REQUIRE_CONFIRMATION
+                   │
+                   ▼
+       receive_responses.py
+                   │
+                   ▼
+              AUTONOMY A modules/ nesmie obchádzať ipc/.
+
+Napríklad navigation.py nemá robiť:
+
+navigation.py → OS
+
+ale:
+
+navigation.py
+      ↓
+návrh
+      ↓
+proposer.py
+      ↓
+JSON
+      ↓
+COLNÍK
+      ↓
+Workflow
+      ↓
+OS
+
+To isté pre duplicity, priečinky aj terminál.
