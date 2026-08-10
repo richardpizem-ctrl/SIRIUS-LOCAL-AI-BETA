@@ -77,11 +77,32 @@ These rules support complex enterprise logic, hierarchical classification, and p
 
 ---
 
+# 🛡 COLNIK‑6.x — Enterprise Customs & Validation Layer
+
+COLNIK‑6.x is a fully isolated security and validation subsystem designed to enforce rules, protect KG integrity, and regulate workflow execution inside the SIRIUS runtime.
+
+It acts as an internal **customs officer**, inspecting and validating operations before they reach core reasoning or workflow engines.
+
+### Key Features
+- Deterministic rule validation  
+- Customs‑style inspection of KG operations  
+- Workflow step authorization and filtering  
+- Reasoning safety checks  
+- Runtime anomaly detection  
+- Integration with ENVOY Permission Layer  
+- Full offline operation  
+- Protection against malformed KG mutations  
+- Enforcement of enterprise‑grade consistency policies  
+
+COLNIK‑6.x ensures that every KG update, workflow step, and reasoning action passes through a strict validation pipeline — guaranteeing stability, safety, and predictable behavior across the entire runtime.
+
+---
+
 # 🛠 Workflow Enhancements
 
 - Fully integrated KG_EXPLAIN and KG_EXPLAIN_DEEP  
 - Stabilized WorkflowEngine5 routing and step registration  
-- Clean orchestration of KG, reasoning, ENVOY, and system workflows  
+- Clean orchestration of KG, reasoning, ENVOY, COLNIK, and system workflows  
 - Natural language detection for “prečo” (why) queries  
 
 This ensures predictable execution paths and consistent behavior across all runtime operations.
@@ -124,6 +145,7 @@ Version 5.6.2 is the most stable and security‑aligned release of the SIRIUS Ru
 - Full reasoning engine and rule suite  
 - WorkflowEngine5 with complete step registry  
 - ENVOY security layers  
+- **COLNIK‑6.x validation subsystem**  
 - Behavior Filter and Contextual Behavior Engine  
 - Self‑Repair Layer 5.4  
 - `autosave_kg.json` (Unified Schema snapshot)  
@@ -152,6 +174,6 @@ These modules will extend SIRIUS into a fully autonomous, secure, and enterprise
 # 🏁 Summary
 
 SIRIUS LOCAL AI 5.6.2 delivers a fully stabilized logic layer, a unified Knowledge Graph platform, and reliable multi‑hop reasoning.  
-This release establishes a strong enterprise foundation for advanced modules such as FileManager, ProcessManager, SystemMonitor, autonomous mode, and next‑generation security layers.
+This release establishes a strong enterprise foundation for advanced modules such as FileManager, ProcessManager, SystemMonitor, autonomous mode, next‑generation security layers, and the newly integrated **COLNIK‑6.x validation subsystem**.
 
 **SIRIUS is no longer just a knowledge graph — it is a fully integrated reasoning platform.**
