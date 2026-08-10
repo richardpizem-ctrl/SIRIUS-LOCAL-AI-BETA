@@ -1,27 +1,28 @@
-# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v5.6.1 UNIFIED)
+# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v5.6.2 UNIFIED)
 
 Thank you for your interest in contributing to **SIRIUS LOCAL AI**.  
 This document defines the rules, processes, and expectations for all contributors.  
-The goal is to maintain a **clean, safe, modular, deterministic, explainable, and intelligent** local AI system built on the **Unified Reasoning & Deep Explainability Architecture 5.6**.
+The goal is to maintain a **clean, safe, modular, deterministic, explainable, and intelligent** local AI system built on the **Unified Reasoning & Deep Explainability Architecture 5.6.2**.
 
 All processing is fully local.  
 No data leaves your device.
 
-Version **5.6.1** updates these guidelines to include:
+Version **5.6.2** updates these guidelines to include:
 
-- **Unified Reasoning & Deep Explainability Architecture 5.6**  
+- **Unified Reasoning & Deep Explainability Architecture 5.6.2**  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Reasoning Engine 5.6 (multi-hop, inheritance, transitivity)**  
+- **Reasoning Engine 5.6.2 (multi-hop, inheritance, transitivity)**  
 - **Proof Tree & Evidence Tree Foundations**  
 - **Confidence Scoring Foundations**  
 - **Rule Chaining Foundations**  
-- **Workflow Engine 5.6 (explainability routing)**  
-- **Unified Knowledge Graph 5.6 (comfort commands, stabilized autoload)**  
-- **AITE 5.6 (semantic + explainability triage)**  
+- **Workflow Engine 5.6.2 (explainability routing)**  
+- **Unified Knowledge Graph 5.6.2 (comfort commands, stabilized autoload)**  
+- **AITE 5.6.2 (semantic + explainability triage)**  
 - **Identity Engine 3.0**  
 - **SECURITY FAMILY 5.x**  
-- **Schoolwork Engine 5.6**  
+- **Schoolwork Engine 5.6.2**  
 - **System Agent 5**  
+- **COLNIK‑6.x Validation Layer**  
 - hardened deterministic routing  
 - cross-platform safety rules  
 
@@ -44,13 +45,14 @@ Version **5.6.1** updates these guidelines to include:
 - **Safety-critical modules must never be weakened or bypassed**, including:  
   - SECURITY FAMILY 5.x  
   - Identity Engine 3.0  
-  - Schoolwork Engine 5.6  
+  - Schoolwork Engine 5.6.2  
   - Time-Limits Engine v3  
-  - Self-Repair Layer 5.x  
+  - Self-Repair Layer 5.4  
   - UI Automation Engine 5.0  
   - System Agent 5  
   - ENVOY Execution/Permission Layers 5  
-- **Reasoning Engine 5.6 must not be misused or extended unsafely**  
+  - COLNIK‑6.x Validation Layer  
+- **Reasoning Engine 5.6.2 must not be misused or extended unsafely**  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP must remain transparent and correct**  
 
 ---
@@ -59,7 +61,7 @@ Version **5.6.1** updates these guidelines to include:
 
 1. **Fork** the repository  
 2. **Create a new branch** for your change  
-3. **Implement** the change according to the Runtime 5.6.1 architecture  
+3. **Implement** the change according to the Runtime 5.6.2 architecture  
 4. **Test** it in your local environment (PC or Mobile)  
 5. **Submit a Pull Request** with a clear description  
 
@@ -89,12 +91,13 @@ Key rules:
 - imports grouped: standard → third-party → internal  
 - plugin code must follow Plugin API 5.x  
 - SECURITY FAMILY 5.x code must follow safety-first design  
-- SCHOOLWORK ENGINE 5.6 must remain intact and non-bypassable  
-- Reasoning Engine 5.6 integrations must be deterministic and safe  
-- Self-Repair Layer 5.x must not be disabled or bypassed  
+- SCHOOLWORK ENGINE 5.6.2 must remain intact and non-bypassable  
+- Reasoning Engine 5.6.2 integrations must be deterministic and safe  
+- Self-Repair Layer 5.4 must not be disabled or bypassed  
 - UI Automation Engine 5.0 integrations must follow deterministic fallback rules  
 - System Agent 5 must validate all system-level actions  
 - ENVOY 5 must sanitize all system requests  
+- COLNIK‑6.x must validate all KG mutations and workflow steps  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP output must remain transparent and correct  
 
 ---
@@ -116,8 +119,8 @@ If your change affects:
 
 - **FS-AGENT 5.x** → test path validation, safety prompts  
 - **NL Router 5.x** → test semantic routing and ambiguity handling  
-- **Workflow Engine 5.6** → test semantic transitions + explainability routing  
-- **Reasoning Engine 5.6** →  
+- **Workflow Engine 5.6.2** → test semantic transitions + explainability routing  
+- **Reasoning Engine 5.6.2** →  
   - multi-hop inference  
   - inheritance reasoning  
   - transitive reasoning  
@@ -138,11 +141,11 @@ If your change affects:
   - schoolwork bypass logic  
   - safe-mode restrictions  
   - STRANGER-mode protections  
-- **Schoolwork Engine 5.6** →  
+- **Schoolwork Engine 5.6.2** →  
   - subject detection  
   - difficulty scoring  
   - bypass logic  
-- **Self-Repair Layer 5.x** →  
+- **Self-Repair Layer 5.4** →  
   - integrity checks  
   - fallback behavior  
 - **System Agent 5** →  
@@ -152,6 +155,10 @@ If your change affects:
   - sanitization  
   - identity filtering  
   - safe routing  
+- **COLNIK‑6.x Validation Layer** →  
+  - KG mutation validation  
+  - workflow step authorization  
+  - anomaly detection  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP** →  
   - correct inference history  
   - deterministic explanation output  
@@ -176,12 +183,13 @@ Restrictions:
 - PRs must not break determinism or safety guarantees  
 - plugin PRs must include updated manifest if needed  
 - PRs must not weaken SECURITY FAMILY 5.x protections  
-- PRs must not interfere with SCHOOLWORK ENGINE 5.6  
+- PRs must not interfere with SCHOOLWORK ENGINE 5.6.2  
 - PRs must not disable or bypass the Self-Repair Layer  
-- PRs must not misuse Reasoning Engine 5.6  
+- PRs must not misuse Reasoning Engine 5.6.2  
 - PRs must not compromise UI Automation Engine 5.0 safety rules  
 - PRs must not bypass System Agent 5 validation  
 - PRs must not bypass ENVOY Execution/Permission Layers 5  
+- PRs must not bypass COLNIK‑6.x validation  
 - PRs must not distort or hide KG_EXPLAIN or KG_EXPLAIN_DEEP inference history  
 
 ---
@@ -207,6 +215,7 @@ Restrictions:
 - unsafe or non-deterministic UI automation behavior  
 - attempts to bypass System Agent 5  
 - attempts to bypass ENVOY 5  
+- attempts to bypass COLNIK‑6.x  
 - attempts to manipulate KG_EXPLAIN or KG_EXPLAIN_DEEP output  
 
 ---
@@ -231,17 +240,18 @@ Guidelines:
 
 All contributions must respect:
 
-- **ARCHITECTURE.md (v5.6.1)**  
+- **ARCHITECTURE.md (v5.6.2)**  
 - **MODULE_MAP.md**  
 - **STYLEGUIDE.md**  
 - **SECURITY.md**  
 - **Plugin API 5.x**  
 - **SECURITY FAMILY 5.x design rules**  
-- **Schoolwork Engine 5.6 rules**  
-- **Self-Repair Layer 5.x requirements**  
+- **Schoolwork Engine 5.6.2 rules**  
+- **Self-Repair Layer 5.4 requirements**  
 - **UI Automation Engine 5.0 specifications**  
 - **System Agent 5 safety model**  
 - **ENVOY 5 sanitization rules**  
+- **COLNIK‑6.x validation rules**  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP explainability rules**  
 
 Breaking architectural boundaries requires prior approval.
@@ -261,7 +271,7 @@ Avoid vague messages like “update”, “fix stuff”, “changes”.
 
 ---
 
-# 10. 🧒 Family Safety Requirements (v5.6.1)
+# 10. 🧒 Family Safety Requirements (v5.6.2)
 
 Contributors must respect the integrity of the **SECURITY FAMILY 5.x** module:
 
@@ -272,13 +282,14 @@ Contributors must respect the integrity of the **SECURITY FAMILY 5.x** module:
 - stranger-mode must remain locked down  
 - OWNER-level actions must remain protected  
 - Identity Engine 3.0 must not be weakened  
-- Schoolwork Engine 5.6 must remain intact  
+- Schoolwork Engine 5.6.2 must remain intact  
 - UI Automation Engine 5.0 must not perform unsafe actions  
 - System Agent 5 must validate all system-level actions  
 - ENVOY 5 must sanitize all system requests  
+- COLNIK‑6.x must validate all KG mutations and workflow steps  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP must remain transparent and correct  
 
-Any PR affecting SECURITY FAMILY, SCHOOLWORK ENGINE, UI Automation Engine, ENVOY, System Agent, or KG_EXPLAIN must include **explicit safety tests**.
+Any PR affecting SECURITY FAMILY, SCHOOLWORK ENGINE, UI Automation Engine, ENVOY, System Agent, COLNIK, or KG_EXPLAIN must include **explicit safety tests**.
 
 ---
 
@@ -290,4 +301,4 @@ All contributions are accepted only in accordance with the project’s **MIT Lic
 
 # 📌 Document Status
 
-Current version: **5.6.1 (Unified Reasoning & Deep Explainability Architecture)**
+Current version: **5.6.2 (Unified Reasoning, Explainability & COLNIK‑6.x Architecture)**
