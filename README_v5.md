@@ -14,7 +14,7 @@
 
 # 🌌 Introduction — The Next Evolution of SIRIUS  
 Runtime **6.0** represents the largest architectural leap in the history of SIRIUS.  
-It builds directly on the **Unified Reasoning & Deep Explainability Architecture 5.6.1**, adding:
+It builds directly on the **Unified Reasoning, Deep Explainability & COLNIK‑6.x Architecture 5.6.2**, adding:
 
 - **Modular Kernel 6.0**  
 - **Hybrid Multimodal Analyzer 6.0**  
@@ -23,9 +23,10 @@ It builds directly on the **Unified Reasoning & Deep Explainability Architecture
 - **Deterministic multimodal architecture**  
 - **Explainability‑aware multimodal inference**  
 - **KG‑linked multimodal fact creation**  
-- **Unified Knowledge Graph 5.6 integration**  
-- **Reasoning Engine 5.6 deep inference hooks**  
+- **Unified Knowledge Graph 5.6.2 integration**  
+- **Reasoning Engine 5.6.2 deep inference hooks**  
 - **KG_EXPLAIN_DEEP evidence‑based reasoning**  
+- **COLNIK‑6.x validation for multimodal pipelines**
 
 The goal of Runtime 6.0 is to create a **local multimodal diagnostic system** capable of analyzing:
 
@@ -50,6 +51,7 @@ A new multimodal analysis engine capable of processing multiple data types with 
 - pattern detection  
 - KG‑linked audio entities  
 - explainability traces for each inference  
+- COLNIK‑validated audio pipelines  
 
 ### 🖼 Image Structure Analyzer  
 - object detection  
@@ -57,6 +59,8 @@ A new multimodal analysis engine capable of processing multiple data types with 
 - visual feature extraction  
 - KG‑linked visual entities  
 - KG_EXPLAIN_DEEP evidence trees  
+- deterministic visual inference  
+- COLNIK‑validated image pipelines  
 
 ### 🎞 Video Frame Semantic Extractor  
 - frame‑by‑frame analysis  
@@ -64,12 +68,15 @@ A new multimodal analysis engine capable of processing multiple data types with 
 - temporal segmentation  
 - behavioral pattern recognition  
 - deterministic multi‑hop inference  
+- KG‑linked video entities  
+- COLNIK‑validated video pipelines  
 
 ### 🔗 KG‑Aware Multimodal Linking  
 - multimodal fact creation  
 - entity linking  
 - deterministic inference  
 - KG_EXPLAIN + KG_EXPLAIN_DEEP integration  
+- COLNIK‑validated multimodal KG updates  
 
 ---
 
@@ -86,6 +93,7 @@ A redesigned system kernel focused on stability, isolation, and long‑term main
 - high stability for future versions  
 - explainability‑aware kernel routing  
 - unified PC/Mobile logic  
+- COLNIK‑validated kernel operations  
 
 ---
 
@@ -102,6 +110,7 @@ A new generation of the SIRIUS home protection system.
 - explainability for every safety decision  
 - deterministic STRANGER‑mode  
 - child‑safe SCHOOLWORK bypass  
+- COLNIK‑validated safety decisions  
 
 Goal: **zero false positives**, maximum predictability.
 
@@ -118,6 +127,7 @@ The second generation of autonomous runtime repair.
 - repair‑routing logic  
 - KG_EXPLAIN_DEEP explainability for repair decisions  
 - unified PC/Mobile diagnostics  
+- COLNIK‑validated repair actions  
 
 ---
 
