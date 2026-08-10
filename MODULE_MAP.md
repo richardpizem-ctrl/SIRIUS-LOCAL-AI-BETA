@@ -1,28 +1,29 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v5.6.1 UNIFIED)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v5.6.2 UNIFIED)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the **Unified Reasoning & Deep Explainability Architecture 5.6**.
+It serves as an architectural orientation map for the **Unified Reasoning, Deep Explainability & COLNIK‑6.x Architecture 5.6.2**.
 
-Version **5.6.1 UNIFIED** expands and stabilizes the module map with:
+Version **5.6.2 UNIFIED** expands and stabilizes the module map with:
 
-- **AITE 5.6 (Semantic + Deep Explainability Multimodal Triage)**  
-- **Workflow Engine 5.6 (Deep Explainability Routing)**  
-- **Reasoning Engine 5.6 (multi‑hop, inheritance, transitivity, rule chaining)**  
+- **AITE 5.6.2 (Semantic + Deep Explainability Multimodal Triage)**  
+- **Workflow Engine 5.6.2 (Deep Explainability + COLNIK‑validated Routing)**  
+- **Reasoning Engine 5.6.2 (multi‑hop, inheritance, transitivity, rule chaining)**  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Unified Knowledge Graph 5.6 + KG‑LIGHT (stabilized)**  
+- **Unified Knowledge Graph 5.6.2 + KG‑LIGHT (stabilized)**  
 - **Expanded KG Comfort Commands**  
 - **ENVOY Execution + Permission Layers 5 (Deep Explainability Traces)**  
 - **System Agent 5**  
 - **Security Family 5.x (Identity Engine 3.0)**  
-- **Self‑Repair Layer 5.x**  
+- **Self‑Repair Layer 5.4**  
 - **Unified PC/Mobile deterministic routing**  
 - **Deterministic UI Automation Engine 5.0**  
+- **COLNIK‑6.x Enterprise Validation Layer**
 
 All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 1. Runtime Core 5.6 (Unified)
+# 1. Runtime Core 5.6.2 (Unified)
 **Purpose:** Central orchestrator of the entire system.  
 **Responsibilities:**
 - module initialization  
@@ -33,30 +34,32 @@ All processing is fully local; no data leaves the user's device.
 - event routing  
 - global system stability  
 - integration with Security Family 5.x  
-- integration with Self‑Repair Layer 5.x  
+- integration with Self‑Repair Layer 5.4  
 - deterministic execution  
 - System Agent 5 routing  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP routing  
 - UI Automation Engine 5.0 integration  
 - unified PC/Mobile behavior  
 - ENVOY permission enforcement  
+- **COLNIK‑6.x validation of workflow + KG operations**
 
 ---
 
-# 2. Filesystem Agent (FS‑AGENT 5.6)
+# 2. Filesystem Agent (FS‑AGENT 5.6.2)
 **Purpose:** Safe, deterministic file operations.  
 **Responsibilities:**
 - moving, copying, deleting  
 - path validation  
 - rollback‑safe operations  
 - semantic routing (documents, code, schoolwork)  
-- integration with Schoolwork Engine 5.6  
+- integration with Schoolwork Engine 5.6.2  
 - integration with UI Automation Engine 5.0  
 - unified PC/Mobile filesystem logic  
+- COLNIK‑validated file operations  
 
 ---
 
-# 3. Natural Language Router (NL Router 5.6)
+# 3. Natural Language Router (NL Router 5.6.2)
 **Purpose:** Semantic interpretation and routing of user commands.  
 **Responsibilities:**
 - command classification  
@@ -69,10 +72,11 @@ All processing is fully local; no data leaves the user's device.
 - identity‑aware filtering (OWNER / FAMILY / STRANGER)  
 - UI automation command routing  
 - System Agent 5 validation for system‑level intents  
+- COLNIK‑validated NL routing  
 
 ---
 
-# 4. Context Memory Engine (CME‑MEM 5.6)
+# 4. Context Memory Engine (CME‑MEM 5.6.2)
 **Purpose:** Semantic workflow context.  
 **Responsibilities:**
 - tracking recent actions  
@@ -81,13 +85,14 @@ All processing is fully local; no data leaves the user's device.
 - providing contextual hints  
 - subject/difficulty metadata  
 - explainability traces  
-- integration with Schoolwork Engine 5.6  
+- integration with Schoolwork Engine 5.6.2  
 - integration with UI Automation Engine 5.0  
 - unified PC/Mobile context memory  
+- COLNIK‑validated context transitions  
 
 ---
 
-# 5. Workflow Engine 5.6
+# 5. Workflow Engine 5.6.2
 **Purpose:** Deterministic multi‑step logic with deep explainability.  
 **Responsibilities:**
 - workflow state machine  
@@ -95,16 +100,17 @@ All processing is fully local; no data leaves the user's device.
 - semantic transitions  
 - preventing invalid sequences  
 - SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 5.6  
+- integration with Reasoning Engine 5.6.2  
 - integration with KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - integration with UIWorkflow 5.0  
 - deterministic fallback behavior  
 - unified PC/Mobile workflows  
 - ENVOY workflow integration  
+- **COLNIK‑validated workflow steps**
 
 ---
 
-# 6. GUI Layer 5.6
+# 6. GUI Layer 5.6.2
 **Purpose:** Modular user interface.  
 **Responsibilities:**
 - rendering plugin UI  
@@ -127,7 +133,7 @@ All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 8. Automatic Input Triage Engine (AITE 5.6)
+# 8. Automatic Input Triage Engine (AITE 5.6.2)
 **Purpose:** Multimodal semantic + deep explainability detection and classification.  
 **Responsibilities:**
 - detecting input type (text, image, code, document, installer)  
@@ -139,12 +145,13 @@ All processing is fully local; no data leaves the user's device.
 - routing to correct modules  
 - metadata generation  
 - integration with FS‑AGENT, CME‑MEM  
-- integration with Schoolwork Engine 5.6  
-- integration with Reasoning Engine 5.6  
+- integration with Schoolwork Engine 5.6.2  
+- integration with Reasoning Engine 5.6.2  
 - ENVOY 5 support  
 - UI automation intent detection  
 - identity‑aware triage  
 - unified PC/Mobile triage  
+- **COLNIK‑validated triage decisions**
 
 ---
 
@@ -158,6 +165,7 @@ All processing is fully local; no data leaves the user's device.
 - identity‑aware restrictions  
 - UI automation OS‑level routing  
 - System Agent 5 enforcement  
+- COLNIK‑validated capability routing  
 
 **Submodules:**
 - `file_ops`  
@@ -196,6 +204,7 @@ All processing is fully local; no data leaves the user's device.
 - SCHOOLWORK workflow routing  
 - UI automation workflow integration  
 - unified PC/Mobile workflow logic  
+- COLNIK‑validated workflow transitions  
 
 ---
 
@@ -212,6 +221,7 @@ All processing is fully local; no data leaves the user's device.
 - SCHOOLWORK‑aware plugin behavior  
 - UI automation plugin hooks  
 - unified PC/Mobile plugin behavior  
+- COLNIK‑validated plugin actions  
 
 Official plugins include:
 - automation  
@@ -236,7 +246,7 @@ Official plugins include:
 
 ---
 
-# 14. Self‑Repair & Health‑Check Layer (5.x)
+# 14. Self‑Repair & Health‑Check Layer (5.4)
 **Purpose:** Diagnostics and safe automatic recovery.  
 **Responsibilities:**  
 - checking integrity of core modules  
@@ -282,14 +292,14 @@ Official plugins include:
 
 ---
 
-# 16. Intelligent Runtime Modules (v5.6)
+# 16. Intelligent Runtime Modules (v5.6.2)
 
-## 16.1 HOME_ASSISTANT 5.6  
-## 16.2 COOKING_ADVISOR 5.6  
-## 16.3 DEVICE_DIAGNOSTICS 5.6  
-## 16.4 SCHOOL_HELPER 5.6  
-## 16.5 IMAGE_ANALYZER 5.6  
-## 16.6 CONTEXT_ROUTER 5.6  
+## 16.1 HOME_ASSISTANT 5.6.2  
+## 16.2 COOKING_ADVISOR 5.6.2  
+## 16.3 DEVICE_DIAGNOSTICS 5.6.2  
+## 16.4 SCHOOL_HELPER 5.6.2  
+## 16.5 IMAGE_ANALYZER 5.6.2  
+## 16.6 CONTEXT_ROUTER 5.6.2  
 ## 16.7 KNOWLEDGE_PACKS 5.x  
 
 ---
@@ -358,10 +368,11 @@ Official plugins include:
 - safe payload delivery  
 - Knowledge Pack updates  
 - unified PC/Mobile behavior  
+- COLNIK‑validated payload delivery  
 
 ---
 
-# 21. System Intelligence Layer 5.6
+# 21. System Intelligence Layer 5.6.2
 **Purpose:** Cross‑platform diagnostics and safe optimization.  
 **Responsibilities:**
 - hardware analysis  
@@ -373,10 +384,11 @@ Official plugins include:
 - System Agent 5 enforcement  
 - unified PC/Mobile diagnostics  
 - explainability‑aware diagnostics  
+- COLNIK‑validated system actions  
 
 ---
 
-# 22. Mobile Runtime 5.6
+# 22. Mobile Runtime 5.6.2
 **Purpose:** Unified mobile execution layer.  
 **Responsibilities:**
 - mobile‑optimized workflows  
@@ -385,27 +397,29 @@ Official plugins include:
 - mobile AITE integration  
 - mobile reasoning integration  
 - mobile KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
+- COLNIK‑validated mobile workflows  
 
 ---
 
 # 23. Module Interconnections
 All modules communicate through:
 
-- Runtime Core 5.6  
-- NL Router 5.6  
-- Workflow Engine 5.6  
-- CME‑MEM 5.6  
+- Runtime Core 5.6.2  
+- NL Router 5.6.2  
+- Workflow Engine 5.6.2  
+- CME‑MEM 5.6.2  
 - Security Family 5.x  
 - WIN‑CAP 5.x  
 - UI Automation Engine 5.0  
 - System Agent 5  
 - ENVOY 5  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- Self‑Repair Layer 5.x  
-- Mobile Runtime 5.6  
+- Self‑Repair Layer 5.4  
+- Mobile Runtime 5.6.2  
+- **COLNIK‑6.x Validation Layer**
 
 ---
 
 # Document Status
-**Version:** 5.6.1 UNIFIED  
-Updated to reflect the **5.5 → 5.6.1 transition**, new **Deep Explainability Engine**, expanded **Reasoning Engine**, and the stabilized **Unified Runtime Architecture 5.x**.
+**Version:** 5.6.2 UNIFIED  
+Updated to reflect the **5.5 → 5.6.2 transition**, new **Deep Explainability Engine**, expanded **Reasoning Engine**, **COLNIK‑6.x validation**, and the stabilized **Unified Runtime Architecture 5.x**.
