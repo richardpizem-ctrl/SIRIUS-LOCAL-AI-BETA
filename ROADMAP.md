@@ -1,8 +1,8 @@
-# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6 → v6.x)
-### Evolution of the Unified Reasoning & Deep Explainability Architecture
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v6.x)
+### Evolution of the Unified Reasoning, Deep Explainability & COLNIK‑Validated Architecture
 
 This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
-into the **Unified Runtime 5.x** generation, the new **Unified KG + Deep Explainability 5.6 Era**,  
+into the **Unified Runtime 5.x** generation, the **Unified KG + Deep Explainability 5.6.2 Era**,  
 and the upcoming **Runtime 6.x Modular Kernel Era**.
 
 All versions remain:
@@ -12,6 +12,7 @@ All versions remain:
 - identity‑aware  
 - safe for households and children  
 - fully local with optional ENVOY fetch  
+- enterprise‑validated via **COLNIK‑6.x** (from v5.6.2 onward)
 
 ---
 
@@ -19,7 +20,7 @@ All versions remain:
 ### System Intelligence Expansion  
 **Status:** Completed
 
-Goal: Expand the deterministic runtime with deeper system intelligence, faster triage, safer OS‑level actions, and improved UI automation.
+Goal: Expand deterministic runtime with deeper system intelligence, faster triage, safer OS‑level actions, and improved UI automation.
 
 ---
 
@@ -238,26 +239,26 @@ SIRIUS gains:
 
 ---
 
-# ⭐ 5.6 — Version 5.6.1 UNIFIED  
-### Unified KG Architecture + Deep Explainability + Multi‑Hop Reasoning  
+# ⭐ 5.6 — Version 5.6.2 UNIFIED  
+### Unified KG Architecture + Deep Explainability + Multi‑Hop Reasoning + COLNIK‑6.x Validation  
 **Status:** Current Stable Release
 
-Goal: Introduce a fully redesigned Knowledge Graph stack, deep explainability (XAI),  
-multi‑hop inference, unified traversal, and complete integration of the reasoning engine  
-with the workflow layer.
+Goal: Finalize the unified KG stack, stabilize deep explainability, integrate multi‑hop reasoning,  
+and introduce **COLNIK‑6.x**, the enterprise‑grade validation layer for KG, workflows, reasoning, ENVOY, and system actions.
 
 ---
 
-## 🔥 NEW Core Components (v5.6.1)
+## 🔥 NEW Core Components (v5.6.2)
 
-### 🧠 Unified Knowledge Graph 5.6
-- redesigned KG Core (stable, consistent, no cycles)  
-- KG Query (multi‑hop traversal, inbound/outbound, neighbors)  
-- KG Explore (colored ASCII tree, contextual graph view)  
-- KG Explain (local attribute & relation explanation)  
-- KG Explain Deep (deep reasoning, proof trees, evidence trees)  
-- unified traversal context  
-- full integration with ReasoningEngine 5.6  
+### 🧠 Unified Knowledge Graph 5.6.2
+- stabilized KG Core  
+- improved KG Query  
+- improved KG Explore  
+- improved KG comfort commands  
+- improved attribute pipeline  
+- improved autoload  
+- deterministic multi‑hop traversal  
+- **COLNIK‑validated KG mutations**
 
 ### 🔍 Deep Explainability (XAI)
 - proof trees (ASCII + HTML)  
@@ -266,19 +267,22 @@ with the workflow layer.
 - reasoning metrics  
 - confidence scoring  
 - multi‑hop categorization and deduction  
+- **COLNIK‑validated explainability traces**
 
-### 🧠 Reasoning Engine 5.6
+### 🧠 Reasoning Engine 5.6.2
 - deep inference  
 - multi‑hop reasoning  
 - rule chaining  
 - KG‑linked traversal  
 - deterministic explainability output  
+- **COLNIK‑validated reasoning steps**
 
-### 🔁 Workflow Engine 5.6
+### 🔁 Workflow Engine 5.6.2
 - KG_EXPLAIN_DEEP routing  
 - deterministic multi‑stage workflows  
 - improved fallback logic  
 - explainability‑aware transitions  
+- **COLNIK‑validated workflow transitions**
 
 ### 🛠 InputParser5 (KG Commands)
 - unified KG command parsing  
@@ -290,15 +294,34 @@ with the workflow layer.
 - improved autoload  
 - autosave KG prepared  
 
+### 🛡 System Agent 5
+- constant‑time validation  
+- identity‑aware gating  
+- OS‑action protection  
+- **COLNIK‑validated system actions**
+
+### 🌐 ENVOY 5
+- explainability traces  
+- deterministic sanitization  
+- hardened quarantine  
+- **COLNIK‑validated payload delivery**
+
+### 🛠 Self‑Repair Layer 5.4
+- integrity scanning  
+- fallback states  
+- repair suggestions  
+- **COLNIK‑validated repair logic**
+
 ---
 
-## Output (v5.6.1)
+## Output (v5.6.2)
 SIRIUS gains:
 - deep explainability  
 - unified KG architecture  
 - stable multi‑hop reasoning  
 - deterministic traversal  
-- fully integrated KG → Reasoning → Workflow pipeline  
+- enterprise‑grade validation (COLNIK‑6.x)  
+- fully integrated KG → Reasoning → Workflow → System pipeline  
 
 ---
 
@@ -367,6 +390,6 @@ SIRIUS gains:
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.6.1 UNIFIED (Stable)  
+**Current version:** 5.6.2 UNIFIED (Stable)  
 **Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
 **Long‑term direction:** Autonomous Runtime Evolution (6.x → 7.x)
