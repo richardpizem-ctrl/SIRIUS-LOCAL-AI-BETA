@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "5.6.1"
-date-released: 2026-07-29
+version: "5.6.2"
+date-released: 2026-08-10
 
 authors:
   - family-names: "Pizem"
@@ -15,12 +15,12 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 5.6"
+  - "intelligent runtime 5.6.2"
   - "runtime core 5.6 unified"
   - "plugin system 5.x"
-  - "workflow engine 5.6"
-  - "reasoning engine 5.6"
-  - "explainability engine 5.6"
+  - "workflow engine 5.6.2"
+  - "reasoning engine 5.6.2"
+  - "explainability engine 5.6.2"
   - "KG_EXPLAIN"
   - "KG_EXPLAIN_DEEP"
   - "multi-hop inference"
@@ -30,9 +30,9 @@ keywords:
   - "evidence trees"
   - "confidence scoring"
   - "rule chaining"
-  - "semantic triage 5.6"
-  - "AITE 5.6"
-  - "unified knowledge graph 5.6"
+  - "semantic triage 5.6.2"
+  - "AITE 5.6.2"
+  - "unified knowledge graph 5.6.2"
   - "KG comfort commands"
   - "secure local processing"
   - "Windows automation"
@@ -41,12 +41,12 @@ keywords:
   - "family safety 5.x"
   - "identity engine 3.0"
   - "SECURITY FAMILY 5.x"
-  - "schoolwork engine 5.6"
+  - "schoolwork engine 5.6.2"
   - "time-limits engine v3"
-  - "self-repair layer 5.x"
-  - "health-check engine 5.6"
-  - "PC automation runtime 5.6"
-  - "Mobile Runtime 5.6"
+  - "self-repair layer 5.4"
+  - "health-check engine 5.6.2"
+  - "PC automation runtime 5.6.2"
+  - "Mobile Runtime 5.6.2"
   - "ENVOY Execution Layer 5"
   - "ENVOY Permission Layer 5"
   - "safe external retrieval"
@@ -67,14 +67,14 @@ keywords:
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, reasoning tasks, and
-  semantic automation. Version 5.6.1 finalizes the stabilized logic layer of the
+  semantic automation. Version 5.6.2 finalizes the stabilized logic layer of the
   Unified Runtime Architecture 5.x, delivering a fully unified Knowledge Graph,
   deep explainability (KG_EXPLAIN & KG_EXPLAIN_DEEP), multi-hop inference,
   inheritance reasoning, transitive reasoning, proof tree generation, evidence
   trees, confidence scoring, and deterministic rule chaining.
 
-  The Unified Runtime Architecture 5.6 merges PC and Mobile logic into a single,
-  deterministic, identity-aware operating layer. Runtime Core 5.6 provides unified
+  The Unified Runtime Architecture 5.6.2 merges PC and Mobile logic into a single,
+  deterministic, identity-aware operating layer. Runtime Core 5.6.2 provides unified
   orchestration, deterministic execution, capability-based access control,
   identity-aware routing, and explainability-aware workflow dispatch.
 
@@ -87,7 +87,7 @@ abstract: >
   deterministic behavior, semantic understanding, explainability, and predictable
   execution rules.
 
-  Version 5.6.1 upgrades the entire runtime stack, including Workflow Engine 5.6,
-  Reasoning Engine 5.6, KG_EXPLAIN, KG_EXPLAIN_DEEP, ENVOY 5, FS‑AGENT 5, CME‑MEM 5,
+  Version 5.6.2 upgrades the entire runtime stack, including Workflow Engine 5.6.2,
+  Reasoning Engine 5.6.2, KG_EXPLAIN, KG_EXPLAIN_DEEP, ENVOY 5, FS‑AGENT 5, CME‑MEM 5,
   System Agent 5, and Password Vault 5.0. These upgrades prepare the architecture
   for the upcoming Modular Kernel Architecture in the 5.x → 6.0 transition.
