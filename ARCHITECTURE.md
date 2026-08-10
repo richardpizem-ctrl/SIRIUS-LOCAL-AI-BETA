@@ -1,206 +1,179 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (Runtime 6.x — Modular Kernel Generation, Planned)
+# 🏗 Architecture – SIRIUS LOCAL AI (Runtime 5.6.2 — Unified Logic Layer, Stabilized)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-6.x--planned-purple">
+  <img src="https://img.shields.io/badge/version-5.6.2-stable-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
-  <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
-  <img src="https://img.shields.io/badge/runtime-Modular%20Kernel%206.x-red">
+  <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
+  <img src="https://img.shields.io/badge/runtime-SIRIUS%20Runtime%205.x-red">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-The SIRIUS LOCAL AI Runtime 6.x generation is a **planned future architecture**, built directly
-on top of the breakthroughs introduced in Runtime **5.6.1** — including the Unified Knowledge Graph,
-Deep Explainability, multi-hop reasoning, proof trees, evidence trees, deterministic traversal,
-rule chaining, stabilized workflow routing, and the fully unified logic layer.
+The SIRIUS LOCAL AI Runtime **5.6.2** is the fully stabilized architecture built on top of:
 
-Runtime 6.x will focus on:
+- Unified Knowledge Graph (Unified Schema)
+- Deep Explainability Framework (proof trees, evidence trees)
+- Multi-hop reasoning engine
+- Deterministic traversal and rule chaining
+- Stabilized WorkflowEngine5 routing
+- Fully unified logic layer (KG → Reasoning → Workflow → ENVOY → COLNIK)
 
-- deterministic multimodal analysis  
-- sandboxed module isolation  
-- kernel-level routing  
-- Self-Repair Layer 2.0  
-- Family Security Engine 6.x  
-- reduced module complexity  
-- long-term maintainability  
-- full offline operation  
-- explainability-first reasoning  
-- multimodal KG integration  
-
-This is the planned next-generation architecture for SIRIUS.
+This is the **current production-grade architecture** of SIRIUS LOCAL AI.
 
 ---
 
-# 🧩 Architectural Principles (Runtime 6.x Planned)
+# 🧩 Architectural Principles (Runtime 5.6.2)
 
-- strict kernel–module separation  
-- deterministic execution pipeline  
-- multimodal analysis (audio, MIDI, image, video)  
-- identity-aware access control  
-- zero cloud dependency  
-- reversible and predictable behavior  
-- sandboxed modules with isolated memory  
-- unified PC/Mobile logic  
-- kernel-level error handling  
-- Self-Repair integration at every stage  
-- explainability-first design (XAI)  
-- KG-linked multimodal inference  
-
----
-
-# 🧱 Core Layers (Runtime 6.x Planned)
-
-## 1. Modular Kernel 6.x (Core Execution Layer)
-Planned responsibilities:
-- module sandboxing  
-- kernel-level routing  
-- unified error layer  
-- deterministic execution  
-- capability enforcement  
-- identity integration  
-- Self-Repair Layer 2.0 hooks  
-- multimodal pipeline orchestration  
-- explainability-aware routing  
-- KG-linked module communication  
+- unified logic layer (KG + Reasoning + Workflow)
+- deterministic execution pipeline
+- stable multi-hop inference
+- unified KG schema (autosave_kg.json)
+- explainability-first reasoning (XAI)
+- rule-based inference with proof trees
+- offline-only operation (0% cloud)
+- ENVOY permission enforcement
+- COLNIK-6.x validation layer
+- predictable workflow routing
+- safe KG mutation pipeline
 
 ---
 
-## 2. Hybrid Multimodal Analyzer 6.x
-Planned multimodal capabilities:
+# 🧱 Core Layers (Runtime 5.6.2)
 
-### Audio / MIDI
-- tone extraction  
-- rhythm segmentation  
-- MIDI normalization  
-- pattern detection  
-
-### Image
-- object detection  
-- structural segmentation  
-- visual feature extraction  
-
-### Video
-- frame-by-frame semantic analysis  
-- event detection  
-- temporal segmentation  
-
-### KG-Aware Linking
-- multimodal fact creation  
-- entity linking  
-- deterministic inference  
-- explainability hooks  
+## 1. Knowledge Graph Layer (Unified Schema)
+Responsibilities:
+- deterministic graph engine  
+- cycle-safe schema  
+- inbound/outbound traversal  
+- multi-hop reasoning context  
+- KG Explore visualization  
+- KG Explain / Explain Deep  
+- unified autosave/autoload  
 
 ---
 
-## 3. Self-Repair Layer 2.0 (Planned)
+## 2. Reasoning Engine 5.x
 Capabilities:
-- module integrity scanning  
+- rule chaining  
+- multi-hop deduction  
+- property inheritance  
+- transitive category reasoning  
+- orbital inference  
+- confidence scoring  
+- proof tree generation  
+- evidence tree generation  
+
+Rules include:
+- MultiHopOrbitInferenceRule  
+- DedicsnostVlastnostiRule  
+- TranzitivneRelacieRule  
+- AutoTypeInferenceRule  
+
+---
+
+## 3. WorkflowEngine5
+Responsibilities:
+- deterministic routing  
+- step registration  
+- KG → Reasoning → ENVOY → COLNIK → OS  
+- natural-language detection (“prečo” queries)  
+- safe execution pipeline  
+- unified workflow context  
+
+---
+
+## 4. ENVOY Security Layer
+Features:
+- Permission Layer  
+- Normalizer  
+- Execution Layer  
+- Quarantine  
+- Behavior Filter  
+- Family Safety Rules  
+- identity-aware gating  
+
+---
+
+## 5. COLNIK‑6.x Validation Layer
+Responsibilities:
+- customs-style inspection of KG operations  
+- workflow step authorization  
+- reasoning safety checks  
+- anomaly detection  
+- malformed KG mutation protection  
+- enterprise-grade consistency enforcement  
+
+COLNIK is the **internal customs officer** of the runtime.
+
+---
+
+## 6. Self-Repair Layer 5.4
+Capabilities:
+- integrity scanning  
 - dependency healing  
 - workflow reconstruction  
-- kernel-level recovery  
-- anomaly detection  
-- repair routing  
-- rollback-safe execution  
-- KG-consistency validation  
+- rollback-safe recovery  
+- KG consistency validation  
 
 ---
 
-## 4. Family Security Engine 6.x (Planned)
-Features:
-- behavior pattern detection  
-- StrangerMode 3.0  
-- SchoolMode 3.0  
-- TimeLimits 3.0  
-- identity-aware rules  
-- KG-linked safety inference  
-- explainable safety decisions  
-
----
-
-## 5. Workflow Engine 6.x (Planned)
+## 7. System Agent 5.x
 Responsibilities:
-- multimodal workflows  
-- system workflows  
-- diagnostic workflows  
-- identity-aware gating  
-- safe execution pipeline  
-- kernel-validated routing  
-- explainability routing  
-- proof tree integration  
+- safe OS interaction  
+- controlled execution  
+- offline automation  
+- identity-aware system actions  
 
 ---
 
-## 6. Context Memory Engine 6.x (Planned)
-Stores:
-- multimodal metadata  
-- workflow context  
-- semantic tags  
-- identity-linked memory  
-- deterministic snapshots  
-- explainability traces  
-- KG traversal context  
-
----
-
-## 7. GUI Layer 6.x (Planned)
+## 8. GUI Layer (Planned for 5.6.x → 6.x)
 Features:
-- dynamic panels  
-- real-time module integration  
-- unified PC/Mobile rendering  
-- diagnostic visualizations  
-- explainability visualizer  
+- neon diagnostic panels  
+- module status visualization  
 - KG tree viewer  
+- explainability visualizer  
+- unified PC/Mobile rendering  
 
 ---
 
-## 8. WIN-CAP 6.x (Planned)
-Safe Windows capability mapping with:
-- identity-aware restrictions  
-- deterministic capability routing  
-- kernel-validated access  
-- explainability-linked capability logs  
+# 🧠 SYSTEM INTELLIGENCE LAYER (Runtime 5.6.2)
 
----
+The intelligence layer enables SIRIUS to:
 
-# 🧠 SYSTEM INTELLIGENCE LAYER (Runtime 6.x Planned)
-
-The planned intelligence layer will enable SIRIUS to:
-
-- understand the system  
-- diagnose  
-- optimize  
-- repair  
+- understand system state  
+- diagnose issues  
+- optimize workflows  
+- repair inconsistencies  
 - enforce identity rules  
 - execute safe actions  
-- analyze multimodal data  
+- analyze KG-linked reasoning  
 - explain every inference  
-- integrate KG reasoning into diagnostics  
 
 All while remaining **100% offline**.
 
 ---
 
-# 🔌 Module Interconnections (Runtime 6.x Planned)
+# 🔌 Module Interconnections (Runtime 5.6.2)
 
 User Input  
 ↓  
-Hybrid Multimodal Analyzer 6.x  
+InputParser5  
 ↓  
-Workflow Engine 6.x  
+KG Layer (Unified Schema)  
 ↓  
-Modular Kernel 6.x  
+Reasoning Engine 5.x  
 ↓  
-Self-Repair Layer 2.0  
+WorkflowEngine5  
 ↓  
-System Intelligence Layer 6.x  
+ENVOY Security Layer  
 ↓  
-System Agent 6.x  
+COLNIK‑6.x Validation  
 ↓  
-ENVOY 6.x  
+System Agent  
 ↓  
-Windows 11 / Android / iOS (safe, controlled)
+Windows 11 (safe, controlled)
 
 ---
 
 # 📌 Document Status  
-Current version: **6.x (Planned Architecture)**  
-This document outlines the *future* direction of SIRIUS, based on the foundations introduced in Runtime **5.6.1**.
+Current version: **5.6.2 (Stable Architecture)**  
+This document describes the *current* architecture of SIRIUS LOCAL AI, replacing the previously planned 6.x draft.
