@@ -79,6 +79,11 @@ These rules support complex enterprise logic, hierarchical classification, and p
 
 # 🛡 COLNIK‑6.x — Enterprise Customs & Validation Layer
 
+> ⚠️ **WARNING — INCOMPLETE MODULE**  
+> **COLNIK‑6.x is not yet fully implemented.**  
+> This version currently serves **only as a personal backup for the author** and is **not intended for public, production, or enterprise use**.  
+> A complete and fully validated implementation of COLNIK‑6.x will be released soon as part of the upcoming SIRIUS 6.x security expansion.
+
 COLNIK‑6.x is a fully isolated security and validation subsystem designed to enforce rules, protect KG integrity, and regulate workflow execution inside the SIRIUS runtime.
 
 It acts as an internal **customs officer**, inspecting and validating operations before they reach core reasoning or workflow engines.
@@ -145,7 +150,7 @@ Version 5.6.2 is the most stable and security‑aligned release of the SIRIUS Ru
 - Full reasoning engine and rule suite  
 - WorkflowEngine5 with complete step registry  
 - ENVOY security layers  
-- **COLNIK‑6.x validation subsystem**  
+- **COLNIK‑6.x validation subsystem (incomplete preview)**  
 - Behavior Filter and Contextual Behavior Engine  
 - Self‑Repair Layer 5.4  
 - `autosave_kg.json` (Unified Schema snapshot)  
