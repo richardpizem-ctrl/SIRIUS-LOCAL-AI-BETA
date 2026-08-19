@@ -23,4 +23,3 @@ jobs:
             echo "Validating $file"
             unzip -t "$file"
           done
-
