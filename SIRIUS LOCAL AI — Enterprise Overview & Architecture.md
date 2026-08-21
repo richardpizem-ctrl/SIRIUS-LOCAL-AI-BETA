@@ -249,3 +249,152 @@ Includes:
 
 SIRIUS LOCAL AI 5.6.2 consolidates a fully stabilized symbolic AI runtime with deterministic reasoning, explainability‑first design, hardened security layers, and enterprise‑grade validation.  
 Its modular architecture supports offline operation, multi‑hop reasoning, and advanced system governance — forming a robust foundation for the upcoming autonomous and multimodal capabilities of version 6.x.
+---
+
+# 🚀 Looking Ahead: The Autonomous Future of SIRIUS (6.x)
+
+While version 5.6.2 delivers a fully stabilized symbolic runtime, the next major milestone
+is the introduction of supervised, deterministic autonomy. The Autonomy Engine 6.x
+extends SIRIUS beyond reasoning and workflows into safe, explainable, identity‑aware
+autonomous behavior.
+
+Below is the full architectural overview of the upcoming autonomy layer.
+# 🤖 Autonomy Engine 6.x — Next‑Generation Deterministic AI Autonomy  
+### The Future Core of SIRIUS: Safe, Explainable, Identity‑Aware Autonomous Intelligence
+
+The upcoming **Autonomy Engine 6.x** represents the largest architectural leap in the history of SIRIUS LOCAL AI.  
+While version 5.x delivers deterministic reasoning, enterprise validation, and hardened security, version 6.x introduces a fully structured, explainable, and identity‑aware autonomous layer designed for **safe, predictable, offline AI behavior**.
+
+Autonomy in SIRIUS is not “self‑acting AI.”  
+It is **supervised autonomy**, built on strict rules, identity gates, and COLNIK‑validated execution.
+
+---
+
+## 🧩 Core Architecture of Autonomy 6.x
+
+Autonomy is built on **six foundational pillars**, each representing a distinct capability layer:
+
+1. **Monitoring Layer**  
+   Continuously observes system state, processes, KG changes, and user context.  
+   Generates deterministic signals for analysis.
+
+2. **Analyzer Layer**  
+   Interprets signals, evaluates system conditions, detects anomalies, and identifies optimization opportunities.  
+   Produces structured analysis packets.
+
+3. **Proposer Layer**  
+   Generates safe, deterministic action proposals based on Analyzer output.  
+   Every proposal includes:
+   - reasoning context  
+   - expected outcome  
+   - risk level  
+   - explainability trace  
+
+4. **JSON Format Layer**  
+   Converts proposals into standardized JSON payloads for validation and workflow routing.
+
+5. **COLNIK Validation Layer**  
+   The “customs officer” of autonomy.  
+   Inspects every autonomous proposal for:
+   - identity compliance  
+   - permission correctness  
+   - risk classification  
+   - policy alignment  
+   - anomaly detection  
+
+6. **Workflow → OS Execution Layer**  
+   Only after COLNIK approval, proposals enter the Workflow Engine and may reach the OS through the System Agent.  
+   All actions remain:
+   - deterministic  
+   - reversible  
+   - explainable  
+   - identity‑restricted  
+
+---
+
+## 🔐 Identity‑Aware Autonomous Behavior
+
+Autonomy 6.x strictly respects identity layers:
+
+- **OWNER** — full autonomous assistance  
+- **FAMILY** — limited autonomous suggestions  
+- **STRANGER** — no autonomous actions, only safe observations  
+
+This ensures that autonomy never performs actions outside the user’s trust boundary.
+
+---
+
+## 🛡️ Safety Principles of Autonomy
+
+Autonomy 6.x is built on five non‑negotiable safety laws:
+
+1. **No autonomous action without COLNIK approval**  
+2. **No direct OS access — always through System Agent**  
+3. **No hidden behavior — every step is logged and explainable**  
+4. **No neural guessing — autonomy is fully symbolic**  
+5. **No identity bypass — OWNER/FAMILY/STRANGER rules are absolute**
+
+These laws guarantee enterprise‑grade safety even in offline environments.
+
+---
+
+## 🔍 Explainability‑First Autonomous Design
+
+Every autonomous decision produces:
+
+- a proof tree  
+- an evidence chain  
+- a reasoning log  
+- a risk classification  
+- a validation trace  
+- a workflow execution path  
+
+This makes autonomy **fully transparent**, auditable, and predictable.
+
+---
+
+## ⚡ Autonomous Capabilities Planned for 6.x
+
+Autonomy 6.x will introduce:
+
+- **System Optimization Autonomy**  
+  CPU, RAM, process management, background cleanup.
+
+- **KG Maintenance Autonomy**  
+  deduplication, consistency checks, relation validation.
+
+- **Folder & File Triage Autonomy**  
+  detection of duplicates, corrupted files, misplaced folders.
+
+- **Navigation Autonomy**  
+  safe routing of system actions through Workflow → ENVOY → COLNIK.
+
+- **Terminal Assistant Autonomy**  
+  supervised command execution with explainability.
+
+- **ENVOY Permission Autonomy**  
+  dynamic identity‑aware policy enforcement.
+
+These capabilities transform SIRIUS from a deterministic AI engine into a **supervised autonomous system**.
+
+---
+
+## 🚀 Why Autonomy 6.x Matters
+
+Autonomy 6.x is not about replacing the user.  
+It is about **augmenting** the user with:
+
+- safe automation  
+- explainable optimization  
+- intelligent system governance  
+- deterministic decision support  
+- enterprise‑grade protection  
+
+It is the missing piece that elevates SIRIUS from a symbolic runtime into a **full autonomous AI platform**.
+
+---
+
+# 🌟 Summary
+
+The Autonomy Engine 6.x is the future of SIRIUS LOCAL AI — a fully explainable, identity‑aware, deterministic autonomous layer built on strict validation, symbolic reasoning, and enterprise safety.  
+It transforms SIRIUS into a next‑generation offline AI system capable of safe autonomous assistance without sacrificing control, transparency, or security.
