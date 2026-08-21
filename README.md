@@ -79,7 +79,7 @@ These rules support complex enterprise logic, hierarchical classification, and p
 
 # 🛡 COLNIK‑6.x — Enterprise Customs & Validation Layer
 
-> ⚠️ **WARNING — NON‑PRODUCTION MODULES**  
+> 🟥 **WARNING — NON‑PRODUCTION MODULES**  
 > The following components are **NOT production‑ready** and currently exist in the repository **only as internal backup** for the author:  
 > - **COLNIK‑6.x**  
 > - **AUTONOMY**  
@@ -105,6 +105,41 @@ It acts as an internal **customs officer**, inspecting and validating operations
 - Enforcement of enterprise‑grade consistency policies  
 
 COLNIK‑6.x ensures that every KG update, workflow step, and reasoning action passes through a strict validation pipeline — guaranteeing stability, safety, and predictable behavior across the entire runtime.
+
+---
+
+# 🌈 Production Readiness Notice
+
+> 🟥 **INCOMPLETE / BACKUP MODULES**  
+> - COLNIK‑6.x  
+> - AUTONOMY  
+> - GUARD  
+> - MODULES  
+> These modules contain experimental logic and are not intended for production use.
+
+> 🟩 **STABLE / PRODUCTION MODULES**  
+> - Runtime 5.x  
+> - Unified Knowledge Graph  
+> - Reasoning Engine  
+> - WorkflowEngine5  
+> - ENVOY Security Layers
+
+---
+
+# 📊 Development Status Table
+
+| Module / Component | Status | Notes |
+|--------------------|--------|-------|
+| Runtime 5.6.2 | 🟩 Stable | Fully validated, production‑ready |
+| Unified KG Platform | 🟩 Stable | Enterprise schema + reasoning |
+| Reasoning Engine | 🟩 Stable | Multi‑hop inference + XAI |
+| WorkflowEngine5 | 🟩 Stable | Deterministic orchestration |
+| ENVOY Security Layers | 🟩 Stable | Permission + quarantine |
+
+| COLNIK‑6.x | 🟥 Incomplete | Internal backup, not production |
+| AUTONOMY | 🟥 Incomplete | Experimental logic |
+| GUARD | 🟥 Incomplete | Early prototype |
+| MODULES | 🟥 Incomplete | Development scaffolding |
 
 ---
 
