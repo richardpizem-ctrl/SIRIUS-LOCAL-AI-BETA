@@ -1,0 +1,82 @@
+{
+  "proposals": [
+    {
+      "request_id": "nav-open_explorer",
+      "origin": "AUTONOMY",
+      "action": "NAVIGATE",
+      "target": "explorer.exe",
+      "priority": "LOW",
+      "requires_confirmation": false,
+      "timestamp": "2026-08-20T13:57:19Z",
+      "payload": {
+        "task": "OPEN_EXPLORER",
+        "subaction": "OPEN"
+      }
+    },
+    {
+      "request_id": "nav-open_settings",
+      "origin": "AUTONOMY",
+      "action": "NAVIGATE",
+      "target": "ms-settings:",
+      "priority": "LOW",
+      "requires_confirmation": false,
+      "timestamp": "2026-08-20T13:57:19Z",
+      "payload": {
+        "task": "OPEN_SETTINGS",
+        "subaction": "OPEN"
+      }
+    },
+    {
+      "request_id": "nav-open_control_panel",
+      "origin": "AUTONOMY",
+      "action": "NAVIGATE",
+      "target": "control.exe",
+      "priority": "LOW",
+      "requires_confirmation": false,
+      "timestamp": "2026-08-20T13:57:19Z",
+      "payload": {
+        "task": "OPEN_CONTROL_PANEL",
+        "subaction": "OPEN"
+      }
+    },
+    {
+      "request_id": "nav-open_network_connections",
+      "origin": "AUTONOMY",
+      "action": "NAVIGATE",
+      "target": "ncpa.cpl",
+      "priority": "LOW",
+      "requires_confirmation": false,
+      "timestamp": "2026-08-20T13:57:19Z",
+      "payload": {
+        "task": "OPEN_NETWORK_CONNECTIONS",
+        "subaction": "OPEN"
+      }
+    },
+    {
+      "request_id": "nav-open_disk_management",
+      "origin": "AUTONOMY",
+      "action": "NAVIGATE",
+      "target": "diskmgmt.msc",
+      "priority": "LOW",
+      "requires_confirmation": false,
+      "timestamp": "2026-08-20T13:57:19Z",
+      "payload": {
+        "task": "OPEN_DISK_MANAGEMENT",
+        "subaction": "OPEN"
+      }
+    },
+    {
+      "request_id": "nav-open_device_manager",
+      "origin": "AUTONOMY",
+      "action": "NAVIGATE",
+      "target": "devmgmt.msc",
+      "priority": "LOW",
+      "requires_confirmation": false,
+      "timestamp": "2026-08-20T13:57:19Z",
+      "payload": {
+        "task": "OPEN_DEVICE_MANAGER",
+        "subaction": "OPEN"
+      }
+    }
+  ]
+}

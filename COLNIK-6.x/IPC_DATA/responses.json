@@ -1,0 +1,10 @@
+{
+  "responses": [
+    {
+      "request_id": "cpu-opt",
+      "decision": "ALLOW",
+      "reason": "Confirmed and executed",
+      "timestamp": "2026-08-18T05:18:54Z"
+    }
+  ]
+}

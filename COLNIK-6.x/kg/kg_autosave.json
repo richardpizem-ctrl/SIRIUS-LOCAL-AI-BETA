@@ -1,0 +1,4903 @@
+{
+  "entities": {
+    "guard_alert_ok": {
+      "name": "guard_alert_ok",
+      "attributes": {
+        "type": "guard_alert",
+        "status": "OK",
+        "timestamp": "2026-08-20T12:30:27.368090",
+        "kg_timestamp": "2026-08-20T12:30:27.370930",
+        "kg_cycle_time": 0.0,
+        "cycle_time": -2.5
+      }
+    },
+    "ok": {
+      "name": "OK",
+      "attributes": {
+        "kg_timestamp": "2026-08-19T16:35:03.003067",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "guard_alert_warning": {
+      "name": "guard_alert_warning",
+      "attributes": {
+        "type": "guard_alert",
+        "status": "WARNING",
+        "timestamp": "2026-08-20T12:04:54.256693",
+        "kg_timestamp": "2026-08-20T12:04:54.266538",
+        "kg_cycle_time": 0.0,
+        "cycle_time": -2.327999999979511
+      }
+    },
+    "too_many_proposals": {
+      "name": "too_many_proposals",
+      "attributes": {
+        "type": "guard_problem",
+        "kg_timestamp": "2026-08-20T12:04:54.262651",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "warning": {
+      "name": "WARNING",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T12:04:33.142561",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "nav-open_explorer": {
+      "name": "nav-open_explorer",
+      "attributes": {
+        "action": "NAVIGATE",
+        "target": "explorer.exe",
+        "priority": "LOW",
+        "kg_timestamp": "2026-08-20T13:57:19.459239",
+        "kg_cycle_time": -1.6089999999967404
+      }
+    },
+    "explorer.exe": {
+      "name": "explorer.exe",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T12:33:37.381915",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "nav-open_settings": {
+      "name": "nav-open_settings",
+      "attributes": {
+        "action": "NAVIGATE",
+        "target": "ms-settings:",
+        "priority": "LOW",
+        "kg_timestamp": "2026-08-20T13:57:19.459239",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "ms-settings:": {
+      "name": "ms-settings:",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T12:33:37.384369",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "nav-open_control_panel": {
+      "name": "nav-open_control_panel",
+      "attributes": {
+        "action": "NAVIGATE",
+        "target": "control.exe",
+        "priority": "LOW",
+        "kg_timestamp": "2026-08-20T13:57:19.479347",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "control.exe": {
+      "name": "control.exe",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T12:33:37.389228",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "nav-open_network_connections": {
+      "name": "nav-open_network_connections",
+      "attributes": {
+        "action": "NAVIGATE",
+        "target": "ncpa.cpl",
+        "priority": "LOW",
+        "kg_timestamp": "2026-08-20T13:57:19.485838",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "ncpa.cpl": {
+      "name": "ncpa.cpl",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T12:33:37.397416",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "nav-open_disk_management": {
+      "name": "nav-open_disk_management",
+      "attributes": {
+        "action": "NAVIGATE",
+        "target": "diskmgmt.msc",
+        "priority": "LOW",
+        "kg_timestamp": "2026-08-20T13:57:19.498723",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "diskmgmt.msc": {
+      "name": "diskmgmt.msc",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T12:33:37.400173",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "nav-open_device_manager": {
+      "name": "nav-open_device_manager",
+      "attributes": {
+        "action": "NAVIGATE",
+        "target": "devmgmt.msc",
+        "priority": "LOW",
+        "kg_timestamp": "2026-08-20T13:57:19.501109",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "devmgmt.msc": {
+      "name": "devmgmt.msc",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T12:33:37.402895",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "disk-clean": {
+      "name": "disk-clean",
+      "attributes": {
+        "action": "SYSTEM_CHANGE",
+        "target": "SYSTEM",
+        "priority": "NORMAL",
+        "kg_timestamp": "2026-08-20T13:27:27.364306",
+        "kg_cycle_time": -1.6410000000032596
+      }
+    },
+    "system": {
+      "name": "SYSTEM",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T13:27:27.364306",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "guard_analyzer": {
+      "name": "guard_analyzer",
+      "attributes": {
+        "type": "module",
+        "kg_timestamp": "2026-08-20T13:49:13.109492",
+        "kg_cycle_time": null
+      }
+    },
+    "autonomy_guard": {
+      "name": "autonomy_guard",
+      "attributes": {
+        "kg_timestamp": "2026-08-20T13:45:58.096987",
+        "kg_cycle_time": 0.0
+      }
+    },
+    "cpu-opt": {
+      "name": "cpu-opt",
+      "attributes": {
+        "action": "SYSTEM_CHANGE",
+        "target": "SYSTEM",
+        "priority": "HIGH",
+        "kg_timestamp": "2026-08-20T13:50:48.053227",
+        "kg_cycle_time": -3.5
+      }
+    }
+  },
+  "relations": [
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-19T16:35:03.003067",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-19T16:35:04.997637",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-19T16:35:06.907136",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-19T16:35:08.817818",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-19T16:35:10.726530",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:26.842238",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:29.525376",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:31.949183",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:34.487967",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:37.009201",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:39.387497",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:41.897881",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:44.424544",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:46.851967",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:49.244583",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:51.593256",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:54.202682",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:56.734590",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:42:59.059286",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:43:01.547508",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:43:04.152184",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:48:18.199482",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:48:20.672124",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:48:22.994955",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:48:25.486162",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:48:28.010226",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T11:48:30.523250",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:01:23.316320",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:01:25.628356",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:01:27.902173",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:01:30.271850",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:33.142561",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:33.142561",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:35.489613",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:35.489613",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:37.856279",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:37.856279",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:40.228386",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:40.228386",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:42.561096",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:42.575585",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:44.891631",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:44.891631",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:47.245179",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:47.249370",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:49.592753",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:49.601029",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:51.929732",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:51.931743",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "alert_problem",
+      "target": "too_many_proposals",
+      "kg_timestamp": "2026-08-20T12:04:54.262651",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_warning",
+      "relation": "decision",
+      "target": "WARNING",
+      "kg_timestamp": "2026-08-20T12:04:54.262651",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:19:15.786093",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:19:18.148827",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:19:20.551827",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:19:23.028157",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:19:25.453190",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:30:17.102217",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:30:19.674866",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:30:22.271612",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:30:24.866856",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_alert_ok",
+      "relation": "decision",
+      "target": "OK",
+      "kg_timestamp": "2026-08-20T12:30:27.368923",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:33:37.384369",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:33:37.389228",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:33:37.389228",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:33:37.397416",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:37.402895",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:37.402895",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:33:40.140813",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:33:40.144005",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:33:40.147664",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:33:40.152159",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:40.152159",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:40.158371",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:33:42.743010",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:33:42.750564",
+      "kg_cycle_time": -0.014999999984866008
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:33:42.750564",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:33:42.754418",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:42.762196",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:42.762196",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:33:45.230518",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:33:45.236729",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:33:45.240716",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:33:45.242752",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:45.246627",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:45.246627",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:33:47.934819",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:33:47.940269",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:33:47.940269",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:33:47.948979",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:47.953122",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:33:47.953122",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:36:33.424309",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:36:33.440945",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:36:33.445083",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:36:33.451129",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:33.456164",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:33.456164",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:36:36.904810",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:36:36.904810",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:36:36.918594",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:36:36.921316",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:36.921316",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:36.921316",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:36:40.336262",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:36:40.344303",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:36:40.348031",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:36:40.352042",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:40.355517",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:40.358542",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:36:43.690397",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:36:43.699547",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:36:43.699547",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:36:43.706118",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:43.710016",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:43.715201",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:36:47.114983",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:36:47.121484",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:36:47.121484",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:36:47.121484",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:47.138359",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:36:47.138359",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:38:23.806661",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:38:23.824187",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:38:23.824187",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:38:23.831647",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:23.835268",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:23.835268",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:38:26.361427",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:38:26.367002",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:38:26.371167",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:38:26.376474",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:26.379881",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:26.385136",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:38:28.933232",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:38:28.935994",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:38:28.944149",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:38:28.947121",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:28.954069",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:28.954069",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:38:31.593292",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:38:31.593292",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:38:31.593292",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:38:31.609376",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:31.615680",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:31.615680",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:38:34.265352",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:38:34.278504",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:38:34.283182",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:38:34.283182",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:34.292405",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:38:34.292405",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:54:14.930757",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:54:14.941788",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:54:14.948566",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:54:14.953524",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:14.957546",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:14.967699",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:54:17.570893",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:54:17.583285",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:54:17.588014",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:54:17.593419",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:17.599009",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:17.603815",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:54:20.287375",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:54:20.287375",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:54:20.287375",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:54:20.303225",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:20.313913",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:20.319059",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:54:23.075773",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:54:23.083694",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:54:23.086729",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:54:23.091863",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:23.091863",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:23.104669",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T12:54:25.821215",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T12:54:25.821215",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T12:54:25.828517",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T12:54:25.837170",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:25.841637",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T12:54:25.843643",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:02:49.885795",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:02:49.892912",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:02:49.899620",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:02:49.905430",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:49.910572",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:49.917090",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:02:52.657687",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:02:52.666721",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:02:52.666721",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:02:52.676240",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:52.684166",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:52.690044",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:02:55.179378",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:02:55.187508",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:02:55.195238",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:02:55.195238",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:55.206152",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:55.212893",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:02:57.919841",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:02:57.927563",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:02:57.936538",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:02:57.943213",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:57.943213",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:02:57.954141",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:03:00.659530",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:03:00.663020",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:03:00.667286",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:03:00.674136",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:03:00.677958",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:03:00.677958",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:03:03.352514",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:03:03.352514",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:03:03.368205",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:03:03.372233",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:03:03.372233",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:03:03.385753",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:03:06.011451",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:03:06.018944",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:03:06.020951",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:03:06.034018",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:03:06.040765",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:03:06.043927",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:06:12.763506",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:06:12.772241",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:06:12.774250",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:06:12.774250",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:12.788022",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:12.788022",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:06:15.579923",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:06:15.591743",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:06:15.595764",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:06:15.601787",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:15.619677",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:15.625462",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:06:18.339435",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:06:18.346234",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:06:18.346234",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:06:18.359525",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:18.359525",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:18.367786",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:06:20.940707",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:06:20.949691",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:06:20.949691",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:06:20.962124",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:20.962124",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:20.978247",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:06:23.671851",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:06:23.678044",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:06:23.680053",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:06:23.680053",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:23.700008",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:06:23.700008",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:09:57.684998",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:09:57.695092",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:09:57.697183",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:09:57.697183",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:09:57.714493",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:09:57.723155",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:10:00.354129",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:10:00.354129",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:10:00.370215",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:10:00.386070",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:00.386070",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:00.386070",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:10:03.124944",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:10:03.133455",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:10:03.145750",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:10:03.154162",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:03.154162",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:03.168298",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:10:05.803068",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:10:05.805081",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:10:05.819023",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:10:05.822040",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:05.836048",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:05.847082",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:10:08.454524",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:10:08.454524",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:10:08.470454",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:10:08.478801",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:08.478801",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:10:08.494910",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:13:45.264669",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:13:45.280340",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:13:45.280340",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:13:45.295792",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:45.295792",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:45.312737",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:13:47.871706",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:13:47.884975",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:13:47.893520",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:13:47.903052",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:47.903052",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:47.916698",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:13:50.584240",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:13:50.592138",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:13:50.600312",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:13:50.609935",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:50.618618",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:50.625396",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:13:53.269172",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:13:53.278412",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:13:53.285067",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:13:53.294067",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:53.302832",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:53.302832",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:13:55.813991",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:13:55.820654",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:13:55.832233",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:13:55.833989",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:55.845198",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:13:55.855410",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:16:28.317149",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:16:28.317149",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:16:28.332913",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:16:28.332913",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:28.348934",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:28.348934",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:16:30.911851",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:16:30.921535",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:16:30.927596",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:16:30.936544",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:30.943257",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:30.953472",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:16:33.354318",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:16:33.365049",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:16:33.374525",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:16:33.382716",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:33.390582",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:33.398813",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:16:35.917568",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:16:35.925604",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:16:35.929505",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:16:35.941241",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:35.944342",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:35.956712",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:16:38.348021",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:16:38.356251",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:16:38.356251",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:16:38.373085",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:38.373085",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:16:38.390002",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:19:35.251644",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:19:35.267465",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:19:35.267465",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:19:35.283500",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:35.283500",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:35.299378",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:19:37.819448",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:19:37.826906",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:19:37.826906",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:19:37.843527",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:37.848141",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:37.858975",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:19:40.437017",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:19:40.443523",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:19:40.453028",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:19:40.464469",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:40.471173",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:40.475927",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:19:43.131112",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:19:43.136279",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:19:43.153898",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:19:43.153898",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:43.169957",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:43.179267",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:19:45.681541",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:19:45.691177",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:19:45.697176",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:19:45.708538",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:45.717140",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:19:45.729020",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:23:32.691096",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:23:32.702239",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:23:32.718236",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:23:32.718236",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:32.734183",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:32.734183",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:23:35.282002",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:23:35.295221",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:23:35.297924",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:23:35.313582",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:35.318583",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:35.329669",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:23:37.948223",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:23:37.955268",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:23:37.973415",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:23:37.985440",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:37.993062",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:37.997997",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:23:40.506208",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:23:40.521903",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:23:40.531117",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:23:40.537698",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:40.546681",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:40.559248",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:23:43.118377",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:23:43.127496",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:23:43.134295",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:23:43.142815",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:43.152097",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:23:43.165621",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:25:37.986149",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:25:37.996957",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:25:38.005920",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:25:38.014253",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:38.026338",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:38.034235",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:25:41.446123",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:25:41.464162",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:25:41.470182",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:25:41.478047",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:41.494194",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:41.500281",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:25:45.153481",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:25:45.169536",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:25:45.177507",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:25:45.185262",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:45.201293",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:45.203300",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:25:48.690967",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:25:48.697934",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:25:48.708873",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:25:48.722591",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:48.722591",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:25:48.738269",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:27:25.677685",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:27:25.691739",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:27:25.702585",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:27:25.707731",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:25.723486",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:25.723486",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "disk-clean",
+      "relation": "targets",
+      "target": "SYSTEM",
+      "kg_timestamp": "2026-08-20T13:27:27.364306",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:27:27.380138",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:27:27.395788",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:27:27.406501",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:27:27.411483",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:27.411483",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:27.428174",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:27:29.085780",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:27:29.094382",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:27:29.094382",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:27:29.116281",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:29.125938",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:29.131801",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:27:30.760020",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:27:30.768087",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:27:30.783759",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:27:30.791118",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:30.799811",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:30.815853",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:27:32.459246",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:27:32.470713",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:27:32.479449",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:27:32.486537",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:32.502454",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:27:32.502454",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:29:17.402398",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:29:17.417978",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:29:17.426144",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:29:17.440617",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:17.441623",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:17.457720",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:29:19.109623",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:29:19.116776",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:29:19.132462",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:29:19.143656",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:19.154296",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:19.164081",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:29:20.830539",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:29:20.832145",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:29:20.847792",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:29:20.862507",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:20.864832",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:20.878249",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:29:22.531875",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:29:22.544144",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:29:22.552638",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:29:22.568533",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:22.568533",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:22.584510",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:29:24.275200",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:29:24.284145",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:29:24.291407",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:29:24.307943",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:24.323138",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:29:24.323138",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:33:35.348829",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:33:35.359042",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:33:35.374207",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:33:35.383711",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:35.390301",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:35.406863",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:33:38.079591",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:33:38.086645",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:33:38.095314",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:33:38.111010",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:38.111010",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:38.136552",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:33:40.570715",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:33:40.591705",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:33:40.602389",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:33:40.602389",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:40.624257",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:40.634131",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:33:43.260392",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:33:43.269373",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:33:43.291873",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:33:43.304337",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:43.315252",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:43.323791",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:33:45.899314",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:33:45.915101",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:33:45.936667",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:33:45.946249",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:45.946249",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:33:45.964360",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:39:16.662608",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:39:16.673770",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:39:16.689602",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:39:16.695625",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:16.705670",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:16.725636",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:39:19.411003",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:39:19.427090",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:39:19.442954",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:39:19.442954",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:19.460929",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:19.474773",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:39:21.986619",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:39:21.994967",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:39:22.013597",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:39:22.013597",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:22.026688",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:22.042348",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:39:24.450016",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:39:24.461171",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:39:24.462549",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:39:24.483396",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:24.493044",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:39:24.493044",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:41:11.474329",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:41:11.490135",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:41:11.508201",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:41:11.508201",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:11.526063",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:11.540149",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:41:13.232857",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:41:13.244393",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:41:13.256977",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:41:13.264616",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:13.273166",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:13.280608",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:41:14.970424",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:41:14.982489",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:41:14.995350",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:41:15.001467",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:15.021285",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:15.033051",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:41:16.748669",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:41:16.761324",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:41:16.769589",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:41:16.786935",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:16.800795",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:16.800795",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:41:18.491640",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:41:18.507630",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:41:18.507630",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:41:18.524249",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:18.541501",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:18.555333",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:41:20.204975",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:41:20.218827",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:41:20.240185",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:41:20.252325",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:20.252325",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:41:20.273766",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:43:14.883389",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:43:14.899002",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:43:14.910107",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:43:14.923473",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:14.925480",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:14.944753",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:43:17.656619",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:43:17.671476",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:43:17.671476",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:43:17.687620",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:17.708201",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:17.722038",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:43:20.267854",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:43:20.283762",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:43:20.299570",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:43:20.315686",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:20.329349",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:20.331453",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:43:22.987797",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:43:22.998535",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:43:23.016212",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:43:23.030109",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:23.046010",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:23.058832",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:43:25.727870",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:43:25.738280",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:43:25.755358",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:43:25.767576",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:25.777499",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:43:25.785697",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_analyzer",
+      "relation": "initialized",
+      "target": "autonomy_guard",
+      "kg_timestamp": "2026-08-20T13:45:58.096987",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_analyzer",
+      "relation": "initialized",
+      "target": "autonomy_guard",
+      "kg_timestamp": "2026-08-20T13:46:42.775297",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "guard_analyzer",
+      "relation": "initialized",
+      "target": "autonomy_guard",
+      "kg_timestamp": "2026-08-20T13:49:13.109492",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:50:37.651137",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:50:37.666407",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:50:37.683211",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:50:37.698165",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:37.713207",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:37.721274",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:50:41.075626",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:50:41.091369",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:50:41.097777",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:50:41.118011",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:41.132191",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:41.138845",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:50:44.464068",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:50:44.481974",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:50:44.500493",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:50:44.518406",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:44.522490",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:44.548967",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "cpu-opt",
+      "relation": "targets",
+      "target": "SYSTEM",
+      "kg_timestamp": "2026-08-20T13:50:48.055735",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:50:48.071479",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:50:48.087517",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:50:48.103415",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:50:48.115838",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:48.119350",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:48.135192",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:50:51.533679",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:50:51.549500",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:50:51.549500",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:50:51.569997",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:51.580741",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:50:51.605513",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:57:12.857930",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:57:12.874097",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:57:12.889974",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:57:12.896358",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:12.905813",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:12.921874",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:57:14.508862",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:57:14.520663",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:57:14.524893",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:57:14.540971",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:14.540971",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:14.556925",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:57:16.145258",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:57:16.159097",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:57:16.166582",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:57:16.181564",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:16.191064",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:16.191064",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:57:17.808481",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:57:17.817072",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:57:17.817072",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:57:17.832951",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:17.848887",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:17.848887",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_explorer",
+      "relation": "targets",
+      "target": "explorer.exe",
+      "kg_timestamp": "2026-08-20T13:57:19.459239",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_settings",
+      "relation": "targets",
+      "target": "ms-settings:",
+      "kg_timestamp": "2026-08-20T13:57:19.469807",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_control_panel",
+      "relation": "targets",
+      "target": "control.exe",
+      "kg_timestamp": "2026-08-20T13:57:19.484093",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_network_connections",
+      "relation": "targets",
+      "target": "ncpa.cpl",
+      "kg_timestamp": "2026-08-20T13:57:19.494049",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_disk_management",
+      "relation": "targets",
+      "target": "diskmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:19.501109",
+      "kg_cycle_time": 0.0
+    },
+    {
+      "source": "nav-open_device_manager",
+      "relation": "targets",
+      "target": "devmgmt.msc",
+      "kg_timestamp": "2026-08-20T13:57:19.501109",
+      "kg_cycle_time": 0.0
+    }
+  ],
+  "timecore": {
+    "last_runtime_start": 176632.859,
+    "last_runtime_end": null,
+    "runtime_gap": null
+  }
+}
