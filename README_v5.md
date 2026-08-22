@@ -12,18 +12,18 @@
 
 ---
 
-# 🌌 Introduction — Final Evolution of SIRIUS Runtime
+# 🌌 Introduction — Final Evolution of the SIRIUS Runtime
 
-SIRIUS Runtime **6.0.0** je finálna generácia lokálneho AI systému, ktorá spája všetky dokončené moduly z vetvy **5.x** do jedného stabilného balíka pre používateľov.
+SIRIUS Runtime **6.0.0** is the final generation of the local AI system, combining all completed modules from the **5.x** branch into one stable package for end‑users.
 
-Do verzie **6.0.0** sú zahrnuté tieto míľniky:
+The following milestones are fully included in version **6.0.0**:
 
-- **5.7.0 — Autonómia**
+- **5.7.0 — Autonomy**
 - **5.8.0 — UI Panel**
-- **5.9.0 — Jazykový Modul**
-- **6.0.0 — Finálny balík pre ľudí (public release)**
+- **5.9.0 — Language Module**
+- **6.0.0 — Final User Package (public release)**
 
-Verzia 6.0.0 prináša:
+Version 6.0.0 delivers:
 
 - **Modular Kernel 6.0**
 - **Hybrid Multimodal Analyzer 6.0**
@@ -35,98 +35,98 @@ Verzia 6.0.0 prináša:
 - **Unified KG 5.6.2 integration**
 - **COLNIK‑validated pipelines**
 
-Cieľom verzie 6.0.0 je vytvoriť **lokálny multimodálny diagnostický systém**, ktorý analyzuje audio, MIDI, obrázky, video, štruktúrované dáta a KG fakty — plne offline, deterministicky, bez generovania obsahu.
+The goal of version 6.0.0 is to create a **local multimodal diagnostic system** capable of analyzing audio, MIDI, images, video, structured data, and KG facts — fully offline, deterministic, and without content generation.
 
 ---
 
 # 🧠 Hybrid Multimodal Analyzer 6.0
 
-Multimodálny analyzátor s deterministickou logikou a vysledovateľnou explainability.
+A multimodal analyzer with deterministic logic and fully traceable explainability.
 
 ### 🔊 Audio / MIDI Analyzer
-- extrakcia tónov
-- rytmická segmentácia
-- MIDI normalizácia
-- detekcia vzorov
-- KG‑prepojené audio entity
-- explainability stopy
-- COLNIK‑validované audio pipeline
+- tone extraction  
+- rhythmic segmentation  
+- MIDI normalization  
+- pattern detection  
+- KG‑linked audio entities  
+- explainability traces  
+- COLNIK‑validated audio pipelines  
 
 ### 🖼 Image Structure Analyzer
-- detekcia objektov
-- segmentácia štruktúr
-- extrakcia vizuálnych prvkov
-- KG‑prepojené vizuálne entity
-- KG_EXPLAIN_DEEP stromy dôkazov
-- deterministická vizuálna inferencia
-- COLNIK‑validované obrazové pipeline
+- object detection  
+- structural segmentation  
+- visual feature extraction  
+- KG‑linked visual entities  
+- KG_EXPLAIN_DEEP evidence trees  
+- deterministic visual inference  
+- COLNIK‑validated image pipelines  
 
 ### 🎞 Video Frame Semantic Extractor
-- analýza po snímkach
-- detekcia udalostí
-- časová segmentácia
-- behaviorálna analýza
-- multi‑hop inferencia
-- KG‑prepojené video entity
-- COLNIK‑validované video pipeline
+- frame‑by‑frame analysis  
+- event detection  
+- temporal segmentation  
+- behavioral analysis  
+- multi‑hop inference  
+- KG‑linked video entities  
+- COLNIK‑validated video pipelines  
 
 ### 🔗 KG‑Aware Multimodal Linking
-- tvorba multimodálnych faktov
-- prepojenie entít
-- deterministická inferencia
-- KG_EXPLAIN + KG_EXPLAIN_DEEP integrácia
-- COLNIK‑validované KG aktualizácie
+- multimodal fact creation  
+- entity linking  
+- deterministic inference  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP integration  
+- COLNIK‑validated KG updates  
 
 ---
 
 # 🧩 Modular Kernel 6.0
 
-Jadro navrhnuté pre stabilitu, izoláciu a dlhodobú udržateľnosť.
+A kernel designed for stability, isolation, and long‑term maintainability.
 
 ### Key features:
-- sandboxované moduly
-- kernel routing
-- unified error layer 6.0
-- deterministická pipeline
-- Self‑Repair Layer 2.0
-- zjednodušená modulová architektúra
-- explainability‑aware routing
-- jednotná PC/Mobile logika
-- COLNIK‑validované kernel operácie
+- sandboxed modules  
+- kernel routing  
+- unified error layer 6.0  
+- deterministic execution pipeline  
+- Self‑Repair Layer 2.0 integration  
+- simplified module architecture  
+- explainability‑aware routing  
+- unified PC/Mobile logic  
+- COLNIK‑validated kernel operations  
 
 ---
 
 # 🛡 Family Security Engine 6.0
 
-Nová generácia ochrany domácnosti.
+A new generation of home protection.
 
 ### Features:
-- behaviorálna detekcia
-- StrangerMode 3.0
-- SchoolMode 3.0
-- TimeLimits 3.0
-- identity‑aware pravidlá
-- KG‑prepojená bezpečnostná inferencia
-- explainability pre každé rozhodnutie
-- deterministický STRANGER‑mode
-- bezpečný SCHOOLWORK bypass
-- COLNIK‑validované bezpečnostné rozhodnutia
+- behavioral detection  
+- StrangerMode 3.0  
+- SchoolMode 3.0  
+- TimeLimits 3.0  
+- identity‑aware rules  
+- KG‑linked safety inference  
+- explainability for every decision  
+- deterministic STRANGER‑mode  
+- safe SCHOOLWORK bypass  
+- COLNIK‑validated safety decisions  
 
 ---
 
 # 🔧 Self‑Repair Layer 2.0
 
-Autonómna vrstva opráv.
+Autonomous repair layer.
 
-- integritné skenovanie modulov
-- automatická rekonštrukcia workflow
-- liečenie závislostí
-- kernel‑level recovery
-- detekcia anomálií
-- repair‑routing logika
-- KG_EXPLAIN_DEEP pre opravy
-- jednotná diagnostika PC/Mobile
-- COLNIK‑validované repair akcie
+- module integrity scanning  
+- automatic workflow reconstruction  
+- dependency healing  
+- kernel‑level recovery  
+- anomaly detection  
+- repair‑routing logic  
+- KG_EXPLAIN_DEEP for repair decisions  
+- unified PC/Mobile diagnostics  
+- COLNIK‑validated repair actions  
 
 ---
 
@@ -152,7 +152,7 @@ Autonómna vrstva opráv.
 ---
 
 # 📘 Installation  
-*(Publikované po stabilnom 6.0.0 milestone)*
+*(To be published after the stable 6.0.0 milestone)*
 
 ---
 
@@ -162,20 +162,20 @@ MIT License.
 ---
 
 # 🤝 Contributions  
-Pull requests sú vítané.
+Pull requests are welcome.
 
 ---
 
-# 🧭 Roadmap (Final — podľa tvojej schémy)
+# 🧭 Roadmap (Final — according to your versioning)
 
-- **5.7.0** — Autonómia  
+- **5.7.0** — Autonomy  
 - **5.8.0** — UI Panel  
-- **5.9.0** — Jazykový Modul  
-- **6.0.0** — Finálny balík pre ľudí (public release)  
-- **7.0.0** — Budúca multimodálna diagnostická nadstavba
+- **5.9.0** — Language Module  
+- **6.0.0** — Final User Package (public release)  
+- **7.0.0** — Future multimodal diagnostic expansion  
 
 ---
 
 # 📦 Release Asset Notice (Runtime 6.0 — Final Draft)
 
-Toto je dokumentačný náhľad finálnej generácie SIRIUS Runtime 6.0.0.
+This is a documentation preview of the final generation of the SIRIUS Runtime 6.0.0.
