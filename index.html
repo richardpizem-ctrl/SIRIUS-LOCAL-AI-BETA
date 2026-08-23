@@ -35,12 +35,28 @@
             color: #4cc3ff;
         }
 
-        /* ⭐ NEONOVÝ GLOW OKOLO LOGA ⭐ */
+        /* ⭐ NEONOVÝ GLOW + PULZUJÚCA ANIMÁCIA ⭐ */
         .logo {
             width: 250px;
             display: block;
             margin: 30px auto;
             filter: drop-shadow(0 0 35px #4cc3ff);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                filter: drop-shadow(0 0 25px #4cc3ff);
+                transform: scale(1.00);
+            }
+            50% {
+                filter: drop-shadow(0 0 45px #4cc3ff);
+                transform: scale(1.03);
+            }
+            100% {
+                filter: drop-shadow(0 0 25px #4cc3ff);
+                transform: scale(1.00);
+            }
         }
     </style>
 </head>
