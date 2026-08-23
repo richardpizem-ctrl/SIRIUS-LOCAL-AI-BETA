@@ -45,44 +45,22 @@
         }
 
         @keyframes pulse {
-            0% {
-                filter: drop-shadow(0 0 25px #4cc3ff);
-                transform: scale(1.00);
-            }
-            50% {
-                filter: drop-shadow(0 0 45px #4cc3ff);
-                transform: scale(1.03);
-            }
-            100% {
-                filter: drop-shadow(0 0 25px #4cc3ff);
-                transform: scale(1.00);
-            }
+            0% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
+            50% { filter: drop-shadow(0 0 45px #4cc3ff); transform: scale(1.03); }
+            100% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
         }
 
-        /* ⭐ ANIMOVANÉ SEKCE – FADE-IN + SLIDE-IN ⭐ */
+        /* ⭐ SCROLL ANIMÁCIA SEKCIÍ ⭐ */
         .section {
             opacity: 0;
-            transform: translateY(25px);
-            animation: fadeSlide 1.2s ease-out forwards;
+            transform: translateY(35px);
+            transition: all 1.0s ease-out;
         }
 
-        @keyframes fadeSlide {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        /* Jemné oneskorenie pre jednotlivé sekcie */
-        .delay1 { animation-delay: 0.2s; }
-        .delay2 { animation-delay: 0.4s; }
-        .delay3 { animation-delay: 0.6s; }
-        .delay4 { animation-delay: 0.8s; }
-
     </style>
 </head>
 
@@ -103,13 +81,13 @@
 
 <div class="container">
 
-    <div class="section delay1">
+    <div class="section">
         <h1 id="home">SIRIUS LOCAL AI</h1>
         <h2>Offline. Safe. Deterministic.</h2>
         <p>SIRIUS LOCAL AI is a fully offline AI environment for Windows 11, designed for maximum security, predictable behavior, and zero network communication.</p>
     </div>
 
-    <div class="section delay2">
+    <div class="section">
         <h3 id="features">Key Features</h3>
         <ul>
             <li>100% offline operation</li>
@@ -121,7 +99,7 @@
         </ul>
     </div>
 
-    <div class="section delay3">
+    <div class="section">
         <h3 id="architecture">Architecture</h3>
         <ul>
             <li>Runtime 5.x / 6.x</li>
@@ -135,7 +113,7 @@
         </ul>
     </div>
 
-    <div class="section delay4">
+    <div class="section">
         <h3 id="safety">Safety Principles</h3>
         <ul>
             <li>Offline-only operation</li>
@@ -148,6 +126,23 @@
     </div>
 
 </div>
+
+<!-- ⭐ SCROLL REVEAL SCRIPT ⭐ -->
+<script>
+    const sections = document.querySelectorAll('.section');
+
+    const reveal = () => {
+        sections.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) {
+                sec.classList.add('visible');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+</script>
 
 </body>
 </html>
