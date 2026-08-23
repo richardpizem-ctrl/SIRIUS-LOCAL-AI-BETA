@@ -35,7 +35,7 @@
             color: #4cc3ff;
         }
 
-        /* ⭐ NEONOVÝ GLOW + PULZUJÚCA ANIMÁCIA ⭐ */
+        /* ⭐ NEONOVÝ GLOW + PULZUJÚCA ANIMÁCIA LOGA ⭐ */
         .logo {
             width: 250px;
             display: block;
@@ -58,6 +58,31 @@
                 transform: scale(1.00);
             }
         }
+
+        /* ⭐ ANIMOVANÉ SEKCE – FADE-IN + SLIDE-IN ⭐ */
+        .section {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeSlide 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Jemné oneskorenie pre jednotlivé sekcie */
+        .delay1 { animation-delay: 0.2s; }
+        .delay2 { animation-delay: 0.4s; }
+        .delay3 { animation-delay: 0.6s; }
+        .delay4 { animation-delay: 0.8s; }
+
     </style>
 </head>
 
@@ -78,43 +103,49 @@
 
 <div class="container">
 
-    <h1 id="home">SIRIUS LOCAL AI</h1>
-    <h2>Offline. Safe. Deterministic.</h2>
+    <div class="section delay1">
+        <h1 id="home">SIRIUS LOCAL AI</h1>
+        <h2>Offline. Safe. Deterministic.</h2>
+        <p>SIRIUS LOCAL AI is a fully offline AI environment for Windows 11, designed for maximum security, predictable behavior, and zero network communication.</p>
+    </div>
 
-    <p>SIRIUS LOCAL AI is a fully offline AI environment for Windows 11, designed for maximum security, predictable behavior, and zero network communication.</p>
+    <div class="section delay2">
+        <h3 id="features">Key Features</h3>
+        <ul>
+            <li>100% offline operation</li>
+            <li>No network communication</li>
+            <li>No destructive actions without confirmation</li>
+            <li>Deterministic execution model</li>
+            <li>Modular architecture</li>
+            <li>Security over convenience</li>
+        </ul>
+    </div>
 
-    <h3 id="features">Key Features</h3>
-    <ul>
-        <li>100% offline operation</li>
-        <li>No network communication</li>
-        <li>No destructive actions without confirmation</li>
-        <li>Deterministic execution model</li>
-        <li>Modular architecture</li>
-        <li>Security over convenience</li>
-    </ul>
+    <div class="section delay3">
+        <h3 id="architecture">Architecture</h3>
+        <ul>
+            <li>Runtime 5.x / 6.x</li>
+            <li>COLNÍK – Security module</li>
+            <li>AUTONOMY – Controlled actions</li>
+            <li>KG – Knowledge Graph</li>
+            <li>ReasoningEngine – Deterministic reasoning</li>
+            <li>ENVOY – Quarantine layer</li>
+            <li>AMBASSADOR – System interface</li>
+            <li>Family Security – Protection layers</li>
+        </ul>
+    </div>
 
-    <h3 id="architecture">Architecture</h3>
-    <ul>
-        <li>Runtime 5.x / 6.x</li>
-        <li>COLNÍK – Security module</li>
-        <li>AUTONOMY – Controlled actions</li>
-        <li>KG – Knowledge Graph</li>
-        <li>ReasoningEngine – Deterministic reasoning</li>
-        <li>ENVOY – Quarantine layer</li>
-        <li>AMBASSADOR – System interface</li>
-        <li>Family Security – Protection layers</li>
-    </ul>
-
-    <h3 id="safety">Safety Principles</h3>
-    <ul>
-        <li>Offline-only operation</li>
-        <li>No delete/move/overwrite without confirmation</li>
-        <li>No background automation</li>
-        <li>Deterministic behavior</li>
-        <li>Strict capability boundaries</li>
-    </ul>
-
-    <p>Full documentation is available in <strong>DOCS.html</strong>.</p>
+    <div class="section delay4">
+        <h3 id="safety">Safety Principles</h3>
+        <ul>
+            <li>Offline-only operation</li>
+            <li>No delete/move/overwrite without confirmation</li>
+            <li>No background automation</li>
+            <li>Deterministic behavior</li>
+            <li>Strict capability boundaries</li>
+        </ul>
+        <p>Full documentation is available in <strong>DOCS.html</strong>.</p>
+    </div>
 
 </div>
 
