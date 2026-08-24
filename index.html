@@ -28,13 +28,11 @@
         .container {
             padding: 40px;
         }
-        h1 {
-            color: #4cc3ff;
-        }
-        h3 {
+        h1, h3 {
             color: #4cc3ff;
         }
 
+        /* LOGO */
         .logo {
             width: 250px;
             display: block;
@@ -42,31 +40,30 @@
             filter: drop-shadow(0 0 35px #4cc3ff);
             animation: pulse 2.5s ease-in-out infinite;
         }
-
         @keyframes pulse {
             0% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
             50% { filter: drop-shadow(0 0 45px #4cc3ff); transform: scale(1.03); }
             100% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
         }
 
+        /* SCROLL ANIMATION */
         .section {
             opacity: 0;
             transform: translateY(35px);
             transition: all 1.0s ease-out;
         }
-
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* ACCORDION – jednoduchý, čistý, bez zmeny dizajnu */
+        /* ACCORDION */
         .accordion {
             background: #111;
             border: 1px solid #333;
             border-radius: 8px;
-            margin-bottom: 12px;
-            padding: 10px 12px;
+            margin-top: 15px;
+            padding: 12px;
             cursor: pointer;
             transition: all 0.25s ease;
         }
@@ -85,7 +82,7 @@
         }
         .accordion-content.open {
             max-height: 600px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -143,28 +140,28 @@
             <li>Family Security – Protection layers</li>
         </ul>
 
-        <!-- ACCORDION BLOKY – presne to, čo si chcel -->
+        <!-- ACCORDION BLOCKS -->
         <div class="accordion">
-            <div class="accordion-title">Riadená autonómia</div>
+            <div class="accordion-title">Controlled Autonomy</div>
             <div class="accordion-content">
-                <p>SIRIUS vykonáva autonómne akcie iba v rámci striktne definovaných pravidiel.</p>
+                <p>SIRIUS executes actions only inside strict rules.</p>
                 <ul>
-                    <li>Žiadne akcie mimo modulov</li>
-                    <li>Každá akcia je vysvetliteľná</li>
-                    <li>Agenti majú pevné hranice</li>
-                    <li>Žiadne pozadie, žiadne skryté procesy</li>
+                    <li>No actions outside defined modules</li>
+                    <li>Every action is explainable</li>
+                    <li>No hidden background processes</li>
+                    <li>Agents have strict boundaries</li>
                 </ul>
             </div>
         </div>
 
         <div class="accordion">
-            <div class="accordion-title">Bezpečnostné vrstvy</div>
+            <div class="accordion-title">Security Layers</div>
             <div class="accordion-content">
-                <p>Bezpečnosť je jadrom SIRIUS. Každá akcia je kontrolovaná.</p>
+                <p>Security modules protect the system and environment.</p>
                 <ul>
-                    <li>COLNÍK – kontrola prístupov</li>
-                    <li>ENVOY – karanténa</li>
-                    <li>Family Security – ochrana rodiny</li>
+                    <li>COLNÍK – access control</li>
+                    <li>ENVOY – quarantine</li>
+                    <li>Family Security – protection rules</li>
                     <li>Strict capability boundaries</li>
                 </ul>
             </div>
@@ -173,12 +170,12 @@
         <div class="accordion">
             <div class="accordion-title">Knowledge Graph (KG)</div>
             <div class="accordion-content">
-                <p>KG je štruktúrovaný mozog SIRIUS.</p>
+                <p>KG is the structured brain of SIRIUS.</p>
                 <ul>
-                    <li>Entity a vlastnosti</li>
-                    <li>Relácie a dedukcie</li>
+                    <li>Entities and attributes</li>
+                    <li>Relations and deductions</li>
                     <li>EXPLAIN / WHY / PATH</li>
-                    <li>Hlboké vysvetlenia</li>
+                    <li>Deep reasoning</li>
                 </ul>
             </div>
         </div>
@@ -222,6 +219,7 @@
 
 <!-- SCRIPTS -->
 <script>
+    /* SCROLL REVEAL */
     const sections = document.querySelectorAll('.section');
     const reveal = () => {
         sections.forEach(sec => {
@@ -234,7 +232,7 @@
     window.addEventListener('scroll', reveal);
     window.addEventListener('load', reveal);
 
-    /* ACCORDION SCRIPT */
+    /* ACCORDION */
     const accs = document.querySelectorAll('.accordion');
     accs.forEach(a => {
         a.addEventListener('click', () => {
