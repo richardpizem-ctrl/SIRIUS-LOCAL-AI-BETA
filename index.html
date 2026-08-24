@@ -1,99 +1,250 @@
-<style>
-.accordion {
-    background: #0b0d12;
-    border: 1px solid #1b1f2b;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    padding: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIRIUS LOCAL AI</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: #111;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: #4cc3ff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            color: #82d9ff;
+        }
+        .container {
+            padding: 40px;
+        }
+        h1 {
+            color: #4cc3ff;
+        }
+        h3 {
+            color: #4cc3ff;
+        }
 
-.accordion:hover {
-    border-color: #4cc3ff;
-    box-shadow: 0 0 12px rgba(76,195,255,0.25);
-}
+        .logo {
+            width: 250px;
+            display: block;
+            margin: 30px auto;
+            filter: drop-shadow(0 0 35px #4cc3ff);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
 
-.accordion.active {
-    border-color: #4cc3ff;
-    box-shadow: 0 0 18px rgba(76,195,255,0.35);
-}
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
+            50% { filter: drop-shadow(0 0 45px #4cc3ff); transform: scale(1.03); }
+            100% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
+        }
 
-.accordion-title {
-    font-size: 16px;
-    color: #82d9ff;
-    font-weight: bold;
-}
+        .section {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all 1.0s ease-out;
+        }
 
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.45s ease;
-    padding-left: 6px;
-}
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.accordion-content.open {
-    max-height: 800px;
-    margin-top: 10px;
-}
-</style>
+        /* ACCORDION – jednoduchý, čistý, bez zmeny dizajnu */
+        .accordion {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .accordion:hover {
+            border-color: #4cc3ff;
+        }
+        .accordion-title {
+            font-size: 16px;
+            color: #4cc3ff;
+            font-weight: bold;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+        .accordion-content.open {
+            max-height: 600px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
 
-<div class="accordion">
-    <div class="accordion-title">Riadená autonómia</div>
-    <div class="accordion-content">
-        <p>SIRIUS vykonáva autonómne akcie iba v rámci striktne definovaných pravidiel.</p>
+<body>
+
+<!-- LOGO -->
+<img class="logo" 
+     src="https://raw.githubusercontent.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/main/SIRIUS%20KOCAL%20FUTURISTICKY%20OBR.png" 
+     alt="SIRIUS Logo">
+
+<!-- MENU -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#safety">Safety</a>
+    <a href="#author">About the Author</a>
+    <a href="DOCS.html">Documentation</a>
+</nav>
+
+<div class="container">
+
+    <!-- HOME -->
+    <div class="section">
+        <h1 id="home">SIRIUS LOCAL AI</h1>
+        <h2>Offline. Safe. Deterministic.</h2>
+        <p>SIRIUS LOCAL AI is a fully offline AI environment for Windows 11, designed for maximum security, predictable behavior, and zero network communication.</p>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section">
+        <h3 id="features">Key Features</h3>
         <ul>
-            <li>Žiadne akcie mimo modulov</li>
-            <li>Každá akcia je vysvetliteľná</li>
-            <li>Agenti majú pevné hranice</li>
-            <li>Žiadne pozadie, žiadne skryté procesy</li>
+            <li>100% offline operation</li>
+            <li>No network communication</li>
+            <li>No destructive actions without confirmation</li>
+            <li>Deterministic execution model</li>
+            <li>Modular architecture</li>
+            <li>Security over convenience</li>
         </ul>
     </div>
-</div>
 
-<div class="accordion">
-    <div class="accordion-title">Bezpečnostné vrstvy</div>
-    <div class="accordion-content">
-        <p>Bezpečnosť je jadrom SIRIUS. Každá akcia je kontrolovaná.</p>
+    <!-- ARCHITECTURE -->
+    <div class="section">
+        <h3 id="architecture">Architecture</h3>
         <ul>
-            <li>COLNÍK – kontrola prístupov</li>
-            <li>ENVOY – karanténa</li>
-            <li>Family Security – ochrana rodiny</li>
+            <li>Runtime 5.x / 6.x</li>
+            <li>COLNÍK – Security module</li>
+            <li>AUTONOMY – Controlled actions</li>
+            <li>KG – Knowledge Graph</li>
+            <li>ReasoningEngine – Deterministic reasoning</li>
+            <li>ENVOY – Quarantine layer</li>
+            <li>AMBASSADOR – System interface</li>
+            <li>Family Security – Protection layers</li>
+        </ul>
+
+        <!-- ACCORDION BLOKY – presne to, čo si chcel -->
+        <div class="accordion">
+            <div class="accordion-title">Riadená autonómia</div>
+            <div class="accordion-content">
+                <p>SIRIUS vykonáva autonómne akcie iba v rámci striktne definovaných pravidiel.</p>
+                <ul>
+                    <li>Žiadne akcie mimo modulov</li>
+                    <li>Každá akcia je vysvetliteľná</li>
+                    <li>Agenti majú pevné hranice</li>
+                    <li>Žiadne pozadie, žiadne skryté procesy</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-title">Bezpečnostné vrstvy</div>
+            <div class="accordion-content">
+                <p>Bezpečnosť je jadrom SIRIUS. Každá akcia je kontrolovaná.</p>
+                <ul>
+                    <li>COLNÍK – kontrola prístupov</li>
+                    <li>ENVOY – karanténa</li>
+                    <li>Family Security – ochrana rodiny</li>
+                    <li>Strict capability boundaries</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-title">Knowledge Graph (KG)</div>
+            <div class="accordion-content">
+                <p>KG je štruktúrovaný mozog SIRIUS.</p>
+                <ul>
+                    <li>Entity a vlastnosti</li>
+                    <li>Relácie a dedukcie</li>
+                    <li>EXPLAIN / WHY / PATH</li>
+                    <li>Hlboké vysvetlenia</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAFETY -->
+    <div class="section">
+        <h3 id="safety">Safety Principles</h3>
+        <ul>
+            <li>Offline-only operation</li>
+            <li>No delete/move/overwrite without confirmation</li>
+            <li>No background automation</li>
+            <li>Deterministic behavior</li>
             <li>Strict capability boundaries</li>
         </ul>
+        <p>Full documentation is available in <strong>DOCS.html</strong>.</p>
     </div>
+
+    <!-- AUTHOR -->
+    <div class="section">
+        <h3 id="author">About the Author</h3>
+        <p>
+            My name is <strong>Richard Pizem</strong>, and I am building SIRIUS LOCAL AI as a fully offline,
+            secure and deterministic AI environment for Windows 11.
+        </p>
+        <p>
+            I focus on creating systems that are predictable, modular, and safe — without background automation,
+            without network communication, and without destructive actions.
+        </p>
+        <p>
+            SIRIUS is my long‑term project aimed at bringing controlled autonomy, strong security layers,
+            and a transparent reasoning engine to personal computers.
+        </p>
+        <p>
+            My goal is to build an AI that respects boundaries, protects the system, and behaves exactly
+            as the user expects — no chaos, no surprises, no hidden processes.
+        </p>
+    </div>
+
 </div>
 
-<div class="accordion">
-    <div class="accordion-title">Knowledge Graph (KG)</div>
-    <div class="accordion-content">
-        <p>KG je štruktúrovaný mozog SIRIUS.</p>
-        <ul>
-            <li>Entity a vlastnosti</li>
-            <li>Relácie a dedukcie</li>
-            <li>EXPLAIN / WHY / PATH</li>
-            <li>Hlboké vysvetlenia</li>
-        </ul>
-    </div>
-</div>
-
+<!-- SCRIPTS -->
 <script>
-const accordions = document.querySelectorAll('.accordion');
-
-accordions.forEach(acc => {
-    acc.addEventListener('click', () => {
-
-        // Zavrie všetky ostatné
-        accordions.forEach(other => {
-            if (other !== acc) {
-                other.classList.remove('active');
-                other.querySelector('.accordion-content').classList.remove('open');
+    const sections = document.querySelectorAll('.section');
+    const reveal = () => {
+        sections.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) {
+                sec.classList.add('visible');
             }
         });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
 
-        // Prepne aktuálny
-        acc.classList.toggle('active');
-        acc.querySelector('.accordion-content').classList.toggle('open');
+    /* ACCORDION SCRIPT */
+    const accs = document.querySelectorAll('.accordion');
+    accs.forEach(a => {
+        a.addEventListener('click', () => {
+            accs.forEach(b => {
+                if (b !== a) b.querySelector('.accordion-content').classList.remove('open');
+            });
+            a.querySelector('.accordion-content').classList.toggle('open');
+        });
     });
-});
 </script>
+
+</body>
+</html>
