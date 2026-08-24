@@ -1,172 +1,538 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>SIRIUS LOCAL AI</title>
+    <title>SIRIUS LOCAL AI – Dokumentácia</title>
     <style>
-        body {
-            background: #0a0a0a;
-            color: white;
-            font-family: Arial;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background: #111;
-            padding: 15px;
-            text-align: center;
-        }
-        nav a {
-            color: #4cc3ff;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        nav a:hover {
-            color: #82d9ff;
-        }
-        .container {
-            padding: 40px;
-        }
-        h1 {
-            color: #4cc3ff;
-        }
-        h3 {
-            color: #4cc3ff;
+        :root {
+            --bg: #05060a;
+            --bg-alt: #0b0d12;
+            --accent: #4cc3ff;
+            --accent-soft: #82d9ff;
+            --text: #e5e9f0;
+            --muted: #9aa0b5;
+            --border: #1b1f2b;
         }
 
-        /* ⭐ NEONOVÝ GLOW + PULZUJÚCA ANIMÁCIA LOGA ⭐ */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, system-ui, sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #05060a 55%);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(to bottom, #05060a, #020308);
+            border-right: 1px solid var(--border);
+            padding: 20px 18px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-wrap {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         .logo {
-            width: 250px;
-            display: block;
-            margin: 30px auto;
-            filter: drop-shadow(0 0 35px #4cc3ff);
+            width: 140px;
+            filter: drop-shadow(0 0 25px #4cc3ff);
             animation: pulse 2.5s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
-            50% { filter: drop-shadow(0 0 45px #4cc3ff); transform: scale(1.03); }
-            100% { filter: drop-shadow(0 0 25px #4cc3ff); transform: scale(1.00); }
+            0% { filter: drop-shadow(0 0 20px #4cc3ff); transform: scale(1.00); }
+            50% { filter: drop-shadow(0 0 40px #4cc3ff); transform: scale(1.03); }
+            100% { filter: drop-shadow(0 0 20px #4cc3ff); transform: scale(1.00); }
         }
 
-        /* ⭐ SCROLL ANIMÁCIA SEKCIÍ ⭐ */
-        .section {
+        .project-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: var(--accent);
+        }
+
+        .project-sub {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .nav-section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin: 18px 0 8px;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 13px;
+            transition: background 0.15s, color 0.15s, transform 0.1s;
+        }
+
+        .nav-link:hover {
+            background: #111827;
+            color: var(--accent-soft);
+            transform: translateX(2px);
+        }
+
+        .nav-link.active {
+            background: #111827;
+            border: 1px solid var(--accent);
+            color: var(--accent-soft);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            font-size: 11px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+        }
+
+        .sidebar-footer a {
+            color: var(--accent-soft);
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            flex: 1;
+            padding: 24px 32px;
+            overflow-y: auto;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .breadcrumbs {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .breadcrumbs span {
+            color: var(--accent-soft);
+        }
+
+        .zen-toggle {
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #05060a;
+            color: var(--muted);
+        }
+
+        h1 {
+            font-size: 26px;
+            margin: 0 0 6px;
+            color: var(--accent);
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 18px 0 8px;
+            color: var(--accent-soft);
+        }
+
+        h3 {
+            font-size: 15px;
+            margin: 16px 0 6px;
+            color: var(--accent-soft);
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        ul {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--muted);
+            margin-right: 6px;
+        }
+
+        .card {
+            background: rgba(11, 13, 18, 0.9);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: var(--accent-soft);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 16px;
+        }
+
+        .section-block {
+            margin-bottom: 26px;
             opacity: 0;
-            transform: translateY(35px);
-            transition: all 1.0s ease-out;
+            transform: translateY(25px);
+            transition: all 0.7s ease-out;
         }
 
-        .section.visible {
+        .section-block.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        code {
+            font-family: Consolas, monospace;
+            font-size: 12px;
+            background: #111827;
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: 1px solid #1f2937;
+        }
+
+        pre {
+            background: #050814;
+            border-radius: 8px;
+            padding: 10px 12px;
+            border: 1px solid #1f2937;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+
+        a {
+            color: var(--accent-soft);
+        }
     </style>
 </head>
-
 <body>
 
-<!-- LOGO SIRIUS -->
-<img class="logo" 
-     src="https://raw.githubusercontent.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/main/SIRIUS%20KOCAL%20FUTURISTICKY%20OBR.png" 
-     alt="SIRIUS Logo">
-
-<nav>
-    <a href="#home">Home</a>
-    <a href="#features">Features</a>
-    <a href="#architecture">Architecture</a>
-    <a href="#safety">Safety</a>
-    <a href="#author">About the Author</a>
-    <a href="DOCS.html">Documentation</a>
-</nav>
-
-<div class="container">
-
-    <div class="section">
-        <h1 id="home">SIRIUS LOCAL AI</h1>
-        <h2>Offline. Safe. Deterministic.</h2>
-        <p>SIRIUS LOCAL AI is a fully offline AI environment for Windows 11, designed for maximum security, predictable behavior, and zero network communication.</p>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="logo-wrap">
+        <img class="logo"
+             src="https://raw.githubusercontent.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/main/SIRIUS%20KOCAL%20FUTURISTICKY%20OBR.png"
+             alt="SIRIUS Logo">
+        <div class="project-title">SIRIUS LOCAL AI</div>
+        <div class="project-sub">Offline · Deterministický · Bezpečný</div>
     </div>
 
-    <div class="section">
-        <h3 id="features">Key Features</h3>
-        <ul>
-            <li>100% offline operation</li>
-            <li>No network communication</li>
-            <li>No destructive actions without confirmation</li>
-            <li>Deterministic execution model</li>
-            <li>Modular architecture</li>
-            <li>Security over convenience</li>
+    <div>
+        <div class="nav-section-title">Dokumentácia</div>
+        <ul class="nav-list">
+            <li><a class="nav-link active" href="#overview">Prehľad</a></li>
+            <li><a class="nav-link" href="#getting-started">Začiatky</a></li>
+            <li><a class="nav-link" href="#features">Funkcie</a></li>
+            <li><a class="nav-link" href="#architecture">Architektúra</a></li>
+            <li><a class="nav-link" href="#safety">Bezpečnosť</a></li>
+            <li><a class="nav-link" href="#runtime">Prevádzka</a></li>
+            <li><a class="nav-link" href="#kg">Knowledge Graph</a></li>
+            <li><a class="nav-link" href="#agents">Autonómia & Agenti</a></li>
+            <li><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+
+        <div class="nav-section-title">Integrácie</div>
+        <ul class="nav-list">
+            <li><a class="nav-link" href="#windows">Windows 11</a></li>
+            <li><a class="nav-link" href="#local">Lokálne nástroje</a></li>
         </ul>
     </div>
 
-    <div class="section">
-        <h3 id="architecture">Architecture</h3>
-        <ul>
-            <li>Runtime 5.x / 6.x</li>
-            <li>COLNÍK – Security module</li>
-            <li>AUTONOMY – Controlled actions</li>
-            <li>KG – Knowledge Graph</li>
-            <li>ReasoningEngine – Deterministic reasoning</li>
-            <li>ENVOY – Quarantine layer</li>
-            <li>AMBASSADOR – System interface</li>
-            <li>Family Security – Protection layers</li>
-        </ul>
+    <div class="sidebar-footer">
+        <div>⭐ Projekt: SIRIUS LOCAL AI</div>
+        <div>Autor: <strong>Richard Pizem</strong></div>
+        <div style="margin-top:6px;">
+            <a href="https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA" target="_blank">GitHub repozitár</a><br>
+            <a href="DOCS.html" target="_blank">Detailná dokumentácia (DOCS.html)</a>
+        </div>
+        <div style="margin-top:8px;">© 2023–2026 SIRIUS LOCAL AI</div>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+    <div class="top-bar">
+        <div class="breadcrumbs">
+            Dokumentácia SIRIUS LOCAL AI · <span>Prehľad</span>
+        </div>
+        <button class="zen-toggle">Zen Dark · Lokálna AI</button>
     </div>
 
-    <div class="section">
-        <h3 id="safety">Safety Principles</h3>
-        <ul>
-            <li>Offline-only operation</li>
-            <li>No delete/move/overwrite without confirmation</li>
-            <li>No background automation</li>
-            <li>Deterministic behavior</li>
-            <li>Strict capability boundaries</li>
-        </ul>
-        <p>Full documentation is available in <strong>DOCS.html</strong>.</p>
+    <!-- PREHĽAD -->
+    <div class="section-block" id="overview">
+        <h1>Prehľad</h1>
+        <p>
+            <strong>SIRIUS LOCAL AI</strong> je skladateľný, plne offline AI stack pre Windows 11, navrhnutý tak,
+            aby bol deterministický, bezpečný a bez akéhokoľvek sieťového pripojenia. Jadrom je riadený runtime,
+            ktorý vykonáva príkazy striktne podľa pravidiel, bez autonómnych zásahov mimo definovaných modulov.
+        </p>
+
+        <div class="card">
+            <div class="card-title">Prečo SIRIUS?</div>
+            <p>
+                V prostredí, kde sú AI systémy často nepredvídateľné, cloudové a ťažko kontrolovateľné,
+                SIRIUS stavia na opačnom princípe:
+            </p>
+            <ul>
+                <li><strong>Súkromie na prvom mieste:</strong> žiadna sieť, žiadny cloud, všetko ostáva na lokálnom PC.</li>
+                <li><strong>Deterministické správanie:</strong> žiadne skryté procesy, žiadne autonómne rozhodovanie mimo pravidiel.</li>
+                <li><strong>Modulárna architektúra:</strong> každý modul má jasné hranice, rolu a zodpovednosť.</li>
+                <li><strong>Bezpečnosť pred pohodlím:</strong> žiadne „magické“ akcie bez potvrdenia používateľa.</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- ⭐ ABOUT THE AUTHOR ⭐ -->
-    <div class="section">
-        <h3 id="author">About the Author</h3>
+    <!-- ZAČIATKY -->
+    <div class="section-block" id="getting-started">
+        <h2>Začiatky</h2>
         <p>
-            My name is <strong>Richard Pizem</strong>, and I am building SIRIUS LOCAL AI as a fully offline,
-            secure and deterministic AI environment for Windows 11.
+            SIRIUS je navrhnutý ako lokálny runtime, ktorý sa spúšťa na Windows 11 bez potreby GPU a bez sieťového pripojenia.
+            Inštalácia prebieha cez klonovanie repozitára a spustenie definovaných skriptov.
         </p>
 
+        <div class="card">
+            <div class="card-title">Základný postup</div>
+            <ul>
+                <li><strong>1.</strong> Naklonujte repozitár <code>SIRIUS-LOCAL-AI-BETA</code> z GitHubu.</li>
+                <li><strong>2.</strong> Uistite sa, že máte správnu verziu Pythonu / runtime podľa dokumentácie v <code>DOCS.html</code>.</li>
+                <li><strong>3.</strong> Spustite základný runtime (verzia 5.x / 6.x) podľa návodu.</li>
+                <li><strong>4.</strong> Aktivujte moduly (COLNÍK, ENVOY, KG, ReasoningEngine) podľa potreby.</li>
+            </ul>
+            <p class="muted">
+                Detailný návod je v <strong>DOCS.html</strong>, kde sú popísané konkrétne príkazy, konfigurácie a postupy.
+            </p>
+        </div>
+    </div>
+
+    <!-- FUNKCIE -->
+    <div class="section-block" id="features">
+        <h2>Funkcie</h2>
+        <div class="grid-2">
+            <div>
+                <p>
+                    SIRIUS poskytuje súbor funkcií zameraných na bezpečnú, predvídateľnú a modulárnu AI prevádzku
+                    na lokálnom počítači:
+                </p>
+                <ul>
+                    <li><strong>100% offline prevádzka</strong> – žiadne volanie API, žiadne cloudové služby.</li>
+                    <li><strong>Deterministický ReasoningEngine</strong> – žiadne „čierne skrinky“, jasné pravidlá.</li>
+                    <li><strong>Knowledge Graph (KG)</strong> – štruktúrované vedomosti, vzťahy, dedukcie.</li>
+                    <li><strong>Bezpečnostné moduly (COLNÍK, ENVOY)</strong> – karanténa, kontrola prístupov, ochrana systému.</li>
+                    <li><strong>Autonómia pod kontrolou</strong> – akcie sú povolené len v definovaných hraniciach.</li>
+                    <li><strong>Modulárny dizajn</strong> – každý modul je samostatná vrstva, ktorú možno zapnúť/vypnúť.</li>
+                </ul>
+            </div>
+            <div>
+                <div class="card">
+                    <div class="card-title">Kľúčové vlastnosti</div>
+                    <ul>
+                        <li>Generovanie odpovedí cez lokálny ReasoningEngine.</li>
+                        <li>Práca s Knowledge Graphom (entity, relácie, dedukcie).</li>
+                        <li>Bezpečnostné vrstvy pre ochranu rodiny a systému.</li>
+                        <li>Striktné hranice schopností – žiadne mazanie, presúvanie, prepisovanie bez potvrdenia.</li>
+                        <li>Možnosť rozšírenia o ďalšie moduly bez narušenia jadra.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARCHITEKTÚRA -->
+    <div class="section-block" id="architecture">
+        <h2>Architektúra</h2>
         <p>
-            I focus on creating systems that are predictable, modular, and safe — without background automation,
-            without network communication, and without destructive actions.
+            Architektúra SIRIUS je rozdelená do jasných vrstiev, ktoré spolu tvoria kontrolovaný AI runtime.
         </p>
 
+        <div class="card">
+            <div class="card-title">Moduly a vrstvy</div>
+            <ul>
+                <li><strong>Runtime 5.x / 6.x</strong> – základný vykonávací engine.</li>
+                <li><strong>COLNÍK</strong> – bezpečnostný modul, kontrola prístupov a operácií.</li>
+                <li><strong>ENVOY</strong> – karanténna vrstva, izolácia rizikových akcií.</li>
+                <li><strong>KG – Knowledge Graph</strong> – štruktúrované vedomosti, vzťahy, dedukcie.</li>
+                <li><strong>ReasoningEngine</strong> – deterministické vyhodnocovanie a vysvetľovanie.</li>
+                <li><strong>AUTONOMY</strong> – riadená autonómia, akcie pod kontrolou.</li>
+                <li><strong>AMBASSADOR</strong> – rozhranie medzi systémom a používateľom.</li>
+                <li><strong>Family Security</strong> – ochranné vrstvy pre rodinné prostredie.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- BEZPEČNOSŤ -->
+    <div class="section-block" id="safety">
+        <h2>Bezpečnosť</h2>
         <p>
-            SIRIUS is my long‑term project aimed at bringing controlled autonomy, strong security layers,
-            and a transparent reasoning engine to personal computers.
+            Bezpečnosť je jadrom SIRIUS. Systém je navrhnutý tak, aby nikdy nevykonal deštruktívnu akciu bez
+            explicitného súhlasu používateľa.
         </p>
 
+        <div class="card">
+            <div class="card-title">Bezpečnostné princípy</div>
+            <ul>
+                <li><strong>Offline-only:</strong> žiadne sieťové pripojenie, žiadne odosielanie dát.</li>
+                <li><strong>Žiadne mazanie bez potvrdenia:</strong> delete/move/overwrite sú blokované bez súhlasu.</li>
+                <li><strong>Žiadna skrytá autonómia:</strong> žiadne pozadie, žiadne „samo od seba“.</li>
+                <li><strong>Striktné capability boundaries:</strong> modul môže robiť len to, čo má povolené.</li>
+                <li><strong>Transparentné správanie:</strong> používateľ vie, čo sa deje a prečo.</li>
+            </ul>
+            <p class="muted">
+                Detailné bezpečnostné pravidlá sú popísané v <strong>DOCS.html</strong> v sekcii „Safety & Policies“.
+            </p>
+        </div>
+    </div>
+
+    <!-- PREVÁDZKA -->
+    <div class="section-block" id="runtime">
+        <h2>Prevádzka</h2>
         <p>
-            My goal is to build an AI that respects boundaries, protects the system, and behaves exactly
-            as the user expects — no chaos, no surprises, no hidden processes.
+            SIRIUS beží ako lokálny proces na Windows 11, bez potreby GPU a bez sieťového pripojenia.
         </p>
+
+        <div class="card">
+            <div class="card-title">Prevádzkové režimy</div>
+            <ul>
+                <li><strong>Single-user režim:</strong> jeden používateľ, jeden runtime.</li>
+                <li><strong>Modulárne zapínanie:</strong> moduly sa aktivujú podľa potreby (KG, ReasoningEngine, ENVOY…).</li>
+                <li><strong>Bez pozadia:</strong> žiadne skryté služby, všetko je pod kontrolou.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- KG -->
+    <div class="section-block" id="kg">
+        <h2>Knowledge Graph (KG)</h2>
+        <p>
+            KG je jadrom štruktúrovaného myslenia SIRIUS – entity, relácie, dedukcie, vysvetlenia.
+        </p>
+
+        <div class="card">
+            <div class="card-title">Čo KG robí</div>
+            <ul>
+                <li>Ukladá entity a ich vlastnosti.</li>
+                <li>Definuje relácie medzi entitami.</li>
+                <li>Umožňuje dedukcie a vysvetlenia (EXPLAIN / WHY).</li>
+                <li>Podporuje cesty (PATH) a hlboké vysvetlenia (EXPLAIN_DEEP).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- AUTONÓMIA & AGENTI -->
+    <div class="section-block" id="agents">
+        <h2>Autonómia & Agenti</h2>
+        <p>
+            SIRIUS podporuje riadenú autonómiu – akcie sú povolené len v rámci jasne definovaných pravidiel.
+        </p>
+
+        <div class="card">
+            <div class="card-title">Riadená autonómia</div>
+            <ul>
+                <li>Žiadne nekontrolované akcie mimo definovaných modulov.</li>
+                <li>Agenti pracujú v hraniciach, ktoré určí používateľ.</li>
+                <li>Každá akcia je vysvetliteľná a dohľadateľná.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section-block" id="faq">
+        <h2>FAQ</h2>
+        <div class="card">
+            <div class="card-title">Je SIRIUS cloudová AI?</div>
+            <p><strong>Nie.</strong> SIRIUS je striktne lokálny systém, bez cloudových volaní.</p>
+        </div>
+        <div class="card">
+            <div class="card-title">Môže SIRIUS niečo zmazať bez môjho vedomia?</div>
+            <p><strong>Nie.</strong> Deštruktívne akcie sú blokované bez explicitného potvrdenia.</p>
+        </div>
+        <div class="card">
+            <div class="card-title">Je projekt open‑source?</div>
+            <p><strong>Áno.</strong> Repozitár je verejný na GitHube a slúži ako základ pre ďalší vývoj.</p>
+        </div>
     </div>
 
 </div>
 
-<!-- ⭐ SCROLL REVEAL SCRIPT ⭐ -->
 <script>
-    const sections = document.querySelectorAll('.section');
-
+    // Scroll reveal
+    const blocks = document.querySelectorAll('.section-block');
     const reveal = () => {
-        sections.forEach(sec => {
-            const rect = sec.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 80) {
-                sec.classList.add('visible');
+        blocks.forEach(b => {
+            const r = b.getBoundingClientRect();
+            if (r.top < window.innerHeight - 80) {
+                b.classList.add('visible');
             }
         });
     };
-
     window.addEventListener('scroll', reveal);
     window.addEventListener('load', reveal);
+
+    // Active nav highlight
+    const navLinks = document.querySelectorAll('.nav-link');
+    const setActive = () => {
+        const fromTop = window.scrollY + 120;
+        navLinks.forEach(link => {
+            const id = link.getAttribute('href').slice(1);
+            const section = document.getElementById(id);
+            if (!section) return;
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+            if (fromTop >= top && fromTop < bottom) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', setActive);
+    window.addEventListener('load', setActive);
 </script>
 
 </body>
