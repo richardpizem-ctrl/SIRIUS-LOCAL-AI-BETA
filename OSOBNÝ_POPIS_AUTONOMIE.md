@@ -371,9 +371,7 @@ Je to skôr veľmi dobrý testovací signál, že AUTONOMY vie zachytiť prázdn
 
 🧠 MÔJ ZÁVER
 
-Richard, podľa týchto logov by som teraz vôbec neriešil TimeCore.
 
-Je jasné, kde sa nachádzaš:
 
 AUTONOMY
 ████████████████░░ 82 %
