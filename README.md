@@ -1,4 +1,4 @@
-![SIRIUS Futuristic](SIRIUS%20KOCAL%20FUTURISTICKY%20OBR.png)  
+![SIRIUS Futuristic](SIRIUS%20LOCAL%20FUTURISTICKY%20OBR.png)  
 ![SIRIUS Architecture Diagram](https://raw.githubusercontent.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/main/diagram%20(4).png)
 
 ---
