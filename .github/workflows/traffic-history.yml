@@ -2,7 +2,7 @@ name: Traffic History Collector
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # každý deň o polnoci
+    - cron: "0 0 * * *"
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Get traffic data from GitHub API
         env:
