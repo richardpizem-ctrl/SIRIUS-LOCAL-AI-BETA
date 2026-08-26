@@ -1,0 +1,71 @@
+name: Traffic History Collector
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # každý deň o polnoci
+  workflow_dispatch:
+
+jobs:
+  collect-traffic:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get traffic data from GitHub API
+        env:
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -H "Authorization: token $TOKEN" \
+               -H "Accept: application/vnd.github+json" \
+               https://api.github.com/repos/$REPO/traffic/clones \
+               > clones.json
+
+          curl -H "Authorization: token $TOKEN" \
+               -H "Accept: application/vnd.github+json" \
+               https://api.github.com/repos/$REPO/traffic/views \
+               > views.json
+
+      - name: Build daily JSON file
+        run: |
+          DATE=$(date +"%Y-%m-%d")
+          mkdir -p traffic-history
+
+          CLONES=$(jq '.count' clones.json)
+          UNIQUE_CLONERS=$(jq '.uniques' clones.json)
+          VIEWS=$(jq '.count' views.json)
+          UNIQUE_VISITORS=$(jq '.uniques' views.json)
+
+          cat <<EOF > traffic-history/$DATE.json
+{
+  "date": "$DATE",
+  "clones": $CLONES,
+  "unique_cloners": $UNIQUE_CLONERS,
+  "views": $VIEWS,
+  "unique_visitors": $UNIQUE_VISITORS
+}
+EOF
+
+      - name: Update big history file
+        run: |
+          DATE=$(date +"%Y-%m-%d")
+
+          if [ ! -f traffic-history/traffic-history.json ]; then
+            echo "[]" > traffic-history/traffic-history.json
+          fi
+
+          jq ". + [$(cat traffic-history/$DATE.json)]" \
+             traffic-history/traffic-history.json \
+             > traffic-history/tmp.json
+
+          mv traffic-history/tmp.json traffic-history/traffic-history.json
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add traffic-history/
+          git commit -m "Daily traffic update for $DATE" || echo "No changes to commit"
+          git push
