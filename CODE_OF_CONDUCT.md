@@ -1,26 +1,27 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.6.2 UNIFIED)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.7.0 UNIFIED)
 
 This project follows a professional, respectful, and safety‑oriented standard of behavior.  
 The goal is to maintain a **safe, friendly, and productive environment** for all contributors  
 and all users of SIRIUS LOCAL AI — including households, families, and children.
 
-Version **5.6.2** updates the Code of Conduct to reflect the **Unified Reasoning & Deep Explainability Architecture 5.6.2**, including:
+Version **5.7.0** updates the Code of Conduct to reflect the **Unified Reasoning, Explainability & COLNIK‑AUTONOMY Architecture 5.7.0**, including:
 
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Reasoning Engine 5.6.2 (multi-hop, inheritance, transitivity)**  
+- **Reasoning Engine 5.7.0 (multi-hop, inheritance, transitivity)**  
 - **Proof Tree & Evidence Tree Foundations**  
 - **Confidence Scoring Foundations**  
 - **Rule Chaining Foundations**  
-- **Workflow Engine 5.6.2 (explainability routing)**  
-- **Unified Knowledge Graph 5.6.2 (comfort commands, stabilized autoload)**  
-- **AITE 5.6.2 (semantic + explainability triage)**  
-- **Identity Engine 3.0**  
+- **Workflow Engine 5.7.0 (explainability routing)**  
+- **Unified Knowledge Graph 5.7.0 (comfort commands, stabilized autoload)**  
+- **AITE 5.7.0 (semantic + explainability triage)**  
+- **Identity Engine 3.1**  
 - **SECURITY FAMILY 5.x**  
-- **Schoolwork Engine 5.6.2**  
+- **Schoolwork Engine 5.7.0**  
 - **System Agent 5**  
-- **COLNIK‑6.x Validation Layer**  
+- **COLNIK‑6.x Validation Layer (Standard Mode)**  
+- **AUTONOMY 6.x (Control Mode)**  
 - **deterministic cross‑platform automation**  
-- **hardened routing and 5.6.2 safety model**  
+- **hardened routing and 5.7.0 safety model**  
 
 ---
 
@@ -37,16 +38,16 @@ Version **5.6.2** updates the Code of Conduct to reflect the **Unified Reasoning
 - support safe and responsible use of AI technologies  
 - respect safety‑critical modules such as:  
   - **SECURITY FAMILY 5.x**  
-  - **Identity Engine 3.0**  
-  - **Schoolwork Engine 5.6.2**  
+  - **Identity Engine 3.1**  
+  - **Schoolwork Engine 5.7.0**  
   - **Time‑Limits Engine v3**  
   - **Self‑Repair Layer 5.4**  
-  - **UI Automation Engine 5.0**  
+  - **UI Automation Engine 5.1**  
   - **System Agent 5**  
   - **ENVOY Execution/Permission Layers 5**  
-  - **COLNIK‑6.x Validation Layer**  
+  - **COLNIK‑6.x Validation Layer (Standard Mode)**  
   - **KG_EXPLAIN & KG_EXPLAIN_DEEP**  
-  - **Reasoning Engine 5.6.2**  
+  - **Reasoning Engine 5.7.0**  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -67,13 +68,14 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - respecting FAMILY‑safe design and identity‑based protections  
 - ensuring SCHOOLWORK‑related features remain unrestricted and safe  
 - preserving deterministic, safe, offline‑only behavior  
-- respecting the **UI Automation Engine 5.0** safety boundaries  
+- respecting the **UI Automation Engine 5.1** safety boundaries  
 - ensuring **System Agent 5** remains the final gatekeeper  
 - ensuring ENVOY 5 sanitization and permission logic are not weakened  
 - ensuring COLNIK‑6.x validation remains strict and uncompromised  
 - ensuring KG_EXPLAIN & KG_EXPLAIN_DEEP remain transparent and safe  
 - ensuring reasoning rules (multi-hop, inheritance, transitivity) are not misused  
 - ensuring proof tree, evidence tree, and confidence logic remain deterministic  
+- ensuring AUTONOMY 6.x proposal/confirmation logic remains safe  
 
 ---
 
@@ -96,7 +98,7 @@ These principles ensure that collaboration remains focused, respectful, and effe
   - Schoolwork Engine bypass  
 - modifying SECURITY FAMILY logic to weaken protections  
 - disabling or interfering with the Self‑Repair Layer  
-- abusing or misusing the **UI Automation Engine 5.0** to perform unsafe actions  
+- abusing or misusing the **UI Automation Engine 5.1** to perform unsafe actions  
 - attempting to circumvent deterministic UI automation safeguards  
 - weakening **System Agent 5** validation rules  
 - attempting to bypass ENVOY Execution/Permission Layer sanitization  
@@ -104,6 +106,7 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - injecting unsafe reasoning rules or explainability overrides  
 - manipulating KG_EXPLAIN or KG_EXPLAIN_DEEP to hide or distort inference history  
 - attempting to bypass **COLNIK‑6.x** validation  
+- attempting to misuse AUTONOMY 6.x decision logic  
 
 Such behavior harms the community and will not be tolerated.
 
@@ -123,12 +126,13 @@ Project maintainers have the right and responsibility to:
 - ensure that safety modules remain uncompromised  
 - reject contributions that weaken identity‑based protections  
 - prevent unsafe modifications to SCHOOLWORK ENGINE or SECURITY FAMILY  
-- ensure that **UI Automation Engine 5.0** remains deterministic and safe  
+- ensure that **UI Automation Engine 5.1** remains deterministic and safe  
 - ensure **System Agent 5** remains the final gatekeeper  
 - ensure ENVOY 5 sanitization and permission logic are never bypassed  
 - ensure COLNIK‑6.x validation remains strict  
 - ensure KG_EXPLAIN & KG_EXPLAIN_DEEP remain transparent and correct  
 - ensure reasoning rules remain deterministic and safe  
+- ensure AUTONOMY 6.x proposal/confirmation logic remains safe  
 
 Maintainers act to protect the long‑term health of the project.
 
@@ -166,12 +170,13 @@ Severity depends on:
 - whether it was intentional  
 - whether it is repeated  
 - whether it involved attempts to bypass FAMILY or SCHOOLWORK protections  
-- whether it attempted to weaken SECURITY FAMILY or Identity Engine 3.0  
-- whether it attempted to misuse or compromise the **UI Automation Engine 5.0**  
+- whether it attempted to weaken SECURITY FAMILY or Identity Engine 3.1  
+- whether it attempted to misuse or compromise the **UI Automation Engine 5.1**  
 - whether it attempted to bypass **System Agent 5**  
 - whether it attempted to bypass **ENVOY Execution/Permission Layers 5**  
 - whether it attempted to bypass **COLNIK‑6.x**  
 - whether it attempted to manipulate KG_EXPLAIN or reasoning rules  
+- whether it attempted to misuse AUTONOMY 6.x decision logic  
 
 Maintainers will always act in good faith and fairness.
 
@@ -188,20 +193,21 @@ This Code of Conduct applies to:
 - any interaction representing the project  
 - all modules including safety‑critical components:  
   - **SECURITY FAMILY 5.x**  
-  - **Identity Engine 3.0**  
-  - **Schoolwork Engine 5.6.2**  
+  - **Identity Engine 3.1**  
+  - **Schoolwork Engine 5.7.0**  
   - **Time‑Limits Engine v3**  
   - **Self‑Repair Layer 5.4**  
-  - **UI Automation Engine 5.0**  
+  - **UI Automation Engine 5.1**  
   - **System Agent 5**  
   - **ENVOY Execution/Permission Layers 5**  
-  - **COLNIK‑6.x Validation Layer**  
+  - **COLNIK‑6.x Validation Layer (Standard Mode)**  
   - **KG_EXPLAIN & KG_EXPLAIN_DEEP**  
-  - **Reasoning Engine 5.6.2**  
+  - **Reasoning Engine 5.7.0**  
+  - **AUTONOMY 6.x (Control Mode)**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (v5.6.2)
+# 8. 🧒 Family & Safety Considerations (v5.7.0)
 
 SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 5.x** module designed to:
 
@@ -212,11 +218,12 @@ SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 5.x** module designed to:
 - guarantee that **schoolwork is always allowed**  
 - maintain STRANGER‑mode protections for unknown users  
 - ensure OWNER‑level actions remain restricted  
-- integrate with Identity Engine 3.0 for behavior‑based recognition  
+- integrate with Identity Engine 3.1 for behavior‑based recognition  
 - ensure UI automation cannot perform unsafe actions without identity validation  
 - ensure **System Agent 5** validates all system‑level actions  
 - ensure ENVOY 5 sanitizes all system requests  
 - ensure **COLNIK‑6.x** validates all KG mutations and workflow steps  
+- ensure AUTONOMY 6.x proposal/confirmation logic remains safe  
 - ensure KG_EXPLAIN & KG_EXPLAIN_DEEP provide transparent inference history  
 - ensure reasoning rules remain deterministic and safe  
 
@@ -233,4 +240,4 @@ and help maintain a respectful, safe, and productive environment for all users �
 
 ---
 
-**Document Status:** v5.6.2 (Unified Reasoning, Explainability & COLNIK‑6.x Architecture)
+**Document Status:** v5.7.0 (Unified Reasoning, Explainability, COLNIK‑AUTONOMY Architecture)
