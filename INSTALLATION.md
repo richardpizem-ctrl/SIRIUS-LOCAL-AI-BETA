@@ -1,19 +1,20 @@
-# 📦 Installation Guide – SIRIUS LOCAL AI (v5.6.2)
+# 📦 Installation Guide – SIRIUS LOCAL AI (v5.7.0)
 
 SIRIUS LOCAL AI is a fully local, modular AI runtime built on the  
-**Unified Reasoning & Deep Explainability Architecture 5.6**, featuring:
+**Unified Reasoning, Deep Explainability & COLNIK‑AUTONOMY Architecture 5.7**, featuring:
 
-- AITE 5.6.2 (semantic + explainability multimodal triage)  
-- Workflow Engine 5.6.2 (deterministic + explainability routing)  
-- Reasoning Engine 5.6.2 (multi‑hop, inheritance, transitivity, deep inference)  
-- Unified Knowledge Graph 5.6.2 (KG Core, KG Query, KG Explore, KG Explain, KG Explain Deep)  
+- AITE 5.7.0 (semantic + explainability multimodal triage)  
+- Workflow Engine 5.7.0 (deterministic + explainability routing)  
+- Reasoning Engine 5.7.0 (multi‑hop, inheritance, transitivity, deep inference)  
+- Unified Knowledge Graph 5.7.0 (KG Core, KG Query, KG Explore, KG Explain, KG Explain Deep)  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP (full explainability engine)  
 - ENVOY Execution + Permission Layers 5  
 - System Agent 5  
 - Security Family 5.x  
 - Self‑Repair Layer 5.4  
-- Deterministic UI Automation Engine 5.0  
-- **COLNIK‑6.x (Enterprise Customs & Validation Layer)**
+- Deterministic UI Automation Engine 5.1  
+- **COLNIK‑6.x (Enterprise Customs & Validation Layer — Standard Mode)**  
+- **AUTONOMY 6.x (Control Mode)**  
 
 The system is distributed as clean Python source code, intended for developers, testers, and advanced users.  
 A packaged installer (`.EXE`) is introduced in **5.x** and expanded in **5.5+**.
@@ -22,7 +23,7 @@ All processing is fully local; **no data ever leaves your PC**.
 
 ---
 
-# ⚠️ System Notes (v5.6.2)
+# ⚠️ System Notes (v5.7.0)
 
 SIRIUS LOCAL AI interacts with Windows 11 system APIs through the **WIN‑CAP 5.x** capability layer, including:
 
@@ -33,16 +34,17 @@ SIRIUS LOCAL AI interacts with Windows 11 system APIs through the **WIN‑CAP 5.
 - plugin‑driven system actions  
 - developer automation  
 - **Security Family 5.x** — identity engine, time‑limits, stranger‑mode, schoolwork engine  
-- **Reasoning Engine 5.6.2** — deterministic symbolic reasoning with deep inference  
+- **Reasoning Engine 5.7.0** — deterministic symbolic reasoning with deep inference  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP** — full explainability for reasoning, workflows, permissions  
-- **Workflow Engine 5.6.2** — deterministic routing with explainability  
+- **Workflow Engine 5.7.0** — deterministic routing with explainability  
 - **System Agent 5** — identity‑aware OS validation  
 - **HealthMonitor5** — degraded‑mode detection  
 - **ErrorHandler5** — safe execution wrapper  
 - **SystemHooks5** — runtime event hooks  
-- **Unified Knowledge Graph 5.6.2** — multi-hop entity‑relation reasoning  
+- **Unified Knowledge Graph 5.7.0** — multi-hop entity‑relation reasoning  
 - **ENVOY Execution + Permission Layers 5** — permission‑based online fetch (optional)  
-- **COLNIK‑6.x** — enterprise validation, rule enforcement, workflow filtering
+- **COLNIK‑6.x (Standard Mode)** — enterprise validation, rule enforcement, workflow filtering  
+- **AUTONOMY 6.x (Control Mode)** — proposal/confirmation cycle, autonomous routing  
 
 Windows Defender or SmartScreen may classify the runtime as an “Unknown App”.  
 Antivirus tools may generate false positives during development.
@@ -59,108 +61,144 @@ Python 3.12 is **not supported** due to library incompatibilities.
 ### 2. Install required Python packages
 ```bash
 pip install watchdog psutil dearpygui pyaudio speechrecognition pyttsx3 colorama
-```
-
-### 3. Open the project in VS Code or any terminal
-
-### 4. Run the main entrypoint (Runtime 5.6.2)
-```bash
+3. Open the project in VS Code or any terminal
+4. Run the main entrypoint (Runtime 5.7.0)
 python runtime5_cli.py
-```
+(Updated for 5.7.0 — CLI is no longer launched via python -m runtime5.runtime5_cli.)
 
-*(Updated for 5.6.2 — CLI is no longer launched via `python -m runtime5.runtime5_cli`.)*
-
----
-
-# ⚠️ Important Note — SIRIUS runs through CLI
-
-SIRIUS LOCAL AI is executed **via the command line (CLI)**.  
+⚠️ Important Note — SIRIUS runs through CLI
+SIRIUS LOCAL AI is executed via the command line (CLI).
 The runtime does not start automatically through a graphical launcher unless the optional UI module is enabled.
 
 Running through CLI ensures:
 
-- correct initialization of Runtime 5.6.2  
-- proper loading of the Unified Knowledge Graph  
-- activation of System Agent 5  
-- deterministic workflow routing  
-- correct plugin and capability loading  
-- safe ENVOY initialization  
-- correct Self‑Repair Layer activation  
-- correct KG_EXPLAIN & KG_EXPLAIN_DEEP initialization  
-- deterministic reasoning behavior  
-- **COLNIK‑6.x validation pipeline activation**
+correct initialization of Runtime 5.7.0
 
-Using the CLI is the **official and recommended method** for all developers and testers.
+proper loading of the Unified Knowledge Graph
 
----
+activation of System Agent 5
 
-# 🧪 Optional: Run Individual Modules for Testing
+deterministic workflow routing
 
+correct plugin and capability loading
+
+safe ENVOY initialization
+
+correct Self‑Repair Layer activation
+
+correct KG_EXPLAIN & KG_EXPLAIN_DEEP initialization
+
+deterministic reasoning behavior
+
+COLNIK‑6.x Standard Mode validation pipeline activation
+
+AUTONOMY 6.x Control Mode proposal/confirmation cycle activation
+
+Using the CLI is the official and recommended method for all developers and testers.
+
+🧪 Optional: Run Individual Modules for Testing
 Developer mode provides full access to:
 
-- Runtime Core 5.6.2  
-- Workflow Engine 5.6.2  
-- Reasoning Engine 5.6.2  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- Unified Knowledge Graph 5.6.2  
-- System Agent 5  
-- HealthMonitor5  
-- ErrorHandler5  
-- SystemHooks5  
-- Plugin System 5.x  
-- Security Family 5.x  
-- ENVOY Execution + Permission Layers 5  
-- UI Automation Engine 5.0  
-- **COLNIK‑6.x Validation Layer**
+Runtime Core 5.7.0
 
----
+Workflow Engine 5.7.0
 
-# 🛠️ Future Installation System
+Reasoning Engine 5.7.0
 
-## ⭐ v5.6.2 – Deep Explainability Integration (CURRENT)
+KG_EXPLAIN & KG_EXPLAIN_DEEP
 
-- explainability‑aware startup  
-- repair sandbox  
-- module integrity scanning  
-- safe fallback states  
-- degraded → repaired transitions  
-- deep‑explainability validation  
-- KG_EXPLAIN_DEEP integration into startup diagnostics  
-- **COLNIK‑6.x customs validation during initialization**
+Unified Knowledge Graph 5.7.0
 
----
+System Agent 5
 
-## ⭐ v6.0.0 – Self‑Repair Integrated Installer
+HealthMonitor5
 
+ErrorHandler5
+
+SystemHooks5
+
+Plugin System 5.x
+
+Security Family 5.x
+
+ENVOY Execution + Permission Layers 5
+
+UI Automation Engine 5.1
+
+COLNIK‑6.x Validation Layer (Standard Mode)
+
+AUTONOMY 6.x (Control Mode)
+
+🛠️ Future Installation System
+⭐ v5.7.0 – Deep Explainability Integration (CURRENT)
+explainability‑aware startup
+
+repair sandbox
+
+module integrity scanning
+
+safe fallback states
+
+degraded → repaired transitions
+
+deep‑explainability validation
+
+KG_EXPLAIN_DEEP integration into startup diagnostics
+
+COLNIK‑6.x customs validation during initialization
+
+AUTONOMY 6.x proposal/confirmation hooks during startup
+
+⭐ v6.0.0 – Self‑Repair Integrated Installer
 The installation system will integrate fully with the diagnostic layer:
 
-- integrity checks before startup  
-- detection of corrupted configs or missing files  
-- automatic safe repairs (cache reset, index rebuild, default config restore)  
-- pre‑launch validation  
-- user‑approved patch suggestions  
-- ENVOY‑assisted safe updates (optional)  
-- kernel‑level repair logic  
-- **COLNIK‑driven rule enforcement during installation**
+integrity checks before startup
+
+detection of corrupted configs or missing files
+
+automatic safe repairs (cache reset, index rebuild, default config restore)
+
+pre‑launch validation
+
+user‑approved patch suggestions
+
+ENVOY‑assisted safe updates (optional)
+
+kernel‑level repair logic
+
+COLNIK‑driven rule enforcement during installation
+
+AUTONOMY‑aware installation validation
 
 This ensures long‑term stability even in packaged builds.
 
----
+📌 Status (v5.7.0)
+Installation system: Stable (5.7.0)
 
-# 📌 Status (v5.6.2)
+Packaging: Stable
 
-- Installation system: **Stable (5.6.2)**  
-- Packaging: **Stable**  
-- Runtime: **Stable (5.6.2)**  
-- Plugins: **Stable (5.x)**  
-- Architecture: **Unified Reasoning & Deep Explainability Architecture 5.6.2**  
-- Security Family: **Integrated** (identity engine, time‑limits, stranger‑mode, schoolwork engine)  
-- Reasoning Engine: **Stable (5.6.2)**  
-- Workflow Engine: **Stable (5.6.2)**  
-- System Agent: **Stable (5)**  
-- Knowledge Graph: **Unified KG 5.6.2**  
-- UI Automation Engine: **Stable (5.0)**  
-- ENVOY: **Execution + Permission Layers 5**  
-- Self‑Repair: **Layer 5.x active**  
-- **COLNIK‑6.x: Enterprise Validation Layer Active**
+Runtime: Stable (5.7.0)
 
+Plugins: Stable (5.x)
+
+Architecture: Unified Reasoning, Explainability & COLNIK‑AUTONOMY Architecture 5.7.0
+
+Security Family: Integrated (identity engine, time‑limits, stranger‑mode, schoolwork engine)
+
+Reasoning Engine: Stable (5.7.0)
+
+Workflow Engine: Stable (5.7.0)
+
+System Agent: Stable (5)
+
+Knowledge Graph: Unified KG 5.7.0
+
+UI Automation Engine: Stable (5.1)
+
+ENVOY: Execution + Permission Layers 5
+
+Self‑Repair: Layer 5.x active
+
+COLNIK‑6.x: Enterprise Validation Layer Active (Standard Mode)
+
+AUTONOMY 6.x: Control Mode Active
