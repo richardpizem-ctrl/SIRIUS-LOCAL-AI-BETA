@@ -3,6 +3,35 @@
 
 ---
 
+## ⚠️ IMPORTANT ARCHITECTURE NOTICE — RUNTIME 5.x (5.7.0 UNIFIED)
+### Runtime 5.x + COLNIK + AUTONOMY — Full integration is NOT completed yet
+
+Although SIRIUS Runtime 5.7.0 already includes:
+- COLNIK‑6.x (Standard Mode)
+- AUTONOMY‑6.x (Analyzer + Proposer + Guard)
+- basic IPC synchronization between COLNIK ↔ AUTONOMY
+- autonomous proposals + confirmations
+- security validations
+- KG‑Reasoning + Workflow integration
+
+➡️ Full integration between Runtime 5.x, COLNIK, and AUTONOMY is **NOT finished yet**.
+
+This connection will be completed in the **next major version**, which introduces:
+
+### 🟦 SIRIUS CONTROL PANEL UI (6.x)
+- visual Runtime ↔ COLNIK ↔ AUTONOMY integration  
+- real‑time validation  
+- autonomous proposals inside the UI  
+- COLNIK decision trees  
+- KG Explain Deep visualization  
+- safety gates inside the UI  
+- system states: SAFE / WARNING / RISK / DEGRADED  
+
+🔺 Until the UI Panel is released, COLNIK + AUTONOMY run in a controlled tandem mode,  
+but are **NOT fully linked to Runtime 5.x**.
+
+---
+
 # SIRIUS LOCAL AI — Version 5.7.0  
 Enterprise‑Grade Symbolic Reasoning • Autonomous Module Orchestration • Unified Knowledge Graph Platform
 
@@ -57,11 +86,11 @@ SIRIUS 5.7.0 enhances the enterprise explainability layer with:
 
 - Hierarchical proof trees (ASCII + HTML)  
 - Evidence trees for inference transparency  
-- Rule attribution (which rules contributed to the conclusion)  
-- Reasoning metrics (depth, cost, traversal complexity)  
-- Confidence scoring model  
-- Multi‑hop deduction and categorization  
-- Unified traversal context for inbound/outbound reasoning  
+- Rule attribution  
+- Reasoning metrics  
+- Confidence scoring  
+- Multi‑hop deduction  
+- Unified traversal context  
 
 This enables audit‑ready reasoning suitable for regulated and mission‑critical environments.
 
@@ -71,10 +100,10 @@ This enables audit‑ready reasoning suitable for regulated and mission‑critic
 
 The reasoning engine includes a complete suite of symbolic inference rules:
 
-- **MultiHopOrbitInferenceRule** — multi‑hop orbital inference  
-- **DedicsnostVlastnostiRule** — inheritance of physical and logical properties  
-- **TranzitivneRelacieRule** — transitive category reasoning  
-- **AutoTypeInferenceRule** — automated type deduction  
+- **MultiHopOrbitInferenceRule**  
+- **DedicsnostVlastnostiRule**  
+- **TranzitivneRelacieRule**  
+- **AutoTypeInferenceRule**  
 
 These rules support complex enterprise logic, hierarchical classification, and property propagation.
 
@@ -82,7 +111,7 @@ These rules support complex enterprise logic, hierarchical classification, and p
 
 # 🛡 COLNIK‑6.x — Enterprise Customs & Validation Layer (Standard Mode)
 
-**COLNIK‑6.x is now a fully validated, stable, production‑ready module operating in Standard Mode.**  
+COLNIK‑6.x is now a fully validated, stable, production‑ready module operating in Standard Mode.  
 It acts as an internal **customs officer**, inspecting and validating operations before they reach core reasoning or workflow engines.
 
 ### Key Features
