@@ -4,26 +4,27 @@ layout: default
 ---
 
 # SIRIUS‑LOCAL‑AI  
-**A fully modular, offline‑only AI runtime with unified reasoning, deep explainability (XAI), KG_EXPLAIN & KG_EXPLAIN_DEEP, multimodal triage 5.6.2, deterministic UI automation, COLNIK‑6.x validation, and a next‑generation capability architecture.**
+**A fully modular, offline‑only AI runtime with unified reasoning, deep explainability (XAI), KG_EXPLAIN & KG_EXPLAIN_DEEP, multimodal triage 5.7.0, deterministic UI automation, COLNIK‑6.x Standard Mode, AUTONOMY 6.x Control Mode, and a next‑generation capability architecture.**
 
 SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, deep explainability, and full offline autonomy**.
 
-Version **5.6.2** introduces the most advanced generation of the Unified Runtime Architecture 5.x, merging PC and Mobile logic into a single deterministic, identity‑aware, multimodal, explainable AI operating layer.
+Version **5.7.0** introduces the most advanced generation of the Unified Runtime Architecture 5.x, merging PC and Mobile logic into a single deterministic, identity‑aware, multimodal, explainable AI operating layer.
 
-This release replaces the older 5.5 architecture with:
+This release replaces the older 5.6.x architecture with:
 
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Reasoning Engine 5.6.2 (multi‑hop, inheritance, transitivity)**  
+- **Reasoning Engine 5.7.0 (multi‑hop, inheritance, transitivity)**  
 - **Proof Tree + Evidence Tree foundations**  
 - **Confidence scoring model**  
 - **Rule chaining foundations**  
-- **Workflow Engine 5.6.2 (explainability routing)**  
-- **Unified Knowledge Graph 5.6.2 (comfort commands, stabilized autoload)**  
+- **Workflow Engine 5.7.0 (explainability routing)**  
+- **Unified Knowledge Graph 5.7.0 (comfort commands, stabilized autoload)**  
 - **improved KG attribute pipeline**  
 - **improved KG auto‑creation**  
 - **improved KG Light routing**  
-- **improved AITE 5.6.2 semantic + explainability triage**  
-- **COLNIK‑6.x validation subsystem**  
+- **improved AITE 5.7.0 semantic + explainability triage**  
+- **COLNIK‑6.x validation subsystem (Standard Mode)**  
+- **AUTONOMY 6.x (Control Mode)**  
 - **hardened deterministic routing**  
 - **identity‑aware system control**  
 - **safe OS automation**  
@@ -43,16 +44,16 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 - [Release Notes](RELEASE_NOTES.md)
 - [Roadmap](ROADMAP.md)
 - [Security Family](SECURITY_FAMILY.md)
-- [AITE 5.6.2](AITE.md)
+- [AITE 5.7.0](AITE.md)
 - [ENVOY 5](ENVOY_TUTORIAL.md)
 - [Future Vision](FUTURE_VISION.md)
 - [Password Vault 5.0](PASSWORD_VAULT.md)
 
 ---
 
-## 🚀 Key Features (v5.6.2 UNIFIED)
+## 🚀 Key Features (v5.7.0 UNIFIED)
 
-### **Unified Runtime 5.6.2**
+### **Unified Runtime 5.7.0**
 A fully upgraded runtime with:
 
 - deterministic execution  
@@ -65,31 +66,32 @@ A fully upgraded runtime with:
 - unified PC + Mobile behavior  
 - hardened System Agent 5 validation  
 - ENVOY Execution/Permission Layers 5  
-- COLNIK‑6.x validation  
-- deterministic UI automation (v5.0)  
+- COLNIK‑6.x validation (Standard Mode)  
+- AUTONOMY 6.x proposal/confirmation (Control Mode)  
+- deterministic UI automation (v5.1)  
 
 ---
 
-### **Modular Architecture (v5.6.2)**
+### **Modular Architecture (v5.7.0)**
 Each module is isolated and follows strict boundaries:
 
 - `commands/` – NL routing and command logic  
 - `context/` – semantic context engine  
 - `filesystem/` – safe file operations  
-- `runtime/` – Runtime Core 5.6.2  
-- `triage/` – AITE 5.6.2 (semantic + explainability triage)  
+- `runtime/` – Runtime Core 5.7.0  
+- `triage/` – AITE 5.7.0 (semantic + explainability triage)  
 - `ui/` – GUI logic  
 - `ui_components/` – graphical elements  
 - `ui_components/animations/` – animation engine  
-- `workflow/` – Workflow Engine 5.6.2  
+- `workflow/` – Workflow Engine 5.7.0  
 - `plugins/` – Plugin System 5.x  
-- `security_family/` – Identity Engine 3.0, time‑limits v3, schoolwork engine  
+- `security_family/` – Identity Engine 3.1, time‑limits v3, schoolwork engine  
 - `self_repair/` – Self‑Repair Layer 5.4  
 - `knowledge_packs/` – Knowledge Graph Packs 5.x  
 - `envoy/` – ENVOY Execution + Permission Layers 5  
-- `ui_automation/` – **UI Automation Engine 5.0**  
+- `ui_automation/` – **UI Automation Engine 5.1**  
 - `system_agent/` – System Agent 5  
-- `mobile_runtime/` – Mobile Runtime 5.6.2  
+- `mobile_runtime/` – Mobile Runtime 5.7.0  
 
 The system is designed to be extended **without modifying the core**.
 
@@ -109,7 +111,7 @@ All official plugins are fully prepared for v5.x.
 
 ---
 
-### **Automatic Input Triage Engine (AITE 5.6.2)**
+### **Automatic Input Triage Engine (AITE 5.7.0)**
 AITE analyzes inputs, classifies them, and routes them to the correct modules.
 
 It ensures:
@@ -120,15 +122,15 @@ It ensures:
 - difficulty scoring  
 - identity‑aware routing  
 - deterministic behavior  
-- **Schoolwork Engine 5.6.2 — academic tasks always bypass FAMILY restrictions**  
+- **Schoolwork Engine 5.7.0 — academic tasks always bypass FAMILY restrictions**  
 - **integration with SECURITY FAMILY 5.x**  
-- **integration with Reasoning Engine 5.6.2**  
-- **integration with Workflow Engine 5.6.2**  
-- **explainability detection (“prečo … ?”)**  
+- **integration with Reasoning Engine 5.7.0**  
+- **integration with Workflow Engine 5.7.0**  
+- **explainability detection (“why … ?”)**  
 
 ---
 
-### **Reasoning Engine 5.6.2**
+### **Reasoning Engine 5.7.0**
 A structured symbolic reasoning layer:
 
 - multi‑hop inference  
@@ -186,7 +188,7 @@ ENVOY never sends local data outward.
 
 ---
 
-### **Workflow Engine 5.6.2**
+### **Workflow Engine 5.7.0**
 Manages:
 
 - multi‑step processes  
@@ -200,7 +202,7 @@ Manages:
 
 ---
 
-### **Unified Automation Runtime 5.6.2**
+### **Unified Automation Runtime 5.7.0**
 Developer‑level offline automation:
 
 - filesystem automation  
@@ -212,7 +214,7 @@ Developer‑level offline automation:
 
 ---
 
-### **UI Automation Engine 5.0 (UPDATED)**
+### **UI Automation Engine 5.1 (UPDATED)**
 A major capability expanded in v5.x:
 
 - improved fuzzy UI parsing  
@@ -226,7 +228,7 @@ A major capability expanded in v5.x:
 
 ---
 
-## 📁 Project Structure (v5.6.2)
+## 📁 Project Structure (v5.7.0)
 src/
 ├── commands/  
 ├── context/  
@@ -263,11 +265,11 @@ The project includes a complete testing plan:
 - SECURITY FAMILY identity tests  
 - SCHOOLWORK ENGINE tests  
 - self‑repair integrity tests  
-- UI Automation Engine 5.0 tests  
+- UI Automation Engine 5.1 tests  
 - System Agent 5 validation tests  
 - ENVOY 5 sanitization tests  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP explainability tests  
-- Reasoning Engine 5.6.2 rule tests  
+- Reasoning Engine 5.7.0 rule tests  
 
 Details are in **TESTING_GUIDE.md**.
 
@@ -290,16 +292,17 @@ More in **PERFORMANCE_GUIDE.md**.
 
 ## 🗓️ Release Plan
 
-### **v5.6.2 – Unified Reasoning, Explainability & COLNIK‑6.x Architecture (Current)**  
-- AITE 5.6.2  
-- Reasoning Engine 5.6.2  
-- Workflow Engine 5.6.2  
-- Unified Knowledge Graph 5.6.2  
+### **v5.7.0 – Unified Reasoning, Explainability, COLNIK‑AUTONOMY Architecture (Current)**  
+- AITE 5.7.0  
+- Reasoning Engine 5.7.0  
+- Workflow Engine 5.7.0  
+- Unified Knowledge Graph 5.7.0  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- UI Automation Engine 5.0  
+- UI Automation Engine 5.1  
 - System Agent 5  
 - ENVOY Execution/Permission Layers 5  
-- COLNIK‑6.x validation  
+- COLNIK‑6.x validation (Standard Mode)  
+- AUTONOMY 6.x (Control Mode)  
 - deterministic system‑level intelligence  
 - unified PC/Mobile execution  
 
