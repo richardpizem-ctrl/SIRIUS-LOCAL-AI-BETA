@@ -1,0 +1,28 @@
+{
+  "last_snapshot_hash": "c8daa51955f024431390e2bcdfb294f8f6e293860dc8dd535cb8ca13af5019c7",
+  "last_navigation": [
+    "explorer.exe",
+    "ms-settings:",
+    "control.exe",
+    "ncpa.cpl",
+    "diskmgmt.msc",
+    "devmgmt.msc"
+  ],
+  "last_proposals": [
+    "triage-unknown-EXECUTE",
+    "duplicate-ac6911069da1bd7e0497e41105ec6e39fad7f0f65a7c032bf1c7d4c515c2988f",
+    "duplicate-4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "duplicate-6bdf66b5bf2a44e658bea2ee86695ab150a06e600bf67cd5cce245ad54962c61",
+    "nav-open_explorer",
+    "nav-open_settings",
+    "nav-open_control_panel",
+    "nav-open_network_connections",
+    "nav-open_disk_management",
+    "nav-open_device_manager"
+  ],
+  "last_trends": {
+    "cpu": "stable",
+    "ram": "stable",
+    "disk": "stable"
+  }
+}
