@@ -10,7 +10,7 @@ def scan_hardware():
             "cores": psutil.cpu_count(logical=False),
             "threads": psutil.cpu_count(logical=True),
             "frequency": psutil.cpu_freq().current if psutil.cpu_freq() else None,
-            "usage": psutil.cpu_percent(interval=None)   # 🔥 OPRAVENÉ
+            "usage": psutil.cpu_percent(interval=None)   # 🔥 stabilné neblokujúce meranie
         },
         "ram": {
             "total": psutil.virtual_memory().total,
@@ -20,6 +20,7 @@ def scan_hardware():
         "disks": []
     }
 
+    # === DISKY – bezpečné iterovanie cez všetky mountpointy ===
     for part in psutil.disk_partitions():
         try:
             usage = psutil.disk_usage(part.mountpoint)
@@ -33,6 +34,10 @@ def scan_hardware():
                 "percent": usage.percent
             })
         except PermissionError:
+            # niektoré systémové mountpointy sú nedostupné → ignorovať
+            continue
+        except FileNotFoundError:
+            # niektoré mountpointy môžu byť ghost → ignorovať
             continue
 
     return info

@@ -5,6 +5,15 @@ from modules.detection import Detection
 
 detector = Detection()
 
+# SYSTÉMOVÉ SÚBORY, KTORÉ SA MAJÚ IGNOROVAŤ
+SYSTEM_SAFE_FILES = {
+    "dir",
+    "python",
+    "__init__.py",
+    "kg_autosave_broken.json",
+    "kg_autosave.json"
+}
+
 # ============================================================
 #                CPU / RAM / DISK ANALYZERY
 # ============================================================
@@ -48,7 +57,6 @@ def analyze(snapshot):
     ram_percent = snapshot["system"]["ram"]
     disk_delta = snapshot["system"]["disk"]
 
-    # 🔥 TRENDY — bezpečné, nikdy nespadnú
     trends = snapshot.get("trend") or snapshot.get("trends") or {
         "cpu": "stable",
         "ram": "stable",
@@ -65,21 +73,24 @@ def analyze(snapshot):
     # 🔥 PILIER 2 — DETEKCIA SÚBOROV (OPRAVENÉ)
     # ============================================================
 
-    root_folder = None
-    folders = snapshot.get("folders", {})
+    root_folder = snapshot.get("folders", {}).get("root", None)
 
-    if isinstance(folders, dict):
-        root_folder = folders.get("root", None)
-
-    # Ak root_folder existuje → spustíme detekciu súborov
     if root_folder and os.path.exists(root_folder):
 
-        files = [entry.path for entry in os.scandir(root_folder) if entry.is_file()]
+        files = []
+        for entry in os.scandir(root_folder):
+            if entry.is_file():
+                filename = os.path.basename(entry.path).lower()
+
+                # === IGNORUJ SYSTÉMOVÉ SÚBORY ===
+                if filename in SYSTEM_SAFE_FILES:
+                    continue
+
+                files.append(entry.path)
 
         # 1️⃣ DETEKCIA POŠKODENÝCH / NEÚPLNÝCH / NEBEZPEČNÝCH SÚBOROV
         for path in files:
 
-            # CORRUPTION — pridaj len ak je problém
             corr = detector.detect_corruption(path)
             if corr and corr.get("type") != "file_ok":
                 issues.append({
@@ -88,7 +99,6 @@ def analyze(snapshot):
                     "result": corr
                 })
 
-            # INCOMPLETE — pridaj len ak je problém
             inc = detector.detect_incomplete(path)
             if inc:
                 issues.append({
@@ -97,7 +107,6 @@ def analyze(snapshot):
                     "result": inc
                 })
 
-            # DANGEROUS CONTENT — pridaj len ak je problém
             dang = detector.detect_dangerous_content(path)
             if dang:
                 issues.append({
@@ -106,7 +115,7 @@ def analyze(snapshot):
                     "result": dang
                 })
 
-        # 2️⃣ DETEKCIA DUPLICÍT A KONFLIKTOV — len ak existujú
+        # 2️⃣ DETEKCIA DUPLICÍT — len ak existujú
         for i in range(len(files)):
             for j in range(i + 1, len(files)):
 
@@ -131,7 +140,12 @@ def analyze(snapshot):
         # 3️⃣ DETEKCIA Z CELEJ ZLOŽKY — pridaj len reálne problémy
         folder_scan = detector.scan_folder(root_folder)
         for item in folder_scan:
-            # pridaj len ak je to problém
+            filename = os.path.basename(item.get("path", "")).lower()
+
+            # === IGNORUJ SYSTÉMOVÉ SÚBORY ===
+            if filename in SYSTEM_SAFE_FILES:
+                continue
+
             if item.get("type") not in ["file_ok"]:
                 issues.append(item)
 

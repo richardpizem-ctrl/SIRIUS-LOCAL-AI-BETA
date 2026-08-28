@@ -1,15 +1,14 @@
 import os
 
-def scan_folders(root="C:\\"):
-    """
-    Ľahký folder-scan.
-    Namiesto dumpovania celého disku vráti len statusové súhrny:
-    - počet priečinkov
-    - počet súborov
-    - celková veľkosť
-    - najväčší priečinok (názov + veľkosť)
-    """
+# SYSTÉMOVÉ SÚBORY, KTORÉ SA MAJÚ IGNOROVAŤ
+SYSTEM_EMPTY_SAFE = {
+    "dir",
+    "python",
+    "__init__.py",
+    "kg_autosave_BROKEN.json"
+}
 
+def scan_folders(root=r"C:\SIRIUS_ARCHIVE\COLNIK-6.x"):
     result = {
         "root": root,
         "folders_total": 0,
@@ -18,10 +17,15 @@ def scan_folders(root="C:\\"):
         "largest_folder": {
             "path": None,
             "size": 0
+        },
+        "required_folders": {
+            "modules": os.path.isdir(os.path.join(root, "modules")),
+            "runtime": os.path.isdir(os.path.join(root, "runtime")),
+            "configs": os.path.isdir(os.path.join(root, "configs")),
+            "backups": os.path.isdir(os.path.join(root, "backups"))
         }
     }
 
-    # Prejdeme len prvú úroveň (root), nie celý disk
     try:
         for entry in os.scandir(root):
             if entry.is_dir():
@@ -30,9 +34,16 @@ def scan_folders(root="C:\\"):
                 folder_size = 0
                 try:
                     for sub in os.scandir(entry.path):
+
+                        # === IGNORUJ SYSTÉMOVÉ PRÁZDNE SÚBORY ===
                         if sub.is_file():
+                            filename = os.path.basename(sub.path).lower()
+                            if filename in SYSTEM_EMPTY_SAFE:
+                                continue
+
                             folder_size += os.path.getsize(sub.path)
                             result["files_total"] += 1
+
                 except PermissionError:
                     continue
 
@@ -43,6 +54,12 @@ def scan_folders(root="C:\\"):
                     result["largest_folder"]["path"] = entry.path
 
             elif entry.is_file():
+                filename = os.path.basename(entry.path).lower()
+
+                # === IGNORUJ SYSTÉMOVÉ PRÁZDNE SÚBORY ===
+                if filename in SYSTEM_EMPTY_SAFE:
+                    continue
+
                 result["files_total"] += 1
                 try:
                     size = os.path.getsize(entry.path)

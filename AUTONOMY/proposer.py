@@ -43,14 +43,13 @@ SAFE_ACTIONS = {
 
     "REPORT_CORRUPTED_FILE",
     "REPORT_DANGEROUS_FILE",
+    "REPORT_DUPLICATE",
     "QUARANTINE",
     "KILL",
 
     "DELETE_EMPTY_FOLDER",
     "REORGANIZE_FOLDER",
     "MOVE_TO_ARCHIVE",
-
-    "DELETE_DUPLICATE",
 
     # NAVIGÁCIA
     "NAVIGATE"
@@ -64,9 +63,9 @@ ACTION_MAP = {
 
     "REPORT_CORRUPTED_FILE": "SYSTEM_CHANGE",
     "REPORT_DANGEROUS_FILE": "SYSTEM_CHANGE",
+    "REPORT_DUPLICATE": "SYSTEM_CHANGE",
 
     "DELETE_EMPTY_FOLDER": "DELETE",
-    "DELETE_DUPLICATE": "DELETE",
 
     "MOVE_TO_ARCHIVE": "MOVE",
     "REORGANIZE_FOLDER": "MOVE",
@@ -232,7 +231,7 @@ def generate_proposals(analysis):
         if issue.get("type") == "FILE_DUPLICATE_CHECK":
             proposals.append({
                 "proposal_id": f"duplicate-{issue['file1']}-{issue['file2']}",
-                "action": "DELETE_DUPLICATE",
+                "action": "REPORT_DUPLICATE",
                 "target": issue["file1"],
                 "payload": {"duplicate_of": issue["file2"]},
                 "priority": "NORMAL",

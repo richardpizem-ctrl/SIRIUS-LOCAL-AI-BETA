@@ -1,4 +1,4 @@
-# SIRIUS COLNIK-6.x — Triage Folders Module (FINAL)
+# SIRIUS COLNIK-6.x — Triage Folders Module (SUPER-FINAL)
 # PILIER 4 — TRIAZ PRIEČINKOV
 # Autonómia identifikuje typ priečinka, navrhne presun, ale nikdy nekoná sama.
 
@@ -7,7 +7,11 @@ from kg.kg_core import KGCore
 from timecore import TimeCore
 
 # === IMPORTUJ PRAVIDLÁ PILIERA 4 ===
-from triage_folders.triage_folder_rules import FOLDER_TYPES, FOLDER_DESTINATIONS, TRIAGE_FOLDER_RULES
+from triage_folders.triage_folder_rules import (
+    FOLDER_TYPES,
+    FOLDER_DESTINATIONS,
+    TRIAGE_FOLDER_RULES,
+)
 
 kg = KGCore()
 
@@ -16,13 +20,16 @@ class TriageFolders:
     def __init__(self, base_path: str = None):
         """
         base_path je voliteľný.
-        Ak nie je zadaný, automaticky sa nastaví na aktuálny COLNIK-6.x priečinok.
+        Ak nie je zadaný, automaticky sa nastaví na COLNIK-6.x root.
         """
         self.timecore = TimeCore()
         self.timecore.runtime_start()
 
-        if base_path is None:
-            base_path = os.getcwd()
+        # === DEFINITÍVNA OPRAVA ROOTU ===
+        # Autonómia aj Colník budú vždy používať správny root
+        if base_path is None or base_path == ".":
+            base_path = r"C:\SIRIUS_ARCHIVE\COLNIK-6.x"
+
         self.base_path = base_path
 
         # === KG: pridaj root folder ako entitu ===
@@ -66,10 +73,12 @@ class TriageFolders:
     # IDENTIFIKÁCIA TYPU PRIEČINKA
     # ============================================================
     def detect_folder_type(self, folder_name: str):
-        """Zistí typ priečinka podľa názvu — už podľa PRAVIDIEL PILIERA 4."""
+        """Zistí typ priečinka podľa názvu — podľa PRAVIDIEL PILIERA 4."""
+        name_lower = folder_name.lower()
         for folder_type, keywords in FOLDER_TYPES.items():
             for keyword in keywords:
-                if keyword.lower() == folder_name.lower():
+                key_lower = keyword.lower()
+                if name_lower == key_lower or name_lower.startswith(key_lower):
                     return folder_type
         return "unknown"
 
@@ -124,7 +133,11 @@ class TriageFolders:
             # === Ak priečinok nie je na správnom mieste → návrh presunu ===
             correct_path = os.path.join(self.base_path, expected_destination)
 
-            if expected_destination != "." and not full_path.startswith(correct_path):
+            # CASE-INSENSITIVE POROVNÁVANIE NA WINDOWS
+            full_norm = os.path.normcase(full_path)
+            correct_norm = os.path.normcase(correct_path)
+
+            if expected_destination != "." and not full_norm.startswith(correct_norm):
                 proposals.append({
                     "proposal_id": f"triage-move-{folder}",
                     "module": "triage_folders",
@@ -145,26 +158,39 @@ class TriageFolders:
         return proposals
 
     # ============================================================
-    # REQUIRED FOLDERS CHECK
+    # REQUIRED FOLDERS CHECK — AUTO-CREATE, NIE DENY VŠETKO
     # ============================================================
     def check_required_folders(self):
-        """Check if required folders exist."""
+        """Check if required folders exist; chýbajúce automaticky vytvorí."""
         self.timecore.cycle_start()
 
         missing = []
         for folder in TRIAGE_FOLDER_RULES["required"]:
             full_path = os.path.join(self.base_path, folder)
-            if not os.path.isdir(full_path):
-                missing.append(f"Missing required folder: {folder}")
 
-            # === KG: zapisuj required folders ===
-            kg.add_entity(full_path, {
-                "required": True,
-                "triage_timestamp": self.timecore.timestamp(),
-                "triage_cycle_time": self.timecore.cycle_delta()
-            })
+            if not os.path.isdir(full_path):
+                try:
+                    os.makedirs(full_path, exist_ok=True)
+                    kg.add_entity(full_path, {
+                        "required": True,
+                        "auto_created": True,
+                        "triage_timestamp": self.timecore.timestamp(),
+                        "triage_cycle_time": self.timecore.cycle_delta()
+                    })
+                except Exception as e:
+                    # skutočná chyba – toto môže ísť do validatora
+                    missing.append(f"Missing required folder: {folder} (error: {e})")
+                    continue
+            else:
+                kg.add_entity(full_path, {
+                    "required": True,
+                    "auto_created": False,
+                    "triage_timestamp": self.timecore.timestamp(),
+                    "triage_cycle_time": self.timecore.cycle_delta()
+                })
 
         self.timecore.cycle_end()
+        # Ak sa všetko podarilo vytvoriť, nevraciame chybu → COLNÍK nebude DENY-ovať všetko
         return missing
 
     # ============================================================

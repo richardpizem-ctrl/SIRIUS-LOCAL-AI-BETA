@@ -1,0 +1,32 @@
+[
+  {
+    "request_id": "duplicate-ac6911069da1bd7e0497e41105ec6e39fad7f0f65a7c032bf1c7d4c515c2988f",
+    "decision": "REQUIRE_CONFIRMATION",
+    "action": "SYSTEM_CHANGE",
+    "reason": "SYSTEM_CHANGE requires confirmation"
+  },
+  {
+    "request_id": "duplicate-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decision": "ALLOW",
+    "action": "MOVE",
+    "reason": "Empty files \u2013 archive allowed"
+  },
+  {
+    "request_id": "duplicate-7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "decision": "REQUIRE_CONFIRMATION",
+    "action": "SYSTEM_CHANGE",
+    "reason": "SYSTEM_CHANGE requires confirmation"
+  },
+  {
+    "request_id": "duplicate-8d203f926c769fac254168ba5a14d3f689e2e3ee37d58f574ce22d14958adac3",
+    "decision": "REQUIRE_CONFIRMATION",
+    "action": "SYSTEM_CHANGE",
+    "reason": "SYSTEM_CHANGE requires confirmation"
+  },
+  {
+    "request_id": "duplicate-6bdf66b5bf2a44e658bea2ee86695ab150a06e600bf67cd5cce245ad54962c61",
+    "decision": "REQUIRE_CONFIRMATION",
+    "action": "SYSTEM_CHANGE",
+    "reason": "SYSTEM_CHANGE requires confirmation"
+  }
+]

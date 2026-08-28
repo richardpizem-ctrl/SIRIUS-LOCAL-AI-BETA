@@ -1,6 +1,14 @@
 import platform
 import psutil
 
+# SYSTÉMOVÉ SÚBORY, KTORÉ SA MAJÚ IGNOROVAŤ V ANALÝZE
+SYSTEM_EMPTY_SAFE = {
+    "dir",
+    "python",
+    "__init__.py",
+    "kg_autosave_BROKEN.json"
+}
+
 def scan_os():
     """
     Ľahký OS skener.
@@ -16,7 +24,9 @@ def scan_os():
         },
         "processes": {
             "total": 0
-        }
+        },
+        # 🔥 PRIDANÉ: issues pole, aby sme mohli filtrovať falošné hlášky
+        "issues": []
     }
 
     # === PROCESY – len počet, nie celý zoznam ===
@@ -53,5 +63,25 @@ def scan_os():
         info["services"]["total"] = 0
         info["services"]["running"] = 0
         info["services"]["stopped"] = 0
+
+    # === 🔥 FILTER: odstrániť falošné FILE_CORRUPTION / EMPTY_FILE ===
+    filtered_issues = []
+    for issue in info.get("issues", []):
+        filename = None
+
+        if "file" in issue:
+            filename = issue["file"].split("\\")[-1].lower()
+        if "path" in issue:
+            filename = issue["path"].split("\\")[-1].lower()
+        if "file1" in issue:
+            filename = issue["file1"].split("\\")[-1].lower()
+
+        # ignoruj DIR / PYTHON / __init__.py / kg_autosave_BROKEN.json
+        if filename in SYSTEM_EMPTY_SAFE:
+            continue
+
+        filtered_issues.append(issue)
+
+    info["issues"] = filtered_issues
 
     return info

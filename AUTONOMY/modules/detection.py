@@ -5,6 +5,14 @@
 import os
 import json
 
+SYSTEM_SAFE_FILES = {
+    "dir",
+    "python",
+    "__init__.py",
+    "kg_autosave.json",
+    "kg_autosave_broken.json"
+}
+
 class Detection:
 
     def __init__(self):
@@ -16,7 +24,17 @@ class Detection:
             "keylogger", "miner", "hack", "crack", "stealer", "rat", "trojan"
         ]
 
+    # ============================================================
+    # FILE CORRUPTION
+    # ============================================================
+
     def detect_corruption(self, path):
+        name = os.path.basename(path).lower()
+
+        # IGNORUJ SYSTÉMOVÉ PRÁZDNE SÚBORY
+        if name in SYSTEM_SAFE_FILES:
+            return {"type": "file_ok", "path": path, "reason": "IGNORED_SYSTEM_FILE"}
+
         if not os.path.exists(path):
             return {"type": "file_corrupt", "path": path, "reason": "NOT_FOUND"}
 
@@ -26,7 +44,7 @@ class Detection:
             return {"type": "file_corrupt", "path": path, "reason": "UNREADABLE_SIZE"}
 
         if size == 0:
-            return {"type": "file_corrupt", "path": path, "reason": "EMPTY_FILE"}
+            return {"type": "file_ok", "path": path, "reason": "IGNORED_EMPTY_SYSTEM_FILE"}
 
         if size < 10:
             return {"type": "file_corrupt", "path": path, "reason": "TOO_SMALL"}
@@ -40,9 +58,16 @@ class Detection:
 
         return {"type": "file_ok", "path": path, "reason": "NO_CORRUPTION"}
 
+    # ============================================================
+    # FILE DANGER / SUSPICIOUS
+    # ============================================================
+
     def detect_file(self, path):
         issues = []
         name = os.path.basename(path).lower()
+
+        if name in SYSTEM_SAFE_FILES:
+            return issues
 
         for ext in self.suspicious_extensions:
             if name.endswith(ext):
@@ -63,7 +88,16 @@ class Detection:
 
         return issues
 
+    # ============================================================
+    # FILE INCOMPLETE
+    # ============================================================
+
     def detect_incomplete(self, path):
+        name = os.path.basename(path).lower()
+
+        if name in SYSTEM_SAFE_FILES:
+            return None
+
         try:
             with open(path, "rb") as f:
                 data = f.read()
@@ -77,7 +111,16 @@ class Detection:
 
         return None
 
+    # ============================================================
+    # FILE DANGEROUS CONTENT
+    # ============================================================
+
     def detect_dangerous_content(self, path):
+        name = os.path.basename(path).lower()
+
+        if name in SYSTEM_SAFE_FILES:
+            return None
+
         try:
             with open(path, "rb") as f:
                 data = f.read()
@@ -103,7 +146,28 @@ class Detection:
 
         return None
 
+    # ============================================================
+    # DUPLICATES (OPRAVENÉ)
+    # ============================================================
+
     def detect_duplicate(self, path1, path2):
+        name1 = os.path.basename(path1).lower()
+        name2 = os.path.basename(path2).lower()
+
+        # IGNORUJ SYSTÉMOVÉ PRÁZDNE SÚBORY
+        if name1 in SYSTEM_SAFE_FILES or name2 in SYSTEM_SAFE_FILES:
+            return None
+
+        try:
+            size1 = os.path.getsize(path1)
+            size2 = os.path.getsize(path2)
+        except:
+            return None
+
+        # IGNORUJ PRÁZDNE SÚBORY
+        if size1 == 0 or size2 == 0:
+            return None
+
         try:
             with open(path1, "rb") as f:
                 d1 = f.read()
@@ -117,10 +181,25 @@ class Detection:
 
         return None
 
+    # ============================================================
+    # FILE CONFLICT
+    # ============================================================
+
     def detect_conflict(self, path1, path2):
-        if os.path.basename(path1) == os.path.basename(path2):
+        name1 = os.path.basename(path1).lower()
+        name2 = os.path.basename(path2).lower()
+
+        if name1 in SYSTEM_SAFE_FILES or name2 in SYSTEM_SAFE_FILES:
+            return None
+
+        if name1 == name2:
             return {"type": "file_conflict", "file1": path1, "file2": path2, "reason": "SAME_FILENAME"}
+
         return None
+
+    # ============================================================
+    # FOLDER SCAN
+    # ============================================================
 
     def scan_folder(self, path):
         issues = []
@@ -129,14 +208,18 @@ class Detection:
             return issues
 
         try:
-            files = [os.path.join(path, f) for f in os.listdir(path)
-                     if os.path.isfile(os.path.join(path, f))]
+            files = [
+                os.path.join(path, f)
+                for f in os.listdir(path)
+                if os.path.isfile(os.path.join(path, f))
+                and os.path.basename(f).lower() not in SYSTEM_SAFE_FILES
+            ]
 
             for file in files:
                 issues.extend(self.detect_file(file))
 
                 corr = self.detect_corruption(file)
-                if corr:
+                if corr and corr["type"] != "file_ok":
                     issues.append(corr)
 
                 inc = self.detect_incomplete(file)
@@ -161,6 +244,10 @@ class Detection:
             issues.append({"type": "scan_error", "path": path, "reason": str(e)})
 
         return issues
+
+    # ============================================================
+    # PROCESS DETECTION
+    # ============================================================
 
     def detect_process(self, process_name):
         name = process_name.lower()

@@ -1,5 +1,6 @@
-# Triage Folder Rules (FINAL)
-# Defines required folder structure for COLNIK operations.
+# Triage Folder Rules (SUPER-FINAL)
+# Defines required folder structure and classification rules for COLNIK operations.
+# PILIER 4 — TRIAZ PRIEČINKOV
 
 TRIAGE_FOLDER_RULES = {
     "required": [
@@ -7,17 +8,35 @@ TRIAGE_FOLDER_RULES = {
         "exports",
         "workflow",
         "kg",
-        "envoy"
+        "envoy",
+        "modules",
+        "runtime",
+        "configs",
+        "backups"
     ],
     "optional": [
         "backup",
         "simulator",
-        "temp"
+        "temp",
+        "__pycache__",
+        "archive"
     ]
 }
 
-# === PILIER 4 — FOLDER TYPES (rozpoznanie typu priečinka) ===
+# ============================================================
+# FOLDER TYPES — ROZPOZNANIE TYPU PRIEČINKA
+# ============================================================
+
 FOLDER_TYPES = {
+    # ROOT PROJECT
+    "sirius_root": ["COLNIK", "COLNIK-6.x"],
+    "simulator": ["COLNIK_SIMULATOR"],
+    "exports": ["exports"],
+
+    # AUTONOMY TRIAGE MODULES
+    "autonomy_triage": ["triage_duplicates", "triage_folders"],
+
+    # AUTONOMY STRUCTURE
     "autonomy_core": ["core"],
     "autonomy_guard": ["guard"],
     "autonomy_modules": ["modules"],
@@ -35,11 +54,34 @@ FOLDER_TYPES = {
     "autonomy_config": ["config", "configs"],
     "autonomy_backup": ["backup", "backups"],
     "autonomy_archive": ["archive"],
-    "autonomy_root": ["AUTONOMY"]
+    "autonomy_root": ["AUTONOMY"],
+
+    # SIRIUS MODULES
+    "sirius_modules": ["SIRIUS_MODULES"],
+
+    # GENERAL SYSTEM FOLDERS
+    "system_temp": ["temp", "tmp"],
+    "system_logs": ["logs"],
+    "system_configs": ["configs"],
+    "system_runtime": ["runtime"],
+    "system_backups": ["backups"],
+    "system_archive": ["archive"]
 }
 
-# === PILIER 4 — DESTINATIONS (kam priečinok patrí) ===
+# ============================================================
+# DESTINATIONS — KAM PRIEČINOK PATRÍ
+# ============================================================
+
 FOLDER_DESTINATIONS = {
+    # ROOT PROJECT
+    "sirius_root": ".",
+    "simulator": "simulator",
+    "exports": "exports",
+
+    # AUTONOMY TRIAGE MODULES
+    "autonomy_triage": "triage",
+
+    # AUTONOMY STRUCTURE
     "autonomy_core": "core",
     "autonomy_guard": "guard",
     "autonomy_modules": "modules",
@@ -57,5 +99,16 @@ FOLDER_DESTINATIONS = {
     "autonomy_config": "config",
     "autonomy_backup": "backups",
     "autonomy_archive": "archive",
-    "autonomy_root": "."
+    "autonomy_root": ".",
+
+    # SIRIUS MODULES
+    "sirius_modules": "SIRIUS_MODULES",
+
+    # GENERAL SYSTEM FOLDERS
+    "system_temp": "temp",
+    "system_logs": "logs",
+    "system_configs": "configs",
+    "system_runtime": "runtime",
+    "system_backups": "backups",
+    "system_archive": "archive"
 }

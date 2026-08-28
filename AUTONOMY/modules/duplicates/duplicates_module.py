@@ -5,6 +5,9 @@ from datetime import datetime
 # importujeme scanner z PILIERA 5
 from AUTONOMY.modules.duplicates.duplicate_scanner import DuplicateScanner
 
+# importujeme nový classifier (FÁZA 3)
+from AUTONOMY.modules.duplicates.duplicate_classifier import DuplicateClassifier
+
 
 class DuplicatesModule:
     """
@@ -12,22 +15,23 @@ class DuplicatesModule:
     --------------------------
     - volá duplicate_scanner.py
     - spracuje duplicity
-    - vytvorí návrhy pre Guard
+    - klasifikuje duplicity (FÁZA 3)
+    - vytvorí bezpečné návrhy pre Guard
     - vráti návrhy autonómii
     """
 
     def __init__(self, base_path="C:\\SIRIUS_ARCHIVE\\COLNIK-6.x"):
         self.base_path = base_path
         self.scanner = DuplicateScanner(base_path)
+        self.classifier = DuplicateClassifier()   # ← nový classifier
 
     # ============================================================
-    # GENERATE PROPOSALS
+    # GENERATE PROPOSALS (už s classifierom)
     # ============================================================
     def generate_proposals(self, duplicates):
         """
         Pre každú duplicitu vytvorí návrh pre autonómiu.
-        Návrhy sú jednoduché – zatiaľ len DELETE_DUPLICATE.
-        Guard neskôr rozhodne, či je akcia bezpečná.
+        Teraz už podľa classifiera (FÁZA 3).
         """
 
         proposals = []
@@ -36,10 +40,35 @@ class DuplicatesModule:
             file_hash = item["hash"]
             files = item["files"]
 
-            # ak sú duplicity v rovnakom priečinku → návrh DELETE
-            # ak sú v rôznych priečinkoch → návrh MOVE (neskôr)
-            action_type = "DELETE_DUPLICATE"
+            # ----------------------------------------------------
+            # 1. Klasifikácia duplicity
+            # ----------------------------------------------------
+            classification = self.classifier.classify(file_hash, files)
 
+            category = classification["category"]
+            decision = classification["decision"]
+            reason = classification["reason"]
+
+            # ----------------------------------------------------
+            # 2. Mapovanie rozhodnutia classifiera na autonómiu
+            # ----------------------------------------------------
+            # DELETE_SAFE je teraz zablokované → REPORT_ONLY
+            if decision == "DELETE_SAFE":
+                decision = "REPORT_ONLY"
+
+            action_map = {
+                "IGNORE": "IGNORE_DUPLICATE",
+                "DELETE_SAFE": "DELETE_DUPLICATE_SAFE",   # už sa nepoužije
+                "ARCHIVE": "ARCHIVE_DUPLICATE",
+                "QUARANTINE": "QUARANTINE_DUPLICATE",
+                "REPORT_ONLY": "REPORT_DUPLICATE"
+            }
+
+            action_type = action_map.get(decision, "REPORT_DUPLICATE")
+
+            # ----------------------------------------------------
+            # 3. Vytvorenie návrhu
+            # ----------------------------------------------------
             proposal = {
                 "proposal_id": f"duplicate-{file_hash}",
                 "module": "duplicates",
@@ -49,7 +78,9 @@ class DuplicatesModule:
                     "hash": file_hash,
                     "files": files,
                     "count": len(files),
-                    "reason": "Duplicate files detected by PILIER 5"
+                    "category": category,
+                    "decision": decision,
+                    "reason": reason
                 },
                 "priority": "MEDIUM",
                 "timestamp": str(datetime.now())
@@ -68,7 +99,8 @@ class DuplicatesModule:
         - scan
         - hash
         - detekcia duplicít
-        - generovanie návrhov
+        - klasifikácia duplicít (FÁZA 3)
+        - generovanie bezpečných návrhov
         """
 
         print("[DUPLICATES_MODULE] Spúšťam PILIER 5 – SCAN + HASH...")

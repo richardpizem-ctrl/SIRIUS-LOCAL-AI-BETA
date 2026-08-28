@@ -1,0 +1,129 @@
+{
+  "responses": [
+    {
+      "request_id": "duplicate-ac6911069da1bd7e0497e41105ec6e39fad7f0f65a7c032bf1c7d4c515c2988f",
+      "decision": "REQUIRE_CONFIRMATION",
+      "reason": "SYSTEM_CHANGE requires confirmation",
+      "action": "SYSTEM_CHANGE",
+      "params": {
+        "hash": "ac6911069da1bd7e0497e41105ec6e39fad7f0f65a7c032bf1c7d4c515c2988f",
+        "files": [
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\autonomy_test_input.py",
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\AUTONOMY\\autonomy_test_input.py"
+        ],
+        "count": 2,
+        "category": "CRITICAL",
+        "decision": "REPORT_ONLY",
+        "reason": "Duplicita v kritickom module – autonómia nesmie mazať",
+        "subaction": "REPORT_DUPLICATE"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "duplicate-4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "decision": "REQUIRE_CONFIRMATION",
+      "reason": "SYSTEM_CHANGE requires confirmation",
+      "action": "SYSTEM_CHANGE",
+      "params": {
+        "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "files": [
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\IPC_DATA\\post_action_log.json",
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\IPC_DATA\\responses.json"
+        ],
+        "count": 2,
+        "category": "SAFE",
+        "decision": "REPORT_ONLY",
+        "reason": "Bezpečná duplicita – ale automatické mazanie je zakázané",
+        "subaction": "REPORT_DUPLICATE"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "duplicate-6bdf66b5bf2a44e658bea2ee86695ab150a06e600bf67cd5cce245ad54962c61",
+      "decision": "REQUIRE_CONFIRMATION",
+      "reason": "SYSTEM_CHANGE requires confirmation",
+      "action": "SYSTEM_CHANGE",
+      "params": {
+        "hash": "6bdf66b5bf2a44e658bea2ee86695ab150a06e600bf67cd5cce245ad54962c61",
+        "files": [
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\SIRIUS_MODULES\\envoy\\module.txt",
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\SIRIUS_MODULES\\kg\\module.txt",
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\SIRIUS_MODULES\\runtime\\module.txt",
+          "C:\\SIRIUS_ARCHIVE\\COLNIK-6.x\\SIRIUS_MODULES\\selfrepair\\module.txt"
+        ],
+        "count": 4,
+        "category": "CRITICAL",
+        "decision": "REPORT_ONLY",
+        "reason": "Duplicita v kritickom module – autonómia nesmie mazať",
+        "subaction": "REPORT_DUPLICATE"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "nav-open_explorer",
+      "decision": "ALLOW",
+      "reason": "Navigation allowed",
+      "action": "NAVIGATE",
+      "params": {
+        "task": "OPEN_EXPLORER",
+        "subaction": "OPEN"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "nav-open_settings",
+      "decision": "ALLOW",
+      "reason": "Navigation allowed",
+      "action": "NAVIGATE",
+      "params": {
+        "task": "OPEN_SETTINGS",
+        "subaction": "OPEN"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "nav-open_control_panel",
+      "decision": "ALLOW",
+      "reason": "Navigation allowed",
+      "action": "NAVIGATE",
+      "params": {
+        "task": "OPEN_CONTROL_PANEL",
+        "subaction": "OPEN"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "nav-open_network_connections",
+      "decision": "ALLOW",
+      "reason": "Navigation allowed",
+      "action": "NAVIGATE",
+      "params": {
+        "task": "OPEN_NETWORK_CONNECTIONS",
+        "subaction": "OPEN"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "nav-open_disk_management",
+      "decision": "ALLOW",
+      "reason": "Navigation allowed",
+      "action": "NAVIGATE",
+      "params": {
+        "task": "OPEN_DISK_MANAGEMENT",
+        "subaction": "OPEN"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    },
+    {
+      "request_id": "nav-open_device_manager",
+      "decision": "ALLOW",
+      "reason": "Navigation allowed",
+      "action": "NAVIGATE",
+      "params": {
+        "task": "OPEN_DEVICE_MANAGER",
+        "subaction": "OPEN"
+      },
+      "timestamp": "2026-08-27T15:20:08Z"
+    }
+  ]
+}
