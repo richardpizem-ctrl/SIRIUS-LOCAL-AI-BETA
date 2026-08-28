@@ -1,24 +1,25 @@
-# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.6.2 UNIFIED  
-### The Most Advanced, Stable, Explainable & Enterprise‑Validated Runtime in the SIRIUS Ecosystem
+# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.7.0 UNIFIED  
+### The Most Advanced, Stable, Explainable, Autonomy‑Aware & Enterprise‑Validated Runtime in the SIRIUS Ecosystem
 
-Version **5.6.2 UNIFIED** builds directly on the foundations of **5.6.1 UNIFIED**,  
-introducing the fully stabilized **Unified Reasoning, Deep Explainability & COLNIK‑6.x Architecture 5.6.2** —  
-the most deterministic, reliable, and enterprise‑validated intelligence upgrade in the history of SIRIUS LOCAL AI.
+Version **5.7.0 UNIFIED** builds directly on the foundations of **5.6.2 UNIFIED**,  
+introducing the fully stabilized **Unified Reasoning, Deep Explainability, COLNIK‑Standard Mode & AUTONOMY‑Control Mode Architecture 5.7.0** —  
+the most deterministic, reliable, autonomy‑aware and enterprise‑validated intelligence upgrade in the history of SIRIUS LOCAL AI.
 
-This release strengthens **System Agent 5**, expands **AITE 5.6.2**,  
-enhances **KG_EXPLAIN & KG_EXPLAIN_DEEP**, upgrades **Workflow Engine 5.6.2**,  
-and delivers the most stable symbolic reasoning engine ever released — now with **COLNIK‑6.x validation**.
+This release strengthens **System Agent 5**, expands **AITE 5.7.0**,  
+enhances **KG_EXPLAIN & KG_EXPLAIN_DEEP**, upgrades **Workflow Engine 5.7.0**,  
+and delivers the most stable symbolic reasoning engine ever released — now with  
+**COLNIK‑6.x Standard Mode validation** and **AUTONOMY‑6.x Control Mode proposals/confirmations**.
 
 ---
 
-# 🚀 What’s New in v5.6.2 UNIFIED
+# 🚀 What’s New in v5.7.0 UNIFIED
 
-## 🔥 1. AITE 5.6.2 – Semantic + Explainability Multimodal Triage
+## 🔥 1. AITE 5.7.0 – Semantic + Explainability + Autonomy Multimodal Triage
 The most stable and precise AITE to date.
 
 - accelerated multimodal routing  
 - deeper semantic tagging  
-- improved OCR 5.6.2  
+- improved OCR 5.7.0  
 - explain‑intent detection (“why…?”)  
 - KG‑aware triage  
 - SCHOOLWORK bypass 5.x  
@@ -27,11 +28,12 @@ The most stable and precise AITE to date.
 - optimized mixed‑content detection  
 - deterministic explainability metadata  
 - stabilized NL intent detection  
-- **COLNIK‑validated triage decisions**
+- **COLNIK‑validated triage decisions**  
+- **AUTONOMY‑aware triage proposals**
 
 ---
 
-## 🔥 2. Workflow Engine 5.6.2 – Explainability‑Aware Multi‑Step Logic
+## 🔥 2. Workflow Engine 5.7.0 – Explainability‑Aware Multi‑Step Logic + Autonomy
 A fully stabilized workflow engine with deterministic routing.
 
 - O(1) transitions  
@@ -43,11 +45,12 @@ A fully stabilized workflow engine with deterministic routing.
 - unified PC/Mobile workflows  
 - improved error‑recovery logic  
 - complete step registry for KG, reasoning, ENVOY, and system operations  
-- **COLNIK‑validated workflow transitions**
+- **COLNIK‑validated workflow transitions**  
+- **AUTONOMY‑aware workflow transitions**
 
 ---
 
-## 🔥 3. Reasoning Engine 5.6.2 – Multi‑Hop Symbolic Intelligence
+## 🔥 3. Reasoning Engine 5.7.0 – Multi‑Hop Symbolic Intelligence + Autonomy
 A breakthrough in deterministic reasoning stability.
 
 - multi‑hop inference  
@@ -63,7 +66,8 @@ A breakthrough in deterministic reasoning stability.
 - zero hallucination  
 - unified PC/Mobile reasoning  
 - stabilized rule execution pipeline  
-- **COLNIK‑validated reasoning steps**
+- **COLNIK‑validated reasoning steps**  
+- **AUTONOMY‑aware reasoning proposals**
 
 ---
 
@@ -71,21 +75,22 @@ A breakthrough in deterministic reasoning stability.
 The core safety layer of the entire runtime.
 
 - validates every OS‑level action  
-- OWNER / FAMILY / STRANGER 3.0  
+- OWNER / FAMILY / STRANGER 3.1  
 - blocks unsafe operations  
-- guarantees reversibility 3.0  
+- guarantees reversibility  
 - mediates UI Automation + WIN‑CAP  
 - enforces ENVOY 5 permissions  
 - unified PC/Mobile execution  
 - constant‑time validation (O(1))  
 - explainability for every decision  
-- **COLNIK‑validated system actions**
+- **COLNIK‑validated system actions**  
+- **AUTONOMY‑aware system validation**
 
 System Agent 5 remains the **final gatekeeper** of SIRIUS.
 
 ---
 
-## 🔥 5. Knowledge Graph Runtime 5.6.2 – Faster, Smarter, Fully Explainable
+## 🔥 5. Knowledge Graph Runtime 5.7.0 – Faster, Smarter, Fully Explainable
 A refined and stabilized KG‑Reasoning engine.
 
 - faster entity‑relation lookups  
@@ -97,12 +102,13 @@ A refined and stabilized KG‑Reasoning engine.
 - instant symbolic responses  
 - explainability‑ready fact generation  
 - stabilized KG autoload (autosave_kg.json)  
-- **COLNIK‑validated KG mutations**
+- **COLNIK‑validated KG mutations**  
+- **AUTONOMY‑aware KG mutation proposals**
 
 ---
 
-## 🔥 6. ENVOY 5 – Execution + Permission Layers + Explainability Traces
-ENVOY is now fully explainability‑aware and COLNIK‑validated.
+## 🔥 6. ENVOY 5 – Execution + Permission Layers + Explainability + Autonomy
+ENVOY is now fully explainability‑aware, autonomy‑aware and COLNIK‑validated.
 
 ### **Permission Layer**
 - identity‑aware fetch rules  
@@ -110,7 +116,8 @@ ENVOY is now fully explainability‑aware and COLNIK‑validated.
 - FAMILY‑safe educational fetch  
 - STRANGER‑mode blocked  
 - explainability for permission decisions  
-- **COLNIK‑validated permission checks**
+- **COLNIK‑validated permission checks**  
+- **AUTONOMY‑aware permission proposals**
 
 ### **Execution Layer**
 - outbound‑only  
@@ -119,13 +126,14 @@ ENVOY is now fully explainability‑aware and COLNIK‑validated.
 - safe JSON payload delivery  
 - System Agent 5 enforcement  
 - explainability traces for each step  
-- **COLNIK‑validated payload delivery**
+- **COLNIK‑validated payload delivery**  
+- **AUTONOMY‑aware execution routing**
 
 Offline mode remains **default**.
 
 ---
 
-## 🔥 7. UI Automation Engine 5.0 – Stabilized for 5.6.2
+## 🔥 7. UI Automation Engine 5.1 – Stabilized for 5.7.0
 A refined automation layer.
 
 - faster fuzzy matching  
@@ -135,11 +143,12 @@ A refined automation layer.
 - sandbox‑protected execution  
 - unified PC/Mobile automation  
 - explainability for UI actions  
-- **COLNIK‑validated UI actions**
+- **COLNIK‑validated UI actions**  
+- **AUTONOMY‑aware UI actions**
 
 ---
 
-## 🔥 8. System Intelligence Layer 5.6.2 – Unified Diagnostics
+## 🔥 8. System Intelligence Layer 5.7.0 – Unified Diagnostics
 Improved system‑level intelligence:
 
 - hardware analysis  
@@ -151,25 +160,27 @@ Improved system‑level intelligence:
 - deterministic system workflows  
 - System Agent 5 enforcement  
 - explainability‑aware diagnostics  
-- **COLNIK‑validated diagnostic actions**
+- **COLNIK‑validated diagnostic actions**  
+- **AUTONOMY‑aware diagnostic proposals**
 
 ---
 
-## 🔥 9. Mobile Runtime 5.6.2 – Unified Mobile Execution Layer
+## 🔥 9. Mobile Runtime 5.7.0 – Unified Mobile Execution Layer
 The most stable mobile runtime to date.
 
 - faster workflows  
 - optimized filesystem logic  
-- Mobile AITE 5.6.2  
-- Mobile Reasoning Engine 5.6.2  
+- Mobile AITE 5.7.0  
+- Mobile Reasoning Engine 5.7.0  
 - Mobile UI Automation  
 - Mobile ENVOY 5  
 - Mobile KG_EXPLAIN  
-- **COLNIK‑validated mobile workflows**
+- **COLNIK‑validated mobile workflows**  
+- **AUTONOMY‑aware mobile routing**
 
 ---
 
-## 🔥 10. Security Family 5.x – Hardened Identity Engine 3.0
+## 🔥 10. Security Family 5.x – Hardened Identity Engine 3.1
 Improved safety and identity logic.
 
 - faster identity classification  
@@ -178,7 +189,8 @@ Improved safety and identity logic.
 - time‑limits v3 stabilized  
 - behavior‑based recognition improved  
 - explainability for identity decisions  
-- **COLNIK‑validated identity enforcement**
+- **COLNIK‑validated identity enforcement**  
+- **AUTONOMY‑aware identity proposals**
 
 ---
 
@@ -190,13 +202,14 @@ Improved safety and identity logic.
 - validation of UI Automation Engine  
 - unified PC/Mobile diagnostics  
 - explainability for repair actions  
-- **COLNIK‑validated repair logic**
+- **COLNIK‑validated repair logic**  
+- **AUTONOMY‑aware repair proposals**
 
 ---
 
-# 🧩 Additional Improvements in 5.6.2 UNIFIED
+# 🧩 Additional Improvements in 5.7.0 UNIFIED
 
-### ✔ Faster NL routing (NL Router 5.6.2)  
+### ✔ Faster NL routing (NL Router 5.7.0)  
 ### ✔ Optimized WIN‑CAP 5.x capability boundaries  
 ### ✔ Expanded plugin API for KG‑Reasoning  
 ### ✔ Deterministic, short, safe logging  
@@ -204,37 +217,39 @@ Improved safety and identity logic.
 ### ✔ Faster SCHOOLWORK workflows  
 ### ✔ O(1) identity checks in Security Family 5.x  
 ### ✔ KG_EXPLAIN integrated across all major modules  
-### ✔ **COLNIK‑6.x validation integrated across all major modules**
+### ✔ **COLNIK‑6.x validation integrated across all major modules**  
+### ✔ **AUTONOMY‑Control Mode integrated across all major modules**
 
 ---
 
 # ⚙ CLI Update (IMPORTANT)
-SIRIUS Runtime 5.6.2 is now launched via:
-```
+SIRIUS Runtime 5.7.0 is now launched via:
+
 python runtime5_cli.py
-```
+
 
 ---
 
 # 📊 Compatibility
-- Fully compatible with 5.0 → 5.6.2  
+- Fully compatible with 5.0 → 5.7.0  
 - No breaking changes  
 - No migration required  
-- Mobile Runtime 5.6.2 is optional  
+- Mobile Runtime 5.7.0 is optional  
 - ENVOY 5 is optional (default OFF)  
-- **COLNIK‑6.x is fully integrated and enabled**
+- **COLNIK‑6.x Standard Mode is fully integrated and enabled**  
+- **AUTONOMY‑6.x Control Mode is fully integrated and enabled**
 
 ---
 
-# 📌 Release Status (5.6.2 UNIFIED)
-**Version:** 5.6.2 UNIFIED  
+# 📌 Release Status (5.7.0 UNIFIED)
+**Version:** 5.7.0 UNIFIED  
 **Stage:** Stable  
-**Release Date:** 2026‑08‑10  
+**Release Date:** 2026‑08‑28  
 
 ---
 
 # 🏁 Summary
-Version **5.6.2 UNIFIED** elevates SIRIUS LOCAL AI into a new era of:
+Version **5.7.0 UNIFIED** elevates SIRIUS LOCAL AI into a new era of:
 
 - faster, more stable deterministic execution  
 - deeper symbolic reasoning  
@@ -243,7 +258,8 @@ Version **5.6.2 UNIFIED** elevates SIRIUS LOCAL AI into a new era of:
 - faster multimodal triage  
 - unified PC + Mobile architecture  
 - secure ENVOY 5 fetch model  
-- **enterprise‑grade COLNIK‑6.x validation across all modules**
+- **enterprise‑grade COLNIK‑6.x validation across all modules**  
+- **AUTONOMY‑Control Mode integrated across the entire runtime**
 
 SIRIUS continues to be the most advanced **offline AI runtime** for Windows 11 and mobile devices.
 
