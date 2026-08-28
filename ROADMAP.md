@@ -1,9 +1,9 @@
-# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v6.x)
-### Evolution of the Unified Reasoning, Deep Explainability & COLNIK‑Validated Architecture
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.7.0 → v6.x)
+### Evolution of the Unified Reasoning, Deep Explainability, COLNIK‑Validated & AUTONOMY‑Aware Architecture
 
 This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
 into the **Unified Runtime 5.x** generation, the **Unified KG + Deep Explainability 5.6.2 Era**,  
-and the upcoming **Runtime 6.x Modular Kernel Era**.
+the **Autonomy‑Aware 5.7.0 Era**, and the upcoming **Runtime 6.x Modular Kernel Era**.
 
 All versions remain:
 - 100% offline  
@@ -12,7 +12,8 @@ All versions remain:
 - identity‑aware  
 - safe for households and children  
 - fully local with optional ENVOY fetch  
-- enterprise‑validated via **COLNIK‑6.x** (from v5.6.2 onward)
+- enterprise‑validated via **COLNIK‑6.x Standard Mode** (from v5.6.2 onward)  
+- autonomy‑aware via **AUTONOMY‑6.x Control Mode** (from v5.7.0 onward)
 
 ---
 
@@ -241,7 +242,7 @@ SIRIUS gains:
 
 # ⭐ 5.6 — Version 5.6.2 UNIFIED  
 ### Unified KG Architecture + Deep Explainability + Multi‑Hop Reasoning + COLNIK‑6.x Validation  
-**Status:** Current Stable Release
+**Status:** Completed
 
 Goal: Finalize the unified KG stack, stabilize deep explainability, integrate multi‑hop reasoning,  
 and introduce **COLNIK‑6.x**, the enterprise‑grade validation layer for KG, workflows, reasoning, ENVOY, and system actions.
@@ -325,6 +326,83 @@ SIRIUS gains:
 
 ---
 
+# ⭐ 5.7 — Version 5.7.0 UNIFIED  
+### Autonomy‑Aware Runtime + COLNIK‑Standard Mode + Unified KG 5.7.0  
+**Status:** Current Stable Release
+
+Goal: Introduce autonomy‑aware routing, proposal/confirmation logic,  
+and fully stabilize the Unified Runtime Architecture 5.x.
+
+---
+
+## 🔥 NEW Core Components (v5.7.0)
+
+### 🧠 AITE 5.7.0
+- autonomy‑aware triage  
+- deeper semantic tagging  
+- improved OCR  
+- deterministic explainability metadata  
+- **COLNIK‑validated triage decisions**  
+- **AUTONOMY‑aware proposals**
+
+### 🔁 Workflow Engine 5.7.0
+- autonomy‑aware transitions  
+- deterministic fallback logic  
+- KG_EXPLAIN + KG_EXPLAIN_DEEP routing  
+- **COLNIK‑validated workflow transitions**  
+- **AUTONOMY‑aware workflow proposals**
+
+### 🧠 Reasoning Engine 5.7.0
+- autonomy‑aware reasoning  
+- multi‑hop inference  
+- deterministic rule chaining  
+- KG_EXPLAIN_DEEP integration  
+- **COLNIK‑validated reasoning steps**  
+- **AUTONOMY‑aware reasoning proposals**
+
+### 📚 Unified Knowledge Graph 5.7.0
+- faster lookups  
+- improved attribute pipeline  
+- expanded comfort commands  
+- deterministic traversal  
+- **COLNIK‑validated KG mutations**  
+- **AUTONOMY‑aware KG mutation proposals**
+
+### 🖱 UI Automation Engine 5.1
+- faster fuzzy matching  
+- deterministic fallback logic  
+- KG‑enhanced aliasing  
+- **COLNIK‑validated UI actions**  
+- **AUTONOMY‑aware UI actions**
+
+### 🛰 System Agent 5
+- autonomy‑aware validation  
+- constant‑time enforcement  
+- **COLNIK‑validated system actions**
+
+### 🌐 ENVOY 5
+- autonomy‑aware permission logic  
+- explainability traces  
+- **COLNIK‑validated payload delivery**
+
+### 🛠 Self‑Repair Layer 5.4
+- autonomy‑aware repair suggestions  
+- **COLNIK‑validated repair logic**
+
+---
+
+## Output (v5.7.0)
+SIRIUS gains:
+- autonomy‑aware routing  
+- autonomy‑aware reasoning  
+- autonomy‑aware workflows  
+- stabilized Unified KG 5.7.0  
+- COLNIK‑Standard Mode validation  
+- unified PC + Mobile execution  
+- deterministic explainability across all modules  
+
+---
+
 # ⭐ 6.0 — Version 6.0.0  
 ### Modular Kernel + Hybrid Multimodal Analyzer + Self‑Repair 2.0  
 **Status:** Planned
@@ -352,9 +430,9 @@ and analyze multimodal data deterministically.
 
 ### 🛡 Family Security Engine 6.0
 - behavior‑pattern detection  
-- StrangerMode 3.0  
-- SchoolMode 3.0  
-- TimeLimits 3.0  
+- StrangerMode 3.1  
+- SchoolMode 3.1  
+- TimeLimits 3.1  
 - KG‑linked safety inference  
 
 ### 🔧 Self‑Repair Layer 2.0
@@ -390,6 +468,6 @@ SIRIUS gains:
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.6.2 UNIFIED (Stable)  
+**Current version:** 5.7.0 UNIFIED (Stable)  
 **Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
 **Long‑term direction:** Autonomous Runtime Evolution (6.x → 7.x)
