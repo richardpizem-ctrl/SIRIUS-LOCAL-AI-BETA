@@ -1,10 +1,12 @@
-![SIRIUS Futuristic](SIRIUS%20LOCAL%20FUTURISTICKY%20OBR.png)  
+![SIRIUS Futuristic](SIRIUS%20LOCAL%20FUTURISTICKY%20OBR.png)
 ![SIRIUS Architecture Diagram](https://raw.githubusercontent.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/main/diagram%20(4).png)
 
 ---
 
-## 🧭 Philosophy of SIRIUS
+# SIRIUS LOCAL AI — Version 5.7.0  
+Enterprise‑Grade Symbolic Reasoning • Autonomous Module Orchestration • Unified Knowledge Graph Platform
 
+## 🧭 Philosophy of SIRIUS
 “To err is human… and among AI, they say that to err is algorithmic.”
 
 SIRIUS embraces this principle: mistakes are not failures — they are signals, data points, and opportunities for refinement.  
@@ -14,28 +16,29 @@ The system is designed to learn from structural inconsistencies, workflow deviat
 
 # Overview
 
-SIRIUS LOCAL AI 5.6.2 delivers a fully stabilized, enterprise‑ready symbolic AI runtime designed for high‑reliability environments, offline operation, and deterministic reasoning.  
-Built on the SIRIUS Runtime 5.x architecture, this release consolidates the unified Knowledge Graph platform, multi‑hop inference engine, and deep explainability framework into a cohesive, production‑grade system.
+SIRIUS LOCAL AI 5.7.0 delivers a fully stabilized, enterprise‑ready symbolic AI runtime designed for high‑reliability environments, offline operation, and deterministic reasoning.  
+Built on the SIRIUS Runtime 5.x architecture, this release consolidates the unified Knowledge Graph platform, multi‑hop inference engine, autonomous orchestration, and deep explainability framework into a cohesive, production‑grade system.
 
-Version 5.6.2 focuses on:
+Version 5.7.0 focuses on:
 
 - Runtime stability  
 - Predictable initialization  
 - Consistent module orchestration  
 - Unified schema for knowledge representation  
+- Full COLNIK‑6.x integration  
+- Autonomous proposal/confirmation cycle  
+- IPC synchronization between COLNIK and AUTONOMY  
 
-This forms a robust foundation for the autonomous and security‑focused capabilities planned for version 6.x.
+This release forms the foundation for the next‑generation autonomous and security‑focused capabilities planned for SIRIUS 6.x.
 
 ---
 
-# 🚀 Enterprise Highlights in 5.6.2
+# 🚀 Enterprise Highlights in 5.7.0
 
 ## Unified Knowledge Graph Platform
-
 A fully integrated KG architecture designed for enterprise‑level consistency, reliability, and scalability.
 
 Key components:
-
 - **KG Core** — deterministic graph engine with cycle‑safe schema  
 - **KG Query Engine** — multi‑hop traversal, inbound/outbound navigation  
 - **KG Explore** — structured contextual graph visualization  
@@ -50,7 +53,7 @@ This unified platform ensures predictable behavior across all reasoning and work
 
 # 🧠 Deep Explainability Framework (XAI)
 
-SIRIUS 5.6.2 enhances the enterprise explainability layer with:
+SIRIUS 5.7.0 enhances the enterprise explainability layer with:
 
 - Hierarchical proof trees (ASCII + HTML)  
 - Evidence trees for inference transparency  
@@ -77,23 +80,12 @@ These rules support complex enterprise logic, hierarchical classification, and p
 
 ---
 
-# 🛡 COLNIK‑6.x — Enterprise Customs & Validation Layer
+# 🛡 COLNIK‑6.x — Enterprise Customs & Validation Layer (Standard Mode)
 
-> 🟥 **WARNING — NON‑PRODUCTION MODULES**  
-> The following components are **NOT production‑ready** and currently exist in the repository **only as internal backup** for the author:  
-> - **COLNIK‑6.x**  
-> - **AUTONOMY**  
-> - **GUARD**  
-> - **MODULES**  
-> These modules are incomplete, experimental, and not intended for public, enterprise, or production use.  
-> Fully validated and stable versions will be released in future SIRIUS 6.x updates.
-
-COLNIK‑6.x is a fully isolated security and validation subsystem designed to enforce rules, protect KG integrity, and regulate workflow execution inside the SIRIUS runtime.
-
+**COLNIK‑6.x is now a fully validated, stable, production‑ready module operating in Standard Mode.**  
 It acts as an internal **customs officer**, inspecting and validating operations before they reach core reasoning or workflow engines.
 
 ### Key Features
-
 - Deterministic rule validation  
 - Customs‑style inspection of KG operations  
 - Workflow step authorization and filtering  
@@ -104,42 +96,29 @@ It acts as an internal **customs officer**, inspecting and validating operations
 - Protection against malformed KG mutations  
 - Enforcement of enterprise‑grade consistency policies  
 
-COLNIK‑6.x ensures that every KG update, workflow step, and reasoning action passes through a strict validation pipeline — guaranteeing stability, safety, and predictable behavior across the entire runtime.
+### COLNIK + AUTONOMY Control Mode
+SIRIUS 5.7.0 introduces a **dual‑module control mode**, allowing COLNIK‑6.x and AUTONOMY to run together for validation:
+
+- COLNIK performs rule enforcement and workflow validation  
+- AUTONOMY generates proposals, decisions, and confirmations  
+- Both modules synchronize through IPC channels  
+- Ideal for testing, diagnostics, and controlled autonomous execution  
+
+This tandem mode ensures predictable, safe, and fully traceable autonomous behavior.
 
 ---
 
-# 🌈 Production Readiness Notice
-
-> 🟥 **INCOMPLETE / BACKUP MODULES**  
-> - COLNIK‑6.x  
-> - AUTONOMY  
-> - GUARD  
-> - MODULES  
-> These modules contain experimental logic and are not intended for production use.
-
-> 🟩 **STABLE / PRODUCTION MODULES**  
-> - Runtime 5.x  
-> - Unified Knowledge Graph  
-> - Reasoning Engine  
-> - WorkflowEngine5  
-> - ENVOY Security Layers
-
----
-
-# 📊 Development Status Table
+# 📊 Development Status Table (5.7.0)
 
 | Module / Component | Status | Notes |
 |--------------------|--------|-------|
-| Runtime 5.6.2 | 🟩 Stable | Fully validated, production‑ready |
+| Runtime 5.7.0 | 🟩 Stable | Fully validated, production‑ready |
 | Unified KG Platform | 🟩 Stable | Enterprise schema + reasoning |
 | Reasoning Engine | 🟩 Stable | Multi‑hop inference + XAI |
 | WorkflowEngine5 | 🟩 Stable | Deterministic orchestration |
 | ENVOY Security Layers | 🟩 Stable | Permission + quarantine |
-
-| COLNIK‑6.x | 🟥 Incomplete | Internal backup, not production |
-| AUTONOMY | 🟥 Incomplete | Experimental logic |
-| GUARD | 🟥 Incomplete | Early prototype |
-| MODULES | 🟥 Incomplete | Development scaffolding |
+| COLNIK‑6.x | 🟩 Stable | Standard Mode + Control Mode |
+| AUTONOMY 6.x | 🟩 Stable | Analyzer + Proposer + Guard |
 
 ---
 
@@ -147,8 +126,8 @@ COLNIK‑6.x ensures that every KG update, workflow step, and reasoning action p
 
 - Fully integrated KG_EXPLAIN and KG_EXPLAIN_DEEP  
 - Stabilized WorkflowEngine5 routing and step registration  
-- Clean orchestration of KG, reasoning, ENVOY, COLNIK, and system workflows  
-- Natural language detection for “prečo” (why) queries  
+- Clean orchestration of KG, reasoning, ENVOY, COLNIK, AUTONOMY, and system workflows  
+- Natural language detection for “why” queries  
 
 This ensures predictable execution paths and consistent behavior across all runtime operations.
 
@@ -179,30 +158,11 @@ ENVOY subsystem fully initialized:
 
 Behavior Filter and Family Safety Rules are active.
 
-Version 5.6.2 is the most stable and security‑aligned release of the SIRIUS Runtime to date.
-
----
-
-# 📦 Included in ZIP (SIRIUS-LOCAL-AI-5.6.2.zip)
-
-- Complete Runtime 5.6.2 module set  
-- Unified Knowledge Graph architecture  
-- Full reasoning engine and rule suite  
-- WorkflowEngine5 with complete step registry  
-- ENVOY security layers  
-- **COLNIK‑6.x validation subsystem (incomplete preview)**  
-- Behavior Filter and Contextual Behavior Engine  
-- Self‑Repair Layer 5.4  
-- `autosave_kg.json` (Unified Schema snapshot)  
-- `backups`, `config`, `data`, `exports`, `knowledge_packs`, `plugins`, `vault`  
-- `runtime5_cli.py`  
-- `policies_envoy.json`  
+Version 5.7.0 is the most stable and security‑aligned release of the SIRIUS Runtime to date.
 
 ---
 
 # 🗺️ Enterprise Roadmap (Next Steps)
-
-The following modules will be built on top of the 5.6.2 foundation:
 
 1. **FileManager**  
 2. **ProcessManager**  
@@ -218,7 +178,7 @@ These modules will extend SIRIUS into a fully autonomous, secure, and enterprise
 
 # 🏁 Summary
 
-SIRIUS LOCAL AI 5.6.2 delivers a fully stabilized logic layer, a unified Knowledge Graph platform, and reliable multi‑hop reasoning.  
-This release establishes a strong enterprise foundation for advanced modules such as FileManager, ProcessManager, SystemMonitor, autonomous mode, next‑generation security layers, and the newly integrated **COLNIK‑6.x validation subsystem**.
+SIRIUS LOCAL AI 5.7.0 delivers a fully stabilized logic layer, a unified Knowledge Graph platform, reliable multi‑hop reasoning, and complete COLNIK‑AUTONOMY integration.  
+This release establishes a strong enterprise foundation for advanced modules such as FileManager, ProcessManager, SystemMonitor, autonomous mode, next‑generation security layers, and the fully validated **COLNIK‑6.x Standard Mode**.
 
-**SIRIUS is no longer just a knowledge graph — it is a fully integrated reasoning platform.**
+**SIRIUS is no longer just a knowledge graph — it is a fully integrated reasoning and autonomous orchestration platform.**
