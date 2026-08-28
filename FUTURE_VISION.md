@@ -1,32 +1,33 @@
-# 🌟 Future Vision (v5.6.2 and Beyond)
+# 🌟 Future Vision (v5.7.0 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and reasoning‑driven AI assistant**, while staying safe, predictable, explainable, and fully local.
 
-This **v5.6.2 unified edition** reflects the upgraded Unified Reasoning, Deep Explainability & COLNIK‑6.x Architecture 5.x, including:
+This **v5.7.0 unified edition** reflects the upgraded Unified Reasoning, Deep Explainability, COLNIK‑AUTONOMY Architecture 5.x, including:
 
 - Unified PC + Mobile runtime  
 - Deterministic multimodal reasoning  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)  
-- Reasoning Engine 5.6.2 (multi‑hop, inheritance, transitivity)  
+- Reasoning Engine 5.7.0 (multi‑hop, inheritance, transitivity)  
 - Proof Tree + Evidence Tree foundations  
 - Confidence scoring model  
 - Rule chaining foundations  
-- AITE 5.6.2  
+- AITE 5.7.0  
 - System Agent 5  
 - Security Family 5.x  
 - ENVOY Execution Layer 5  
 - ENVOY Permission Layer 5  
-- COLNIK‑6.x Validation Layer  
+- COLNIK‑6.x Validation Layer (Standard Mode)  
+- AUTONOMY 6.x (Control Mode)  
 - Self‑Repair Layer 5.4  
-- Unified Knowledge Graph 5.6.2  
-- UI Automation Engine 5.0  
+- Unified Knowledge Graph 5.7.0  
+- UI Automation Engine 5.1  
 - Intent & Planning Layer 5.x  
 
 This document describes:
 
-1. **What has already been delivered** (v1.0.0 → v5.6.2)  
+1. **What has already been delivered** (v1.0.0 → v5.7.0)  
 2. **What each major version introduced**  
-3. **What Runtime 5.6.2 unifies and stabilizes**  
+3. **What Runtime 5.7.0 unifies and stabilizes**  
 4. **Long‑term direction (v6.0.0 and beyond)**  
 
 All features remain:
@@ -237,7 +238,7 @@ Delivered:
 
 ## 🧩 AITE 5.5  
 - semantic + explainability triage  
-- “prečo … ?” detection  
+- “why … ?” detection  
 - improved multimodal routing  
 - safer fallback logic  
 
@@ -264,13 +265,13 @@ Delivered:
 
 ---
 
-# 🚀 9. Version 5.6.2 – Deep Explainability + Unified KG + COLNIK‑6.x
+# 🚀 9. Version 5.6.2 → 5.7.0 – Deep Explainability + Unified KG + COLNIK‑AUTONOMY
 
-Version 5.6.2 finalizes the **Unified Knowledge Graph 5.6.2**, expands deep explainability, stabilizes multi‑hop reasoning, and introduces **COLNIK‑6.x**, the enterprise‑grade validation subsystem.
+Version 5.7.0 finalizes the **Unified Knowledge Graph 5.7.0**, expands deep explainability, stabilizes multi‑hop reasoning, and introduces **COLNIK‑6.x Standard Mode** together with **AUTONOMY 6.x Control Mode**.
 
 Delivered:
 
-### 🧠 Reasoning Engine 5.6.2  
+### 🧠 Reasoning Engine 5.7.0  
 - multi‑hop inference  
 - inheritance reasoning  
 - transitive reasoning  
@@ -286,19 +287,20 @@ Delivered:
 - evidence‑based justification  
 - deterministic traversal context  
 
-### 🧩 AITE 5.6.2  
+### 🧩 AITE 5.7.0  
 - improved multimodal semantic triage  
 - deeper explainability detection  
 - safer fallback logic  
 - unified PC/Mobile routing  
 
-### 🔁 Workflow Engine 5.6.2  
+### 🔁 Workflow Engine 5.7.0  
 - deep explainability routing  
 - deterministic transitions  
 - safer fallback states  
 - COLNIK‑validated workflow steps  
+- AUTONOMY‑aware transitions  
 
-### 📚 Unified Knowledge Graph 5.6.2  
+### 📚 Unified Knowledge Graph 5.7.0  
 - stabilized KG Core  
 - improved KG Query  
 - improved KG Explore  
@@ -312,11 +314,18 @@ Delivered:
 - safer STRANGER mode  
 - SCHOOLWORK always allowed  
 
-### 🛡 COLNIK‑6.x Validation Layer  
+### 🛡 COLNIK‑6.x Validation Layer (Standard Mode)  
 - KG mutation validation  
 - workflow step authorization  
 - anomaly detection  
 - enterprise‑grade consistency enforcement  
+
+### 🤖 AUTONOMY 6.x (Control Mode)  
+- proposal generation  
+- confirmation logic  
+- autonomous decision routing  
+- IPC synchronization with COLNIK  
+- safe autonomous execution  
 
 ### 🌐 ENVOY 5  
 - deep explainability traces  
@@ -325,7 +334,7 @@ Delivered:
 
 ---
 
-# 🚀 10. Long‑Term Vision (Beyond v5.6.2)
+# 🚀 10. Long‑Term Vision (Beyond v5.7.0)
 
 ## 🧠 6.0.0 – Self‑Repair Intelligence 2.0
 - autonomous repair engine  
@@ -373,6 +382,7 @@ Delivered:
 - reasoning‑aware plugin APIs  
 
 ---
+
 ## 🛡️ Hybrid Isolation Layer (HIL) – Future Security Architecture (v7.x)
 
 Modern operating systems rely heavily on sandboxing as their primary isolation mechanism.  
@@ -421,7 +431,7 @@ SIRIUS v7.x will merge both worlds into a unified security model called:
 HIL contains:
 
 - **Quarantine Logic** – detects unsafe or corrupted OS logic  
-- **Isolation Room** – a technical isolation chamber inspired by sandboxing, but not identical to it  
+- **Isolation Room** – a technical isolation chamber inspired by sandboxing  
 - **Self‑Repair Chamber** – automated analysis, validation, and repair  
 - **ENVOY Gatekeeper** – permission and safety enforcement  
 - **SystemAgent Handler** – reintegration or safe disposal  
@@ -443,7 +453,9 @@ Together, HIL becomes the world’s first **dual‑layer isolation system** comb
 This architecture does not exist in Windows, Android, Linux, iOS, GrapheneOS, or any security vendor.  
 It is a unique SIRIUS innovation designed for the upcoming 7.x generation.
 
+---
+
 # 📄 Document Status
 
-Current version: **v5.6.2 (Unified Reasoning, Explainability & COLNIK‑6.x Architecture)**  
-Updated to reflect the **5.0 → 5.6.2 transition** and the expanded **Unified Runtime Architecture 5.x**.
+**Version:** 5.7.0 (Unified Reasoning, Explainability, COLNIK‑AUTONOMY Architecture)  
+Updated to reflect the **5.0 → 5.7.0 transition** and the expanded **Unified Runtime Architecture 5.x**.
