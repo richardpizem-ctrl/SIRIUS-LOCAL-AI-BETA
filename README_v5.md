@@ -1,47 +1,48 @@
-# 🚀 SIRIUS LOCAL AI — Runtime 6.0.0
+# 🚀 SIRIUS LOCAL AI — Runtime 6.1.0
 ### Modular Kernel • Hybrid Multimodal Analyzer • Deterministic Local AI
-### Fully Offline • Zero Cloud • Secure Family Behavior Engine
+### Fully Offline • Zero Cloud • Secure Family Behavior Engine • COLNIK‑Standard Mode • AUTONOMY‑Control Mode
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-6.0.0-purple">
+  <img src="https://img.shields.io/badge/version-6.1.0-purple">
   <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
-  <img src="https://img.shields.io/badge/runtime-Local%20Intelligent%20Runtime%206.0-red">
+  <img src="https://img.shields.io/badge/runtime-Local%20Intelligent%20Runtime%206.1-red">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
 ---
 
-# 🌌 Introduction — Final Evolution of the SIRIUS Runtime
+# 🌌 Introduction — Evolution of the SIRIUS Runtime
 
-SIRIUS Runtime **6.0.0** is the final generation of the local AI system, combining all completed modules from the **5.x** branch into one stable package for end‑users.
+SIRIUS Runtime **6.1.0** is the next-generation multimodal diagnostic runtime built directly on top of the fully stabilized **Unified Runtime Architecture 5.7.0**, including:
 
-The following milestones are fully included in version **6.0.0**:
+- **COLNIK‑6.x (Standard Mode)**  
+- **AUTONOMY 6.x (Control Mode)**  
+- **Unified Knowledge Graph 5.7.0**  
+- **Reasoning Engine 5.7.0**  
+- **AITE 5.7.0**  
+- **Workflow Engine 5.7.0**  
+- **UI Automation Engine 5.1**  
+- **System Agent 5**  
+- **Security Family 5.x**  
+- **Self‑Repair Layer 5.4**
 
-- **5.7.0 — Autonomy**
-- **5.8.0 — UI Panel**
-- **5.9.0 — Language Module**
-- **6.0.0 — Final User Package (public release)**
+Runtime 6.1.0 merges all stabilized 5.x modules into a **single deterministic multimodal diagnostic system** capable of analyzing:
 
-Version 6.0.0 delivers:
+- audio  
+- MIDI  
+- images  
+- video  
+- structured data  
+- KG facts  
 
-- **Modular Kernel 6.0**
-- **Hybrid Multimodal Analyzer 6.0**
-- **Family Security Engine 6.0**
-- **Self‑Repair Layer 2.0**
-- **Deterministic multimodal inference**
-- **Explainability‑aware reasoning**
-- **KG‑linked multimodal fact creation**
-- **Unified KG 5.6.2 integration**
-- **COLNIK‑validated pipelines**
-
-The goal of version 6.0.0 is to create a **local multimodal diagnostic system** capable of analyzing audio, MIDI, images, video, structured data, and KG facts — fully offline, deterministic, and without content generation.
+…fully offline, deterministic, explainable, and COLNIK‑validated.
 
 ---
 
-# 🧠 Hybrid Multimodal Analyzer 6.0
+# 🧠 Hybrid Multimodal Analyzer 6.1
 
-A multimodal analyzer with deterministic logic and fully traceable explainability.
+A multimodal analyzer with deterministic logic, deep explainability, and COLNIK validation.
 
 ### 🔊 Audio / MIDI Analyzer
 - tone extraction  
@@ -51,6 +52,7 @@ A multimodal analyzer with deterministic logic and fully traceable explainabilit
 - KG‑linked audio entities  
 - explainability traces  
 - COLNIK‑validated audio pipelines  
+- AUTONOMY‑aware analysis routing  
 
 ### 🖼 Image Structure Analyzer
 - object detection  
@@ -60,6 +62,7 @@ A multimodal analyzer with deterministic logic and fully traceable explainabilit
 - KG_EXPLAIN_DEEP evidence trees  
 - deterministic visual inference  
 - COLNIK‑validated image pipelines  
+- AUTONOMY‑aware visual routing  
 
 ### 🎞 Video Frame Semantic Extractor
 - frame‑by‑frame analysis  
@@ -69,6 +72,7 @@ A multimodal analyzer with deterministic logic and fully traceable explainabilit
 - multi‑hop inference  
 - KG‑linked video entities  
 - COLNIK‑validated video pipelines  
+- AUTONOMY‑aware video routing  
 
 ### 🔗 KG‑Aware Multimodal Linking
 - multimodal fact creation  
@@ -76,41 +80,44 @@ A multimodal analyzer with deterministic logic and fully traceable explainabilit
 - deterministic inference  
 - KG_EXPLAIN + KG_EXPLAIN_DEEP integration  
 - COLNIK‑validated KG updates  
+- AUTONOMY‑aware KG mutation proposals  
 
 ---
 
-# 🧩 Modular Kernel 6.0
+# 🧩 Modular Kernel 6.1
 
 A kernel designed for stability, isolation, and long‑term maintainability.
 
 ### Key features:
 - sandboxed modules  
 - kernel routing  
-- unified error layer 6.0  
+- unified error layer 6.1  
 - deterministic execution pipeline  
 - Self‑Repair Layer 2.0 integration  
 - simplified module architecture  
 - explainability‑aware routing  
 - unified PC/Mobile logic  
 - COLNIK‑validated kernel operations  
+- AUTONOMY‑aware kernel decisions  
 
 ---
 
-# 🛡 Family Security Engine 6.0
+# 🛡 Family Security Engine 6.1
 
 A new generation of home protection.
 
 ### Features:
 - behavioral detection  
-- StrangerMode 3.0  
-- SchoolMode 3.0  
-- TimeLimits 3.0  
+- StrangerMode 3.1  
+- SchoolMode 3.1  
+- TimeLimits 3.1  
 - identity‑aware rules  
 - KG‑linked safety inference  
 - explainability for every decision  
 - deterministic STRANGER‑mode  
 - safe SCHOOLWORK bypass  
 - COLNIK‑validated safety decisions  
+- AUTONOMY‑aware safety routing  
 
 ---
 
@@ -127,18 +134,19 @@ Autonomous repair layer.
 - KG_EXPLAIN_DEEP for repair decisions  
 - unified PC/Mobile diagnostics  
 - COLNIK‑validated repair actions  
+- AUTONOMY‑aware repair proposals  
 
 ---
 
-# 🧭 Architecture Diagram (Runtime 6.0)
+# 🧭 Architecture Diagram (Runtime 6.1)
 
 ┌───────────────────────────────┐  
 │       Hybrid Multimodal       │  
-│           Analyzer 6.0        │  
+│           Analyzer 6.1        │  
 └───────────────┬──────────────┘  
         │
 ┌───────────────▼──────────────┐  
-│        Modular Kernel 6.0     │  
+│        Modular Kernel 6.1     │  
 └───────────────┬──────────────┘  
         │
 ┌───────────────▼──────────────┐  
@@ -146,13 +154,13 @@ Autonomous repair layer.
 └───────────────┬──────────────┘  
         │
 ┌───────────────▼──────────────┐  
-│   Family Security Engine 6.0  │  
+│   Family Security Engine 6.1  │  
 └───────────────────────────────┘
 
 ---
 
 # 📘 Installation  
-*(To be published after the stable 6.0.0 milestone)*
+*(To be published after the stable 6.1.0 milestone)*
 
 ---
 
@@ -171,11 +179,11 @@ Pull requests are welcome.
 - **5.7.0** — Autonomy  
 - **5.8.0** — UI Panel  
 - **5.9.0** — Language Module  
-- **6.0.0** — Final User Package (public release)  
-- **7.0.0** — Future multimodal diagnostic expansion  
+- **6.1.0** — Final User Package (public release)  
+- **7.0.0** — Hybrid Isolation Layer (HIL) multimodal expansion  
 
 ---
 
-# 📦 Release Asset Notice (Runtime 6.0 — Final Draft)
+# 📦 Release Asset Notice (Runtime 6.1 — Final Draft)
 
-This is a documentation preview of the final generation of the SIRIUS Runtime 6.0.0.
+This is a documentation preview of the final generation of the SIRIUS Runtime 6.1.0.
