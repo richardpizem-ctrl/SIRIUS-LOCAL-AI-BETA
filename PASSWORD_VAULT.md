@@ -1,21 +1,22 @@
-# 🔐 PASSWORD VAULT 5.6.2 — Secure Local Credential Module
-### Fully Offline • AES‑256‑GCM • Identity‑Aware • Deterministic • Deep‑Explainability‑Ready • COLNIK‑Validated
+# 🔐 PASSWORD VAULT 5.7.0 — Secure Local Credential Module
+### Fully Offline • AES‑256‑GCM • Identity‑Aware • Deterministic • Deep‑Explainability‑Ready • COLNIK‑Validated • AUTONOMY‑Aware
 
-PASSWORD VAULT 5.6.2 is the official secure credential storage module of  
-**SIRIUS LOCAL AI — Unified Reasoning, Deep Explainability & COLNIK‑6.x Architecture 5.6.2**.
+PASSWORD VAULT 5.7.0 is the official secure credential storage module of  
+**SIRIUS LOCAL AI — Unified Reasoning, Deep Explainability, COLNIK‑AUTONOMY Architecture 5.7.0**.
 
 It provides **fully offline, encrypted, identity‑aware, deterministic** password storage  
 with strict OWNER/FAMILY/STRANGER access rules and complete integration with:
 
-- Runtime Core 5.6.2  
-- NL Router 5.6.2  
-- Workflow Engine 5.6.2  
-- Reasoning Engine 5.6.2  
+- Runtime Core 5.7.0  
+- NL Router 5.7.0  
+- Workflow Engine 5.7.0  
+- Reasoning Engine 5.7.0  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - Security Family 5.x  
 - System Agent 5  
 - Self‑Repair Layer 5.4  
-- **COLNIK‑6.x Validation Layer**
+- **COLNIK‑6.x Validation Layer (Standard Mode)**  
+- **AUTONOMY 6.x (Control Mode)**  
 
 All vault operations are **local‑only**, never transmitted, never synced, never exposed.
 
@@ -23,7 +24,7 @@ All vault operations are **local‑only**, never transmitted, never synced, neve
 
 # 🧩 1. Purpose
 
-The PASSWORD VAULT 5.6.2 module provides:
+The PASSWORD VAULT 5.7.0 module provides:
 
 - secure offline credential storage  
 - deterministic access rules  
@@ -35,12 +36,13 @@ The PASSWORD VAULT 5.6.2 module provides:
 - deep explainability for every vault action  
 - compatibility with KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - **COLNIK‑validated access decisions**  
+- **AUTONOMY‑aware proposal/confirmation hooks**  
 
 It is designed for **maximum safety**, **zero cloud dependency**, and **predictable behavior**.
 
 ---
 
-# 🔐 2. Security Model (v5.6.2)
+# 🔐 2. Security Model (v5.7.0)
 
 ### Encryption
 - **AES‑256‑GCM**  
@@ -64,7 +66,8 @@ Every vault action produces explainability metadata:
 - which Security Family rule restricted or permitted access  
 - KG_EXPLAIN trace  
 - KG_EXPLAIN_DEEP evidence tree  
-- **COLNIK‑6.x validation trace**
+- **COLNIK‑6.x validation trace**  
+- **AUTONOMY 6.x proposal/confirmation trace**  
 
 ---
 
@@ -81,15 +84,17 @@ Every vault action produces explainability metadata:
 - NL Router integration  
 - System Agent validation  
 - explainability trace generation  
-- **COLNIK‑validated access enforcement**
+- **COLNIK‑validated access enforcement**  
+- **AUTONOMY‑aware access logic**
 
-### Additional Responsibilities (v5.6.2)
+### Additional Responsibilities (v5.7.0)
 - KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
-- Reasoning Engine 5.6.2 justification for access  
+- Reasoning Engine 5.7.0 justification for access  
 - Self‑Repair Layer vault integrity checks  
 - Security Family 5.x identity enforcement  
 - deterministic fallback behavior  
 - COLNIK‑validated rule enforcement  
+- AUTONOMY‑aware decision routing  
 
 ---
 
@@ -120,36 +125,40 @@ Contains:
 - deterministic metadata  
 - explainability flags  
 - COLNIK validation markers  
+- AUTONOMY proposal/confirmation markers  
 
 No sensitive data is stored here.
 
 ---
 
-# 🧠 5. Integration with Unified Runtime 5.6.2
+# 🧠 5. Integration with Unified Runtime 5.7.0
 
-PASSWORD VAULT 5.6.2 integrates with:
+PASSWORD VAULT 5.7.0 integrates with:
 
-### 🔵 NL Router 5.6.2
+### 🔵 NL Router 5.7.0
 - “save password for …”  
 - “show my password for …”  
 - “delete password for …”  
 - identity‑aware routing  
 - explain intent detection  
 - COLNIK‑validated NL routing  
+- AUTONOMY‑aware NL routing  
 
-### 🔵 Workflow Engine 5.6.2
+### 🔵 Workflow Engine 5.7.0
 - multi‑step vault workflows  
 - safe confirmation steps  
 - deterministic fallback states  
 - deep explainability routing  
 - COLNIK‑validated workflow transitions  
+- AUTONOMY‑aware workflow transitions  
 
-### 🔵 Reasoning Engine 5.6.2
+### 🔵 Reasoning Engine 5.7.0
 - rule‑based justification  
 - identity reasoning  
 - permission reasoning  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
 - COLNIK‑validated reasoning steps  
+- AUTONOMY‑aware reasoning hooks  
 
 ### 🔵 Security Family 5.x
 - OWNER/FAMILY/STRANGER rules  
@@ -173,9 +182,15 @@ PASSWORD VAULT 5.6.2 integrates with:
 - prevents unsafe access  
 - provides explainability + evidence traces  
 
+### 🤖 AUTONOMY 6.x (Control Mode)
+- proposal generation  
+- confirmation logic  
+- autonomous decision routing  
+- safe autonomous vault workflows  
+
 ---
 
-# 🛡️ 6. Access Rules (v5.6.2)
+# 🛡️ 6. Access Rules (v5.7.0)
 
 | Identity Level | Read | Write | Delete | Notes |
 |----------------|------|-------|--------|-------|
@@ -189,13 +204,14 @@ All access is validated by:
 - Security Family 5.x  
 - System Agent 5  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- **COLNIK‑6.x Validation Layer**
+- **COLNIK‑6.x Validation Layer**  
+- **AUTONOMY 6.x Control Mode**
 
 ---
 
 # 🧪 7. Self‑Repair Layer Integration
 
-PASSWORD VAULT 5.6.2 supports:
+PASSWORD VAULT 5.7.0 supports:
 
 - vault integrity checks  
 - missing file detection  
@@ -204,6 +220,7 @@ PASSWORD VAULT 5.6.2 supports:
 - deterministic repair suggestions  
 - explainability for repair actions  
 - COLNIK‑validated repair logic  
+- AUTONOMY‑aware repair routing  
 
 ---
 
@@ -214,30 +231,34 @@ PASSWORD VAULT 5.6.2 supports:
 - encrypted write  
 - deep explainability trace  
 - COLNIK‑validated write  
+- AUTONOMY‑aware proposal/confirmation  
 
 ### `vault.get(service)`
 - OWNER + FAMILY  
 - decrypted read  
 - deep explainability trace  
 - COLNIK‑validated read  
+- AUTONOMY‑aware read logic  
 
 ### `vault.delete(service)`
 - OWNER only  
 - safe deletion  
 - deep explainability trace  
 - COLNIK‑validated delete  
+- AUTONOMY‑aware deletion  
 
 ### `vault.list()`
 - OWNER + FAMILY  
 - metadata only  
 - no sensitive data exposed  
 - COLNIK‑validated metadata access  
+- AUTONOMY‑aware metadata routing  
 
 ---
 
 # 🔒 9. Safety Guarantees
 
-PASSWORD VAULT 5.6.2 guarantees:
+PASSWORD VAULT 5.7.0 guarantees:
 
 - 100% offline operation  
 - zero cloud dependency  
@@ -249,11 +270,12 @@ PASSWORD VAULT 5.6.2 guarantees:
 - deep explainability for every action  
 - safe fallback behavior  
 - Self‑Repair Layer protection  
-- **COLNIK‑validated access enforcement**
+- **COLNIK‑validated access enforcement**  
+- **AUTONOMY‑aware decision routing**
 
 ---
 
 # 📄 Document Status
 
-**Version:** 5.6.2 (Unified Reasoning, Deep Explainability & COLNIK‑6.x Architecture)  
-Updated to reflect the **5.5 → 5.6.2 transition**, new **Deep Explainability Engine**, expanded **Reasoning Engine**, **COLNIK‑6.x validation**, and the stabilized **Unified Runtime Architecture 5.x**.
+**Version:** 5.7.0 (Unified Reasoning, Deep Explainability, COLNIK‑AUTONOMY Architecture)  
+Updated to reflect the **5.6.2 → 5.7.0 transition**, new **Deep Explainability Engine**, expanded **Reasoning Engine**, **COLNIK‑6.x Standard Mode**, **AUTONOMY 6.x Control Mode**, and the stabilized **Unified Runtime Architecture 5.x**.
