@@ -788,7 +788,9 @@ class InputParser5:
                     },
                 }
 
+                
         # ====================================================
+
         # ⭐⭐⭐ KG UNSET – podpora kg unset "entity" "attribute" ⭐⭐⭐
         # ====================================================
 
@@ -847,6 +849,31 @@ class InputParser5:
                 }
 
         # ====================================================
+        # ⭐⭐⭐ KG LIST – podpora KG_LIST / kg.list / kg list ⭐⭐⭐
+        # ====================================================
+
+        # Presné príkazy bez argumentov
+        if clean == "kg_list" or clean == "kg.list" or clean == "kg list" or clean == "kglist":
+            return {
+                "intent": "kg.list",
+                "entity": None,
+                "args": {
+                    "mode": "developer",
+                },
+            }
+
+        # Podpora veľkých písmen (KG_LIST)
+        if raw_input.strip().upper() == "KG_LIST":
+            return {
+                "intent": "kg.list",
+                "entity": None,
+                "args": {
+                    "mode": "developer",
+                },
+            }
+
+
+        # ====================================================        
         # ⭐⭐⭐ KG SEARCH – podpora kg search "entity" ⭐⭐⭐
         # ====================================================
 
