@@ -1,0 +1,23 @@
+{
+  "entities": {
+    "planet_mars": {
+      "attributes": {
+        "type": "planet",
+        "color": "red"
+      }
+    },
+    "sun": {
+      "attributes": {
+        "type": "star",
+        "temperature": "high"
+      }
+    }
+  },
+  "relations": [
+    {
+      "subject": "planet_mars",
+      "relation": "orbits",
+      "object": "sun"
+    }
+  ]
+}
