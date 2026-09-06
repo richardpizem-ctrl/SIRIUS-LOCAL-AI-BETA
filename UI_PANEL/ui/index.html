@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>SIRIUS UI PANEL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LANGUAGE SWITCH -->
+    <div id="language-switch">
+        <button onclick="setLanguage('EN')">EN 🇬🇧</button>
+        <button onclick="setLanguage('SK')">SK 🇸🇰</button>
+    </div>
+
+    <!-- CLOCK -->
+    <div id="clock" class="clock-display">--:--:--</div>
+
+    <!-- MODULE BUTTONS -->
+    <div id="module-buttons">
+        <button id="btn-duplicates" onclick="selectModule('duplicates')">Duplicates</button>
+        <button id="btn-triage" onclick="selectModule('triage')">Triage</button>
+        <button id="btn-navigation" onclick="selectModule('navigation')">Navigation</button>
+        <button id="btn-terminal" onclick="selectModule('terminal')">Terminal</button>
+    </div>
+
+    <!-- OUTPUT WINDOW -->
+    <div id="output-window">
+        <pre id="output"></pre>
+    </div>
+
+    <!-- INPUT FIELD -->
+    <div id="input-area">
+        <input id="user-input" type="text" placeholder="Zadaj príkaz...">
+        <button onclick="sendInput()">SEND</button>
+
+        <!-- AUTOCOMPLETE BOX (NOVÝ DIV) -->
+        <div id="autocomplete-box"></div>
+    </div>
+
+    <script src="ui_controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+[
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:12:30Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:18:22Z",
+    "success": false,
+    "module": "unknown",
+    "action": "unknown",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:27:40Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:37:57Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:39:08Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:40:01Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:40:56Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:41:31Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:42:14Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:42:50Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:53:04Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:53:36Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:54:20Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:55:01Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T04:55:52Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T05:33:17Z",
+    "success": false,
+    "module": "unknown",
+    "action": "unknown",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T05:34:33Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:02:37Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:12:30Z",
+    "success": false,
+    "module": "unknown",
+    "action": "unknown",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:12:42Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:13:22Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:14:18Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:15:06Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:15:56Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:16:40Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:17:43Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  },
+  {
+    "request_id": "UI_DIRECT",
+    "timestamp": "2026-08-30T06:18:18Z",
+    "success": true,
+    "module": "terminal",
+    "action": "run_terminal",
+    "target": "user_input"
+  }
+]
