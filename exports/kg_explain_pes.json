@@ -1,0 +1,139 @@
+{
+  "status": "ok",
+  "action": "KG_EXPLAIN_DEEP",
+  "entity": "pes",
+
+  "category_chain": [
+    ["pes", "je_v", "cicavec"],
+    ["cicavec", "je_v", "zviera"]
+  ],
+
+  "inheritance_chain": [],
+
+  "summary": "Deep vysvetlenie entity pes: Kategória dedukcie: pes → cicavec → zviera. Entita nemá dedičnosť vlastností.",
+
+  "confidence": 0.7,
+
+  "explicit_info": [
+    {
+      "type": "explicit_relation",
+      "fact": "pes -> je_v -> cicavec",
+      "src": "pes",
+      "relation": "je_v",
+      "tgt": "cicavec",
+      "confidence": 1.0
+    },
+    {
+      "type": "explicit_relation",
+      "fact": "cicavec -> je_v -> zviera",
+      "src": "cicavec",
+      "relation": "je_v",
+      "tgt": "zviera",
+      "confidence": 1.0
+    }
+  ],
+
+  "evidence": [
+    {
+      "type": "transitive_reasoning",
+      "fact": "pes -> je_v -> zviera",
+      "src": "pes",
+      "relation": "je_v",
+      "tgt": "zviera",
+      "confidence": 0.95
+    }
+  ],
+
+  "final_confidence": 0.825,
+
+  "evidence_tree": {
+    "root": "entity:pes",
+    "children": [
+      {
+        "type": "transitive_reasoning",
+        "fact": "pes -> je_v -> zviera",
+        "confidence": 0.95
+      }
+    ]
+  },
+
+  "applied_rules": [
+    {
+      "rule": "TransitiveCategoryRule",
+      "fact": "pes -> je_v -> zviera",
+      "confidence": 0.95
+    }
+  ],
+
+  "reasoning_metrics": {
+    "depth": 2,
+    "node_count": 3,
+    "visited_nodes": ["pes", "cicavec", "zviera"],
+    "visited_relations": ["je_v", "je_v"],
+    "inference_cost": 2,
+    "execution_time_ms": 0.0
+  },
+
+  "question": "Prečo je pes zviera?",
+
+  "proof_steps": [
+    {
+      "step": 1,
+      "fact": "pes je_v cicavec",
+      "src": "pes",
+      "relation": "je_v",
+      "tgt": "cicavec"
+    },
+    {
+      "step": 2,
+      "fact": "cicavec je_v zviera",
+      "src": "cicavec",
+      "relation": "je_v",
+      "tgt": "zviera"
+    }
+  ],
+
+  "rule": "TransitiveCategoryRule",
+  "conclusion": "pes je zviera",
+
+  "proof_tree": {
+    "root": "entity:pes",
+    "nodes": [
+      {
+        "id": "entity:pes",
+        "type": "entity",
+        "label": "pes",
+        "proof_type": "root"
+      },
+      {
+        "id": "rel:0",
+        "type": "relation",
+        "label": "pes → je_v → zviera",
+        "proof_type": "deduced"
+      }
+    ],
+    "edges": [
+      {
+        "from": "rel:0",
+        "to": "entity:zviera",
+        "relation": "je_v"
+      }
+    ]
+  },
+
+  "ascii_proof_tree": "pes ──[je_v]──▶ zviera\n",
+
+  "ascii_category_tree": "pes\n └── cicavec\n └── zviera",
+
+  "ascii_inheritance_tree": "<no inheritance>",
+
+  "html_proof_tree": "<style>\n    .node {\n        font-family: Arial;\n        margin: 6px 0;\n        cursor: pointer;\n        color: #00b7ff;\n        font-weight: bold;\n    }\n    .edge {\n        margin-left: 20px;\n        font-family: Arial;\n        color: #ffaa00;\n    }\n    .child {\n        margin-left: 40px;\n        display: none;\n        font-family: Arial;\n        color: #00ff9d;\n    }\n</style>\n\n<h3 style='font-family: Arial;'>Proof Tree for: pes</h3>\n\n<div class='node' onclick='toggleNode(\"child0\")'>\n    pes\n</div>\n\n<div id='child0' class='child'>\n    <div class='edge'>je_v → zviera</div>\n</div>\n\n<script>\nfunction toggleNode(id) {\n    var el = document.getElementById(id);\n    el.style.display = (el.style.display === \"none\") ? \"block\" : \"none\";\n}\n</script>",
+
+  "html_category_tree": "<style>\n    .node { font-family: Arial; margin: 6px 0; cursor: pointer; color: #00b7ff; font-weight: bold; }\n    .child { margin-left: 30px; display: none; font-family: Arial; color: #00ff9d; }\n</style>\n\n<h3 style='font-family: Arial;'>Category Chain for: pes</h3>\n\n<div class='node' onclick='toggleNode(\"cat0\")'>pes</div>\n<div id='cat0' class='child'>\n    <div>cicavec</div>\n    <div>zviera</div>\n</div>\n\n<script>\nfunction toggleNode(id) {\n    var el = document.getElementById(id);\n    el.style.display = (el.style.display === \"none\") ? \"block\" : \"none\";\n}\n</script>",
+
+  "html_inheritance_tree": "<style>\n    .node { font-family: Arial; margin: 6px 0; cursor: pointer; color: #ff66aa; font-weight: bold; }\n    .child { margin-left: 30px; display: none; font-family: Arial; color: #ffaa00; }\n</style>\n\n<h3 style='font-family: Arial;'>Inheritance Chain for: pes</h3>\n\n<div class='node' onclick='toggleNode(\"inh0\")'>pes</div>\n<div id='inh0' class='child'>\n    <div>&lt;no inheritance&gt;</div>\n</div>\n\n<script>\nfunction toggleNode(id) {\n    var el = document.getElementById(id);\n    el.style.display = (el.style.display === \"none\") ? \"block\" : \"none\";\n}\n</script>",
+
+  "html_dashboard": "<style>\n    body { font-family: Arial; background: #0f0f0f; color: #e0e0e0; padding: 20px; }\n    h2 { color: #00b7ff; margin-top: 30px; }\n    .section { background: #1a1a1a; padding: 15px; border-radius: 10px; margin-bottom: 25px; border: 1px solid #333; }\n    .node { cursor: pointer; color: #00b7ff; font-weight: bold; margin: 6px 0; }\n    .child { margin-left: 30px; display: none; color: #00ff9d; }\n    .edge { margin-left: 20px; color: #ffaa00; }\n    .metric { margin: 4px 0; color: #cccccc; }\n    .rule { margin: 4px 0; color: #ff66aa; }\n    .evidence { margin: 4px 0; color: #00ff9d; }\n    .summary { color: #ffffff; font-size: 15px; line-height: 1.4; }\n</style>\n\n<h1>KG Explain Deep — Dashboard (pes)</h1>\n\n<div class='section'>\n    <h2>Summary</h2>\n    <div class='summary'>Deep vysvetlenie entity pes: Kategória dedukcie: pes → cicavec → zviera. Entita nemá dedičnosť vlastností.</div>\n</div>\n\n<div class='section'>\n    <h2>Proof Tree</h2>\n    <div class='node' onclick='toggleNode(\"proof0\")'>pes</div>\n    <div id='proof0' class='child'>\n        <div class='edge'>je_v → zviera</div>\n    </div>\n</div>\n\n<div class='section'>\n    <h2>Category Chain</h2>\n    <div class='node' onclick='toggleNode(\"cat0\")'>pes</div>\n    <div id='cat0' class='child'>\n        <div>cicavec</div>\n        <div>zviera</div>\n    </div>\n</div>\n\n<div class='section'>\n    <h2>Inheritance Chain</h2>\n    <div class='node' onclick='toggleNode(\"inh0\")'>pes</div>\n    <div id='inh0' class='child'>\n        <div>&lt;no inheritance&gt;</div>\n    </div>\n</div>\n\n<div class='section'>\n    <h2>Evidence</h2>\n    <div class='evidence'>pes → je_v → zviera (confidence: 0.95)</div>\n</div>\n\n<div class='section'>\n    <h2>Applied Rules</h2>\n    <div class='rule'>TransitiveCategoryRule (confidence: 0.95)</div>\n</div>\n\n<div class='section'>\n    <h2>Reasoning Metrics</h2>\n    <div class='metric'>Depth: 2</div>\n    <div class='metric'>Node count: 3</div>\n    <div class='metric'>Visited nodes: pes, cicavec, zviera</div>\n    <div class='metric'>Visited relations: je_v, je_v</div>\n    <div class='metric'>Inference cost: 2</div>\n    <div class='metric'>Execution time: 0 ms</div>\n    <div class='metric'>Final confidence: 0.825</div>\n</div>\n\n<script>\nfunction toggleNode(id) {\n    var el = document.getElementById(id);\n    el.style.display = (el.style.display === \"none\") ? \"block\" : \"none\";\n}\n</script>",
+
+  "html_kg_graph": "<style>\n    body {\n        font-family: Arial;\n        background: #050505;\n        color: #e0e0e0;\n    }\n    .kg-container {\n        position: relative;\n        width: 600px;\n        height: 300px;\n        border: 1px solid #333;\n        margin-top: 20px;\n        background: #111;\n    }\n    .kg-node {\n        position: absolute;\n        padding: 6px 10px;\n        border-radius: 8px;\n        background: #222;\n        color: #00b7ff;\n        border: 1px solid #00b7ff;\n        text-align: center;\n        font-size: 14px;\n    }\n    .kg-edge {\n        position: absolute;\n        color: #ffaa00;\n        font-size: 12px;\n    }\n</style>\n\n<h2>KG Graph — pes → cicavec → zviera</h2>\n\n<div class=\"kg-container\">\n    <div class=\"kg-node\" style=\"top: 40px; left: 40px;\">pes</div>\n    <div class=\"kg-node\" style=\"top: 120px; left: 240px;\">cicavec</div>\n    <div class=\"kg-node\" style=\"top: 200px; left: 440px;\">zviera</div>\n\n    <div class=\"kg-edge\" style=\"top: 80px; left: 140px;\">je_v</div>\n    <div class=\"kg-edge\" style=\"top: 160px; left: 340px;\">je_v</div>\n</div>"
+}
