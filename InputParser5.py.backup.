@@ -1,3 +1,4 @@
+import shlex
 from runtime5.logging_5 import log5
 
 RESERVED_WORDS = {
@@ -12,10 +13,53 @@ RESERVED_WORDS = {
     "why",
 }
 
+OPEN_KEYWORDS = {
+    # Otvorenie
+    "otvor",
+    "otvoriť",
+    "otvorit",
+    "otváraj",
+    "otvaraj",
+    "open",
+    # Spustenie
+    "spust",
+    "spusti",
+    "spusť",
+    "spustiť",
+    "spustit",
+    "spúšťaj",
+    "spustaj",
+    "start",
+    "run",
+    "launch",
+    "execute",
+    # Zapnutie
+    "zapni",
+    "zapnúť",
+    "zapnut",
+    "zapínaj",
+    "zapinaj",
+    # Zobrazenie / Ukázanie
+    "ukaz",
+    "ukáž",
+    "zobraz",
+    "zobraziť",
+    "zobrazit",
+    "show",
+    # Hovorové / alternatívne tvary
+    "nahod",
+    "nahoď",
+    "odpal",
+    "odpál",
+}
+
+
 class InputParser5:
     """
     Input Parser 5.x – stabilná, deterministická, kompatibilná s RuntimeCore 5.x,
     KGReasoner, KG routerom a workflow registry.
+    Obsahuje extraktor pre LEVEL 2: Potvrdené učenie.
+    Využíva shlex.split pre bezpečné parsovanie entít s medzerami z úvodzoviek.
     """
 
     def __init__(self):
@@ -29,6 +73,14 @@ class InputParser5:
     def _tokenize(self, text: str):
         clean = text.strip()
         return clean.split()
+
+    def _smart_split(self, text: str):
+        """Rozdelí string, ale rešpektuje úvodzovky (napríklad pre entity z viacerých slov)."""
+        try:
+            return shlex.split(text)
+        except ValueError:
+            # Ak sú úvodzovky neuzavreté alebo inak chybné, fallback na obyčajný split
+            return text.split()
 
     def _is_reserved(self, name: str) -> bool:
         if not isinstance(name, str):
@@ -44,7 +96,6 @@ class InputParser5:
         return False
 
     def parse(self, raw_input: str) -> dict:
-
         if not isinstance(raw_input, str):
             return {
                 "intent": "UNKNOWN",
@@ -56,6 +107,7 @@ class InputParser5:
 
         clean = self._normalize(raw_input)
         tokens = self._tokenize(raw_input)
+        smart_tokens = self._smart_split(raw_input)
         raw_lower = raw_input.lower()
 
         result = {
@@ -65,35 +117,60 @@ class InputParser5:
             "raw": raw_input,
             "normalized": clean,
         }
-
-                # ====================================================
-        # ⭐⭐⭐ FIX: Slovenské otázky "čo je X" ⭐⭐⭐
-        # ====================================================
-        if clean.startswith("čo je "):
-            parts = clean.split()
-            if len(parts) >= 3:
-                entity = parts[-1]
-                return {
-                    "intent": "kg.view",
-                    "entity": entity,
-                    "args": {
-                        "entity": entity,
-                        "mode": "developer",
-                    },
-                }
-
-           
-
         
+        if not tokens:
+            return result
+            
+        first_word = tokens[0].lower().strip(".,:;!?")
+
         # ====================================================
-        # ⭐⭐⭐ KG RELATE (OPRAVENÉ) ⭐⭐⭐
+        # ⭐⭐⭐ QUESTION_DETECTOR: PREVENT QUESTIONS FROM BECOMING RELATIONS ⭐⭐⭐
+        # ====================================================
+        is_question = (
+            clean.endswith("?") or 
+            any(clean.startswith(w) for w in ["čo ", "co ", "kto ", "ako ", "prečo ", "preco ", "kde ", "kedy ", "kolko ", "koľko "])
+        )
+        if is_question:
+            # If it's a question, do not let it fall into natural 3-token relation parsing or default kg.relate.
+            # Map it to kg.query so the runtime handles it as a query instead of creating a false relation.
+            entity = tokens[-1].strip("?") if tokens else None
+            return {
+                "intent": "kg.query",
+                "entity": entity,
+                "args": {
+                    "entity": entity,
+                    "raw_input": raw_input,
+                    "mode": "developer",
+                },
+                "raw": raw_input,
+                "normalized": clean,
+            }
+
+        # ====================================================
+        # ⭐⭐⭐ FIX: OPEN_APP INTENT (Otvor / Spust / Zapni / Open) ⭐⭐⭐
+        # ====================================================
+        if first_word in OPEN_KEYWORDS and len(tokens) >= 2:
+            target_app = " ".join(tokens[1:]).strip().strip('"').strip("'")
+            return {
+                "intent": "OPEN_APP",
+                "entity": target_app,
+                "args": {
+                    "app": target_app,
+                    "target": target_app,
+                    "action": "open",
+                },
+                "raw": raw_input,
+                "normalized": clean,
+            }
+
+        # ====================================================
+        # ⭐⭐⭐ KG RELATE (OPRAVENÉ - POUŽÍVA SMART SPLIT) ⭐⭐⭐
         # ====================================================
         if raw_lower.startswith("kg.relate "):
-            parts = raw_input.split()
-            if len(parts) == 4:
-                src = parts[1]
-                rel = parts[2]
-                tgt = parts[3]
+            if len(smart_tokens) == 4:
+                src = smart_tokens[1]
+                rel = smart_tokens[2]
+                tgt = smart_tokens[3]
                 if self._is_reserved(src) or self._is_reserved(tgt):
                     return result
                 return {
@@ -108,15 +185,10 @@ class InputParser5:
                 }
 
         if raw_lower.startswith("kg relate "):
-            parts = raw_input.split()
-
-            # Očakávané formáty:
-            # kg relate <src> <rel> <tgt>
-            # kg relate <src> <tgt> <rel>
-            if len(parts) == 5:
-                src = parts[2]
-                a = parts[3]
-                b = parts[4]
+            if len(smart_tokens) == 5:
+                src = smart_tokens[2]
+                a = smart_tokens[3]
+                b = smart_tokens[4]
 
                 RELATION_WORDS = {
                     "je", "ma", "má", "ma_vlastnost", "patri_do", "patrí_do",
@@ -124,17 +196,12 @@ class InputParser5:
                     "je_instance", "je_kategoria", "je_kategória"
                 }
 
-                # a = relation?
                 if a.lower() in RELATION_WORDS:
                     rel = a
                     tgt = b
-
-                # b = relation?
                 elif b.lower() in RELATION_WORDS:
                     rel = b
                     tgt = a
-
-                # fallback
                 else:
                     rel = a
                     tgt = b
@@ -157,10 +224,10 @@ class InputParser5:
         # ⭐⭐⭐ KG REMOVE_RELATION ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.remove_relation "):
-            if len(tokens) >= 4:
-                src = tokens[1]
-                rel = tokens[2]
-                tgt = tokens[3]
+            if len(smart_tokens) >= 4:
+                src = smart_tokens[1]
+                rel = smart_tokens[2]
+                tgt = smart_tokens[3]
                 if self._is_reserved(src) or self._is_reserved(tgt):
                     return result
                 return {
@@ -175,10 +242,10 @@ class InputParser5:
                 }
 
         if clean.startswith("kg remove_relation "):
-            if len(tokens) >= 5:
-                src = tokens[2]
-                rel = tokens[3]
-                tgt = tokens[4]
+            if len(smart_tokens) >= 5:
+                src = smart_tokens[2]
+                rel = smart_tokens[3]
+                tgt = smart_tokens[4]
                 if self._is_reserved(src) or self._is_reserved(tgt):
                     return result
                 return {
@@ -196,8 +263,8 @@ class InputParser5:
         # ⭐⭐⭐ KG RELATIONS ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.relations "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -207,8 +274,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg relations "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -221,8 +288,8 @@ class InputParser5:
         # ⭐⭐⭐ KG EXPLAIN ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.explain "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -232,8 +299,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg explain "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -246,8 +313,8 @@ class InputParser5:
         # ⭐⭐⭐ KG EXPLAIN_DEEP ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.explain_deep "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -257,8 +324,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg explain_deep "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -271,8 +338,8 @@ class InputParser5:
         # ⭐⭐⭐ KG EXPLORE ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.explore "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -282,8 +349,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg explore "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -295,21 +362,7 @@ class InputParser5:
         # ====================================================
         # ⭐⭐⭐ KG INFER ⭐⭐⭐
         # ====================================================
-        if clean == "kg.infer":
-            return {
-                "intent": "kg.infer",
-                "entity": None,
-                "args": {"mode": "developer"},
-            }
-
-        if clean.startswith("kg infer"):
-            return {
-                "intent": "kg.infer",
-                "entity": None,
-                "args": {"mode": "developer"},
-            }
-
-        if clean == "infer":
+        if clean == "kg.infer" or clean.startswith("kg infer") or clean == "infer":
             return {
                 "intent": "kg.infer",
                 "entity": None,
@@ -320,9 +373,8 @@ class InputParser5:
         # ⭐⭐⭐ REASON WHY ⭐⭐⭐
         # ====================================================
         if clean.startswith("reason.why "):
-            parts = raw_input.strip().split()
-            if len(parts) == 2:
-                entity = parts[1]
+            if len(smart_tokens) == 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -330,11 +382,11 @@ class InputParser5:
                     "entity": entity,
                     "args": {"entity": entity, "hypothesis": None, "mode": "developer"},
                 }
-            if len(parts) >= 4:
-                entity = parts[1]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
-                hypothesis = " ".join(parts[1:])
+                hypothesis = " ".join(smart_tokens[2:])
                 return {
                     "intent": "reason.why",
                     "entity": entity,
@@ -346,9 +398,8 @@ class InputParser5:
                 }
 
         if clean.startswith("reason why "):
-            parts = raw_input.strip().split()
-            if len(parts) == 3:
-                entity = parts[2]
+            if len(smart_tokens) == 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -356,11 +407,11 @@ class InputParser5:
                     "entity": entity,
                     "args": {"entity": entity, "hypothesis": None, "mode": "developer"},
                 }
-            if len(parts) >= 4:
-                entity = parts[2]
+            if len(smart_tokens) >= 4:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
-                hypothesis = " ".join(parts[2:])
+                hypothesis = " ".join(smart_tokens[3:])
                 return {
                     "intent": "reason.why",
                     "entity": entity,
@@ -372,9 +423,8 @@ class InputParser5:
                 }
 
         if clean.startswith("why "):
-            parts = raw_input.strip().split()
-            if len(parts) == 2:
-                entity = parts[1]
+            if len(smart_tokens) == 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -382,11 +432,11 @@ class InputParser5:
                     "entity": entity,
                     "args": {"entity": entity, "hypothesis": None, "mode": "developer"},
                 }
-            if len(parts) >= 3:
-                entity = parts[1]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
-                hypothesis = " ".join(parts[1:])
+                hypothesis = " ".join(smart_tokens[2:])
                 return {
                     "intent": "reason.why",
                     "entity": entity,
@@ -401,9 +451,8 @@ class InputParser5:
         # ⭐⭐⭐ REASON ORBITS ⭐⭐⭐
         # ====================================================
         if clean.startswith("reason.orbits "):
-            parts = raw_input.split()
-            if len(parts) == 2:
-                entity = parts[1]
+            if len(smart_tokens) == 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -416,9 +465,8 @@ class InputParser5:
                 }
 
         if clean.startswith("reason orbits "):
-            parts = raw_input.split()
-            if len(parts) >= 3:
-                entity = parts[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -433,21 +481,7 @@ class InputParser5:
         # ====================================================
         # ⭐⭐⭐ REASON INFER ⭐⭐⭐
         # ====================================================
-        if clean.startswith("reason.infer"):
-            return {
-                "intent": "reason.infer",
-                "entity": None,
-                "args": {"mode": "developer"},
-            }
-
-        if clean.startswith("reason infer"):
-            return {
-                "intent": "reason.infer",
-                "entity": None,
-                "args": {"mode": "developer"},
-            }
-
-        if clean == "infer":
+        if clean.startswith("reason.infer") or clean.startswith("reason infer"):
             return {
                 "intent": "reason.infer",
                 "entity": None,
@@ -458,8 +492,8 @@ class InputParser5:
         # ⭐⭐⭐ KG VIEW ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.view "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -469,8 +503,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg view "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -483,10 +517,9 @@ class InputParser5:
         # ⭐⭐⭐ KG PATH ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.path "):
-            parts = raw_input.split()
-            if len(parts) >= 3:
-                src = parts[1]
-                tgt = parts[2]
+            if len(smart_tokens) >= 3:
+                src = smart_tokens[1]
+                tgt = smart_tokens[2]
                 if self._is_reserved(src) or self._is_reserved(tgt):
                     return result
                 return {
@@ -500,10 +533,9 @@ class InputParser5:
                 }
 
         if clean.startswith("kg path "):
-            parts = raw_input.split()
-            if len(parts) >= 4:
-                src = parts[2]
-                tgt = parts[-1]
+            if len(smart_tokens) >= 4:
+                src = smart_tokens[2]
+                tgt = smart_tokens[-1]
                 if self._is_reserved(src) or self._is_reserved(tgt):
                     return result
                 return {
@@ -520,8 +552,8 @@ class InputParser5:
         # ⭐⭐⭐ KG ATTRIBUTES ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.attributes "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -531,8 +563,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg attributes "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -545,8 +577,8 @@ class InputParser5:
         # ⭐⭐⭐ KG ADD ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.add "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -556,8 +588,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg add "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -570,8 +602,8 @@ class InputParser5:
         # ⭐⭐⭐ KG REMOVE ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.remove "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -581,8 +613,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg remove "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -595,8 +627,8 @@ class InputParser5:
         # ⭐⭐⭐ KG DELETE ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.delete "):
-            if len(tokens) == 2:
-                entity = tokens[1]
+            if len(smart_tokens) == 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -609,8 +641,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg delete "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -626,9 +658,9 @@ class InputParser5:
         # ⭐⭐⭐ KG MERGE ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.merge "):
-            if len(tokens) == 3:
-                source = tokens[1]
-                target = tokens[2]
+            if len(smart_tokens) == 3:
+                source = smart_tokens[1]
+                target = smart_tokens[2]
                 if self._is_reserved(source) or self._is_reserved(target):
                     return result
                 return {
@@ -642,9 +674,9 @@ class InputParser5:
                 }
 
         if clean.startswith("kg merge "):
-            if len(tokens) == 4:
-                source = tokens[2]
-                target = tokens[3]
+            if len(smart_tokens) == 4:
+                source = smart_tokens[2]
+                target = smart_tokens[3]
                 if self._is_reserved(source) or self._is_reserved(target):
                     return result
                 return {
@@ -661,8 +693,8 @@ class InputParser5:
         # ⭐⭐⭐ KG QUERY ⭐⭐⭐
         # ====================================================
         if clean.startswith("kg.query "):
-            if len(tokens) >= 2:
-                entity = tokens[1]
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -675,8 +707,8 @@ class InputParser5:
                 }
 
         if clean.startswith("kg query "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -689,15 +721,13 @@ class InputParser5:
                 }
 
         # ====================================================
-        # ⭐⭐⭐ KG SET – podpora kg set "entity" "key" "value" ⭐⭐⭐
+        # ⭐⭐⭐ KG SET ⭐⭐⭐
         # ====================================================
-
-        # kg set "entity" "attribute" "value"
         if clean.startswith("kg set "):
-            if len(tokens) >= 5:
-                entity = tokens[2].strip('"')
-                attribute = tokens[3].strip('"')
-                value = " ".join(tokens[4:]).strip('"')
+            if len(smart_tokens) >= 4:
+                entity = smart_tokens[2]
+                attribute = smart_tokens[3]
+                value = " ".join(smart_tokens[4:]) if len(smart_tokens) > 4 else ""
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -711,12 +741,11 @@ class InputParser5:
                     },
                 }
 
-        # kg.set "entity" "attribute" "value"
         if clean.startswith("kg.set "):
-            if len(tokens) >= 4:
-                entity = tokens[1].strip('"')
-                attribute = tokens[2].strip('"')
-                value = " ".join(tokens[3:]).strip('"')
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[1]
+                attribute = smart_tokens[2]
+                value = " ".join(smart_tokens[3:]) if len(smart_tokens) > 3 else ""
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -731,14 +760,12 @@ class InputParser5:
                 }
 
         # ====================================================
-        # ⭐⭐⭐ KG GET – podpora kg get "entity" "attribute" ⭐⭐⭐
+        # ⭐⭐⭐ KG GET ⭐⭐⭐
         # ====================================================
-
-        # kg get "entity" "attribute"
         if clean.startswith("kg get "):
-            if len(tokens) >= 4:
-                entity = tokens[2].strip('"')
-                attribute = tokens[3].strip('"')
+            if len(smart_tokens) >= 4:
+                entity = smart_tokens[2]
+                attribute = smart_tokens[3]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -752,11 +779,9 @@ class InputParser5:
                     },
                 }
 
-        # kg get entity attribute
-        if clean.startswith("kg get "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
-                attribute = tokens[3]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
+                attribute = smart_tokens[3] if len(smart_tokens) > 3 else ""
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -770,11 +795,10 @@ class InputParser5:
                     },
                 }
 
-        # kg.get entity attribute
         if clean.startswith("kg.get "):
-            if len(tokens) >= 3:
-                entity = tokens[1].strip('"')
-                attribute = tokens[2].strip('"')
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[1]
+                attribute = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -788,17 +812,13 @@ class InputParser5:
                     },
                 }
 
-                
         # ====================================================
-
-        # ⭐⭐⭐ KG UNSET – podpora kg unset "entity" "attribute" ⭐⭐⭐
+        # ⭐⭐⭐ KG UNSET ⭐⭐⭐
         # ====================================================
-
-        # kg unset "entity" "attribute"
         if clean.startswith("kg unset "):
-            if len(tokens) >= 4:
-                entity = tokens[2].strip('"')
-                attribute = tokens[3].strip('"')
+            if len(smart_tokens) >= 4:
+                entity = smart_tokens[2]
+                attribute = smart_tokens[3]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -812,11 +832,9 @@ class InputParser5:
                     },
                 }
 
-        # kg unset entity attribute
-        if clean.startswith("kg unset "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
-                attribute = tokens[3]
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
+                attribute = smart_tokens[3] if len(smart_tokens) > 3 else ""
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -830,11 +848,10 @@ class InputParser5:
                     },
                 }
 
-        # kg.unset entity attribute
         if clean.startswith("kg.unset "):
-            if len(tokens) >= 3:
-                entity = tokens[1].strip('"')
-                attribute = tokens[2].strip('"')
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[1]
+                attribute = smart_tokens[2]
                 if self._is_reserved(entity):
                     return result
                 return {
@@ -849,11 +866,9 @@ class InputParser5:
                 }
 
         # ====================================================
-        # ⭐⭐⭐ KG LIST – podpora KG_LIST / kg.list / kg list ⭐⭐⭐
+        # ⭐⭐⭐ KG LIST ⭐⭐⭐
         # ====================================================
-
-        # Presné príkazy bez argumentov
-        if clean == "kg_list" or clean == "kg.list" or clean == "kg list" or clean == "kglist":
+        if clean in ("kg_list", "kg.list", "kg list", "kglist") or raw_input.strip().upper() == "KG_LIST":
             return {
                 "intent": "kg.list",
                 "entity": None,
@@ -862,198 +877,6 @@ class InputParser5:
                 },
             }
 
-        # Podpora veľkých písmen (KG_LIST)
-        if raw_input.strip().upper() == "KG_LIST":
-            return {
-                "intent": "kg.list",
-                "entity": None,
-                "args": {
-                    "mode": "developer",
-                },
-            }
-
-
-        # ====================================================        
-        # ⭐⭐⭐ KG SEARCH – podpora kg search "entity" ⭐⭐⭐
-        # ====================================================
-
-        # kg search "entity"
-        if clean.startswith("kg search "):
-            if len(tokens) >= 3:
-                entity = tokens[2].strip('"')
-                if self._is_reserved(entity):
-                    return result
-                return {
-                    "intent": "kg.search",
-                    "entity": entity,
-                    "args": {
-                        "entity": entity,
-                        "query": entity,
-                        "mode": "developer",
-                    },
-                }
-
-        # kg search entity
-        if clean.startswith("kg search "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
-                if self._is_reserved(entity):
-                    return result
-                return {
-                    "intent": "kg.search",
-                    "entity": entity,
-                    "args": {
-                        "entity": entity,
-                        "query": entity,
-                        "mode": "developer",
-                    },
-                }
-
-        # kg.search entity
-        if clean.startswith("kg.search "):
-            if len(tokens) >= 2:
-                entity = tokens[1].strip('"')
-                if self._is_reserved(entity):
-                    return result
-                return {
-                    "intent": "kg.search",
-                    "entity": entity,
-                    "args": {
-                        "entity": entity,
-                        "query": entity,
-                        "mode": "developer",
-                    },
-                }
-
-        # ====================================================
-        # ⭐⭐⭐ KG RENAME – podpora kg rename "old" "new" ⭐⭐⭐
-        # ====================================================
-
-        # kg rename "old" "new"
-        if clean.startswith("kg rename "):
-            if len(tokens) >= 4:
-                old_name = tokens[2].strip('"')
-                new_name = tokens[3].strip('"')
-                if self._is_reserved(old_name):
-                    return result
-                return {
-                    "intent": "kg.rename",
-                    "entity": old_name,
-                    "args": {
-                        "old": old_name,
-                        "new": new_name,
-                        "mode": "developer",
-                    },
-                }
-
-        # kg rename old new
-        if clean.startswith("kg rename "):
-            if len(tokens) >= 3:
-                old_name = tokens[2]
-                new_name = tokens[3]
-                if self._is_reserved(old_name):
-                    return result
-                return {
-                    "intent": "kg.rename",
-                    "entity": old_name,
-                    "args": {
-                        "old": old_name,
-                        "new": new_name,
-                        "mode": "developer",
-                    },
-                }
-
-        # kg.rename old new
-        if clean.startswith("kg.rename "):
-            if len(tokens) >= 3:
-                old_name = tokens[1].strip('"')
-                new_name = tokens[2].strip('"')
-                if self._is_reserved(old_name):
-                    return result
-                return {
-                    "intent": "kg.rename",
-                    "entity": old_name,
-                    "args": {
-                        "old": old_name,
-                        "new": new_name,
-                        "mode": "developer",
-                    },
-                }
-
-        # ====================================================
-        # ⭐⭐⭐ KG EXISTS – podpora kg exists "entity" ⭐⭐⭐
-        # ====================================================
-
-        # kg exists "entity"
-        if clean.startswith("kg exists "):
-            if len(tokens) >= 3:
-                entity = tokens[2].strip('"')
-                if self._is_reserved(entity):
-                    return result
-                return {
-                    "intent": "kg.exists",
-                    "entity": entity,
-                    "args": {
-                        "entity": entity,
-                        "mode": "developer",
-                    },
-                }
-
-        # kg exists entity
-        if clean.startswith("kg exists "):
-            if len(tokens) >= 3:
-                entity = tokens[2]
-                if self._is_reserved(entity):
-                    return result
-                return {
-                    "intent": "kg.exists",
-                    "entity": entity,
-                    "args": {
-                        "entity": entity,
-                        "mode": "developer",
-                    },
-                }
-
-        # kg.exists entity
-        if clean.startswith("kg.exists "):
-            if len(tokens) >= 2:
-                entity = tokens[1].strip('"')
-                if self._is_reserved(entity):
-                    return result
-                return {
-                    "intent": "kg.exists",
-                    "entity": entity,
-                    "args": {
-                        "entity": entity,
-                        "mode": "developer",
-                    },
-                }
-
-        # ====================================================
-        # ⭐⭐⭐ KG LIST – podpora kg list / kg.list / kg list entities ⭐⭐⭐
-        # ====================================================
-
-        # kg list
-        if clean == "kg list":
-            return {
-                "intent": "kg.list",
-                "entity": None,
-                "args": {
-                    "mode": "developer",
-                },
-            }
-
-        # kg.list
-        if clean.startswith("kg.list"):
-            return {
-                "intent": "kg.list",
-                "entity": None,
-                "args": {
-                    "mode": "developer",
-                },
-            }
-
-        # kg list entities
         if clean.startswith("kg list entities"):
             return {
                 "intent": "kg.list",
@@ -1064,11 +887,123 @@ class InputParser5:
             }
 
         # ====================================================
-        # ⭐⭐⭐ KG STATS – podpora kg stats / kg.stats ⭐⭐⭐
+        # ⭐⭐⭐ KG SEARCH ⭐⭐⭐
         # ====================================================
+        if clean.startswith("kg search "):
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
+                if self._is_reserved(entity):
+                    return result
+                return {
+                    "intent": "kg.search",
+                    "entity": entity,
+                    "args": {
+                        "entity": entity,
+                        "query": entity,
+                        "mode": "developer",
+                    },
+                }
 
-        # kg stats
-        if clean == "kg stats":
+        if clean.startswith("kg.search "):
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
+                if self._is_reserved(entity):
+                    return result
+                return {
+                    "intent": "kg.search",
+                    "entity": entity,
+                    "args": {
+                        "entity": entity,
+                        "query": entity,
+                        "mode": "developer",
+                    },
+                }
+
+        # ====================================================
+        # ⭐⭐⭐ KG RENAME ⭐⭐⭐
+        # ====================================================
+        if clean.startswith("kg rename "):
+            if len(smart_tokens) >= 4:
+                old_name = smart_tokens[2]
+                new_name = smart_tokens[3]
+                if self._is_reserved(old_name):
+                    return result
+                return {
+                    "intent": "kg.rename",
+                    "entity": old_name,
+                    "args": {
+                        "old": old_name,
+                        "new": new_name,
+                        "mode": "developer",
+                    },
+                }
+
+            if len(smart_tokens) >= 3:
+                old_name = smart_tokens[2]
+                new_name = smart_tokens[3] if len(smart_tokens) > 3 else ""
+                if self._is_reserved(old_name):
+                    return result
+                return {
+                    "intent": "kg.rename",
+                    "entity": old_name,
+                    "args": {
+                        "old": old_name,
+                        "new": new_name,
+                        "mode": "developer",
+                    },
+                }
+
+        if clean.startswith("kg.rename "):
+            if len(smart_tokens) >= 3:
+                old_name = smart_tokens[1]
+                new_name = smart_tokens[2]
+                if self._is_reserved(old_name):
+                    return result
+                return {
+                    "intent": "kg.rename",
+                    "entity": old_name,
+                    "args": {
+                        "old": old_name,
+                        "new": new_name,
+                        "mode": "developer",
+                    },
+                }
+
+        # ====================================================
+        # ⭐⭐⭐ KG EXISTS ⭐⭐⭐
+        # ====================================================
+        if clean.startswith("kg exists "):
+            if len(smart_tokens) >= 3:
+                entity = smart_tokens[2]
+                if self._is_reserved(entity):
+                    return result
+                return {
+                    "intent": "kg.exists",
+                    "entity": entity,
+                    "args": {
+                        "entity": entity,
+                        "mode": "developer",
+                    },
+                }
+
+        if clean.startswith("kg.exists "):
+            if len(smart_tokens) >= 2:
+                entity = smart_tokens[1]
+                if self._is_reserved(entity):
+                    return result
+                return {
+                    "intent": "kg.exists",
+                    "entity": entity,
+                    "args": {
+                        "entity": entity,
+                        "mode": "developer",
+                    },
+                }
+
+        # ====================================================
+        # ⭐⭐⭐ KG STATS ⭐⭐⭐
+        # ====================================================
+        if clean in ("kg stats", "kg.stats") or clean.startswith("kg.stats"):
             return {
                 "intent": "kg.stats",
                 "entity": None,
@@ -1077,28 +1012,49 @@ class InputParser5:
                 },
             }
 
-        # kg.stats
-        if clean.startswith("kg.stats"):
-            return {
-                "intent": "kg.stats",
-                "entity": None,
-                "args": {
-                    "mode": "developer",
-                },
-            }
+        # ====================================================
+        # ⭐⭐⭐ LEVEL 2: POTVRDENÉ UČENIE (KNOWLEDGE EXTRACTOR) ⭐⭐⭐
+        # ====================================================
+        # Skontrolujeme, či to nie je explicitný systémový príkaz (kg.*, reason.*, atď.)
+        is_command = (clean.startswith("kg") or clean.startswith("reason") or 
+                      clean.startswith("why") or first_word in OPEN_KEYWORDS)
+        
+        if not is_command:
+            # Hľadáme štruktúru oznamovacej vety cez vzťahové slovesá
+            relation_verbs = [" je ", " má ", " ma ", " patrí do ", " patri do ", " obsahuje ", " znamená ", " znamena "]
+            
+            padded_clean = f" {clean} " # Pridáme medzery, aby sme chytili presné slová
+            
+            for rel_verb in relation_verbs:
+                if rel_verb in padded_clean:
+                    parts = padded_clean.split(rel_verb, 1)
+                    src = parts[0].strip(" .,:;!?\"'")
+                    tgt = parts[1].strip(" .,:;!?\"'")
+                    rel = rel_verb.strip()
+                    
+                    if src and tgt and not self._is_reserved(src) and not self._is_reserved(tgt):
+                        return {
+                            "intent": "kg.learn_proposal",
+                            "entity": src,
+                            "args": {
+                                "source": src,
+                                "relation": rel,
+                                "target": tgt,
+                                "mode": "learning",
+                            },
+                            "raw": raw_input,
+                            "normalized": clean,
+                        }
 
         # ====================================================
-        # ⭐⭐⭐ NATURAL KG RELATE ⭐⭐⭐
+        # ⭐⭐⭐ NATURAL KG RELATE (3-token Fallback) ⭐⭐⭐
         # ====================================================
-        # Format: <source> <relation> <target>
-        # Spúšťa sa len ak to NIE JE príkaz začínajúci na "kg" alebo "reason"
         if len(tokens) == 3 and not raw_lower.startswith("kg ") and not raw_lower.startswith("kg.") \
            and not raw_lower.startswith("reason ") and not raw_lower.startswith("reason."):
             src = tokens[0]
             rel = tokens[1]
             tgt = tokens[2]
 
-            # Skip reserved words
             if self._is_reserved(src) or self._is_reserved(tgt):
                 return result
 
