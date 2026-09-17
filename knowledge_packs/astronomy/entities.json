@@ -1,0 +1,14 @@
+[
+  {
+    "name": "mars",
+    "type": "planet"
+  },
+  {
+    "name": "sun",
+    "type": "star"
+  },
+  {
+    "name": "jupiter",
+    "type": "planet"
+  }
+]

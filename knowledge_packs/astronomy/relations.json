@@ -1,0 +1,12 @@
+[
+  {
+    "source": "mars",
+    "relation": "obieha",
+    "target": "sun"
+  },
+  {
+    "source": "jupiter",
+    "relation": "obieha",
+    "target": "sun"
+  }
+]
