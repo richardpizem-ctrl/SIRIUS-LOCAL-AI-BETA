@@ -69,6 +69,22 @@ This unified platform ensures predictable behavior across all reasoning and work
 
 ---
 
+# 🌐 Why SIRIUS runs via Web and Python
+
+- **Python as the Engine:**
+  - Serves as a clean, local, and fully transparent tool under the hood.
+  - Processes symbolic logic and the knowledge graph without any hidden background processes or cloud services.
+
+- **Web Interface as the Dashboard:**
+  - Instead of installing complex proprietary software, we use the web browser.
+  - Provides a familiar, secure environment that you use daily as the primary control window.
+
+- **Privacy Guarantee (Offline First):**
+  - The code is fully open source and readable line by line.
+  - When disconnected from the internet, data has nowhere to go, ensuring your files and thoughts remain exclusively on your computer.
+
+---
+
 # 🧠 Deep Explainability Framework (XAI)
 
 SIRIUS 5.8 enhances the enterprise explainability layer with:
