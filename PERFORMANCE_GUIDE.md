@@ -1,26 +1,24 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.8 UNIFIED)
+# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.9.0 UNIFIED)
 
 This document defines the performance model, optimization rules, and runtime guarantees of the  
-**Unified Orchestration, PanelAPI, TimeCore/Guard & Enhanced COLNIK‑AUTONOMY Architecture 5.8**.
+**Semantic Multi-Word Parsing, Autonomous Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence Architecture 5.9.0**.
 
-Version **5.8 UNIFIED** expands the original 5.7.0 rules with:
+Version **5.9.0 UNIFIED** expands and optimizes the runtime profile with:
 
-- **Unified Orchestrator (`sirius_orchestrator.py`) (constant-time execution pipeline)**  
-- **PanelAPI & Interactive [ÁNO/NIE] Confirmation Loops (non-blocking gating)**  
-- **TimeCore Temporal Tracking & Guard Security Supervision (lightweight runtime supervision)**  
-- **AITE 5.8 (faster semantic + deep explainability multimodal triage)**  
-- **Workflow Engine 5.8 (constant‑time transitions, COLNIK‑validated + AUTONOMY‑aware routing)**  
-- **Reasoning Engine 5.8 (multi‑hop, inheritance, transitivity, rule chaining)**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Unified Knowledge Graph 5.8 + KG‑LIGHT (stabilized indexing via `autosave_kg.json`)**  
-- **System Agent 5 (constant‑time identity + permission validation)**  
-- **Security Family 5.x (Identity Engine 3.1, hardened checks)**  
-- **Self‑Repair Layer 5.8 (bounded diagnostics, safe fallback)**  
-- **System Intelligence Layer 5.8 (cached system context, deep explainability traces)**  
-- **Mobile Runtime 5.8 (optimized mobile execution)**  
-- **UI Automation Engine 5.1 (deterministic fallback, unified routing)**  
-- **COLNIK‑6.x (enterprise validation, rule enforcement, workflow filtering — Standard & IPC Mode)**  
-- **AUTONOMY 6.x (proposal/confirmation cycle & Triage Mode)**  
+- **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080) (zero IPC socket overhead, no file contention)**  
+- **Multi-Word Semantic Engine (`InputParser5`) (constant-time token grouping and copula isolation)**  
+- **Multi-Alias KG Persistence (`autosave_kg.json`) (O(1) memory lookup suppressing redundant learning proposals)**  
+- **Autonomous Disambiguation Triage (`EnvoyExecutionLayer5`) (bounded network timeouts and prefix checks)**  
+- **Contextual Domain & Bio Filtering (`EnvoyNormalizer5`) (sentence-bound declarative parsing)**  
+- **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) (asynchronous state decoupling, non-blocking)**  
+- **Terminal State Decoupling (`currentModule = "none"`) (zero input lockups or CLI stalling)**  
+- **PanelAPI & Interactive [ÁNO/NIE] Confirmation Loops (non-blocking async polling)**  
+- **TimeCore Temporal Tracking & Guard Resource Telemetry (lightweight CPU/RAM/Disk metrics)**  
+- **Workflow Engine 5.9.0 (constant-time transitions, COLNIK-validated and AUTONOMY-aware routing)**  
+- **Reasoning Engine 5.9.0 (bounded multi-hop derivation, property inheritance, orbital rules)**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP (deterministic proof-tree generation under bounded memory constraints)**  
+- **COLNIK-6.x Customs Decision Gate (constant-time allow/deny evaluation — Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x (supervised proposal cycle, Guard metric integration, and bounded Triage Mode)**  
 
 All processing is fully local; no data leaves the user's device.
 
@@ -28,264 +26,141 @@ All processing is fully local; no data leaves the user's device.
 
 # 1. Performance Philosophy
 
-- predictable performance > raw speed  
-- no hidden automation  
-- no uncontrolled loops  
-- no unnecessary background tasks  
-- deterministic behavior across all modules  
-- minimal overhead in all operations  
-- plugin execution must follow strict performance rules  
-- SCHOOLWORK workflows must remain instant  
-- **Security Family 5.x must not introduce latency or blocking behavior**  
-- identity checks must remain constant‑time  
-- STRANGER‑mode restrictions must be lightweight  
-- Self‑Repair Layer must run only in safe, controlled intervals  
-- Reasoning Engine must remain bounded and deterministic  
-- **System Agent 5 validation must be O(1)**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP must generate explanations in bounded time**  
-- **UI Automation Engine 5.1 must not block the runtime**  
-- **System Intelligence Layer 5.8 must not perform deep scans during active workflows**  
-- **COLNIK‑6.x validation (Standard & IPC Mode) must remain constant‑time**  
-- **AUTONOMY 6.x proposal/confirmation & Triage Mode must remain bounded**  
-- **Orchestrator, PanelAPI, and TimeCore/Guard overhead must remain < 2ms per cycle**  
-- unified PC/Mobile performance must remain consistent  
+- predictable, deterministic execution > unconstrained throughput  
+- single-process orchestration: eliminate disk-based IPC locks and inter-process polling latency  
+- zero proposal recurrence: once an alias is indexed in `autosave_kg.json`, subsequent queries resolve in O(1)  
+- no uncontrolled conversational loops or terminal command captures  
+- compound noun preservation must not degrade parsing time (`O(N)` token scan)  
+- strict boundaries for autonomous web triage: fast timeouts, anti-prefix guards, and non-bio domain checks  
+- minimal overhead across all modules: complete cycle response under 10ms for local graph queries  
+- SCHOOLWORK workflows must remain instant and non-bypassable  
+- **Security Family 5.x checks must remain strictly O(1)**  
+- **System Agent 5 validation must remain O(1)**  
+- **COLNIK-6.x Customs inspection (Standard & IPC Mode) must remain constant-time**  
+- **Guard system resource monitoring must operate asynchronously with < 1% CPU utilization**  
+- **Orchestrator and PanelAPI loop latency must remain < 1ms per event**  
 
 ---
 
-# 2. Runtime Guarantees (Runtime 5.8)
+# 2. Runtime Guarantees (Runtime 5.9.0)
 
-- no race conditions  
-- no parallel writes  
-- no blocking operations without confirmation (`PanelAPI`)  
-- no network calls  
-- no unpredictable system modifications  
-- event routing is O(1) via `sirius_orchestrator.py`  
-- plugin loading is cached and isolated  
-- AI Loop 5.x uses safe interval scheduling  
-- SCHOOLWORK Engine must not delay routing  
-- **identity checks remain O(1)**  
-- **time‑limit checks remain O(1)**  
-- Self‑Repair checks must be lightweight  
-- semantic routing must remain constant‑time  
-- **System Agent 5 must validate actions in constant time**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP must produce deterministic, bounded explanations**  
-- **UI Automation Engine 5.1 fallback logic must be bounded**  
-- **System Intelligence Layer 5.8 must use cached system context**  
-- **COLNIK‑6.x must validate workflow + KG operations in constant time**  
-- **AUTONOMY 6.x must validate proposals/confirmations in constant time**  
-- **TimeCore & Guard tracking must operate with zero thread blocking**  
-- unified PC/Mobile execution must not introduce overhead  
+- **Zero Socket Contention:** Single-process architecture hosting HTTP/WebSocket on port 8080 eliminates socket conflicts  
+- **Zero Proposal Recurrence:** Confirmed knowledge is served from primary or secondary alias indexes with zero interactive prompt latency  
+- **Terminal Isolation:** Clearing input immediately resets active execution context to `currentModule = "none"` in O(1) time  
+- **Cycle-Safe Reasoning:** Multi-hop graph traversal and orbital rules are bounded to fixed recursion depths, preventing runaway inference  
+- **Atomic Persistence:** Graph mutations are written atomically to `autosave_kg.json` without corrupting active memory snapshots  
+- **Deterministic Tokenization:** `InputParser5` separates copula verbs (`je`, `sú`) and retains compound entities without backtracking  
+- **No Blocking Operations:** PanelAPI `[ÁNO/NIE]` dialogs use asynchronous callback structures without freezing background monitors  
+- **TimeCore & Guard Telemetry:** Execution timing and system health metrics operate non-intrusively with zero thread stalls  
 
 ---
 
-# 3. Filesystem Performance (FS‑AGENT 5.8)
+# 3. Knowledge Graph & Multi-Alias Indexing Performance
 
 Rules:
 
-- validate paths before performing operations  
-- avoid scanning entire drives unless necessary  
-- use cached context when possible  
-- avoid repeated directory enumeration  
-- ensure rollback‑safe operations  
-- minimize disk I/O during workflows  
-- SCHOOLWORK files must route instantly  
-- **Security Family 5.x must not slow down FS‑AGENT operations**  
-- identity‑restricted file operations must remain O(1)  
-- semantic file classification must be lightweight  
-- **System Agent 5 must not add overhead to FS operations**  
-- **System Intelligence Layer 5.8 must not trigger deep scans during FS workflows**  
-- **COLNIK‑6.x must validate FS operations without overhead**  
-- unified PC/Mobile filesystem logic must remain fast  
+- primary entity labels and aliases share a hash-indexed lookup table (`O(1)` query complexity)  
+- queries for synonyms (e.g., `ovcia vlna` vs. `Vlna (textil)`) resolve directly to the canonical node pointer  
+- suppressed learning loops: query resolution checks the alias index first before invoking AUTONOMY proposal generators  
+- atomic serialization: `autosave_kg.json` serializes asynchronously or during idle cycles to avoid blocking active workflows  
+- graph export/import operations are streaming and chunk-validated to prevent memory spikes  
+- relations and properties are pre-indexed; orbital searches avoid full-graph scans  
 
 ---
 
-# 4. WIN‑CAP Performance (WIN‑CAP 5.x)
+# 4. Multi-Word Parsing & NL Performance (`InputParser5`)
 
-- window operations must be atomic  
-- app detection must be cached  
-- audio device scanning must be minimal  
-- system context must be lightweight  
-- avoid repeated OS queries  
-- capability wrappers must remain fast and predictable  
-- SCHOOLWORK‑related system actions must bypass restrictions instantly  
-- **identity‑restricted operations must not add overhead**  
-- STRANGER‑mode checks must be constant‑time  
-- automation operations must remain bounded  
-- **UI Automation Engine 5.1 must use cached capability lookups**  
-- **System Intelligence Layer 5.8 must avoid redundant system calls**  
-- **COLNIK‑6.x must validate capability routing instantly**  
-- unified PC/Mobile capability logic must remain consistent  
+- single-pass grammatical tokenization: compound phrases (`ovcia vlna`, `mobilny telefon`) are matched using linear token grouping  
+- copula verb isolation (`je`, `sú`) occurs prior to entity matching, preventing complex regex backtracking  
+- diacritic normalization is performed in a single buffer traversal  
+- parsing overhead must remain under 0.5ms for standard user inputs  
+- unrecognized inputs transition cleanly to AUTONOMY without triggering retry loops  
 
 ---
 
-# 5. UI & PanelAPI Performance (GUI 5.8)
+# 5. Autonomous ENVOY & Triage Performance
 
-- no heavy rendering  
-- animations must be lightweight and optional  
-- confirmation dialogs (`PanelAPI` [ÁNO/NIE]) must appear instantly  
-- avoid unnecessary redraws  
-- UI components must remain modular and efficient  
-- plugin‑driven UI elements must not block the main loop  
-- SCHOOLWORK indicators must be instant  
-- **FAMILY mode warnings must be non‑blocking and instant**  
-- semantic UI hints must be pre‑computed  
-- **UI Automation Engine 5.1 visual feedback must be O(1)**  
-- explainability visualizer must be lightweight  
-- unified PC/Mobile UI rendering must remain smooth  
+- **Bounded External Fetching:** External lookups execute with strict HTTP connection and read timeouts  
+- **Disambiguation Fast-Path:** Wikipedia disambiguation headers (*„môže byť...“*) are parsed via streaming text filters  
+- **Anti-Prefix Verification:** Prefix string comparisons are performed in constant time, stopping semantic drift immediately  
+- **Domain Normalizer:** The Non-Bio Domain Shield and sentence-bound extractor evaluate only immediate declarative sentences, avoiding full-page semantic parsing  
+- **Quarantine Cleansing:** HTML and script stripping runs via linear text scanners without invoking browser engines  
 
 ---
 
-# 6. Workflow & Orchestrator Performance (Workflow Engine 5.8)
+# 6. 4-Panel UI Suite & Terminal Performance (Port 8080)
 
-- workflows must not recompute state  
-- context memory must be minimal  
-- transitions must be O(1) via `sirius_orchestrator.py`  
-- plugin workflows must follow deterministic rules  
-- no long‑running tasks inside workflows  
-- avoid deep recursion or nested transitions  
-- SCHOOLWORK workflows must bypass restrictions without overhead  
-- **identity‑restricted workflows must remain lightweight**  
-- semantic transitions must be cached  
-- **System Agent 5 validation must not slow workflow transitions**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP must generate workflow explanations in bounded time**  
-- **System Intelligence Layer 5.8 must not interrupt workflow execution**  
-- **COLNIK‑6.x must validate workflow steps instantly**  
-- **AUTONOMY 6.x must validate proposals/confirmations instantly**  
-- unified PC/Mobile workflows must remain consistent  
+- browser dashboard on port 8080 uses lightweight, event-driven DOM updates  
+- **Terminal Decoupling:** Clearing input resets `currentModule = "none"` instantly, freeing event listeners  
+- **Duplicates Panel:** File hash comparisons utilize streaming block hashing, categorizing duplicates without disk saturation  
+- **Triage Panel:** Live quarantine queue updates utilize delta payloads rather than full queue redraws  
+- **Navigation Panel:** Switching modules updates UI state in constant time without reloading backend services  
 
 ---
 
-# 7. AI Loop Performance (AI Loop 5.x)
+# 7. Workflow Engine 5.9.0 & Orchestrator Performance
 
-- interval tasks must be short  
-- no blocking operations  
-- no heavy computations  
-- plugin heartbeat rules must be optimized  
-- deterministic scheduling  
-- safe error handling without retry loops  
-- SCHOOLWORK tasks must not delay the loop  
-- **time‑limit checks must be constant‑time**  
-- Self‑Repair checks must run in low‑impact intervals  
-- Reasoning Engine hooks must be bounded  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP must not run inside the AI Loop**  
-- **UI Automation Engine 5.1 must not run inside the AI Loop**  
-- **System Intelligence Layer 5.8 must run diagnostics only in low‑impact windows**  
-- **COLNIK‑6.x must not run heavy validation inside the AI Loop**  
-- **AUTONOMY 6.x must not run heavy proposals/confirmations inside the AI Loop**  
-- unified PC/Mobile loop behavior must remain stable  
+- workflow transitions are executed as O(1) state-machine transitions managed by `sirius_orchestrator.py`  
+- workflows maintain cached operational contexts, avoiding redundant property lookups  
+- deep explainability traces (`KG_EXPLAIN_DEEP`) compile proof trees lazily upon request  
+- COLNIK-6.x customs checks and AUTONOMY approvals evaluate in constant time within the orchestration pipeline  
+- long-running operations yield control cooperatively, ensuring the UI remains responsive  
 
 ---
 
-# 8. Reasoning Engine Performance (v5.8)
+# 8. Symbolic Reasoning & XAI Performance
 
-- reasoning depth must be capped  
-- no unbounded chain‑of‑thought  
-- symbolic rules must be pre‑indexed  
-- pack‑aware reasoning must remain O(1) for lookup  
-- no recursive rule expansion without limits  
-- SCHOOLWORK reasoning must remain instant  
-- identity‑restricted reasoning must not add overhead  
-- **AITE 5.8 must pre‑compute semantic tags for faster reasoning**  
-- **Reasoning Engine 5.8 must use cached pack indexes**  
-- **KG_EXPLAIN_DEEP must generate deterministic proof + evidence trees**  
-- **COLNIK‑6.x must validate reasoning steps instantly**  
-- **AUTONOMY 6.x must validate reasoning proposals/confirmations instantly**  
-- unified PC/Mobile reasoning must remain deterministic  
+- reasoning depth is bounded by maximum orbital traversal thresholds  
+- rules (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, `TranzitivneRelacieRule`, `AutoTypeInferenceRule`) execute against indexed graph subsets  
+- proof trees are constructed deterministically without non-deterministic search heuristics  
+- confidence scores are calculated in linear time relative to the active proof path length  
+- explanation rendering (ASCII / HTML) is isolated from the reasoning core  
 
 ---
 
-# 9. Logging Performance
-
-- logs must be short and structured  
-- no verbose debug output  
-- no sensitive data  
-- no timestamps unless needed  
-- avoid logging inside tight loops  
-- plugin logs must follow the same rules  
-- SCHOOLWORK events must not log academic content  
-- **Security Family 5.x must not log identity data or behavior patterns**  
-- Self‑Repair logs must be minimal and safe  
-- **UI Automation Engine 5.1 logs must be constant‑time**  
-- **System Intelligence Layer 5.8 logs must avoid repeated system queries**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP logs must remain bounded and deterministic**  
-- **COLNIK‑6.x must not produce heavy logs**  
-- **AUTONOMY 6.x must not produce heavy proposal/confirmation logs**  
-- **TimeCore & Guard audit logs must be buffered and asynchronous**  
-
----
-
-# 10. Plugin System Performance (Plugin System 5.x)
-
-- plugin loading is cached  
-- NL command detection is O(1)  
-- workflows must be lightweight  
-- GUI elements must not block runtime  
-- AI tasks must be optimized  
-- plugins must not introduce heavy operations  
-- SCHOOLWORK‑aware plugins must remain instant  
-- **plugins must not bypass or slow down Security Family 5.x checks**  
-- reasoning hooks must be bounded  
-- **System Agent 5 must validate plugin actions instantly**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP must not be triggered unnecessarily**  
-- **COLNIK‑6.x must validate plugin actions instantly**  
-- **AUTONOMY 6.x must validate plugin proposals/confirmations instantly**  
-- unified PC/Mobile plugin behavior must remain efficient  
-
----
-
-# 11. Security Family Performance (v5.8)
+# 9. Security Family & Identity Performance
 
 ### Identity Engine 3.1
-- identity classification must be constant‑time  
-- no heavy behavioral analysis  
-- no background training loops  
-- no scanning of large datasets  
-- STRANGER detection must be instant  
-- **System Agent 5 must enforce identity rules without overhead**  
-- **COLNIK‑6.x must validate identity‑restricted actions instantly**  
-- **AUTONOMY 6.x must validate identity‑aware proposals instantly**
-
-### Time‑Limits Engine v3
-- time checks must be O(1)  
-- no timers running in tight loops  
-- no blocking UI alerts  
-- no repeated disk writes  
-- FAMILY mode transitions must be instant  
+- identity evaluation is strictly O(1) based on active session profiles (OWNER / FAMILY / STRANGER)  
+- no background tracking loops or heavy biometric processing  
+- STRANGER lockdown mode activates instantly upon unrecognized input  
 
 ### Schoolwork Engine 5.8
-- schoolwork detection must be lightweight  
-- no deep semantic loops  
-- bypass logic must be instant  
-- SCHOOLWORK workflows must never be delayed  
+- academic topic identification is pre-computed and pattern-matched  
+- academic bypass logic operates in constant time, ensuring learning workflows are never delayed  
 
-### Family Mode
-- restrictions must not slow down NL routing  
-- safe‑mode must not block runtime operations  
-- warnings must be non‑blocking  
-- OWNER‑level overrides must be instant  
+### Time-Limits Engine v3
+- temporal quotas are evaluated via delta calculations against TimeCore timestamps  
+- no active polling timers in tight execution loops  
 
 ---
 
-# 12. Self‑Repair & Health‑Check Layer (v5.8)
+# 10. Self-Repair Layer & Guard Supervision Performance
 
-- integrity checks must be lightweight  
-- no deep scanning of source code  
-- repairs must be safe and bounded  
-- no blocking operations during runtime  
-- patch suggestions must be pre‑computed  
-- health reports must be instant  
-- no repeated disk I/O  
-- **System Agent 5 integrity must be checked in constant‑time**  
-- **UI Automation Engine 5.1 modules must be validated without overhead**  
-- **System Intelligence Layer 5.8 must avoid heavy diagnostics during workflows**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP must not slow down repair logic**  
-- **COLNIK‑6.x must validate repair actions instantly**  
-- **AUTONOMY 6.x must validate repair proposals instantly**  
-- unified PC/Mobile diagnostics must remain efficient  
+- Guard resource telemetry polls OS metrics (CPU, RAM, Disk) at bounded, low-frequency intervals  
+- anomaly thresholds are evaluated using moving averages to prevent alert thrashing  
+- Self-Repair integrity scans run during system idle states or startup  
+- schema integrity checks on `autosave_kg.json` execute via fast streaming JSON validators  
+- repair suggestions and rollback operations maintain deterministic fallbacks  
 
 ---
 
-# Document Status
+# 11. Performance Baseline Metrics
 
-**Version:** 5.8 UNIFIED  
-Performance rules are fully aligned with the Unified Orchestration, PanelAPI, TimeCore/Guard & Enhanced COLNIK‑AUTONOMY Architecture 5.8 and prepared for future enhancements in v6.0.0.
+| Component / Action | Complexity | Latency Target | Resource Overhead |
+|:---|:---:|:---:|:---:|
+| `InputParser5` Token Parsing | O(N) | < 0.5ms | Negligible |
+| Multi-Alias Graph Lookup | O(1) | < 1ms | In-memory RAM lookup |
+| COLNIK-6.x Customs Clearance | O(1) | < 0.2ms | Zero thread blocking |
+| PanelAPI Event Dispatch | O(1) | < 1ms | Non-blocking async |
+| Terminal State Reset (`none`) | O(1) | < 0.1ms | Instant state clear |
+| Single-Hop Symbolic Inference | O(1) | < 2ms | Bounded memory |
+| Multi-Hop Orbit Proof Tree | O(D) (bounded) | < 8ms | Bounded tree depth |
+| Guard Metric Polling | O(1) | < 1ms | < 1% CPU utilization |
+
+---
+
+# 📄 Document Status
+
+**Version:** 5.9.0 UNIFIED  
+Performance rules and architectural guarantees are fully aligned with the **Semantic Multi-Word Parsing, Autonomous Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence Architecture 5.9.0**, ensuring maximum responsiveness and determinism on local hardware.
