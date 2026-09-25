@@ -1,41 +1,45 @@
 # 🧩 KG COMFORT COMMANDS — Developer‑Friendly Knowledge Graph Operations  
-**Status:** ✔ Active  
-**Version:** 6.x (Updated for Runtime 5.8 UNIFIED)  
+**Status:** ✔ Active (Enhanced)  
+**Version:** 6.x (Updated for Runtime 5.9.0 UNIFIED)  
 **Component:** KG Comfort Commands  
-**Role:** Fast, safe, deterministic developer commands for manipulating the Knowledge Graph under orchestrator and PanelAPI supervision
+**Role:** Fast, safe, deterministic developer commands for manipulating the Knowledge Graph with multi-alias indexing, compound phrase handling, and orchestrator/PanelAPI supervision
 
 ---
 
 ## 🎯 Purpose  
-KG Comfort Commands provide a **developer‑friendly interface** for interacting with the Knowledge Graph.  
-They simplify entity creation, relation management, searching, renaming, exporting, importing, and debugging — all while maintaining:
+KG Comfort Commands provide a **developer‑friendly command interface** for interacting directly with the Knowledge Graph.  
+They simplify entity creation, multi-alias mapping, relation management, searching, renaming, exporting, importing, and debugging — all while maintaining:
 
-- deterministic behavior via `sirius_orchestrator.py`  
-- autosave/autoload integrity (`autosave_kg.json`)  
-- COLNIK‑validated safety (Standard & IPC Mode)  
-- AUTONOMY‑aware gating & Triage Mode  
-- PanelAPI interactive `[ÁNO/NIE]` confirmation gates  
-- full explainability (KG_EXPLAIN + KG_EXPLAIN_DEEP)  
+- deterministic single-process execution via `sirius_orchestrator.py` on local port 8080  
+- dual-key multi-alias persistence committed atomically to `autosave_kg.json`  
+- compound noun phrase preservation via `InputParser5`  
+- zero proposal recurrence on stored concepts  
+- customs-grade validation through COLNIK‑6.x (Standard & High-Performance IPC Mode)  
+- AUTONOMY 6.x gating, Guard resource supervision, and Triage Mode (`COLNIK-6.x/triage`)  
+- interactive `PanelAPI` confirmation gates (`[ÁNO/NIE]`)  
+- complete symbolic explainability (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP` proof trees)  
 
-These commands are designed for **rapid development**, **debugging**, and **manual KG manipulation** inside SIRIUS Local AI.
+These commands are built for **rapid testing**, **schema debugging**, and **manual Knowledge Graph maintenance** inside SIRIUS Local AI.
 
 ---
 
 ## 🧩 Architecture Overview  
-**Developer Mode → KG Comfort Commands → `sirius_orchestrator.py` → KG ENGINE → ReasoningEngine5 → AUTONOMY → COLNIK → PanelAPI [ÁNO/NIE]**
+**Developer Mode / InputParser5 → KG Comfort Commands → sirius_orchestrator.py (Port 8080) → KG ENGINE / RuntimeCore → ReasoningEngine5 → AUTONOMY 6.x → COLNIK-6.x → PanelAPI [ÁNO/NIE] → autosave_kg.json**
 
 ### Core Responsibilities  
-- simplify KG operations  
-- provide safe developer shortcuts  
-- maintain autosave/autoload consistency  
-- generate explainability metadata  
-- validate KG mutations  
-- support debugging and testing  
-- unify PC/Mobile KG manipulation  
+- simplify graph inspection and entity manipulation  
+- register and link multi-word compound noun phrases without token truncation  
+- support multi-alias mapping (linking colloquial queries to formal encyclopedic titles)  
+- enforce zero proposal recurrence for established concepts and aliases  
+- maintain atomic serialization consistency with `autosave_kg.json`  
+- generate explainability metadata and proof trees  
+- validate mutations through COLNIK-6.x prior to storage commit  
+- support terminal debugging with automatic module release (`currentModule = "none"`)  
 
 ### Key Files  
 - `KG/kg_engine.py`  
-- `KG/kg_store/`  
+- `runtime5/runtime_core.py`  
+- `runtime5/input_parser_5.py`  
 - `KG/autosave_kg.json`  
 - `KG/kg_export.json`  
 - `KG/kg_import.json`  
@@ -46,121 +50,125 @@ These commands are designed for **rapid development**, **debugging**, and **manu
 
 ## 🔍 Command Categories  
 
-### **1 — Entity Commands**  
+### **1 — Entity & Alias Commands**  
 #### `kg add entity <NAME>`  
-Creates a new entity with deterministic metadata via the orchestrator.
+Creates a new entity (supporting compound phrases like `ovcia vlna`) with deterministic metadata via the orchestrator.
+
+#### `kg add alias <PRIMARY_ENTITY> <ALIAS>`  
+Registers a secondary lookup alias for an entity, ensuring queries under either term resolve to the same node without triggering redundant learning proposals.
 
 #### `kg rename entity <OLD> <NEW>`  
-Renames an entity while preserving relations.
+Renames an entity while preserving all incoming and outgoing relations and alias pointers.
 
 #### `kg delete entity <NAME>`  
-Deletes an entity (requires AUTONOMY, COLNIK, and PanelAPI `[ÁNO/NIE]` approval).
+Deletes an entity and its bound edges (requires AUTONOMY proposal, COLNIK validation, and explicit PanelAPI `[ÁNO/NIE]` approval).
 
 #### `kg list entities`  
-Shows all entities in the KG.
+Lists all indexed primary entities and registered aliases in the Knowledge Graph.
 
 ---
 
-### **2 — Relation Commands**  
+### **2 — Relation & Explainability Commands**  
 #### `kg add relation <A> <B> <TYPE>`  
-Creates a relation between two entities.
+Creates a typed relation between two nodes (e.g., `ovcia vlna` -> `vlna` -> `is_type_of`).
 
 #### `kg unset relation <A> <B>`  
-Removes a relation safely.
+Removes a specific relation safely without corrupting adjacent branches.
 
-#### `kg list relations`  
-Displays all relations with metadata.
+#### `kg list relations [ENTITY]`  
+Displays all active relations (optionally filtered by a specific node) with confidence and provenance tags.
 
 #### `kg explain <A> <B>`  
-Runs KG_EXPLAIN.
+Executes `KG_EXPLAIN`, displaying the direct derivation path and active inference rule attribution.
 
 #### `kg explain deep <A> <B>`  
-Runs KG_EXPLAIN_DEEP (multi‑hop).
+Executes `KG_EXPLAIN_DEEP`, rendering the full multi-hop hierarchical proof tree (ASCII + HTML view).
 
 ---
 
-### **3 — Search Commands**  
+### **3 — Search & Pathfinding Commands**  
 #### `kg search <TERM>`  
-Searches entities and relations.
+Fuzzy and multi-word semantic search across entities, aliases, and attribute fields.
 
 #### `kg find related <ENTITY>`  
-Shows all related entities.
+Lists all first-degree inbound and outbound neighbors for the specified node.
 
 #### `kg find path <A> <B>`  
-Shows multi‑hop path between two nodes.
+Executes cycle-safe deterministic pathfinding between two nodes, displaying orbital transitions.
 
 ---
 
-### **4 — Import/Export Commands**  
-#### `kg export`  
-Exports the entire KG to `kg_export.json`.
+### **4 — Import, Export & Persistence Commands**  
+#### `kg export [FILE]`  
+Exports the complete Knowledge Graph snapshot to `kg_export.json` (or a designated path).
 
 #### `kg import <FILE>`  
-Imports a KG file (requires strict validation and confirmation).
+Imports an external graph package (enforces schema validation, cycle checks, and mandatory user approval).
+
+#### `kg commit`  
+Forces an immediate atomic write of active memory graphs to `autosave_kg.json`.
 
 #### `kg autosave on/off`  
-Controls autosave behavior under TimeCore tracking.
+Toggles automatic serialization tracking managed by TimeCore.
 
 ---
 
-### **5 — Debug Commands**  
+### **5 — Diagnostics & Guard Commands**  
 #### `kg debug entity <NAME>`  
-Shows full metadata for an entity.
+Outputs raw JSON representation of an entity, including aliases, bound rules, and timestamp metadata.
 
 #### `kg debug relation <A> <B>`  
-Shows full metadata for a relation.
+Inspects property inheritance, confidence weights, and rule provenance between two nodes.
 
 #### `kg debug stats`  
-Shows KG size, depth, and consistency metrics verified by Guard.
+Displays total node counts, alias density, relation counts, depth metrics, and memory consumption verified by Guard.
+
+#### `kg release`  
+Forces the terminal context to reset `currentModule = "none"`, unlocking the host command line interface.
 
 ---
 
 ## 🔐 Safety & Validation  
 
-### **Identity Validation**  
-All commands respect:  
-- FAMILY mode  
-- STRANGER mode  
-- SCHOOLWORK bypass  
-- ENVOY 5 restrictions  
+### **Identity & Domain Protection**  
+All developer commands strictly respect:  
+- OWNER / FAMILY / STRANGER access modes  
+- SCHOOLWORK priority rules  
+- Non-Bio Domain Shield (preventing arbitrary binding of biological habitat properties to technical concepts)  
 
 ### **Explainability Enforcement**  
-Every KG mutation generates:  
-- KG_EXPLAIN  
-- KG_EXPLAIN_DEEP  
-- mutation reasoning  
-- evidence metadata  
+Every KG modification automatically updates:  
+- `KG_EXPLAIN` reasoning traces  
+- rule attribution metadata (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, etc.)  
+- proof tree derivation nodes  
 
-### **COLNIK Validation**  
-All KG mutations are validated through COLNIK‑6.x (Standard & IPC Mode):  
-- enterprise‑grade safety  
-- reversible mutation checks  
-- deterministic routing  
+### **COLNIK-6.x Customs Clearance**  
+All mutations pass through COLNIK‑6.x (Standard & High-Performance IPC Mode):  
+- enterprise-grade graph cycle and anomaly detection  
+- reversible mutation verification  
+- schema integrity enforcement  
 
-### **AUTONOMY Gating & PanelAPI**  
-AUTONOMY‑6.x (Control & Triage Mode) and `PanelAPI` confirm or deny:  
-- risky mutations  
-- relation deletions  
-- entity deletions  
-- import operations  
+### **AUTONOMY Supervision & PanelAPI Confirmation**  
+AUTONOMY 6.x and `PanelAPI` supervise high-impact operations:  
+- mass entity or relation deletions  
+- foreign package imports  
+- unverified entity creations without provenance  
 
 ---
 
-## 📊 Module Status  
-- ✔ Fully implemented (Runtime 5.8)  
-- ✔ Autosave/autoload stable  
-- ✔ Mutation validation active  
-- ✔ Orchestrator routing verified  
-- ✔ PanelAPI [ÁNO/NIE] gates active  
-- ✔ Explainability integrated  
-- ✔ COLNIK validation functional (Standard & IPC Mode)  
-- ✔ AUTONOMY gating active  
-- ✔ PC/Mobile KG manipulation unified  
+## 📊 Module Status (v5.9.0)  
+- ✔ Fully updated & optimized for Runtime 5.9.0  
+- ✔ Compound noun phrase support active  
+- ✔ Multi-alias indexing and lookup validated  
+- ✔ Zero proposal recurrence verified  
+- ✔ Single-process orchestrator integration on port 8080 operational  
+- ✔ Atomic serialization to `autosave_kg.json` verified  
+- ✔ 4-Panel UI Suite integration and terminal state release active  
+- ✔ COLNIK‑6.x High-Performance IPC verification functional  
+- ✔ Explainability proof trees (`KG_EXPLAIN_DEEP`) verified  
 
 ---
 
 ## 🏁 Summary  
-KG Comfort Commands provide a **safe, deterministic, developer‑friendly interface** for manipulating the Knowledge Graph in SIRIUS Local AI (v5.8).  
-They simplify entity creation, relation management, searching, debugging, and import/export — all while maintaining explainability, orchestrator execution, autonomy‑aware gating, PanelAPI human confirmation, and COLNIK‑validated safety.
-
-They transform KG manipulation into a **fast, intuitive, professional developer workflow** inside SIRIUS Local AI.
+KG Comfort Commands provide a **safe, deterministic, developer‑friendly interface** for managing the Knowledge Graph in SIRIUS Local AI (v5.9.0).  
+They streamline entity creation, multi-alias mapping, relation management, search queries, debugging, and data export/import — while upholding strict explainability, central orchestrator execution, zero proposal recurrence, and customs-grade COLNIK validation.
