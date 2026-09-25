@@ -1,340 +1,210 @@
-# ⚙️ Automatic Input Triage Engine (AITE) — v5.8  
-SIRIUS‑LOCAL‑AI Runtime 5.8 — Unified Logic Layer & Orchestrated Architecture
+# ⚙️ Automatic Input Triage Engine (AITE) — v5.9.0  
+SIRIUS‑LOCAL‑AI Runtime 5.9.0 — Semantic Multi-Word Engine & Orchestrated Architecture
 
-AITE v5.8 is the newest generation of the triage module designed for the SIRIUS Runtime.  
-It is the central layer that instantly understands what the user inserted,  
-what it means, which identity rules apply, and where the content must be routed under the control of `sirius_orchestrator.py`.
+AITE v5.9.0 is the latest generation of the triage and input processing layer engineered for the SIRIUS Runtime.  
+It serves as the mission-critical gateway that parses multi-word queries, isolates copula grammatical terms, establishes multi-alias semantic entities, and determines deterministic module routing under the central orchestration of `sirius_orchestrator.py`.
 
-AITE 5.8 is fully offline, deterministic, and integrated with all Runtime 5.8 modules and orchestrator loops.
+AITE 5.9.0 is fully offline, deterministic, and natively synchronized across Runtime 5.9.0 components and the integrated IPC Daemon on port 8080.
 
 ---
 
-# 🚀 MODULE STATUS — v5.8 (STABILIZED & ENTERPRISE‑READY)
+# 🚀 MODULE STATUS — v5.9.0 (ENHANCED & INTEGRATED)
 
-AITE 5.8 is fully aligned with the upgraded Runtime 5.8 architecture:
+AITE 5.9.0 is fully aligned with the unified Runtime 5.9.0 production architecture:
 
-- Reasoning Engine 5.8  
-- Workflow Engine 5.8  
-- Unified Knowledge Graph 5.8  
+- Multi-Word InputParser5 (Preserving compound noun phrases)  
+- Autonomous Envoy Execution Layer 5 (Disambiguation Triage & Anti-Prefix Guard)  
+- Envoy Normalizer 5 (Contextual biological filters & non-bio domain shielding)  
+- Knowledge Graph 5.9.0 (Multi-Alias persistence via `autosave_kg.json`)  
+- 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` state management)  
+- Integrated IPC Bridge (Single-process daemon on port 8080)  
+- Reasoning Engine 5.9.0 (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, etc.)  
+- Workflow Engine 5.9.0  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP  
 - System Agent 5  
-- ENVOY Execution Layer 5  
-- ENVOY Permission Layer 5  
-- FS‑Agent 5  
-- CME‑MEM 5  
-- Event Engine 5  
-- Pack Integrity 5  
-- COLNIK‑6.x Validation Layer (Standard Mode & IPC)  
-- AUTONOMY 6.x (Control & Triage Mode)  
-- PanelAPI (Live UI Bridge with `[ÁNO/NIE]` confirmation)  
-- Mobile Runtime 5  
+- ENVOY Permission Layer 5 & PolicyEngine5  
+- COLNIK‑6.x Validation Layer (Standard & High-Performance IPC)  
+- AUTONOMY 6.x (Control, Guard & Triage Mode)  
+- PanelAPI (Interactive `[ÁNO/NIE]` confirmation workflows)  
 
-AITE 5.8 is **production‑stable** and remains one of the core pillars of the orchestrated SIRIUS ecosystem.
+AITE 5.9.0 delivers production-grade classification and zero proposal recurrence on stored semantic concepts.
 
 ---
 
-# 🔥 What’s New in v5.8
+# 🔥 What’s New in v5.9.0
 
-### Multimodal Semantic Engine 5.8
-- deeper semantic extraction  
-- improved mixed‑content stability  
-- faster decision pipeline  
-- explainability‑aware semantic tagging  
-- stabilized NL intent detection  
-- unified traversal context  
-- improved autonomy‑aware semantic routing  
+### Multi-Word Semantic Engine (`InputParser5`)
+- Native extraction of multi-word noun phrases (`ovcia vlna`, `mobilny telefon`, `pevna linka`) without stripping modifiers down to isolated single tokens.  
+- Strict copula verb isolation (`je`, `sú`) preventing grammatical concatenation errors (eliminating corruptions such as `jeovcia vlna`).  
+- Pre-sanitized semantic tokens ready for direct Knowledge Graph queries and Envoy enrichment.  
 
-### OCR Engine 5.8
-- faster image processing  
-- improved mobile input stability  
-- better text normalization for reasoning  
-- stabilized OCR routing  
-- improved low‑quality text recovery  
-- unified OCR context  
+### Autonomous Disambiguation Triage
+- Automatic identification of encyclopedic disambiguation structures (*„môže byť...“*).  
+- Direct contextual resolution to precise sub-articles (e.g., categorizing `slon` into genus *Elephas*).  
+- Strip-bracket fallback resolving parenthetical wiki entities to root articles.  
 
-### SubjectGraph 5.8
-- expanded academic domains  
-- improved schoolwork classification  
-- better integration with KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- stabilized subject inference  
-- unified subject context  
+### Phonetic & Anti-Prefix Protection
+- Shielding against prefix over-matching (stopping query deviations like *Káva* -> *Kavala* or *Skript* -> *Skrytá vášeň*).  
+- Normalized diacritic mapping preserving native query syntax.  
 
-### Difficulty Engine 5.8
-- more accurate difficulty scoring  
-- improved schoolwork detection  
-- stabilized scoring pipeline  
-- unified difficulty context  
+### Multi-Alias Graph Routing
+- Dual-key Knowledge Graph commitment: records entities under both raw user input and normalized target titles.  
+- Permanent resolution of interactive loop cycles: once confirmed via `[ÁNO/NIE]`, subsequent requests are immediately satisfied from local storage without duplicate enrichment triggers.  
 
-### Identity Gate 4.4 (Updated)
-- updated OWNER / FAMILY / STRANGER rules  
-- stronger STRANGER protection  
-- explainability‑aware identity routing  
-- stabilized identity transitions  
-- unified identity context  
+### Contextual Domain Blocker (`EnvoyNormalizer5`)
+- Non-biological domain shielding preventing abstract, technological, and formal disciplines (*ekológia*, *architektúra*, *fyzika*) from receiving inaccurate geographic habitat attributes.  
+- Sentence-bound extraction strictly requiring explicit habitat predicate verbs.  
 
-### Schoolwork Engine 5.8
-- faster schoolwork detection  
-- improved bypass logic  
-- better integration with Reasoning Engine 5.8  
-- stabilized academic routing  
-- unified schoolwork context  
+### UI State & Terminal Safety Bridge
+- Direct hook into the 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`).  
+- Automatic reset of `currentModule = "none"` upon input clearing, preventing terminal lockup and accidental OS-level execution.  
 
-### Reasoning Bridge 5.8
-- full integration with new reasoning rules (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, etc.)  
-- supports inheritance, transitivity, multi‑hop inference  
-- supports KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- stabilized rule chaining  
-- unified reasoning context  
-- COLNIK validation hooks  
-
-### Workflow Bridge 5.8
-- new workflow triggers  
-- explainability routing  
-- improved ENVOY fetch workflows  
-- stabilized multi‑stage routing  
-- unified workflow context  
-- autonomy proposal/confirmation routing  
-
-### Metadata Graph 5.8
-- richer metadata  
-- improved semantic tagging  
-- explainability‑aware metadata  
-- stabilized metadata graph  
-- unified metadata context  
-
-### FS‑Agent 5 Hooks
-- safer file operations  
-- improved identity rules  
-- deterministic routing  
-- unified FS context  
-
-### Always Guaranteed
-- 100% offline  
-- deterministic processing  
-- predictable behavior  
-- unified triage context  
+### High-Performance Integrated IPC
+- Unified communication pipeline operating natively on port 8080 inside `sirius_orchestrator.py`.  
+- Elimination of external file locks and race conditions during rapid interactive sessions.  
 
 ---
 
 # 1. Module Purpose
 
-AITE 5.8 automatically determines:
+AITE 5.9.0 automatically determines:
 
-- what the input is  
-- what it contains  
-- what the user intends  
-- which module is responsible  
-- which identity rules apply  
-- whether schoolwork bypass should activate  
-- whether workflow is needed  
-- whether reasoning is needed  
-- whether KG_EXPLAIN or KG_EXPLAIN_DEEP is needed  
-- whether ENVOY fetch is needed  
-- whether COLNIK validation is required  
-- whether AUTONOMY proposal/confirmation should be triggered  
-- whether PanelAPI UI interaction is requested (`[ÁNO/NIE]`)  
+- what the input is and its exact grammatical structure  
+- whether multi-word compounds constitute a single semantic entity  
+- which underlying concept is intended when faced with disambiguation  
+- which module or engine is responsible for execution  
+- which identity rules and access policies apply  
+- whether the concept already exists under an alias in the Knowledge Graph  
+- whether ENVOY enrichment is strictly necessary  
+- whether COLNIK customs validation is required  
+- whether an interactive AUTONOMY proposal (`[ÁNO/NIE]`) must be dispatched to PanelAPI  
+- whether host terminal commands should be isolated or cleared  
 
 Supported inputs:
 
-- text  
-- images / photos / screenshots  
+- text (single-word, compound noun phrases, complex questions)  
+- images / photos / screenshots (via OCR Engine)  
 - documents (pdf, docx, txt, pptx)  
-- applications / installers  
-- code  
-- schoolwork  
-- mixed multimodal content  
-- OCR‑extracted text  
+- code and structured configurations  
+- schoolwork and academic problems  
+- multimodal mixed content  
 
 ---
 
 # 2. Module Functions
 
-## 2.1 Input Recognition (Engine 5.8)
-AITE 5.8 recognizes:
+## 2.1 Input Recognition (Engine 5.9.0)
+AITE 5.9.0 recognizes:
 
-- plain text  
-- formatted text  
-- code (Python, JS, C#, C++, HTML, CSS…)  
-- images (png, jpg, jpeg, webp, gif)  
-- documents (pdf, docx, txt, pptx)  
-- installers (exe, msi, zip, apk)  
-- schoolwork  
-- mixed content  
-- OCR extraction  
-- semantic meaning + intent  
-- explainability triggers  
-- autonomy triggers  
+- multi-word compound phrases and terms  
+- plain and formatted natural language queries  
+- code structures and shell commands  
+- graphical documents and OCR extractions  
+- disambiguation flags and parenthetical descriptors  
+- autonomy proposal approvals (`ÁNO`, `NIE`, `YES`, `NO`)  
 
 ## 2.2 Semantic Routing Logic
-AITE 5.8 determines:
+AITE 5.9.0 determines:
 
-- correct storage  
-- semantic metadata  
-- subject classification  
-- difficulty  
-- responsible module  
-- workflow triggers  
-- identity restrictions  
-- schoolwork bypass  
-- Reasoning Engine 5.8 tasks  
-- KG_EXPLAIN / KG_EXPLAIN_DEEP activation  
-- Knowledge Packs 5 routing  
-- Event Engine 5 triggers  
-- COLNIK validation requirements  
-- AUTONOMY proposal/confirmation routing  
-- PanelAPI routing for interactive user prompts  
+- Knowledge Graph lookup with alias resolution  
+- automatic fallback to EnvoyExecutionLayer5 on missing entities  
+- semantic tagging avoiding false geographic habitats  
+- UI panel module assignment (`Duplicates`, `Triage`, `Navigation`, `Terminal`, or `none`)  
+- workflow activation inside WorkflowEngine5  
+- inference rule engagement in Reasoning Engine 5.9.0  
+- safety checks via PolicyEngine5 and COLNIK-6.x  
 
 ## 2.3 Integration with Other Modules
 
-### FS‑AGENT 5  
-- safe file operations  
-- semantic routing  
+### InputParser5
+- preserves compound noun structures  
+- eliminates copula verb collisions  
 
-### CME‑MEM 5  
-- metadata graph  
-- subject tags  
+### EnvoyExecutionLayer5 & EnvoyNormalizer5
+- triggers autonomous triage on encyclopedic pages  
+- enforces domain filtering for scientific and technical terms  
 
-### Workflow Engine 5.8  
-- multi‑step workflows  
-- schoolwork workflows  
-- code workflows  
-- explain workflows  
+### RuntimeCore & KnowledgeGraph
+- executes dual-key multi-alias persistence  
+- commits updates directly to `autosave_kg.json`  
 
-### Security Family 5  
-- identity‑aware triage  
-- STRANGER restrictions  
+### UI 4-Panel Suite (PanelAPI)
+- synchronizes real-time feedback with web dashboard on port 8080  
+- manages state transitions between system utilities and reasoning input  
 
-### System Agent 5  
-- safe actions  
-- deterministic behavior  
-
-### Reasoning Engine 5.8  
-- structured analysis  
-- step‑based reasoning  
-- explainability integration  
-
-### Knowledge Packs 5  
-- domain routing  
-- subject logic  
-
-### Event Engine 5  
-- multimodal events  
-- workflow events  
-
-### COLNIK‑6.x  
-- KG mutation validation  
-- workflow step authorization  
-- anomaly detection  
-- Standard & IPC Mode enforcement  
-
-### AUTONOMY 6.x  
-- proposal generation  
-- confirmation logic  
-- decision routing  
-- Control Mode synchronization  
-
-### PanelAPI (UI Bridge)  
-- interactive user feedback (`[ÁNO/NIE]`)  
-- learning proposal workflows (`kg.learn_proposal`)  
+### COLNIK‑6.x & AUTONOMY 6.x
+- validates graph modifications prior to persistence  
+- controls proposal generation and confirmation loops  
 
 ---
 
 # 3. Module Architecture
 
-## 3.1 Components (v5.8)
+## 3.1 Components (v5.9.0)
 
-- **InputClassifier 5.8** — type + category  
-- **OCRExtractor 5.8** — text extraction  
-- **SemanticAnalyzer 5.8** — meaning + intent  
-- **DifficultyEstimator 5.8** — difficulty  
-- **SubjectDetector 5.8** — subject  
-- **ExplainabilityDetector 5.8** — detects “why?” queries  
-- **AutonomyTrigger 6.x** — proposal/confirmation detection  
-- **PanelBridge 5.8** — UI feedback interface  
-- **InputRouter 5.8** — target module  
-- **MetadataBuilder 5.8** — metadata  
-- **AITEController 5.8** — orchestration via `sirius_orchestrator.py`  
-- **SchoolworkDetector 5.8** — schoolwork  
-- **IdentityGate 4.4** — identity logic  
-- **ReasoningBridge 5.8** — reasoning integration  
-- **WorkflowBridge 5.8** — workflow triggers  
-- **EventBridge 5.8** — event integration  
+- **InputClassifier 5.9.0** — type, format, and compound noun identification  
+- **OCRExtractor 5.9.0** — visual text parsing  
+- **SemanticAnalyzer 5.9.0** — multi-word parsing, intent, and grammatical isolation  
+- **DisambiguationTriager 5.9.0** — sub-article pathfinding and parenthetical stripping  
+- **PrefixGuard 5.9.0** — protects against invalid prefix shifts  
+- **DomainFilter 5.9.0** — blocks false habitat extraction on abstract/tech terms  
+- **AliasMapper 5.9.0** — coordinates dual-key graph persistence  
+- **PanelBridge 5.9.0** — manages 4-panel UI state transitions and confirmation hooks  
+- **AITEController 5.9.0** — central execution governed by `sirius_orchestrator.py`  
+- **IdentityGate 4.4** — identity and access policy enforcement  
+- **ReasoningBridge 5.9.0** — integrates symbolic rules and XAI explanation pathways  
+- **COLNIKBridge 5.9.0** — handles customs validation and quarantine logging  
 
-## 3.2 Processing Flow (v5.8)
-User inserts input  
+## 3.2 Processing Flow (v5.9.0)
+User inserts input via Web UI / Terminal  
 ↓  
-`sirius_orchestrator.py` loop  
+`sirius_orchestrator.py` loop (Port 8080 IPC Bridge)  
 ↓  
-InputClassifier 5.8  
+InputParser5 (Compound phrase preservation & copula verb separation)  
 ↓  
-OCRExtractor 5.8 (if image)  
+AITE InputClassifier & SemanticAnalyzer 5.9.0  
 ↓  
-SemanticAnalyzer 5.8  
+IdentityGate & PolicyEngine5 verification  
 ↓  
-ExplainabilityDetector 5.8  
-↓  
-SchoolworkDetector 5.8  
-↓  
-DifficultyEstimator 5.8  
-↓  
-SubjectDetector 5.8  
-↓  
-IdentityGate 4.4  
-↓  
-AutonomyTrigger 6.x  
-↓  
-InputRouter 5.8  
-↓  
-FS‑Agent 5 / CME‑MEM 5  
-↓  
-Workflow Engine 5.8  
-↓  
-Reasoning Engine 5.8  
-↓  
-KG_EXPLAIN / KG_EXPLAIN_DEEP (if needed)  
-↓  
-COLNIK‑6.x Validation  
-↓  
-AUTONOMY Proposal/Confirmation  
-↓  
-PanelAPI (`[ÁNO/NIE]` prompt if required)  
-↓  
-System Agent 5  
+Knowledge Graph Alias & Existence Check  
+├─ [Entity Exists] ──────────────────────────┐  
+│                                            ▼  
+│                                   WorkflowEngine5  
+│                                            ↓  
+│                                   ReasoningEngine5.9.0  
+│                                            ↓  
+│                                   PanelAPI Output Generation  
+│  
+└─ [Entity Missing]  
+        ↓  
+   PanelAPI Dispatches Proposal (`[ÁNO/NIE]`)  
+        ↓  
+   User Confirmation (`ÁNO`)  
+        ↓  
+   EnvoyExecutionLayer5 (Disambiguation Triage & Anti-Prefix Check)  
+        ↓  
+   EnvoyNormalizer5 (Domain filtering: bio vs. non-bio)  
+        ↓  
+   COLNIK-6.x Validation & Quarantine Backup  
+        ↓  
+   RuntimeCore Multi-Alias Commitment (Dual-key save to `autosave_kg.json`)  
+        ↓  
+   KG Query Pipeline & PanelAPI Display  
 
 ---
 
-# 4. Future Extensions (5.x / 6.x)
+# 4. Module Status — v5.9.0
 
-- multimodal handwriting  
-- video frame triage  
-- real‑time OCR stream  
-- deeper SubjectGraph  
-- adaptive scoring  
-- STRANGER auto‑blocking  
-- multi‑user profiles  
-- self‑learning triage patterns  
-- autonomy‑aware triage patterns  
+AITE 5.9.0 is fully operational, deterministic, and integrated with:
 
----
-
-# 5. Module Status — v5.8
-
-AITE 5.8 is fully stable, production‑ready, and integrated with:
-
-- Runtime Core 5 (via `sirius_orchestrator.py`)  
-- Security Family 5  
-- Schoolwork Engine 5  
-- Reasoning Engine 5.8  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- Knowledge Packs 5  
-- Workflow Engine 5.8  
-- FS‑Agent 5  
-- CME‑MEM 5  
-- Event Engine 5  
-- Pack Integrity 5  
+- Runtime Core 5.9.0 (orchestrated via `sirius_orchestrator.py`)  
+- Knowledge Graph Unified Schema & `autosave_kg.json`  
+- InputParser5 with Multi-Word Preservation  
+- EnvoyExecutionLayer5 & EnvoyNormalizer5  
+- Integrated IPC Bridge (HTTP/WebSocket on port 8080)  
+- 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`)  
 - COLNIK‑6.x (Standard & IPC Mode)  
-- AUTONOMY 6.x (Control Mode)  
-- PanelAPI (Live UI Bridge)  
-- System Agent 5  
+- AUTONOMY 6.x Engine & Guard Supervision  
+- Reasoning Engine 5.9.0 (XAI Proof Trees & Symbolic Rules)  
 
-AITE 5.8 guarantees that every input is understood, analyzed, and safely routed — instantly, securely, and offline.
+AITE 5.9.0 guarantees that complex multi-word expressions, encyclopedic references, and autonomous learning confirmations are parsed accurately and resolved safely without redundant interactive loops.
