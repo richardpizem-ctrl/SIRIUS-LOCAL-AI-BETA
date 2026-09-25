@@ -4,37 +4,31 @@ layout: default
 ---
 
 # SIRIUS‑LOCAL‑AI  
-**A fully modular, offline‑only AI runtime with unified orchestration (`sirius_orchestrator.py`), interactive PanelAPI [ÁNO/NIE] loops, TimeCore & Guard supervision, unified reasoning, deep explainability (XAI), KG_EXPLAIN & KG_EXPLAIN_DEEP, multimodal triage 5.8, deterministic UI automation, COLNIK‑6.x (Standard & IPC Mode), AUTONOMY 6.x (Control & Triage Mode), and a next‑generation capability architecture.**
+**A fully modular, offline‑only AI runtime with unified orchestration (sirius_orchestrator.py on Port 8080), multi-word semantic parsing (InputParser5), autonomous disambiguation triage & anti-prefix protection (EnvoyExecutionLayer5), contextual domain shielding (EnvoyNormalizer5), multi-alias KG persistence (autosave_kg.json), 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal), interactive PanelAPI [ÁNO/NIE] loops, TimeCore & Guard supervision, unified symbolic reasoning, deep explainability (XAI), KG_EXPLAIN & KG_EXPLAIN_DEEP, COLNIK‑6.x (Standard & High-Performance IPC Mode), and AUTONOMY 6.x (Control, Guard & Triage Mode).**
 
-SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, stability, modularity, semantic intelligence, deep explainability, interactive human-in-the-loop control, and full offline autonomy**.
+SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, linguistic accuracy, architectural stability, modularity, symbolic intelligence, deep explainability, interactive human-in-the-loop control, and full offline autonomy**.
 
-Version **5.8** introduces the fully unified and orchestrated architecture of the SIRIUS Runtime line, integrating the unified orchestrator (`sirius_orchestrator.py`), interactive `PanelAPI` confirmation loops, `TimeCore` temporal tracking, `Guard` security supervision, and enhanced `COLNIK-6.x` / `AUTONOMY-6.x` modules.
+Version **5.9.0** introduces a decisive upgrade to the SIRIUS Runtime line, advancing compound noun phrase understanding, encyclopedic web triage, permanent elimination of interactive proposal loops, and total decoupling of the UI terminal interface.
 
-This release replaces the older 5.7.0 architecture with:
+This release consolidates the runtime architecture with:
 
-- **Unified Orchestrator (`sirius_orchestrator.py`)**  
+- **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)**  
+- **Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)**  
+- **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**  
+- **Contextual Domain Shield & Sentence-Bound Habitat Extractor (`EnvoyNormalizer5`)**  
+- **Multi-Alias Knowledge Graph Persistence with Dual-Key Mapping (`autosave_kg.json`)**  
+- **Zero Proposal Recurrence for confirmed semantic entities**  
+- **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)**  
+- **Integrated High-Performance IPC Bridge eliminating file locking bottlenecks**  
 - **PanelAPI & Interactive [ÁNO/NIE] Confirmation Loops**  
-- **TimeCore Temporal Tracking & Guard Security Supervision**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Reasoning Engine 5.8 (multi‑hop, inheritance, transitivity)**  
-- **Proof Tree + Evidence Tree foundations**  
-- **Confidence scoring model**  
-- **Rule chaining foundations**  
-- **Workflow Engine 5.8 (explainability routing)**  
-- **Unified Knowledge Graph 5.8 (comfort commands, stabilized autoload)**  
-- **improved KG attribute pipeline**  
-- **improved KG auto‑creation**  
-- **improved KG Light routing**  
-- **improved AITE 5.8 (semantic + explainability triage)**  
-- **COLNIK‑6.x validation subsystem (Standard & IPC Mode)**  
-- **AUTONOMY 6.x (Control & Triage Mode)**  
-- **hardened deterministic routing**  
-- **identity‑aware system control**  
-- **safe OS automation**  
-- **cross‑platform module consistency**  
-- **PRO‑level orchestration**  
-
-The entire system runs **100% locally**, without external dependencies or cloud services.
+- **TimeCore Temporal Tracking & Guard Security/Metric Supervision (CPU, RAM, Disk)**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines with Proof Trees)**  
+- **Reasoning Engine 5.9.0 (multi‑hop, inheritance, transitivity, orbital rules)**  
+- **Workflow Engine 5.9.0 (deterministic multi-stage execution)**  
+- **COLNIK‑6.x validation subsystem (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x (Control, Guard & Triage Mode in `COLNIK-6.x/triage`)**  
+- **Identity Engine 3.1 & SECURITY FAMILY 5.x**  
+- **Zero cloud reliance — 100% offline, private local processing**  
 
 ---
 
@@ -47,285 +41,151 @@ The entire system runs **100% locally**, without external dependencies or cloud 
 - [Release Notes](RELEASE_NOTES.md)
 - [Roadmap](ROADMAP.md)
 - [Security Family](SECURITY_FAMILY.md)
-- [AITE 5.8](AITE.md)
+- [AITE 5.9.0](AITE.md)
 - [ENVOY 5](ENVOY_TUTORIAL.md)
-- [Future Vision](FUTURE_VISION.md)
+- [Contributing](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Password Vault 5.0](PASSWORD_VAULT.md)
 
 ---
 
-## 🚀 Key Features (v5.8 UNIFIED)
+## 🚀 Key Features (v5.9.0 UNIFIED)
 
-### **Unified Runtime 5.8 & Orchestration**
-A fully upgraded runtime driven by `sirius_orchestrator.py` with:
-
-- centralized deterministic execution  
-- semantic routing  
-- interactive PanelAPI [ÁNO/NIE] prompts  
-- TimeCore temporal tracking & Guard supervision  
-- explainability routing (KG_EXPLAIN & KG_EXPLAIN_DEEP)  
-- identity‑aware logic  
-- self‑repair integration (Layer 5.8)  
-- capability isolation  
-- safe fallback states  
-- unified PC + Mobile behavior  
-- hardened System Agent 5 validation  
-- ENVOY Execution/Permission Layers 5  
-- COLNIK‑6.x validation (Standard & IPC Mode)  
-- AUTONOMY 6.x proposal/confirmation & Triage Mode  
-- deterministic UI automation (v5.1)  
+### **Multi-Word Semantic Understanding (`InputParser5`)**
+Extracts natural language concepts in their complete grammatical form:
+- native preservation of compound noun phrases (e.g., `ovcia vlna`, `mobilny telefon`, `pevna linka`) without truncating modifiers down to isolated single tokens
+- complete isolation of copula verbs (`je`, `sú`) from subject entities, preventing linguistic corruptions (e.g., `jeovcia vlna`)
+- diacritic-aware normalization producing clean entities for graph lookup and external triage
 
 ---
 
-### **Modular Architecture (v5.8)**
-Each module is isolated and follows strict boundaries:
-
-- `commands/` – NL routing and command logic  
-- `context/` – semantic context engine  
-- `filesystem/` – safe file operations  
-- `runtime/` – Runtime Core 5.8  
-- `orchestrator/` – Unified Orchestrator (`sirius_orchestrator.py`)  
-- `panel_api/` – PanelAPI interactive loops (`[ÁNO/NIE]`)  
-- `supervision/` – TimeCore & Guard security/temporal monitoring  
-- `triage/` – AITE 5.8 (semantic + explainability triage)  
-- `ui/` – GUI logic  
-- `ui_components/` – graphical elements  
-- `ui_components/animations/` – animation engine  
-- `workflow/` – Workflow Engine 5.8  
-- `plugins/` – Plugin System 5.x  
-- `security_family/` – Identity Engine 3.1, time‑limits v3, schoolwork engine  
-- `self_repair/` – Self‑Repair Layer 5.8  
-- `knowledge_packs/` – Knowledge Graph Packs 5.x  
-- `envoy/` – ENVOY Execution + Permission Layers 5  
-- `ui_automation/` – **UI Automation Engine 5.1**  
-- `system_agent/` – System Agent 5  
-- `mobile_runtime/` – Mobile Runtime 5.8  
-
-The system is designed to be extended **without modifying the core**.
+### **Autonomous Envoy Disambiguation & Domain Shielding**
+Autonomous encyclopedic research under strict semantic boundaries:
+- **Autonomous Disambiguation Triage:** automatically detects Wikipedia disambiguation pages (*„môže byť...“*) and resolves specific context targets (e.g., categorizing `slon` into genus *Elephas*)
+- **Phonetic & Anti-Prefix Guard:** eliminates prefix over-matching anomalies (stops query drift like *Káva* -> *Kavala* or *Skript* -> telenovelas)
+- **Strip-Bracket Fallback:** recovers gracefully from non-existent parenthetical wiki entries by querying base lemmas
+- **Contextual Domain Blocker:** prevents abstract, technical, or formal disciplines (*ekológia*, *architektúra*, *fyzika*) from receiving inaccurate geographic habitat metadata
 
 ---
 
-### **Plugin System 5.x**
-Plugins can define:
-
-- NL commands  
-- AI tasks  
-- workflows  
-- reasoning hooks  
-- GUI elements  
-- pack‑aware logic  
-
-All official plugins are fully prepared for v5.x.
+### **Multi-Alias KG Persistence & Zero Recurrence**
+A deterministic, self-enriching Knowledge Graph platform:
+- dual-key commitment: stores entities under both queried phrases and official encyclopedic titles
+- atomic serialization into `autosave_kg.json`
+- permanent elimination of interactive proposal loops: once confirmed via `[ÁNO/NIE]`, subsequent requests are served instantly from graph memory
 
 ---
 
-### **Automatic Input Triage Engine (AITE 5.8)**
-AITE analyzes inputs, classifies them, and routes them to the correct modules.
-
-It ensures:
-
-- multimodal semantic understanding  
-- OCR extraction  
-- subject detection  
-- difficulty scoring  
-- identity‑aware routing  
-- deterministic behavior  
-- **Schoolwork Engine 5.8 — academic tasks always bypass FAMILY restrictions**  
-- **integration with SECURITY FAMILY 5.x**  
-- **integration with Reasoning Engine 5.8**  
-- **integration with Workflow Engine 5.8 & Orchestrator**  
-- **explainability detection (“why … ?”)**  
+### **4-Panel UI Suite & Terminal State Decoupling**
+A unified web interface running locally on port 8080:
+- **Duplicates Panel:** monitors live system metrics and categorizes file duplicates into safe vs. critical buckets
+- **Triage Panel:** live supervision of quarantine queues and unclassified files (`COLNIK-6.x/triage`)
+- **Navigation Panel:** deterministic module switching across Runtime, KG, Envoy, and Autonomy
+- **Terminal Panel:** permanent decoupling preventing shell capture by automatically resetting `currentModule = "none"` when clearing input
 
 ---
 
-### **Reasoning Engine 5.8**
-A structured symbolic reasoning layer:
-
-- multi‑hop inference  
-- inheritance reasoning  
-- transitive reasoning  
-- deterministic rule chaining  
-- proof tree foundations  
-- evidence tree generation  
-- confidence scoring  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
-- pack‑aware reasoning  
-- deterministic logic  
-- unified PC/Mobile behavior  
+### **Unified Orchestration & Supervision**
+Single-process control driven by `sirius_orchestrator.py`:
+- centralized execution pipeline coordinating runtime core, IPC daemon, and UI loops
+- TimeCore temporal tracking and heartbeat monitoring
+- Guard security supervision actively auditing CPU, RAM, and Disk metrics
+- COLNIK‑6.x Customs validation (Standard & High-Performance IPC Mode)
+- AUTONOMY 6.x proposal governance and Triage Mode
 
 ---
 
-### **Self‑Repair Layer 5.8**
-Ensures long‑term stability:
-
-- integrity checks  
-- corruption detection  
-- safe automatic repairs  
-- fallback states  
-- dependency validation  
-- system‑wide health reporting  
-- unified PC/Mobile diagnostics  
+### **Symbolic Reasoning & Deep Explainability (XAI)**
+Auditable symbolic deduction without statistical black boxes:
+- rule chaining: `MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, `TranzitivneRelacieRule`, `AutoTypeInferenceRule`
+- hierarchical proof trees and evidence tree generation (ASCII + HTML)
+- confidence scoring and explainability routing via `KG_EXPLAIN` & `KG_EXPLAIN_DEEP`
 
 ---
 
-### **Knowledge Graph 5.x**
-Offline knowledge expansions:
+## 📁 Project Structure (v5.9.0)
 
-- household  
-- cooking  
-- school subjects  
-- device diagnostics  
-- safety  
-- troubleshooting  
-- definitions & facts  
-
-All packs are semantic, reasoning‑ready, and explainability‑ready.
-
----
-
-### **SIRIUS ENVOY 5 – Safe External Retrieval**
-Optional isolated agent for safe external lookups:
-
-- outbound‑only  
-- quarantine sandbox  
-- validator & policy filter  
-- identity‑aware sanitization  
-- safe payload delivery  
-
-ENVOY never sends local data outward.
-
----
-
-### **Workflow Engine 5.8**
-Manages:
-
-- multi‑step processes  
-- semantic transitions  
-- plugin workflows  
-- safe command execution  
-- deterministic state changes  
-- SCHOOLWORK workflow prioritization  
-- explainability routing  
-- unified PC/Mobile workflows  
-
----
-
-### **Unified Automation Runtime 5.8**
-Developer‑level offline automation:
-
-- filesystem automation  
-- editor integration  
-- code workflows  
-- structured command parsing  
-- command routing  
-- deterministic UI automation  
-
----
-
-### **UI Automation Engine 5.1 (UPDATED)**
-A major capability expanded in v5.x:
-
-- improved fuzzy UI parsing  
-- safer semantic UI actions  
-- deterministic fallback logic  
-- OS‑level routing  
-- sandbox‑protected execution  
-- WinCapabilities 5.x integration  
-- System Agent 5 validation for all UI actions  
-- unified PC/Mobile automation  
-
----
-
-## 📁 Project Structure (v5.8)
 src/  
 ├── commands/  
 ├── context/  
 ├── envoy/  
+│   ├── envoy_execution_layer_5.py  
+│   └── envoy_normalizer_5.py  
 ├── filesystem/  
 ├── knowledge_packs/  
 ├── runtime/  
+│   ├── input_parser_5.py  
+│   └── runtime_core.py  
 ├── orchestrator/  
+│   └── sirius_orchestrator.py  
 ├── panel_api/  
 ├── supervision/  
+│   ├── time_core.py  
+│   └── guard.py  
+├── colnik/  
+│   └── triage/  
+├── autonomy/  
+│   ├── autonomy.py  
+│   └── triage_mode.py  
 ├── security_family/  
 ├── self_repair/  
 ├── triage/  
 ├── ui/  
-├── ui_components/  
-│   └── animations/  
-├── ui_automation/  
-├── system_agent/  
+│   └── index.html  
 ├── workflow/  
-├── mobile_runtime/  
-├── plugins/  
 └── sirius.py  
 
-Each directory has a clear responsibility and is described in **MODULE_MAP.md**.
+Each directory maintains explicit modular boundaries described in **MODULE_MAP.md**.
 
 ---
 
 ## 🧪 Testing
-The project includes a complete testing plan:
+The project incorporates comprehensive offline test suites:
 
-- functional tests  
-- semantic routing tests  
-- real‑time tests  
-- UI tests  
-- workflow sequence tests  
-- plugin integration tests  
-- SECURITY FAMILY identity tests  
-- SCHOOLWORK ENGINE tests  
-- self‑repair integrity tests  
-- UI Automation Engine 5.1 tests  
-- System Agent 5 validation tests  
-- ENVOY 5 sanitization tests  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP explainability tests  
-- Reasoning Engine 5.8 rule tests  
-- Orchestrator, PanelAPI & TimeCore/Guard integration tests  
+- multi-word compound noun phrase extraction tests  
+- disambiguation resolution and strip-bracket fallback tests  
+- non-bio domain shielding and habitat filtering tests  
+- multi-alias graph persistence and zero-recurrence verification tests  
+- 4-Panel UI state reset and terminal decoupling tests  
+- COLNIK-6.x high-performance IPC handshake tests  
+- AUTONOMY 6.x proposal and confirmation loop tests  
+- Guard resource scanning and TimeCore timing tests  
+- symbolic reasoning rule chaining and proof tree validation tests  
+- SECURITY FAMILY 5.x identity-gating tests  
 
-Details are in **TESTING_GUIDE.md**.
+Details are maintained in **TESTING_GUIDE.md**.
 
 ---
 
 ## ⚙️ Performance
-The system is optimized for:
+Optimized for high-efficiency local execution:
 
-- low latency  
-- long‑term stability  
-- predictable processing  
-- minimal thread blocking  
-- efficient event routing  
-- deterministic reasoning  
-- unified PC/Mobile performance  
+- zero external API latency (100% offline-first)  
+- single-process HTTP/IPC daemon running natively on port 8080 without disk file contention  
+- instant memory resolution for multi-alias graph queries  
+- lightweight, non-blocking asynchronous UI loops  
+- deterministic symbolic deduction with predictable memory footprints  
 
-More in **PERFORMANCE_GUIDE.md**.
+Further metrics are available in **PERFORMANCE_GUIDE.md**.
 
 ---
 
 ## 🗓️ Release Plan
 
-### **v5.8 – Unified Orchestration, PanelAPI, TimeCore/Guard & COLNIK-AUTONOMY Architecture (Current)**  
-- Unified Orchestrator (`sirius_orchestrator.py`)  
-- PanelAPI interactive loops (`[ÁNO/NIE]`)  
-- TimeCore & Guard supervision  
-- AITE 5.8  
-- Reasoning Engine 5.8  
-- Workflow Engine 5.8  
-- Unified Knowledge Graph 5.8  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- UI Automation Engine 5.1  
-- System Agent 5  
-- ENVOY Execution/Permission Layers 5  
-- COLNIK‑6.x validation (Standard & IPC Mode)  
-- AUTONOMY 6.x (Control & Triage Mode)  
-- deterministic system‑level intelligence  
-- unified PC/Mobile execution  
+### **v5.9.0 – Semantic Multi-Word Parsing, Disambiguation Triage & 4-Panel UI Suite (Current)**  
+- Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)  
+- Multi-Word Compound Parser (`InputParser5`)  
+- Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)  
+- Contextual Domain Shield & Habitat Filtering (`EnvoyNormalizer5`)  
+- Multi-Alias Graph Persistence (`autosave_kg.json`)  
+- 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) with automatic state release  
+- COLNIK‑6.x High-Performance IPC & AUTONOMY 6.x Control/Triage Mode  
+- Guard System Resource Supervision & TimeCore Heartbeat  
 
 ---
 
 ## 🧩 License
-The project is open‑source and available to the community.  
-The license is provided in **LICENSE**.
+The project is open‑source and available to the community under the **MIT License**.
 
 ---
 
