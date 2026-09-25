@@ -1,277 +1,203 @@
-# 🛡 Security Architecture – SIRIUS LOCAL AI (v5.8 UNIFIED)
-### Fully Offline • Deterministic • Deep Explainable • Identity‑Aware • OS‑Safe • Orchestrator-Supervised • COLNIK‑Validated • AUTONOMY‑Aware
+# 🛡 Security Architecture – SIRIUS LOCAL AI (v5.9.0 UNIFIED)
+### Fully Offline • Deterministic • Multi-Alias Persistent • Domain-Shielded • Single-Process Orchestrated • COLNIK‑Validated • AUTONOMY‑Supervised
 
-The **Security Architecture 5.8** defines all identity‑aware, OS‑aware, workflow‑aware,  
-automation‑aware, reasoning‑aware, and fetch‑aware protections inside the  
-**Unified Orchestration, PanelAPI, TimeCore/Guard & Enhanced COLNIK‑AUTONOMY Architecture 5.8**.
+The **Security Architecture 5.9.0** defines all identity‑aware, OS‑aware, workflow‑aware, domain-shielded, semantic-aware, and fetch‑aware protections inside the  
+**Semantic Multi-Word Parsing, Autonomous Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence Architecture 5.9.0**.
 
-Version **5.8 UNIFIED** introduces major upgrades across all security layers:
+Version **5.9.0 UNIFIED** introduces major upgrades across all security layers:
 
-- **Unified Orchestrator (`sirius_orchestrator.py`) & PanelAPI**  
-- **TimeCore Temporal Tracking & Guard Security Supervision**  
-- **Security Family 5.x (Identity Engine 3.1)**  
+- **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)**  
+- **Multi-Word Semantic Integrity (`InputParser5` compound phrase preservation)**  
+- **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**  
+- **Contextual Domain Shield & Sentence-Bound Bio Filter (`EnvoyNormalizer5`)**  
+- **Multi-Alias KG Persistence & Zero Proposal Recurrence (`autosave_kg.json`)**  
+- **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)**  
+- **Terminal State Decoupling (preventing shell capture & command injection)**  
+- **TimeCore Temporal Tracking & Guard Resource/Security Supervision (CPU, RAM, Disk)**  
+- **Security Family 5.x (Identity Engine 3.1 with O(1) classification)**  
 - **System Agent 5 (Hardened OS‑Level Gatekeeper)**  
-- **UI Automation Security 5.1**  
-- **System Intelligence Layer 5.8**  
-- **ENVOY 5 Security Policies + Deep Explainability Traces**  
-- **Self‑Repair Layer 5.8 (integrity enforcement)**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Unified PC/Mobile identity enforcement**  
-- **COLNIK‑6.x Enterprise Validation Layer (Standard & IPC Mode)**  
-- **AUTONOMY‑6.x Control & Triage Mode (proposal/confirmation logic)**  
+- **Self‑Repair Layer 5.8 (hash-sealed integrity enforcement)**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)**  
+- **COLNIK‑6.x Enterprise Customs Decision Gate (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x (Control, Guard & Triage Mode in `COLNIK-6.x/triage`)**  
 
 All processing is fully local.  
 No data leaves the device unless explicitly permitted through:
 
-**ASK → FETCH → QUARANTINE → VALIDATE → DELIVER**  
-(ENVOY 5 secure pipeline, now orchestrator-supervised, COLNIK‑validated + AUTONOMY‑aware)
+**ASK → DISAMBIGUATE → FETCH → QUARANTINE → SHIELD → VALIDATE → MULTI-ALIAS COMMIT**  
+(ENVOY 5 secure pipeline, orchestrated on port 8080, COLNIK‑validated, domain-shielded, and human-confirmed via `PanelAPI` [ÁNO/NIE])
 
 ---
 
-# 🛡 5.8 Security Family 5.x – Identity Engine 3.1 (UPDATED for 5.8)
+# 🛡 5.9.0 Security Family 5.x – Identity Engine 3.1 (UPDATED)
 
 Security Family 5.x strengthens the identity model and optimizes it for:
 
-- speed  
-- determinism  
-- deep explainability  
-- unified PC/Mobile behavior  
-- **COLNIK‑validated identity enforcement (Standard & IPC Mode)**  
-- **AUTONOMY‑aware identity proposals (Control & Triage Mode)**  
+- speed (O(1) constant-time profile evaluation)  
+- determinism and predictable security boundaries  
+- deep symbolic explainability  
+- **COLNIK‑validated identity enforcement (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY‑aware identity governance (Control, Guard & Triage Mode)**  
 - **PanelAPI human-in-the-loop gating (`[ÁNO/NIE]`)**  
+- **Terminal safety isolation via state decoupling**  
 
 ### Purpose
 Ensure that all OS‑level, UI‑level, workflow‑level, reasoning‑level, and ENVOY‑level actions are:
 
-- deterministically validated via `sirius_orchestrator.py`  
-- identity‑controlled  
-- safely restricted  
-- reversible  
-- fully audited  
-- explainable (KG_EXPLAIN & KG_EXPLAIN_DEEP)  
-- COLNIK‑validated  
-- autonomy‑aware  
-- unified across PC + Mobile  
+- deterministically validated via `sirius_orchestrator.py` on port 8080  
+- identity‑controlled under OWNER / FAMILY / STRANGER access tiers  
+- safely restricted with instant safe-mode locking for ambiguous callers  
+- reversible and non-destructive  
+- fully audited with verifiable derivation traces  
+- explainable via `KG_EXPLAIN` & `KG_EXPLAIN_DEEP` proof trees  
+- customs-validated by COLNIK-6.x  
+- autonomy-supervised without proposal recurrence  
 
-### Security Enhancements (5.8 Upgrade)
-- identity‑aware gating 3.1  
-- SCHOOLWORK bypass 5.x (deterministic + explainable)  
-- faster identity recognition (constant‑time checks)  
-- stronger STRANGER‑mode isolation  
-- safer FAMILY‑mode permissions  
-- KG_EXPLAIN + KG_EXPLAIN_DEEP traces for identity decisions  
-- integration with System Intelligence Layer 5.8  
-- integration with ENVOY 5 permission model  
-- **integration with COLNIK‑6.x validation**  
-- **integration with AUTONOMY‑6.x proposal/confirmation**  
-- **integration with PanelAPI & TimeCore/Guard supervision**  
-- unified PC/Mobile identity logic  
+### Security Enhancements (5.9.0 Upgrade)
+- **Identity-Aware Multi-Alias Resolution:** Access rules evaluate against canonical entity pointers regardless of whether a colloquial query or formal title is submitted.  
+- **SCHOOLWORK Bypass 5.x:** Academic research tasks unconditionally bypass time and family restrictions while remaining explainable and auditable.  
+- **Terminal Lockdown on STRANGER:** Unrecognized users trigger immediate interface lockdown and terminal detachment (`currentModule = "none"`).  
+- **Constant-Time Verification:** Zero background biometric training loops; identity checks evaluate in O(1) time.  
+- **Audit Integration:** Direct telemetry feed into Guard supervision and `TimeCore` heartbeat logs.  
 
 ### Threat Protections
 - blocking OS‑level actions outside identity scope  
-- blocking unauthorized workflows  
-- blocking UI actions outside identity profile  
-- protection against behavioral anomalies  
-- protection against unauthorized system modifications  
-- blocking unauthorized ENVOY fetch attempts  
-- deep explainability for every blocked action  
-- **COLNIK‑validated identity restrictions**  
-- **AUTONOMY‑aware identity enforcement**  
+- blocking unauthorized workflow state transitions  
+- blocking UI terminal manipulation attempts  
+- protection against rapid-fire execution anomalies and loop attacks  
+- blocking unauthorized external fetch attempts  
+- deep explainability metadata generated for every blocked operation  
+- **COLNIK‑validated threat classification and quarantine dispatch**  
 
 ---
 
-# 🛡 5.8 System Agent 5 – Hardened OS‑Level Security Layer (UPDATED for 5.8)
+# 🛡 5.9.0 Semantic Integrity & Domain Shielding (NEW)
 
-System Agent 5 is the strongest security module in the history of SIRIUS LOCAL AI.  
-It is the **final gatekeeper** for all system‑level actions under orchestrator supervision.
+Runtime 5.9.0 introduces dedicated architectural guards against linguistic truncation and cross-domain attribute pollution.
+
+### InputParser5 Compound Protection
+- preserves multi-word noun phrases (`ovcia vlna`, `mobilny telefon`, `pevna linka`) in their complete grammatical form  
+- strictly separates copula verbs (`je`, `sú`), preventing token concatenation and query corruption (e.g., `jeovcia vlna`)  
+- eliminates arbitrary token drops that cause semantic misrouting  
+
+### Contextual Domain Shield (`EnvoyNormalizer5`)
+- **Non-Bio Domain Shield:** strictly verifies ontological domains, barring technical, physical, formal, and architectural concepts (*ekológia*, *architektúra*, *fyzika*) from receiving biological habitat metadata  
+- **Sentence-Bound Extractor:** requires the declarative presence of explicit occurrence verbs (*žije*, *obýva*, *prirodzený výskyt*) within the exact sentence before allowing habitat relation binding  
+- prevents false factual pollution of the local Knowledge Graph  
+
+### Autonomous Disambiguation & Anti-Prefix Guard (`EnvoyExecutionLayer5`)
+- **Disambiguation Triage:** automatically detects Wikipedia disambiguation pages (*„môže byť...“*) and resolves specific context targets (e.g., classifying `slon` into genus *Elephas*)  
+- **Phonetic & Anti-Prefix Guard:** eliminates prefix over-matching anomalies, permanently stopping query drift (*Káva* -> *Kavala* or *Skript* -> telenovelas)  
+- **Strip-Bracket Fallback:** automatically attempts root lemma lookups when encountering unresolvable parenthetical articles  
+
+---
+
+# 🛡 5.9.0 4-Panel UI Suite & Terminal Decoupling (NEW)
+
+A dedicated, decoupled browser interface running locally on port 8080 engineered to isolate host shells.
+
+### Terminal Decoupling Guard
+- **Automatic State Reset:** clearing input or finishing a conversational query automatically resets `currentModule = "none"`  
+- **Host Shell Isolation:** conversational queries and entity searches cannot leak into the operating system terminal as executable shell commands  
+- **State Lock Prevention:** guarantees the terminal panel never captures input focus in a locked, unresolvable state  
+
+### Duplicates Panel Safety
+- monitors host hardware telemetry via Guard  
+- enforces strict **REPORT_ONLY** policies for detected duplicates, preventing unauthorized mass file deletions  
+
+### Triage Panel Quarantine Supervision
+- visual inspection queue of all quarantined files, unparsed web payloads, and held mutations (`COLNIK-6.x/triage`)  
+- manual release or disposal requires explicit OWNER authorization and confirmation  
+
+---
+
+# 🛡 5.9.0 System Agent 5 – Hardened OS‑Level Gatekeeper
+
+System Agent 5 is the final gatekeeper for all system-level operations under orchestrator supervision.
 
 ### Purpose
-Ensure that **every OS‑level action** is:
+Ensure that **every host system action** is:
 
-- safe  
-- identity‑validated  
-- reversible  
-- deterministic  
-- fully audited  
-- explainable  
-- COLNIK‑validated  
-- autonomy‑aware  
-- unified across PC + Mobile  
+- non-destructive and verified safe  
+- identity‑validated against active credentials  
+- reversible with automated rollback states  
+- deterministic and auditable  
+- explainable via proof trees  
+- customs-validated by COLNIK-6.x  
+- autonomy-supervised with zero recurrence  
 
-### Security Guarantees (5.8 Upgrade)
-- reversibility 3.2  
-- constant‑time identity validation  
-- safer blocking of risky operations  
-- deeper integration with WIN‑CAP 5.x  
-- deeper integration with UI Automation 5.1  
-- deeper integration with Workflow Engine 5.8  
-- ENVOY 5 permission enforcement  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP traces for OS‑level decisions  
+### Security Guarantees (5.9.0 Upgrade)
+- constant-time identity validation (O(1))  
+- deep integration with `sirius_orchestrator.py` on port 8080  
+- blocking of unverified process spawns or binary executions  
+- ENVOY 5 outbound permission enforcement  
+- `KG_EXPLAIN` & `KG_EXPLAIN_DEEP` derivation trees generated for all system decisions  
 - **COLNIK‑validated OS‑level actions**  
 - **AUTONOMY‑aware system validation**  
-- unified PC/Mobile OS validation  
-
-### Threat Protections
-- blocking OS‑level actions outside identity scope  
-- blocking unauthorized UI actions  
-- blocking system manipulation attempts  
-- blocking privilege escalation attempts  
-- blocking unsafe workflow sequences  
-- blocking unauthorized ENVOY fetch operations  
-- deep explainability for every blocked action  
-- **COLNIK‑validated threat detection**  
-- **AUTONOMY‑aware threat routing**  
 
 ---
 
-# 🛡 5.8 UI Automation Security 5.1 (UPDATED for 5.8)
+# 🛡 5.9.0 ENVOY 5 Quarantined Fetch Pipeline (UPDATED)
 
-UI Automation Engine 5.1 introduces the safest and most deterministic OS‑level automation system ever released in SIRIUS.
-
-### OS‑Level Safety
-- all actions validated by System Agent 5  
-- deterministic fallback logic 3.2  
-- identity‑aware UI actions 3.1  
-- sandbox‑protected execution  
-- no raw Win32/UIA/WinRT calls  
-- unified PC/Mobile automation security  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP traces for UI actions  
-- **COLNIK‑validated UI actions**  
-- **AUTONOMY‑aware UI actions**  
-
-### WinCapabilities 5.x
-- safer API adapters  
-- stronger identity‑aware restrictions  
-- audit logging 3.2  
-- deterministic OS routing rules  
-- KG‑aware UI matching  
-- **COLNIK‑validated capability routing**  
-- **AUTONOMY‑aware capability proposals**  
-
-### Workflow Safety
-- safer multi‑stage workflows managed by `sirius_orchestrator.py`  
-- mis‑click prevention 3.2  
-- bounded retries 3.2  
-- semantic target resolution 3.2  
-- System Agent 5 validation at every step  
-- deep explainability for workflow automation  
-- **COLNIK‑validated workflow automation**  
-- **AUTONOMY‑aware workflow automation**  
-
----
-
-# 🛡 5.8 System Intelligence Layer 5.8 – Predictive Security (UPDATED)
-
-System Intelligence Layer 5.8 adds **predictive security**, unified diagnostics,  
-and faster anomaly detection — now validated by COLNIK‑6.x, AUTONOMY‑6.x, and Guard supervision.
-
-### Capabilities
-- detection of system anomalies  
-- prediction of risky states  
-- safe optimization suggestions  
-- integration with System Agent 5 and Guard  
-- no deep scans during workflows  
-- unified PC/Mobile diagnostics  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP traces for anomaly detection  
-- **COLNIK‑validated diagnostic actions**  
-- **AUTONOMY‑aware diagnostic proposals**  
-
-### Threat Protections
-- detection of abnormal OS states  
-- detection of risky processes  
-- detection of unauthorized changes  
-- safe repair recommendations  
-- integration with Self‑Repair Layer 5.8  
-- **COLNIK‑validated threat detection**  
-- **AUTONOMY‑aware threat routing**  
-
----
-
-# 🛡 5.8 ENVOY 5 Security Model (UPDATED for 5.8)
-
-ENVOY 5 introduces a **hardened permission‑based secure fetch pipeline**  
-with full deep explainability, COLNIK‑validated sanitization, and AUTONOMY‑aware permission logic.
+ENVOY 5 enforces an outbound-only, quarantined retrieval model with strict domain shielding and zero local data leakage.
 
 ### Security Flow
-**ASK → FETCH → QUARANTINE → VALIDATE → DELIVER** (supervised by `TimeCore`/`Guard`)
+**ASK → PARSE (`InputParser5`) → DISAMBIGUATE (`ExecutionLayer5`) → FETCH → QUARANTINE → SHIELD (`Normalizer5`) → CUSTOMS (`COLNIK-6.x`) → MULTI-ALIAS COMMIT (`autosave_kg.json`)**
 
 ### Protections
-- outbound‑only  
-- identity‑aware permissions  
-- System Agent 5 validation  
-- quarantine sandbox  
-- validator & policy filter  
-- no local data ever transmitted  
-- unified PC/Mobile Envoy logic  
-- deterministic safe‑payload format  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP traces for permission + validation  
-- **COLNIK‑validated payload delivery (Standard & IPC Mode)**  
-- **AUTONOMY‑aware permission proposals**  
-- **PanelAPI confirmation gating for sensitive retrievals**  
-
-ENVOY never runs automatically and never bypasses offline mode.
+- **Outbound-Only:** strictly zero inbound listening ports; main runtime never binds to public network sockets  
+- **Quarantine Sandbox:** strips all active scripts, trackers, cookies, HTML markup, and executable objects  
+- **Zero Local Leakage:** local files, memory dumps, and conversation histories are never transmitted  
+- **Multi-Alias Zero Recurrence:** confirmed entities are mapped under both query terms and encyclopedic titles in `autosave_kg.json`, eliminating repeated learning prompts  
+- **PanelAPI Confirmation:** unindexed concepts mandate user approval via `[ÁNO/NIE]` confirmation  
+- **COLNIK Validation:** all parsed payloads pass through customs inspection before graph commitment  
 
 ---
 
-# 🛡 5.8 Password Vault 5.8 (UPDATED)
+# 🛡 5.9.0 Password Vault 5.9.0 Security Model
 
-- AES‑256‑GCM encryption  
-- PBKDF2‑HMAC‑SHA256 key derivation  
-- OWNER‑only write access  
-- FAMILY read‑only  
-- STRANGER blocked  
-- System Agent 5 enforcement  
-- unified PC/Mobile vault access  
-- deep explainability for vault access decisions  
-- **COLNIK‑validated vault operations**  
-- **AUTONOMY‑aware vault proposals**  
-- **PanelAPI confirmation gating (`[ÁNO/NIE]`)**  
+- **AES-256-GCM** authenticated symmetric encryption with random 256-bit salts  
+- **PBKDF2-HMAC-SHA256** key stretching (600,000+ iterations)  
+- OWNER-only write/delete access; FAMILY read-only for shared items; STRANGER blocked  
+- compound service name preservation via `InputParser5`  
+- terminal state decoupling preventing secret strings from leaking to the host shell  
+- explainability traces generated for all vault access attempts  
+- **COLNIK‑validated vault operations (Standard & High-Performance IPC Mode)**  
+- **PanelAPI confirmation gating (`[ÁNO/NIE]`) for sensitive key retrieval**  
 
 ---
 
-# 🛡 5.8 Self‑Repair Layer 5.8 – Security Integration (UPDATED for 5.8)
+# 🛡 5.9.0 Self‑Repair & Integrity Guard (UPDATED)
 
-Self‑Repair Layer 5.8 integrates directly with the security stack.
+Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry and the security stack.
 
 ### Capabilities
-- integrity checks for all security modules  
-- detection of corrupted identity profiles  
-- detection of unsafe automation states  
-- repair suggestions 2.0  
-- degraded‑mode isolation  
-- unified PC/Mobile repair logic  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP traces for repair decisions  
-- **COLNIK‑validated repair logic**  
-- **AUTONOMY‑aware repair proposals**  
-
-### Threat Protections
-- blocking execution when critical modules are corrupted  
-- isolating unsafe workflows  
-- preventing unsafe OS‑level actions during degraded mode  
-- enforcing System Agent 5 repair‑aware policies  
-- **COLNIK‑validated degraded‑mode enforcement**  
-- **AUTONOMY‑aware degraded‑mode routing**  
+- cryptographic checksum auditing of `autosave_kg.json`, core manifests, and vault containers  
+- detection of corrupted entity schemas or broken relation trees  
+- automated reconstruction of damaged metadata from verified integrity seals  
+- isolated shadow container creation during disk storage anomalies  
+- deterministic repair suggestions dispatched directly to `COLNIK-6.x/triage`  
+- `KG_EXPLAIN_DEEP` generation for all repair and rollback actions  
 
 ---
 
-# 📄 Document Status (Updated)
+# 📄 Document Status
 
-**Version:** **5.8 UNIFIED (Expanded)**  
-This document now covers all security modules:
+**Version:** 5.9.0 UNIFIED  
+This document reflects the comprehensive security model of Runtime 5.9.0:
 
-- Unified Orchestrator (`sirius_orchestrator.py`)  
+- Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)  
+- Multi-Word Compound Preservation (`InputParser5`)  
+- Autonomous Disambiguation & Anti-Prefix Guard (`EnvoyExecutionLayer5`)  
+- Contextual Domain Shield & Sentence-Bound Extractor (`EnvoyNormalizer5`)  
+- Multi-Alias Graph Persistence & Zero Recurrence (`autosave_kg.json`)  
+- 4-Panel UI Suite with Terminal State Decoupling (`currentModule = "none"`)  
 - PanelAPI interactive loops (`[ÁNO/NIE]`)  
-- TimeCore & Guard supervision  
-- Security Family 5.x  
+- TimeCore Temporal Tracking & Guard Resource Monitoring (CPU, RAM, Disk)  
+- Security Family 5.x & Identity Engine 3.1  
 - System Agent 5  
-- UI Automation Engine 5.1  
-- UI Sandbox 5.0  
-- Semantic UI Automation Security 5.1  
-- System Intelligence Layer 5.8  
-- ENVOY 5  
-- Password Vault 5.8  
+- Password Vault 5.9.0  
 - Self‑Repair Layer 5.8  
-- Unified PC/Mobile identity enforcement  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
-- **COLNIK‑6.x Enterprise Validation Layer (Standard & IPC Mode)**  
-- **AUTONOMY‑6.x Control & Triage Mode**
+- Hierarchical Proof Trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`)  
+- **COLNIK‑6.x Enterprise Customs Decision Gate (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x (Control, Guard & Triage Mode in `COLNIK-6.x/triage`)**
