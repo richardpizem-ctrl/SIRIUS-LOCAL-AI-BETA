@@ -1,301 +1,116 @@
-# 🔐 PASSWORD VAULT 5.8 — Secure Local Credential Module
-### Fully Offline • AES‑256‑GCM • Identity‑Aware • Deterministic • Deep‑Explainability‑Ready • Orchestrator-Supervised • COLNIK‑Validated • AUTONOMY‑Aware
+# 🔐 PASSWORD VAULT 5.9.0 — Secure Local Credential Module
+### Fully Offline • AES‑256‑GCM • Identity‑Aware • Deterministic • Multi-Alias Ready • Single-Process Orchestrator • COLNIK‑Validated • AUTONOMY‑Supervised
 
-PASSWORD VAULT 5.8 is the official secure credential storage module of  
-**SIRIUS LOCAL AI — Unified Orchestration, PanelAPI, TimeCore/Guard & Enhanced COLNIK‑AUTONOMY Architecture 5.8**.
+PASSWORD VAULT 5.9.0 is the official secure credential storage module of  
+**SIRIUS LOCAL AI — Semantic Multi-Word Parsing, Autonomous Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence Architecture 5.9.0**.
 
-It provides **fully offline, encrypted, identity‑aware, deterministic** password storage  
-with strict OWNER/FAMILY/STRANGER access rules and complete integration with:
+It provides **fully offline, encrypted, identity‑aware, deterministic** password and secret storage  
+with strict OWNER/FAMILY/STRANGER access rules, terminal input decoupling, and complete integration with:
 
-- Unified Orchestrator (`sirius_orchestrator.py`)  
+- Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)  
+- Multi-Word Semantic Engine (`InputParser5` preserving compound service names)  
 - PanelAPI interactive loops (`[ÁNO/NIE]` confirmation prompts)  
-- TimeCore temporal tracking & Guard security supervision  
-- Runtime Core 5.8  
-- NL Router 5.8  
-- Workflow Engine 5.8  
-- Reasoning Engine 5.8  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- Security Family 5.x  
+- TimeCore temporal tracking & Guard security/resource supervision (CPU, RAM, Disk)  
+- 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)  
+- Runtime Core 5.9.0  
+- Workflow Engine 5.9.0  
+- Reasoning Engine 5.9.0  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)  
+- Security Family 5.x & Identity Engine 3.1  
 - System Agent 5  
 - Self‑Repair Layer 5.8  
-- **COLNIK‑6.x Validation Layer (Standard & IPC Mode)**  
-- **AUTONOMY 6.x (Control & Triage Mode)**  
+- **COLNIK‑6.x Validation Layer (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x (Control, Guard & Triage Mode in `COLNIK-6.x/triage`)**  
 
-All vault operations are **local‑only**, never transmitted, never synced, never exposed.
+All vault operations are **strictly local‑first**, never transmitted over open networks, never cloud-synced, and never exposed to host process capture.
 
 ---
 
 # 🧩 1. Purpose
 
-The PASSWORD VAULT 5.8 module provides:
+The PASSWORD VAULT 5.9.0 module provides:
 
-- secure offline credential storage  
-- deterministic access rules managed by `sirius_orchestrator.py`  
-- identity‑aware protection with `PanelAPI` human-in-the-loop gating  
-- OWNER‑only write access  
-- FAMILY read‑only access  
-- STRANGER blocked  
-- safe integration with workflows  
-- deep explainability for every vault action  
-- compatibility with KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- **COLNIK‑validated access decisions (Standard & IPC Mode)**  
-- **AUTONOMY‑aware proposal/confirmation & Triage Mode hooks**  
+- secure offline credential storage with tamper-evident cryptographic sealing  
+- deterministic access rules managed centrally by `sirius_orchestrator.py` on port 8080  
+- compound service identification via `InputParser5` (e.g., preserving full multi-word tokens like `lokalny spravca uctu` without truncation)  
+- identity‑aware protection with `PanelAPI` human-in-the-loop gating (`[ÁNO/NIE]`)  
+- terminal isolation: clearing input forces immediate context release (`currentModule = "none"`), ensuring credential commands never leak into host shell commands  
+- OWNER‑only write and delete access  
+- FAMILY read‑only access for designated household items  
+- STRANGER blocked completely with instant safe-mode quarantine  
+- deep symbolic explainability for every vault access attempt  
+- full compatibility with `KG_EXPLAIN` & `KG_EXPLAIN_DEEP` evidence trees  
+- **COLNIK‑validated access decisions (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY‑aware proposal governance, Guard telemetry auditing, and Triage Mode containment**  
 
-It is designed for **maximum safety**, **zero cloud dependency**, and **predictable behavior**.
+It is engineered for **maximum security**, **absolute zero-cloud reliance**, and **reproducible, audit-ready behavior**.
 
 ---
 
-# 🔐 2. Security Model (v5.8)
+# 🔐 2. Security Model (v5.9.0)
 
-### Encryption
-- **AES‑256‑GCM**  
-- **PBKDF2‑HMAC‑SHA256** master key derivation  
-- random salt per vault  
-- deterministic encryption pipeline  
-- secure vault container (`vault.dat`)  
+### Cryptographic Foundation
+- **AES‑256‑GCM** authenticated symmetric encryption with integrity tags  
+- **PBKDF2‑HMAC‑SHA256** key derivation (600,000+ iterations)  
+- cryptographically secure, random 256-bit salt per vault instance (`vault_salt.bin`)  
+- deterministic decryption pipeline with memory wiping of plaintext buffers post-operation  
+- atomic writing of encrypted vault containers (`vault.dat`) via temporary shadow files to prevent write corruption  
 
-### Identity Rules
-- **OWNER** → full access (read/write/delete)  
-- **FAMILY** → read‑only  
-- **STRANGER** → blocked  
-- **Unknown identity** → blocked + safe‑mode  
+### Identity Rules & Policy Tiers
+- **OWNER** → full access (read / write / delete / export) with optional `PanelAPI` confirmation for critical keys  
+- **FAMILY** → restricted read‑only access to approved shared services; modification blocked  
+- **STRANGER** → completely blocked; access attempts log security events and trigger safe-mode  
+- **Unknown Identity** → immediate lockdown, session suspension, and Guard alert dispatch  
 
 ### Deep Explainability & Supervision Integration
-Every vault action produces explainability metadata and temporal/security telemetry:
+Every vault transaction produces audit traces and operational telemetry:
 
-- why the action was allowed  
-- which identity rule applied  
-- which System Agent rule validated the action  
-- which Security Family rule restricted or permitted access  
-- KG_EXPLAIN trace  
-- KG_EXPLAIN_DEEP evidence tree  
-- **COLNIK‑6.x validation trace (Standard & IPC Mode)**  
-- **AUTONOMY 6.x proposal/confirmation & Triage Mode trace**  
+- why the action was permitted or denied  
+- matching Identity Engine 3.1 behavioral rule  
+- System Agent 5 policy check record  
+- Security Family 5.x restriction or authorization tag  
+- `KG_EXPLAIN` symbolic justification  
+- `KG_EXPLAIN_DEEP` hierarchical proof tree  
+- **COLNIK‑6.x customs inspection verdict (Standard & IPC Mode)**  
+- **AUTONOMY 6.x proposal/confirmation log without proposal recurrence**  
 - **PanelAPI confirmation log (`[ÁNO/NIE]`)**  
-- **TimeCore & Guard execution logs**  
+- **TimeCore execution timestamp and Guard system metric snapshot**  
 
 ---
 
 # 🧱 3. Module Responsibilities
 
 ### Core Responsibilities
-- secure credential storage  
-- deterministic encryption/decryption  
-- identity‑aware access control  
-- safe vault updates  
-- safe vault reads  
-- safe vault deletion  
-- workflow integration via `sirius_orchestrator.py`  
-- NL Router integration  
-- System Agent validation  
-- explainability trace generation  
-- **COLNIK‑validated access enforcement**  
-- **AUTONOMY‑aware access logic**
+- secure credential encryption, storage, and retrieval  
+- deterministic AES-256-GCM encryption/decryption execution  
+- identity‑aware access control and caller verification  
+- safe atomic vault updates and rollbacks  
+- safe credential deletion with zero-fill overwriting  
+- single-process orchestration via `sirius_orchestrator.py`  
+- input processing via `InputParser5` preserving multi-word service labels  
+- terminal decoupling: ensuring module release (`currentModule = "none"`) upon command clearing  
+- System Agent 5 validation and logging  
+- explainability trace generation for all operations  
+- **COLNIK‑validated access gating (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY‑aware proposal supervision and Guard resource tracking**  
 
-### Additional Responsibilities (v5.8)
-- KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
-- Reasoning Engine 5.8 justification for access  
-- Self‑Repair Layer vault integrity checks  
-- Security Family 5.x identity enforcement  
-- deterministic fallback behavior  
-- COLNIK‑validated rule enforcement  
-- AUTONOMY‑aware decision routing  
+### Additional Responsibilities (v5.9.0)
+- compound noun preservation for custom services (`InputParser5`)  
+- multi-alias linkage: credentials can link to primary service entities or aliases stored in `autosave_kg.json`  
+- zero proposal recurrence: established authorizations do not trigger repeated interactive confirmation prompts  
+- Self‑Repair Layer 5.8 vault integrity and schema validation  
+- integration with the 4-Panel UI Suite dashboard on port 8080  
+- deterministic fallback behavior and error routing  
 
 ---
 
 # 🗂️ 4. Vault Structure
 
-The vault is stored as:
+The vault resides within an isolated directory tree:
+
+```text
 vault/  
-├── vault.dat               # encrypted credential container  
-├── vault_meta.json         # metadata (non-sensitive)  
-├── vault_salt.bin          # PBKDF2 salt  
-└── vault_integrity.json    # Self‑Repair Layer integrity markers  
-
-### vault.dat
-Encrypted AES‑256‑GCM blob containing:
-
-- service name  
-- username  
-- password  
-- tags  
-- creation timestamp  
-- update timestamp  
-
-### vault_meta.json
-Contains:
-
-- number of entries  
-- last update  
-- deterministic metadata  
-- explainability flags  
-- COLNIK validation markers  
-- AUTONOMY proposal/confirmation markers  
-- PanelAPI gating records  
-
-No sensitive data is stored here.
-
----
-
-# 🧠 5. Integration with Unified Runtime 5.8
-
-PASSWORD VAULT 5.8 integrates with:
-
-### 🔵 Unified Orchestrator (`sirius_orchestrator.py`)
-- centralized deterministic pipeline for all vault read/write intents  
-
-### 🔵 PanelAPI (`[ÁNO/NIE]`)
-- user confirmation gates for sensitive credential access or modification  
-
-### 🔵 TimeCore & Guard
-- execution timing and runtime security supervision during cryptographic operations  
-
-### 🔵 NL Router 5.8
-- “save password for …”  
-- “show my password for …”  
-- “delete password for …”  
-- identity‑aware routing  
-- explain intent detection  
-- COLNIK‑validated NL routing  
-- AUTONOMY‑aware NL routing  
-
-### 🔵 Workflow Engine 5.8
-- multi‑step vault workflows  
-- safe confirmation steps  
-- deterministic fallback states  
-- deep explainability routing  
-- COLNIK‑validated workflow transitions  
-- AUTONOMY‑aware workflow transitions  
-
-### 🔵 Reasoning Engine 5.8
-- rule‑based justification  
-- identity reasoning  
-- permission reasoning  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
-- COLNIK‑validated reasoning steps  
-- AUTONOMY‑aware reasoning hooks  
-
-### 🔵 Security Family 5.x
-- OWNER/FAMILY/STRANGER rules  
-- time‑limits safe‑mode  
-- child‑safe restrictions  
-
-### 🔵 System Agent 5
-- final validation  
-- safe execution  
-- logging  
-- deterministic enforcement  
-
-### 🔵 Self‑Repair Layer 5.8
-- vault integrity scanning  
-- corruption detection  
-- safe repair suggestions  
-
-### 🔵 COLNIK‑6.x Validation Layer (Standard & IPC Mode)
-- validates every vault action  
-- enforces identity rules  
-- prevents unsafe access  
-- provides explainability + evidence traces  
-
-### 🤖 AUTONOMY 6.x (Control & Triage Mode)
-- proposal generation  
-- confirmation logic  
-- autonomous decision routing  
-- safe autonomous vault workflows  
-
----
-
-# 🛡️ 6. Access Rules (v5.8)
-
-| Identity Level | Read | Write | Delete | Notes |
-|----------------|------|-------|--------|-------|
-| **OWNER**      | ✔️   | ✔️    | ✔️     | Full access (with PanelAPI gating when required) |
-| **FAMILY**     | ✔️   | ❌    | ❌     | Read‑only |
-| **STRANGER**   | ❌   | ❌    | ❌     | Fully blocked |
-| **Unknown**    | ❌   | ❌    | ❌     | Safe‑mode restrictions |
-
-All access is validated by:
-
-- Security Family 5.x  
-- System Agent 5  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- **COLNIK‑6.x Validation Layer (Standard & IPC Mode)**  
-- **AUTONOMY 6.x Control & Triage Mode**  
-- **PanelAPI & TimeCore/Guard Supervision**  
-
----
-
-# 🧪 7. Self‑Repair Layer Integration
-
-PASSWORD VAULT 5.8 supports:
-
-- vault integrity checks  
-- missing file detection  
-- corrupted vault detection  
-- safe fallback vault creation  
-- deterministic repair suggestions  
-- explainability for repair actions  
-- COLNIK‑validated repair logic  
-- AUTONOMY‑aware repair routing  
-
----
-
-# 🧩 8. API (Deterministic)
-
-### `vault.save(service, username, password)`
-- OWNER only  
-- encrypted write  
-- deep explainability trace  
-- COLNIK‑validated write (Standard & IPC Mode)  
-- AUTONOMY‑aware proposal/confirmation  
-- PanelAPI `[ÁNO/NIE]` confirmation gate  
-
-### `vault.get(service)`
-- OWNER + FAMILY  
-- decrypted read  
-- deep explainability trace  
-- COLNIK‑validated read  
-- AUTONOMY‑aware read logic  
-- PanelAPI gating for sensitive accounts  
-
-### `vault.delete(service)`
-- OWNER only  
-- safe deletion  
-- deep explainability trace  
-- COLNIK‑validated delete  
-- AUTONOMY‑aware deletion  
-- mandatory PanelAPI `[ÁNO/NIE]` confirmation  
-
-### `vault.list()`
-- OWNER + FAMILY  
-- metadata only  
-- no sensitive data exposed  
-- COLNIK‑validated metadata access  
-- AUTONOMY‑aware metadata routing  
-
----
-
-# 🔒 9. Safety Guarantees
-
-PASSWORD VAULT 5.8 guarantees:
-
-- 100% offline operation  
-- zero cloud dependency  
-- zero telemetry  
-- zero external sync  
-- deterministic encryption  
-- deterministic access rules  
-- identity‑aware protection  
-- deep explainability for every action  
-- safe fallback behavior  
-- Self‑Repair Layer protection  
-- **COLNIK‑validated access enforcement (Standard & IPC Mode)**  
-- **AUTONOMY‑aware decision routing (Control & Triage Mode)**  
-- **Orchestrator-driven execution & PanelAPI human oversight**  
-
----
-
-# 📄 Document Status
-
-**Version:** 5.8 (Unified Orchestration, PanelAPI, TimeCore/Guard & COLNIK-AUTONOMY Architecture)  
-Updated to reflect the **5.7.0 → 5.8 transition**, orchestrator routing via `sirius_orchestrator.py`, interactive `PanelAPI` confirmation loops, `TimeCore`/`Guard` supervision, expanded **COLNIK‑6.x (Standard & IPC Mode)**, and **AUTONOMY 6.x (Control & Triage Mode)**.
+├── vault.dat                 # encrypted AES-256-GCM credential container  
+├── vault_meta.json           # non-sensitive metadata & operational markers  
+├── vault_salt.bin            # cryptographically secure PBKDF2 salt  
+└── vault_integrity.json      # Self‑Repair Layer hash seals & integrity markers
