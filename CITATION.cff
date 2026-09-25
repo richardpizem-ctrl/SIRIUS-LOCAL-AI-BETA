@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "5.8"
-date-released: 2026-09-10
+version: "5.9.0"
+date-released: 2026-09-25
 
 authors:
   - family-names: "Pizem"
@@ -15,12 +15,25 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 5.8"
-  - "runtime core 5.8 unified"
+  - "intelligent runtime 5.9.0"
+  - "runtime core 5.9.0 unified"
+  - "semantic multi-word parsing"
+  - "compound noun phrases"
+  - "InputParser5"
+  - "EnvoyExecutionLayer5"
+  - "EnvoyNormalizer5"
+  - "autonomous disambiguation triage"
+  - "anti-prefix guard"
+  - "contextual domain filtering"
+  - "multi-alias KG persistence"
+  - "autosave_kg.json"
+  - "4-panel UI suite"
+  - "terminal decoupling"
+  - "duplicates triage navigation terminal"
   - "plugin system 5.x"
-  - "workflow engine 5.8"
-  - "reasoning engine 5.8"
-  - "explainability engine 5.8"
+  - "workflow engine 5.9.0"
+  - "reasoning engine 5.9.0"
+  - "explainability engine 5.9.0"
   - "KG_EXPLAIN"
   - "KG_EXPLAIN_DEEP"
   - "multi-hop inference"
@@ -30,9 +43,9 @@ keywords:
   - "evidence trees"
   - "confidence scoring"
   - "rule chaining"
-  - "semantic triage 5.8"
-  - "AITE 5.8"
-  - "unified knowledge graph 5.8"
+  - "semantic triage 5.9.0"
+  - "AITE 5.9.0"
+  - "unified knowledge graph 5.9.0"
   - "KG comfort commands"
   - "secure local processing"
   - "Windows automation"
@@ -45,7 +58,7 @@ keywords:
   - "time-limits engine v3"
   - "self-repair layer 5.8"
   - "health-check engine 5.8"
-  - "PC automation runtime 5.8"
+  - "PC automation runtime 5.9.0"
   - "Mobile Runtime 5.8"
   - "ENVOY Execution Layer 5"
   - "ENVOY Permission Layer 5"
@@ -73,27 +86,21 @@ keywords:
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, reasoning tasks, and
-  semantic automation. Version 5.8 delivers the fully unified and orchestrated
-  architecture of the SIRIUS Runtime line, integrating the unified orchestrator
-  (sirius_orchestrator.py), interactive PanelAPI loops with [ÁNO/NIE] confirmations,
-  TimeCore temporal tracking, Guard security supervision, and enhanced COLNIK-6.x
-  (Standard & IPC Mode) alongside AUTONOMY-6.x (Control & Triage Mode).
+  semantic automation. Version 5.9.0 introduces major enhancements to natural language
+  comprehension and runtime reliability, featuring compound noun phrase preservation
+  via InputParser5, autonomous disambiguation triage and phonetic prefix protection
+  via EnvoyExecutionLayer5, strict non-biological domain shielding in EnvoyNormalizer5,
+  and dual-key multi-alias persistence in RuntimeCore that completely eliminates
+  repetitive interactive learning loops.
 
-  The Unified Runtime Architecture 5.8 merges PC and Mobile logic into a single,
-  deterministic, identity-aware operating layer. Runtime Core 5.8 provides unified
-  orchestration, deterministic execution, capability-based access control,
-  identity-aware routing, and explainability-aware workflow dispatch.
+  Version 5.9.0 fully operationalizes the 4-Panel UI Suite (Duplicates, Triage,
+  Navigation, and Terminal) with deterministic state clearance, preventing terminal
+  deadlocks and securing host command isolation. Execution is driven centrally by
+  sirius_orchestrator.py through an integrated single-process IPC Daemon running
+  natively on port 8080.
 
-  SECURITY FAMILY 5.x expands identity and family safety layers with OWNER/FAMILY/
-  STRANGER identity levels, time-limits v3, safe-mode for unknown users, and a
-  Schoolwork Engine ensuring unrestricted access to academic tasks.
-
-  The system operates entirely on the user's device, without any cloud dependencies
-  or external data transmission. All modules follow strict security boundaries,
-  deterministic behavior, semantic understanding, explainability, and predictable
-  execution rules.
-
-  Version 5.8 upgrades the entire runtime stack, including Workflow Engine 5.8,
-  Reasoning Engine 5.8, KG_EXPLAIN, KG_EXPLAIN_DEEP, ENVOY 5, FS‑AGENT 5, CME‑MEM 5,
-  System Agent 5, PanelAPI, TimeCore, Guard, and Password Vault 5.0. These upgrades
-  establish an uncompromised, interactive, and self-supervised local AI workstation environment.
+  The system operates entirely on the user's device without cloud dependencies or
+  external data transmission. All modules adhere to strict security boundaries,
+  customs validation through COLNIK-6.x, autonomous decision supervision via
+  AUTONOMY-6.x, Guard resource monitoring, and auditable symbolic explainability
+  with proof trees and evidence chains.
