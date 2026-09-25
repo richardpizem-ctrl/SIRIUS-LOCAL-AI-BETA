@@ -1,5 +1,5 @@
 # 🎛 UI PANEL 6.x — 4-Panel Futuristic Neon Web Suite (Port 8080)
-**Status:** ✔ Stabilizované a aktívne integrované (Active & Stabilized)  
+**Status:** ✔ Active & Stabilized  
 **Version:** 6.x (Stabilized for 5.9.0 UNIFIED)  
 **SIRIUS Local AI Version:** 5.9.0 UNIFIED  
 **Component:** 4-Panel UI Suite & Terminal Decoupling Controller  
@@ -8,10 +8,10 @@
 ---
 
 ## 🎯 Purpose  
-UI PANEL 6.x je moderné webové rozhranie s futuristickou neónovou estetikou, slúžiace ako primárna interakčná a riadiaca vrstva pre runtime **SIRIUS Local AI v5.9.0**.  
-Beží natívne ako jednoprocesový démon priamo cez `sirius_orchestrator.py` na lokálnom porte **8080**, čím definitívne eliminuje kolízie soketov a zámky súborov na disku.
+UI PANEL 6.x is a modern web interface with a futuristic neon aesthetic, serving as the primary interaction and control layer for the **SIRIUS Local AI v5.9.0** runtime.  
+It runs natively as a single-process daemon directly through `sirius_orchestrator.py` on local port **8080**, permanently eliminating socket collisions and disk-level file locking contention.
 
-Rozhranie implementuje plne oddelenú architektúru štyroch špecializovaných panelov (**Duplicates**, **Triage**, **Navigation**, **Terminal**) a zavádza kľúčový bezpečnostný mechanizmus **Terminal State Decoupling**: pri vymazaní vstupu alebo prerušení príkazu sa kontext terminálu automaticky resetuje na `currentModule = "none"`, čo natrvalo zabraňuje tomu, aby bežné konverzačné dopyty alebo entity prepadávali do systémového shellu operačného systému Windows 11.
+The interface implements a fully decoupled architecture across four specialized panels (**Duplicates**, **Triage**, **Navigation**, **Terminal**) and introduces the critical security mechanism **Terminal State Decoupling**: clearing the input field or canceling a command immediately resets the terminal context to `currentModule = "none"`, permanently preventing conversational natural language queries or entity searches from leaking into the host Windows 11 operating system shell.
 
 ---
 
@@ -19,91 +19,91 @@ Rozhranie implementuje plne oddelenú architektúru štyroch špecializovaných 
 **Browser Console (Port 8080) → Terminal Decoupling Guard (`currentModule = "none"`) → sirius_orchestrator.py → PanelAPI [ÁNO/NIE] → RuntimeCore 5.9.0 → InputParser5 → Multi-Alias KG (`autosave_kg.json`) → COLNIK-6.x / AUTONOMY 6.x → EXECUTE 6.x**
 
 ### Core Responsibilities  
-- natívna obsluha rozhrania cez lokálny HTTP/WebSocket server na porte 8080 v rámci jedného procesu  
-- okamžitý reset modulu (`currentModule = "none"`) pri zmazaní vstupu, garantujúci izoláciu od hostiteľského OS shellu  
-- vizuálna kontrola a správa karanténneho radu v priečinku `COLNIK-6.x/triage`  
-- neinvazívne zobrazovanie duplicitných súborov so striktným vynútením politiky `REPORT_ONLY`  
-- asynchrónne zobrazovanie hardvérovej telemetrie (vyťaženie CPU, RAM, Disk pod 1 % réžie cez Guard)  
-- riadenie interaktívnych schvaľovacích slučiek `PanelAPI` (`[ÁNO/NIE]`) s garanciou nulovej rekurencie návrhov pre už potvrdené entity  
-- plynulé prepínanie medzi používateľským (User) a vývojárskym (Developer) zobrazením  
+- natively host the web interface via a local HTTP/WebSocket server on port 8080 within a single process  
+- execute an immediate module reset (`currentModule = "none"`) upon clearing input, guaranteeing complete isolation from the host OS shell  
+- provide visual inspection and management of the quarantine queue in `COLNIK-6.x/triage`  
+- deliver non-invasive duplicate file auditing with strict enforcement of the `REPORT_ONLY` policy  
+- render real-time hardware telemetry asynchronously (CPU, RAM, and Disk load under 1% overhead via Guard)  
+- manage interactive confirmation loops via `PanelAPI` (`[ÁNO/NIE]`) with guaranteed zero proposal recurrence for established entities  
+- enable seamless switching between User Mode and Developer Mode  
 
 ### Key Files & Endpoints  
-- `ui_suite_8080/index.html` (hlavný dashboard)  
-- `ui_suite_8080/neon_theme.css` (futuristický neónový vizuál)  
-- `ui_suite_8080/app.js` (riadenie stavu modulov a WebSocket most)  
-- `ui_suite_8080/terminal_decoupling_guard.js` (uvoľňovanie kontextu na `none`)  
-- `ORCHESTRATOR/sirius_orchestrator.py` (démon na porte 8080)  
-- `PANEL_API/panel_api.py` (obsluha promptov `[ÁNO/NIE]`)  
-- `http://127.0.0.1:8080` (lokálny prístupový bod)  
+- `ui_suite_8080/index.html` (main dashboard)  
+- `ui_suite_8080/neon_theme.css` (futuristic neon visual styling)  
+- `ui_suite_8080/app.js` (module state management and WebSocket bridge)  
+- `ui_suite_8080/terminal_decoupling_guard.js` (context release to `none`)  
+- `ORCHESTRATOR/sirius_orchestrator.py` (daemon on port 8080)  
+- `PANEL_API/panel_api.py` (`[ÁNO/NIE]` prompt handling)  
+- `http://127.0.0.1:8080` (local endpoint)  
 
 ---
 
 ## 🖥 4-Panel Suite Layout (Port 8080)  
 
-### **1. Duplicates Panel (Správa duplicít)**  
-- prehľadná vizuálna inventúra duplicitných súborov na lokálnom úložisku  
-- striktné bezpečnostné pravidlo: **iba REPORT_ONLY** (žiadne automatické mazanie bez explicitného autorizovaného potvrdenia)  
-- priamy odkaz na metriky diskového priestoru dodávané modulom Guard  
+### **1. Duplicates Panel (Duplicate Resource Management)**  
+- clear visual audit of duplicate files located on the local filesystem  
+- strict safety rule: **REPORT_ONLY** (zero automated deletions without explicit, authorized user confirmation)  
+- direct link to storage capacity metrics delivered by the Guard module  
 
-### **2. Triage Panel (Karanténny rad COLNIK-6.x/triage)**  
-- živý inšpekčný panel pre zachytené, neoverené alebo neznáme vstupy  
-- správa normalizovaných dát z ENVOY 5 s kontrolou doménového štítu (`NonBioDomainShield`)  
-- tlačidlá pre manuálne uvoľnenie (Release) alebo bezpečné vymazanie (Discard) karanténneho payloadu  
+### **2. Triage Panel (Quarantine Queue COLNIK-6.x/triage)**  
+- real-time inspection view for intercepted, unverified, or anomalous payloads  
+- management of normalized data from ENVOY 5 under Non-Bio Domain Shield verification (`NonBioDomainShield`)  
+- dedicated actions for manual release (Release) or safe disposal (Discard) of quarantined objects  
 
-### **3. Navigation Panel (Navigácia a stav subsystémov)**  
-- deterministické prepínanie medzi vetvami: Runtime Core, Multi-Alias KG, Envoy Researcher, Security Vault a Autonomy  
-- živé neónové indikátory zdravia:  
-  - **Orchestrator:** port 8080 aktívny  
-  - **Knowledge Graph:** `autosave_kg.json` synchronizovaný (Dual-Key persistence)  
-  - **COLNIK-6.x Gate:** Standard & High-Performance IPC pripravené  
-  - **Guard Telemetry:** CPU, RAM, Disk v norme  
-  - **TimeCore:** heartbeat stabilný  
+### **3. Navigation Panel (Navigation & Subsystem Health)**  
+- deterministic routing across core branches: Runtime Core, Multi-Alias KG, Envoy Researcher, Security Vault, and Autonomy  
+- live neon status indicators:  
+  - **Orchestrator:** port 8080 active  
+  - **Knowledge Graph:** `autosave_kg.json` synchronized (Dual-Key persistence)  
+  - **COLNIK-6.x Gate:** Standard & High-Performance IPC operational  
+  - **Guard Telemetry:** CPU, RAM, Disk within safe bounds  
+  - **TimeCore:** heartbeat stable  
 
-### **4. Terminal Panel (Izolovaná príkazová konzola)**  
-- interaktívny neónový terminál s automatickou izoláciou shellu:  
-  - ak používateľ vymaže vstupný riadok (Backspace/Clear) alebo dokončí dopyt, skript okamžite odošle signál `currentModule = "none"`  
-  - zabraňuje nechcenému spusteniu textových dotazov ako systémových príkazov vo Windows PowerShell/CMD  
-  - plná podpora viacslovných fráz (`InputParser5`) a zobrazenie odvodzovacích stromov (`KG_EXPLAIN_DEEP`)  
+### **4. Terminal Panel (Isolated Command Console)**  
+- interactive neon terminal equipped with automated shell decoupling:  
+  - clearing the input prompt (Backspace/Clear) or concluding a query immediately issues `currentModule = "none"`  
+  - blocks natural language queries from capturing terminal focus or executing as system shell commands in Windows PowerShell/CMD  
+  - full support for multi-word compound phrases (`InputParser5`) and display of hierarchical proof trees (`KG_EXPLAIN_DEEP`)  
 
 ---
 
-## 🔀 Prevádzkové režimy (Modes)  
+## 🔀 Operating Modes  
 
-### **User Mode (Bežný používateľ)**  
-- čisté, vysoko kontrastné neónové zobrazenie  
-- zamerané na dialóg, overovanie faktov, školské dopyty (garantovaný `SCHOOLWORK` bypass) a prehliadanie znalostí  
-- interaktívne potvrdzovanie nových entít cez dialóg `PanelAPI` (`[ÁNO/NIE]`)  
-- úplne skryté systémové a rizikové OS operácie  
+### **User Mode (Everyday Operation)**  
+- clean, high-contrast neon interface layout  
+- streamlined for dialogue, factual verification, schoolwork assistance (guaranteed `SCHOOLWORK` bypass), and knowledge exploration  
+- interactive confirmation for novel entities via non-blocking `PanelAPI` prompts (`[ÁNO/NIE]`)  
+- administrative system controls and sensitive OS commands are completely hidden  
 
-### **Developer Mode (Vývojár a audit)**  
-- podrobné trasovanie procesov orchestrátora a pamäťového IPC  
-- vizualizácia hierarchických dôkazových stromov (ASCII + HTML proof trees)  
-- ladenie multi-aliasov v Knowledge Graph (`kg add alias`, `kg debug stats`, `kg release`)  
-- priamy prístup k telemetrii Guard a detailom rozhodnutí COLNIK-6.x (ALLOW / DENY / TRIAGE)  
-- monitorovanie karanténneho priečinka `COLNIK-6.x/triage`  
+### **Developer Mode (Engineering & Audit)**  
+- granular tracing of orchestrator processes and memory-mapped IPC channels  
+- rendering of hierarchical derivation trees (ASCII + HTML proof trees)  
+- multi-alias debugging and entity management tools (`kg add alias`, `kg debug stats`, `kg release`)  
+- direct access to Guard hardware telemetry and detailed COLNIK-6.x customs evaluation verdicts (ALLOW / DENY / TRIAGE)  
+- live monitoring and inspection of the quarantine directory `COLNIK-6.x/triage`  
 
 ---
 
 ## 🎨 Design & Security Principles  
-- **Futuristic Neon Aesthetic:** ergonomický tmavý podklad s neónovými akcentmi a vysokým kontrastom pre dlhodobú prácu  
-- **Terminal State Decoupling:** nulová šanca na prenos konverzačných vstupov do hostiteľského operačného systému  
-- **Single-Process Sovereignty:** celý server aj rozhranie sú spravované v rámci jediného procesu `sirius_orchestrator.py`  
-- **Zero Recurrence Assurance:** po schválení entity v paneli sa už nikdy nezobrazí opakovaný dotaz na učenie  
-- **Strict Non-Destructive Defaults:** panely nepovoľujú deštruktívne zápisy na disk bez viacúrovňového overenia  
+- **Futuristic Neon Aesthetic:** ergonomic dark background paired with high-contrast neon accents designed for extended operation  
+- **Terminal State Decoupling:** zero possibility of leaking conversational queries into the host operating system shell  
+- **Single-Process Sovereignty:** the entire HTTP/WebSocket server and UI suite run strictly inside `sirius_orchestrator.py`  
+- **Zero Recurrence Assurance:** once an entity or alias is confirmed in the panel, redundant learning proposals are permanently suppressed  
+- **Strict Non-Destructive Defaults:** panels reject destructive disk operations without multi-layer verification  
 
 ---
 
 ## 📊 Module Status (v5.9.0)  
-- ✔ **Plne stabilizované a funkčné (Production-Ready)**  
-- ✔ Architektúra 4 panelov (`Duplicates`, `Triage`, `Navigation`, `Terminal`) implementovaná  
-- ✔ Bezpečnostný reset `currentModule = "none"` aktívny a otestovaný  
-- ✔ Integrované na lokálny port 8080 pod jedným procesom `sirius_orchestrator.py`  
-- ✔ Živé prepojenie s `PanelAPI` (`[ÁNO/NIE]`) a zobrazenie odvodzovacích stromov XAI  
-- ✔ Vizuálna integrácia karantény `COLNIK-6.x/triage` dokončená  
-- ✔ Telemetria Guard (CPU, RAM, Disk) aktívna s réžiou < 1 %  
+- ✔ **Fully Stabilized & Production-Ready**  
+- ✔ 4-Panel Suite architecture (`Duplicates`, `Triage`, `Navigation`, `Terminal`) deployed  
+- ✔ Safety reset `currentModule = "none"` verified and active  
+- ✔ Integrated on local port 8080 under single-process `sirius_orchestrator.py`  
+- ✔ Live integration with `PanelAPI` (`[ÁNO/NIE]`) and XAI proof-tree visualization verified  
+- ✔ Visual integration of the quarantine queue `COLNIK-6.x/triage` completed  
+- ✔ Guard telemetry monitoring (CPU, RAM, Disk) operational with < 1% overhead  
 
 ---
 
 ## 🏁 Summary  
-UI PANEL 6.x v architektúre **SIRIUS Local AI v5.9.0 UNIFIED** predstavuje plne dokončený, bezpečný a vizuálne prepracovaný 4-panelový webový dashboard dostupný na adrese `http://127.0.0.1:8080`.  
-Zabezpečuje absolútne oddelenie používateľského vstupu od systémového shellu, vizualizuje stav znalostného grafu a karantény a poskytuje používateľovi aj vývojárovi dokonalú kontrolu nad autonómnym behom systému — **deterministicky, bezpečne, vysvetliteľne a 100 % offline**.
+UI PANEL 6.x within the **SIRIUS Local AI v5.9.0 UNIFIED** architecture represents a complete, secure, and visually refined 4-panel web dashboard hosted at `http://127.0.0.1:8080`.  
+It guarantees the complete isolation of user input from the operating system shell, visualizes the Knowledge Graph and quarantine queue in real time, and provides both users and developers with complete control over autonomous runtime operations — **deterministically, securely, explainably, and 100% offline**.
