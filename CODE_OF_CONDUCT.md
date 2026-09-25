@@ -1,30 +1,30 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.8 UNIFIED)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.9.0 UNIFIED)
 
 This project follows a professional, respectful, and safety‑oriented standard of behavior.  
 The goal is to maintain a **safe, friendly, and productive environment** for all contributors  
 and all users of SIRIUS LOCAL AI — including households, families, and children.
 
-Version **5.8** updates the Code of Conduct to reflect the **Unified Orchestrator, PanelAPI Loops, TimeCore/Guard Supervision & Enhanced COLNIK‑AUTONOMY Architecture 5.8**, including:
+Version **5.9.0** updates the Code of Conduct to reflect the **Semantic Multi-Word Parsing, Autonomous Envoy Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence Architecture 5.9.0**, including:
 
-- **Unified Orchestrator (`sirius_orchestrator.py`)**  
-- **PanelAPI & Interactive [ÁNO/NIE] Confirmation Loops**  
-- **TimeCore Temporal Tracking & Guard Security Supervision**  
+- **Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)**  
+- **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic state release)**  
+- **Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)**  
+- **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**  
+- **Contextual Domain Shield & Sentence-Bound Bio Filter (`EnvoyNormalizer5`)**  
+- **Multi-Alias Knowledge Graph Persistence (`autosave_kg.json`)**  
+- **Zero Proposal Recurrence & Supervised `[ÁNO/NIE]` Confirmation Loops**  
+- **PanelAPI & Native Integrated IPC Bridge**  
+- **TimeCore Temporal Tracking & Guard Security/Metric Supervision**  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Reasoning Engine 5.8 (multi-hop, inheritance, transitivity)**  
+- **Reasoning Engine 5.9.0 (multi-hop, inheritance, transitivity)**  
 - **Proof Tree & Evidence Tree Foundations**  
-- **Confidence Scoring Foundations**  
-- **Rule Chaining Foundations**  
-- **Workflow Engine 5.8 (explainability routing)**  
-- **Unified Knowledge Graph 5.8 (comfort commands, stabilized autoload)**  
-- **AITE 5.8 (semantic + explainability triage)**  
-- **Identity Engine 3.1**  
-- **SECURITY FAMILY 5.x**  
+- **Confidence Scoring & Deterministic Rule Chaining**  
+- **Workflow Engine 5.9.0 (explainability routing)**  
+- **Identity Engine 3.1 & SECURITY FAMILY 5.x**  
 - **Schoolwork Engine 5.8**  
 - **System Agent 5**  
-- **COLNIK‑6.x Validation Layer (Standard & IPC Mode)**  
-- **AUTONOMY 6.x (Control & Triage Mode)**  
-- **deterministic cross‑platform automation**  
-- **hardened routing and 5.8 safety model**  
+- **COLNIK‑6.x Validation Layer (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x (Control, Guard & Triage Mode)**  
 
 ---
 
@@ -40,19 +40,21 @@ Version **5.8** updates the Code of Conduct to reflect the **Unified Orchestrato
 - maintain clarity, professionalism, and transparency  
 - support safe and responsible use of AI technologies  
 - respect safety‑critical modules such as:  
+  - **InputParser5 & Semantic Multi-Word Preserver**  
+  - **EnvoyExecutionLayer5 (Disambiguation Triage & Anti-Prefix Guard)**  
+  - **EnvoyNormalizer5 (Non-Bio Domain Shield)**  
+  - **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`)**  
   - **SECURITY FAMILY 5.x**  
   - **Identity Engine 3.1**  
   - **Schoolwork Engine 5.8**  
   - **Time‑Limits Engine v3**  
   - **Self‑Repair Layer 5.8**  
-  - **UI Automation Engine 5.1**  
   - **System Agent 5**  
-  - **ENVOY Execution/Permission Layers 5**  
   - **COLNIK‑6.x Validation Layer (Standard & IPC Mode)**  
-  - **AUTONOMY 6.x (Control & Triage Mode)**  
+  - **AUTONOMY 6.x (Control, Guard & Triage Mode)**  
   - **PanelAPI & TimeCore/Guard Supervision**  
   - **KG_EXPLAIN & KG_EXPLAIN_DEEP**  
-  - **Reasoning Engine 5.8**  
+  - **Reasoning Engine 5.9.0**  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -70,16 +72,17 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - acknowledging mistakes and correcting them  
 - asking questions when unsure  
 - contributing improvements in good faith  
+- preserving compound noun structures without mutilating natural language input  
 - respecting FAMILY‑safe design and identity‑based protections  
 - ensuring SCHOOLWORK‑related features remain unrestricted and safe  
 - preserving deterministic, safe, offline‑only behavior  
-- respecting the **UI Automation Engine 5.1** safety boundaries  
+- ensuring Terminal state releases (`currentModule = "none"`) to prevent shell capture  
 - ensuring **System Agent 5** remains the final gatekeeper  
-- ensuring ENVOY 5 sanitization and permission logic are not weakened  
+- ensuring ENVOY 5 disambiguation triage and domain filtering are not weakened  
 - ensuring COLNIK‑6.x validation (Standard & IPC Mode) remains strict and uncompromised  
-- ensuring AUTONOMY 6.x (Control & Triage Mode) proposal/confirmation logic remains safe  
-- ensuring `sirius_orchestrator.py` routing remains deterministic  
-- ensuring PanelAPI [ÁNO/NIE] loops and TimeCore/Guard supervision operate securely  
+- ensuring AUTONOMY 6.x proposal/confirmation logic remains safe without prompt loops  
+- ensuring `sirius_orchestrator.py` routing remains deterministic on port 8080  
+- ensuring PanelAPI `[ÁNO/NIE]` loops and TimeCore/Guard supervision operate securely  
 - ensuring KG_EXPLAIN & KG_EXPLAIN_DEEP remain transparent and safe  
 - ensuring reasoning rules (multi-hop, inheritance, transitivity) are not misused  
 - ensuring proof tree, evidence tree, and confidence logic remain deterministic  
@@ -103,18 +106,18 @@ These principles ensure that collaboration remains focused, respectful, and effe
   - STRANGER restrictions  
   - identity‑based protections  
   - Schoolwork Engine bypass  
+- attempting to introduce prefix drifts or bypass Envoy disambiguation guards  
+- manipulating `EnvoyNormalizer5` to leak biological attributes onto technological concepts  
+- locking the user inside the Terminal panel or sabotaging input state resets  
 - modifying SECURITY FAMILY logic to weaken protections  
 - disabling or interfering with the Self‑Repair Layer or TimeCore/Guard supervision  
-- abusing or misusing the **UI Automation Engine 5.1** to perform unsafe actions  
-- attempting to circumvent deterministic UI automation safeguards  
 - weakening **System Agent 5** validation rules  
-- attempting to bypass ENVOY Execution/Permission Layer sanitization  
-- introducing unsafe workflows or unsafe OS‑level actions  
+- introducing unsafe workflows or unverified OS‑level actions  
 - injecting unsafe reasoning rules or explainability overrides  
 - manipulating KG_EXPLAIN or KG_EXPLAIN_DEEP to hide or distort inference history  
 - attempting to bypass **COLNIK‑6.x** validation or IPC synchronization  
 - attempting to bypass **PanelAPI** user confirmation gates  
-- attempting to misuse AUTONOMY 6.x decision logic or Triage Mode  
+- attempting to force redundant learning loops on previously confirmed aliases  
 
 Such behavior harms the community and will not be tolerated.
 
@@ -132,11 +135,11 @@ Project maintainers have the right and responsibility to:
 - protect contributors from harassment or abuse  
 - preserve the integrity and stability of the project  
 - ensure that safety modules remain uncompromised  
-- reject contributions that weaken identity‑based protections  
+- reject contributions that weaken identity‑based protections or multi-alias persistence  
 - prevent unsafe modifications to SCHOOLWORK ENGINE or SECURITY FAMILY  
-- ensure that **UI Automation Engine 5.1** remains deterministic and safe  
+- ensure that **Terminal & UI Panel** integrations remain decoupled and safe  
 - ensure **System Agent 5** remains the final gatekeeper  
-- ensure ENVOY 5 sanitization and permission logic are never bypassed  
+- ensure ENVOY 5 sanitization, disambiguation triage, and domain filters are never bypassed  
 - ensure COLNIK‑6.x validation and IPC synchronization remain strict  
 - ensure AUTONOMY 6.x proposal/confirmation logic and Triage Mode remain safe  
 - ensure orchestrator routing, PanelAPI loops, and TimeCore/Guard telemetry remain active  
@@ -180,7 +183,7 @@ Severity depends on:
 - whether it is repeated  
 - whether it involved attempts to bypass FAMILY or SCHOOLWORK protections  
 - whether it attempted to weaken SECURITY FAMILY or Identity Engine 3.1  
-- whether it attempted to misuse or compromise the **UI Automation Engine 5.1**  
+- whether it attempted to compromise the **4-Panel UI Suite** or **Terminal isolation**  
 - whether it attempted to bypass **System Agent 5**  
 - whether it attempted to bypass **ENVOY Execution/Permission Layers 5**  
 - whether it attempted to bypass **COLNIK‑6.x** or **PanelAPI** gates  
@@ -201,24 +204,25 @@ This Code of Conduct applies to:
 - project‑related communication outside GitHub  
 - any interaction representing the project  
 - all modules including safety‑critical components:  
+  - **InputParser5 & Multi-Word Semantic Engine**  
+  - **EnvoyExecutionLayer5 & EnvoyNormalizer5**  
+  - **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`)**  
   - **SECURITY FAMILY 5.x**  
   - **Identity Engine 3.1**  
   - **Schoolwork Engine 5.8**  
   - **Time‑Limits Engine v3**  
   - **Self‑Repair Layer 5.8**  
-  - **UI Automation Engine 5.1**  
   - **System Agent 5**  
-  - **ENVOY Execution/Permission Layers 5**  
   - **COLNIK‑6.x Validation Layer (Standard & IPC Mode)**  
-  - **AUTONOMY 6.x (Control & Triage Mode)**  
+  - **AUTONOMY 6.x (Control, Guard & Triage Mode)**  
   - **PanelAPI, TimeCore & Guard Supervision**  
   - **KG_EXPLAIN & KG_EXPLAIN_DEEP**  
-  - **Reasoning Engine 5.8**  
-  - **Unified Orchestrator (`sirius_orchestrator.py`)**  
+  - **Reasoning Engine 5.9.0**  
+  - **Unified Orchestrator (`sirius_orchestrator.py` on Port 8080)**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (v5.8)
+# 8. 🧒 Family & Safety Considerations (v5.9.0)
 
 SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 5.x** module designed to:
 
@@ -230,13 +234,13 @@ SIRIUS LOCAL AI includes a dedicated **SECURITY FAMILY 5.x** module designed to:
 - maintain STRANGER‑mode protections for unknown users  
 - ensure OWNER‑level actions remain restricted  
 - integrate with Identity Engine 3.1 for behavior‑based recognition  
-- ensure UI automation cannot perform unsafe actions without identity validation  
+- ensure UI panels and Terminal cannot capture host execution without authorization  
 - ensure **System Agent 5** validates all system‑level actions  
-- ensure ENVOY 5 sanitizes all system requests  
+- ensure ENVOY 5 sanitizes all web queries and filters inappropriate semantic links  
 - ensure **COLNIK‑6.x** validates all KG mutations, workflow steps, and IPC payloads  
 - ensure **AUTONOMY 6.x** proposal/confirmation logic and Triage Mode remain safe  
-- ensure **PanelAPI** [ÁNO/NIE] loops provide clear human-in-the-loop oversight  
-- ensure **TimeCore & Guard** monitor execution stability and prevent erratic behavior  
+- ensure **PanelAPI** `[ÁNO/NIE]` loops provide clear human-in-the-loop oversight  
+- ensure **TimeCore & Guard** monitor execution stability and prevent erratic resource spikes  
 - ensure KG_EXPLAIN & KG_EXPLAIN_DEEP provide transparent inference history  
 - ensure reasoning rules remain deterministic and safe  
 
@@ -253,4 +257,4 @@ and help maintain a respectful, safe, and productive environment for all users �
 
 ---
 
-**Document Status:** v5.8 (Unified Orchestration, PanelAPI, TimeCore/Guard & COLNIK-AUTONOMY Architecture)
+**Document Status:** v5.9.0 (Semantic Multi-Word Parsing, Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence)
