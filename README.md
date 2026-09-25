@@ -3,218 +3,126 @@
 
 ---
 
-## ⚠️ IMPORTANT ARCHITECTURE NOTICE — RUNTIME 5.8 (ACTIVE DEVELOPMENT)
-### Runtime 5.x + COLNIK-6.x + AUTONOMY + Live UI Panel — Integration in Progress
+# ⚠️ WARNING — SYSTEM UNDER ACTIVE DEVELOPMENT (RUNTIME 5.9.0)
+### ⚠️ EXPERIMENTAL & REFINEMENT NOTICE — WORK IN PROGRESS
 
-Although SIRIUS currently runs an operational stack including:
-- COLNIK‑6.x (Standard Mode & IPC)
-- AUTONOMY‑6.x (Analyzer + Proposer + Guard + Duplicate/Triage modules)
-- PanelAPI (Live interactive UI feedback loops with `[ÁNO/NIE]` confirmation)
-- TimeCore & Guard (Temporal tracking & security supervision)
-- Full Knowledge Graph platform with deep inferential reasoning (`kg.explain_deep`, `kg.path`, custom rules)
-
-➡️ **The system is still actively under development.** 
-
-### 🔄 MAJOR USAGE UPDATE: CLI vs. ORCHESTRATOR
-- **Previous calling method:** Direct script execution via CLI.
-- **Current standard execution:** Execution has shifted from isolated CLI scripts to **`sirius_orchestrator.py`**, which serves as the central orchestration loop uniting Runtime 5, Autonomy, Colnik-6.x, TimeCore, Guard, and the live Panel API.
+> **CRITICAL NOTICE:**  
+> SIRIUS LOCAL AI is currently under **intensive active development**.  
+> The codebase, semantic extraction rules, parsing logic, and user interface are undergoing **continuous refinement, polishing, and modification**.  
+> The system **MAY PRODUCE ERRORS, INACCURACIES, OR UNEXPECTED BEHAVIOR**.  
+> Architectural modules and APIs are subject to change in upcoming builds.  
+> Test and run this software strictly as an evolving developmental build!
 
 ---
 
-# SIRIUS LOCAL AI — Version 5.8  
-Enterprise‑Grade Symbolic Reasoning • Autonomous Module Orchestration • Unified Knowledge Graph Platform • Fully Orchestrated Runtime & UI Integration
+## ⚠️ ARCHITECTURAL NOTICE — RUNTIME 5.9.0
+### Runtime 5.x + COLNIK-6.x + AUTONOMY + 4-Panel UI Suite + Autonomous Envoy Triage
+
+The operational stack currently integrates:
+- **COLNIK‑6.x** (Standard Mode & High-Performance IPC)
+- **AUTONOMY‑6.x** (Analyzer + Proposer + Guard + Duplicates/Triage modules)
+- **4-Panel UI Suite** (Fully integrated: `Duplicates`, `Triage`, `Navigation`, `Terminal` with deterministic state release)
+- **Integrated Single-Process IPC Bridge** (Native daemon executing on port `8080`)
+- **Semantic Multi-Word Parser** (`InputParser5` — preserving full compound noun phrases)
+- **Autonomous Disambiguation Triage** (`EnvoyExecutionLayer5` — sub-article resolution & anti-prefix guard)
+- **Contextual Habitat Filter** (`EnvoyNormalizer5` — strict non-biological domain shielding)
+- **Multi-Alias Graph Persistence** (`RuntimeCore` — dual-key commit to `autosave_kg.json` eliminating redundant queries)
+
+### 🔄 EXECUTION STANDARD
+- **Unified Entry Point:** Isolated CLI scripts have been permanently replaced by the central orchestrator:  
+  `python sirius_orchestrator.py`  
+- The orchestrator governs Runtime 5, the IPC daemon, the Knowledge Graph, semantic parsing, and real-time browser communication (`index.html`).
+
+---
+
+# SIRIUS LOCAL AI — Version 5.9.0
+**Enterprise‑Grade Symbolic Reasoning • Semantic Multi-Word Parsing • Autonomous Disambiguation Triage • Multi-Alias KG Persistence • 4-Panel UI Suite**
 
 ## 🧭 Philosophy of SIRIUS
-“To err is human… and among AI, they say that to err is algorithmic.”
+> *“To err is human… and among AI, they say that to err is algorithmic.”*
 
-SIRIUS embraces this principle: mistakes are not failures — they are signals, data points, and opportunities for refinement.  
-The system is designed to learn from structural inconsistencies, workflow deviations, and reasoning anomalies, transforming them into actionable improvements.
-
----
-
-# Overview
-
-SIRIUS LOCAL AI 5.8 delivers a fully stabilized, enterprise‑ready symbolic AI runtime designed for high‑reliability environments, offline operation, and deterministic reasoning.  
-Built on the evolving SIRIUS Runtime architecture, this release consolidates the unified Knowledge Graph platform, multi‑hop inference engine, autonomous orchestration, live UI panel integration, temporal/security supervision, and deep explainability framework into a cohesive, production‑grade system driven by `sirius_orchestrator.py`.
-
-Version 5.8 focuses on:
-
-- Runtime stability and orchestrated execution via `sirius_orchestrator.py`  
-- Predictable initialization and TimeCore heartbeat synchronization  
-- Live UI Panel (`PanelAPI`) integration with interactive user feedback (`[ÁNO/NIE]`)  
-- TimeCore temporal tracking and Guard security supervision  
-- Unified schema for knowledge representation and automated autoloading (`autosave_kg.json`)  
-- Full COLNIK‑6.x (Standard & IPC Mode) and AUTONOMY‑6.x integration  
-- Autonomous proposal/confirmation cycle with security safeguards  
-
-This release forms a major milestone in the ongoing development toward fully autonomous, secure local AI operations.
+SIRIUS embraces this principle: mistakes are not failures — they are signals, data points, and structural opportunities for refinement. The system is designed to learn from syntactic anomalies, workflow deviations, and knowledge edge cases, transforming them into resilient execution rules.
 
 ---
 
-# 🚀 Enterprise Highlights in 5.8
+# 🔍 System Overview
 
-## Unified Knowledge Graph Platform
-A fully integrated KG architecture designed for enterprise‑level consistency, reliability, and scalability.
+SIRIUS LOCAL AI 5.9.0 delivers a major qualitative leap in natural language understanding, encyclopedic navigation, and UI state stability. While previous releases established multi-layer orchestration, version **5.9.0** focuses on **deep semantic accuracy**, automated disambiguation branching, and the permanent elimination of terminal interface regressions.
 
-Key components:
-- **KG Core** — deterministic graph engine with cycle‑safe schema (`autosave_kg.json`)  
-- **KG Query Engine** — multi‑hop traversal, inbound/outbound navigation  
-- **KG Explore** — structured contextual graph visualization  
-- **KG Explain / Explain Deep** — rule‑based explainability with proof trees and evidence chains  
-
-End‑to‑end integration:  
-**KG → Reasoning Engine → Workflow Engine → Orchestrator**
-
-This unified platform ensures predictable behavior across all reasoning and workflow operations.
+### Key Milestones in Version 5.9.0:
+- **Multi-Word Noun Phrases (`InputParser5`):** Queries such as `CO JE MOBILNY TELEFON?`, `CO JE PEVNA LINKA?`, or `CO JE OVCIA VLNA?` are no longer truncated to isolated single tokens. The parser preserves the complete compound noun phrase.
+- **Autonomous Disambiguation Triage (`EnvoyExecutionLayer5`):** Automatically detects Wikipedia disambiguation pages (*„môže byť...“*) and resolves the underlying biological, material, or technical target article (e.g., resolving `slon` directly to the genus *Elephas*).
+- **Phonetic & Anti-Prefix Guard:** Neutralizes aggressive prefix-matching anomalies, preventing query drifts (e.g., stopping *Káva* from jumping to *Kavala*, or *Skript* to soap operas).
+- **Contextual Habitat Filtering (`EnvoyNormalizer5`):** Strict domain guards prevent scientific fields, engineering concepts, and abstract topics (e.g., *ekológia*, *architektúra*, *fyzika*) from receiving inaccurate geographic habitat metadata.
+- **Multi-Alias Persistence in KG (`RuntimeCore`):** Enriched knowledge is stored simultaneously under both the raw queried phrase and the normalized encyclopedic title. Once approved via `[ÁNO/NIE]`, redundant proposals are completely bypassed, serving follow-up requests directly from graph memory.
+- **Full 4-Panel UI Suite Integration:** `Duplicates`, `Triage`, `Navigation`, and `Terminal` panels operate with verified state cleanup (`currentModule = "none"`).
 
 ---
 
-# 🌐 Why SIRIUS runs via Web and Python
+# 🌐 Why SIRIUS Operates via Web & Python
 
-- **Python as the Engine:**
-  - Serves as a clean, local, and fully transparent tool under the hood.
-  - Processes symbolic logic and the knowledge graph without any hidden background processes or cloud services.
-
-- **Web Interface as the Dashboard:**
-  - Instead of installing complex proprietary software, we use the web browser.
-  - Provides a familiar, secure environment that you use daily as the primary control window.
-
-- **Privacy Guarantee (Offline First):**
-  - The code is fully open source and readable line by line.
-  - When disconnected from the internet, data has nowhere to go, ensuring your files and thoughts remain exclusively on your computer.
+- **Python as the Core Logic Engine:**
+  - Serves as a transparent, locally auditable runtime under the hood.
+  - Executes symbolic logic, inference trees, and graph operations without external cloud dependencies.
+- **Web Browser as the Command Interface:**
+  - Avoids cumbersome proprietary GUI installations; control runs seamlessly in modern browsers via native HTTP/IPC calls on port `8080`.
+- **Offline-First Privacy Guarantee:**
+  - 100% open-source, local execution.
+  - When disconnected from the internet, knowledge, reasoning traces, and user interactions remain strictly on your local hardware.
 
 ---
 
-# 🧠 Deep Explainability Framework (XAI)
+# 🧠 Knowledge Graph Architecture & Explainability (XAI)
 
-SIRIUS 5.8 enhances the enterprise explainability layer with:
-
-- Hierarchical proof trees (ASCII + HTML)  
-- Evidence trees for inference transparency  
-- Rule attribution  
-- Reasoning metrics  
-- Confidence scoring  
-- Multi‑hop deduction  
-- Unified traversal context  
-
-This enables audit‑ready reasoning suitable for regulated and mission‑critical environments.
+SIRIUS combines symbolic knowledge representation with auditable explainable AI:
+- **Hierarchical Proof Trees** for transparent multi-hop derivations.
+- **Symbolic Rule Attribution** (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, `TranzitivneRelacieRule`, `AutoTypeInferenceRule`, `OrbitTypeInferenceRule`).
+- **Deterministic Deductive Traversal** backed by atomic serialization into `autosave_kg.json`.
 
 ---
 
-# 🧩 Enterprise Reasoning Rules
+# 🛡️ COLNIK‑6.x & AUTONOMY Tandem Execution
 
-The reasoning engine includes a complete suite of symbolic inference rules:
-
-- **MultiHopOrbitInferenceRule**  
-- **DedicsnostVlastnostiRule**  
-- **TranzitivneRelacieRule**  
-- **AutoTypeInferenceRule**  
-- **OrbitTypeInferenceRule**  
-
-These rules support complex enterprise logic, hierarchical classification, and property propagation.
+COLNIK operates as an internal **customs control authority**, validating each operation before mutations reach graph storage or workflow pipelines:
+- Permission checks enforced by `PermissionLayer5` and `PolicyEngine5`.
+- Autonomous proposal and decision evaluations running in tandem with `AUTONOMY-6.x`.
+- Live system resource auditing and duplicate file detection governed by `Guard` and `TimeCore`.
 
 ---
 
-# 🛡 COLNIK‑6.x — Enterprise Customs & Validation Layer (Standard & IPC Mode)
+# 📊 Module Status Matrix (v5.9.0)
 
-COLNIK‑6.x is a fully validated, stable, production‑ready module operating alongside the orchestrator.  
-It acts as an internal **customs officer**, inspecting and validating operations before they reach core reasoning or workflow engines.
-
-### Key Features
-- Deterministic rule validation  
-- Customs‑style inspection of KG operations  
-- Workflow step authorization and filtering  
-- High-performance IPC synchronization with AUTONOMY  
-- Reasoning safety checks  
-- Runtime anomaly detection  
-- Integration with ENVOY Permission Layer (`PermissionLayer5`, `PolicyEngine5`)  
-- Full offline operation  
-- Protection against malformed KG mutations  
-- Enforcement of enterprise‑grade consistency policies  
-
-### COLNIK + AUTONOMY Control & Triage Mode
-SIRIUS features a robust **dual‑module control mode**, allowing COLNIK‑6.x and AUTONOMY to run together for validation:
-
-- COLNIK performs rule enforcement and workflow validation across Standard and IPC modes  
-- AUTONOMY generates proposals, decisions, and confirmations  
-- Both modules synchronize through IPC channels  
-- TimeCore, Guard, and Triage modules monitor system health, execution timing, and duplicate files  
-
-This tandem mode ensures predictable, safe, and fully traceable autonomous behavior.
+| Module / Component | Status | Operational Notes |
+| :--- | :---: | :--- |
+| **`sirius_orchestrator.py`** | 🟩 Stable | Unified single-process runtime, native IPC bridge (port 8080) |
+| **`InputParser5`** | 🟩 Enhanced | Multi-word phrase preservation, copula verb separation |
+| **`EnvoyExecutionLayer5`** | 🟩 Enhanced | Autonomous Disambiguation Triage, Anti-Prefix Guard |
+| **`EnvoyNormalizer5`** | 🟩 Enhanced | Contextual semantic parser, non-bio domain blocker |
+| **`RuntimeCore`** | 🟩 Enhanced | Multi-Alias KG persistence, zero proposal recurrence |
+| **UI Suite (4 Panels)** | 🟩 Stable | `Duplicates`, `Triage`, `Navigation`, `Terminal` (clean state reset) |
+| **Unified KG Platform** | 🟩 Stable | Full serialization via `autosave_kg.json`, cycle-safe schema |
+| **Reasoning Engine** | 🟩 Stable | Multi-hop inference rules, XAI proof-tree generation |
+| **COLNIK‑6.x & AUTONOMY** | 🟩 Stable | Workflow step authorization, quarantine management, Guard supervision |
 
 ---
 
-# 📊 Development Status Table (5.8)
+# 🗺️ Strategic Roadmap (Upcoming Iterations)
 
-| Module / Component | Status | Notes |
-|--------------------|--------|-------|
-| Runtime 5.8 / Orchestrator | 🟩 Stable | Fully validated, orchestrated via `sirius_orchestrator.py` |
-| PanelAPI & TimeCore/Guard | 🟩 Active | Interactive `[ÁNO/NIE]` loops + temporal/security supervision |
-| Unified KG Platform | 🟩 Stable | Enterprise schema + reasoning (`autosave_kg.json`) |
-| Reasoning Engine | 🟩 Stable | Multi‑hop inference + XAI |
-| WorkflowEngine5 | 🟩 Stable | Deterministic orchestration |
-| ENVOY Security Layers | 🟩 Stable | Permission + quarantine |
-| COLNIK‑6.x | 🟩 Stable | Standard Mode + IPC Mode |
-| AUTONOMY 6.x | 🟩 Stable | Analyzer + Proposer + Guard + Triage |
-
----
-
-# 🛠 Workflow Enhancements
-
-- Fully integrated KG processing driven by `sirius_orchestrator.py`  
-- Stabilized WorkflowEngine5 routing and step registration  
-- Clean orchestration of KG, reasoning, ENVOY, COLNIK, AUTONOMY, PanelAPI, TimeCore/Guard, and system workflows  
-- Natural language detection for interactive learning (`kg.learn_proposal`)  
-
-This ensures predictable execution paths and consistent behavior across all runtime operations.
-
----
-
-# 📁 KG Export / Import & Persistence
-
-- Stabilized JSON export for reasoning and KG snapshots  
-- Improved KG autoload reliability via `autosave_kg.json`  
-- Enterprise‑grade integrity checks for schema consistency  
-
----
-
-# 🔒 Runtime Stability & Security Layers
-
-- Runtime stability: **100%**  
-- KG stack stability: **100%**  
-- Reasoning Engine stability: **100%**  
-- WorkflowEngine5 stability: **100%**  
-
-ENVOY subsystem fully initialized:
-
-- Permission Layer  
-- Normalizer  
-- Execution Layer  
-- Quarantine  
-
-Behavior Filter, Family Safety Rules, and Guard supervision are active.
-
-Version 5.8 represents the most advanced, orchestrated, and interactive release of the SIRIUS platform to date.
-
----
-
-# 🗺️ Enterprise Roadmap (Next Steps)
-
-1. **FileManager**  
-2. **ProcessManager**  
-3. **SystemMonitor**  
-4. **CleanBuild**  
-5. **Autonomous Mode (Parser B + autonomy layer)**  
-6. **Gatekeeper (external security layer)**  
-7. **SIRIUS Control Panel UI (Full Graphical Dashboard)**  
-
-These modules will extend SIRIUS into a fully autonomous, secure, and enterprise‑ready local AI system.
+1. **Standalone Binary Packaging (`.exe`):** Compiling an isolated, distributable executable eliminating external Python dependencies.
+2. **Taxonomic Graph Expansion:** Deeper semantic ontologies for botanical classification and raw materials.
+3. **FileManager & ProcessManager:** Autonomous local file manipulation and runtime system management.
+4. **Interactive Audit Console:** Enhanced command-line debugging directly within the `Terminal` UI panel.
 
 ---
 
 # 🏁 Summary
 
-SIRIUS LOCAL AI 5.8 delivers a fully stabilized logic layer, a unified Knowledge Graph platform, reliable multi‑hop reasoning, complete COLNIK‑AUTONOMY integration, and live orchestrated UI interaction via **`sirius_orchestrator.py`**, backed by `PanelAPI`, `TimeCore`, and `Guard`.  
-While development is ongoing, this release establishes a powerful foundation for advanced system management, autonomous operations, and deep semantic orchestration.
+SIRIUS LOCAL AI 5.9.0 unites deterministic symbolic graph logic with contextual understanding of multi-word natural phrases and resilient navigation through encyclopedic disambiguation networks. The runtime is fast, stable, and prepared for continuous expansion.
 
-**SIRIUS is no longer just a knowledge graph — it is a fully orchestrated reasoning and autonomous orchestration platform.**
+---
+**Metadata & SEO:**  
+Keywords: SIRIUS LOCAL AI, Symbolic AI, Knowledge Graph, Offline AI, Envoy Triage, Python Orchestrator, Autonomous AI, Localhost AI  
+Version: 5.9.0  
+Author: richardpizem-ctrl  
+Environment: Localhost / Windows 11 / Port 8080  
+Build Status: Active Development (WIP)
