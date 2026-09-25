@@ -1,445 +1,257 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v5.8 UNIFIED)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v5.9.0 UNIFIED)
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the **Unified Orchestration, PanelAPI, TimeCore/Guard & Enhanced COLNIK‑AUTONOMY Architecture 5.8**.
+It serves as an architectural orientation map for the **Semantic Multi-Word Parsing, Autonomous Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence Architecture 5.9.0**.
 
-Version **5.8 UNIFIED** expands and stabilizes the module map with:
+Version **5.9.0 UNIFIED** expands, decouples, and stabilizes the module map with:
 
-- **Unified Orchestrator (`sirius_orchestrator.py`)**  
+- **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)**  
+- **Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)**  
+- **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**  
+- **Contextual Domain Shield & Bio Filtering (`EnvoyNormalizer5`)**  
+- **Multi-Alias Knowledge Graph Persistence with Dual-Key Mapping (`autosave_kg.json`)**  
+- **Zero Proposal Recurrence for confirmed semantic entities**  
+- **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state release)**  
+- **Native Integrated High-Performance IPC Bridge eliminating file locking bottlenecks**  
 - **PanelAPI & Interactive [ÁNO/NIE] Confirmation Loops**  
-- **TimeCore Temporal Tracking & Guard Security Supervision**  
-- **AITE 5.8 (Semantic + Deep Explainability Multimodal Triage)**  
-- **Workflow Engine 5.8 (Deep Explainability + COLNIK‑validated + AUTONOMY‑aware Routing)**  
-- **Reasoning Engine 5.8 (multi‑hop, inheritance, transitivity, rule chaining)**  
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Unified Knowledge Graph 5.8 + KG‑LIGHT (stabilized autosave `autosave_kg.json`)**  
-- **Expanded KG Comfort Commands**  
-- **ENVOY Execution + Permission Layers 5 (Deep Explainability Traces)**  
-- **System Agent 5**  
-- **Security Family 5.x (Identity Engine 3.1)**  
+- **TimeCore Temporal Tracking & Guard Security/Metric Supervision (CPU, RAM, Disk)**  
+- **Workflow Engine 5.9.0 (Deterministic, explainability-aware routing)**  
+- **Reasoning Engine 5.9.0 (Multi-hop, inheritance, transitivity, orbital rules)**  
+- **KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)**  
+- **KG Comfort Commands with multi-alias inspection and state decoupling**  
+- **COLNIK‑6.x Enterprise Customs Validation Layer (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x Autonomous Decision, Guard Telemetry & Triage Mode (`COLNIK-6.x/triage`)**  
+- **System Agent 5 & Identity Engine 3.1 (SECURITY FAMILY 5.x)**  
 - **Self‑Repair Layer 5.8**  
-- **Unified PC/Mobile deterministic routing**  
-- **Deterministic UI Automation Engine 5.1**  
-- **COLNIK‑6.x Enterprise Validation Layer (Standard & IPC Mode)**  
-- **AUTONOMY 6.x Autonomous Proposal/Confirmation & Triage Mode**  
 
 All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 1. Runtime Core & Orchestrator 5.8 (Unified)
-**Purpose:** Central execution orchestrator driven by `sirius_orchestrator.py`.  
+# 1. Runtime Core & Orchestrator 5.9.0 (Unified)
+**Purpose:** Central single-process execution orchestrator driven by `sirius_orchestrator.py` on local port 8080.  
 **Responsibilities:**
 - module initialization and lifecycle management via `sirius_orchestrator.py`  
+- hosting the integrated HTTP/WebSocket IPC daemon on port 8080  
 - interactive `PanelAPI` confirmation loops (`[ÁNO/NIE]`)  
-- temporal tracking (`TimeCore`) and security/anomaly monitoring (`Guard`)  
-- plugin loading  
-- workflow + deep explainability dispatch  
-- enforcing capability boundaries  
-- event routing  
-- global system stability  
+- temporal tracking (`TimeCore`) and resource/security monitoring (`Guard`)  
+- compound phrase preservation and copula verb separation via `InputParser5`  
+- dual-key multi-alias persistence committed atomically to `autosave_kg.json`  
+- suppression of redundant learning loops (Zero Proposal Recurrence)  
+- enforcing terminal input decoupling (`currentModule = "none"`) upon clearing commands  
+- workflow and deep explainability dispatch (`KG_EXPLAIN_DEEP`)  
+- enforcing capability boundaries and deterministic error propagation  
 - integration with Security Family 5.x and Self‑Repair Layer 5.8  
-- deterministic execution and System Agent 5 routing  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP routing  
-- UI Automation Engine 5.1 integration  
-- unified PC/Mobile behavior  
-- ENVOY permission enforcement  
-- **COLNIK‑6.x validation of workflow + KG operations (Standard & IPC Mode)**  
-- **AUTONOMY 6.x proposal/confirmation & Triage Mode routing**
+- **COLNIK‑6.x validation of workflow and KG mutations (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY 6.x proposal evaluation, Guard metric auditing, and Triage Mode routing**
 
 ---
 
-# 2. Filesystem Agent (FS‑AGENT 5.8)
-**Purpose:** Safe, deterministic file operations.  
+# 2. Input Parser & Semantic Extractor (`InputParser5`)
+**Purpose:** Precise natural language extraction preserving multi-word compound structures.  
 **Responsibilities:**
-- moving, copying, deleting  
-- path validation  
-- rollback‑safe operations  
-- semantic routing (documents, code, schoolwork)  
-- integration with Schoolwork Engine 5.8  
-- integration with UI Automation Engine 5.1  
-- unified PC/Mobile filesystem logic  
-- COLNIK‑validated file operations  
+- extraction and preservation of compound noun phrases (e.g., `ovcia vlna`, `mobilny telefon`, `pevna linka`)  
+- strict isolation of Slovak copula verbs (`je`, `sú`) from subject entities, preventing linguistic corruptions  
+- diacritic-aware normalization producing clean entities for graph lookup and external triage  
+- deterministic tokenization preventing noun-modifier truncation  
 
 ---
 
-# 3. Natural Language Router (NL Router 5.8)
-**Purpose:** Semantic interpretation and routing of user commands.  
+# 3. Knowledge Graph Engine (KG ENGINE 6.x & Multi-Alias Core)
+**Purpose:** Unified symbolic knowledge graph engine powering multi-alias indexing and explainability.  
 **Responsibilities:**
-- command classification  
-- semantic extraction  
-- explain intent detection (“why … ?”)  
-- routing to modules or plugins  
-- plugin NL command detection  
-- fallback interpretation  
-- preventing ambiguous or unsafe actions  
-- identity‑aware filtering (OWNER / FAMILY / STRANGER)  
-- UI automation command routing  
-- System Agent 5 validation for system‑level intents  
-- COLNIK‑validated NL routing  
-- AUTONOMY‑aware intent detection  
+- deterministic node and edge management within a cycle-safe schema  
+- dual-key entity indexing: mapping user query phrases to formal encyclopedic titles  
+- atomic serialization into `autosave_kg.json`  
+- inbound/outbound graph traversal and orbital level transitions  
+- multi-hop pathfinding and relation discovery (`KG_RELATE`)  
+- developer comfort command execution with state release  
+- permanent memory resolution suppressing repetitive AUTONOMY proposals  
 
 ---
 
-# 4. Context Memory Engine (CME‑MEM 5.8)
-**Purpose:** Semantic workflow context.  
+# 4. Autonomous ENVOY & Triage Subsystem (v5.9.0)
+**Purpose:** Safe, outbound-only external retrieval and domain-guarded semantic normalization.  
 **Responsibilities:**
-- tracking recent actions  
-- storing semantic tags  
-- supporting multi‑step workflows  
-- providing contextual hints  
-- subject/difficulty metadata  
-- explainability traces  
-- integration with Schoolwork Engine 5.8  
-- integration with UI Automation Engine 5.1  
-- unified PC/Mobile context memory  
-- COLNIK‑validated context transitions  
+- **Permission Layer 5:** identity gating (OWNER/FAMILY/STRANGER) and outbound policy audits  
+- **Execution Layer 5:** autonomous disambiguation triage (*„môže byť...“*) and Strip-Bracket Fallback  
+- **Anti-Prefix Guard:** elimination of fuzzy prefix over-matching (*Káva* -> *Kavala*)  
+- **Quarantine Sandbox:** extraction of clean text; complete stripping of HTML, scripts, trackers, and binaries  
+- **Normalizer 5:** Non-Bio Domain Shield (strictly blocking biological habitat tags on technical/abstract concepts)  
+- **Sentence-Bound Extractor:** requiring explicit occurrence verbs (*žije*, *obýva*) before binding habitat edges  
+- delivering normalized, schema-valid facts to COLNIK-6.x customs inspection  
 
 ---
 
-# 5. Workflow Engine 5.8
-**Purpose:** Deterministic multi‑step logic with deep explainability.  
+# 5. Reasoning Engine 5.9.0 & Deep Explainability (XAI)
+**Purpose:** Structured symbolic reasoning and verifiable proof-tree generation.  
 **Responsibilities:**
-- workflow state machine managed by `sirius_orchestrator.py`  
-- plugin workflow execution  
-- semantic transitions  
-- preventing invalid sequences  
-- SCHOOLWORK workflow prioritization  
-- integration with Reasoning Engine 5.8  
-- integration with KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- integration with UIWorkflow 5.1  
-- deterministic fallback behavior  
-- unified PC/Mobile workflows  
-- ENVOY workflow integration  
-- **COLNIK‑validated workflow steps (Standard & IPC Mode)**  
-- **AUTONOMY‑aware transitions (Control & Triage Mode)**
+- multi-hop rule deduction and property inheritance (`DedicsnostVlastnostiRule`)  
+- transitive relation chaining (`TranzitivneRelacieRule`)  
+- orbital category reasoning (`MultiHopOrbitInferenceRule`)  
+- automatic type inference (`AutoTypeInferenceRule`)  
+- generating human-readable explanations via `KG_EXPLAIN`  
+- generating multi-layer hierarchical proof trees (ASCII + HTML) via `KG_EXPLAIN_DEEP`  
+- confidence scoring and evidence tree compilation  
 
 ---
 
-# 6. GUI Layer 5.8
-**Purpose:** Modular user interface.  
+# 6. Workflow Engine 5.9.0
+**Purpose:** Deterministic multi-step process orchestration.  
 **Responsibilities:**
-- rendering plugin UI  
-- executing GUI actions  
-- identity indicators  
-- SCHOOLWORK indicators  
-- tray/voice integration  
-- UI automation visual feedback  
-- explainability visualizer  
-- unified PC/Mobile UI  
+- workflow state machine executed within `sirius_orchestrator.py`  
+- plugin workflow execution and semantic state transitions  
+- SCHOOLWORK workflow prioritization and academic restriction bypass  
+- deep explainability routing  
+- deterministic error handling and safe fallback routing  
+- **COLNIK‑validated workflow steps (Standard & High-Performance IPC Mode)**  
+- **AUTONOMY‑aware transitions (Control & Triage Mode)**  
 
 ---
 
-# 7. Email Composer
-**Purpose:** Generating email text (without sending).  
+# 7. 4-Panel UI Suite (Port 8080)
+**Purpose:** Modular local dashboard running via browser on port 8080.  
 **Responsibilities:**
-- email drafts  
-- structured responses  
-- professional text generation  
+- **Duplicates Panel:** live resource auditing and safe duplicate categorization (`REPORT_ONLY`)  
+- **Triage Panel:** visual supervision of quarantine queues and unclassified files (`COLNIK-6.x/triage`)  
+- **Navigation Panel:** deterministic module switching across Runtime, KG, Envoy, and Autonomy  
+- **Terminal Panel:** interactive CLI with automatic state release (`currentModule = "none"`), permanently decoupling user queries from host OS commands  
 
 ---
 
-# 8. Automatic Input Triage Engine (AITE 5.8)
-**Purpose:** Multimodal semantic + deep explainability detection and classification.  
+# 8. COLNIK‑6.x Customs Decision Gate
+**Purpose:** Authoritative customs inspection gate deciding ALLOW / DENY / TRIAGE.  
 **Responsibilities:**
-- detecting input type (text, image, code, document, installer)  
-- OCR extraction  
-- semantic analysis  
-- subject detection  
-- difficulty scoring  
-- explain intent detection  
-- routing to correct modules  
-- metadata generation  
-- integration with FS‑AGENT, CME‑MEM  
-- integration with Schoolwork Engine 5.8  
-- integration with Reasoning Engine 5.8  
-- ENVOY 5 support  
-- UI automation intent detection  
-- identity‑aware triage  
-- unified PC/Mobile triage  
-- **COLNIK‑validated triage decisions**  
-- **AUTONOMY proposal/confirmation triggers**
+- inspecting all Knowledge Graph mutations and workflow steps  
+- high-performance IPC synchronization with AUTONOMY on port 8080  
+- verifying entity domain boundaries (Non-Bio Shield validation)  
+- enforcing identity and policy conformance  
+- routing suspicious or malformed operations into `COLNIK-6.x/triage`  
+- enterprise-grade consistency and cycle-safety enforcement  
 
 ---
 
-# 9. Windows System Capabilities Layer (WIN‑CAP 5.x)
-**Purpose:** Safe, abstracted access to Windows system functions.  
+# 9. AUTONOMY 6.x (Decision, Guard & Triage Engine)
+**Purpose:** Supervised autonomous decision-making and runtime telemetry.  
 **Responsibilities:**
-- exposing high‑level system capabilities  
-- enforcing permissions and allowed scopes  
-- safe wrappers around OS operations  
-- multi‑step system actions  
-- identity‑aware restrictions  
-- UI automation OS‑level routing  
-- System Agent 5 enforcement  
-- COLNIK‑validated capability routing  
-- AUTONOMY‑aware capability validation  
-
-**Submodules:**
-- `file_ops`  
-- `app_ops`  
-- `window_ops`  
-- `audio_ops`  
-- `system_context`  
-- `automation_ops`  
-- `ui_capabilities_5_x`  
+- generating structured learning proposals (`kg.learn_proposal`) for novel concepts  
+- evaluating multi-word reasoning outputs  
+- enforcing zero proposal recurrence on indexed aliases  
+- coordinating interactive confirmation loops via `PanelAPI` (`[ÁNO/NIE]`)  
+- Guard supervision: real-time monitoring of CPU, RAM, and Disk metrics  
+- managing quarantine containment in `COLNIK-6.x/triage`  
 
 ---
 
-# 10. UI Components
-**Purpose:** Modular UI building blocks.  
+# 10. Action Execution Engine (EXECUTE 6.x)
+**Purpose:** Deterministic executor for validated proposals.  
 **Responsibilities:**
-- reusable UI elements  
-- layout components  
-- visual helpers  
-- animation hooks  
-
-**Subfolder: `animations/`**
-- `animation_engine.py`  
-- `animation_objects.py`  
-- `animation_scenes.py`  
-- `animation_manager.py`  
+- executing authorized mutations dispatched via `proposals.json`  
+- committing dual-key multi-alias entries to `autosave_kg.json` via `RuntimeCore`  
+- executing safe file operations under strict non-destructive policies  
+- enforcing terminal module resets (`currentModule = "none"`)  
+- producing structured execution telemetry in `responses.json`  
 
 ---
 
-# 11. Workflow Module
-**Purpose:** High‑level workflow logic.  
+# 11. Filesystem Agent (FS‑AGENT 5.8)
+**Purpose:** Safe, deterministic filesystem operations.  
 **Responsibilities:**
-- orchestrating multi‑step operations via `sirius_orchestrator.py`  
-- validating transitions  
-- predictable behavior  
-- integrating CME, FS‑AGENT, GUI  
-- SCHOOLWORK workflow routing  
-- UI automation workflow integration  
-- unified PC/Mobile workflow logic  
-- COLNIK‑validated workflow transitions  
-- AUTONOMY‑aware workflow logic  
+- moving, copying, and validating file paths  
+- rollback-safe file handling  
+- semantic organization (documents, code, schoolwork)  
+- COLNIK-validated operations and duplicate detection  
 
 ---
 
-# 12. Plugin System 5.x
-**Purpose:** Extensible plugin ecosystem.  
+# 12. Security Family 5.x (Identity Engine 3.1)
+**Purpose:** Behavior-based identity and household safety layer.  
+**Responsibilities:**
+- OWNER / FAMILY / STRANGER identity tiers  
+- behavior-based recognition and access auditing  
+- safe-mode restrictions for unknown users  
+- time-limits v3 enforcement  
+- Schoolwork Engine integration: guaranteeing academic tasks remain unrestricted  
+- System Agent 5 validation enforcement  
+
+---
+
+# 13. Self‑Repair & Health‑Check Layer (5.8)
+**Purpose:** Runtime integrity scanning and safe recovery.  
+**Responsibilities:**
+- checking integrity of core runtime modules  
+- detecting corrupted schemas, broken configs, or invalid states  
+- executing rollback-safe automatic recovery  
+- reporting health telemetry to Runtime Core  
+
+---
+
+# 14. System Agent 5
+**Purpose:** Final gatekeeper for host system-level operations.  
+**Responsibilities:**
+- validating all OS-level actions  
+- enforcing identity permissions and terminal isolation  
+- blocking destructive commands and unverified execution  
+- deterministic safety verification  
+
+---
+
+# 15. Context Memory Engine (CME‑MEM 5.8)
+**Purpose:** Semantic workflow memory.  
+**Responsibilities:**
+- tracking recent operational contexts  
+- storing semantic tags and subject difficulty metadata  
+- supporting multi-step reasoning traces  
+
+---
+
+# 16. Plugin System 5.x
+**Purpose:** Extensible local plugin ecosystem.  
 **Responsibilities:**
 - loading plugin manifests  
-- registering NL commands  
-- registering AI tasks  
-- registering workflows  
-- registering reasoning hooks  
-- registering GUI elements  
-- safe plugin isolation  
-- SCHOOLWORK‑aware plugin behavior  
-- UI automation plugin hooks  
-- unified PC/Mobile plugin behavior  
-- COLNIK‑validated plugin actions  
-- AUTONOMY‑aware plugin routing  
-
-Official plugins include:
-- automation  
-- clipboard  
-- file_manager  
-- notes  
-- system_tools  
-- translator  
-- developer_tools  
+- registering NL commands, workflows, and reasoning hooks  
+- enforcing safe plugin isolation and COLNIK validation  
 
 ---
 
-# 13. AI Loop 5.x
-**Purpose:** Autonomous interval‑based logic.  
+# 17. Windows System Capabilities Layer (WIN‑CAP 5.x)
+**Purpose:** Abstracted, safe access to Windows operating system functions.  
 **Responsibilities:**
-- executing plugin heartbeat rules  
-- safe periodic tasks  
-- deterministic scheduling  
-- error protection  
-- SCHOOLWORK‑aware timing  
-- unified PC/Mobile loop behavior  
-- AUTONOMY‑aware autonomous continuation  
+- providing controlled OS interfaces (`file_ops`, `app_ops`, `system_context`)  
+- identity-aware restrictions validated by System Agent 5  
 
 ---
 
-# 14. Self‑Repair & Health‑Check Layer (5.8)
-**Purpose:** Diagnostics and safe automatic recovery.  
-**Responsibilities:**  
-- checking integrity of core modules  
-- detecting corrupted states, missing files, invalid configs  
-- performing safe automatic repairs  
-- generating patch suggestions  
-- preventing uncontrolled modifications  
-- reporting system health to Runtime Core  
-- validating UI automation modules  
-- integration with System Agent 5  
-- unified PC/Mobile diagnostics  
-
-**Submodules:**  
-- `health_check_engine.py`  
-- `self_repair_safe.py`  
-- `repair_suggestions.py`  
-
----
-
-# 15. Security Family 5.x (Identity Engine 3.1)
-**Purpose:** Behavior‑based identity and family safety layer.  
+# 18. PASSWORD_VAULT 5.0
+**Purpose:** Encrypted offline credential storage.  
 **Responsibilities:**
-- OWNER / FAMILY / STRANGER identity  
-- behavior‑based recognition  
-- safe‑mode for unknown users  
-- restricted mode for children  
-- time‑limits v3  
-- Schoolwork Engine integration  
-- identity‑aware routing  
-- STRANGER‑mode restrictions  
-- UI automation identity gating  
-- System Agent 5 enforcement  
-- AUTONOMY‑aware identity validation  
-
-**Submodules:**
-- `identity_engine_3_1.py`  
-- `behavior_audit_3_1.py`  
-- `access_control_3_1.py`  
-- `family_mode_v3.py`  
-- `stranger_mode_v3.py`  
-- `time_limits_v3.py`  
-- `schoolwork_engine_5_x.py`  
-- `profile_store_v3.json`  
+- AES-256-GCM vault with PBKDF2 master key derivation  
+- OWNER-only write, FAMILY read-only, STRANGER blocked  
 
 ---
 
-# 16. Intelligent Runtime Modules (v5.8)
+# 19. Module Interconnections
 
-## 16.1 HOME_ASSISTANT 5.8  
-## 16.2 COOKING_ADVISOR 5.8  
-## 16.3 DEVICE_DIAGNOSTICS 5.8  
-## 16.4 SCHOOL_HELPER 5.8  
-## 16.5 IMAGE_ANALYZER 5.8  
-## 16.6 CONTEXT_ROUTER 5.8  
-## 16.7 KNOWLEDGE_PACKS 5.x  
-
----
-
-# 17. PASSWORD_VAULT 5.0
-**Purpose:** Secure offline credential storage.  
-**Responsibilities:**
-- AES‑256‑GCM encrypted vault  
-- PBKDF2‑HMAC‑SHA256 master key derivation  
-- OWNER‑only write access  
-- FAMILY read‑only access  
-- STRANGER blocked  
-- deterministic API for workflows  
-- NL Router integration  
-- Runtime Core integration  
-
----
-
-# 18. UI Automation Engine 5.1
-**Purpose:** Semantic, deterministic UI automation.  
-**Responsibilities:**
-- improved fuzzy UI parsing  
-- semantic alias mapping  
-- multi‑stage resolution pipeline  
-- deterministic fallback logic  
-- OS‑level routing  
-- safe sandboxed execution  
-- WIN‑CAP 5.x integration  
-- System Agent 5 validation  
-- unified PC/Mobile automation  
-
-**Submodules:**
-- `ui_parser_5_1.py`  
-- `ui_workflow_5_1.py`  
-- `ui_actions_5_1.py`  
-- `win_capabilities_5_x.py`  
-
----
-
-# 19. System Agent 5
-**Purpose:** Final gatekeeper for all system‑level actions.  
-**Responsibilities:**
-- validating every system action  
-- enforcing identity rules  
-- blocking unsafe operations  
-- deterministic safety enforcement  
-- logging system actions  
-- protecting OS‑level automation  
-- unified PC/Mobile execution  
-- AUTONOMY‑aware system validation  
-
-**Submodules:**
-- `agent_core_5.py`  
-- `agent_rules_5.py`  
-- `agent_validation_5.py`  
-
----
-
-# 20. SIRIUS ENVOY 5 (Execution + Permission Layers)
-**Purpose:** Safe, outbound‑only external retrieval.  
-**Responsibilities:**  
-- permission layer (identity‑aware)  
-- scraper layer  
-- quarantine sandbox  
-- validator & policy filter  
-- deep explainability traces  
-- safe payload delivery  
-- Knowledge Pack updates  
-- unified PC/Mobile behavior  
-- COLNIK‑validated payload delivery (Standard & IPC Mode)  
-- AUTONOMY‑aware validation traces  
-
----
-
-# 21. System Intelligence Layer 5.8
-**Purpose:** Cross‑platform diagnostics and safe optimization.  
-**Responsibilities:**
-- hardware analysis  
-- driver checks  
-- service health  
-- process analysis  
-- optimization suggestions  
-- deterministic system workflows  
-- System Agent 5 enforcement  
-- unified PC/Mobile diagnostics  
-- explainability‑aware diagnostics  
-- COLNIK‑validated system actions  
-- AUTONOMY‑aware system intelligence  
-
----
-
-# 22. Mobile Runtime 5.8
-**Purpose:** Unified mobile execution layer.  
-**Responsibilities:**
-- mobile‑optimized workflows  
-- mobile filesystem logic  
-- mobile UI automation  
-- mobile AITE integration  
-- mobile reasoning integration  
-- mobile KG_EXPLAIN & KG_EXPLAIN_DEEP integration  
-- COLNIK‑validated mobile workflows  
-- AUTONOMY‑aware mobile routing  
-
----
-
-# 23. Module Interconnections
 All modules communicate through:
 
-- Unified Orchestrator (`sirius_orchestrator.py`)  
-- PanelAPI interactive loops (`[ÁNO/NIE]`)  
-- TimeCore & Guard supervision  
-- Runtime Core 5.8  
-- NL Router 5.8  
-- Workflow Engine 5.8  
-- CME‑MEM 5.8  
-- Security Family 5.x  
-- WIN‑CAP 5.x  
-- UI Automation Engine 5.1  
-- System Agent 5  
-- ENVOY 5  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- Self‑Repair Layer 5.8  
-- Mobile Runtime 5.8  
-- **COLNIK‑6.x Validation Layer (Standard & IPC Mode)**  
-- **AUTONOMY 6.x Control & Triage Mode**
+```text
+User / Web UI (Port 8080)
+  ↓
+InputParser5 (Compound phrase preservation & copula verb separation)
+  ↓
+sirius_orchestrator.py (Single-Process Orchestrator & Native IPC Daemon)
+  ├── 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal with state reset)
+  ├── TimeCore & Guard (Temporal tracking & Resource supervision)
+  ├── RuntimeCore 5.9.0 & Multi-Alias KG Core (autosave_kg.json)
+  ├── ReasoningEngine 5.9.0 (Multi-hop rules & Proof tree generation)
+  ├── WorkflowEngine 5.9.0 (Deterministic state transitions)
+  ├── Security Family 5.x & Identity Engine 3.1
+  ├── Envoy 5 (ExecutionLayer5, Anti-Prefix Guard & EnvoyNormalizer5)
+  ├── COLNIK-6.x Customs Decision Gate (Standard & IPC Mode)
+  ├── AUTONOMY 6.x (Control, Guard & Triage Mode in COLNIK-6.x/triage)
+  ├── PanelAPI ([ÁNO/NIE] confirmation loop)
+  └── EXECUTE 6.x → Multi-Alias Commit / Safe System Action
+  Document Status
+Version: 5.9.0 UNIFIED
 
----
-
-# Document Status
-**Version:** 5.8 UNIFIED  
-Updated to reflect the **5.7.0 → 5.8 transition**, orchestrator routing via `sirius_orchestrator.py`, interactive `PanelAPI` confirmation loops, `TimeCore`/`Guard` supervision, expanded **COLNIK‑6.x (Standard & IPC Mode)**, and **AUTONOMY 6.x (Control & Triage Mode)**.
+Updated to reflect the 5.8 → 5.9.0 milestone release, single-process orchestration via sirius_orchestrator.py on port 8080, compound noun phrase parsing (InputParser5), autonomous disambiguation triage and domain shielding (Envoy), multi-alias graph persistence (autosave_kg.json), zero proposal recurrence, and complete 4-Panel UI terminal decoupling.
