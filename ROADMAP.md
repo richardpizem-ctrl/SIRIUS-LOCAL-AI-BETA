@@ -1,9 +1,9 @@
-# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.8 → v6.x)
-### Evolution of the Unified Orchestration, PanelAPI, TimeCore/Guard & Enhanced COLNIK‑AUTONOMY Architecture
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.8 → v5.9.0 → v6.x)
+### Evolution of the Unified Orchestration, Semantic Multi-Word Parsing, 4-Panel UI Suite & Enhanced COLNIK‑AUTONOMY Architecture
 
 This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
 into the **Unified Runtime 5.x** generation, the **Unified KG + Deep Explainability 5.6.2 Era**,  
-the **Orchestrated & Autonomy‑Aware 5.8 Era**, and the upcoming **Runtime 6.x Modular Kernel Era**.
+the **Orchestrated & Autonomy‑Aware 5.8 Era**, the **Semantic Multi-Word Parsing & 4-Panel UI 5.9.0 Era**, and the upcoming **Runtime 6.x Modular Kernel Era**.
 
 All versions remain:
 - 100% offline  
@@ -11,10 +11,10 @@ All versions remain:
 - explainable  
 - identity‑aware  
 - safe for households and children  
-- fully local with optional ENVOY fetch  
-- enterprise‑validated via **COLNIK‑6.x (Standard & IPC Mode)** (from v5.6.2 onward)  
-- autonomy‑aware via **AUTONOMY‑6.x (Control & Triage Mode)** (from v5.7.0 onward)  
-- orchestrator-supervised via **`sirius_orchestrator.py`**, **PanelAPI `[ÁNO/NIE]`**, and **TimeCore/Guard** (from v5.8 onward)  
+- fully local with optional quarantined ENVOY fetch  
+- enterprise‑validated via **COLNIK‑6.x (Standard & High-Performance IPC Mode)**  
+- autonomy‑aware via **AUTONOMY‑6.x (Control, Guard & Triage Mode)**  
+- orchestrator-supervised via **`sirius_orchestrator.py` on Port 8080**, **PanelAPI `[ÁNO/NIE]`**, and **TimeCore/Guard**  
 
 ---
 
@@ -87,13 +87,6 @@ Goal: Enable SIRIUS to understand task intent, plan next steps, and continue aut
 - Autonomous Step Execution 1.0  
 - State Graph Engine 1.0  
 
-### Result:
-- SIRIUS knows what comes next  
-- SIRIUS knows the final goal  
-- SIRIUS tracks progress  
-- SIRIUS continues autonomously  
-- SIRIUS behaves like an operating assistant  
-
 ---
 
 # ⭐ 5.0 — Version 5.0.0 UNIFIED  
@@ -136,16 +129,6 @@ Goal: Introduce the first fully offline, deterministic Knowledge Graph Reasoning
 - KG‑ready structure  
 - integrity validation 2.0  
 - expanded school, home, diagnostic packs  
-
----
-
-## Output (v5.0.0)
-SIRIUS gains true offline intelligence:
-- deterministic KG reasoning  
-- faster responses  
-- zero‑risk inference  
-- stable multi‑stage workflows  
-- ENVOY‑ready architecture  
 
 ---
 
@@ -229,18 +212,6 @@ Goal: Introduce full explainability, multi‑hop reasoning, deterministic infere
 
 ---
 
-## Output (v5.5.0)
-SIRIUS gains:
-- full explainability (KG_EXPLAIN)  
-- deeper symbolic reasoning  
-- deterministic multi‑hop inference  
-- stronger System Agent 5  
-- faster multimodal triage  
-- secure ENVOY 5 fetch model  
-- unified PC + Mobile architecture  
-
----
-
 # ⭐ 5.6 — Version 5.6.2 UNIFIED  
 ### Unified KG Architecture + Deep Explainability + Multi‑Hop Reasoning + COLNIK‑6.x Validation  
 **Status:** Completed
@@ -316,20 +287,9 @@ and introduce **COLNIK‑6.x**, the enterprise‑grade validation layer for KG, 
 
 ---
 
-## Output (v5.6.2)
-SIRIUS gains:
-- deep explainability  
-- unified KG architecture  
-- stable multi‑hop reasoning  
-- deterministic traversal  
-- enterprise‑grade validation (COLNIK‑6.x)  
-- fully integrated KG → Reasoning → Workflow → System pipeline  
-
----
-
 # ⭐ 5.8 — Version 5.8 UNIFIED  
 ### Orchestrated Runtime + PanelAPI + TimeCore/Guard + COLNIK-Standard/IPC & AUTONOMY-Control/Triage Mode  
-**Status:** Current Stable Release
+**Status:** Completed
 
 Goal: Transition execution to the central orchestrator (`sirius_orchestrator.py`), introduce interactive `PanelAPI` confirmation loops, add temporal/security supervision via `TimeCore` and `Guard`, and fully stabilize the Unified Runtime Architecture 5.8.
 
@@ -378,39 +338,56 @@ Goal: Transition execution to the central orchestrator (`sirius_orchestrator.py`
 - **COLNIK‑validated KG mutations**  
 - **AUTONOMY‑aware KG mutation proposals**  
 
-### 🖱 UI Automation Engine 5.1
-- faster fuzzy matching  
-- deterministic fallback logic  
-- KG‑enhanced aliasing  
-- **COLNIK‑validated UI actions**  
-- **AUTONOMY‑aware UI actions**  
+---
 
-### 🛰 System Agent 5
-- autonomy‑aware validation  
-- constant‑time enforcement  
-- **COLNIK‑validated system actions**  
+# ⭐ 5.9 — Version 5.9.0 UNIFIED  
+### Semantic Multi-Word Parsing, Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence  
+**Status:** Current Stable Release
 
-### 🌐 ENVOY 5
-- autonomy‑aware permission logic  
-- explainability traces  
-- **COLNIK‑validated payload delivery**  
-
-### 🛠 Self‑Repair Layer 5.8
-- autonomy‑aware repair suggestions  
-- **COLNIK‑validated repair logic**  
+Goal: Eliminate query truncation on compound noun phrases, deploy autonomous encyclopedic disambiguation with domain shielding, permanently suppress repetitive confirmation prompts via multi-alias persistence in `autosave_kg.json`, and isolate UI terminal interaction via a native single-process orchestrator on port 8080.
 
 ---
 
-## Output (v5.8)
+## 🔥 NEW Core Components (v5.9.0)
+
+### 🔤 Multi-Word Semantic Engine (`InputParser5`)
+- native extraction and preservation of compound noun phrases (e.g., `ovcia vlna`, `mobilny telefon`, `pevna linka`) without truncating modifiers  
+- strict isolation of Slovak copula verbs (`je`, `sú`) from subject entities, preventing linguistic corruptions  
+- diacritic-aware normalization producing clean lookup tokens  
+
+### 🌐 Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)
+- automatic detection and contextual traversal of Wikipedia disambiguation pages (*„môže byť...“*)  
+- Anti-Prefix Guard: prevents fuzzy prefix over-matching anomalies (*Káva* -> *Kavala*)  
+- Strip-Bracket Fallback: recovers from unresolvable parenthetical articles to root lemmas  
+
+### 🌿 Contextual Domain Shield & Bio Filtering (`EnvoyNormalizer5`)
+- Non-Bio Domain Shield: strictly bars technical, formal, or abstract concepts (*ekológia*, *architektúra*, *fyzika*) from receiving biological habitat tags  
+- Sentence-Bound Extractor: mandates declarative occurrence verbs (*žije*, *obýva*) within the exact sentence before habitat binding  
+
+### 🧠 Multi-Alias KG Persistence & Zero Recurrence (`RuntimeCore`)
+- dual-key commitment: stores entities under user query phrases and official encyclopedic titles simultaneously  
+- atomic serialization directly into `autosave_kg.json`  
+- permanent elimination of interactive proposal loops: confirmed entities resolve from memory without repeated `[ÁNO/NIE]` prompts  
+
+### 🖥 4-Panel UI Suite & Terminal State Decoupling (Port 8080)
+- native browser dashboard with `Duplicates`, `Triage`, `Navigation`, and `Terminal` panels  
+- terminal decoupling: input clearing automatically triggers `currentModule = "none"`, permanently preventing conversational queries from executing as host OS shell commands  
+- single-process HTTP/WebSocket daemon integrated directly into `sirius_orchestrator.py`  
+
+### 📊 Guard Resource Supervision & High-Performance IPC
+- real-time monitoring of host CPU, RAM, and Disk metrics (< 1% monitoring overhead)  
+- native memory-based IPC eliminating file locking and race conditions  
+- automated quarantine routing into `COLNIK-6.x/triage`  
+
+---
+
+## Output (v5.9.0)
 SIRIUS gains:
-- centralized orchestration (`sirius_orchestrator.py`)  
-- interactive human oversight (`PanelAPI` [ÁNO/NIE])  
-- runtime health and security tracking (`TimeCore`/`Guard`)  
-- autonomy‑aware routing and reasoning  
-- stabilized Unified KG 5.8  
-- COLNIK‑6.x (Standard & IPC Mode) validation  
-- unified PC + Mobile execution  
-- deterministic explainability across all modules  
+- full linguistic integrity for compound natural language queries  
+- intelligent encyclopedic research without prefix drift or cross-domain pollution  
+- persistent multi-alias memory eliminating annoying proposal recurrence  
+- completely safe, decoupled browser terminal interface on port 8080  
+- robust resource-monitored single-process execution  
 
 ---
 
@@ -426,7 +403,7 @@ and analyze multimodal data deterministically.
 ## 🔥 Planned Core Components (v6.0.0)
 
 ### 🧠 Hybrid Multimodal Analyzer 6.0
-- audio/MIDI analysis  
+- audio/MIDI analysis (pattern detection, track alignment, harmonic structures)  
 - image structure analysis  
 - video frame semantic extraction  
 - KG‑linked multimodal facts  
@@ -479,6 +456,6 @@ SIRIUS gains:
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.8 UNIFIED (Stable)  
+**Current version:** 5.9.0 UNIFIED (Stable)  
 **Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
-**Long‑term direction:** Autonomous Runtime Evolution (6.x → 7.x)
+**Long‑term direction:** Autonomous Runtime Evolution & Hybrid Isolation Layer (6.x → 7.x)
