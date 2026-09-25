@@ -1,186 +1,178 @@
-# 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide (Runtime 5.8 Unified)
-### Safe External Retrieval Layer for SIRIUS LOCAL AI (Unified Orchestration, PanelAPI, TimeCore/Guard & COLNIK‑AUTONOMY Architecture)
+# 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide (Runtime 5.9.0 Unified)
+### Safe External Retrieval & Autonomous Triage Layer for SIRIUS LOCAL AI (Semantic Multi-Word Parsing, Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence)
 
-SIRIUS ENVOY 5 is an **isolated external‑retrieval agent** that allows SIRIUS LOCAL AI to safely obtain information from the internet **without exposing the local AI runtime to any network communication**.
+SIRIUS ENVOY 5 is an **isolated external-retrieval and semantic triage subsystem** that allows SIRIUS LOCAL AI to safely obtain, disambiguate, and structure information from external sources **without exposing the local AI runtime to open network communication or data leaks**.
 
-This **v5.8 unified edition** reflects the upgraded Runtime 5.x architecture, including:
+This **v5.9.0 unified edition** reflects the upgraded Runtime 5.9.0 architecture, including:
 
-- Unified Orchestrator (`sirius_orchestrator.py`)  
+- Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080)  
+- Multi-Word Compound Parser (`InputParser5` preserving compound noun phrases)  
+- Autonomous Disambiguation Triage & Strip-Bracket Fallback (`EnvoyExecutionLayer5`)  
+- Anti-Prefix & Phonetic Guard (preventing erroneous fuzzy query shifts)  
+- Contextual Domain Shield & Sentence-Bound Bio Extractor (`EnvoyNormalizer5`)  
+- Multi-Alias Knowledge Graph Persistence (`RuntimeCore` writing to `autosave_kg.json`)  
+- Zero Proposal Recurrence (suppressing duplicate learning prompts once confirmed)  
+- 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with deterministic state clearance)  
+- Native High-Performance IPC Bridge eliminating file locking bottlenecks  
 - PanelAPI interactive loops with [ÁNO/NIE] confirmation prompts  
-- TimeCore temporal tracking & Guard security supervision  
-- ENVOY Execution Layer 5  
-- ENVOY Permission Layer 5  
-- System Agent 5  
-- Identity Engine 3.1  
-- Security Family 5.x  
-- AITE 5.8  
-- Unified Knowledge Graph 5.8  
-- KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- Reasoning Engine 5.8 (multi‑hop, inheritance, transitivity)  
-- Workflow Engine 5.8 (explainability routing)  
-- COLNIK‑6.x Validation Layer (Standard & IPC Mode)  
-- AUTONOMY 6.x (Control & Triage Mode)  
-- Unified PC + Mobile runtime  
-- Deterministic cross‑platform routing  
-- Hardened quarantine + validation pipeline  
+- TimeCore temporal tracking & Guard security supervision (CPU, RAM, Disk)  
+- COLNIK‑6.x Validation Layer (Standard & High-Performance IPC Mode)  
+- AUTONOMY 6.x (Control, Guard & Triage Mode in `COLNIK-6.x/triage`)  
+- KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)  
+- Reasoning Engine 5.9.0 (Multi-hop, inheritance, transitivity, orbital rules)  
 
 This document explains:
 
 - what ENVOY is  
 - why it exists  
-- how it works  
-- how the quarantine system functions  
-- how data flows into the local AI  
+- how multi-word semantic parsing and autonomous disambiguation triage work  
+- how domain shielding blocks inaccurate cross-domain attributes  
+- how the quarantine sandbox functions  
+- how data flows safely into the local Knowledge Graph with multi-alias mapping  
 - what ENVOY is strictly forbidden from doing  
-- how ENVOY integrates with Runtime 5.8 Unified Architecture  
+- how ENVOY integrates with Runtime 5.9.0 Unified Architecture  
 
 ---
 
 # 🧩 1. What Is SIRIUS ENVOY 5?
 
-ENVOY is a **small external process** with a single purpose:
+ENVOY is a **sandboxed retrieval and normalization pipeline** with a single purpose:
 
-> **Go online, retrieve information, pass it through quarantine, and deliver clean, safe text to the offline SIRIUS runtime.**
+> **Execute outbound-only semantic queries, resolve disambiguation branches, filter domain-specific facts, pass all content through quarantine, and deliver clean, multi-alias knowledge to the offline SIRIUS runtime.**
 
 The local SIRIUS runtime:
 
-- never goes online  
-- never sends data out  
-- never receives unfiltered content  
-- never communicates with external servers  
+- never connects directly to open socket channels  
+- never sends local files, personal data, or telemetry outward  
+- never receives raw, unsanitized external payloads  
+- never executes external scripts or uncontrolled code  
 
-ENVOY acts as a **one‑way, outbound‑only bridge**, fully isolated from the main runtime and managed under orchestrator supervision.
+ENVOY acts as an **isolated, outbound-only semantic customs portal**, operating strictly under orchestrator supervision on port 8080 and requiring explicit confirmation via PanelAPI `[ÁNO/NIE]` prompts for unindexed concepts.
 
 ---
 
 # 🛡 2. Why Does ENVOY Exist?
 
-SIRIUS is a 100% offline system.  
-However, some tasks require external information:
+SIRIUS is a 100% offline-first symbolic AI.  
+However, when the local Knowledge Graph lacks specific entities, manual data entry would be tedious.  
+ENVOY allows the system to autonomously locate, disambiguate, and structure missing concepts:
 
-- updating Knowledge Packs  
-- retrieving definitions  
-- gathering safe educational content  
-- obtaining basic health information  
-- expanding troubleshooting data  
-- refreshing domain knowledge  
+- extracting compound definitions (`ovcia vlna`, `mobilny telefon`, `pevna linka`)  
+- resolving encyclopedic disambiguation structures (*„môže byť...“*)  
+- capturing structured attributes (descriptions, taxonomy, materials)  
+- enriching Knowledge Graph entities without cloud dependencies  
 
-ENVOY enables this **without compromising offline safety**.
+### ENVOY guarantees:
 
-### ENVOY allows:
-
-- **external information retrieval**  
-- **without putting the local AI online**  
-- **without risking data leaks**  
-- **without allowing unsafe content**  
-- **without exposing identity or local files**  
+- **external retrieval without exposing the local engine online**  
+- **zero leakage of personal files, identity context, or conversations**  
+- **contextual domain guarding** (blocking biological attributes on technological/abstract concepts)  
+- **anti-prefix protection** (blocking drifts like *Káva* -> *Kavala*)  
+- **zero proposal recurrence** (confirmed entities are indexed across aliases and never prompt the user again)  
 
 ---
+User Query (e.g., "Čo je ovcia vlna?")
+│
+▼
+[InputParser5] ────────► Preserves multi-word noun phrases & separates copula verbs
+│
+▼
+[EnvoyPermissionLayer5] ► Audits identity, caller scope, and PanelAPI [ÁNO/NIE] confirmation
+│
+▼
+[EnvoyExecutionLayer5] ─► Resolves disambiguation pages, applies Anti-Prefix Guard & Strip-Bracket Fallback
+│
+▼
+[Quarantine Sandbox] ───► Strips HTML, scripts, trackers, and unverified binary objects
+│
+▼
+[EnvoyNormalizer5] ─────► Enforces Non-Bio Domain Shield & sentence-bound habitat checks
+│
+▼
+[COLNIK-6.x Customs] ───► Validates schema consistency, reversibility, and threat boundaries
+│
+▼
+[RuntimeCore / KG] ─────► Multi-Alias commitment to autosave_kg.json (raw query + encyclopedic title)
+## 3.1 InputParser5 (Semantic Multi-Word Extraction)
+- extracts full noun phrases without dropping modifying adjectives (e.g., `ovcia vlna`)  
+- isolates copula verbs (`je`, `sú`) from subject entities, preventing linguistic corruptions  
+- provides normalized query tokens directly to the triage pipeline  
 
-# 🧱 3. ENVOY 5 Architecture (Runtime 5.8)
+## 3.2 ENVOY Permission Layer 5
+- checks identity profile (OWNER / FAMILY / STRANGER)  
+- manages interactive learning proposals (`kg.learn_proposal`) via PanelAPI `[ÁNO/NIE]`  
+- checks existing multi-alias registries: if an entity or alias already exists in `autosave_kg.json`, retrieval is bypassed to prevent redundant user prompts  
+- interfaces with COLNIK‑6.x for outbound authorization  
 
-ENVOY consists of **six hardened layers**:
-
-## 3.1 ENVOY Permission Layer 5
-- validates every request  
-- checks identity context  
-- enforces OWNER/FAMILY/STRANGER rules  
-- blocks unauthorized fetches  
-- ensures user confirmation via `PanelAPI` [ÁNO/NIE] loops  
-- integrates with KG_EXPLAIN & KG_EXPLAIN_DEEP for explainability of permission decisions  
-- integrates with COLNIK‑6.x validation (Standard & IPC Mode)  
-- integrates with AUTONOMY 6.x (Control & Triage Mode)  
-
-## 3.2 Envoy Client (Outbound‑Only)
-- the only process allowed to access the internet  
-- cannot access local files  
-- cannot access runtime memory  
-- cannot receive external commands  
-- outbound‑only, no inbound channels  
-- unified PC/Mobile behavior  
-
-## 3.3 Scraper Layer
-- extracts clean text  
-- removes HTML, scripts, ads, trackers  
-- normalizes content  
-- strips formatting and embedded objects  
-- blocks binary or executable content  
+## 3.3 Envoy Execution Layer 5 (Autonomous Disambiguation & Anti-Prefix Guard)
+- **Autonomous Disambiguation Triage:** automatically detects Wikipedia disambiguation pages (*„môže byť...“*) and follows the precise contextual target (e.g., resolving `slon` into genus *Elephas*)  
+- **Phonetic & Anti-Prefix Guard:** neutralizes overly aggressive prefix matching, stopping semantic query drift (e.g., preventing *Káva* from jumping to *Kavala*, or *Skript* to soap operas)  
+- **Strip-Bracket Fallback:** automatically attempts root lemma lookups when encountering parenthetical subtitle pages that fail to resolve  
 
 ## 3.4 Quarantine Sandbox
-- fully isolated environment  
-- checks structure and format  
-- detects unsafe patterns  
-- blocks unknown data types  
-- prevents any executable or active content  
-- enforces strict content‑type rules  
-- logs explainability traces for KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- logs validation traces for COLNIK‑6.x  
-- logs autonomy‑related traces for AUTONOMY 6.x  
+- completely isolated execution perimeter  
+- removes HTML, CSS, JavaScript, tracking beacons, and ads  
+- extracts declarative sentences and factual bullet points  
+- blocks binary payloads, executable scripts, and unknown media formats  
+- emits provenance logs for auditability  
 
-## 3.5 Validator & Policy Filter
-- enforces safety rules  
-- flags uncertain information  
-- filters restricted topics  
-- ensures consistency  
-- removes dangerous or unverifiable content  
-- applies Security Family 5.x rules  
-- applies COLNIK‑6.x validation rules  
-- applies AUTONOMY 6.x safety rules  
-- produces explainable validation output  
+## 3.5 Envoy Normalizer 5 (Contextual Domain & Bio Filtering)
+- **Non-Bio Domain Shield:** strictly checks taxonomy, barring abstract, formal, and technological concepts (*ekológia*, *architektúra*, *fyzika*) from receiving inaccurate geographic habitat attributes  
+- **Sentence-Bound Extractor:** requires declarative presence of occurrence verbs (*žije*, *obýva*, *prirodzený výskyt*) within the exact sentence before binding habitat relations  
 
-## 3.6 Safe Payload Delivery
-- produces **clean text**  
-- structured JSON  
-- ready for local AI modules  
-- compatible with Unified Knowledge Graph 5.8  
-- deterministic, predictable output  
+## 3.6 COLNIK‑6.x Validation Layer (Standard & IPC Mode)
+- acts as the internal customs gatekeeper  
+- inspects parsed KG mutations for structural integrity and cycle safety  
+- validates that proposed additions adhere to Knowledge Graph schemas  
+- routes suspicious or malformed records into `COLNIK-6.x/triage` for quarantine review  
+
+## 3.7 RuntimeCore Multi-Alias Persistence
+- indexes new knowledge simultaneously under:  
+  1. the user's raw query term (`ovcia vlna`)  
+  2. the normalized encyclopedic title (`Vlna (textil)`)  
+- commits updates directly to `autosave_kg.json`  
+- guarantees zero proposal recurrence: future queries for any stored alias resolve instantly from memory  
 
 ---
 
-# 🔄 4. How ENVOY Works – Step by Step (Runtime 5.8)
+# 🔄 4. How ENVOY Works – Step by Step (Runtime 5.9.0)
 
-## 1️⃣ User makes a request  
-Example: “Update the Cooking Pack with information about rice.”
+## 1️⃣ User submits a query
+User inputs via Web UI or Terminal: `ČO JE MOBILNÝ TELEFÓN?`
 
-## 2️⃣ Runtime creates an ENVOY task via `sirius_orchestrator.py`  
-Contains only:
+## 2️⃣ InputParser5 preserves compound structure
+The parser identifies `mobilný telefón` as a single multi-word entity, strips punctuation, and isolates the copula verb.
 
-- topic  
-- allowed sources  
-- safety rules  
-- identity context  
+## 3️⃣ Graph existence & alias verification
+`RuntimeCore` checks `autosave_kg.json`. If missing, AUTONOMY generates a `kg.learn_proposal`.
 
-## 3️⃣ Permission Layer 5 validates the request  
-If not allowed → blocked (with optional `PanelAPI` confirmation prompt).
+## 4️⃣ PanelAPI interactive confirmation
+The UI displays: `[NÁVRH] Chcete vyhľadať a naučiť sa entitu 'mobilný telefón'? [ÁNO/NIE]`.  
+The user confirms with `ÁNO`.
 
-## 4️⃣ ENVOY goes online  
-Retrieves information based on the task under `TimeCore` temporal bounds.
+## 5️⃣ Outbound fetch & disambiguation triage
+ENVOY queries external reference sources:  
+- checks if the response is an encyclopedic disambiguation index  
+- resolves technical / practical sub-articles  
+- verifies against phonetic prefix over-matching  
 
-## 5️⃣ Scraper Layer cleans the data  
-Only text remains.
+## 6️⃣ Quarantine sanitization
+The raw payload is stripped of HTML markup, scripts, and tracking code in the quarantine sandbox.
 
-## 6️⃣ Quarantine Sandbox isolates the content  
-Everything is checked under `Guard` supervision.
+## 7️⃣ Contextual domain normalization
+`EnvoyNormalizer5` audits the text:  
+- classifies `mobilný telefón` as technological/device  
+- prevents false habitat or biological attribute assignment  
+- extracts core functional descriptions and categories  
 
-## 7️⃣ Validator applies safety rules  
-Removes:
+## 8️⃣ COLNIK-6.x customs clearance
+COLNIK audits the structured graph nodes and relations, approving the commit.
 
-- dangerous advice  
-- medical diagnoses  
-- legal/financial instructions  
-- unverified claims  
-- scripts, HTML, links  
-- unsafe or ambiguous content  
+## 9️⃣ Multi-Alias commit to `autosave_kg.json`
+`RuntimeCore` records the entity under both `mobilny telefon` and its formal title, saving the graph atomically.
 
-## 8️⃣ Data is converted into Pack format  
-Examples:
-
-- `facts.json`  
-- `glossary.json`  
-- `rules.json`  
-
-## 9️⃣ Local AI receives clean, safe content  
-Knowledge Pack is updated locally.
+## 🔟 Immediate response & zero future prompts
+The answer is rendered in the UI. Next time the user asks `Čo je mobilný telefón?`, the system responds instantly from memory without prompting.
 
 ---
 
@@ -188,106 +180,59 @@ Knowledge Pack is updated locally.
 
 ENVOY is strictly forbidden from:
 
-- sending local data outward  
-- accessing user files  
-- interacting directly with the runtime  
-- storing data outside quarantine  
-- executing code  
-- returning HTML, scripts, or images  
-- bypassing safety rules  
-- modifying Knowledge Packs directly  
-- performing UI automation  
-- interacting with the **UI Automation Engine 5.1**  
-- bypassing **System Agent 5**  
-- bypassing **SECURITY FAMILY 5.x**  
-- bypassing **Identity Engine 3.1**  
-- bypassing **COLNIK‑6.x**  
-- bypassing **AUTONOMY 6.x**  
-- bypassing **PanelAPI** user confirmation gates  
-- bypassing **TimeCore/Guard** supervision  
-- altering runtime behavior  
-- triggering OS‑level actions  
-- accessing identity data  
-- accessing local files  
+- transmitting local files, directory trees, or source code outward  
+- exposing user conversations or personal identifiers  
+- executing unverified scripts, downloaded code, or binaries  
+- storing raw HTML, active web content, or cookies  
+- modifying the Knowledge Graph without COLNIK-6.x verification  
+- bypassing user confirmation loops (`[ÁNO/NIE]`) for unindexed concepts  
+- triggering repetitive learning proposals for already indexed aliases  
+- assigning geographic habitats to non-biological entities  
+- drifting across unrelated topics via loose prefix matching  
+- interacting directly with host terminal shells or executing OS commands  
+- capturing input focus without releasing module state (`currentModule = "none"`)  
 
-ENVOY is a **one‑directional, outbound‑only, isolated process**.
+ENVOY is a **strictly bounded, outbound-only, quarantined semantic bridge**.
 
 ---
 
-# 🧠 6. How ENVOY Supports Knowledge Graph 5.8
+# 🧠 6. Knowledge Graph & Reasoning Integration
 
-ENVOY enables:
+ENVOY directly enriches the unified Knowledge Graph platform:
 
-- adding new facts  
-- updating definitions  
-- expanding glossaries  
-- extending troubleshooting trees  
-- retrieving safe educational content  
-- enriching cooking data  
-- adding basic health & safety information (no diagnosis)  
-- updating semantic metadata  
+- feeds structured facts into multi-hop symbolic reasoning rules (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`)  
+- provides unambiguous entities for proof tree generation in `KG_EXPLAIN` and `KG_EXPLAIN_DEEP`  
+- eliminates redundant external network calls via persistent multi-alias mapping  
+- supplies sanitized domain definitions for offline academic and technical inquiries  
 
-All of this happens **without putting SIRIUS online**.
+All external enrichment is permanently consolidated into **`autosave_kg.json`**, expanding the system's offline capability with every confirmed interaction.
 
 ---
 
-# 🔗 7. Integration with Runtime 5.8 Unified Architecture
+# 🖥 7. Integration with the 4-Panel UI Suite
 
-ENVOY’s role remains strictly informational.
+ENVOY operates in direct synchronization with the web dashboard on port 8080:
 
-ENVOY **does not**:
-
-- trigger UI actions  
-- interact with UIParser 5.x  
-- influence UIWorkflow 5.x  
-- bypass identity rules  
-- modify system‑level automation  
-- bypass System Agent 5  
-- bypass ENVOY sanitization rules  
-- bypass COLNIK‑6.x validation  
-- bypass AUTONOMY 6.x  
-- modify runtime behavior  
-
-ENVOY **does**:
-
-- provide sanitized text for Reasoning Engine 5.8  
-- update Knowledge Graph Packs 5.x  
-- support semantic workflows via `sirius_orchestrator.py`  
-- enrich academic and household modules  
-- operate under hardened quarantine rules  
-- follow unified PC/Mobile behavior  
-- produce explainability traces for KG_EXPLAIN & KG_EXPLAIN_DEEP  
-- produce validation traces for COLNIK‑6.x (Standard & IPC Mode)  
-- produce autonomy traces for AUTONOMY 6.x (Control & Triage Mode)  
-- respect interactive `PanelAPI` prompt loops  
+- **Triage Panel:** live visual tracking of quarantine items, unclassified entities, and parsing logs (`COLNIK-6.x/triage`)  
+- **Duplicates Panel:** live resource auditing ensuring retrieval tasks do not cause memory or storage spikes  
+- **Navigation Panel:** deterministic routing across Runtime Core, KG, Envoy, and Autonomy layers  
+- **Terminal Panel:** complete input decoupling ensuring conversational questions never lock up the terminal or execute as host commands  
 
 ---
 
-# 🔐 8. Security Guarantees (Runtime 5.8)
+# 🔐 8. Security & Operational Guarantees
 
-- 100% offline runtime  
-- ENVOY is isolated  
-- quarantine is mandatory  
-- validation is mandatory  
-- no data passes without inspection  
-- no local data is ever transmitted  
-- everything is deterministic and auditable  
-- ENVOY cannot bypass UI Automation Engine 5.1  
-- ENVOY cannot bypass SECURITY FAMILY 5.x  
-- ENVOY cannot bypass System Agent 5  
-- ENVOY cannot bypass COLNIK‑6.x  
-- ENVOY cannot bypass AUTONOMY 6.x  
-- ENVOY cannot bypass PanelAPI confirmation gates  
-- ENVOY cannot disable TimeCore/Guard supervision  
-- ENVOY cannot modify runtime behavior  
-- ENVOY cannot access identity data  
-- ENVOY cannot access local files  
-- ENVOY cannot influence reasoning rules  
-- ENVOY cannot alter KG_EXPLAIN or KG_EXPLAIN_DEEP output  
+- **100% Offline-First Core:** The central reasoning engine never binds to external sockets.  
+- **Compound Integrity:** Multi-word concepts are preserved and protected from fragmenting.  
+- **Disambiguation Guard:** Encyclopedic index pages are traversed contextually to accurate targets.  
+- **Domain Shielding:** Technical and abstract concepts cannot receive false biological properties.  
+- **Zero Recurrence:** Confirmed knowledge is permanently accessible across multiple aliases without duplicate prompts.  
+- **Deterministic Customs Inspection:** All graph mutations are authorized by COLNIK-6.x.  
+- **Supervised Human Oversight:** Sensitive operations and learning tasks mandate PanelAPI `[ÁNO/NIE]` approval.  
 
 ---
 
 # 📄 Document Status
 
-**Version:** 5.8 (Unified Orchestration, PanelAPI, TimeCore/Guard & COLNIK-AUTONOMY Architecture)  
-This tutorial explains the purpose and operation of SIRIUS ENVOY 5 and its role in the unified Runtime 5.8 architecture.
+**Version:** 5.9.0 (Semantic Multi-Word Parsing, Disambiguation Triage, 4-Panel UI Suite & Multi-Alias KG Persistence)  
+This tutorial specifies the design, operational pipeline, and safety boundaries of SIRIUS ENVOY 5 within the unified Runtime 5.9.0 framework.
