@@ -1,331 +1,232 @@
-# 🚀 SIRIUS LOCAL AI 5.8  
-### Enterprise‑Grade Symbolic Intelligence — Deterministic, Explainable, Offline, Orchestrated, PanelAPI-Supervised, COLNIK‑Validated, AUTONOMY‑Aware
+# 🚀 SIRIUS LOCAL AI 5.9.0  
+### Enterprise‑Grade Symbolic Intelligence — Deterministic, Multi-Alias Persistent, Offline, Single-Process Orchestrated, 4-Panel UI Suite, COLNIK‑Validated, AUTONOMY‑Supervised
 
-SIRIUS LOCAL AI 5.8 represents the most advanced generation of symbolic AI runtime designed for environments where **predictability, security, transparency, human oversight, autonomy‑awareness, and offline operation** are mandatory.  
-Unlike neural systems that rely on probabilistic inference, SIRIUS operates on a **deterministic Unified Knowledge Graph**, a **rule‑based reasoning engine**, centralized execution via **`sirius_orchestrator.py`**, interactive **PanelAPI `[ÁNO/NIE]` loops**, temporal/security supervision via **TimeCore & Guard**, and a **multi‑layered enterprise validation pipeline (COLNIK‑6.x)**.
+SIRIUS LOCAL AI 5.9.0 represents the premier generation of symbolic AI runtime engineered for enterprise and workstation environments where **absolute predictability, cryptographic security, linguistic integrity, complete transparency, human-in-the-loop oversight, and 100% offline isolation** are non-negotiable requirements.  
+Unlike generative neural systems vulnerable to hallucinations, token mutilation, and unpredictable probabilistic drifts, SIRIUS operates on a **deterministic Multi-Alias Knowledge Graph**, a **compound-preserving semantic engine (InputParser5)**, a **single-process orchestrator daemon (sirius_orchestrator.py on local port 8080)**, an **autonomous encyclopedic disambiguation triager with contextual domain shielding (EnvoyExecutionLayer5 / EnvoyNormalizer5)**, an **isolated 4-Panel UI Suite**, interactive **PanelAPI [ÁNO/NIE] confirmation loops**, hardware/security telemetry via **TimeCore & Guard**, and a **customs-grade validation pipeline (COLNIK‑6.x)**.
 
-This document provides a **deep, marketing‑ready, enterprise overview** of the entire 5.8 architecture.
+This document provides a **comprehensive, enterprise-ready architectural overview** of the entire 5.9.0 platform.
 
 ---
 
 # 🌐 Vision & Philosophy
 
-Modern AI systems behave like black boxes — powerful but unpredictable.  
-SIRIUS rejects this paradigm.
+Modern AI architectures behave like stochastic black boxes — deceptively capable yet structurally unaccountable, prone to semantic hallucination, and dependent on cloud transmission.  
+SIRIUS completely rejects this paradigm.
 
-Its core principles:
+Its non-negotiable foundational pillars:
 
-- **Determinism** — same input → same output, always.  
-- **Explainability** — every inference has a proof tree and evidence chain.  
-- **Security** — identity layers, permission gates, quarantine, COLNIK validation.  
-- **Offline Autonomy** — zero cloud dependency, full local control.  
-- **Enterprise Stability** — predictable workflows, validated transitions, hardened modules.  
-- **Human Oversight & Autonomy‑Awareness** — orchestrated execution with `PanelAPI` human-in-the-loop validation and proposal/confirmation logic.
+- **Determinism** — Identical inputs yield identical deductions and execution paths, every single time (O(1) to bounded polynomial complexity).  
+- **Multi-Word Semantic Integrity** — Preserves compound noun phrases in full; isolates copula verbs deterministically without regex mutilation.  
+- **Persistent Multi-Alias Memory** — Binds colloquial queries directly to canonical concepts; zero proposal recurrence once verified.  
+- **Auditable Explainability (XAI)** — Every single inference, classification, and repair compiles a formal proof tree and evidence derivation chain.  
+- **Terminal Isolation & Decoupling** — Interactive queries reset context to none upon clearance, ensuring zero host shell leakage.  
+- **Customs-Grade Boundary Security** — Identity tiers, domain shields, anti-prefix guards, quarantine sandboxes, and COLNIK validation.  
+- **100% Offline Sovereignty** — Complete zero-cloud isolation; no external telemetry, tracking, or network dependency.  
+- **Supervised Autonomy** — Orchestrated pipeline linking autonomous proposal governance with active human verification.  
 
-SIRIUS is built for users who demand **absolute control** over their AI.
+SIRIUS is engineered for engineers, researchers, and enterprises that demand **verifiable control** over their intelligent infrastructure.
 
 ---
 
-# 🧠 Unified Knowledge Graph (KG) 5.8  
-### The Core of Deterministic Intelligence
+# 🧠 Unified Multi-Alias Knowledge Graph (KG) 5.9.0  
+### The Core of Deterministic Intelligence & Zero Recurrence
 
-The Knowledge Graph is the foundation of SIRIUS.  
-It stores entities, attributes, relations, and logical structures in a **cycle‑safe, unified schema** (`autosave_kg.json`).
+The Knowledge Graph serves as the definitive semantic ontology of SIRIUS.  
+It organizes entities, attributes, relations, and orbital taxonomies within a **cycle-safe, schema-validated structure** serialized atomically to autosave_kg.json.
 
 ### Key Capabilities
 
-- **Deterministic Graph Engine**  
-  Cycle‑safe, schema‑validated, optimized for multi‑hop traversal.
+- **Multi-Alias Dual-Key Architecture**  
+  Records newly verified knowledge simultaneously under the user's raw compound query (e.g., ovcia vlna) and the formal encyclopedic lemma (Vlna (textil)). Subsequent lookups for either key resolve instantly from memory in O(1) time.
 
-- **KG Query Engine**  
-  Multi‑hop navigation, inbound/outbound traversal, contextual exploration.
+- **Permanent Proposal Recurrence Elimination**  
+  Suppresses redundant AUTONOMY proposal loops. Once a concept or alias mapping is confirmed via PanelAPI ([ÁNO/NIE]), it never triggers an interactive re-learning prompt.
 
-- **KG Explore**  
-  Visualizes entity neighborhoods, relation clusters, attribute inheritance.
+- **Compound-Phrase Entity Preservation**  
+  Natively ingests and indexes multi-word phrases extracted by InputParser5 without dropping essential modifiers or corrupting roots.
+
+- **Deterministic Traversal & Pathfinding**  
+  Cycle-safe, bounded orbital search optimized for multi-hop deductions and relationship discovery (KG_RELATE).
 
 - **KG Explain / Explain Deep**  
-  Generates:
-  - proof trees  
-  - evidence chains  
-  - inference paths  
-  - audit‑ready reasoning logs  
+  Generates machine-verifiable proof trees (hierarchical ASCII and HTML), rule attribution chains, and audit-ready reasoning logs.
 
-- **Comfort Commands**  
-  High‑level entity management: create, rename, merge, unset, search, list.
+- **Developer Comfort Commands**  
+  Fast CLI shortcuts for manual inspection (kg add entity, kg add alias, kg list, kg search, kg debug stats, kg release).
 
-- **Autosave / Autoload**  
-  Deterministic snapshot management with rollback‑safe persistence (`autosave_kg.json`).
+- **Atomic Snapshot Persistence**  
+  Guarantees zero file corruption through temporary shadow staging prior to committing updates to autosave_kg.json.
 
-- **COLNIK Validation (Standard & IPC Mode)**  
-  Every KG mutation is inspected for:
-  - schema consistency  
-  - relation correctness  
-  - attribute validity  
-  - anomaly detection  
-
-- **AUTONOMY‑Aware & PanelAPI-Gated KG Mutations**  
-  KG changes generate autonomous proposals requiring orchestrator-supervised confirmation.
-
-KG 5.8 is the most stable version to date.
+- **COLNIK-6.x Customs Clearance**  
+  Every mutation is audited for ontological consistency, schema compliance, and Non-Bio Domain Shield rules prior to disk commitment.
 
 ---
 
-# ⚙️ Reasoning Engine 5.8  
-### Symbolic Logic with Enterprise‑Grade Explainability + Autonomy Hooks
+# ⚙️ Reasoning Engine 5.9.0  
+### Symbolic Multi-Hop Deduction with Bounded Derivation Trees
 
-The Reasoning Engine performs deterministic inference across KG entities using rule‑based logic under orchestrator supervision.
+The Reasoning Engine performs deterministic deduction over the Knowledge Graph without neural approximations.
 
-### Supported Rules
+### Active Inference Rules
 
-- **MultiHopOrbitInferenceRule**  
-- **DedicsnostVlastnostiRule**  
-- **TranzitivneRelacieRule**  
-- **AutoTypeInferenceRule**  
+- **MultiHopOrbitInferenceRule** — Traverses bounded orbital layers to uncover indirect relationships across disparate graph clusters.  
+- **DedicsnostVlastnostiRule** — Propagates inherited attributes down class taxonomies while barring cross-domain leakage onto technical nodes.  
+- **TranzitivneRelacieRule** — Verifies directed transitive equivalence chains (A to B and B to C implies A to C).  
+- **AutoTypeInferenceRule** — Infers structural categorization dynamically based on verified attribute signatures.  
 
-### Explainability Output
+### Explainability Deliverables
 
-Every inference produces:
+Every deduction delivers:
+- hierarchical ASCII & HTML proof trees  
+- rule provenance tags and edge weights  
+- confidence metrics calculated linearly relative to derivation depth  
+- contextual attribution logs  
 
-- proof trees  
-- evidence trees  
-- confidence scoring  
-- KG‑linked reasoning logs  
+### COLNIK & AUTONOMY Integration
 
-### COLNIK Validation
-
-All reasoning steps are validated for:
-
-- correctness  
-- consistency  
-- rule integrity  
-- anomaly detection  
-
-### AUTONOMY & PanelAPI Integration
-
-Reasoning results can generate:
-
-- autonomous proposals  
-- risk classifications  
-- interactive `[ÁNO/NIE]` prompt gating  
-- validation packets  
+Reasoning outcomes feed directly into:
+- AUTONOMY 6.x proposal governance  
+- threat and risk classification matrices  
+- interactive [ÁNO/NIE] gating loops  
+- customs-validated payload delivery packets  
 
 ---
 
-# 🔄 Workflow Engine 5.8  
-### Deterministic Multi‑Layer System Orchestration + Orchestrator Routing
+# 🔄 Single-Process Orchestration & Workflow Engine 5.9.0  
+### Native Port 8080 Runloop & Terminal Decoupling
 
-The Workflow Engine coordinates the entire runtime driven by `sirius_orchestrator.py`:
+The Workflow Engine coordinates execution through a unified, single-process orchestrator daemon (sirius_orchestrator.py) hosting HTTP/WebSocket services on port 8080:
 
-**KG → Reasoning → Orchestrator → PanelAPI → ENVOY → COLNIK → AUTONOMY → System**
+User / Web UI (Port 8080)
+  |
+  v
+InputParser5 (Compound noun extraction & copula isolation)
+  |
+  v
+sirius_orchestrator.py (Single-Process Daemon)
+  |-- 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal)
+  |-- TimeCore & Guard (Telemetry & Resource supervision)
+  |-- RuntimeCore 5.9.0 & Multi-Alias KG (autosave_kg.json)
+  |-- ReasoningEngine 5.9.0 (Multi-hop rules & Proof trees)
+  |-- COLNIK-6.x Customs Decision Gate (Standard & IPC Mode)
+  |-- AUTONOMY 6.x (Control, Guard & Triage Mode)
+  |-- PanelAPI ([ÁNO/NIE] Confirmation Loop)
+  +-- EXECUTE 6.x (Multi-Alias Graph Commit & Safe Execution)
 
 ### Key Features
-
-- centralized orchestrator routing (`sirius_orchestrator.py`)  
-- interactive `PanelAPI` confirmation loops  
-- TimeCore temporal tracking & Guard security supervision  
-- deterministic routing  
-- identity‑aware execution  
-- KG_EXPLAIN / KG_EXPLAIN_DEEP integration  
-- error‑resilient fallback logic  
-- COLNIK‑validated transitions (Standard & IPC Mode)  
-- AUTONOMY‑aware proposal/confirmation routing (Control & Triage Mode)  
+- **Elimination of Socket & File Contention:** Single-process architecture replaces disk-based IPC polling, preventing file locking conflicts and port collisions.  
+- **Terminal State Decoupling:** Clearing input or aborting an action immediately forces currentModule = "none", permanently preventing conversational text from executing as host OS shell commands.  
+- **Asynchronous Human Confirmation:** PanelAPI non-blocking [ÁNO/NIE] event loops preserve background monitor responsiveness.  
+- **Hardware Telemetry Integration:** Continuous low-overhead tracking of CPU, RAM, and Disk metrics via Guard (< 1% load).  
 
 ---
 
-# 🛡️ ENVOY 5 — Security & Execution Layer  
-### Enterprise‑Grade Protection + Autonomy‑Aware Permissions
+# 🛡️ ENVOY 5 — Autonomous Retrieval & Domain Shielding  
+### Quarantined External Retrieval with Anti-Drift Protections
 
-ENVOY is the security backbone of SIRIUS, managed under orchestrator supervision.
+When external enrichment is explicitly authorized, ENVOY 5 operates as an outbound-only, heavily sandboxed retrieval bridge.
 
-### Capabilities
+### Security & Semantic Subsystems
 
-- **Permission Layer**  
-  Identity‑aware fetch rules, OWNER‑restricted high‑risk actions, autonomy‑aware permission proposals, and `PanelAPI` human confirmation.
+- **Autonomous Disambiguation Triage (ExecutionLayer5)**  
+  Detects Wikipedia disambiguation structures („môže byť...“) and contextually routes queries to specific sub-articles (e.g., categorizing slon into genus Elephas).
 
-- **Execution Layer**  
-  Outbound‑only, sandboxed, validated payload execution.
+- **Anti-Prefix & Phonetic Guard**  
+  Neutralizes prefix over-matching anomalies, permanently halting semantic drift (Káva -> Kavala or Skript -> telenovelas).
 
-- **Quarantine & Policy Enforcement**  
-  Suspicious operations isolated and inspected under `Guard` supervision.
+- **Strip-Bracket Fallback**  
+  Automatically queries base root lemmas when encountering unresolvable parenthetical articles.
 
-- **Explainability Traces**  
-  Every action logged for auditability.
+- **Non-Bio Domain Shield (Normalizer5)**  
+  Strictly prevents abstract, technical, physical, or architectural disciplines (ekológia, architektúra, fyzika) from receiving biological habitat attributes.
 
-- **COLNIK Validation (Standard & IPC Mode)**  
-  All payloads inspected for safety.
+- **Sentence-Bound Extractor**  
+  Requires explicit occurrence verbs (žije, obýva, prirodzený výskyt) within the exact sentence before allowing habitat relation extraction.
 
-- **AUTONOMY Integration**  
-  ENVOY permission decisions feed autonomy proposals.
-
----
-
-# 🧩 COLNIK‑6.x — Enterprise Validation Layer  
-### Internal Customs‑Style Inspection (Standard & IPC Mode)
-
-COLNIK acts as the internal “customs officer” for the entire runtime.
-
-### Responsibilities
-
-- rule validation  
-- workflow authorization  
-- high-performance IPC synchronization with AUTONOMY  
-- anomaly detection  
-- protection against malformed KG updates  
-- identity enforcement  
-- policy compliance  
-- autonomy proposal validation  
-
-### Status
-
-Fully integrated in v5.8 (Standard & IPC Mode).  
-Extended autonomy validation planned for 6.x.
+- **Quarantine Sandbox**  
+  Isolates incoming data; strips all HTML tags, client-side scripts, tracking pixels, and executable objects, delivering only normalized semantic facts.
 
 ---
 
-# 🖥️ System Agent 5  
-### Secure Offline OS Interaction + Autonomy‑Aware Validation
+# 🧩 COLNIK‑6.x — Enterprise Customs Decision Gate  
+### Standard & High-Performance IPC Decision Authority
 
-The System Agent mediates OS‑level actions with:
+COLNIK-6.x functions as the definitive internal customs authority for every system mutation.
 
-- identity verification  
-- constant‑time validation (O(1))  
-- deterministic execution  
-- COLNIK‑validated operations (Standard & IPC Mode)  
-- AUTONOMY‑aware gating & Guard monitoring  
-
-This ensures safe offline autonomy.
+### Operational Responsibilities
+- **Primitive Decision Gate:** Evaluates system requests to issue deterministic ALLOW, DENY, or TRIAGE verdicts.  
+- **Multi-Module Policy Auditing:** Aggregates outputs from PermissionLayer5, PolicyEngine5, BehaviorFilter5, FamilySafetyRules5_x, and EnvoyNormalizer5.  
+- **High-Performance IPC Synchronization:** Operates seamlessly within the port 8080 orchestrator loop.  
+- **Triage Quarantine Queue:** Routes malformed, ambiguous, or suspicious operations into COLNIK-6.x/triage for review via the Triage UI Panel.  
 
 ---
 
-# 🔧 Self‑Repair Layer 5.8  
-### Autonomous Runtime Healing + Orchestrator Supervision
+# 🖥️ 4-Panel UI Suite (Port 8080)  
+### Visual Management & Secure Command Console
 
-Capabilities:
+Accessible locally via browser (http://127.0.0.1:8080), the UI Suite provides four purpose-built management panels:
 
-- integrity checks (`TimeCore` interval scheduling)  
-- dependency healing  
-- workflow reconstruction  
-- rollback‑safe KG validation (`autosave_kg.json`)  
-- COLNIK‑validated repair logic  
-- autonomy‑aware repair proposals & PanelAPI confirmation  
+- **Duplicates Panel:** Displays duplicate file status, monitors Guard hardware metrics, and enforces REPORT_ONLY policies to prevent accidental data loss.  
+- **Triage Panel:** Real-time visual queue displaying quarantined payloads, unparsed web data, and held mutations (COLNIK-6.x/triage).  
+- **Navigation Panel:** Deterministic, state-safe navigation across Runtime Core, Knowledge Graph, Envoy, and Autonomy modules.  
+- **Terminal Panel:** Interactive command console featuring automatic context release (currentModule = "none"), ensuring that typing errors or conversational queries never capture the host OS shell.  
 
 ---
 
-# 📱 Mobile Runtime 5.8  
-### Optimized for Mobile Environments
+# 🔧 Self‑Repair Layer 5.8 & System Agent 5  
+### Cryptographic Sealing & Host Gatekeeping
 
-Features:
-
-- faster KG operations  
-- unified multimodal inputs  
-- deterministic inference  
-- KG_EXPLAIN integration  
-- COLNIK validation  
-- autonomy‑aware routing  
+- **Cryptographic Hash Verification:** Continually scans autosave_kg.json, configuration manifests, and system files against SHA-256 seals in integrity_map.json.  
+- **Automated Reconstruction:** Restores corrupted JSON stores and missing configuration templates from baseline fallbacks.  
+- **System Agent 5 Mediation:** Constant-time (O(1)) gatekeeper validating all OS-level actions; blocks privilege escalations and unverified process spawns.  
 
 ---
 
-# 🛡️ Security Family 5.x  
-### Identity Enforcement & Behavioral Safety (v3.1)
+# 🛡️ Security Family 5.x & Identity Engine 3.1  
+### Role-Based Access Control & Academic Priority
 
-Includes:
-
-- stronger STRANGER mode  
-- SCHOOLWORK bypass improvements (`Schoolwork Engine 5.8`)  
-- Time‑Limits v3  
-- behavioral recognition  
-- explainable identity decisions  
-- COLNIK‑validated enforcement  
-- autonomy‑aware identity proposals and PanelAPI gating  
+- **Access Tiers:** Strict policy separation across OWNER (full administration), FAMILY (safe household access), and STRANGER (zero-trust sandbox with immediate terminal lockout).  
+- **Schoolwork Engine 5.8:** Guaranteed educational bypass allowing academic and homework queries to navigate the Knowledge Graph without restriction or delay.  
+- **Password Vault 5.9.0:** Authenticated AES-256-GCM encrypted credential vault with PBKDF2 key stretching, preserving compound service names via InputParser5.  
 
 ---
 
-# 🌟 Architectural Highlights
+# 🌟 Architectural Comparison: 5.8 vs. 5.9.0
 
-- centralized orchestration (`sirius_orchestrator.py`)  
-- interactive human oversight (`PanelAPI` [ÁNO/NIE])  
-- temporal & security supervision (`TimeCore`/`Guard`)  
-- deterministic execution  
-- multi‑hop reasoning  
-- offline operation  
-- enterprise validation  
-- deep explainability  
-- autonomy‑aware routing  
-- hardened security  
-- unified PC/Mobile logic  
-
----
-
-# 🚀 Summary
-
-SIRIUS LOCAL AI 5.8 consolidates a fully stabilized symbolic AI runtime with deterministic reasoning, explainability‑first design, hardened security layers, centralized orchestration (`sirius_orchestrator.py`), interactive `PanelAPI` human oversight, autonomy‑aware routing, and enterprise‑grade validation.  
-Its modular architecture supports offline operation, multi‑hop reasoning, and advanced system governance — forming a robust foundation for the upcoming autonomous and multimodal capabilities of version 6.x.
+| Architectural Feature | Version 5.8 UNIFIED | Version 5.9.0 UNIFIED (Current) |
+|:---|:---|:---|
+| **Daemon Architecture** | Scattered scripts / IPC polling | Single-Process Orchestrator (sirius_orchestrator.py on Port 8080) |
+| **NL Parsing Engine** | Single-token / regex triage | Multi-Word Compound Parser (InputParser5) with copula isolation |
+| **Knowledge Graph Indexing** | Single canonical key | Dual-Key Multi-Alias Mapping (autosave_kg.json) |
+| **Proposal Recurrence** | Re-triggered across sessions | Permanently Eliminated (Zero Proposal Recurrence) |
+| **Encyclopedic Triage** | Basic scraping / manual rules | Autonomous Disambiguation Triage & Anti-Prefix Guard |
+| **Domain Safety** | Identity & file permissions | Non-Bio Domain Shield & Sentence-Bound Habitat Extractor |
+| **User Interface** | CLI / Basic PanelAPI prompts | Decoupled 4-Panel UI Suite with automatic module reset |
+| **Terminal Safety** | Potential host focus capture | Decoupled (currentModule = "none" on input clear) |
+| **System Telemetry** | TimeCore heartbeat | TimeCore + Guard real-time hardware metrics (CPU, RAM, Disk) |
+| **Quarantine Management** | File isolation | Visual Triage Queue (COLNIK-6.x/triage) in UI Suite |
 
 ---
 
-# 🤖 Autonomy Engine 6.x — Next‑Generation Deterministic AI Autonomy  
-### The Future Core of SIRIUS: Safe, Explainable, Identity‑Aware Autonomous Intelligence
+# 🤖 AUTONOMY 6.x — Supervised Deterministic Intelligence  
+### Supervised Autonomous Governance with Active Human-in-the-Loop Oversight
 
-The upcoming **Autonomy Engine 6.x** represents the largest architectural leap in the history of SIRIUS LOCAL AI.  
-Version 5.8 prepares the entire runtime for supervised, deterministic autonomy through orchestrator supervision and human-in-the-loop control.
+AUTONOMY 6.x operates as the supervisory intelligence layer within SIRIUS 5.9.0, bridging autonomous proposals with human verification.
 
-Autonomy in SIRIUS is **supervised autonomy**, built on strict rules, identity gates, interactive `PanelAPI` prompts, and COLNIK‑validated execution.
-
----
-
-## 🧩 Core Architecture of Autonomy 6.x
-
-1. **Monitoring Layer (`TimeCore` & `Guard`)**  
-2. **Analyzer Layer**  
-3. **Proposer Layer**  
-4. **JSON Format Layer**  
-5. **COLNIK Validation Layer (Standard & IPC Mode)**  
-6. **Workflow → Orchestrator → OS Execution Layer**  
+### Core Autonomy Pipeline
+1. **Telemetry & Resource Monitoring:** Evaluates CPU, RAM, and Disk loads via Guard.  
+2. **Analysis & Proposal Synthesis:** Identifies unindexed concepts and prepares structured proposal objects (kg.learn_proposal).  
+3. **Loop Suppression Audit:** Verifies that candidate proposals do not already exist in the multi-alias registry.  
+4. **Customs Clearance:** Passes proposed actions through COLNIK-6.x validation.  
+5. **Interactive Confirmation:** Dispatches human-in-the-loop prompts via PanelAPI ([ÁNO/NIE]).  
+6. **Execution & State Clearance:** Dispatches approved actions to EXECUTE 6.x and resets terminal state.  
 
 ---
 
-## 🔐 Identity‑Aware Autonomous Behavior
+# 🚀 Execution & Verification
+SIRIUS Runtime 5.9.0 is launched via the unified single-process orchestrator:
 
-- OWNER → full autonomous assistance (with PanelAPI gating for sensitive changes)  
-- FAMILY → limited autonomous suggestions  
-- STRANGER → no autonomous actions  
-
----
-
-## 🛡️ Safety Principles of Autonomy
-
-1. No autonomous action without COLNIK approval  
-2. No direct OS access without System Agent 5 validation  
-3. No hidden behavior (full explainability via KG_EXPLAIN_DEEP)  
-4. No neural guessing (deterministic symbolic logic)  
-5. No identity bypass  
-
----
-
-## 🔍 Explainability‑First Autonomous Design
-
-Every autonomous decision produces:
-
-- proof tree  
-- evidence chain  
-- reasoning log  
-- risk classification  
-- validation trace  
-- workflow execution path  
-
----
-
-## ⚡ Autonomous Capabilities Planned for 6.x
-
-- system optimization autonomy  
-- KG maintenance autonomy  
-- file triage autonomy  
-- navigation autonomy  
-- terminal assistant autonomy  
-- ENVOY permission autonomy  
-
----
-
-# 🌟 Summary
-
-Autonomy Engine 6.x transforms SIRIUS into a next‑generation offline AI system capable of safe autonomous assistance without sacrificing control, transparency, or security.
+```bash
+python sirius_orchestrator.py
+Access the interactive 4-Panel UI Suite via browser:
+[http://127.0.0.1:8080](http://127.0.0.1:8080)
