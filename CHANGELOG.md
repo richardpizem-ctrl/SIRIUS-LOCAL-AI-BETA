@@ -1,74 +1,83 @@
 # 📜 CHANGELOG — SIRIUS LOCAL AI
 
-## v5.9.0 — Semantic Multi-Word Parsing + Autonomous Envoy Disambiguation Triage + 4-Panel UI Suite + Multi-Alias KG Persistence (2026‑09‑25)
+## v5.9.1 — Dual-Language KG Architecture + Native Lossless Entity Merge + Taxonomical Habitat Reasoning + COLNÍK Guard Security Protocol (2026‑10‑06)
 
 ### 🔥 Major Update
-Version 5.9.0 delivers a decisive leap in natural language comprehension, encyclopedic web triage, and UI stability.  
-This release resolves compound phrase truncation through a multi-word semantic parser (`InputParser5`), deploys autonomous disambiguation triage and phonetic prefix protection in `EnvoyExecutionLayer5`, introduces strict non-biological domain shielding in `EnvoyNormalizer5`, implements multi-alias persistence in `RuntimeCore` (permanently eliminating interactive loop recurrences), and fully integrates the 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) with deterministic state release.
+Version 5.9.1 delivers a major architectural advancement focusing on complete bilingual knowledge isolation, native in-memory graph operations, resilient taxonomical inference, and comprehensive security hardening across the SIRIUS / COLNÍK ecosystem.
+This release introduces independent, isolated storage backends for Slovak (autosave_kg.json) and English (autosave_kg_en.json), integrates a native lossless entity merge engine (kg merge) directly inside RuntimeCore, implements context-aware mammalian category deduction (KG_VERIFY), repairs reverse habitat querying with non-destructive flora shielding, adds greedy trailing punctuation sanitization, latches proposal confirmation states across interactive turns, and formalizes the complete COLNÍK Guard security layer (featuring Token Guard, sliding-window quarantine rotation, and the Human-in-the-Loop Safe Trash pipeline).
 
-All operations execute 100% offline, orchestrated inside a single-process IPC daemon running natively on port 8080 via `sirius_orchestrator.py`.
-
----
-
-### 🔤 Multi-Word Semantic Engine (`InputParser5`)
-- Native preservation of compound noun phrases (e.g., `ovcia vlna`, `mobilny telefon`, `pevna linka`) without truncating modifiers down to isolated single tokens.
-- Complete isolation of copula verbs (`je`, `sú`) from subject entities, preventing linguistic corruptions like `jeovcia vlna`.
-- Diacritic-aware normalization retaining precise compound concepts for Knowledge Graph querying.
+All operations execute 100% offline, orchestrated inside a single-process IPC daemon running natively on port 8080 via sirius_orchestrator.py.
 
 ---
 
-### 🌐 Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)
-- Autonomous Disambiguation Triage: automatically detects encyclopedic disambiguation structures (*„môže byť...“*) and resolves the underlying biological, material, or technical target article (e.g., categorizing `slon` directly into the genus *Elephas*).
-- Phonetic & Anti-Prefix Guard: eliminated prefix over-matching anomalies (stops query drift such as *Káva* jumping to *Kavala* or *Skript* to soap operas).
-- Strip-Bracket Fallback: gracefully recovers from non-existent parenthetical wiki entries by falling back to root lemmas.
+### 🌐 Dual-Language Isolated KG Architecture (autosave_kg.json & autosave_kg_en.json)
+- Strict Physical & Logical Segregation: Fully separated knowledge graphs for Slovak (autosave_kg.json) and English (autosave_kg_en.json), preventing cross-lingual corruption, mixed-language article summaries, and bilingual entity collisions.
+- Dynamic Language Context Dispatch: RuntimeCore automatically binds queries, node retrieval, attribute manipulation, relations, and autosave routines to the exact language selected in the UI Panel (SK / EN).
+- Synchronized Dual Autosave: Independent atomic serialization for both linguistic models on runtime shutdown and immediately following external Envoy enrichments.
 
 ---
 
-### 🌿 Contextual Domain & Habitat Filtering (`EnvoyNormalizer5`)
-- Strict Non-Bio Domain Shield: prevents abstract, scientific, and technical concepts (e.g., *ekológia*, *architektúra*, *fyzika*) from receiving inaccurate geographic habitat metadata.
-- Sentence-Bound Extractor: restricts habitat attribute assignment exclusively to sentences containing explicit biological occurrence verbs (*žije*, *obýva*, *prirodzený výskyt*).
+### 🔀 Native Lossless KG Merge Engine (kg merge <src> into <tgt>)
+- Direct RuntimeCore Interceptor: Integrated directly into RuntimeCore without external script invocations, brittle file paths, or import dependencies.
+- Zero-Loss Attribute Relocation: Migrates all properties, descriptions, alternative summaries, and habitat definitions from the source node directly into the target node.
+- Automatic Alias Node Transition: Source entities are preserved as lightweight alias nodes with directional graph edges (src -[alias]-> tgt), enabling seamless bi-directional discovery.
 
 ---
 
-### 🧠 Multi-Alias Graph Persistence (`RuntimeCore`)
-- Dual-key Knowledge Graph commitment: records entities under both raw user queries and normalized encyclopedic titles.
-- Zero Proposal Recurrence: once an entity is confirmed via `[ÁNO/NIE]`, subsequent requests are served directly from graph memory without triggering duplicate interactive learning prompts.
-- Atomic serialization directly to `autosave_kg.json`.
+### 🧬 Taxonomical & Marsupial Inference (KG_VERIFY)
+- Ontological Category Verification: Accurately deduces higher-order biological categories directly from stored text records (e.g., recognizing that marsupials and macropods belong to mammals without requiring rigid exact matches).
+- Persistent Edge Auto-Commit: Once verified via Envoy or contextual extraction, taxonomical edges (kangaroo -[is_a]-> mammal, macropus -[je]-> cicavec) are committed directly to the active knowledge graph, resulting in zero confirmation recurrence on repeated queries.
 
 ---
 
-### 🖥 4-Panel UI Suite & Terminal Decoupling
-- Duplicates Panel: monitors system resource metrics and categorizes file duplicates into safe vs. critical buckets.
-- Triage Panel: live monitoring of quarantine queues and unclassified files (`COLNIK-6.x/triage`).
-- Navigation Panel: deterministic routing across Runtime 5, Knowledge Graph, Envoy, and Autonomy layers.
-- Terminal Panel: permanent fix for host lockup by automatically resetting `currentModule = "none"` when clearing input, preventing conversational queries from executing as host OS commands.
+### 🌍 Non-Destructive Reverse Location Engine (_execute_reverse_location_query)
+- Universal Multi-Stem Regional Matching: Unified location matching supporting inflected geographic forms across both languages (Austrálii, Austrália, and Australia).
+- False-Positive Flora Guard: Eliminated naive substring collisions that previously misclassified tree-dwelling animals („stromový vačkovec“) as flora. Koala medvedíkovitá, Macropus, and Krokodíl morský now reliably resolve under Australian fauna.
+- Direct Attribute Access: Standardized all graph iterations via self.kg.get_attributes(), eliminating silent lookup failures caused by accessing raw internal dictionaries.
 
 ---
 
-### 🚀 Integrated Single-Process Orchestrator
-- Central execution loop running directly via `sirius_orchestrator.py`.
-- Integrated HTTP/WebSocket IPC daemon operating on port 8080, eliminating disk file locks and race conditions during rapid interactive sessions.
+### 🔤 Punctuation Hygiene & Confirmation State Latching (InputParser5 & RuntimeCore)
+- Greedy Trailing Punctuation Stripping: Sanitizes input strings by trimming trailing question marks (.rstrip("?")), preventing entity lookup failures (e.g., CO JE MACROPUS? cleanly resolves to node macropus).
+- Confirmation State Latching: Workflow fallback prompts strictly maintain pending entity identifiers in memory, ensuring affirmative user confirmations (ÁNO, ANO, YES, Y) correctly trigger Envoy execution rather than encountering a detached state.
+
+---
+
+### 🛡️ Comprehensive Security Protocol (COLNÍK Guard & Safe UI Trash)
+- Safe UI Trash (Human-in-the-Loop): Files flagged for removal (duplicates, empty folders, damaged files) are never deleted directly from disk; they are quarantined and require manual user approval via GET /trash.
+- System File Protection: System configurations, logs, code modules, knowledge graphs (autosave_kg.json, autosave_kg_en.json), and IPC buffers are strictly protected from modification.
+- TerminalAssistant & COLNÍK Guard Shell Filter:
+  - FORBIDDEN (0.0s Hard Block): format, rmdir /s, del /f /s /q c:, diskpart, drop database, fork-bombs.
+  - RISKY (Explicit Prompt Required): rm, kill, taskkill, del.
+  - ALLOWED: ps, top, mem, sys, grep, info, cat, head, tail, check, template, python, git, pip, ls, dir, cd, pwd, mkdir, touch, help.
+- Token Guard: Entry-level sanitization rejecting corrupted or dangerous symbol sequences (@#$%^&*) on raw input before runtime processing.
+- Automatic Sliding-Window Quarantine Rotation: Enforces a strict 100-file ceiling inside COLNIK-6.x/envoy/quarantine/, automatically pruning older JSON payloads upon new arrivals.
+- Character Encoding Stabilization: Multi-stage shell output decoding (UTF-8 -> CP1250 -> CP852 fallback) ensuring full diacritics integrity.
 
 ---
 
 ### ⚙ Execution Command
-SIRIUS Runtime 5.9.0 is launched via the central orchestrator:
+SIRIUS Runtime 5.9.1 is launched via the central orchestrator:
 
 python sirius_orchestrator.py
 
 ---
 
-### 📦 Included in ZIP (SIRIUS-LOCAL-AI-5.9.0.zip)
-- Full clean Runtime 5.9.0 codebase (all `__pycache__` and compiled `.pyc` artifacts removed)
-- `sirius_orchestrator.py` with native port 8080 IPC bridge
-- Enhanced `InputParser5`, `EnvoyExecutionLayer5`, and `EnvoyNormalizer5`
-- 4-Panel UI suite assets and browser dashboard (`index.html`)
-- COLNIK‑6.x validation subsystem (Standard & IPC Mode)
-- AUTONOMY 6.x (Control, Guard & Triage Mode)
-- Unified Knowledge Graph schema with multi-alias support (`autosave_kg.json`)
-- Full symbolic reasoning engine and XAI proof-tree pipeline
+### 📦 Included in ZIP (SIRIUS-LOCAL-AI-5.9.1.zip)
+- Full clean Runtime 5.9.1 codebase (all __pycache__ and compiled .pyc artifacts removed)
+- sirius_orchestrator.py with native single-process port 8080 IPC bridge and embedded TerminalAssistant + TimeCore
+- Dual knowledge graph stores: autosave_kg.json (SK) and autosave_kg_en.json (EN)
+- Native kg merge engine, Token Guard, and sliding-window quarantine rotator
+- Enhanced InputParser5, EnvoyExecutionLayer5, and EnvoyNormalizer5
+- 4-Panel UI suite assets and browser dashboard (index.html)
+- COLNÍK 6.x validation subsystem (Standard, IPC Mode & COLNÍK Guard)
+- AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Safe Trash)
+- Full symbolic reasoning engine, XAI proof-tree pipeline, and taxonomical inference rules
 
 ---
+
+## v5.9.0 — Semantic Multi-Word Parsing + Autonomous Envoy Disambiguation Triage + 4-Panel UI Suite + Multi-Alias KG Persistence (2026‑09‑25)
+(Previous version)
 
 ## v5.8 — Unified Orchestrator + PanelAPI Loops + TimeCore & Guard Supervision + COLNIK/AUTONOMY IPC (2026‑09‑10)  
 (Previous version)
