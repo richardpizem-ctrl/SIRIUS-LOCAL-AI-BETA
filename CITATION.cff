@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "5.9.0"
-date-released: 2026-09-25
+version: "5.9.1"
+date-released: 2026-10-06
 
 authors:
   - family-names: "Pizem"
@@ -15,25 +15,51 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 5.9.0"
-  - "runtime core 5.9.0 unified"
+  - "intelligent runtime 5.9.1"
+  - "runtime core 5.9.1 unified"
+  - "dual-language KG architecture"
+  - "isolated knowledge graphs"
+  - "autosave_kg.json"
+  - "autosave_kg_en.json"
+  - "dynamic language context switching"
+  - "native lossless entity merge"
+  - "kg merge"
+  - "taxonomical reasoning"
+  - "ontological inference"
+  - "KG_VERIFY"
+  - "mammalian category deduction"
+  - "reverse location querying"
+  - "anti-flora classification guard"
+  - "trailing punctuation sanitization"
+  - "greedy punctuation stripping"
+  - "confirmation state latching"
+  - "Token Guard"
+  - "input sanitization"
+  - "envoy quarantine sliding window"
+  - "quarantine ceiling rotation"
+  - "COLNIK Guard"
+  - "shell command security"
+  - "0.0s command blocking"
+  - "Human-in-the-Loop safe trash"
+  - "quarantined file deletion"
+  - "character encoding CP1250 CP852 fallback"
   - "semantic multi-word parsing"
   - "compound noun phrases"
   - "InputParser5"
   - "EnvoyExecutionLayer5"
   - "EnvoyNormalizer5"
+  - "EnvoyQuarantine5"
   - "autonomous disambiguation triage"
   - "anti-prefix guard"
   - "contextual domain filtering"
   - "multi-alias KG persistence"
-  - "autosave_kg.json"
   - "4-panel UI suite"
   - "terminal decoupling"
   - "duplicates triage navigation terminal"
   - "plugin system 5.x"
-  - "workflow engine 5.9.0"
-  - "reasoning engine 5.9.0"
-  - "explainability engine 5.9.0"
+  - "workflow engine 5.9.1"
+  - "reasoning engine 5.9.1"
+  - "explainability engine 5.9.1"
   - "KG_EXPLAIN"
   - "KG_EXPLAIN_DEEP"
   - "multi-hop inference"
@@ -43,9 +69,9 @@ keywords:
   - "evidence trees"
   - "confidence scoring"
   - "rule chaining"
-  - "semantic triage 5.9.0"
-  - "AITE 5.9.0"
-  - "unified knowledge graph 5.9.0"
+  - "semantic triage 5.9.1"
+  - "AITE 5.9.1"
+  - "unified knowledge graph 5.9.1"
   - "KG comfort commands"
   - "secure local processing"
   - "Windows automation"
@@ -58,7 +84,7 @@ keywords:
   - "time-limits engine v3"
   - "self-repair layer 5.8"
   - "health-check engine 5.8"
-  - "PC automation runtime 5.9.0"
+  - "PC automation runtime 5.9.1"
   - "Mobile Runtime 5.8"
   - "ENVOY Execution Layer 5"
   - "ENVOY Permission Layer 5"
@@ -86,21 +112,23 @@ keywords:
 abstract: >
   SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, reasoning tasks, and
-  semantic automation. Version 5.9.0 introduces major enhancements to natural language
-  comprehension and runtime reliability, featuring compound noun phrase preservation
-  via InputParser5, autonomous disambiguation triage and phonetic prefix protection
-  via EnvoyExecutionLayer5, strict non-biological domain shielding in EnvoyNormalizer5,
-  and dual-key multi-alias persistence in RuntimeCore that completely eliminates
-  repetitive interactive learning loops.
+  semantic automation. Version 5.9.1 introduces a major architectural leap with a
+  native dual-language Knowledge Graph architecture (autosave_kg.json for SK and
+  autosave_kg_en.json for EN) that completely segregates linguistic knowledge stores
+  and eliminates cross-lingual contamination. It integrates a native lossless entity
+  merge engine (kg merge) inside RuntimeCore, enables context-aware taxonomical
+  inference (KG_VERIFY) recognizing biological sub-taxa with persistent edge auto-commits,
+  and delivers robust reverse location querying with anti-flora classification guards.
 
-  Version 5.9.0 fully operationalizes the 4-Panel UI Suite (Duplicates, Triage,
-  Navigation, and Terminal) with deterministic state clearance, preventing terminal
-  deadlocks and securing host command isolation. Execution is driven centrally by
-  sirius_orchestrator.py through an integrated single-process IPC Daemon running
-  natively on port 8080.
+  Version 5.9.1 further hardens system safety and stability through greedy trailing
+  punctuation stripping (.rstrip("?")), confirmation state latching across interactive
+  turns, a hard Token Guard against malicious character sequences, an automated 100-file
+  sliding-window quarantine rotator, TerminalAssistant with 0.0s blocking of forbidden
+  commands, and a Human-in-the-Loop Safe Trash pipeline that prevents direct file destruction.
+  Execution is driven centrally by sirius_orchestrator.py through an integrated single-process
+  IPC Daemon running natively on port 8080.
 
   The system operates entirely on the user's device without cloud dependencies or
-  external data transmission. All modules adhere to strict security boundaries,
-  customs validation through COLNIK-6.x, autonomous decision supervision via
-  AUTONOMY-6.x, Guard resource monitoring, and auditable symbolic explainability
-  with proof trees and evidence chains.
+  external data transmission. All operations adhere to strict security boundaries,
+  customs validation through COLNIK-6.x, autonomous supervision via AUTONOMY-6.x,
+  TimeCore latency profiling, Guard monitoring, and auditable symbolic explainability.
