@@ -140,6 +140,12 @@ COLNIK operates as an internal **customs control authority and security firewall
 
 ---
 
+# 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
 # 🏁 Summary
 
 SIRIUS LOCAL AI 5.9.1 unites deterministic symbolic graph logic with dual-language isolation, native lossless entity merging, automated taxonomical deduction, and comprehensive system protection under COLNÍK Guard and Human-in-the-Loop Safe Trash. The runtime is fast, secure, explainable, and prepared for continuous expansion.
@@ -148,7 +154,7 @@ SIRIUS LOCAL AI 5.9.1 unites deterministic symbolic graph logic with dual-langua
 **Metadata & SEO:**  
 Keywords: SIRIUS LOCAL AI, Symbolic AI, Knowledge Graph, Offline AI, Dual-Language KG, KG Merge, COLNIK Guard, Token Guard, Safe UI Trash, Envoy Triage, Python Orchestrator, Autonomous AI, Localhost AI  
 Version: 5.9.1  
-License: SIRIUS Unified License (SUL-3.2.0)  
+License: MIT License  
 Author: richardpizem-ctrl  
 Environment: Localhost / Windows 11 / Port 8080  
 Build Status: Active Development (WIP)
