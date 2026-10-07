@@ -1,0 +1,95 @@
+{
+  "version": "5.x",
+  "entities": {
+    "kangaroo": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Kangaroo",
+      "zhrnutie": "Kangaroos are marsupials from the subfamily Macropodinae macropods, meaning large foot. In common use, the term is used to describe the largest species from this family, the red kangaroo, as well as the antilopine kangaroo, eastern grey kangaroo, and western grey kangaroo. Kangaroos are indigenous to Australia and New Guinea. The Australian government estimated that 42.8 million kangaroos lived within the commercial harvest areas of Australia in 2019, down from 53.2 million in 2013. As with",
+      "vyskyt": "Australia, New Guinea",
+      "zdroj": "external_knowledge_base",
+      "detail": "successfully synchronized"
+    },
+    "mammal": {},
+    "macropus": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Macropus",
+      "zhrnutie": "Macropus, from the Ancient Greek words μακρός (makrós), meaning \"long\", and πούς (pous), meaning \"foot\", is a marsupial genus in the family Macropodidae. It has two extant species of large terrestrial kangaroos. Thirteen known extinct species are recognised. The type species is the eastern grey kangaroo. == Taxonomy == In 2019, a reassessment of macropod taxonomy determined that Osphranter and Notamacropus, formerly considered subgenera, should be moved to the genus level. This change was accept"
+    },
+    "wombat": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Wombat",
+      "zhrnutie": "Wombats are short-legged, muscular quadrupedal marsupials of the family Vombatidae that are native to Australia. Living species are about one metre (40 in) in length with small, stubby tails and weigh between 20 and 35 kg (44 and 77 lb)."
+    },
+    "quokka": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Quokka",
+      "zhrnutie": "The quokka (; Setonix brachyurus) is a macropod native to Australia. It is about the size of a domestic cat. It is the only member of the genus Setonix. Like other marsupials in the macropod family (such as kangaroos and wallabies), the quokka is herbivorous and mainly nocturnal. The quokka's range is a small area of southwestern Australia."
+    },
+    "axolotl": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Axolotl",
+      "zhrnutie": "The axolotl ( ; from Classical Nahuatl: āxōlōtl [aːˈʃoːloːtɬ] ; Ambystoma mexicanum) is a species of mole salamander. It is neotenic, reaching sexual maturity without undergoing metamorphosis, and the adults remain fully aquatic with obvious external gills. Axolotls may be difficult to distinguish from the larval stage of other neotenic adult mole salamanders, in particular the tiger salamander, or other species such as mudpuppies."
+    },
+    "narwhal": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Narwhal",
+      "zhrnutie": "The narwhal (Monodon monoceros) is a species of toothed whale native to the Arctic. It is the only member of the genus Monodon and one of two living representatives of the family Monodontidae. The narwhal is a stocky cetacean with a relatively blunt snout, a large melon, and a shallow ridge in place of a dorsal fin."
+    },
+    "europa": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Europa",
+      "zhrnutie": "Europa commonly refers to Europe in many languages, and is also the name of a moon of Jupiter.",
+      "type": "alias"
+    },
+    "pulsar": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Pulsar",
+      "zhrnutie": "A pulsar (pulsating star, on the model of quasar) is a highly magnetized rotating neutron star that emits beams of electromagnetic radiation out of its magnetic poles. This radiation can be observed only when a beam of emission is pointing toward Earth (similar to the way a lighthouse can be seen only when the light is pointed in the direction of an observer), and is responsible for the pulsed appearance of emission."
+    },
+    "nebula": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Nebula",
+      "zhrnutie": "A nebula (Latin for 'cloud, fog'; pl. nebulae or nebulas) is a distinct luminescent part of interstellar medium, which can consist of ionized, neutral, or molecular hydrogen and also cosmic dust. Nebulae are often star-forming regions, such as the Pillars of Creation in the Eagle Nebula."
+    },
+    "europa (moon)": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Europa (moon)",
+      "zhrnutie": "Europa ( ) is the smallest and least massive of Jupiter's four Galilean moons. It is observable from Earth with common binoculars and is a planetary-mass moon, slightly smaller and less massive than Earth's Moon. Europa is an icy moon, and, of the three icy Galilean moons, the closest orbiting Jupiter. As a result, it exhibits a relatively young surface shaped by tidal heating."
+    },
+    "europa moon": {
+      "type": "alias"
+    },
+    "tasmanian devil": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Tasmanian devil",
+      "zhrnutie": "The Tasmanian devil (Sarcophilus harrisii; palawa kani: purinina) is a carnivorous marsupial of the family Dasyuridae. It was formerly present across mainland Australia, but became extinct there around 3,500 years ago; it is now confined to the island of Tasmania. The size of a small dog, the Tasmanian devil became the largest carnivorous marsupial in the world following the extinction of the thylacine in 1936."
+    },
+    "carbon nanotube": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "Carbon nanotube",
+      "zhrnutie": "A carbon nanotube (CNT) is a tube made of carbon with a diameter in the nanometre range (nanoscale). They are one of the allotropes of carbon. Two broad classes of carbon nanotubes are recognized: Single-walled carbon nanotubes (SWCNTs) have diameters around 0.5–2.0 nanometres, about a 100,000th the width of a human hair. They can be idealised as cutouts from a two-dimensional graphene sheet rolled up to form a hollow cylinder."
+    },
+    "james webb space telescope": {
+      "stav": "obohatené_cez_envoy",
+      "nazov": "James Webb Space Telescope",
+      "zhrnutie": "The James Webb Space Telescope (JWST) is a space telescope designed to conduct infrared astronomy. It is the largest telescope in space, and is equipped with high-resolution and high-sensitivity instruments, allowing it to view objects too old, distant, or faint for the Hubble Space Telescope."
+    }
+  },
+  "relations": [
+    {
+      "source": "kangaroo",
+      "relation": "is_a",
+      "target": "mammal"
+    },
+    {
+      "source": "europa moon",
+      "relation": "alias",
+      "target": "europa (moon)"
+    },
+    {
+      "source": "europa",
+      "relation": "alias",
+      "target": "europa (moon)"
+    }
+  ]
+}
