@@ -1,0 +1,213 @@
+{
+  "items": {
+    "kyslík|je|veľmi reaktívny prvok": {
+      "source": "kyslík",
+      "relation": "je",
+      "target": "veľmi reaktívny prvok",
+      "first_seen": 1791824587.0622733,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|jediná planéta": {
+      "source": "zem",
+      "relation": "je",
+      "target": "jediná planéta",
+      "first_seen": 1791824617.0797138,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|predmetom skúmania napríklad kozmogónie": {
+      "source": "zem",
+      "relation": "je",
+      "target": "predmetom skúmania napríklad kozmogónie",
+      "first_seen": 1791824617.0809212,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|najväčšia spomedzi terestriálnych planét": {
+      "source": "zem",
+      "relation": "je",
+      "target": "najväčšia spomedzi terestriálnych planét",
+      "first_seen": 1791824617.0822926,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|obklopená atmosférou": {
+      "source": "zem",
+      "relation": "je",
+      "target": "obklopená atmosférou",
+      "first_seen": 1791824617.0837913,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|prvá planéta": {
+      "source": "zem",
+      "relation": "je",
+      "target": "prvá planéta",
+      "first_seen": 1791824617.0852597,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "slnko|je|hviezda geometrickom gravitačnom centre": {
+      "source": "slnko",
+      "relation": "je",
+      "target": "hviezda geometrickom gravitačnom centre",
+      "first_seen": 1791824617.088265,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "slnko|je|tvorené plazmou": {
+      "source": "slnko",
+      "relation": "je",
+      "target": "tvorené plazmou",
+      "first_seen": 1791824617.089267,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "mars|je|štvrtá planéta slnečnej sústavy": {
+      "source": "mars",
+      "relation": "je",
+      "target": "štvrtá planéta slnečnej sústavy",
+      "first_seen": 1791824647.1046789,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "makromolekula|je|zložená veľkého počtu kovalentne": {
+      "source": "makromolekula",
+      "relation": "je",
+      "target": "zložená veľkého počtu kovalentne",
+      "first_seen": 1791824677.1324017,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "železo|je|pomerne mäkký": {
+      "source": "železo",
+      "relation": "je",
+      "target": "pomerne mäkký",
+      "first_seen": 1791824707.1413977,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "chemicky|je|pomerne reaktívny": {
+      "source": "chemicky",
+      "relation": "je",
+      "target": "pomerne reaktívny",
+      "first_seen": 1791824707.1447513,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "mesiac|je|približne guľatý tvorený horninami": {
+      "source": "mesiac",
+      "relation": "je",
+      "target": "približne guľatý tvorený horninami",
+      "first_seen": 1791824707.1470928,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "fyzika|je|jednou najstarších akademických disciplín": {
+      "source": "fyzika",
+      "relation": "je",
+      "target": "jednou najstarších akademických disciplín",
+      "first_seen": 1791824737.1597786,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "astronómia|je|jednou z mála vied, kde aj amatéri môžu zohrať významnú úlohu, predovšetkým pri objavoch a": {
+      "source": "astronómia",
+      "relation": "je",
+      "target": "jednou z mála vied, kde aj amatéri môžu zohrať významnú úlohu, predovšetkým pri objavoch a",
+      "first_seen": 1791824767.1851811,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "jupiter|je|piata planéta poradí": {
+      "source": "jupiter",
+      "relation": "je",
+      "target": "piata planéta poradí",
+      "first_seen": 1791824767.1924462,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "jupiter|ma|chemické zloženie podobné": {
+      "source": "jupiter",
+      "relation": "ma",
+      "target": "chemické zloženie podobné",
+      "first_seen": 1791824767.1954818,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "planéta|ma|podľa súčasných poznatkov druhú": {
+      "source": "planéta",
+      "relation": "ma",
+      "target": "podľa súčasných poznatkov druhú",
+      "first_seen": 1791824767.1974454,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "jupiter|je|oblohe dobre viditeľný voľným": {
+      "source": "jupiter",
+      "relation": "je",
+      "target": "oblohe dobre viditeľný voľným",
+      "first_seen": 1791824767.1994298,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    }
+  }
+}
