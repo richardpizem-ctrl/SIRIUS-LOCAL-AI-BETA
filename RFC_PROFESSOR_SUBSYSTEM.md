@@ -66,7 +66,7 @@ Scenario B (Crash Resilience): Force-terminate the Professor daemon (SIGKILL / t
 Scenario C (Poisoning & Injection Immunity): Submit conflicting, adversarial, or malicious imperative prompts. The staging quarantine must tag them as conflicted or rejected, completely preventing insertion into the golden graph.
 ---
 
-### 2. `PROTOCOL_PROFESSOR_V1.md`
+
 
 ```
 # PROFESSOR SUBSYSTEM GOVERNANCE & EXECUTION PROTOCOL (V1.0)
