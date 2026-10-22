@@ -16,6 +16,37 @@
 
 ---
 
+## ⚡ Quickstart & Installation (ZIP Release)
+
+Follow these steps to set up and run the runtime directly from a release package without requiring Git tooling:
+
+### 1. Download & Extract
+1. Navigate to the [Releases](https://github.com/richardpizem/SIRIUS-LOCAL-AI/releases) page.
+2. Under the latest build (`v5.9.5`), download the source archive: **`Source code (zip)`**.
+3. Extract the ZIP archive into your local workspace directory (e.g., `C:\SIRIUS-LOCAL-AI` or `~/SIRIUS-LOCAL-AI`).
+
+### 2. Environment Setup
+Ensure you have **Python 3.10+** installed. Open your terminal in the extracted root directory:
+
+*Windows (PowerShell / Command Prompt):*
+    python -m venv venv
+    .\venv\Scripts\activate
+    pip install -r requirements.txt
+
+*Linux / macOS (Bash):*
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+
+### 3. Launch Orchestrator
+Start the unified runtime and IPC bridge on local port `8080`:
+
+    python src/sirius_orchestrator.py --port 8080
+
+Once initialized, open your browser and access the interactive 4-Panel UI Suite at `[http://127.0.0.1:8080](http://127.0.0.1:8080)`.
+
+---
+
 ## 🔍 SEO Meta & Core Search Keywords
 
 - **Primary Keywords:** Offline AI runtime, local LLM orchestrator, symbolic artificial intelligence, dual-language knowledge graph, knowledge graph merge engine, autonomous AI agent, Python offline AI framework, privacy-first AI engine, local vectorless reasoning, XAI hierarchical proof trees.
@@ -54,6 +85,7 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 
 ## 📌 Table of Contents & Navigation Map
 
+- [Quickstart & Installation](#-quickstart--installation-zip-release)
 - [Architecture Overview](ARCHITECTURE.md)
 - [Module Map](MODULE_MAP.md)
 - [Coding Styleguide](STYLEGUIDE.md)
@@ -96,21 +128,27 @@ src/
 ├── autosave_kg.json      # Isolated Slovak Knowledge Graph Base
 ├── autosave_kg_en.json   # Isolated English Knowledge Graph Base
 └── sirius.py             # Main runtime entry point
-⚙️ Performance & Optimization Guarantees
-Zero External API Latency: 100% offline local execution.
+```
 
-Instant Memory Resolution: O(1) hash-indexed dual-language graph lookups.
+---
 
-Lightweight Asynchronous UI: Non-blocking 4-Panel dashboard on port 8080.
+## ⚙️ Performance & Optimization Guarantees
 
-Strict Bounded Inference: Cycle-safe reasoning preventing runaway recursion.
+- **Zero External API Latency:** 100% offline local execution.
+- **Instant Memory Resolution:** O(1) hash-indexed dual-language graph lookups.
+- **Lightweight Asynchronous UI:** Non-blocking 4-Panel dashboard on port 8080.
+- **Strict Bounded Inference:** Cycle-safe reasoning preventing runaway recursion.
 
-🧩 License & Copyright
-The project is open-source and licensed under the MIT License. See the LICENSE file for details.
+---
 
-✨ Author & Lead Architect
-Richard Pizem
+## 🧩 License & Copyright
 
-Lead Architect & Solo Maintainer
+The project is open-source and licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-SIRIUS‑LOCAL‑AI (Banská Bystrica, Slovakia)
+---
+
+## ✨ Author & Lead Architect
+
+**Richard Pizem**  
+Lead Architect & Solo Maintainer  
+*SIRIUS‑LOCAL‑AI (Banská Bystrica, Slovakia)*
