@@ -1,8 +1,8 @@
 # 🧩 KG COMFORT COMMANDS — Developer‑Friendly Knowledge Graph Operations  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 6.x (Updated for Runtime 5.9.1 UNIFIED)  
+**Version:** 6.x (Updated for Runtime 5.9.5 UNIFIED)  
 **Component:** KG Comfort Commands  
-**Role:** Fast, safe, deterministic developer commands for manipulating the Knowledge Graph with dual-language partition support, native entity merging, taxonomical reasoning, Token Guard sanitization, and orchestrator/PanelAPI supervision
+**Role:** Fast, safe, deterministic developer commands for manipulating the Knowledge Graph with dual-language partition support, native entity merging, taxonomical reasoning, Token Guard sanitization, SafeRollback crash protection, Professor Validator verification, and orchestrator/PanelAPI supervision
 
 ---
 
@@ -19,6 +19,8 @@ They simplify entity creation, multi-alias mapping, native entity merging (`kg m
 - greedy trailing punctuation stripping (`.rstrip("?")`) preventing token lookup mismatch  
 - confirmation state latching across conversation turns  
 - zero proposal recurrence on stored concepts and inferred taxonomies  
+- SafeRollback crash resilience (`safe_rollback.py`) protecting system state and graph configuration  
+- Professor Validator cognitive verification (`PASS / WARN / REJECT`) ensuring strict decision fidelity  
 - customs-grade validation through COLNIK‑6.x (Standard & High-Performance IPC Mode) with COLNÍK Guard 0.0s command blocking  
 - AUTONOMY 6.x gating, Guard resource supervision, and HitL Safe Trash quarantine pipeline  
 - interactive `PanelAPI` confirmation gates (`[ÁNO/NIE]` / `[YES/NO]`)  
@@ -29,7 +31,7 @@ These commands are built for **rapid testing**, **schema debugging**, and **manu
 ---
 
 ## 🧩 Architecture Overview  
-**Developer Mode / InputParser5 → Token Guard → KG Comfort Commands → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE / RuntimeCore → ReasoningEngine5 → AUTONOMY 6.x → COLNIK-6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → Dual KG Commit (`autosave_kg.json` / `autosave_kg_en.json`)**
+**Developer Mode / InputParser5 → Token Guard → KG Comfort Commands → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE / RuntimeCore → SafeRollback / Professor Validator → ReasoningEngine5 → AUTONOMY 6.x → COLNIK-6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → Dual KG Commit (`autosave_kg.json` / `autosave_kg_en.json`)**
 
 ### Core Responsibilities  
 - simplify graph inspection and entity manipulation across Slovak and English partitions  
@@ -39,12 +41,16 @@ These commands are built for **rapid testing**, **schema debugging**, and **manu
 - register and link multi-word compound noun phrases without token truncation  
 - enforce zero proposal recurrence for established concepts, aliases, and deduced relations  
 - maintain atomic serialization consistency with `autosave_kg.json` and `autosave_kg_en.json`  
+- supervise module-level state backups and restorations via `safe_rollback.py`  
+- evaluate cognitive mutation integrity through `professor_validator.py`  
 - generate explainability metadata and proof trees  
 - validate mutations through COLNIK-6.x and Token Guard prior to storage commit  
 - support terminal debugging with automatic module release (`currentModule = "none"`)  
 
 ### Key Files  
 - `KG/kg_engine.py`  
+- `core/safe_rollback.py`  
+- `professor/professor_validator.py`  
 - `runtime5/runtime_core_5.py`  
 - `runtime5/input_parser_5.py`  
 - `runtime5/envoy_quarantine_5.py`  
@@ -168,6 +174,10 @@ Every KG modification automatically updates:
 - rule attribution metadata (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, `TaxonomyRule`, etc.)  
 - proof tree derivation nodes  
 
+### **SafeRollback & Professor Validator**  
+- SafeRollback (`safe_rollback.py`): module-level state backups (`shutil.copytree`) ensuring instant recovery upon unexpected mutation collisions  
+- Professor Validator (`professor_validator.py`): strict verification matrix (`PASS / WARN / REJECT`) evaluating graph mutations before disk commit  
+
 ### **COLNIK-6.x Customs Clearance & COLNÍK Guard**  
 All mutations pass through COLNIK‑6.x (Standard & High-Performance IPC Mode):  
 - enterprise-grade graph cycle and anomaly detection  
@@ -184,8 +194,8 @@ AUTONOMY 6.x and `PanelAPI` supervise high-impact operations:
 
 ---
 
-## 📊 Module Status (v5.9.1)  
-- ✔ Fully updated & optimized for Runtime 5.9.1 architecture  
+## 📊 Module Status (v5.9.5)  
+- ✔ Fully updated & optimized for Runtime 5.9.5 architecture  
 - ✔ Dual-Language Graph Isolation (`autosave_kg.json` & `autosave_kg_en.json`) active  
 - ✔ Native Lossless Entity Merge (`kg merge`) operational  
 - ✔ Taxonomical inference auto-commit (`KG_VERIFY`) verified  
@@ -195,6 +205,8 @@ AUTONOMY 6.x and `PanelAPI` supervise high-impact operations:
 - ✔ Compound noun phrase support active  
 - ✔ Multi-alias indexing and lookup validated  
 - ✔ Zero proposal recurrence verified  
+- ✔ SafeRollback backup and restore integration active  
+- ✔ Professor Validator decision matrix active  
 - ✔ Single-process orchestrator integration on port 8080 operational  
 - ✔ Atomic serialization to dual graphs verified  
 - ✔ 4-Panel UI Suite integration and terminal state release active  
@@ -204,5 +216,5 @@ AUTONOMY 6.x and `PanelAPI` supervise high-impact operations:
 ---
 
 ## 🏁 Summary  
-KG Comfort Commands provide a **safe, deterministic, developer‑friendly interface** for managing the Knowledge Graph in SIRIUS Local AI (v5.9.1).  
-They streamline entity creation, dual-language routing, native lossless merging, taxonomical deduction, reverse location queries, multi-alias mapping, relation management, search queries, debugging, and data export/import — while upholding strict explainability, central orchestrator execution, zero proposal recurrence, and customs-grade COLNIK validation.
+KG Comfort Commands provide a **safe, deterministic, developer‑friendly interface** for managing the Knowledge Graph in SIRIUS Local AI (v5.9.5).  
+They streamline entity creation, dual-language routing, native lossless merging, taxonomical deduction, reverse location queries, multi-alias mapping, relation management, search queries, debugging, and data export/import — while upholding strict explainability, central orchestrator execution, zero proposal recurrence, SafeRollback resilience, Professor Validator verification, and customs-grade COLNIK validation.
