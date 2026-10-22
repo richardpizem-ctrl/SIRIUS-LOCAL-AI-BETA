@@ -2,9 +2,16 @@
 [![SIRIUS Unified License](https://img.shields.io/badge/License-SUL--3.2.0-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![Runtime Architecture](https://img.shields.io/badge/Architecture-Unified%20SingleProcess%205.9.5-orange.svg)](ARCHITECTURE.md)
+[![Status: IN DEVELOPMENT / WORK IN PROGRESS](https://img.shields.io/badge/Status-WARNING%3A%20IN%20DEVELOPMENT-red.svg)](README.md)
 [![Offline First](https://img.shields.io/badge/100%25-Offline--First-success.svg)](README.md)
 
+> ⚠️ **WARNING:** This project is currently under active development and integration (**WORK IN PROGRESS / NOT FINISHED**). The system is actively undergoing security hardening with COLNÍK Guard and SafeRollback validation. Use with awareness of ongoing development cycles!
+
 **SIRIUS‑LOCAL‑AI** is an advanced, enterprise-grade, **100% offline-only artificial intelligence runtime and symbolic reasoning framework** designed for absolute speed, diacritic-safe linguistic accuracy, architectural stability, modular intelligence, deep explainability (XAI), interactive Human-in-the-Loop (HitL) control, and full autonomous local execution without external cloud dependencies or third-party API latency.
+
+![SIRIUS LOCAL FUTURISTICKY OBR](SIRIUS%20LOCAL%20FUTURISTICKY%20OBR.png)
+
+![Architecture Diagram](diagram%20(6).png)
 
 ---
 
@@ -86,3 +93,21 @@ src/
 ├── autosave_kg.json        # Isolated Slovak Knowledge Graph Base
 ├── autosave_kg_en.json     # Isolated English Knowledge Graph Base
 └── sirius.py               # Main runtime entry point
+⚙️ Performance & Optimization Guarantees
+Zero External API Latency: 100% offline local execution.
+
+Instant Memory Resolution: O(1) hash-indexed dual-language graph lookups.
+
+Lightweight Asynchronous UI: Non-blocking 4-Panel dashboard on port 8080.
+
+Strict Bounded Inference: Cycle-safe reasoning preventing runaway recursion.
+
+🧩 License & Copyright
+The project is licensed and protected under the SIRIUS Unified License (SUL-3.2.0). See the LICENSE file for details.
+
+✨ Author & Lead Architect
+Richard Pizem
+
+Lead Architect & Solo Maintainer
+
+SIRIUS‑LOCAL‑AI (Banská Bystrica, Slovakia)
