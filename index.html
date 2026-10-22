@@ -148,6 +148,25 @@
             margin-bottom: 20px;
         }
 
+        /* VIDEO SHOWCASE */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 30px 0 45px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-highlight);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px var(--accent-cyan-glow);
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
         /* TERMINAL BLOCK */
         .terminal-block {
             background: #050608;
@@ -341,6 +360,14 @@
     <p>
         A deterministic, strictly offline AI runtime engineered for Windows 11. Designed from the ground up for predictable execution, modular isolation, and absolute control over local system actions without any background cloud dependency.
     </p>
+
+    <!-- VIDEO SHOWCASE -->
+    <div class="video-wrapper">
+        <video controls autoplay muted loop playsinline poster="https://raw.githubusercontent.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/main/SIRIUS%20LOCAL%20FUTURISTICKY%20OBR.png">
+            <source src="sirius_showcase.mp4" type="video/mp4">
+            Váš prehliadač nepodporuje prehrávanie HTML5 videí.
+        </video>
+    </div>
 
     <!-- CORE PRINCIPLES -->
     <h2 id="why-sirius">Core Principles</h2>
