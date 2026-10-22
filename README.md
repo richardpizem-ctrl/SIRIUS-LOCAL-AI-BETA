@@ -1,5 +1,5 @@
 # SIRIUS‑LOCAL‑AI: Next-Generation Offline AI Runtime & Unified Architecture (v5.9.5)
-[![SIRIUS Unified License](https://img.shields.io/badge/License-SUL--3.2.0-blue.svg)](LICENSE)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![Runtime Architecture](https://img.shields.io/badge/Architecture-Unified%20SingleProcess%205.9.5-orange.svg)](ARCHITECTURE.md)
 [![Status: IN DEVELOPMENT / WORK IN PROGRESS](https://img.shields.io/badge/Status-WARNING%3A%20IN%20DEVELOPMENT-red.svg)](README.md)
@@ -103,7 +103,7 @@ Lightweight Asynchronous UI: Non-blocking 4-Panel dashboard on port 8080.
 Strict Bounded Inference: Cycle-safe reasoning preventing runaway recursion.
 
 🧩 License & Copyright
-The project is licensed and protected under the SIRIUS Unified License (SUL-3.2.0). See the LICENSE file for details.
+The project is open-source and licensed under the MIT License. See the LICENSE file for details.
 
 ✨ Author & Lead Architect
 Richard Pizem
