@@ -1,4 +1,5 @@
 # SIRIUS‑LOCAL‑AI: Next-Generation Offline AI Runtime & Unified Architecture (v5.9.5)
+
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![Runtime Architecture](https://img.shields.io/badge/Architecture-Unified%20SingleProcess%205.9.5-orange.svg)](ARCHITECTURE.md)
@@ -16,10 +17,11 @@
 ---
 
 ## 🔍 SEO Meta & Core Search Keywords
-* **Primary Keywords:** Offline AI runtime, local LLM orchestrator, symbolic artificial intelligence, dual-language knowledge graph, knowledge graph merge engine, autonomous AI agent, Python offline AI framework, privacy-first AI engine, local vectorless reasoning, XAI hierarchical proof trees.
-* **Architecture Tag:** Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore).
-* **Security Protocol:** COLNÍK Guard (0.0s hard block), Token Guard, SafeRollback crash resilience (`safe_rollback.py`), Professor Validator verification (`professor_validator.py`), and Human-in-the-Loop Safe Trash.
-* **Author & Maintainer:** Richard Pizem (Lead Architect & Solo Maintainer, Banská Bystrica, Slovakia).
+
+- **Primary Keywords:** Offline AI runtime, local LLM orchestrator, symbolic artificial intelligence, dual-language knowledge graph, knowledge graph merge engine, autonomous AI agent, Python offline AI framework, privacy-first AI engine, local vectorless reasoning, XAI hierarchical proof trees.
+- **Architecture Tag:** Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore).
+- **Security Protocol:** COLNÍK Guard (0.0s hard block), Token Guard, SafeRollback crash resilience (`safe_rollback.py`), Professor Validator verification (`professor_validator.py`), and Human-in-the-Loop Safe Trash.
+- **Author & Maintainer:** Richard Pizem (Lead Architect & Solo Maintainer, Banská Bystrica, Slovakia).
 
 ---
 
@@ -51,6 +53,7 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 ---
 
 ## 📌 Table of Contents & Navigation Map
+
 - [Architecture Overview](ARCHITECTURE.md)
 - [Module Map](MODULE_MAP.md)
 - [Coding Styleguide](STYLEGUIDE.md)
@@ -72,27 +75,27 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 
 ```text
 src/
-├── commands/               # Natural language routing and command execution
-├── context/                # Semantic context and state engine
-├── core/                   # SafeRollback backup and state protection (safe_rollback.py)
-├── professor/              # Professor Validator cognitive verification (professor_validator.py)
-├── envoy/                  # ENVOY execution, normalizer, and quarantine layers
-├── filesystem/             # Safe file operations and HitL Safe Trash pipeline
-├── knowledge_packs/        # Dual-language knowledge stores (autosave_kg.json / autosave_kg_en.json)
-├── runtime/                # Runtime Core 5.9.5 and InputParser5
-├── orchestrator/           # Unified Single-Process Orchestrator (sirius_orchestrator.py on Port 8080)
-├── panel_api/              # Interactive PanelAPI loops ([ÁNO/NIE] / [YES/NO])
-├── supervision/            # TimeCore temporal tracking & Guard resource monitoring
-├── colnik/                 # COLNIK-6.x customs validation, COLNÍK Guard & triage queue
-├── autonomy/               # AUTONOMY 6.x decision engine, Guard supervision & Triage Mode
-├── security_family/        # Identity Engine 3.1, time-limits v3, schoolwork engine
-├── self_repair/            # Self-Repair Layer 5.8 integrity scanning
-├── triage/                 # Automatic Input Triage Engine (AITE 5.9.5)
-├── ui/                     # 4-Panel UI dashboard (index.html)
-├── workflow/               # Workflow Engine 5.9.5
-├── autosave_kg.json        # Isolated Slovak Knowledge Graph Base
-├── autosave_kg_en.json     # Isolated English Knowledge Graph Base
-└── sirius.py               # Main runtime entry point
+├── commands/             # Natural language routing and command execution
+├── context/              # Semantic context and state engine
+├── core/                 # SafeRollback backup and state protection (safe_rollback.py)
+├── professor/            # Professor Validator cognitive verification (professor_validator.py)
+├── envoy/                # ENVOY execution, normalizer, and quarantine layers
+├── filesystem/           # Safe file operations and HitL Safe Trash pipeline
+├── knowledge_packs/      # Dual-language knowledge stores (autosave_kg.json / autosave_kg_en.json)
+├── runtime/              # Runtime Core 5.9.5 and InputParser5
+├── orchestrator/         # Unified Single-Process Orchestrator (sirius_orchestrator.py on Port 8080)
+├── panel_api/            # Interactive PanelAPI loops ([ÁNO/NIE] / [YES/NO])
+├── supervision/          # TimeCore temporal tracking & Guard resource monitoring
+├── colnik/               # COLNIK-6.x customs validation, COLNÍK Guard & triage queue
+├── autonomy/             # AUTONOMY 6.x decision engine, Guard supervision & Triage Mode
+├── security_family/      # Identity Engine 3.1, time-limits v3, schoolwork engine
+├── self_repair/          # Self-Repair Layer 5.8 integrity scanning
+├── triage/               # Automatic Input Triage Engine (AITE 5.9.5)
+├── ui/                   # 4-Panel UI dashboard (index.html)
+├── workflow/             # Workflow Engine 5.9.5
+├── autosave_kg.json      # Isolated Slovak Knowledge Graph Base
+├── autosave_kg_en.json   # Isolated English Knowledge Graph Base
+└── sirius.py             # Main runtime entry point
 ⚙️ Performance & Optimization Guarantees
 Zero External API Latency: 100% offline local execution.
 
