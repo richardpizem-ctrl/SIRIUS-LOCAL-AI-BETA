@@ -1,0 +1,378 @@
+{
+  "items": {
+    "kyslík|je|veľmi reaktívny prvok": {
+      "source": "kyslík",
+      "relation": "je",
+      "target": "veľmi reaktívny prvok",
+      "first_seen": 1791825907.974151,
+      "cycles": 2,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "jupiter|je|piata planéta poradí": {
+      "source": "jupiter",
+      "relation": "je",
+      "target": "piata planéta poradí",
+      "first_seen": 1791825939.6758063,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "jupiter|ma|chemické zloženie podobné": {
+      "source": "jupiter",
+      "relation": "ma",
+      "target": "chemické zloženie podobné",
+      "first_seen": 1791825939.6758063,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "planéta|ma|podľa súčasných poznatkov druhú": {
+      "source": "planéta",
+      "relation": "ma",
+      "target": "podľa súčasných poznatkov druhú",
+      "first_seen": 1791825939.679749,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "jupiter|je|oblohe dobre viditeľný voľným": {
+      "source": "jupiter",
+      "relation": "je",
+      "target": "oblohe dobre viditeľný voľným",
+      "first_seen": 1791825939.679749,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "atóm|je|najmenšia, chemicky ďalej nedeliteľná častica chemického prvku, ktorá je nositeľom jeho vl": {
+      "source": "atóm",
+      "relation": "je",
+      "target": "najmenšia, chemicky ďalej nedeliteľná častica chemického prvku, ktorá je nositeľom jeho vl",
+      "first_seen": 1791825939.679749,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "vodík|je|chemický prvok v periodickej tabuľke prvkov, ktorý má značku h a protónové číslo 1": {
+      "source": "vodík",
+      "relation": "je",
+      "target": "chemický prvok v periodickej tabuľke prvkov, ktorý má značku h a protónové číslo 1",
+      "first_seen": 1791825969.6948824,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|jediná planéta": {
+      "source": "zem",
+      "relation": "je",
+      "target": "jediná planéta",
+      "first_seen": 1791825999.7045484,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|predmetom skúmania napríklad kozmogónie": {
+      "source": "zem",
+      "relation": "je",
+      "target": "predmetom skúmania napríklad kozmogónie",
+      "first_seen": 1791825999.7045484,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|najväčšia spomedzi terestriálnych planét": {
+      "source": "zem",
+      "relation": "je",
+      "target": "najväčšia spomedzi terestriálnych planét",
+      "first_seen": 1791825999.7045484,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|obklopená atmosférou": {
+      "source": "zem",
+      "relation": "je",
+      "target": "obklopená atmosférou",
+      "first_seen": 1791825999.7045484,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "zem|je|prvá planéta": {
+      "source": "zem",
+      "relation": "je",
+      "target": "prvá planéta",
+      "first_seen": 1791825999.7045484,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "slnko|je|hviezda geometrickom gravitačnom centre": {
+      "source": "slnko",
+      "relation": "je",
+      "target": "hviezda geometrickom gravitačnom centre",
+      "first_seen": 1791825999.719854,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "slnko|je|tvorené plazmou": {
+      "source": "slnko",
+      "relation": "je",
+      "target": "tvorené plazmou",
+      "first_seen": 1791825999.719854,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "bunka|je|najmenšia stavebná a funkčná jednotka všetkých živých organizmov , ktorá má všetky základn": {
+      "source": "bunka",
+      "relation": "je",
+      "target": "najmenšia stavebná a funkčná jednotka všetkých živých organizmov , ktorá má všetky základn",
+      "first_seen": 1791825999.7259233,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "mars|je|štvrtá planéta slnečnej sústavy": {
+      "source": "mars",
+      "relation": "je",
+      "target": "štvrtá planéta slnečnej sústavy",
+      "first_seen": 1791826029.7565155,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "fotosyntéza|je|biochemický proces zachytávania energie slnečného žiarenia a jej využitie na viazanie oxid": {
+      "source": "fotosyntéza",
+      "relation": "je",
+      "target": "biochemický proces zachytávania energie slnečného žiarenia a jej využitie na viazanie oxid",
+      "first_seen": 1791826029.7598329,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "makromolekula|je|zložená veľkého počtu kovalentne": {
+      "source": "makromolekula",
+      "relation": "je",
+      "target": "zložená veľkého počtu kovalentne",
+      "first_seen": 1791826059.7742753,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "železo|je|pomerne mäkký": {
+      "source": "železo",
+      "relation": "je",
+      "target": "pomerne mäkký",
+      "first_seen": 1791826059.789637,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "chemicky|je|pomerne reaktívny": {
+      "source": "chemicky",
+      "relation": "je",
+      "target": "pomerne reaktívny",
+      "first_seen": 1791826059.789637,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "mesiac|je|približne guľatý tvorený horninami": {
+      "source": "mesiac",
+      "relation": "je",
+      "target": "približne guľatý tvorený horninami",
+      "first_seen": 1791826089.8098726,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "neutrón|je|subatomárna častica v jadre atómu s neutrálnym nábojom, nestabilná, o niečo ťažšia ako pro": {
+      "source": "neutrón",
+      "relation": "je",
+      "target": "subatomárna častica v jadre atómu s neutrálnym nábojom, nestabilná, o niečo ťažšia ako pro",
+      "first_seen": 1791826089.8139188,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "fyzika|je|jednou najstarších akademických disciplín": {
+      "source": "fyzika",
+      "relation": "je",
+      "target": "jednou najstarších akademických disciplín",
+      "first_seen": 1791826089.8194735,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "chémia|je|prírodná veda zaoberajúca sa štúdiom zloženia látok, ich vlastností a interakcií": {
+      "source": "chémia",
+      "relation": "je",
+      "target": "prírodná veda zaoberajúca sa štúdiom zloženia látok, ich vlastností a interakcií",
+      "first_seen": 1791826119.8256135,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "biológia|je|náuka o živote": {
+      "source": "biológia",
+      "relation": "je",
+      "target": "náuka o živote",
+      "first_seen": 1791826119.841377,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "astronómia|je|veda o vesmíre, zaoberajúca sa vznikom, vývojom, stavbou, rozložením, pohybom a vzájomnými": {
+      "source": "astronómia",
+      "relation": "je",
+      "target": "veda o vesmíre, zaoberajúca sa vznikom, vývojom, stavbou, rozložením, pohybom a vzájomnými",
+      "first_seen": 1791826119.841377,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "astronómia|je|jednou z mála vied, kde aj amatéri môžu zohrať významnú úlohu, predovšetkým pri objavoch a": {
+      "source": "astronómia",
+      "relation": "je",
+      "target": "jednou z mála vied, kde aj amatéri môžu zohrať významnú úlohu, predovšetkým pri objavoch a",
+      "first_seen": 1791826119.841377,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "ernest|je|mužské krstné meno": {
+      "source": "ernest",
+      "relation": "je",
+      "target": "mužské krstné meno",
+      "first_seen": 1791826364.631009,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "pôvod|ma|staronemeckom ernust": {
+      "source": "pôvod",
+      "relation": "ma",
+      "target": "staronemeckom ernust",
+      "first_seen": 1791826364.632413,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "hmotnosť|je|vlastnosť resp": {
+      "source": "hmotnosť",
+      "relation": "je",
+      "target": "vlastnosť resp",
+      "first_seen": 1791826415.4254043,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "tiaž|je|výslednica gravitačnej sily a odstredivej sily zeme": {
+      "source": "tiaž",
+      "relation": "je",
+      "target": "výslednica gravitačnej sily a odstredivej sily zeme",
+      "first_seen": 1791826466.486042,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "povrch|je|súhrn plôch": {
+      "source": "povrch",
+      "relation": "je",
+      "target": "súhrn plôch",
+      "first_seen": 1791826751.6041353,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "teplota|je|stavová veličina opisujúca strednú kinetickú energiu častíc": {
+      "source": "teplota",
+      "relation": "je",
+      "target": "stavová veličina opisujúca strednú kinetickú energiu častíc",
+      "first_seen": 1791826863.6166093,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    },
+    "teplota|je|makroskopická veličina, čiže na atomárnej a subatomárnej úrovni nemá zmysel hovoriť o tepl": {
+      "source": "teplota",
+      "relation": "je",
+      "target": "makroskopická veličina, čiže na atomárnej a subatomárnej úrovni nemá zmysel hovoriť o tepl",
+      "first_seen": 1791826863.6211193,
+      "cycles": 1,
+      "domains": [
+        "sk.wikipedia.org"
+      ],
+      "status": "provisional"
+    }
+  }
+}

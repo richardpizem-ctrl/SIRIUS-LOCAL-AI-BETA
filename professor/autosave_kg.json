@@ -1,0 +1,335 @@
+{
+  "kg_version": 9,
+  "entities": {
+    "jupiter": {
+      "attributes": {
+        "nazov": "Jupiter",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "piata planéta poradí": {
+      "attributes": {
+        "nazov": "Piata planéta poradí",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "chemické zloženie podobné": {
+      "attributes": {
+        "nazov": "Chemické zloženie podobné",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "planéta": {
+      "attributes": {
+        "nazov": "Planéta",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "podľa súčasných poznatkov druhú": {
+      "attributes": {
+        "nazov": "Podľa súčasných poznatkov druhú",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "oblohe dobre viditeľný voľným": {
+      "attributes": {
+        "nazov": "Oblohe dobre viditeľný voľným",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "elektrón": {
+      "attributes": {
+        "nazov": "Elektrón",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "elementárna častica obale atómu": {
+      "attributes": {
+        "nazov": "Elementárna častica obale atómu",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "kyslík": {
+      "attributes": {
+        "nazov": "Kyslík",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "veľmi reaktívny prvok": {
+      "attributes": {
+        "nazov": "Veľmi reaktívny prvok",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "zem": {
+      "attributes": {
+        "nazov": "Zem",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "jediná planéta": {
+      "attributes": {
+        "nazov": "Jediná planéta",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "predmetom skúmania napríklad kozmogónie": {
+      "attributes": {
+        "nazov": "Predmetom skúmania napríklad kozmogónie",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "najväčšia spomedzi terestriálnych planét": {
+      "attributes": {
+        "nazov": "Najväčšia spomedzi terestriálnych planét",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "obklopená atmosférou": {
+      "attributes": {
+        "nazov": "Obklopená atmosférou",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "prvá planéta": {
+      "attributes": {
+        "nazov": "Prvá planéta",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "slnko": {
+      "attributes": {
+        "nazov": "Slnko",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "hviezda geometrickom gravitačnom centre": {
+      "attributes": {
+        "nazov": "Hviezda geometrickom gravitačnom centre",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "tvorené plazmou": {
+      "attributes": {
+        "nazov": "Tvorené plazmou",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "mars": {
+      "attributes": {
+        "nazov": "Mars",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "štvrtá planéta slnečnej sústavy": {
+      "attributes": {
+        "nazov": "Štvrtá planéta slnečnej sústavy",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "makromolekula": {
+      "attributes": {
+        "nazov": "Makromolekula",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "zložená veľkého počtu kovalentne": {
+      "attributes": {
+        "nazov": "Zložená veľkého počtu kovalentne",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "železo": {
+      "attributes": {
+        "nazov": "Železo",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "pomerne mäkký": {
+      "attributes": {
+        "nazov": "Pomerne mäkký",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "chemicky": {
+      "attributes": {
+        "nazov": "Chemicky",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "pomerne reaktívny": {
+      "attributes": {
+        "nazov": "Pomerne reaktívny",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "mesiac": {
+      "attributes": {
+        "nazov": "Mesiac",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "približne guľatý tvorený horninami": {
+      "attributes": {
+        "nazov": "Približne guľatý tvorený horninami",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "fyzika": {
+      "attributes": {
+        "nazov": "Fyzika",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "jednou najstarších akademických disciplín": {
+      "attributes": {
+        "nazov": "Jednou najstarších akademických disciplín",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "astronómia": {
+      "attributes": {
+        "nazov": "Astronómia",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "jednou z mála vied, kde aj amatéri môžu zohrať významnú úlohu, predovšetkým pri objavoch a": {
+      "attributes": {
+        "nazov": "Jednou z mála vied, kde aj amatéri môžu zohrať významnú úlohu, predovšetkým pri objavoch a",
+        "stav": "obohatené_cez_profesor"
+      }
+    },
+    "resuscitácia": {
+      "nazov": "Resuscitácia",
+      "stav": "overené_urgentná_pomoc",
+      "zhrnutie": "Zástava srdca a dýchania vyžaduje okamžité volanie 155 a KPR v pomere 30 stlačení hrudníka (hĺbka 5-6 cm, tempo 100-120/min) a 2 záchranné vdychy. Pri neschopnosti dýchať sa vykonáva len nepretržité stláčanie."
+    },
+    "bezvedomie": {
+      "nazov": "Bezvedomie",
+      "stav": "overené_urgentná_pomoc",
+      "zhrnutie": "Pri bezvedomí s normálnym dýchaním sa človek ukladá do stabilizovanej polohy na boku. Ak nedýcha normálne, okamžite sa začína KPR 30:2 a volá sa 155."
+    },
+    "aed": {
+      "nazov": "Aed",
+      "stav": "overené_urgentná_pomoc",
+      "zhrnutie": "Automatický externý defibrilátor. Prístroj sa po zapnutí riadi hlasovými pokynmi, sám analyzuje rytmus a v prípade potreby podá elektrický výboj."
+    }
+  },
+  "relations": [
+    {
+      "source": "jupiter",
+      "relation": "je",
+      "target": "piata planéta poradí"
+    },
+    {
+      "source": "jupiter",
+      "relation": "ma",
+      "target": "chemické zloženie podobné"
+    },
+    {
+      "source": "planéta",
+      "relation": "ma",
+      "target": "podľa súčasných poznatkov druhú"
+    },
+    {
+      "source": "jupiter",
+      "relation": "je",
+      "target": "oblohe dobre viditeľný voľným"
+    },
+    {
+      "source": "elektrón",
+      "relation": "je",
+      "target": "elementárna častica obale atómu"
+    },
+    {
+      "source": "kyslík",
+      "relation": "je",
+      "target": "veľmi reaktívny prvok"
+    },
+    {
+      "source": "zem",
+      "relation": "je",
+      "target": "jediná planéta"
+    },
+    {
+      "source": "zem",
+      "relation": "je",
+      "target": "predmetom skúmania napríklad kozmogónie"
+    },
+    {
+      "source": "zem",
+      "relation": "je",
+      "target": "najväčšia spomedzi terestriálnych planét"
+    },
+    {
+      "source": "zem",
+      "relation": "je",
+      "target": "obklopená atmosférou"
+    },
+    {
+      "source": "zem",
+      "relation": "je",
+      "target": "prvá planéta"
+    },
+    {
+      "source": "slnko",
+      "relation": "je",
+      "target": "hviezda geometrickom gravitačnom centre"
+    },
+    {
+      "source": "slnko",
+      "relation": "je",
+      "target": "tvorené plazmou"
+    },
+    {
+      "source": "mars",
+      "relation": "je",
+      "target": "štvrtá planéta slnečnej sústavy"
+    },
+    {
+      "source": "makromolekula",
+      "relation": "je",
+      "target": "zložená veľkého počtu kovalentne"
+    },
+    {
+      "source": "železo",
+      "relation": "je",
+      "target": "pomerne mäkký"
+    },
+    {
+      "source": "chemicky",
+      "relation": "je",
+      "target": "pomerne reaktívny"
+    },
+    {
+      "source": "mesiac",
+      "relation": "je",
+      "target": "približne guľatý tvorený horninami"
+    },
+    {
+      "source": "fyzika",
+      "relation": "je",
+      "target": "jednou najstarších akademických disciplín"
+    },
+    {
+      "source": "astronómia",
+      "relation": "je",
+      "target": "jednou z mála vied, kde aj amatéri môžu zohrať významnú úlohu, predovšetkým pri objavoch a"
+    },
+    {
+      "source": "resuscitácia",
+      "relation": "je",
+      "target": "Zástava srdca a dýchania vyžaduje okamžité volanie 155 a KPR v pomere 30 stlačení hrudníka (hĺbka 5-6 cm, tempo 100-120/min) a 2 záchranné vdychy. Pri neschopnosti dýchať sa vykonáva len nepretržité stláčanie."
+    },
+    {
+      "source": "bezvedomie",
+      "relation": "je",
+      "target": "Pri bezvedomí s normálnym dýchaním sa človek ukladá do stabilizovanej polohy na boku. Ak nedýcha normálne, okamžite sa začína KPR 30:2 a volá sa 155."
+    },
+    {
+      "source": "aed",
+      "relation": "je",
+      "target": "Automatický externý defibrilátor. Prístroj sa po zapnutí riadi hlasovými pokynmi, sám analyzuje rytmus a v prípade potreby podá elektrický výboj."
+    }
+  ]
+}
