@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![Runtime Architecture](https://img.shields.io/badge/Architecture-Unified%20SingleProcess%205.9.5-orange.svg)](ARCHITECTURE.md)
-[![Status: IN DEVELOPMENT / WORK IN PROGRESS](https://img.shields.io/badge/Status-WARNING%3A%20IN%20DEVELOPMENT-red.svg)](README.md)
+[![Status: IN DEVELOPMENT](https://img.shields.io/badge/Status-IN%20DEVELOPMENT-red.svg)](README.md)
 [![Offline First](https://img.shields.io/badge/100%25-Offline--First-success.svg)](README.md)
 
 > ⚠️ **WARNING:** This project is currently under active development and integration (**WORK IN PROGRESS / NOT FINISHED**). The system is actively undergoing security hardening with COLNÍK Guard and SafeRollback validation. Use with awareness of ongoing development cycles!
@@ -43,7 +43,7 @@ Start the unified runtime and IPC bridge on local port `8080`:
 
     python src/sirius_orchestrator.py --port 8080
 
-Once initialized, open your browser and access the interactive 4-Panel UI Suite at `[http://127.0.0.1:8080](http://127.0.0.1:8080)`.
+Once initialized, open your browser and access the interactive 4-Panel UI Suite at `http://127.0.0.1:8080`.
 
 ---
 
