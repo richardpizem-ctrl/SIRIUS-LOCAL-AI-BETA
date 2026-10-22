@@ -29,19 +29,25 @@ Follow these steps to set up and run the runtime directly from a release package
 Ensure you have **Python 3.10+** installed. Open your terminal in the extracted root directory:
 
 *Windows (PowerShell / Command Prompt):*
-    python -m venv venv
-    .\venv\Scripts\activate
-    pip install -r requirements.txt
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+```
 
 *Linux / macOS (Bash):*
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### 3. Launch Orchestrator
 Start the unified runtime and IPC bridge on local port `8080`:
 
-    python src/sirius_orchestrator.py --port 8080
+```bash
+python src/sirius_orchestrator.py --port 8080
+```
 
 Once initialized, open your browser and access the interactive 4-Panel UI Suite at `http://127.0.0.1:8080`.
 
@@ -78,7 +84,7 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 - **Human-in-the-Loop Safe Trash:** Intercepting file deletions and routing them into quarantine awaiting manual review via `GET /trash`.
 
 ### 4. Symbolic Reasoning & Deep Explainability (XAI)
-- Deterministic multi-hop inference, property inheritance (`DedicsnostVlastnostiRule`), transitive relations (`TranzitivneRelacieRule`), and orbital reasoning (`MultiHopOrbitInferenceRule`).
+- Deterministic multi-hop inference, property inheritance (`DedicnostVlastnostiRule`), transitive relations (`TranzitivneRelacieRule`), and orbital reasoning (`MultiHopOrbitInferenceRule`).
 - `KG_EXPLAIN` and `KG_EXPLAIN_DEEP` generating multi-layer hierarchical proof trees (ASCII & HTML) for complete auditability.
 
 ---
@@ -107,27 +113,27 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 
 ```text
 src/
-├── commands/             # Natural language routing and command execution
-├── context/              # Semantic context and state engine
-├── core/                 # SafeRollback backup and state protection (safe_rollback.py)
-├── professor/            # Professor Validator cognitive verification (professor_validator.py)
-├── envoy/                # ENVOY execution, normalizer, and quarantine layers
-├── filesystem/           # Safe file operations and HitL Safe Trash pipeline
-├── knowledge_packs/      # Dual-language knowledge stores (autosave_kg.json / autosave_kg_en.json)
-├── runtime/              # Runtime Core 5.9.5 and InputParser5
-├── orchestrator/         # Unified Single-Process Orchestrator (sirius_orchestrator.py on Port 8080)
-├── panel_api/            # Interactive PanelAPI loops ([ÁNO/NIE] / [YES/NO])
-├── supervision/          # TimeCore temporal tracking & Guard resource monitoring
-├── colnik/               # COLNIK-6.x customs validation, COLNÍK Guard & triage queue
-├── autonomy/             # AUTONOMY 6.x decision engine, Guard supervision & Triage Mode
-├── security_family/      # Identity Engine 3.1, time-limits v3, schoolwork engine
-├── self_repair/          # Self-Repair Layer 5.8 integrity scanning
-├── triage/               # Automatic Input Triage Engine (AITE 5.9.5)
-├── ui/                   # 4-Panel UI dashboard (index.html)
-├── workflow/             # Workflow Engine 5.9.5
-├── autosave_kg.json      # Isolated Slovak Knowledge Graph Base
-├── autosave_kg_en.json   # Isolated English Knowledge Graph Base
-└── sirius.py             # Main runtime entry point
+%% %  commands/             # Natural language routing and command execution
+%% %  context/              # Semantic context and state engine
+%% %  core/               # SafeRollback backup and state protection (safe_rollback.py)
+%% %  professor/            # Professor Validator cognitive verification (professor_validator.py)
+%% %  envoy/               # ENVOY execution, normalizer, and quarantine layers
+%% %  filesystem/           # Safe file operations and HitL Safe Trash pipeline
+%% %  knowledge_packs/      # Dual-language knowledge stores (autosave_kg.json / autosave_kg_en.json)
+%% %  runtime/             # Runtime Core 5.9.5 and InputParser5
+%% %  orchestrator/         # Unified Single-Process Orchestrator (sirius_orchestrator.py on Port 8080)
+%% %  panel_api/           # Interactive PanelAPI loops ([ÁNO/NIE] / [YES/NO])
+%% %  supervision/         # TimeCore temporal tracking & Guard resource monitoring
+%% %  colnik/               # COLNIK-6.x customs validation, COLNÍK Guard & triage queue
+%% %  autonomy/             # AUTONOMY 6.x decision engine, Guard supervision & Triage Mode
+%% %  security_family/     # Identity Engine 3.1, time-limits v3, schoolwork engine
+%% %  self_repair/          # Self-Repair Layer 5.8 integrity scanning
+%% %  triage/              # Automatic Input Triage Engine (AITE 5.9.5)
+%% %  ui/                 # 4-Panel UI dashboard (index.html)
+%% %  workflow/            # Workflow Engine 5.9.5
+%% %  autosave_kg.json      # Isolated Slovak Knowledge Graph Base
+%% %  autosave_kg_en.json   # Isolated English Knowledge Graph Base
+%% %  sirius.py             # Main runtime entry point
 ```
 
 ---
@@ -147,7 +153,7 @@ The project is open-source and licensed under the MIT License. See the [LICENSE]
 
 ---
 
-## ✨ Author & Lead Architect
+##  ( Author & Lead Architect
 
 **Richard Pizem**  
 Lead Architect & Solo Maintainer  
