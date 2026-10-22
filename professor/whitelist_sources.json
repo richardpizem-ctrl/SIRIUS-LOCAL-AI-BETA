@@ -1,5 +1,0 @@
-{
-  "allowed_domains": ["sk.wikipedia.org", "en.wikipedia.org", "slovnik.juls.savba.sk"],
-  "max_payload_length": 500,
-  "saturation_threshold_nodes": 5000
-}
