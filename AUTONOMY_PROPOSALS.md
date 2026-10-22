@@ -1,14 +1,14 @@
 # 🤖 AUTONOMY PROPOSALS 6.x — Supervised Autonomous Decision Generation  
 **Status:** ✔ Production-Enhanced  
-**Version:** 6.x (Updated for Runtime 5.9.1 UNIFIED)[cite: 1, 2]  
+**Version:** 6.x (Updated for Runtime 5.9.5 UNIFIED)[cite: 1, 2]  
 **Component:** AUTONOMY Proposal Engine  
-**Role:** Generate safe, explainable, supervised autonomous proposals for system actions, workflows, dual-language KG mutations, lossless entity merges, and UI automation under orchestrator and PanelAPI supervision[cite: 1, 2, 3]
+**Role:** Generate safe, explainable, supervised autonomous proposals for system actions, workflows, dual-language KG mutations, lossless entity merges, SafeRollback backups, Professor Validator checks, and UI automation under orchestrator and PanelAPI supervision[cite: 1, 2, 3]
 
 ---
 
 ## 🎯 Purpose  
 The AUTONOMY Proposal Engine 6.x is responsible for generating **autonomous suggestions** (proposals) based on system context, multi-word semantic parsing, dual-language KG reasoning, identity rules, predictive intelligence, and Triage Mode diagnostics[cite: 1, 2].  
-These proposals represent *what SIRIUS thinks should happen next* — but every proposal is supervised, validated, and confirmed through COLNIK‑6.x (Standard & High-Performance IPC Mode), System Agent 5, Token Guard, and interactive PanelAPI loops with `[ÁNO/NIE]` / `[YES/NO]` confirmations[cite: 1, 2, 3].
+These proposals represent *what SIRIUS thinks should happen next* — but every proposal is supervised, validated, and confirmed through COLNIK‑6.x (Standard & High-Performance IPC Mode), System Agent 5, Token Guard, Professor Validator, SafeRollback resilience, and interactive PanelAPI loops with `[ÁNO/NIE]` / `[YES/NO]` confirmations[cite: 1, 2, 3].
 
 AUTONOMY never executes actions directly.  
 It **proposes**, **explains**, **justifies**, **latches confirmation state**, and **waits for validation**[cite: 1, 2].
@@ -16,7 +16,7 @@ It **proposes**, **explains**, **justifies**, **latches confirmation state**, an
 ---
 
 ## 🧩 Architecture Overview  
-**System Intelligence Layer / InputParser5 → Token Guard → AUTONOMY Proposal Engine → `sirius_orchestrator.py` (Port 8080) → COLNIK (IPC Mode) → PanelAPI [ÁNO/NIE] → Workflow Engine → Dual-Language KG Commit (`autosave_kg.json` / `autosave_kg_en.json`)[cite: 1, 2, 3]**
+**System Intelligence Layer / InputParser5 → Token Guard → AUTONOMY Proposal Engine → `sirius_orchestrator.py` (Port 8080) → COLNIK (IPC Mode) → PanelAPI [ÁNO/NIE] → Workflow Engine → Dual-Language KG Commit (`autosave_kg.json` / `autosave_kg_en.json`)**[cite: 1, 2, 3]
 
 ### Core Responsibilities  
 - generate autonomous learning proposals (`kg.learn_proposal`) for missing concepts with target language binding (`SK` / `EN`)[cite: 1, 2]
@@ -28,6 +28,8 @@ It **proposes**, **explains**, **justifies**, **latches confirmation state**, an
 - enforce entry-level input sanitization via Token Guard, blocking malformed injection characters (`@#$%^&*`)[cite: 2, 3]
 - manage automatic sliding-window rotation limiting quarantine logs in `COLNIK-6.x/envoy/quarantine/` to a 100-file ceiling[cite: 2, 3]
 - supervise non-destructive file disposal by routing delete requests into the Human-in-the-Loop Safe Trash pipeline[cite: 2, 3]
+- govern SafeRollback crash resilience (`safe_rollback.py`) executing granular module-level backups (`shutil.copytree`) and restorations (`shutil.rmtree`)
+- enforce Professor Validator decision matrix (`PASS / WARN / REJECT`) on cognitive outputs
 - audit console execution safety via COLNÍK Guard with 0.0s hard blocks on forbidden commands (`format`, `diskpart`)[cite: 2, 3]
 - interface directly with the 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) with automatic module release (`currentModule = "none"`)[cite: 1]
 
@@ -35,6 +37,8 @@ It **proposes**, **explains**, **justifies**, **latches confirmation state**, an
 - `autonomy/autonomy_proposer.py`  
 - `autonomy/proposals.json`  
 - `autonomy/proposal_metadata.json`  
+- `core/safe_rollback.py`  
+- `professor/professor_validator.py`  
 - `IPC_DATA/autonomy_events.json`  
 - `runtime5/runtime_core_5.py`  
 - `runtime5/input_parser_5.py`  
@@ -73,10 +77,11 @@ AUTONOMY generates proposals across specialized operational categories:
 - validate graph consistency and atomic persistence to `autosave_kg.json` or `autosave_kg_en.json`[cite: 1, 2]
 - enforce zero recurrence: suppress proposals for concepts already stored or inferred[cite: 1, 2]
 
-#### **System & File Security Proposals (HitL Safe Trash)**
+#### **System & File Security Proposals (HitL Safe Trash & SafeRollback)**
 - route proposed file deletions (duplicates, empty folders) into quarantine storage rather than executing direct disk removal[cite: 2, 3]
 - require explicit user confirmation via `GET /trash` before permanent removal[cite: 2, 3]
 - enforce automatic sliding-window rotation on `COLNIK-6.x/envoy/quarantine/` at the 100-file threshold[cite: 2, 3]
+- trigger SafeRollback module-level backup and restore routines on structural anomalies
 - optimize CPU/RAM load detected by Guard[cite: 1]
 - stabilize OS runtime state and trigger self-repair routines[cite: 1]
 
@@ -143,6 +148,7 @@ AUTONOMY completes the supervised loop:
 
 - COLNIK authorization check[cite: 1]
 - System Agent stability approval[cite: 1]
+- Professor Validator evaluation (`PASS / WARN / REJECT`)
 - Explicit user confirmation via PanelAPI (`[ÁNO/NIE]` / `[YES/NO]`)[cite: 1, 2]
 - Execution of active latch: external context scrape, domain normalization, and alias indexing[cite: 1, 2]
 - Atomic serialization into the designated language store (`autosave_kg.json` or `autosave_kg_en.json`)[cite: 1, 2]
@@ -170,7 +176,7 @@ Activates alternate safe execution paths (e.g., stripping brackets on disambigua
 Used during knowledge gaps or system triage states[cite: 1].
 
 ### **5 — REPAIR Proposal**  
-Engages Self‑Repair Layer routines[cite: 1].  
+Engages Self‑Repair Layer and SafeRollback routines[cite: 1].  
 Triggered when file duplicities, schema corruption, or sliding window overflows occur[cite: 1, 2, 3].
 
 ---
@@ -182,6 +188,8 @@ Triggered when file duplicities, schema corruption, or sliding window overflows 
 - 🛡️ **COLNÍK Guard Shell Access Control:** Immediate 0.0s blocking of destructive shell commands (`format`, `diskpart`, `rmdir /s`)[cite: 2, 3].  
 - ⛔ **Token Guard Input Sanitization:** Commands containing dangerous symbols (`@#$%^&*`) are rejected at entry[cite: 2, 3].  
 - 🗄️ **Dual-Language Isolation:** Proposals strictly target their originating language store (`autosave_kg.json` or `autosave_kg_en.json`), preventing cross-lingual corruption[cite: 1, 2].  
+- 🔄 **SafeRollback Backup Protection:** Granular module-level backup and instant restore safeguarding state integrity.  
+- ⚖️ **Professor Validator Middleware:** Strict cognitive output verification (`PASS / WARN / REJECT`).  
 - ⚠️ **Mandatory Explainability:** Every proposal must carry structural derivation evidence[cite: 1].  
 - 🛑 **Zero Proposal Recurrence:** Confirmed concepts and inferred categories auto-commit to disk, suppressing repetitive prompts[cite: 1, 2].  
 - 📦 **Quarantine Ceiling Rotation:** Automatically maintains a 100-file ceiling inside `COLNIK-6.x/envoy/quarantine/`[cite: 2, 3].  
@@ -189,8 +197,8 @@ Triggered when file duplicities, schema corruption, or sliding window overflows 
 
 ---
 
-## 📊 Module Status (v5.9.1)  
-- ✔ Fully updated & verified for Runtime 5.9.1 architecture[cite: 1, 2]  
+## 📊 Module Status (v5.9.5)  
+- ✔ Fully updated & verified for Runtime 5.9.5 architecture[cite: 1, 2]  
 - ✔ Dual-Language Graph Isolation (`autosave_kg.json` & `autosave_kg_en.json`) active[cite: 1, 2]  
 - ✔ Confirmation state latching and punctuation trimming operational[cite: 1, 2]  
 - ✔ Native Lossless Entity Merge (`kg merge`) proposal handling verified[cite: 1, 2]  
@@ -200,13 +208,15 @@ Triggered when file duplicities, schema corruption, or sliding window overflows 
 - ✔ Envoy quarantine sliding-window rotation (100-file ceiling) active[cite: 2, 3]  
 - ✔ COLNIK‑6.x High-Performance IPC handshake verified[cite: 1]  
 - ✔ Safe UI Trash & HitL confirmation pipeline active[cite: 2, 3]  
+- ✔ SafeRollback integration active  
+- ✔ Professor Validator matrix operational  
 - ✔ PanelAPI interactive confirmation loops functional[cite: 1]  
 - ✔ Single-process orchestrator integration (Port 8080) complete[cite: 1, 3]  
 
 ---
 
 ## 🏁 Summary  
-AUTONOMY Proposal Engine 6.x is the supervised autonomous decision generator of SIRIUS Local AI (v5.9.1)[cite: 1, 2].  
-It generates safe, explainable, identity-aware, and system-aware proposals for dual-language knowledge enrichment, entity mergers, workflows, UI automation, and system diagnostics — fully orchestrated via `sirius_orchestrator.py`, audited by COLNIK‑6.x, safeguarded by Token Guard and HitL Safe Trash, and confirmed via interactive PanelAPI loops[cite: 1, 2, 3].
+AUTONOMY Proposal Engine 6.x is the supervised autonomous decision generator of SIRIUS Local AI (v5.9.5)[cite: 1, 2].  
+It generates safe, explainable, identity-aware, and system-aware proposals for dual-language knowledge enrichment, entity mergers, workflows, UI automation, and system diagnostics — fully orchestrated via `sirius_orchestrator.py`, audited by COLNIK‑6.x, safeguarded by Token Guard, HitL Safe Trash, SafeRollback, and Professor Validator, and confirmed via interactive PanelAPI loops[cite: 1, 2, 3].  
 
 It powers a **predictive, deterministic, supervised autonomous system** that acts responsibly, respects user confirmation, and explains its reasoning end-to-end[cite: 1].
