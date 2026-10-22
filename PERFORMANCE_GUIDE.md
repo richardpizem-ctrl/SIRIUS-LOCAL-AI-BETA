@@ -1,9 +1,9 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.9.1 UNIFIED)
+# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
 
 This document defines the performance model, optimization rules, and runtime guarantees of the  
-**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & COLNÍK Guard Security Protocol 5.9.1**.
+**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & COLNÍK Guard Security Protocol 5.9.5**.
 
-Version **5.9.1 UNIFIED** expands and optimizes the runtime profile with:
+Version **5.9.5 UNIFIED** expands and optimizes the runtime profile with:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080) (embedded TerminalAssistant + TimeCore, zero IPC socket overhead, no file contention)**
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` & `autosave_kg_en.json`) (O(1) memory lookup with zero cross-lingual contamination)**
@@ -13,6 +13,8 @@ Version **5.9.1 UNIFIED** expands and optimizes the runtime profile with:
 - **Input Sanitization & Hygiene (Token Guard O(1) symbol check, `.rstrip("?")` trailing punctuation stripping)**
 - **Confirmation State Latching (deterministic O(1) state preservation across interactive conversation turns)**
 - **Sliding-Window Quarantine Ceiling Rotation (100 JSON file ceiling in `COLNIK-6.x/envoy/quarantine/`, constant-time sliding window)**
+- **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and restorations)**
+- **Professor Validator Middleware (`professor_validator.py` enforcing strict `PASS / WARN / REJECT` verification)**
 - **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**
 - **Human-in-the-Loop Safe UI Trash (non-destructive quarantine diversion preventing unverified disk I/O)**
 - **Character Encoding Fallback (UTF-8 -> CP1250 -> CP852 pipeline with zero diacritic corruption)**
@@ -23,8 +25,8 @@ Version **5.9.1 UNIFIED** expands and optimizes the runtime profile with:
 - **Terminal State Decoupling (`currentModule = "none"`) (zero input lockups or CLI stalling)**
 - **PanelAPI & Interactive [ÁNO/NIE] / [YES/NO] Confirmation Loops (non-blocking async polling)**
 - **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource Telemetry (lightweight CPU/RAM/Disk metrics)**
-- **Workflow Engine 5.9.1 (constant-time transitions, COLNIK-validated and AUTONOMY-aware routing)**
-- **Reasoning Engine 5.9.1 (bounded multi-hop derivation, property inheritance, orbital & taxonomical rules)**
+- **Workflow Engine 5.9.5 (constant-time transitions, COLNIK-validated and AUTONOMY-aware routing)**
+- **Reasoning Engine 5.9.5 (bounded multi-hop derivation, property inheritance, orbital & taxonomical rules)**
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (deterministic proof-tree generation under bounded memory constraints)**
 - **COLNIK-6.x Customs Decision Gate (constant-time allow/deny evaluation — Standard & High-Performance IPC Mode)**
 - **AUTONOMY 6.x (supervised proposal cycle, Guard metric integration, and bounded Triage Mode)**
@@ -39,13 +41,15 @@ All processing is fully local; no data leaves the user's device.
 - single-process orchestration: eliminate disk-based IPC locks, process spawning, and inter-process polling latency  
 - zero proposal recurrence: once an alias or taxonomical relation is indexed, subsequent queries resolve in O(1)  
 - strict language partition: Slovak and English queries access dedicated in-memory graphs without cross-lingual collision overhead  
-- immediate security filtering: Token Guard symbol checks and COLNÍK Guard command interceptions resolve at runtime boundary in 0.0s  
+- immediate security filtering: Token Guard symbol checks, SafeRollback backups, Professor Validator checks, and COLNÍK Guard command interceptions resolve at runtime boundary in 0.0s  
 - no uncontrolled conversational loops or terminal command captures  
 - compound noun preservation and punctuation trimming must not degrade parsing time (`O(N)` linear token scan)  
 - strict boundaries for autonomous web triage: fast timeouts, anti-prefix guards, 100-file sliding-window ceilings, and non-bio domain checks  
 - minimal overhead across all modules: complete cycle response under 10ms for local graph queries  
 - SCHOOLWORK workflows must remain instant and non-bypassable  
 - **Token Guard validation must remain strictly O(1)**  
+- **SafeRollback backup execution must remain bounded and non-blocking**  
+- **Professor Validator verification must execute in constant time**  
 - **COLNÍK Guard shell access checks must evaluate in 0.0s**  
 - **Security Family 5.x checks must remain strictly O(1)**  
 - **System Agent 5 validation must remain O(1)**  
@@ -55,7 +59,7 @@ All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 2. Runtime Guarantees (Runtime 5.9.1)
+# 2. Runtime Guarantees (Runtime 5.9.5)
 
 - **Zero Socket Contention:** Single-process architecture hosting HTTP/WebSocket on port 8080 eliminates socket conflicts  
 - **Dual-Language Memory Isolation:** `self.kg_sk` and `self.kg_en` maintain isolated node registries, preventing cross-language graph pollution  
@@ -89,7 +93,7 @@ Rules:
 
 - **Token Guard Sanitization:** Single-pass character check detects forbidden symbols (`@`, `#`, `$`, `%`, `^`, `&`, `*`) in `O(N)` time, rejecting invalid requests before parsing starts  
 - **Punctuation Trimming:** Trailing question marks are stripped in `O(1)` time via `.rstrip("?")`, avoiding regular expression engine overhead  
-- **Single-Pass Grammatical Tokenization:** Compound phrases (`ovcia vlna`, `mobilny telefon`) are matched using linear token grouping  
+- **Single-Pass Grammatical Tokenization:** Compound phrases (*ovcia vlna*, *mobilny telefon*) are matched using linear token grouping  
 - **Copula Verb Isolation:** Extraction of (`je`, `sú`, `is`, `are`) occurs prior to entity matching, preventing complex linguistic backtracking  
 - **Diacritic Normalization:** Single buffer traversal across Slovak and English character sets  
 - parsing overhead must remain under 0.5ms for standard user inputs  
@@ -120,12 +124,12 @@ Rules:
 
 ---
 
-# 7. Workflow Engine 5.9.1 & Orchestrator Performance
+# 7. Workflow Engine 5.9.5 & Orchestrator Performance
 
 - workflow transitions are executed as O(1) state-machine transitions managed by `sirius_orchestrator.py`  
 - workflows maintain cached operational contexts, avoiding redundant property lookups  
 - deep explainability traces (`KG_EXPLAIN_DEEP`) compile proof trees lazily upon request  
-- COLNIK-6.x customs checks, COLNÍK Guard filters, and AUTONOMY approvals evaluate in constant time within the orchestration pipeline  
+- SafeRollback state backups, Professor Validator checks, COLNIK-6.x customs checks, COLNÍK Guard filters, and AUTONOMY approvals evaluate in constant time within the orchestration pipeline  
 - long-running operations yield control cooperatively, ensuring the UI remains responsive  
 
 ---
@@ -177,6 +181,8 @@ Rules:
 | Dual-Language Graph Lookup (SK/EN) | O(1) | < 1ms | In-memory RAM lookup |
 | Native Entity Merge (`kg merge`) | O(A + E) | < 3ms | In-memory property migration |
 | Taxonomical Deduction (`KG_VERIFY`) | O(1) | < 2ms | In-memory inference + commit |
+| SafeRollback State Backup (`safe_rollback.py`) | O(F) | < 5ms | Local directory snapshot |
+| Professor Validator Verification | O(1) | < 0.5ms | Cognitive matrix check |
 | COLNÍK Guard Shell Interception | O(1) | 0.0s (instant block) | Zero process spawn |
 | COLNIK-6.x Customs Clearance | O(1) | < 0.2ms | Zero thread blocking |
 | PanelAPI Event Dispatch & Latch | O(1) | < 1ms | Non-blocking async |
@@ -190,5 +196,5 @@ Rules:
 
 # 📄 Document Status
 
-**Version:** 5.9.1 UNIFIED  
-Performance rules and architectural guarantees are fully aligned with the **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & COLNÍK Guard Security Protocol 5.9.1**, ensuring maximum responsiveness, zero unverified I/O, and determinism on local hardware.
+**Version:** **5.9.5** UNIFIED  
+Performance rules and architectural guarantees are fully aligned with the **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol 5.9.5**, ensuring maximum responsiveness, zero unverified I/O, and determinism on local hardware.
