@@ -1,227 +1,397 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# SIRIUS‑LOCAL‑AI  
+**A fully modular, offline‑only AI runtime with unified orchestration (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore), dual-language isolated KG architecture (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN), native lossless entity merge (`kg merge`), taxonomical & marsupial inference (`KG_VERIFY`), non-destructive reverse location reasoning, entry-level Token Guard, 100-file sliding-window quarantine rotation, SafeRollback crash resilience (`safe_rollback.py`), Professor Validator middleware (`professor_validator.py`), COLNÍK Guard shell access control (0.0s hard blocks), Human-in-the-Loop Safe Trash, multi-word semantic parsing (`InputParser5`), autonomous disambiguation triage & anti-prefix protection (`EnvoyExecutionLayer5`), contextual domain shielding (`EnvoyNormalizer5`), 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`), interactive PanelAPI [ÁNO/NIE] / [YES/NO] loops, TimeCore & Guard supervision, unified reasoning, deep explainability, self‑repair, COLNIK‑6.x (Standard & High-Performance IPC Mode), and AUTONOMY 6.x (Control, Guard & Triage Mode).**
 
-This document defines the performance model, optimization rules, and runtime guarantees of the  
-**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & COLNÍK Guard Security Protocol 5.9.5**.
+SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, linguistic accuracy, architectural stability, modularity, symbolic intelligence, deep explainability, interactive human-in-the-loop control, and full offline autonomy**.
 
-Version **5.9.5 UNIFIED** expands and optimizes the runtime profile with:
+Version **5.9.5** delivers the most refined and secure generation of the **Unified Runtime Architecture 5.x**, establishing isolated dual-language knowledge storage backends, native in-memory entity consolidation, taxonomical category deduction, resilient reverse location querying, input token sanitization, SafeRollback crash resilience, Professor Validator cognitive verification, and enterprise-grade command and filesystem protection under COLNÍK Guard.
 
-- **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080) (embedded TerminalAssistant + TimeCore, zero IPC socket overhead, no file contention)**
-- **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` & `autosave_kg_en.json`) (O(1) memory lookup with zero cross-lingual contamination)**
-- **Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`) (in-memory property relocation and alias pointer binding)**
-- **Ontological & Taxonomical Reasoning (`KG_VERIFY`) (hierarchical sub-taxa deduction with persistent edge auto-commits)**
-- **Non-Destructive Reverse Location Engine (`_execute_reverse_location_query`) (multi-stem matching, uniform `get_attributes()` traversal, and anti-flora shielding)**
-- **Input Sanitization & Hygiene (Token Guard O(1) symbol check, `.rstrip("?")` trailing punctuation stripping)**
-- **Confirmation State Latching (deterministic O(1) state preservation across interactive conversation turns)**
-- **Sliding-Window Quarantine Ceiling Rotation (100 JSON file ceiling in `COLNIK-6.x/envoy/quarantine/`, constant-time sliding window)**
-- **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and restorations)**
-- **Professor Validator Middleware (`professor_validator.py` enforcing strict `PASS / WARN / REJECT` verification)**
-- **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**
-- **Human-in-the-Loop Safe UI Trash (non-destructive quarantine diversion preventing unverified disk I/O)**
-- **Character Encoding Fallback (UTF-8 -> CP1250 -> CP852 pipeline with zero diacritic corruption)**
-- **Multi-Word Semantic Engine (`InputParser5`) (constant-time token grouping and copula isolation)**
-- **Autonomous Disambiguation Triage (`EnvoyExecutionLayer5`) (bounded network timeouts and prefix checks)**
-- **Contextual Domain & Bio Filtering (`EnvoyNormalizer5`) (sentence-bound declarative parsing)**
-- **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) (asynchronous state decoupling, non-blocking)**
-- **Terminal State Decoupling (`currentModule = "none"`) (zero input lockups or CLI stalling)**
-- **PanelAPI & Interactive [ÁNO/NIE] / [YES/NO] Confirmation Loops (non-blocking async polling)**
-- **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource Telemetry (lightweight CPU/RAM/Disk metrics)**
-- **Workflow Engine 5.9.5 (constant-time transitions, COLNIK-validated and AUTONOMY-aware routing)**
-- **Reasoning Engine 5.9.5 (bounded multi-hop derivation, property inheritance, orbital & taxonomical rules)**
-- **KG_EXPLAIN & KG_EXPLAIN_DEEP (deterministic proof-tree generation under bounded memory constraints)**
-- **COLNIK-6.x Customs Decision Gate (constant-time allow/deny evaluation — Standard & High-Performance IPC Mode)**
-- **AUTONOMY 6.x (supervised proposal cycle, Guard metric integration, and bounded Triage Mode)**
+This release enhances the runtime architecture with:
 
-All processing is fully local; no data leaves the user's device.
+- unified single-process orchestration via `sirius_orchestrator.py` executing natively on port 8080 with embedded TerminalAssistant + TimeCore
+- dual-language isolated knowledge stores (`autosave_kg.json` for SK and `autosave_kg_en.json` for EN) with dynamic language context switching
+- native lossless entity merge engine (`kg merge <src> into <tgt>`) integrated directly in RuntimeCore
+- ontological & taxonomical category deduction (`KG_VERIFY`) with zero proposal recurrence on inferred categories
+- non-destructive reverse location engine (`_execute_reverse_location_query`) with anti-flora classification guard
+- greedy trailing punctuation stripping (`.rstrip("?")`) and confirmation state latching across conversation turns
+- hard Token Guard entry-level sanitization blocking malicious or corrupted injection strings (`@#$%^&*`)
+- automatic sliding-window quarantine rotation enforcing a 100-file ceiling inside `COLNIK-6.x/envoy/quarantine/`
+- SafeRollback crash resilience (`safe_rollback.py` with granular `shutil.copytree` backups and `shutil.rmtree` restorations)
+- Professor Validator middleware enforcing strict `PASS / WARN / REJECT` cognitive verification
+- COLNÍK Guard shell access control with 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`)
+- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction
+- multi-word compound semantic parsing (`InputParser5` preserving compound noun phrases)
+- autonomous disambiguation triage & strip-bracket fallback (`EnvoyExecutionLayer5`)
+- phonetic & anti-prefix guard preventing fuzzy query drifts
+- contextual domain shield & sentence-bound bio extractor (`EnvoyNormalizer5`)
+- permanent elimination of interactive proposal recurrence on confirmed knowledge
+- complete 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)
+- integrated high-performance IPC bridge eliminating file-locking contention and race conditions
+- interactive PanelAPI loops with `[ÁNO/NIE]` / `[YES/NO]` confirmation prompts
+- TimeCore temporal tracking (`cycle_delta()`) & Guard security supervision (CPU, RAM, Disk metrics)
+- unified symbolic reasoning pipeline (`ReasoningEngine5.9.5`)
+- KG_EXPLAIN & KG_EXPLAIN_DEEP generating hierarchical proof trees (XAI)
+- deterministic symbolic rules (multi‑hop, inheritance, transitivity, orbital & taxonomical inference)
+- identity‑aware system control (Identity Engine 3.1 & SECURITY FAMILY 5.x)
+- hardened security boundaries with customs validation
+- ENVOY Execution Layer 5, ENVOY Permission Layer 5 & EnvoyQuarantine5
+- COLNIK‑6.x enterprise validation layer (Standard, High-Performance IPC Mode & COLNÍK Guard)
+- AUTONOMY 6.x autonomous proposal/confirmation, Guard monitoring, HitL Trash Governance & Triage Mode
 
----
-
-# 1. Performance Philosophy
-
-- predictable, deterministic execution > unconstrained throughput  
-- single-process orchestration: eliminate disk-based IPC locks, process spawning, and inter-process polling latency  
-- zero proposal recurrence: once an alias or taxonomical relation is indexed, subsequent queries resolve in O(1)  
-- strict language partition: Slovak and English queries access dedicated in-memory graphs without cross-lingual collision overhead  
-- immediate security filtering: Token Guard symbol checks, SafeRollback backups, Professor Validator checks, and COLNÍK Guard command interceptions resolve at runtime boundary in 0.0s  
-- no uncontrolled conversational loops or terminal command captures  
-- compound noun preservation and punctuation trimming must not degrade parsing time (`O(N)` linear token scan)  
-- strict boundaries for autonomous web triage: fast timeouts, anti-prefix guards, 100-file sliding-window ceilings, and non-bio domain checks  
-- minimal overhead across all modules: complete cycle response under 10ms for local graph queries  
-- SCHOOLWORK workflows must remain instant and non-bypassable  
-- **Token Guard validation must remain strictly O(1)**  
-- **SafeRollback backup execution must remain bounded and non-blocking**  
-- **Professor Validator verification must execute in constant time**  
-- **COLNÍK Guard shell access checks must evaluate in 0.0s**  
-- **Security Family 5.x checks must remain strictly O(1)**  
-- **System Agent 5 validation must remain O(1)**  
-- **COLNIK-6.x Customs inspection (Standard & IPC Mode) must remain constant-time**  
-- **Guard system resource monitoring must operate asynchronously with < 1% CPU utilization**  
-- **Orchestrator and PanelAPI loop latency must remain < 1ms per event**  
+The entire system runs **100% locally**, without external dependencies or cloud services.
 
 ---
 
-# 2. Runtime Guarantees (Runtime 5.9.5)
-
-- **Zero Socket Contention:** Single-process architecture hosting HTTP/WebSocket on port 8080 eliminates socket conflicts  
-- **Dual-Language Memory Isolation:** `self.kg_sk` and `self.kg_en` maintain isolated node registries, preventing cross-language graph pollution  
-- **Zero Proposal Recurrence:** Confirmed knowledge and deduced taxonomical categories are committed to disk and served with zero interactive prompt latency  
-- **Terminal & Shell Isolation:** Clearing input immediately resets active execution context to `currentModule = "none"` in O(1) time; forbidden shell commands are halted in 0.0s  
-- **Safe Storage Maintenance:** Quarantine file count is capped at 100 records via automated sliding-window pruning  
-- **Cycle-Safe Reasoning:** Multi-hop graph traversal and orbital rules are bounded to fixed recursion depths, preventing runaway inference  
-- **Atomic Persistence:** Graph mutations are written atomically to `autosave_kg.json` and `autosave_kg_en.json` without corrupting active memory snapshots  
-- **Deterministic Tokenization:** `InputParser5` separates copula verbs (`je`, `sú`, `is`, `are`), strips trailing punctuation (`.rstrip("?")`), and retains compound entities without backtracking  
-- **No Blocking Operations:** PanelAPI `[ÁNO/NIE]` / [YES/NO] dialogs use confirmation state latching without freezing background monitors  
-- **TimeCore & Guard Telemetry:** Execution timing via `cycle_delta()` and system health metrics operate non-intrusively with zero thread stalls  
-
----
-
-# 3. Knowledge Graph, Dual Stores & Native Merge Performance
-
-Rules:
-
-- primary entity labels and aliases share a hash-indexed lookup table (`O(1)` query complexity) across both `autosave_kg.json` and `autosave_kg_en.json`  
-- native merge operations (`kg merge <src> into <tgt>`) execute in-memory in `O(A + E)` time (attributes + edges), updating alias pointers without reloading graph state  
-- taxonomical deductions (`KG_VERIFY`) evaluate linear inheritance chains and auto-commit edges in `O(1)` to permanently eliminate prompt cycles  
-- reverse location queries (`_execute_reverse_location_query`) execute uniform attribute scans (`get_attributes()`) using pre-filtered stem sets (*Austrálii*, *Austrália*, *Australia*) without regex backtracking  
-- suppressed learning loops: query resolution checks active language graph and alias index first before invoking AUTONOMY proposal generators  
-- atomic serialization: `autosave_kg.json` and `autosave_kg_en.json` serialize independently during idle cycles or immediately after approved enrichment  
-- graph export/import operations are streaming and chunk-validated to prevent memory spikes  
-- relations and properties are pre-indexed; orbital searches avoid full-graph scans  
+## 📌 Table of Contents
+- [Architecture](ARCHITECTURE.md)
+- [Module Map](MODULE_MAP.md)
+- [Styleguide](STYLEGUIDE.md)
+- [Testing Guide](TESTING_GUIDE.md)
+- [Performance Guide](PERFORMANCE_GUIDE.md)
+- [Release Notes](RELEASE_NOTES.md)
+- [Roadmap](ROADMAP.md)
+- [Security Family](SECURITY_FAMILY.md)
+- [AITE 5.9.5](AITE.md)
+- [ENVOY 5](ENVOY_TUTORIAL.md)
+- [Contributing](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Future Vision](FUTURE_VISION.md)
+- [Password Vault 5.0](PASSWORD_VAULT.md)
 
 ---
 
-# 4. Multi-Word Parsing, Input Hygiene & Token Guard Performance
+## 🚀 Key Features (v5.9.5 UNIFIED)
 
-- **Token Guard Sanitization:** Single-pass character check detects forbidden symbols (`@`, `#`, `$`, `%`, `^`, `&`, `*`) in `O(N)` time, rejecting invalid requests before parsing starts  
-- **Punctuation Trimming:** Trailing question marks are stripped in `O(1)` time via `.rstrip("?")`, avoiding regular expression engine overhead  
-- **Single-Pass Grammatical Tokenization:** Compound phrases (*ovcia vlna*, *mobilny telefon*) are matched using linear token grouping  
-- **Copula Verb Isolation:** Extraction of (`je`, `sú`, `is`, `are`) occurs prior to entity matching, preventing complex linguistic backtracking  
-- **Diacritic Normalization:** Single buffer traversal across Slovak and English character sets  
-- parsing overhead must remain under 0.5ms for standard user inputs  
-- confirmation latching preserves target entity state across turns with zero memory reallocation overhead  
+### Unified Runtime 5.9.5 & Single-Process Orchestration
+A fully upgraded runtime driven by `sirius_orchestrator.py` on local port 8080 with:
 
----
-
-# 5. Autonomous ENVOY, Quarantine & Security Performance
-
-- **Bounded External Fetching:** External lookups execute with strict HTTP connection and read timeouts  
-- **Sliding-Window Quarantine Maintenance:** `COLNIK-6.x/envoy/quarantine/` tracks file counts and purges oldest records in `O(log N)` file-time sorting, never exceeding 100 JSON payloads  
-- **COLNÍK Guard Shell Filtering:** Exact string and prefix matching against FORBIDDEN commands executes in 0.0s before OS process creation  
-- **HitL Safe Trash Diversion:** File deletion interception moves files to quarantine without triggering destructive disk deletion routines  
-- **Disambiguation Fast-Path:** Wikipedia disambiguation headers (*„môže byť...“*) are parsed via streaming text filters  
-- **Anti-Prefix Verification:** Prefix string comparisons are performed in constant time, stopping semantic drift immediately  
-- **Domain Normalizer:** Non-Bio Domain Shield evaluates only immediate declarative sentences, avoiding full-page semantic parsing  
-- **Quarantine Cleansing:** HTML and script stripping runs via linear text scanners without invoking browser engines  
-
----
-
-# 6. 4-Panel UI Suite & Terminal Performance (Port 8080)
-
-- browser dashboard on port 8080 uses lightweight, event-driven DOM updates  
-- **Terminal Decoupling:** Clearing input resets `currentModule = "none"` instantly, freeing event listeners and preventing shell capture  
-- **Duplicates Panel:** File hash comparisons utilize streaming block hashing, categorizing duplicates into safe vs. critical (`REPORT_ONLY`) without disk saturation  
-- **Triage Panel:** Live quarantine queue updates utilize delta payloads rather than full queue redraws  
-- **Navigation Panel:** Switching modules updates UI state in constant time without reloading backend services  
+- centralized deterministic execution pipeline eliminating external file locks
+- dynamic dual-language routing across `autosave_kg.json` (SK) and `autosave_kg_en.json` (EN)
+- native lossless entity merging (`kg merge`) with zero attribute loss and alias preservation
+- context-aware taxonomical category deduction (`KG_VERIFY`) with edge auto-commits
+- reverse location reasoning with anti-flora protection for tree-dwelling fauna
+- Token Guard input filter rejecting corrupted symbols (`@#$%^&*`) at runtime threshold
+- SafeRollback crash resilience (`safe_rollback.py`) protecting system state and configuration integrity
+- Professor Validator middleware (`professor_validator.py`) enforcing strict cognitive verification (`PASS / WARN / REJECT`)
+- Human-in-the-Loop Safe UI Trash routing deletions into quarantine for manual user review
+- interactive PanelAPI [ÁNO/NIE] / [YES/NO] confirmation prompts with active confirmation latching
+- TimeCore temporal tracking (`cycle_delta()`) & Guard system metric supervision
+- explainability routing with hierarchical proof trees (KG_EXPLAIN & KG_EXPLAIN_DEEP)
+- identity‑aware logic and family-safe boundaries
+- self‑repair integration (Layer 5.8)
+- capability isolation and deterministic fallback states
+- hardened System Agent 5 validation
+- ENVOY Execution + Permission Layers 5 with 100-file sliding-window quarantine rotation
+- COLNIK‑6.x validation (Standard, High-Performance IPC Mode & COLNÍK Guard)
+- AUTONOMY 6.x proposal/confirmation, Guard supervision & Triage Mode
+- complete 4-Panel UI Suite with automatic module state reset on input clearance
 
 ---
 
-# 7. Workflow Engine 5.9.5 & Orchestrator Performance
+### Modular Architecture (v5.9.5)
+Each module is isolated and follows strict boundaries:
 
-- workflow transitions are executed as O(1) state-machine transitions managed by `sirius_orchestrator.py`  
-- workflows maintain cached operational contexts, avoiding redundant property lookups  
-- deep explainability traces (`KG_EXPLAIN_DEEP`) compile proof trees lazily upon request  
-- SafeRollback state backups, Professor Validator checks, COLNIK-6.x customs checks, COLNÍK Guard filters, and AUTONOMY approvals evaluate in constant time within the orchestration pipeline  
-- long-running operations yield control cooperatively, ensuring the UI remains responsive  
+- `commands/` – NL routing and command logic
+- `context/` – semantic context engine
+- `core/` – SafeRollback backup and restore module (`safe_rollback.py`)
+- `professor/` – Professor Validator decision verification middleware (`professor_validator.py`)
+- `filesystem/` – safe file operations and HitL Safe Trash pipeline
+- `runtime/` – Runtime Core 5.9.5 & InputParser5
+- `orchestrator/` – Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)
+- `panel_api/` – PanelAPI interactive loops (`[ÁNO/NIE]` / `[YES/NO]`)
+- `supervision/` – TimeCore & Guard security/temporal/resource monitoring
+- `triage/` – AITE 5.9.5 (semantic compound, disambiguation triage & punctuation hygiene)
+- `ui/` – 4-Panel UI dashboard (`index.html`)
+- `workflow/` – Workflow Engine 5.9.5
+- `plugins/` – Plugin System 5.x
+- `security_family/` – Identity Engine 3.1, time‑limits v3, schoolwork engine
+- `self_repair/` – Self‑Repair Layer 5.8
+- `knowledge_packs/` – Dual-Language Knowledge Graph Stores (`autosave_kg.json` & `autosave_kg_en.json`)
+- `envoy/` – ENVOY Execution + Normalizer + Permission Layers 5 & EnvoyQuarantine5
+- `colnik/` – COLNIK-6.x Customs Validation, COLNÍK Guard & Triage Queue (`COLNIK-6.x/triage`)
+- `autonomy/` – AUTONOMY 6.x Decision Engine & Guard Supervision
+- `system_agent/` – System Agent 5
+- `autosave_kg.json` – Isolated Slovak Knowledge Base
+- `autosave_kg_en.json` – Isolated English Knowledge Base
+- `sirius.py` – Entry point
 
----
-
-# 8. Symbolic Reasoning & XAI Performance
-
-- reasoning depth is bounded by maximum orbital traversal thresholds  
-- rules (`MultiHopOrbitInferenceRule`, `DedicsnostVlastnostiRule`, `TranzitivneRelacieRule`, `AutoTypeInferenceRule`, `TaxonomyRule`) execute against indexed graph subsets  
-- proof trees are constructed deterministically without non-deterministic search heuristics  
-- confidence scores are calculated in linear time relative to the active proof path length  
-- explanation rendering (ASCII / HTML) is isolated from the reasoning core  
-
----
-
-# 9. Security Family & Identity Performance
-
-### Identity Engine 3.1
-- identity evaluation is strictly O(1) based on active session profiles (OWNER / FAMILY / STRANGER)  
-- no background tracking loops or heavy biometric processing  
-- STRANGER lockdown mode activates instantly upon unrecognized input  
-
-### Schoolwork Engine 5.8
-- academic topic identification is pre-computed and pattern-matched  
-- academic bypass logic operates in constant time, ensuring learning workflows are never delayed  
-
-### Time-Limits Engine v3
-- temporal quotas are evaluated via delta calculations against TimeCore timestamps  
-- no active polling timers in tight execution loops  
+The system is designed to be extended without modifying the core.
 
 ---
 
-# 10. Self-Repair Layer & Guard Supervision Performance
+### Plugin System 5.x
+Plugins can define:
 
-- Guard resource telemetry polls OS metrics (CPU, RAM, Disk) at bounded, low-frequency intervals  
-- anomaly thresholds are evaluated using moving averages to prevent alert thrashing  
-- Self-Repair integrity scans run during system idle states or startup  
-- schema integrity checks on `autosave_kg.json` and `autosave_kg_en.json` execute via fast streaming JSON validators  
-- repair suggestions and rollback operations maintain deterministic fallbacks  
+- NL commands
+- AI tasks
+- workflows
+- reasoning hooks
+- GUI elements
+- pack‑aware logic
 
----
-
-# 11. Performance Baseline Metrics
-
-| Component / Action | Complexity | Latency Target | Resource Overhead |
-|:---|:---:|:---:|:---:|
-| Token Guard Input Sanitization | O(N) | < 0.1ms | Negligible |
-| Punctuation Stripping (`.rstrip("?")`) | O(1) | < 0.05ms | Negligible |
-| `InputParser5` Token Parsing | O(N) | < 0.5ms | Negligible |
-| Dual-Language Graph Lookup (SK/EN) | O(1) | < 1ms | In-memory RAM lookup |
-| Native Entity Merge (`kg merge`) | O(A + E) | < 3ms | In-memory property migration |
-| Taxonomical Deduction (`KG_VERIFY`) | O(1) | < 2ms | In-memory inference + commit |
-| SafeRollback State Backup (`safe_rollback.py`) | O(F) | < 5ms | Local directory snapshot |
-| Professor Validator Verification | O(1) | < 0.5ms | Cognitive matrix check |
-| COLNÍK Guard Shell Interception | O(1) | 0.0s (instant block) | Zero process spawn |
-| COLNIK-6.x Customs Clearance | O(1) | < 0.2ms | Zero thread blocking |
-| PanelAPI Event Dispatch & Latch | O(1) | < 1ms | Non-blocking async |
-| Terminal State Reset (`none`) | O(1) | < 0.1ms | Instant state clear |
-| Quarantine Sliding-Window Prune | O(log N) | < 5ms | Capped at 100 JSON files |
-| Single-Hop Symbolic Inference | O(1) | < 2ms | Bounded memory |
-| Multi-Hop Orbit Proof Tree | O(D) (bounded) | < 8ms | Bounded tree depth |
-| Guard Metric Polling (`cycle_delta()`) | O(1) | < 1ms | < 1% CPU utilization |
+All official plugins are fully prepared for v5.x.
 
 ---
 
-# 12. Architectural Architecture Diagram & Operational Flow Reference
+### Automatic Input Triage Engine (AITE 5.9.5)
+AITE analyzes inputs, sanitizes them, and routes them to the correct modules.
 
-```text
-User Command / Web UI / Shell Terminal (Port 8080)
- ↓
-Token Guard (Rejects inputs with @#\$%^&*)
- ↓
-InputParser5 (Punctuation stripping .rstrip("?") & compound phrase preservation)
- ↓
-Language Context Router (Binds to autosave_kg.json [SK] or autosave_kg_en.json [EN])
- ↓
-sirius_orchestrator.py (Single-Process Daemon on Port 8080 with TerminalAssistant & TimeCore)
- ├── 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal with state reset)
- ├── TimeCore & Guard (Temporal tracking cycle_delta() & Resource supervision)
- ├── SafeRollback & Professor Validator (State protection & cognitive verification)
- ├── RuntimeCore 5.9.5 & Dual Knowledge Graph Core (autosave_kg.json / autosave_kg_en.json)
- ├── Native Merge Engine (kg merge <src> into <tgt>)
- ├── ReasoningEngine 5.9.5 (Multi-top, taxonomical KG_VERIFY & Proof trees)
- ├── WorkflowEngine 5.9.5 (Deterministic state transitions)
- ├── Security Family 5.x & Identity Engine 3.1
- ├── Envoy 5 (ExecutionLayer5, Anti-Prefix Guard, EnvoyNormalizer5 & EnvoyQuarantine5)
- ├── COLNIK-6.x Customs Decision Gate (Standard, IPC Mode & COLNÍK Guard)
- ├── HitL Safe Trash (Quarantined file removal pipeline)
- ├── AUTONOMY 6.x (Control, Guard, Triage Mode & Confirmation Latching)
- ├── PanelAPI ([ÁNO/NIE] / [YES/NO] confirmation loops)
- └── EXECUTE 6.x -> Dual KG Commit / Lossless Merge / Safe System Action
+It ensures:
 
- 📄 Document Status
-Version: 5.9.5 UNIFIED
+- Token Guard validation rejecting malformed character sequences (`@#$%^&*`)
+- greedy trailing punctuation stripping (`.rstrip("?")`) preventing token fragmentation
+- compound multi-word semantic parsing without token mutilation
+- copula verb separation (`je`, `sú`, `is`, `are`) preventing grammatical corruptions
+- dynamic language context switching bound to caller UI language headers (`SK` / `EN`)
+- OCR extraction
+- subject detection
+- difficulty scoring
+- identity‑aware routing
+- deterministic behavior
+- explainability detection (“why … ?”)
+- Schoolwork Engine 5.8 — academic tasks always bypass FAMILY restrictions
+- integration with SECURITY FAMILY 5.x
+- integration with Reasoning Engine 5.9.5
+- integration with Workflow Engine 5.9.5 & Orchestrator
 
-Performance rules and architectural guarantees are fully aligned with the Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol 5.9.5, ensuring maximum responsiveness, zero unverified I/O, and determinism on local hardware.
+---
+
+### Reasoning Engine 5.9.5
+A structured symbolic reasoning layer:
+
+- multi‑hop inference
+- property inheritance reasoning (`DedicsnostVlastnostiRule`)
+- transitive relations reasoning (`TranzitivneRelacieRule`)
+- orbital inference (`MultiHopOrbitInferenceRule`)
+- ontological & taxonomical category deduction (`KG_VERIFY`)
+- non-destructive reverse location reasoning with anti-flora classification guard
+- deterministic rule chaining
+- proof tree foundations (ASCII and HTML generation)
+- evidence tree generation
+- confidence scoring
+- KG_EXPLAIN & KG_EXPLAIN_DEEP integration
+- pack‑aware reasoning
+
+---
+
+### Self‑Repair Layer 5.8
+Ensures long‑term stability:
+
+- integrity checks
+- corruption detection
+- safe automatic repairs
+- fallback states
+- dependency validation
+- system‑wide health reporting
+
+---
+
+### Unified Knowledge Graph 5.9.5 & Dual-Language Architecture
+Offline knowledge expansions:
+
+- isolated graph stores for Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`)
+- native lossless entity merge engine (`kg merge`) with alias preservation
+- multi-alias persistence linking raw queries to formal encyclopedic entries
+- zero proposal recurrence on stored concepts and deduced taxonomies
+- household
+- cooking
+- school subjects
+- device diagnostics
+- safety & troubleshooting
+- definitions & facts
+
+All nodes are semantic, reasoning‑ready, and explainability‑ready.
+
+---
+
+### SIRIUS ENVOY 5 – Safe External Retrieval & Disambiguation Triage
+Optional isolated agent for safe external lookups:
+
+- outbound‑only architecture
+- dynamic language context binding (sk.wikipedia.org for SK, en.wikipedia.org for EN)
+- autonomous encyclopedic disambiguation triage (*„môže byť...“*)
+- anti-prefix guard preventing query drift (*Káva* -> *Kavala*)
+- strip-bracket fallback to root lemmas
+- strict non-biological domain shield (blocking false habitat properties)
+- quarantine sandbox stripping HTML, scripts, and trackers
+- automatic 100-file sliding-window quarantine rotation (`EnvoyQuarantine5`)
+- sentence-bound fact extraction
+- COLNIK‑validated payload delivery
+- AUTONOMY‑aware validation traces
+
+ENVOY never sends local data outward.
+
+---
+
+### Workflow Engine 5.9.5
+Manages:
+
+- multi‑step processes
+- semantic transitions
+- plugin workflows
+- safe command execution
+- deterministic state changes
+- explainability routing
+- SCHOOLWORK workflow prioritization
+- COLNIK‑validated workflow steps
+- AUTONOMY‑aware transitions
+
+---
+
+### Unified Automation Runtime 5.9.5
+Developer‑level offline automation:
+
+- filesystem automation with Human-in-the-Loop Safe Trash protection
+- terminal command security under COLNÍK Guard (0.0s block on `format`, `diskpart`, `rmdir /s`)
+- editor integration
+- code workflows
+- structured command parsing
+- command routing
+- safe system task validation
+
+---
+
+### 4-Panel UI Suite & Terminal State Decoupling
+A dedicated browser dashboard running on port 8080:
+
+- Duplicates Panel: monitors system resource metrics and categorizes duplicates into safe vs. critical
+- Triage Panel: live supervision of quarantine queues and unclassified files (`COLNIK-6.x/triage`)
+- Navigation Panel: deterministic module switching across Runtime, KG, Envoy, and Autonomy
+- Terminal Panel: decoupled command line interface that automatically resets `currentModule = "none"` when clearing input, preventing shell lockup and accidental OS-level execution
+
+---
+
+## 📁 Project Structure (v5.9.5)
+
+src/
+├── commands/
+├── context/
+├── core/
+│   └── safe_rollback.py
+├── professor/
+│   └── professor_validator.py
+├── envoy/
+│   ├── envoy_execution_layer_5.py
+│   ├── envoy_normalizer_5.py
+│   └── envoy_quarantine_5.py
+├── filesystem/
+├── knowledge_packs/
+├── runtime/
+│   ├── input_parser_5.py
+│   └── runtime_core.py
+├── orchestrator/
+│   └── sirius_orchestrator.py
+├── panel_api/
+├── supervision/
+│   ├── time_core.py
+│   └── guard.py
+├── colnik/
+│   ├── triage/
+│   └── colnik_guard.py
+├── autonomy/
+│   ├── autonomy.py
+│   └── triage_mode.py
+├── security_family/
+├── self_repair/
+├── triage/
+├── ui/
+│   └── index.html
+├── workflow/
+├── autosave_kg.json
+├── autosave_kg_en.json
+└── sirius.py
+
+Each directory has a clear responsibility and is described in MODULE_MAP.md.
+
+---
+
+## 🧪 Testing
+The project includes a complete testing plan:
+
+- dual-language graph isolation and dynamic context switching tests
+- native `kg merge` attribute retention and alias link tests
+- taxonomical inference (`KG_VERIFY`) and edge auto-commit tests
+- reverse habitat query and anti-flora classification guard tests
+- Token Guard input sanitization and trailing punctuation stripping tests
+- sliding-window quarantine rotation (100-record ceiling) tests
+- SafeRollback backup and restore tests
+- Professor Validator cognitive verification tests
+- COLNÍK Guard 0.0s command blocking and telemetry tests
+- Human-in-the-Loop Safe Trash quarantine tests
+- multi-word compound noun phrase extraction tests
+- disambiguation resolution and strip-bracket fallback tests
+- non-bio domain shielding and habitat filtering tests
+- 4-Panel UI state reset and terminal decoupling tests
+- functional tests
+- semantic routing tests
+- real‑time tests
+- workflow sequence tests
+- plugin integration tests
+- SECURITY FAMILY identity tests
+- SCHOOLWORK ENGINE tests
+- self‑repair integrity tests
+- System Agent 5 validation tests
+- ENVOY 5 sanitization tests
+- KG_EXPLAIN & KG_EXPLAIN_DEEP explainability tests
+- Reasoning Engine 5.9.5 rule tests
+- Orchestrator, PanelAPI & TimeCore/Guard integration tests
+
+Details are in TESTING_GUIDE.md.
+
+---
+
+## ⚙ Performance
+The system is optimized for:
+
+- zero external API latency (100% offline-first)
+- single-process HTTP/IPC daemon running natively on port 8080 without file contention
+- instant memory resolution for dual-language graph queries
+- lightweight, non-blocking asynchronous UI loops
+- long‑term stability
+- predictable processing
+- minimal thread blocking
+- efficient event routing
+- deterministic reasoning
+
+More in PERFORMANCE_GUIDE.md.
+
+---
+
+## 🗓️ Release Plan
+
+### v5.9.5 – Dual-Language KG Architecture, Lossless Entity Merge, SafeRollback, Professor Validator & Comprehensive Security Protocol (Current)
+- Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)
+- Dual-Language Isolated Knowledge Stores (`autosave_kg.json` & `autosave_kg_en.json`)
+- Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`)
+- Ontological & Taxonomical Category Deduction (`KG_VERIFY`)
+- Non-Destructive Reverse Location Engine with Anti-Flora Guard
+- Entry-Level Token Guard & 100-File Sliding-Window Quarantine Rotation
+- SafeRollback Crash Resilience (`safe_rollback.py`)
+- Professor Validator Middleware (`professor_validator.py`)
+- COLNÍK Guard Shell Access Control (0.0s hard block on forbidden commands)
+- Human-in-the-Loop Safe UI Trash Pipeline
+- Multi-Word Compound Parser (`InputParser5`)
+- Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)
+- Contextual Domain Shield & Habitat Filtering (`EnvoyNormalizer5`)
+- 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) with automatic state release
+- PanelAPI interactive confirmation loops (`[ÁNO/NIE]` / `[YES/NO]`) with confirmation state latching
+- TimeCore temporal tracking (`cycle_delta()`) & Guard system resource supervision
+- AITE 5.9.5
+- Reasoning Engine 5.9.5
+- Workflow Engine 5.9.5
+- KG_EXPLAIN & KG_EXPLAIN_DEEP with proof trees
+- System Agent 5
+- ENVOY Execution + Permission Layers 5 & EnvoyQuarantine5
+- COLNIK‑6.x validation (Standard & High-Performance IPC Mode)
+- AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Trash Governance)
+
+---
+
+## 🧩 License
+The project is licensed under the **SIRIUS Unified License (SUL-3.2.0)**.
+
+---
+
+## ✨ Author
+**Richard Pizem**  
+Lead architect & solo maintainer  
+SIRIUS‑LOCAL‑AI
