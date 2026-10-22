@@ -1,26 +1,26 @@
 # 🧠 KG ENGINE 6.x — Knowledge Graph Core  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.x  
-**SIRIUS Local AI Version:** 5.9.1  
+**SIRIUS Local AI Version:** 5.9.5  
 **Component:** KG ENGINE  
-**Role:** Unified symbolic knowledge graph engine powering isolated dual-language partitions, native lossless entity merging, taxonomical deduction, non-destructive reverse location reasoning, Token Guard sanitization, and multi-hop reasoning under orchestrator and PanelAPI supervision
+**Role:** Unified symbolic knowledge graph engine powering isolated dual-language partitions, native lossless entity merging, taxonomical deduction, non-destructive reverse location reasoning, Token Guard sanitization, SafeRollback crash protection, Professor Validator verification, and multi-hop reasoning under orchestrator and PanelAPI supervision
 
 ---
 
 ## 🎯 Purpose  
-The KG ENGINE 6.x module is the central symbolic knowledge system of SIRIUS Local AI (v5.9.1).  
+The KG ENGINE 6.x module is the central symbolic knowledge system of SIRIUS Local AI (v5.9.5).  
 It manages isolated language stores (`autosave_kg.json` for Slovak and `autosave_kg_en.json` for English), native lossless entity mergers (`kg merge`), ontological taxonomical deduction (`KG_VERIFY`), reverse habitat querying, compound semantic concepts, multi-alias mappings, and graph-based reasoning operations.  
 All explainability, relation discovery, and multi-hop inference rely directly on this engine.
 
-KG ENGINE provides deterministic, transparent, and fully inspectable knowledge operations driven by `sirius_orchestrator.py` on local port 8080 with embedded TerminalAssistant + TimeCore, protected by Token Guard, and governed by COLNÍK Guard and AUTONOMY 6.x.
+KG ENGINE provides deterministic, transparent, and fully inspectable knowledge operations driven by `sirius_orchestrator.py` on local port 8080 with embedded TerminalAssistant + TimeCore, protected by Token Guard, backed by SafeRollback and Professor Validator, and governed by COLNÍK Guard and AUTONOMY 6.x.
 
 ---
 
 ## 🧩 Architecture Overview  
-**Runtime 5.9.1 / InputParser5 → Token Guard → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE / RuntimeCore → ReasoningEngine5 → AUTONOMY 6.x → COLNIK (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → Dual-Graph Commit (`autosave_kg.json` / `autosave_kg_en.json`)**
+**Runtime 5.9.5 / InputParser5 → Token Guard → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE / RuntimeCore → SafeRollback / Professor Validator → ReasoningEngine5 → AUTONOMY 6.x → COLNIK (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → Dual-Graph Commit (`autosave_kg.json` / `autosave_kg_en.json`)**
 
 ### Core Responsibilities  
-- Manage entities, relations, and compound noun phrases (`ovcia vlna`, `mobilny telefon`, `pevna linka`)  
+- Manage entities, relations, and compound noun phrases (*ovcia vlna*, *mobilny telefon*, *pevna linka*)  
 - Enforce strict physical and logical isolation between Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) knowledge graphs  
 - Support dynamic language context switching bound to caller UI language headers (`SK` / `EN`)  
 - Execute native lossless entity mergers (`kg merge <src> into <tgt>`), migrating all attributes and establishing alias edges without external scripts  
@@ -29,14 +29,18 @@ KG ENGINE provides deterministic, transparent, and fully inspectable knowledge o
 - Support uniform attribute retrieval via `self.kg.get_attributes()` across all traversals  
 - Enforce greedy trailing punctuation stripping (`.rstrip("?")`) and confirmation state latching across interactive turns  
 - Enforce zero proposal recurrence: suppress redundant learning proposals once an entity, alias, or taxonomical edge is committed  
-- Provide semantic explainability (KG_EXPLAIN, KG_EXPLAIN_DEEP with proof trees)  
-- Perform relation discovery (KG_RELATE)  
+- Supervise module-level state backups and restorations via `safe_rollback.py`  
+- Evaluate cognitive mutation integrity through `professor_validator.py`  
+- Provide semantic explainability (`KG_EXPLAIN`, `KG_EXPLAIN_DEEP` with proof trees)  
+- Perform relation discovery (`KG_RELATE`)  
 - Handle graph import/export with schema and cycle validation  
 - Maintain atomic serialization integrity across both language backends  
 - Provide developer comfort commands with automatic UI state clearance (`currentModule = "none"`)  
 
 ### Key Files  
 - `KG/kg_engine.py`  
+- `core/safe_rollback.py`  
+- `professor/professor_validator.py`  
 - `runtime5/runtime_core_5.py`  
 - `runtime5/input_parser_5.py`  
 - `runtime5/envoy_quarantine_5.py`  
@@ -59,10 +63,10 @@ Physical separation prevents cross-lingual contamination, mixed summaries, and b
 - `RuntimeCore` binds active graph operations dynamically to the matching store during request execution.
 
 ### **Entities & Multi-Alias Nodes**  
-Fundamental nodes representing concepts, objects, categories, or compound phrases (`ovcia vlna`, `macropus`).  
+Fundamental nodes representing concepts, objects, categories, or compound phrases (*ovcia vlna*, *macropus*).  
 Each node supports an internal alias registry:  
 - Primary canonical identifier  
-- Alternate query aliases (e.g., `ovcia vlna` ⇄ `Vlna (textil)`)  
+- Alternate query aliases (e.g., *ovcia vlna* ⇄ *Vlna (textil)*)  
 - Transferred alias links from native entity mergers (`src -[alias]-> tgt`)  
 - Provenance, language tag, and origin metadata  
 
@@ -163,9 +167,11 @@ or fallback snapshots in `KG/kg_store/`.
 - If present → generate reasoning output and render directly.  
 - If missing → latch pending proposal target and trigger AUTONOMY confirmation prompt (`[ÁNO/NIE]` / `[YES/NO]`).  
 
-### **4 — Process Mutation & Customs Validation**  
+### **4 — Process Mutation, SafeRollback & Customs Validation**  
 Upon confirmed learning, native merge, or developer command:  
+- Trigger SafeRollback state backup (`safe_rollback.py`) to protect system configuration.  
 - Validate payload against Non-Bio Domain Shield (no habitat on technical concepts).  
+- Verify cognitive output through Professor Validator (`PASS / WARN / REJECT`).  
 - Authorize structural changes via COLNIK‑6.x (Customs Inspection).  
 - Atomically commit the node, attributes, verified taxonomical relations, and linked aliases to the target store (`autosave_kg.json` or `autosave_kg_en.json`).  
 
@@ -181,6 +187,8 @@ Results are dispatched to:
 - ❌ No destructive graph operations without explicit confirmation (`PanelAPI` [ÁNO/NIE] / [YES/NO])  
 - 🗄️ Strict dual-language isolation: Slovak and English entities must never be merged into a single mixed graph  
 - ⛔ Token Guard input protection: malformed injection payloads (`@#$%^&*`) are blocked at runtime entry  
+- 🔄 SafeRollback Crash Resilience: granular module-level backups and restorations protecting graph integrity  
+- ⚖️ Professor Validator Verification: strict cognitive output filtering (`PASS / WARN / REJECT`) before disk commit  
 - 🔒 Atomic serialization to `autosave_kg.json` and `autosave_kg_en.json` guarantees persistence  
 - 🛑 Confirmed entities and inferred taxonomies must never trigger repetitive learning proposals (Zero Recurrence)  
 - 🚫 Strict non-biological domain shields prevent false habitat attributes on technical concepts  
@@ -190,8 +198,8 @@ Results are dispatched to:
 
 ---
 
-## 📊 Module Status (v5.9.1)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.1 architecture  
+## 📊 Module Status (v5.9.5)  
+- ✔ Fully implemented & optimized for Runtime 5.9.5 architecture  
 - ✔ Dual-Language Graph Isolation (`autosave_kg.json` & `autosave_kg_en.json`) operational  
 - ✔ Native Lossless Entity Merge (`kg merge`) validated  
 - ✔ Taxonomical category inference auto-commit (`KG_VERIFY`) operational  
@@ -201,15 +209,18 @@ Results are dispatched to:
 - ✔ Compound noun phrase support active (`InputParser5`)  
 - ✔ Multi-alias indexing and persistence verified  
 - ✔ Zero proposal recurrence confirmed  
+- ✔ SafeRollback backup and restore integration active  
+- ✔ Professor Validator decision matrix active  
 - ✔ Single-process orchestrator integration (Port 8080) operational  
-- ✔ Multi-hop reasoning and proof trees verified  
-- ✔ COLNIK‑6.x High-Performance IPC and COLNÍK Guard validation functional  
+- ✔ Atomic serialization to dual graphs verified  
+- ✔ 4-Panel UI Suite integration and terminal state release active  
+- ✔ COLNIK‑6.x High-Performance IPC and COLNÍK Guard verification functional  
 - ✔ Autosave/autoload stability verified under Windows 11  
 - ✔ 4-Panel UI Suite integration complete  
 
 ---
 
 ## 🏁 Summary  
-KG ENGINE 6.x is the symbolic core of SIRIUS Local AI (v5.9.1).  
+KG ENGINE 6.x is the symbolic core of SIRIUS Local AI (v5.9.5).  
 It manages isolated dual-language knowledge bases, native lossless entity merges, taxonomical deductions, reverse habitat queries, aliases, relations, explainability, and multi-hop reasoning with deterministic precision.  
-The engine is fully integrated with Runtime 5.9.1, `sirius_orchestrator.py` on port 8080, ReasoningEngine5, AUTONOMY 6.x, COLNIK-6.x, Token Guard, and PanelAPI, forming the foundation of SIRIUS’s transparent, offline-first knowledge architecture.
+The engine is fully integrated with Runtime 5.9.5, `sirius_orchestrator.py` on port 8080, ReasoningEngine5, AUTONOMY 6.x, COLNIK-6.x, Token Guard, SafeRollback, Professor Validator, and PanelAPI, forming the foundation of SIRIUS’s transparent, offline-first knowledge architecture.
