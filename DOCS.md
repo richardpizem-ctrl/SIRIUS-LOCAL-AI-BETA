@@ -4,11 +4,11 @@ layout: default
 ---
 
 # SIRIUS‑LOCAL‑AI  
-**A fully modular, offline‑only AI runtime with unified orchestration (sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant + TimeCore), dual-language isolated KG architecture (autosave_kg.json for SK and autosave_kg_en.json for EN), native lossless entity merge (kg merge), taxonomical & marsupial inference (KG_VERIFY), non-destructive reverse location reasoning, entry-level Token Guard, 100-file sliding-window quarantine rotation, COLNÍK Guard shell access control (0.0s hard blocks), Human-in-the-Loop Safe Trash, multi-word semantic parsing (InputParser5), autonomous disambiguation triage & anti-prefix protection (EnvoyExecutionLayer5), contextual domain shielding (EnvoyNormalizer5), 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal), interactive PanelAPI [ÁNO/NIE] / [YES/NO] loops, TimeCore & Guard supervision, unified symbolic reasoning, deep explainability (XAI), KG_EXPLAIN & KG_EXPLAIN_DEEP, COLNIK‑6.x (Standard & High-Performance IPC Mode), and AUTONOMY 6.x (Control, Guard & Triage Mode).**
+**A fully modular, offline‑only AI runtime with unified orchestration (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore), dual-language isolated KG architecture (`autosave_kg.json` for SK and `autosave_kg_en.json` for EN), native lossless entity merge (`kg merge`), taxonomical & marsupial inference (`KG_VERIFY`), non-destructive reverse location reasoning, entry-level Token Guard, 100-file sliding-window quarantine rotation, SafeRollback crash resilience (`safe_rollback.py`), Professor Validator middleware (`professor_validator.py`), COLNÍK Guard shell access control (0.0s hard blocks), Human-in-the-Loop Safe Trash, multi-word semantic parsing (`InputParser5`), autonomous disambiguation triage & anti-prefix protection (`EnvoyExecutionLayer5`), contextual domain shielding (`EnvoyNormalizer5`), 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal), interactive PanelAPI [ÁNO/NIE] / [YES/NO] loops, TimeCore & Guard supervision, unified symbolic reasoning, deep explainability (XAI), KG_EXPLAIN & KG_EXPLAIN_DEEP, COLNIK‑6.x (Standard & High-Performance IPC Mode), and AUTONOMY 6.x (Control, Guard & Triage Mode).**
 
 SIRIUS‑LOCAL‑AI is a next‑generation local AI framework designed for **speed, linguistic accuracy, architectural stability, modularity, symbolic intelligence, deep explainability, interactive human-in-the-loop control, and full offline autonomy**.
 
-Version **5.9.1** introduces a decisive upgrade to the SIRIUS Runtime line, deploying independent dual-language knowledge stores, native in-memory entity consolidation, taxonomical category deduction, resilient reverse location querying, input token sanitization, and enterprise-grade command and filesystem protection under COLNÍK Guard.
+Version **5.9.5** introduces a decisive upgrade to the SIRIUS Runtime line, deploying independent dual-language knowledge stores, native in-memory entity consolidation, taxonomical category deduction, resilient reverse location querying, input token sanitization, SafeRollback crash resilience, Professor Validator cognitive verification, and enterprise-grade command and filesystem protection under COLNÍK Guard.
 
 This release consolidates the runtime architecture with:
 
@@ -20,6 +20,8 @@ This release consolidates the runtime architecture with:
 - **Punctuation Hygiene (`.rstrip("?")`) and Confirmation State Latching**  
 - **Hard Token Guard blocking malicious character sequences (`@#$%^&*`) at runtime threshold**  
 - **Automated Sliding-Window Quarantine Rotation enforcing a 100-file ceiling**  
+- **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and `shutil.rmtree` restorations)**  
+- **Professor Validator Middleware enforcing strict `PASS / WARN / REJECT` cognitive verification**  
 - **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**  
 - **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction**  
 - **Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)**  
@@ -31,8 +33,8 @@ This release consolidates the runtime architecture with:
 - **PanelAPI & Interactive [ÁNO/NIE] / [YES/NO] Confirmation Loops**  
 - **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Security/Metric Supervision (CPU, RAM, Disk)**  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines with Proof Trees)**  
-- **Reasoning Engine 5.9.1 (multi‑hop, inheritance, transitivity, orbital & taxonomical rules)**  
-- **Workflow Engine 5.9.1 (deterministic multi-stage execution)**  
+- **Reasoning Engine 5.9.5 (multi‑hop, inheritance, transitivity, orbital & taxonomical rules)**  
+- **Workflow Engine 5.9.5 (deterministic multi-stage execution)**  
 - **COLNIK‑6.x validation subsystem (Standard & High-Performance IPC Mode)**  
 - **AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Trash Governance)**  
 - **Identity Engine 3.1 & SECURITY FAMILY 5.x**  
@@ -49,7 +51,7 @@ This release consolidates the runtime architecture with:
 - [Release Notes](RELEASE_NOTES.md)
 - [Roadmap](ROADMAP.md)
 - [Security Family](SECURITY_FAMILY.md)
-- [AITE 5.9.1](AITE.md)
+- [AITE 5.9.5](AITE.md)
 - [ENVOY 5](ENVOY_TUTORIAL.md)
 - [Contributing](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
@@ -57,7 +59,7 @@ This release consolidates the runtime architecture with:
 
 ---
 
-## 🚀 Key Features (v5.9.1 UNIFIED)
+## 🚀 Key Features (v5.9.5 UNIFIED)
 
 ### **Dual-Language Isolated KG Architecture (`autosave_kg.json` & `autosave_kg_en.json`)**
 Physical and logical segregation of knowledge domains:
@@ -90,6 +92,7 @@ Multi-tiered local protection:
 - **COLNÍK Guard Shell Filter:** 0.0s hard blocking of forbidden commands (`format`, `rmdir /s`, `del /f /s /q c:`, `diskpart`, `drop database`), prompt checks for risky commands, and safe execution for telemetry (`mem`, `ps`, `sys`)
 - **Token Guard:** sanitizes raw input at runtime threshold, blocking corrupted or malicious injection strings (`@#$%^&*`)
 - **Sliding-Window Quarantine Rotation:** maintains an automatic 100-file ceiling inside `COLNIK-6.x/envoy/quarantine/`
+- **SafeRollback & Professor Validator:** granular backups (`safe_rollback.py`) and strict cognitive output verification (`professor_validator.py`)
 - **Character Encoding Stabilization:** multi-stage shell decoding (UTF-8 -> CP1250 -> CP852 fallback) ensuring full diacritics integrity
 
 ---
@@ -127,7 +130,7 @@ A unified web interface running locally on port 8080:
 
 ---
 
-### **Unified Orchestration & Supervision**
+### **Unified Orchestrator & Supervision**
 Single-process control driven by `sirius_orchestrator.py`:
 - centralized execution pipeline coordinating runtime core, IPC daemon, and UI loops on port 8080
 - TimeCore temporal tracking (`cycle_delta()`) and heartbeat monitoring
@@ -145,7 +148,7 @@ Auditable symbolic deduction without statistical black boxes:
 
 ---
 
-## 📁 Project Structure (v5.9.1)
+## 📁 Project Structure (v5.9.5)
 
 src/  
 ├── commands/  
@@ -161,6 +164,10 @@ src/
 │   └── runtime_core.py  
 ├── orchestrator/  
 │   └── sirius_orchestrator.py  
+├── core/  
+│   └── safe_rollback.py  
+├── professor/  
+│   └── professor_validator.py  
 ├── panel_api/  
 ├── supervision/  
 │   ├── time_core.py  
@@ -197,6 +204,8 @@ The project incorporates comprehensive offline test suites:
 - sliding-window quarantine rotation (100-record ceiling) tests  
 - COLNÍK Guard 0.0s command blocking and telemetry tests  
 - Human-in-the-Loop Safe Trash quarantine tests  
+- SafeRollback backup and restore tests  
+- Professor Validator cognitive verification tests  
 - multi-word compound noun phrase extraction tests  
 - disambiguation resolution and strip-bracket fallback tests  
 - non-bio domain shielding and habitat filtering tests  
@@ -226,13 +235,15 @@ Further metrics are available in **PERFORMANCE_GUIDE.md**.
 
 ## 🗓️ Release Plan
 
-### **v5.9.1 – Dual-Language KG Architecture, Lossless Entity Merge & Comprehensive System Security Protocol (Current)**  
+### **v5.9.5 – Dual-Language KG Architecture, Lossless Entity Merge, SafeRollback, Professor Validator & Comprehensive Security Protocol (Current)**  
 - Dual-Language Isolated Knowledge Stores (`autosave_kg.json` & `autosave_kg_en.json`)  
 - Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`)  
 - Taxonomical Category Deduction (`KG_VERIFY`) with edge auto-commit  
 - Non-Destructive Reverse Location Engine with anti-flora guard  
 - Punctuation Hygiene (`.rstrip("?")`) & Confirmation State Latching  
 - Entry-Level Token Guard & 100-File Sliding-Window Quarantine Rotation  
+- SafeRollback Crash Resilience (`safe_rollback.py`)  
+- Professor Validator Middleware (`professor_validator.py`)  
 - COLNÍK Guard Shell Access Control (0.0s block on forbidden commands)  
 - Human-in-the-Loop Safe Trash Pipeline  
 - Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)  
@@ -246,7 +257,7 @@ Further metrics are available in **PERFORMANCE_GUIDE.md**.
 ---
 
 ## 🧩 License
-The project is licensed under the **SIRIUS Unified License (SUL-3.2.0)**.
+The project is licensed under the **MIT License**.
 
 ---
 
