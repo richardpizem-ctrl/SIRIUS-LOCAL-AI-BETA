@@ -1,13 +1,13 @@
 # 🔧 SELF‑REPAIR LAYER 5.8 — Autonomous Integrity, Recovery & Runtime Stabilization  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.8 (Updated for 5.9.1 UNIFIED)  
+**Version:** 5.8 (Updated for 5.9.5 UNIFIED)  
 **Component:** Self‑Repair Layer  
 **Role:** Automatic detection, stabilization, recovery, and repair of runtime components, configs, dual-language KG partitions, native entity merges, workflows, and terminal states under single-process orchestrator supervision
 
 ---
 
 ## 🎯 Purpose  
-The Self‑Repair Layer 5.8 is responsible for maintaining the operational stability, structural integrity, and cryptographic reliability of SIRIUS Local AI (v5.9.1).  
+The Self‑Repair Layer 5.8 is responsible for maintaining the operational stability, structural integrity, and cryptographic reliability of SIRIUS Local AI (v5.9.5).  
 It detects schema corruption, missing modules, unstable execution states, broken configs, cross-lingual Knowledge Graph leaks between `autosave_kg.json` and `autosave_kg_en.json`, native entity merge discrepancies, quarantine overflow (> 100 files), and terminal session locks — then repairs them automatically or routes them through `sirius_orchestrator.py` on Port 8080 with embedded `TerminalAssistant` and `TimeCore` (`cycle_delta()`), interactive `PanelAPI` confirmation loops (`[ÁNO/NIE]` / `[YES/NO]`) with confirmation state latching, `Guard` supervision, COLNÍK Guard command interception (0.0s), and AUTONOMY‑6.x for supervised containment in `COLNIK-6.x/triage`.
 
 Self‑Repair ensures that SIRIUS remains **stable, deterministic, safe, linguistically segregated, protected from destructive shell commands, and fully operational**, even under severe hardware or storage failure conditions.
@@ -47,7 +47,7 @@ Self‑Repair ensures that SIRIUS remains **stable, deterministic, safe, linguis
 
 ---
 
-## 🔍 Repair Pipeline (v5.9.1)  
+## 🔍 Repair Pipeline (v5.9.5)  
 
 ### **1 — Integrity Scan & Hash Verification**  
 Self‑Repair performs periodic scans managed under `TimeCore` execution bounds (`cycle_delta()`):  
@@ -168,8 +168,8 @@ AUTONOMY assesses risk, and the user approves or denies via `PanelAPI`.
 
 ---
 
-## 📊 Module Status (v5.9.1)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.1 architecture  
+## 📊 Module Status (v5.9.5)  
+- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
 - ✔ Cryptographic hash scans and baseline restoration verified  
 - ✔ Dual-language KG stabilization active (`autosave_kg.json` & `autosave_kg_en.json`)  
 - ✔ Native `kg merge` alias healing verified  
@@ -188,7 +188,7 @@ AUTONOMY assesses risk, and the user approves or denies via `PanelAPI`.
 ---
 
 ## 🏁 Summary  
-Self‑Repair Layer 5.8 is the autonomous stabilization and recovery core of SIRIUS Local AI (v5.9.1).  
+Self‑Repair Layer 5.8 is the autonomous stabilization and recovery core of SIRIUS Local AI (v5.9.5).  
 It detects file corruption, restores broken configurations, stabilizes dual-language graph partitions, heals native entity merge links, prunes sliding-window quarantine queues, resets decoupled terminal states, and recovers workflows — ensuring that every repair is safe, explainable, orchestrator-supervised, autonomy‑aware, and COLNIK‑validated.
 
 It establishes SIRIUS as a **self‑healing, deterministic, offline-first intelligent runtime** engineered for continuous reliability, strict security isolation, and data integrity on local hardware.
