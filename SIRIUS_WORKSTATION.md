@@ -1,6 +1,6 @@
-# ⭐ 11. NEW IN VERSION 5.9.1 — Dual-Language KG, Native Merge, Ontological Reasoning & Comprehensive Security Protocol (UNIFIED)
+# ⭐ 11. NEW IN VERSION 5.9.5 — Dual-Language KG, Native Merge, Ontological Reasoning & Comprehensive Security Protocol (UNIFIED)
 
-Version **5.9.1 UNIFIED** builds on the deterministic OS‑level automation introduced in 4.5.0 PRO,  
+Version **5.9.5 UNIFIED** builds on the deterministic OS‑level automation introduced in 4.5.0 PRO,  
 the unified Knowledge‑Graph‑driven architecture introduced in 5.0.0,  
 the full explainability and multi‑hop reasoning introduced in 5.5.0,  
 the Unified Knowledge Graph + Deep Explainability Era 5.6.x,  
@@ -43,13 +43,13 @@ diverts file removals to Human-in-the-Loop Safe Trash, caps quarantine storage a
 
 ---
 
-### 11.1 System Intelligence Layer 5.9.1 — Predictive + Resource-Supervised + Deep Explainable + COLNIK‑Validated OS Awareness
+### 11.1 System Intelligence Layer 5.9.5 — Predictive + Resource-Supervised + Deep Explainable + COLNIK‑Validated OS Awareness
 
-System Intelligence Layer 5.9.1 introduces **real‑time, cross‑platform system context awareness**  
+System Intelligence Layer 5.9.5 introduces **real‑time, cross‑platform system context awareness**  
 with faster anomaly detection, continuous Guard hardware monitoring (CPU, RAM, Disk), execution latency profiling via TimeCore `cycle_delta()`, deep explainability traces, autonomy‑aware signals,  
 customs-validated routing, and COLNÍK Guard command interception.
 
-Capabilities (5.9.1):
+Capabilities (5.9.5):
 - real-time host hardware telemetry (CPU, RAM, Disk) monitored via Guard with less than 1% CPU overhead  
 - execution latency tracking profiled across every command via TimeCore `cycle_delta()`  
 - detection of execution loops and process anomalies under `TimeCore`/`Guard` supervision  
@@ -77,12 +77,12 @@ This layer elevates SIRIUS from "OS automation" to **OS‑intelligent, explainab
 
 ---
 
-### 11.2 System Agent 5 — Hardened OS‑Level Safety, Terminal Decoupling & COLNÍK Guard (UPDATED for 5.9.1)
+### 11.2 System Agent 5 — Hardened OS‑Level Safety, Terminal Decoupling & COLNÍK Guard (UPDATED for 5.9.5)
 
 System Agent 5 is the evolution of previous safety gatekeepers, now fully hardened with COLNÍK Guard, Safe UI Trash governance, explainability‑aware,  
 COLNIK‑validated, and autonomy‑aware under single-process orchestrator supervision on port 8080.
 
-Enhancements (5.9.1):
+Enhancements (5.9.5):
 - **COLNÍK Guard Shell Interception:** 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`, fork-bombs), prompt checks for risky commands (`rm`, `kill`), and safe pass-through for telemetry (`ps`, `mem`, `sys`)  
 - **Human-in-the-Loop Safe UI Trash:** file deletion operations route to quarantine storage, blocking direct unverified disk destruction and requiring manual review via `GET /trash`  
 - **Token Guard Input Sanitization:** drops raw input payloads containing forbidden symbols (`@#$%^&*`) immediately at runtime threshold  
@@ -121,7 +121,7 @@ System Agent 5 is the **central OS‑level safety brain** of the workstation.
 
 The UI automation and management layer transitions to an integrated, browser-based 4-Panel UI Suite served natively on port 8080.
 
-Capabilities (5.9.1):
+Capabilities (5.9.5):
 - **Duplicates Panel:** live resource auditing and safe duplicate categorization enforcing strict `REPORT_ONLY` policies and routing proposed removals to HitL Safe Trash  
 - **Triage Panel:** visual supervision of quarantine queues, unparsed web payloads, and held mutations (`COLNIK-6.x/triage`)  
 - **Navigation Panel:** deterministic, state-safe module switching across Runtime Core, Knowledge Graph, Envoy, and Autonomy  
@@ -138,11 +138,11 @@ This suite allows SIRIUS to operate Windows 11 **more safely, visually, intellig
 
 ---
 
-### 11.4 Security Family 5.x — Identity Engine 3.1, Token Guard & Academic Bypass (UPDATED for 5.9.1)
+### 11.4 Security Family 5.x — Identity Engine 3.1, Token Guard & Academic Bypass (UPDATED for 5.9.5)
 
-Security Family 5.x strengthens identity enforcement, input hygiene, and conversational stability, optimizing it for Runtime 5.9.1.
+Security Family 5.x strengthens identity enforcement, input hygiene, and conversational stability, optimizing it for Runtime 5.9.5.
 
-Enhancements (5.9.1):
+Enhancements (5.9.5):
 - constant‑time identity evaluation (O(1)) without background biometric training loops  
 - **Token Guard Input Sanitization:** audits raw input at entry, rejecting malformed injection strings (`@#$%^&*`)  
 - **Trailing Punctuation Stripping (`.rstrip("?")`):** guarantees that queries like `CO JE MACROPUS?` cleanly resolve to node `macropus` without key fragmentation  
@@ -161,11 +161,11 @@ Identity is now enforced **at every layer**, including predictive system context
 
 ---
 
-### 11.5 InputParser5 & Autonomous Disambiguation Triage — Semantic Integrity, Domain Shielding & Quarantine Maintenance (UPDATED for 5.9.1)
+### 11.5 InputParser5 & Autonomous Disambiguation Triage — Semantic Integrity, Domain Shielding & Quarantine Maintenance (UPDATED for 5.9.5)
 
-Runtime 5.9.1 introduces dedicated architectural layers protecting grammatical integrity, language-specific web triage, semantic domain boundaries, and quarantine storage ceilings.
+Runtime 5.9.5 introduces dedicated architectural layers protecting grammatical integrity, language-specific web triage, semantic domain boundaries, and quarantine storage ceilings.
 
-Improvements (5.9.1):
+Improvements (5.9.5):
 - **Token Guard Entry Filter:** drops payloads containing forbidden characters (`@#$%^&*`) before parsing begins  
 - **Trailing Punctuation Hygiene (`.rstrip("?")`):** strips trailing question marks to preserve canonical entity identifiers  
 - **Multi-Word Compound Preservation (`InputParser5`):** natively extracts and preserves compound noun phrases (e.g., `ovcia vlna`, `mobilny telefon`, `pevna linka`) without truncating modifiers  
@@ -182,9 +182,9 @@ Semantic extraction now routes tasks based on **token sanitization + punctuation
 
 ---
 
-### 11.6 Reasoning Engine 5.9.1 — Taxonomical Deduction, Reverse Habitats & Proof Trees
+### 11.6 Reasoning Engine 5.9.5 — Taxonomical Deduction, Reverse Habitats & Proof Trees
 
-Enhancements (5.9.1):
+Enhancements (5.9.5):
 - **Ontological & Taxonomical Category Deduction (`KG_VERIFY`):** deduces higher-order biological categories directly from summary records (recognizing that marsupials and macropods belong to mammals) and auto-commits verified relations directly to disk  
 - **Non-Destructive Reverse Location Engine (`_execute_reverse_location_query`):** multi-stem geographic matching (*Austrálii*, *Austrália*, *Australia*) combined with the False-Positive Flora Guard to ensure tree-dwelling animals (*„stromový vačkovec“*) are not misclassified as plants, reliably indexing *Koala*, *Macropus*, and *Krokodíl morský* under Australian fauna  
 - **Standardized Attribute Traversal:** direct node attribute queries unified via `self.kg.get_attributes()`, preventing silent lookup failures  
@@ -206,9 +206,9 @@ Reasoning is now **faster, safer, explainable, taxonomically sound, reverse-habi
 
 ---
 
-### 11.7 Workflow Engine 5.9.1 — Single-Process Orchestrated Multi‑Step Logic & Latency Profiling
+### 11.7 Workflow Engine 5.9.5 — Single-Process Orchestrated Multi‑Step Logic & Latency Profiling
 
-Workflow Engine 5.9.1 introduces:
+Workflow Engine 5.9.5 introduces:
 
 - single-process orchestrator transitions driven by `sirius_orchestrator.py` on local port 8080 with embedded `TerminalAssistant` and `TimeCore`  
 - execution latency tracking profiled across steps via TimeCore `cycle_delta()`  
@@ -230,9 +230,9 @@ Workflows are now **safer, more stable, more intelligent, fully explainable, aut
 
 ---
 
-### 11.8 Unified Knowledge Graph 5.9.1 — Dual-Language Partitioning & Native Lossless Merging
+### 11.8 Unified Knowledge Graph 5.9.5 — Dual-Language Partitioning & Native Lossless Merging
 
-Enhancements (5.9.1):
+Enhancements (5.9.5):
 - **Dual-Language Isolated Stores:** physical and logical segregation of Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) knowledge graphs, eliminating cross-lingual contamination and translation hallucinations  
 - **Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`):** relocates all node properties, descriptions, alternative summaries, and habitat data from source to target without data loss directly inside `RuntimeCore`, while converting source nodes into persistent alias links (`src -[alias]-> tgt`)  
 - **Taxonomical Edge Auto-Commit (`KG_VERIFY`):** persistently commits deduced class hierarchies directly to disk  
@@ -249,7 +249,7 @@ Enhancements (5.9.1):
 
 ---
 
-## Conclusion (Updated for 5.9.1 UNIFIED)
+## Conclusion (Updated for 5.9.5 UNIFIED)
 
 SIRIUS Workstation is now:
 
@@ -278,7 +278,7 @@ SIRIUS Workstation is now:
 - an enterprise customs-validated workstation (COLNIK‑6.x Standard, High-Performance IPC Mode & COLNÍK Guard)  
 - a fully sovereign, private, modular, deterministic, and 100% offline system  
 
-Version **5.9.1 UNIFIED** completes the evolution of SIRIUS into a  
+Version **5.9.5 UNIFIED** completes the evolution of SIRIUS into a  
 **System‑Intelligent Autonomous Workstation** —  
 a system that can parse, think, predict, disambiguate, shield, isolate, merge, verify, persist, explain, validate, repair, and operate Windows 11  
 **safely, deterministically, intelligently, single-process orchestrated, autonomy‑supervised, and fully offline**.
