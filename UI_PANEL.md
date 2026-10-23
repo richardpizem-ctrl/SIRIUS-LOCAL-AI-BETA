@@ -1,22 +1,23 @@
 # 🎛 UI PANEL 6.x — 4-Panel Futuristic Neon Web Suite (Port 8080)
 **Status:** ✔ Active & Stabilized  
-**Version:** 6.x (Stabilized for 5.9.1 UNIFIED)  
-**SIRIUS Local AI Version:** 5.9.1 UNIFIED  
+**Version:** 6.x (Stabilized for 5.9.5 UNIFIED)  
+**SIRIUS Local AI Version:** 5.9.5 UNIFIED  
+**Architecture Lead & Supervision:** Richard Pizem (Professor)  
 **Component:** 4-Panel UI Suite, Terminal Decoupling Controller, COLNÍK Guard Shell Filter & Safe Trash Bridge  
 **Role:** Unified browser-based interface running natively on local port 8080 under single-process orchestrator supervision with embedded TerminalAssistant, TimeCore latency profiling, COLNÍK Guard (0.0s hard blocks), HitL Safe Trash management, and automated terminal state decoupling (`currentModule = "none"`)
 
 ---
 
 ## 🎯 Purpose  
-UI PANEL 6.x is a modern web interface with a futuristic neon aesthetic, serving as the primary interaction and control layer for the **SIRIUS Local AI v5.9.1** runtime.  
-It runs natively as a single-process daemon directly through `sirius_orchestrator.py` on local port **8080** with embedded `TerminalAssistant` and `TimeCore`, permanently eliminating socket collisions and disk-level file locking contention.
+UI PANEL 6.x is a modern web interface with a futuristic neon aesthetic, serving as the primary interaction and control layer for the **SIRIUS Local AI v5.9.5** runtime.  
+Under the architectural governance of Professor Richard Pizem, it runs natively as a single-process daemon directly through `sirius_orchestrator.py` on local port **8080** with embedded `TerminalAssistant` and `TimeCore`, permanently eliminating socket collisions and disk-level file locking contention.
 
 The interface implements a fully decoupled architecture across four specialized panels (**Duplicates**, **Triage**, **Navigation**, **Terminal**), integrates entry-level **Token Guard** filtering (`@#$%^&*` drop), enforces greedy trailing punctuation stripping (`.rstrip("?")`), supports confirmation state latching across conversation turns, enforces **COLNÍK Guard** shell protection (0.0s hard blocks on destructive commands like `format` and `diskpart`), and manages the **Human-in-the-Loop Safe UI Trash** pipeline (`GET /trash`). It introduces the critical security mechanism **Terminal State Decoupling**: clearing the input field or canceling a command immediately resets the terminal context to `currentModule = "none"`, permanently preventing conversational natural language queries or entity searches from leaking into the host Windows 11 operating system shell.
 
 ---
 
 ## 🧩 Architecture Overview  
-Browser Console (Port 8080) → Token Guard (@#$%^&*) → Terminal Decoupling Guard (currentModule = "none") → sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore) → COLNÍK Guard (0.0s Block) → PanelAPI [ÁNO/NIE] / [YES/NO] → RuntimeCore 5.9.1 → InputParser5 (.rstrip("?")) → Dual KG Core (autosave_kg.json / autosave_kg_en.json) → Native Merge (kg merge) → COLNIK-6.x / AUTONOMY 6.x → HitL Safe Trash (GET /trash) → EXECUTE 6.x
+Browser Console (Port 8080) → Token Guard (@#$%^&*) → Terminal Decoupling Guard (currentModule = "none") → sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore) → COLNÍK Guard (0.0s Block) → PanelAPI [ÁNO/NIE] / [YES/NO] → RuntimeCore 5.9.5 → InputParser5 (.rstrip("?")) → Dual KG Core (autosave_kg.json / autosave_kg_en.json) → Native Merge (kg merge) → COLNIK-6.x / AUTONOMY 6.x → HitL Safe Trash (GET /trash) → EXECUTE 6.x
 
 ### Core Responsibilities  
 - natively host the web interface via a local HTTP/WebSocket server on port 8080 within a single process alongside TerminalAssistant and TimeCore  
@@ -116,8 +117,9 @@ Browser Console (Port 8080) → Token Guard (@#$%^&*) → Terminal Decoupling Gu
 
 ---
 
-## 📊 Module Status (v5.9.1)  
+## 📊 Module Status (v5.9.5)  
 - ✔ Fully Stabilized & Production-Ready  
+- ✔ Architectural direction by Professor Richard Pizem confirmed  
 - ✔ 4-Panel Suite architecture (Duplicates, Triage, Navigation, Terminal) deployed  
 - ✔ Safety reset currentModule = "none" verified and active  
 - ✔ Integrated on local port 8080 under single-process sirius_orchestrator.py with embedded TerminalAssistant + TimeCore  
@@ -133,5 +135,5 @@ Browser Console (Port 8080) → Token Guard (@#$%^&*) → Terminal Decoupling Gu
 ---
 
 ## 🏁 Summary  
-UI PANEL 6.x within the **SIRIUS Local AI v5.9.1 UNIFIED** architecture represents a complete, secure, and visually refined 4-panel web dashboard hosted at `http://127.0.0.1:8080`.  
+UI PANEL 6.x within the **SIRIUS Local AI v5.9.5 UNIFIED** architecture represents a complete, secure, and visually refined 4-panel web dashboard hosted at `http://127.0.0.1:8080` under the engineering supervision of Professor Richard Pizem.  
 It guarantees the complete isolation of user input from the operating system shell, blocks destructive shell routines in 0.0s via COLNÍK Guard, diverts file removals into Human-in-the-Loop Safe Trash, caps quarantine storage at 100 records, visualizes isolated dual-language Knowledge Graphs and quarantine queues in real time, and provides both users and developers with complete control over autonomous runtime operations — **deterministically, securely, explainably, and 100% offline**.
