@@ -1,10 +1,10 @@
-# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.8 → v5.9.0 → v5.9.1 → v6.x)
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.8 → v5.9.0 → v5.9.5 → v6.x)
 ### Evolution of the Unified Orchestration, Dual-Language KG Architecture, Native Lossless Merge, Ontological Reasoning & COLNÍK Guard Security Protocol
 
 This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
 into the **Unified Runtime 5.x** generation, the **Unified KG + Deep Explainability 5.6.2 Era**,  
 the **Orchestrated & Autonomy‑Aware 5.8 Era**, the **Semantic Multi-Word Parsing & 4-Panel UI 5.9.0 Era**,  
-the **Dual-Language KG & Comprehensive Security 5.9.1 Era**, and the upcoming **Runtime 6.x Modular Kernel Era**.
+the **Dual-Language KG & Comprehensive Security 5.9.5 Era**, and the upcoming **Runtime 6.x Modular Kernel Era**.
 
 All versions remain:
 - 100% offline  
@@ -381,7 +381,7 @@ Goal: Eliminate query truncation on compound noun phrases, deploy autonomous enc
 
 ---
 
-# ⭐ 5.9.1 — Version 5.9.1 UNIFIED  
+# ⭐ 5.9.5 — Version 5.9.5 UNIFIED  
 ### Dual-Language KG Architecture, Lossless Entity Merge, Ontological Habitat Reasoning & Comprehensive Security Protocol  
 **Status:** Current Stable Release
 
@@ -389,7 +389,7 @@ Goal: Completely isolate Slovak and English knowledge graphs, implement native i
 
 ---
 
-## 🔥 NEW Core Components (v5.9.1)
+## 🔥 NEW Core Components (v5.9.5)
 
 ### 🌐 Dual-Language Isolated KG Architecture (`autosave_kg.json` & `autosave_kg_en.json`)
 - physical and logical segregation of Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) knowledge graphs  
@@ -424,7 +424,7 @@ Goal: Completely isolate Slovak and English knowledge graphs, implement native i
 
 ---
 
-## Output (v5.9.1)
+## Output (v5.9.5)
 SIRIUS gains:
 - complete physical and logical partition across dual-language knowledge graphs  
 - native in-memory entity consolidation with full attribute retention and alias mapping  
@@ -441,7 +441,7 @@ SIRIUS gains:
 ### Modular Kernel + Hybrid Multimodal Analyzer + Self‑Repair 2.0  
 **Status:** Planned
 
-Goal: Introduce autonomous evolutionary stability — the runtime can repair, optimize, and analyze multimodal data deterministically on top of the stabilized 5.9.1 security and dual-graph foundations.
+Goal: Introduce autonomous evolutionary stability — the runtime can repair, optimize, and analyze multimodal data deterministically on top of the stabilized 5.9.5 security and dual-graph foundations.
 
 ---
 
@@ -501,6 +501,6 @@ SIRIUS gains:
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.9.1 UNIFIED (Stable)  
+**Current version:** 5.9.5 UNIFIED (Stable)  
 **Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
 **Long‑term direction:** Autonomous Runtime Evolution & Hybrid Isolation Layer (6.x → 7.x)
