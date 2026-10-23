@@ -1,10 +1,10 @@
-# 🛡 Security Architecture – SIRIUS LOCAL AI (v5.9.1 UNIFIED)
+# 🛡 Security Architecture – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
 ### Fully Offline • Deterministic • Dual-Language Isolated • Domain-Shielded • Single-Process Orchestrated • COLNÍK Guard Hardened • HitL Safe Trash • AUTONOMY‑Supervised
 
-The **Security Architecture 5.9.1** defines all identity‑aware, OS‑aware, workflow‑aware, domain-shielded, semantic-aware, input-sanitized, shell-protected, and fetch‑aware protections inside the  
-**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & COLNÍK Guard Security Protocol 5.9.1**.
+The **Security Architecture 5.9.5** defines all identity‑aware, OS‑aware, workflow‑aware, domain-shielded, semantic-aware, input-sanitized, shell-protected, and fetch‑aware protections inside the  
+**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & COLNÍK Guard Security Protocol 5.9.5**.
 
-Version **5.9.1 UNIFIED** introduces major upgrades across all security layers:
+Version **5.9.5 UNIFIED** introduces major upgrades across all security layers:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**  
@@ -38,7 +38,7 @@ No data leaves the device unless explicitly permitted through:
 
 ---
 
-# 🛡 5.9.1 Security Family 5.x – Identity Engine 3.1 (UPDATED)
+# 🛡 5.9.5 Security Family 5.x – Identity Engine 3.1 (UPDATED)
 
 Security Family 5.x strengthens the identity model and optimizes it for:
 
@@ -63,7 +63,7 @@ Ensure that all OS‑level, UI‑level, workflow‑level, reasoning‑level, and
 - customs-validated by COLNIK-6.x  
 - autonomy-supervised without proposal recurrence  
 
-### Security Enhancements (5.9.1 Upgrade)
+### Security Enhancements (5.9.5 Upgrade)
 - **Token Guard Entry Enforcement:** Raw inputs containing malicious or corrupted symbols (`@#$%^&*`) are dropped immediately at runtime threshold.  
 - **Punctuation Stripping & Confirmation Latching:** Trailing punctuation is stripped via `.rstrip("?")` to avoid entity lookup corruption, and pending proposal targets remain latched in memory across conversation turns.  
 - **COLNÍK Guard Command Interception:** TerminalAssistant intercepts forbidden shell instructions in 0.0s (`format`, `diskpart`, `rmdir /s`, etc.) before OS process execution.  
@@ -86,9 +86,9 @@ Ensure that all OS‑level, UI‑level, workflow‑level, reasoning‑level, and
 
 ---
 
-# 🛡 5.9.1 Semantic Integrity, Dual-Language Partitioning & Domain Shielding (NEW)
+# 🛡 5.9.5 Semantic Integrity, Dual-Language Partitioning & Domain Shielding (NEW)
 
-Runtime 5.9.1 introduces dedicated architectural guards against linguistic truncation, cross-lingual contamination, and cross-domain attribute pollution.
+Runtime 5.9.5 introduces dedicated architectural guards against linguistic truncation, cross-lingual contamination, and cross-domain attribute pollution.
 
 ### Dual-Language Graph Isolation
 - **Physical & Logical Segregation:** Slovak entities serialize into `autosave_kg.json`, while English entities persist into `autosave_kg_en.json`, eliminating bilingual query collisions, mixed summaries, and translation hallucinations.  
@@ -126,7 +126,7 @@ Runtime 5.9.1 introduces dedicated architectural guards against linguistic trunc
 
 ---
 
-# 🛡 5.9.1 4-Panel UI Suite, Terminal Decoupling & COLNÍK Guard (NEW)
+# 🛡 5.9.5 4-Panel UI Suite, Terminal Decoupling & COLNÍK Guard (NEW)
 
 A dedicated, decoupled browser interface running locally on port 8080 engineered to isolate host shells and protect system storage.
 
@@ -155,7 +155,7 @@ A dedicated, decoupled browser interface running locally on port 8080 engineered
 
 ---
 
-# 🛡 5.9.1 System Agent 5 – Hardened OS‑Level Gatekeeper
+# 🛡 5.9.5 System Agent 5 – Hardened OS‑Level Gatekeeper
 
 System Agent 5 is the final gatekeeper for all system-level operations under orchestrator supervision.
 
@@ -172,7 +172,7 @@ Ensure that **every host system action** is:
 - customs-validated by COLNIK-6.x  
 - autonomy-supervised with zero recurrence  
 
-### Security Guarantees (5.9.1 Upgrade)
+### Security Guarantees (5.9.5 Upgrade)
 - constant-time identity validation (O(1))  
 - deep integration with `sirius_orchestrator.py` on port 8080 with embedded TerminalAssistant + TimeCore  
 - 0.0s hard blocking of destructive commands via COLNÍK Guard  
@@ -184,7 +184,7 @@ Ensure that **every host system action** is:
 
 ---
 
-# 🛡 5.9.1 ENVOY 5 Quarantined Fetch Pipeline (UPDATED)
+# 🛡 5.9.5 ENVOY 5 Quarantined Fetch Pipeline (UPDATED)
 
 ENVOY 5 enforces an outbound-only, quarantined retrieval model with strict domain shielding, sliding-window limits, and zero local data leakage.
 
@@ -206,7 +206,7 @@ ENVOY 5 enforces an outbound-only, quarantined retrieval model with strict domai
 
 ---
 
-# 🛡 5.9.1 Password Vault 5.9.1 Security Model
+# 🛡 5.9.5 Password Vault 5.9.5 Security Model
 
 - **AES-256-GCM** authenticated symmetric encryption with random 256-bit salts  
 - **PBKDF2-HMAC-SHA256** key stretching (600,000+ iterations)  
@@ -222,7 +222,7 @@ ENVOY 5 enforces an outbound-only, quarantined retrieval model with strict domai
 
 ---
 
-# 🛡 5.9.1 Self‑Repair & Integrity Guard (UPDATED)
+# 🛡 5.9.5 Self‑Repair & Integrity Guard (UPDATED)
 
 Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry, dual graph partitions, and the security stack.
 
@@ -238,8 +238,8 @@ Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry, dual 
 
 # 📄 Document Status
 
-**Version:** 5.9.1 UNIFIED  
-This document reflects the comprehensive security model of Runtime 5.9.1:
+**Version:** 5.9.5 UNIFIED  
+This document reflects the comprehensive security model of Runtime 5.9.5:
 
 - Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)  
 - Dual-Language Isolated Knowledge Stores (`autosave_kg.json` & `autosave_kg_en.json`)  
@@ -259,7 +259,7 @@ This document reflects the comprehensive security model of Runtime 5.9.1:
 - TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource Monitoring (CPU, RAM, Disk)  
 - Security Family 5.x & Identity Engine 3.1  
 - System Agent 5  
-- Password Vault 5.9.1  
+- Password Vault 5.9.5  
 - Self‑Repair Layer 5.8  
 - Hierarchical Proof Trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`)  
 - **COLNIK‑6.x Enterprise Customs Decision Gate (Standard, High-Performance IPC Mode & COLNÍK Guard)**  
