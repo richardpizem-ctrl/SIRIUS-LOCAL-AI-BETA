@@ -1,14 +1,14 @@
 # 🧠 REASONING ENGINE 5.x — Deterministic Multi‑Hop Inference Core  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 5.x  
-**SIRIUS Local AI Version:** 5.9.1  
+**SIRIUS Local AI Version:** 5.9.5  
 **Component:** ReasoningEngine5  
 **Role:** Deterministic symbolic reasoning engine performing multi-hop inference, dual-language graph reasoning, taxonomical deduction, non-destructive reverse location evaluation, native merge traversal, and proof-tree generation under single-process orchestrator supervision
 
 ---
 
 ## 🎯 Purpose  
-ReasoningEngine5 is the core inference module of SIRIUS Local AI (v5.9.1).  
+ReasoningEngine5 is the core inference module of SIRIUS Local AI (v5.9.5).  
 It evaluates symbolic rules, performs multi-hop graph derivations, validates semantic hypotheses, handles compound noun phrases via `InputParser5` with trailing punctuation hygiene (`.rstrip("?")`), executes taxonomical category deduction (`KG_VERIFY`), evaluates reverse geographic habitats with anti-flora shielding, resolves multi-alias pointers, and generates structured explanations across isolated dual-language Knowledge Graphs (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN).
 
 The engine is completely deterministic, transparent, and designed for enterprise-grade symbolic explainability (XAI), orchestrated through `sirius_orchestrator.py` on local port 8080 with embedded `TerminalAssistant` and `TimeCore` (`cycle_delta()`), protected by `Token Guard`, and supervised by `Guard` and `COLNÍK Guard`.
@@ -16,7 +16,7 @@ The engine is completely deterministic, transparent, and designed for enterprise
 ---
 
 ## 🧩 Architecture Overview  
-**Runtime 5.9.1 / InputParser5 → Token Guard → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE (`autosave_kg.json` / `autosave_kg_en.json`) → ReasoningEngine5 → AUTONOMY 6.x → COLNIK-6.x (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → EXECUTE 6.x**
+**Runtime 5.9.5 / InputParser5 → Token Guard → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE (`autosave_kg.json` / `autosave_kg_en.json`) → ReasoningEngine5 → AUTONOMY 6.x → COLNIK-6.x (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → EXECUTE 6.x**
 
 ### Core Responsibilities  
 - evaluate deterministic symbolic inference rules across isolated Slovak and English graph stores  
@@ -46,7 +46,7 @@ The engine is completely deterministic, transparent, and designed for enterprise
 
 ---
 
-## 🔍 Reasoning Pipeline (v5.9.1)  
+## 🔍 Reasoning Pipeline (v5.9.5)  
 
 ### **1 — Semantic Query Ingestion, Token Guard & Context Binding**  
 - Inputs pass through **Token Guard**; malicious symbolic character sequences (`@#$%^&*`) are dropped at entry.  
@@ -138,8 +138,8 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 
 ---
 
-## 📊 Module Status (v5.9.1)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.1 architecture  
+## 📊 Module Status (v5.9.5)  
+- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
 - ✔ Dual-Language Graph Reasoning (`autosave_kg.json` & `autosave_kg_en.json`) operational  
 - ✔ Taxonomical category inference auto-commit (`KG_VERIFY`) operational  
 - ✔ Non-destructive reverse habitat engine with False-Positive Flora Guard verified  
@@ -158,6 +158,6 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 ---
 
 ## 🏁 Summary  
-ReasoningEngine5 is the deterministic inference core of SIRIUS Local AI (v5.9.1).  
+ReasoningEngine5 is the deterministic inference core of SIRIUS Local AI (v5.9.5).  
 It performs multi-hop reasoning, evaluates symbolic rules, executes taxonomical deductions, navigates reverse habitat inquiries, traverses merged entity aliases, and generates transparent WHY explanations and proof trees throughout the autonomy cycle under central orchestrator supervision.  
 The engine is production-stable and fully integrated with KG ENGINE, `sirius_orchestrator.py`, AUTONOMY 6.x, COLNIK-6.x, Token Guard, COLNÍK Guard, PanelAPI, EXECUTE, and the 4-Panel UI Suite.
