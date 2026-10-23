@@ -1,10 +1,10 @@
-# 🚀 SIRIUS LOCAL AI 5.9.1  
+# 🚀 SIRIUS LOCAL AI 5.9.5  
 ### Enterprise‑Grade Symbolic Intelligence — Deterministic, Dual-Language KG, Native Lossless Merge, Ontological Habitat Reasoning, COLNÍK Guard Hardened, HitL Safe Trash, 4-Panel UI Suite, AUTONOMY‑Supervised
 
-SIRIUS LOCAL AI 5.9.1 represents the premier generation of symbolic AI runtime engineered for enterprise and workstation environments where **absolute predictability, cryptographic security, linguistic integrity, complete transparency, human-in-the-loop oversight, and 100% offline isolation** are non-negotiable requirements.  
+SIRIUS LOCAL AI 5.9.5 represents the premier generation of symbolic AI runtime engineered for enterprise and workstation environments where **absolute predictability, cryptographic security, linguistic integrity, complete transparency, human-in-the-loop oversight, and 100% offline isolation** are non-negotiable requirements.  
 Unlike generative neural systems vulnerable to hallucinations, token mutilation, and unpredictable probabilistic drifts, SIRIUS operates on an **isolated Dual-Language Knowledge Graph architecture (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN)**, a **native in-memory entity consolidation engine (`kg merge`)**, an **ontological & taxonomical category deduction reasoner (`KG_VERIFY`)**, a **non-destructive reverse location engine with anti-flora protection**, a **compound-preserving semantic engine (`InputParser5`) with greedy trailing punctuation hygiene (`.rstrip("?")`)**, an **entry-level Token Guard**, a **single-process orchestrator daemon (`sirius_orchestrator.py` on local port 8080 with embedded `TerminalAssistant` and `TimeCore`)**, a **COLNÍK Guard shell access controller with 0.0s hard blocking**, a **Human-in-the-Loop Safe UI Trash pipeline**, an **automated sliding-window quarantine rotator (100-file ceiling)**, an **autonomous encyclopedic disambiguation triager with contextual domain shielding (`EnvoyExecutionLayer5` / `EnvoyNormalizer5`)**, an **isolated 4-Panel UI Suite**, interactive **PanelAPI `[ÁNO/NIE]` / `[YES/NO]` confirmation loops with confirmation state latching**, hardware/security telemetry via **TimeCore (`cycle_delta()`) & Guard**, and a **customs-grade validation pipeline (COLNIK‑6.x)**.
 
-This document provides a **comprehensive, enterprise-ready architectural overview** of the entire 5.9.1 platform.
+This document provides a **comprehensive, enterprise-ready architectural overview** of the entire 5.9.5 platform.
 
 ---
 
@@ -32,11 +32,11 @@ SIRIUS is engineered for engineers, researchers, and enterprises that demand **v
 
 ---
 
-# 🧠 Dual-Language Isolated Knowledge Graph (KG) 5.9.1  
+# 🧠 Dual-Language Isolated Knowledge Graph (KG) 5.9.5  
 ### The Core of Deterministic Intelligence & Zero Recurrence
 
 The Knowledge Graph serves as the definitive semantic ontology of SIRIUS.  
-In version 5.9.1, it organizes entities, attributes, relations, and orbital taxonomies within **independent, cycle-safe, schema-validated structures** serialized atomically to `autosave_kg.json` (SK) and `autosave_kg_en.json` (EN).
+In version 5.9.5, it organizes entities, attributes, relations, and orbital taxonomies within **independent, cycle-safe, schema-validated structures** serialized atomically to `autosave_kg.json` (SK) and `autosave_kg_en.json` (EN).
 
 ### Key Capabilities
 
@@ -72,7 +72,7 @@ In version 5.9.1, it organizes entities, attributes, relations, and orbital taxo
 # 🛡️ Enterprise Security Suite: COLNÍK Guard & HitL Safe Trash  
 ### Local Host Protection, Command Filtering & Quarantine Ceilings
 
-Runtime 5.9.1 deploys a fortified multi-layered security matrix:
+Runtime 5.9.5 deploys a fortified multi-layered security matrix:
 
 - **COLNÍK Guard Shell Interceptor (`TerminalAssistant`)**  
   - **FORBIDDEN (0.0s Hard Block):** Intercepts destructive commands (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`, fork-bombs) in 0.0s before OS process creation.  
@@ -91,7 +91,7 @@ Runtime 5.9.1 deploys a fortified multi-layered security matrix:
 
 ---
 
-# ⚙️ Reasoning Engine 5.9.1  
+# ⚙️ Reasoning Engine 5.9.5  
 ### Symbolic Multi-Hop Deduction with Bounded Derivation Trees
 
 The Reasoning Engine performs deterministic deduction over the Knowledge Graph without neural approximations.
@@ -122,14 +122,16 @@ Reasoning outcomes feed directly into:
 
 ---
 
-# 🔄 Single-Process Orchestration & Workflow Engine 5.9.1  
+# 🔄 Single-Process Orchestration & Workflow Engine 5.9.5  
 ### Native Port 8080 Runloop & Terminal Decoupling
 
 The Workflow Engine coordinates execution through a unified, single-process orchestrator daemon (`sirius_orchestrator.py`) hosting HTTP/WebSocket services on port 8080 with embedded `TerminalAssistant` and `TimeCore`:
+
+```text
 User / Web UI / Shell Terminal (Port 8080)
 │
 ▼
-Token Guard (Immediate drop of @#$%^&*)
+Token Guard (Immediate drop of @#\$%^&*)
 │
 ▼
 InputParser5 (.rstrip("?") trailing punctuation stripping & compound noun extraction)
@@ -144,12 +146,14 @@ sirius_orchestrator.py (Single-Process Daemon + TerminalAssistant)
 ├── HitL Safe Trash Pipeline (Quarantined removal via GET /trash)
 ├── TimeCore (cycle_delta()) & Guard (Resource supervision)
 ├── Dual KG Core (autosave_kg.json & autosave_kg_en.json)
-├── Native Lossless Merge Engine (kg merge  into )
-├── ReasoningEngine 5.9.1 (Taxonomical KG_VERIFY & Proof trees)
+├── Native Lossless Merge Engine (kg merge <src> into <tgt>)
+├── ReasoningEngine 5.9.5 (Taxonomical KG_VERIFY & Proof trees)
 ├── COLNIK-6.x Customs Decision Gate (Standard & IPC Mode)
 ├── AUTONOMY 6.x (Confirmation State Latching & Triage Mode)
 ├── PanelAPI ([ÁNO/NIE] / [YES/NO] Confirmation Loops)
 └── EXECUTE 6.x (Dual KG Commits & Safe Execution)
+```
+
 ### Key Features
 - **Elimination of Socket & File Contention:** Single-process architecture replaces disk-based IPC polling, preventing file locking conflicts and port collisions.  
 - **Terminal State Decoupling:** Clearing input or aborting an action immediately forces `currentModule = "none"`, permanently preventing conversational text from executing as host OS shell commands.  
@@ -193,7 +197,7 @@ COLNIK-6.x functions as the definitive internal customs authority and command fi
 # 🖥️ 4-Panel UI Suite (Port 8080)  
 ### Visual Management & Secure Command Console
 
-Accessible locally via browser (http://127.0.0.1:8080), the UI Suite provides four purpose-built management panels:
+Accessible locally via browser (`http://127.0.0.1:8080`), the UI Suite provides four purpose-built management panels:
 
 - **Duplicates Panel:** Displays duplicate file status, monitors Guard hardware metrics, enforces `REPORT_ONLY` policies, and routes deletions to the HitL Safe Trash pipeline.  
 - **Triage Panel:** Real-time visual queue displaying quarantined payloads, unparsed web data, and held mutations (`COLNIK-6.x/triage`).  
@@ -216,13 +220,13 @@ Accessible locally via browser (http://127.0.0.1:8080), the UI Suite provides fo
 
 - **Access Tiers:** Strict policy separation across OWNER (full administration), FAMILY (safe household access), and STRANGER (zero-trust sandbox with immediate terminal lockout).  
 - **Schoolwork Engine 5.8:** Guaranteed educational bypass allowing academic and homework queries to navigate the Knowledge Graph without restriction or delay.  
-- **Password Vault 5.9.1:** Authenticated AES-256-GCM encrypted credential vault with PBKDF2 key stretching, Token Guard protection, and COLNÍK Guard shell filtering.  
+- **Password Vault 5.9.5:** Authenticated AES-256-GCM encrypted credential vault with PBKDF2 key stretching, Token Guard protection, and COLNÍK Guard shell filtering.  
 
 ---
 
-# 🌟 Architectural Comparison: 5.9.0 vs. 5.9.1
+# 🌟 Architectural Comparison: 5.9.0 vs. 5.9.5
 
-| Architectural Feature | Version 5.9.0 UNIFIED | Version 5.9.1 UNIFIED (Current) |
+| Architectural Feature | Version 5.9.0 UNIFIED | Version 5.9.5 UNIFIED (Current) |
 |:---|:---|:---|
 | **Knowledge Graph Schema** | Single unified `autosave_kg.json` | Dual-Language Isolated (`autosave_kg.json` [SK] & `autosave_kg_en.json` [EN]) |
 | **Language Context Dispatch** | Monolingual focus / mixed | Dynamic Language Routing based on UI header |
@@ -242,7 +246,7 @@ Accessible locally via browser (http://127.0.0.1:8080), the UI Suite provides fo
 # 🤖 AUTONOMY 6.x — Supervised Deterministic Intelligence  
 ### Supervised Autonomous Governance with Active Human-in-the-Loop Oversight
 
-AUTONOMY 6.x operates as the supervisory intelligence layer within SIRIUS 5.9.1, bridging autonomous proposals with human verification.
+AUTONOMY 6.x operates as the supervisory intelligence layer within SIRIUS 5.9.5, bridging autonomous proposals with human verification.
 
 ### Core Autonomy Pipeline
 1. **Telemetry & Resource Monitoring:** Evaluates CPU, RAM, and Disk loads via Guard alongside TimeCore latency profiling (`cycle_delta()`).  
@@ -255,9 +259,10 @@ AUTONOMY 6.x operates as the supervisory intelligence layer within SIRIUS 5.9.1,
 ---
 
 # 🚀 Execution & Verification
-SIRIUS Runtime 5.9.1 is launched via the unified single-process orchestrator:
+SIRIUS Runtime 5.9.5 is launched via the unified single-process orchestrator:
 
-```bash
-python sirius_orchestrator.py
+    python src/sirius_orchestrator.py --port 8080
+
 Access the interactive 4-Panel UI Suite via browser:
-http://127.0.0.1:8080
+
+    http://127.0.0.1:8080
