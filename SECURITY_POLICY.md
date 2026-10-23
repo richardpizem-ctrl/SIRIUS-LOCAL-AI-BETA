@@ -1,11 +1,11 @@
-# 🔐 11.6 NEW SECURITY LAYER — Runtime 5.9.1 UNIFIED
+# 🔐 11.6 NEW SECURITY LAYER — Runtime 5.9.5 UNIFIED
 
-Version **5.9.1 UNIFIED** significantly expands and hardens the security model introduced in earlier runtime generations.  
+Version **5.9.5 UNIFIED** significantly expands and hardens the security model introduced in earlier runtime generations.  
 It integrates the **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**, **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**, **Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`)**, **Ontological & Taxonomical Reasoning (`KG_VERIFY`)**, **Non-Destructive Reverse Location Engine with Anti-Flora Classification Guard**, **Entry-Level Token Guard**, **COLNÍK Guard Shell Access Control (0.0s hard blocks)**, **Human-in-the-Loop Safe UI Trash**, **Quarantine Sliding-Window Rotation (100-file ceiling)**, **Punctuation Stripping (`.rstrip("?")`) and Confirmation State Latching**, **Multi-Word Compound Semantic Engine (`InputParser5`)**, **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**, **Contextual Domain Shield & Sentence-Bound Extractor (`EnvoyNormalizer5`)**, and the **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)**.
 
-It upgrades **System Agent 5**, **Security Family 5.x (Identity Engine 3.1)**, **WIN‑CAP 5.x**, **System Intelligence Layer 5.9.1**, and the **ENVOY 5** permission model with **full deep explainability (KG_EXPLAIN + KG_EXPLAIN_DEEP)**, **COLNIK‑6.x enterprise customs validation (Standard & High-Performance IPC Mode)**, **COLNÍK Guard command interception**, **Safe UI Trash pipeline (`GET /trash`)**, and **AUTONOMY‑6.x proposal/confirmation logic (Control, Guard, Safe Trash & Triage Mode in `COLNIK-6.x/triage`)**.
+It upgrades **System Agent 5**, **Security Family 5.x (Identity Engine 3.1)**, **WIN‑CAP 5.x**, **System Intelligence Layer 5.9.5**, and the **ENVOY 5** permission model with **full deep explainability (KG_EXPLAIN + KG_EXPLAIN_DEEP)**, **COLNIK‑6.x enterprise customs validation (Standard & High-Performance IPC Mode)**, **COLNÍK Guard command interception**, **Safe UI Trash pipeline (`GET /trash`)**, and **AUTONOMY‑6.x proposal/confirmation logic (Control, Guard, Safe Trash & Triage Mode in `COLNIK-6.x/triage`)**.
 
-New components and core enhancements in 5.9.1:
+New components and core enhancements in 5.9.5:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**  
@@ -41,7 +41,7 @@ No data leaves the device unless explicitly permitted through:
 
 ---
 
-# 🔐 11.7 System Agent 5 — Hardened OS‑Level Security Gatekeeper (UPDATED for 5.9.1)
+# 🔐 11.7 System Agent 5 — Hardened OS‑Level Security Gatekeeper (UPDATED for 5.9.5)
 
 System Agent 5 is the final gatekeeper for all host system-level operations under single-process orchestrator supervision.
 
@@ -60,7 +60,7 @@ System Agent 5 is the final gatekeeper for all host system-level operations unde
 - **COLNIK‑validate every OS‑level mutation (Standard, High-Performance IPC Mode & COLNÍK Guard)**  
 - **AUTONOMY‑aware system validation (Control, Guard, Safe Trash & Triage Mode)**  
 
-### Security Guarantees (5.9.1):
+### Security Guarantees (5.9.5):
 - no module has direct unmediated OS shell access  
 - destructive commands are halted in 0.0s before process spawning  
 - files proposed for deletion are quarantined rather than unverified direct removal  
@@ -85,11 +85,11 @@ System Agent 5 is the final gatekeeper for all host system-level operations unde
 
 ---
 
-# 🔐 11.8 Security Family 5.x — Identity Enforcement 3.1 (UPDATED for 5.9.1)
+# 🔐 11.8 Security Family 5.x — Identity Enforcement 3.1 (UPDATED for 5.9.5)
 
 Security Family 5.x strengthens the identity model, prevents prompt fatigue, and unifies access policies across local sessions.
 
-### Enhancements (5.9.1):
+### Enhancements (5.9.5):
 - constant-time identity classification ($O(1)$) across OWNER, FAMILY, and STRANGER modes  
 - entry-level input sanitization via Token Guard: drops payloads containing forbidden symbols (`@#$%^&*`)  
 - trailing punctuation hygiene: greedy stripping (`.rstrip("?")`) to preserve canonical entity identifiers  
@@ -114,9 +114,9 @@ Security Family 5.x strengthens the identity model, prevents prompt fatigue, and
 
 ---
 
-# 🔐 11.9 Semantic Integrity, Token Guard & Terminal Safety (NEW for 5.9.1)
+# 🔐 11.9 Semantic Integrity, Token Guard & Terminal Safety (NEW for 5.9.5)
 
-Runtime 5.9.1 introduces dedicated architectural layers protecting input hygiene, grammatical integrity, and terminal execution isolation.
+Runtime 5.9.5 introduces dedicated architectural layers protecting input hygiene, grammatical integrity, and terminal execution isolation.
 
 ### Token Guard Entry Sanitization:
 - raw inputs are audited immediately before processing  
@@ -137,7 +137,7 @@ Runtime 5.9.1 introduces dedicated architectural layers protecting input hygiene
 
 ---
 
-# 🔐 11.10 WIN‑CAP 5.x — OS Capability Isolation (UPDATED for 5.9.1)
+# 🔐 11.10 WIN‑CAP 5.x — OS Capability Isolation (UPDATED for 5.9.5)
 
 WIN‑CAP 5.x provides:
 
@@ -152,9 +152,9 @@ WIN‑CAP 5.x provides:
 
 ---
 
-# 🔐 11.11 System Intelligence Layer 5.9.1 — Predictive Security & Guard Supervision (UPDATED)
+# 🔐 11.11 System Intelligence Layer 5.9.5 — Predictive Security & Guard Supervision (UPDATED)
 
-System Intelligence Layer 5.9.1 adds predictive security, diagnostic monitoring, and real-time hardware tracking validated by COLNIK‑6.x, AUTONOMY‑6.x, and Guard supervision.
+System Intelligence Layer 5.9.5 adds predictive security, diagnostic monitoring, and real-time hardware tracking validated by COLNIK‑6.x, AUTONOMY‑6.x, and Guard supervision.
 
 ### Capabilities:
 - real-time monitoring of host CPU, RAM, and Disk metrics via Guard (< 1% overhead)  
@@ -176,7 +176,7 @@ System Intelligence Layer 5.9.1 adds predictive security, diagnostic monitoring,
 
 ---
 
-# 🔐 11.12 ENVOY 5 — Domain-Shielded Quarantined Fetch Pipeline (UPDATED for 5.9.1)
+# 🔐 11.12 ENVOY 5 — Domain-Shielded Quarantined Fetch Pipeline (UPDATED for 5.9.5)
 
 ENVOY 5 introduces an outbound-only, permission-gated retrieval architecture with language context binding, sliding-window quarantine limits, autonomous disambiguation, anti-prefix protection, and strict contextual domain shielding.
 
@@ -229,7 +229,7 @@ Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry, dual 
 
 # 📄 Document Status (Updated)
 
-**Version:** **5.9.1 UNIFIED (Expanded)**  
+**Version:** **5.9.5 UNIFIED (Expanded)**  
 This security policy now fully governs:
 
 - Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)  
@@ -250,9 +250,9 @@ This security policy now fully governs:
 - TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource Supervision (CPU, RAM, Disk)  
 - Security Family 5.x (Identity Engine 3.1)  
 - System Agent 5  
-- Password Vault 5.9.1  
+- Password Vault 5.9.5  
 - WIN‑CAP 5.x  
-- System Intelligence Layer 5.9.1  
+- System Intelligence Layer 5.9.5  
 - ENVOY 5 & EnvoyQuarantine5  
 - Self‑Repair Layer 5.8  
 - Hierarchical Proof Trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`)  
