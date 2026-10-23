@@ -2,21 +2,24 @@
 **Status:** ✔ Active (Enhanced)  
 **Version:** 5.x  
 **SIRIUS Local AI Version:** 5.9.5  
-**Component:** ReasoningEngine5  
-**Role:** Deterministic symbolic reasoning engine performing multi-hop inference, dual-language graph reasoning, taxonomical deduction, non-destructive reverse location evaluation, native merge traversal, and proof-tree generation under single-process orchestrator supervision
+**Author & Architecture Lead:** Richard Pizem  
+**Component:** ReasoningEngine5 & Professor Validator Middleware Integration  
+**Role:** Deterministic symbolic reasoning engine performing multi-hop inference, dual-language graph reasoning, taxonomical deduction, non-destructive reverse location evaluation, native merge traversal, proof-tree generation, and cognitive fact validation via Professor Middleware (PASS / WARN / REJECT) under single-process orchestrator supervision
 
 ---
 
 ## 🎯 Purpose  
-ReasoningEngine5 is the core inference module of SIRIUS Local AI (v5.9.5).  
+ReasoningEngine5 is the core inference module of SIRIUS Local AI (v5.9.5), architected by Richard Pizem.  
 It evaluates symbolic rules, performs multi-hop graph derivations, validates semantic hypotheses, handles compound noun phrases via `InputParser5` with trailing punctuation hygiene (`.rstrip("?")`), executes taxonomical category deduction (`KG_VERIFY`), evaluates reverse geographic habitats with anti-flora shielding, resolves multi-alias pointers, and generates structured explanations across isolated dual-language Knowledge Graphs (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN).
 
-The engine is completely deterministic, transparent, and designed for enterprise-grade symbolic explainability (XAI), orchestrated through `sirius_orchestrator.py` on local port 8080 with embedded `TerminalAssistant` and `TimeCore` (`cycle_delta()`), protected by `Token Guard`, and supervised by `Guard` and `COLNÍK Guard`.
+V architektúre v5.9.5 platí striktné pravidlo: **Reasoning Engine a Runtime Core môžu v znalostnom grafe odvodiť čokoľvek, ale Professor Middleware Layer (Cleaner, Validator PASS/WARN/REJECT, Summarizer) autoritatívne rozhodne, či sa odvodené fakty smú zobraziť používateľovi.** Žiadna neoverená dedukcia, halucinácia alebo neúplný fakt neprejde do UI bez schválenia validačnou bránou.
+
+The engine is completely deterministic, transparent, and designed for enterprise-grade symbolic explainability (XAI), orchestrated through `sirius_orchestrator.py` on local port 8080 with embedded `TerminalAssistant` and `TimeCore` (`cycle_delta()`), protected by `Token Guard`, pre-processed by `spellcheck_engine.py`, gated by `Professor Validator`, and supervised by `Guard` and `COLNÍK Guard`.
 
 ---
 
 ## 🧩 Architecture Overview  
-**Runtime 5.9.5 / InputParser5 → Token Guard → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE (`autosave_kg.json` / `autosave_kg_en.json`) → ReasoningEngine5 → AUTONOMY 6.x → COLNIK-6.x (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → EXECUTE 6.x**
+**Runtime 5.9.5 / InputParser5 → Token Guard → spellcheck_engine.py → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE (`autosave_kg.json` / `autosave_kg_en.json`) → ReasoningEngine5 → PROFESSOR MIDDLEWARE LAYER (PASS / WARN / REJECT) → AUTONOMY 6.x → COLNIK-6.x (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → UI PANEL V2 / EXECUTE 6.x**
 
 ### Core Responsibilities  
 - evaluate deterministic symbolic inference rules across isolated Slovak and English graph stores  
@@ -27,6 +30,8 @@ The engine is completely deterministic, transparent, and designed for enterprise
 - perform multi-hop graph traversals and orbital jumps across compound concepts (`ovcia vlna`, `mobilny telefon`, `pevna linka`)  
 - resolve multi-alias entities to canonical nodes, ensuring zero proposal recurrence on established concepts  
 - auto-detect hypotheses from natural language queries and copula verb structures (`je`, `sú`, `is`, `are`) with greedy punctuation stripping (`.rstrip("?")`)  
+- odovzdávať surové odvodenia vrstve **Professor Middleware Layer** na vyčistenie (`grammar_engine.py`) a kognitívnu validáciu kvality (`professor_validator.py`)  
+- implementovať logiku stavov Professor Validator: **PASS** (okamžité uvoľnenie), **WARN** (príznak neistoty v UI), **REJECT** (zablokovanie pri `INCOMPLETE_FACTS`, `LOW_CONFIDENCE`, `CONTRADICTION`)  
 - maintain confirmation state latching across interactive conversation turns  
 - validate semantic relations against the Non-Bio Domain Shield (`EnvoyNormalizer5`)  
 - generate structured WHY reasoning and proof trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`) in ASCII and HTML  
@@ -36,6 +41,10 @@ The engine is completely deterministic, transparent, and designed for enterprise
 - `runtime5/ReasoningEngine5.py`  
 - `runtime5/runtime_core_5.py`  
 - `runtime5/input_parser_5.py`  
+- `runtime5/spellcheck_engine.py`  
+- `runtime5/grammar_engine.py` (Professor Cleaner)  
+- `runtime5/professor_validator.py` (Professor Validator Gate)  
+- `runtime5/professor_miner.py` (Professor Summarizer)  
 - `KG/kg_engine.py`  
 - `autosave_kg.json`  
 - `autosave_kg_en.json`  
@@ -46,10 +55,11 @@ The engine is completely deterministic, transparent, and designed for enterprise
 
 ---
 
-## 🔍 Reasoning Pipeline (v5.9.5)  
+## 🔍 Reasoning & Validation Pipeline (v5.9.5)  
 
-### **1 — Semantic Query Ingestion, Token Guard & Context Binding**  
+### **1 — Semantic Query Ingestion, Token Guard & Spellcheck Pre-Processing**  
 - Inputs pass through **Token Guard**; malicious symbolic character sequences (`@#$%^&*`) are dropped at entry.  
+- `spellcheck_engine.py` normalizuje preklepy a diakritiku, čím umožňuje vyhľadanie entít aj bez mäkčeňov a dĺžňov (napr. *urologia* -> *urológia*).  
 - `InputParser5` strips trailing question marks (`.rstrip("?")`) and extracts complete compound noun phrases and isolated copula verbs (`je`, `sú`, `is`, `are`).  
 - Caller language parameters dynamically bind the engine to the dedicated partition: `autosave_kg.json` (SK) or `autosave_kg_en.json` (EN).  
 - If no explicit hypothesis is supplied, the engine inspects canonical nodes, merge-alias edges, and alias registries to auto-detect target relations.
@@ -84,22 +94,31 @@ The engine traverses multi-hop edges across the active Knowledge Graph:
 
 Traversal depth is strictly capped to prevent runaway cyclic recursion, tracked within `TimeCore` cycle budgets (`cycle_delta()`).
 
-### **6 — WHY Reasoning & Deep Explainability (XAI)**  
+### **6 — Professor Middleware Verification: Cognitive Quality Gate**  
+Všetky odvodené fakty, trojice a multi-hop reťazce pred opustením inferenčného jadra povinne prechádzajú cez **Professor Middleware Layer**:
+1. **Professor Cleaner (`grammar_engine.py`):** Vyčistí extrahované relácie, normalizuje predikáty a zvratné slovesá (*sa zaoberá / deals with*), oddelí časticu *sa/si* od subjektu a začlení ju do hrany predikátu. Zachová spojky (*a, i*) pre SK a odfiltruje neurčité členy (*a/an*) pre EN.  
+2. **Professor Validator (`professor_validator.py`):** Vyhodnotí faktickú integritu odvodenia:  
+   - **PASS:** Odvodenie je kompletné, konzistentné a overené. Uvoľňuje sa do UI V2.  
+   - **WARN:** Odvodenie nesie nižšiu mieru istoty (`LOW_CONFIDENCE`), no je použiteľné. UI zobrazí odpoveď s neónovým vizuálnym príznakom neistoty.  
+   - **REJECT:** Ak sú fakty neúplné (`INCOMPLETE_FACTS`) alebo protirečivé (`CONTRADICTION`), odpoveď sa nezostaví. UI obdrží štruktúrovanú chybu a incident sa zaloguje.  
+3. **Professor Summarizer (`professor_miner.py`):** Zostaví ucelené sémantické zhrnutie faktov pre finálnu prezentáciu.
+
+### **7 — WHY Reasoning & Deep Explainability (XAI)**  
 Produces a structured, auditable explanation payload:  
 - target hypothesis, language partition tag, and evaluated query  
 - verified rule provenance and evidence nodes  
-- confidence score calculation  
+- confidence score calculation audited by Professor Validator  
 - multi-hop transition chain  
 - hierarchical ASCII / HTML proof tree  
 
 WHY reasoning feeds directly into AUTONOMY 6.x decision governance and interactive `PanelAPI` confirmation prompts (`[ÁNO/NIE]` / `[YES/NO]`) with active state latching. Once confirmed and recorded in `autosave_kg.json` or `autosave_kg_en.json`, subsequent reasoning cycles resolve instantly without triggering redundant learning proposals.
 
-### **7 — Workflow & UI Suite Integration**  
+### **8 — Workflow & UI Suite Integration**  
 Reasoning outputs are dispatched to:  
+- **UI PANEL V2:** Zobrazuje iba výstupy schválené vrstvou Professor Validator (stavy PASS a označené WARN). Pri vymazaní dotazu okamžite resetuje stav (`currentModule = "none"`).  
 - **AUTONOMY 6.x:** Autonomous governance, Guard metric monitoring, Safe Trash governance, and Triage containment (`COLNIK-6.x/triage`)  
 - **COLNIK-6.x & COLNÍK Guard:** Customs inspection and 0.0s command execution auditing  
 - **EXECUTE 6.x:** Deterministic mutation execution, native merge commits, and dual-graph persistence  
-- **4-Panel UI Suite:** Renders directly in browser panels on port 8080, triggering automatic module release (`currentModule = "none"`) upon query clearance  
 
 ---
 
@@ -125,7 +144,8 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 
 ---
 
-## 🔐 Safety Rules  
+## 🔐 Safety & Validation Rules  
+- 🎓 **Professor Quality Gating:** Runtime Core môže v grafe nájsť čokoľvek, ale Professor rozhodne, či sa to smie zobraziť používateľovi (PASS / WARN / REJECT)  
 - ❌ No destructive graph mutations or file deletions without explicit user confirmation (`PanelAPI` [ÁNO/NIE] / [YES/NO] & HitL Safe Trash)  
 - ⛔ Immediate Token Guard rejection on inputs containing malformed symbolic sequences (`@#$%^&*`)  
 - 🗄️ Strict dual-language isolation: Slovak and English reasoning cycles execute exclusively within their corresponding graph partitions  
@@ -140,6 +160,10 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 
 ## 📊 Module Status (v5.9.5)  
 - ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
+- ✔ Autor architektúry: Richard Pizem  
+- ✔ Integrovaná vrstva **Professor Middleware Layer** (grammar_engine, professor_validator, professor_miner)  
+- ✔ Validačná matica PASS / WARN / REJECT v plnej prevádzke  
+- ✔ Predspracovanie textu a diakritiky cez `spellcheck_engine.py` aktívne  
 - ✔ Dual-Language Graph Reasoning (`autosave_kg.json` & `autosave_kg_en.json`) operational  
 - ✔ Taxonomical category inference auto-commit (`KG_VERIFY`) operational  
 - ✔ Non-destructive reverse habitat engine with False-Positive Flora Guard verified  
@@ -158,6 +182,7 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 ---
 
 ## 🏁 Summary  
-ReasoningEngine5 is the deterministic inference core of SIRIUS Local AI (v5.9.5).  
+ReasoningEngine5 is the deterministic inference core of SIRIUS Local AI (v5.9.5), navrhnutý Richardom Pizemom.  
 It performs multi-hop reasoning, evaluates symbolic rules, executes taxonomical deductions, navigates reverse habitat inquiries, traverses merged entity aliases, and generates transparent WHY explanations and proof trees throughout the autonomy cycle under central orchestrator supervision.  
-The engine is production-stable and fully integrated with KG ENGINE, `sirius_orchestrator.py`, AUTONOMY 6.x, COLNIK-6.x, Token Guard, COLNÍK Guard, PanelAPI, EXECUTE, and the 4-Panel UI Suite.
+Všetky odvodené fakty sú prísne overované cez **Professor Middleware Layer**, čím je garantované, že do UI Panelu V2 sa dostanú výhradne konzistentné a pravdivé informácie.  
+The engine is production-stable and fully integrated with KG ENGINE, `sirius_orchestrator.py`, Professor Validator, AUTONOMY 6.x, COLNIK-6.x, Token Guard, COLNÍK Guard, PanelAPI, EXECUTE, and the 4-Panel UI Suite.
