@@ -1,219 +1,252 @@
-# 🧠 SYSTEM INTELLIGENCE LAYER 5.9.5 — Predictive, Resource-Supervised, Deep Explainable & Single-Process Orchestrated OS Awareness  
-**Status:** ✔ Active (Enhanced)  
+# 🔄 DATA FLOW & EXECUTION PIPELINE — SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+**Status:** ✔ Active & Synchronized  
 **Version:** 5.9.5 UNIFIED  
-**Component:** System Intelligence Layer  
-**Role:** Real-time hardware telemetry, execution latency profiling, COLNÍK Guard auditing, HitL Safe Trash monitoring, Token Guard telemetry, terminal decoupling verification, anomaly detection, predictive safety, proof-tree explainability, single-process orchestrator routing, and customs-grade triage containment  
+**Author & Architecture Lead:** Richard Pizem  
+**Scope:** Deterministic End-to-End Ingestion, Reasoning, Quality Verification & Execution Flow (Port 8080)  
 
 ---
 
-## 🎯 Purpose  
-The System Intelligence Layer 5.9.5 provides real-time, low-overhead OS and host workstation awareness for SIRIUS Local AI.  
-It monitors real-time CPU, RAM, and Disk metrics via Guard (< 1% overhead), tracks command execution latency via TimeCore (cycle_delta()), audits shell safety alongside COLNÍK Guard (0.0s hard blocking of forbidden commands), supervises non-destructive file disposal through the Human-in-the-Loop Safe Trash pipeline (GET /trash), enforces the 100-file sliding-window quarantine ceiling (COLNIK-6.x/envoy/quarantine/), audits Token Guard input drops (@#$%^&*), verifies terminal state decoupling (currentModule = "none"), detects process and execution loop anomalies, predicts risky states, evaluates caller identity tiers (OWNER / FAMILY / STRANGER), generates hierarchical proof trees (KG_EXPLAIN & KG_EXPLAIN_DEEP), and routes decisions through the single-process orchestrator (sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant + TimeCore), interactive PanelAPI confirmation loops ([ÁNO/NIE] / [YES/NO]) with confirmation state latching, COLNIK-6.x (Standard & High-Performance IPC Mode), and AUTONOMY-6.x (Control, Guard, Safe Trash & Triage Mode).
+## 🎯 Purpose & Core Principle
+This document specifies the deterministic data flow pipeline from raw user ingestion to verified UI Panel presentation and persistent atomic commitment to the Knowledge Graph.
 
-This layer elevates SIRIUS from simple automation to **OS-intelligent, predictive, explainable, single-process orchestrated, dual-language isolated, natively merged, input-sanitized, shell-protected, and customs-validated workstation autonomy**.
+The foundational principle of the architecture is strictly enforced:  
+> **Runtime Core and symbolic reasoning mechanisms may infer or retrieve any fact from the Knowledge Graph, but the Professor Middleware Layer (Cleaner, Validator PASS/WARN/REJECT, Summarizer) authoritatively determines whether the output is permitted to reach the UI or commit to persistent state.**
 
----
-
-## 🧩 Architecture Overview  
-OS Telemetry & Hardware Signals → System Intelligence Layer & Guard → Token Guard → sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore) → COLNÍK Guard (0.0s Block) → System Agent 5 → Terminal Decoupling Guard → COLNIK-6.x → AUTONOMY 6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → HitL Safe Trash / Dual KG Commit (autosave_kg.json / autosave_kg_en.json) → EXECUTE 6.x
-
-### Core Responsibilities  
-- monitor host hardware health and OS signals (CPU, RAM, Disk) asynchronously with less than 1% monitoring overhead  
-- profile shell and workflow execution latency via TimeCore cycle_delta()  
-- audit COLNÍK Guard shell command safety (verifying 0.0s hard blocks on format, diskpart, rmdir /s, del /f /s /q c:, drop database)  
-- supervise Human-in-the-Loop Safe Trash queues, ensuring deleted items route to quarantine rather than direct unverified disk destruction (GET /trash)  
-- track sliding-window quarantine maintenance, verifying COLNIK-6.x/envoy/quarantine/ never exceeds the 100-file ceiling  
-- audit Token Guard input sanitization, logging rejected payloads containing forbidden characters (@#$%^&*)  
-- audit terminal focus to enforce state decoupling (currentModule = "none"), ensuring conversational queries never execute as host OS shell commands  
-- detect process execution loops, memory leaks, and storage contention anomalies during dual-language graph commits (autosave_kg.json & autosave_kg_en.json)  
-- predict risky operational states under TimeCore temporal limits and Guard supervision  
-- evaluate caller identity tiers (OWNER / FAMILY / STRANGER) and enforce guaranteed SCHOOLWORK academic bypass  
-- compile hierarchical explainability metadata and proof trees (KG_EXPLAIN & KG_EXPLAIN_DEEP) in ASCII and HTML  
-- support Self-Repair Layer 5.8 by detecting damaged config baselines, dual-graph leaks, and schema anomalies  
-- dispatch unverified, corrupted, or anomalous operational payloads directly into COLNIK-6.x/triage  
-- validate all system-context decisions through COLNIK-6.x customs gates (Standard, High-Performance IPC Mode & COLNÍK Guard)  
-
-### Key Files  
-- system_intelligence/system_intelligence.py  
-- system_intelligence/os_signals.json  
-- system_intelligence/anomaly_log.json  
-- system_intelligence/hardware_telemetry.py  
-- orchestrator/terminal_assistant.py  
-- colnik_6_x/colnik_guard.py  
-- runtime5/token_guard.py  
-- filesystem/safe_trash_quarantine.py  
-- runtime5/envoy_quarantine_5.py  
-- ORCHESTRATOR/sirius_orchestrator.py  
-- PANEL_API/panel_api.py  
-- IPC_DATA/system_context.json  
-- COLNIK-6.x/triage/  
+The system operates as a single-process daemon on local port **8080** via `sirius_orchestrator.py` with embedded `TerminalAssistant` and `TimeCore`, fully isolated from cloud infrastructure (100% offline).
 
 ---
 
-## 🔍 Intelligence Pipeline (v5.9.5)  
+## 🗺️ Architectural Pipeline Diagram
 
-### 1 — Hardware Telemetry, Latency Profiling & OS Signal Collection  
-Under TimeCore temporal bounds and Guard supervision, the layer continuously monitors:  
-- real-time CPU, RAM, and Disk utilization (< 1% polling load)  
-- command and workflow latency metrics profiled via TimeCore cycle_delta()  
-- disk I/O throughput to avoid collision during dual Knowledge Graph atomic commits (autosave_kg.json and autosave_kg_en.json)  
-- sliding-window file count in COLNIK-6.x/envoy/quarantine/ (enforces strict 100-file ceiling)  
-- terminal focus state (asserting currentModule = "none" when input clears)  
-- process lifecycles and background execution loops  
-- UI responsiveness on local port 8080 (Duplicates, Triage, Navigation, Terminal panels)  
-- system latency and inter-module IPC response  
-
-Signals are normalized and evaluated deterministically without blocking the main event runloop.
-
----
-
-### 2 — Anomaly Detection, Command Auditing & Terminal Decoupling  
-The System Intelligence Layer detects:  
-- unstable or degraded host OS states  
-- forbidden shell commands intercepted by COLNÍK Guard in 0.0s (format, diskpart, etc.)  
-- unauthorized file deletion attempts diverted to HitL Safe Trash  
-- malformed injection sequences rejected by Token Guard (@#$%^&*)  
-- terminal focus lockups or command capture attempts from conversational text  
-- suspicious or unverified process spawn attempts  
-- runaway recursive loops in symbolic reasoning or taxonomical deduction (KG_VERIFY)  
-- memory leaks and disk storage pressure  
-- unsafe workflow conditions and file contention  
-- external retrieval anomalies (prefix drift or biological attribute leakage onto technical entities)  
-
-Detected anomalies are classified and isolated into COLNIK-6.x/triage under Guard security supervision.
-
----
-
-### 3 — Predictive Risk Evaluation  
-The layer forecasts:  
-- upcoming hardware memory or storage exhaustion  
-- quarantine storage overflow triggering automated sliding-window pruning  
-- workflow-unsafe host system states  
-- automation-unsafe UI conditions  
-- identity-risk scenarios (unrecognized callers triggering STRANGER lockdown)  
-- repair-required baseline triggers and cross-lingual graph leaks  
-
-Predictions are fully deterministic, auditable, and autonomy-aware.
-
----
-
-### 4 — KG‑Enhanced Explainability (Proof Trees)  
-Every system state evaluation or blocked transition compiles a derivation trace:  
-- KG_EXPLAIN direct relation justification  
-- KG_EXPLAIN_DEEP hierarchical multi-hop proof trees (ASCII + HTML)  
-- applied security, command filtering, and system rules  
-- confidence metrics, TimeCore latency deltas (cycle_delta()), and operational rationale  
-
-Deep explainability is mandatory for all system-context decisions.
-
----
-
-### 5 — COLNIK‑6.x Customs Clearance (Standard & High-Performance IPC Mode)  
-All system-context verdicts pass through the Kýklos decision gate:  
-- enterprise-grade ALLOW / DENY / TRIAGE decision matrix  
-- deterministic memory-mapped IPC routing on port 8080  
-- reversible action validation (enforcing REPORT_ONLY on duplicate file scans and HitL Safe Trash routing)  
-- threat classification and payload inspection  
-- quarantined anomalies route immediately to COLNIK-6.x/triage  
-
-Unsafe system states unconditionally halt or divert workflows.
-
----
-
-### 6 — AUTONOMY 6.x & Confirmation State Latching (Zero Recurrence)  
-AUTONOMY-6.x (Control, Guard, Safe Trash & Triage Mode) and interactive PanelAPI ([ÁNO/NIE] / [YES/NO]) receive:  
-- hardware anomaly reports and resource throttling proposals  
-- novel entity proposals (kg.learn_proposal) targeted to active language partitions (SK / EN)  
-- pending proposal identifiers preserved via confirmation state latching across turns  
-- zero proposal recurrence verification for established aliases and deduced taxonomies  
-- identity-aware context and STRANGER mode isolation flags  
-- system-context gating for file operations and Safe Trash review  
-- safe fallback and shadow recovery recommendations  
-
-AUTONOMY and human oversight confirm or deny high-impact state transitions.
-
----
-
-### 7 — Repair‑Aware Context & Baseline Verification  
-The System Intelligence Layer provides real-time state telemetry to Self-Repair Layer 5.8:  
-- flags corrupted JSON stores or broken schemas across autosave_kg.json and autosave_kg_en.json  
-- detects missing configuration baselines, broken merge links, and integrity seal mismatches  
-- locks workflows during atomic shadow restorations to prevent race conditions  
-- ensures safe, deterministic recovery without data loss  
-
----
-
-## 🧱 Capabilities  
-
-### Real‑Time Hardware, Command & Host Monitoring  
-- continuous CPU, RAM, and Disk metrics via Guard (< 1% overhead)  
-- execution latency tracking via TimeCore cycle_delta()  
-- COLNÍK Guard shell command interception monitoring (0.0s blocks)  
-- Human-in-the-Loop Safe Trash quarantine tracking (GET /trash)  
-- sliding-window quarantine ceiling tracking (100-file maximum)  
-- Token Guard input drop auditing (@#$%^&*)  
-- terminal focus auditing enforcing currentModule = "none" decoupling  
-- process lifecycle anomaly detection  
-- 4-Panel UI Suite responsiveness monitoring on local port 8080  
-
-### Predictive Intelligence  
-- hardware resource exhaustion forecasting  
-- quarantine storage overflow prediction  
-- unsafe workflow prediction  
-- automation-unsafe UI state detection  
-- proactive query-drift diversion via Anti-Prefix guards  
-
-### Explainability (XAI)  
-- KG-driven anomaly explanations  
-- hierarchical multi-hop proof trees (KG_EXPLAIN_DEEP)  
-- evidence derivation trees, latency deltas, and confidence scores  
-- verifiable customs clearance logs  
-
-### Single-Process Orchestrator & Autonomy Integration  
-- native daemon execution on port 8080 (sirius_orchestrator.py with TerminalAssistant + TimeCore)  
-- interactive human gating via PanelAPI ([ÁNO/NIE] / [YES/NO]) with confirmation state latching  
-- zero proposal recurrence on stored concepts and deduced taxonomies  
-- real-time quarantine queue monitoring in COLNIK-6.x/triage  
++--------------------------------------------------------+
+|       [ USER / UI PANEL (Port 8080) / TERMINAL ]       |
++--------------------------------------------------------+
+                           | (Raw User Query / Command)
+                           v
++--------------------------------------------------------+
+|           1. INGESTION & SANITIZATION LAYER            |
+|                                                        |
+|  * Token Guard           (Immediate drop of @#$%^&*)   |
+|  * spellcheck_engine.py  (Diacritic & Typo Normalizer) |
+|  * InputParser5          (Greedy .rstrip("?"),         |
+|                           Compound Phrase Extractor)   |
++--------------------------------------------------------+
+                           |
+                           v
++--------------------------------------------------------+
+|       2. ORCHESTRATION & SHELL PROTECTION LAYER        |
+|                                                        |
+|  * sirius_orchestrator.py (Port 8080 IPC Daemon)       |
+|  * Terminal Decoupling    (Reset currentModule="none") |
+|  * COLNIK Guard           (0.0s Hard Block format etc.)|
+|  * TimeCore Telemetry     (cycle_delta() profiling)    |
+|  * Language Context Router(Dynamic SK / EN Partition)  |
++--------------------------------------------------------+
+                           |
+                           v
++--------------------------------------------------------+
+|        3. RUNTIME CORE & REASONING ENGINE 5.9.5        |
+|                                                        |
+|  * Autosave Stores (autosave_kg.json / _en.json)       |
+|  * In-Memory Traversal (get_attributes() standard)     |
+|  * Lossless Merge Engine (kg merge <src> into <tgt>)   |
+|  * Taxonomical Deduction (KG_VERIFY sub-taxa/mammals)  |
+|  * Reverse Location Reasoner (False-Positive Flora G.) |
+|  * Multi-Hop / Orbital Inference Engine                |
++--------------------------------------------------------+
+                           |
+                           | (Raw Facts / Extracted Triplets)
+                           v
++--------------------------------------------------------+
+|            4. PROFESSOR MIDDLEWARE LAYER               |
+|                                                        |
+|  1. Professor Cleaner (grammar_engine.py)              |
+|     - Predicate normalization (deals with, sa zaoberá)|
+|     - Reflexive particle isolation (sa/si into edge)   |
+|     - Particle preservation (a, i) / Stopword filter   |
+|                                                        |
+|  2. Professor Validator (professor_validator.py)       |
+|     - PASS   -> 100% Quality, Released to UI           |
+|     - WARN   -> Low Confidence, Visual Flag in UI      |
+|     - REJECT -> Blocked (INCOMPLETE_FACTS,             |
+|                            LOW_CONFIDENCE,             |
+|                            CONTRADICTION)              |
+|                                                        |
+|  3. Professor Summarizer (professor_miner.py)          |
+|     - Semantic synthesis of nodes prior to UI render   |
++--------------------------------------------------------+
+                           |
+                           | (Verified & Filtered Payload)
+                           v
++--------------------------------------------------------+
+|     5. CUSTOMS CLEARANCE, AUTONOMY & SAFE TRASH        |
+|                                                        |
+|  * COLNIK-6.x Customs Gate (ALLOW / DENY / TRIAGE)     |
+|  * AUTONOMY 6.x (Confirmation State Latching)          |
+|  * PanelAPI Prompt Loops ([ÁNO/NIE] / [YES/NO])        |
+|  * HitL Safe Trash (Quarantine via GET /trash)         |
+|  * Sliding-Window Rotator (100-file ceiling)           |
++--------------------------------------------------------+
+                           |
+                           v
++--------------------------------------------------------+
+|           6. EXECUTE 6.x & DUAL ATOMIC COMMIT          |
+|                                                        |
+|  * EXECUTE 6.x (Deterministic System Mutations)        |
+|  * Dual Atomic Serialization (*.tmp -> atomic rename)  |
+|  * Recurrence Suppression (Zero Proposal Recurrence)   |
++--------------------------------------------------------+
+                           |
+                           v
++--------------------------------------------------------+
+|         7. PRESENTATION LAYER (UI PANEL V2)            |
+|                                                        |
+|  * Duplicates Panel (REPORT_ONLY + Safe Trash routing) |
+|  * Triage Panel (Inspection of COLNIK-6.x/triage)      |
+|  * Navigation Panel (Orchestrator & KG Health metrics) |
+|  * Terminal Panel (Isolated CLI with COLNIK Guard)     |
+|  * User Output: Verified cognitive output rendered     |
++--------------------------------------------------------+
 
 ---
 
-## 🔐 Safety Rules  
-- ❌ No workflow execution during unstable or degraded host OS states  
-- ⛔ Forbidden shell commands (format, diskpart, rmdir /s) must halt in 0.0s via COLNÍK Guard  
-- 🗑️ Direct permanent file deletions are strictly prohibited; removals must route to HitL Safe Trash (GET /trash)  
-- 🛑 Terminal state decoupling must assert currentModule = "none" upon input reset  
-- 📦 Quarantine storage must strictly respect the 100-file ceiling via sliding-window rotation  
-- 🔒 Mandatory customs clearance via COLNIK-6.x (Standard & High-Performance IPC Mode)  
-- 🛡 Supervised decision gating via AUTONOMY 6.x (Control, Guard, Safe Trash & Triage Mode)  
-- 💬 Interactive PanelAPI [ÁNO/NIE] / [YES/NO] gating active for high-risk system state overrides  
-- 🚫 Strict non-biological domain shields active: technical concepts cannot hold biological attributes  
-- 🔁 Reversible file operations enforced; duplicate file analysis restricted to REPORT_ONLY  
-- ⚠ Hierarchical proof-tree explainability required for all decisions  
-- 📉 Real-time hardware telemetry (CPU, RAM, Disk) continuously audited via Guard  
+## 🔍 Detailed Breakdown of Pipeline Phases
+
+### Phase 1: Ingestion, Sanitization & Language Context Routing
+1. **Token Guard:**  
+   Raw user inputs undergo immediate inspection at runtime entry. Any sequence containing malformed injection symbols (`@`, `#`, `$`, `%`, `^`, `&`, `*`) is dropped before parsing starts.
+2. **Pre-Processing Spellcheck (`spellcheck_engine.py`):**  
+   Normalizes diacritics and corrects spelling typos, ensuring accent-free queries (e.g., `urologia`) reliably match canonical nodes (e.g., `urológia`).
+3. **Semantic Parser (`InputParser5`):**  
+   - Strips trailing question marks greedily via `.rstrip("?")` to guarantee exact entity lookup resolution.  
+   - Extracts and preserves compound noun phrases (e.g., *ovcia vlna*, *mobilny telefon*, *pevna linka*) without noun-modifier truncation.  
+   - Isolates copula verbs (*je*, *sú*, *is*, *are*) from entity subjects to prevent syntactic corruption.
+4. **Language Context Router:**  
+   Dynamically binds the active execution flow to either the Slovak graph (`autosave_kg.json`) or English graph (`autosave_kg_en.json`) according to UI headers or explicit language context. Cross-lingual mixing is strictly prohibited.
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
-- ✔ Real-time Guard hardware telemetry operational (< 1% overhead)  
-- ✔ TimeCore latency profiling (cycle_delta()) active  
-- ✔ COLNÍK Guard 0.0s command blocking integration verified  
-- ✔ Human-in-the-Loop Safe UI Trash pipeline active  
-- ✔ Sliding-window quarantine rotation (100-file ceiling) active  
-- ✔ Token Guard input sanitization tracking operational  
-- ✔ Terminal state decoupling and focus release verified  
-- ✔ Anomaly detection and execution loop throttling active  
-- ✔ Predictive risk evaluation functional  
-- ✔ Single-process orchestrator integration on port 8080 operational with embedded TerminalAssistant + TimeCore  
-- ✔ PanelAPI interactive confirmation loops with state latching verified  
-- ✔ Hierarchical proof-tree explainability (KG_EXPLAIN_DEEP) integrated  
-- ✔ COLNIK-6.x customs validation functional (Standard & IPC Mode)  
-- ✔ AUTONOMY 6.x signals, Safe Trash governance & triage routing verified (COLNIK-6.x/triage)  
+### Phase 2: Orchestration, Terminal Decoupling & COLNIK Guard
+1. **Single-Process Orchestrator (`sirius_orchestrator.py`):**  
+   Hosts the integrated HTTP/WebSocket IPC daemon natively on local port **8080**, eliminating socket collisions and file-locking bottlenecks.
+2. **Terminal State Decoupling:**  
+   When the user clears the CLI input or cancels an interaction, the UI dispatches an event that immediately resets `currentModule = "none"`, permanently preventing conversational natural language from executing inside the host Windows 11 shell.
+3. **COLNIK Guard Shell Filter:**  
+   Audits shell invocations before process dispatch:
+   - **FORBIDDEN (0.0s Hard Block):** `format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`, fork-bombs.  
+   - **RISKY (Explicit Confirmation):** `rm`, `kill`, `taskkill`, `del`.  
+   - **ALLOWED:** `ps`, `top`, `mem`, `sys`, `grep`, `dir`, `ls`, `cd`, `pwd`, `python`, `git`, etc.
+4. **TimeCore Telemetry:**  
+   Measures step latency via `cycle_delta()` while Guard monitors hardware load (< 1% CPU/RAM overhead).
 
 ---
 
-## 🏁 Summary  
-System Intelligence Layer 5.9.5 is the real-time OS awareness, command auditing, and hardware telemetry core of SIRIUS Local AI.  
-It monitors system resources, profiles execution latency via TimeCore cycle_delta(), intercepts destructive shell routines in 0.0s via COLNÍK Guard, routes file removals into Human-in-the-Loop Safe Trash, enforces 100-file quarantine ceilings, decouples terminal inputs to protect host shells, drops malformed inputs via Token Guard, detects anomalies, predicts risks, evaluates caller identity, generates hierarchical proof trees, and routes decisions through central orchestrator supervision, PanelAPI confirmation, COLNIK-6.x customs gates, and AUTONOMY-6.x governance.
+### Phase 3: Runtime Core & Symbolic Inference
+1. **Knowledge Graph Traversal:**  
+   Standardizes attribute access through `self.kg.get_attributes()` and relation queries via `get_relations_outbound()`.
+2. **Native Lossless Entity Merge (`kg merge`):**  
+   Direct in-memory consolidation relocating all attributes, summaries, and relations from source to target without data loss, establishing a directional alias edge (`src -[alias]-> tgt`).
+3. **Taxonomical Category Deduction (`KG_VERIFY`):**  
+   Deduces higher-order taxonomic groupings (e.g., marsupials -> mammals) directly from context and commits edges with zero proposal recurrence.
+4. **Reverse Location Engine with Anti-Flora Shield:**  
+   Executes regional queries (*Austrália*, *Australia*) under the False-Positive Flora Guard, ensuring tree-dwelling fauna (*koala*) are never classified as botanical species.
 
-It transforms SIRIUS into a **system-intelligent, predictive, explainable, single-process orchestrated, dual-language isolated, natively merged, and autonomy-supervised workstation** capable of operating Windows 11 safely, deterministically, and with 100% offline sovereignty.
+---
+
+### Phase 4: Professor Middleware Layer (Cognitive Verification Gate)
+The authoritative data quality gateway between Runtime Core and UI presentation:
+
++--------------------------------------------------------+
+|                   Runtime Core Facts                   |
++---------------------------+----------------------------+
+                            |
+                            v
++--------------------------------------------------------+
+|          1. Professor Cleaner (grammar_engine.py)      |
+|  - Isolates reflexive particles into relation edges    |
+|  - Preserves SK conjunctions (a, i) in compound objects|
+|  - Filters EN indefinite articles (a, an)              |
++---------------------------+----------------------------+
+                            |
+                            v
++--------------------------------------------------------+
+|         2. Professor Validator (professor_validator)   |
+|  - Cognitive consistency & factual integrity check     |
++-------+-------------------+--------------------+-------+
+        |                   |                    |
+Status: PASS         Status: WARN         Status: REJECT
+        v                   v                    v
++---------------+   +---------------+    +-----------------------+
+| Released to   |   | Released with |    | Blocked at Core:      |
+| UI Panel V2   |   | visual flag   |    | INCOMPLETE_FACTS      |
+|               |   | of uncertainty|    | LOW_CONFIDENCE        |
+|               |   |               |    | CONTRADICTION         |
++-------+-------+   +-------+-------+    +-----------+-----------+
+        |                   |                        |
+        v                   v                        v
++-----------------------------------+    +-----------------------+
+|  3. Professor Summarizer          |    | Quarantined to:       |
+|     (professor_miner.py)          |    | COLNIK-6.x/triage     |
+|  - Synthesizes nodes for UI render|    +-----------------------+
++-------------------+---------------+
+                    |
+                    v
+          Dispatched to UI Panel V2
+
+- **Professor Cleaner (`grammar_engine.py`):**  
+  Normalizes extracted triplets (`add_relation(source, relation, target)`), handles reflexive verbs (*zaoberá sa*, *deals with*), prevents reflexive particles from attaching to subjects, and preserves grammatical conjunctions.
+- **Professor Validator (`professor_validator.py`):**  
+  - **PASS:** 100% verified factual integrity. Payload is released to UI.  
+  - **WARN:** Facts meet baseline criteria but exhibit lower confidence (`LOW_CONFIDENCE`). Released with a visual uncertainty flag.  
+  - **REJECT:** Detects missing attributes (`INCOMPLETE_FACTS`) or contradictory assertions (`CONTRADICTION`). The response is suppressed; a structured error is returned, and the payload is routed to quarantine.
+- **Professor Summarizer (`professor_miner.py`):**  
+  Synthesizes verified knowledge nodes into a coherent textual summary.
+
+---
+
+### Phase 5: Customs Clearance, Autonomy & Safe Trash
+1. **COLNIK-6.x Customs Decision Gate:**  
+   Issues deterministic `ALLOW`, `DENY`, or `TRIAGE` verdicts. Malformed mutations or validation failures divert directly into `COLNIK-6.x/triage`.
+2. **AUTONOMY 6.x & Confirmation State Latching:**  
+   Maintains interactive confirmation context for novel learning proposals across conversation turns until the user answers via `PanelAPI` (`[ÁNO/NIE]` / `[YES/NO]`).
+3. **Human-in-the-Loop Safe Trash:**  
+   Direct disk unlinking is prohibited. File removal requests divert to `/filesystem/safe_trash_quarantine` awaiting manual inspection via `GET /trash`.
+4. **Sliding-Window Quarantine Ceiling:**  
+   Automatically prunes the oldest JSON extraction logs in `COLNIK-6.x/envoy/quarantine/` to enforce a strict 100-file ceiling.
+
+---
+
+### Phase 6: Deterministic Execution (EXECUTE 6.x) & Atomic Commit
+1. **Action Execution:**  
+   `EXECUTE 6.x` carries out authorized operations protected by `safe_rollback.py` (`shutil.copytree` / `shutil.rmtree`).
+2. **Dual Atomic Persistence:**  
+   Graph mutations are written to temporary shadow files (`*.tmp`) and committed via atomic rename to `autosave_kg.json` or `autosave_kg_en.json`, preventing write corruption.
+3. **Zero Proposal Recurrence:**  
+   Persisted entities, aliases, and deduced categories are indexed permanently, suppressing redundant future learning proposals.
+
+---
+
+### Phase 7: UI Suite Presentation (Port 8080)
+1. **Duplicates Panel:** Displays duplicate scans under a mandatory `REPORT_ONLY` policy, routing proposed cleanups to Safe Trash.  
+2. **Triage Panel:** Enables manual inspection, release, or disposal of quarantined items held in `COLNIK-6.x/triage`.  
+3. **Navigation Panel:** Provides deterministic switching across runtime modules and monitors system health.  
+4. **Terminal Panel:** Decoupled CLI console protected by COLNIK Guard, enforcing `currentModule = "none"` on input clearance.  
+5. **Output Rendering:** The UI renders verified responses cleared by the **Professor Middleware Layer**.
+
+---
+
+## 🔐 Security & Data Integrity Policies
+- **Professor Gating:** No cognitive output may reach the UI or commit to the Knowledge Graph without clearance by `professor_validator.py`.
+- **Destructive Command Defense:** COLNIK Guard executes a 0.0s hard block on dangerous shell routines (`format`, `diskpart`, `rmdir /s`).
+- **Safe Deletion Policy:** Permanent unlinking is barred; file deletions route to HitL Safe Trash (`GET /trash`).
+- **Terminal State Isolation:** Clearing input immediately resets active execution context to `none` (`currentModule = "none"`).
+- **Dual-Language Segregation:** Slovak and English knowledge graphs remain physically and logically isolated.
+- **Domain Boundary Shield:** Non-biological entities are strictly prohibited from receiving biological habitat tags.
+- **Zero Recurrence Assurance:** Confirmed facts and deduced taxonomies never trigger repetitive user confirmation prompts.
+
+---
+
+## 📌 Document Status
+**Version:** 5.9.5 UNIFIED  
+**Architect:** Richard Pizem  
+This document defines the complete end-to-end data flow, single-process orchestration on port 8080, shell access control via COLNIK Guard, spellcheck pre-processing, quarantine ceiling management, and cognitive quality validation through the **Professor Middleware Layer** (PASS / WARN / REJECT).
