@@ -1,10 +1,10 @@
-# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.9.1 UNIFIED
+# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.9.5 UNIFIED
 ### Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & Comprehensive Security Protocol
 
-Version **5.9.1 UNIFIED** marks a decisive evolutionary milestone in the SIRIUS LOCAL AI runtime architecture.  
+Version **5.9.5 UNIFIED** marks a decisive evolutionary milestone in the SIRIUS LOCAL AI runtime architecture.  
 It solves fundamental challenges in cross-lingual knowledge contamination, introduces native in-memory entity consolidation (`kg merge`), deploys automated taxonomical category deduction (`KG_VERIFY`), enables robust reverse location querying with anti-flora protection, hardens input and shell security via Token Guard and COLNÍK Guard (0.0s blocking), implements Human-in-the-Loop Safe Trash, enforces sliding-window quarantine limits, and secures interactive confirmation flows through greedy punctuation stripping and confirmation state latching.
 
-Building on the unified foundations of **v5.9.0**, this release introduces:
+Building on the unified foundations of the **v5.9.x** series, this release introduces:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**  
@@ -28,12 +28,12 @@ Building on the unified foundations of **v5.9.0**, this release introduces:
 - **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Security/Metric Supervision (CPU, RAM, Disk)**  
 - **COLNIK‑6.x Customs Decision Gate (Standard & High-Performance IPC Mode)**  
 - **AUTONOMY 6.x (Control, Guard, Safe Trash & Triage Mode in `COLNIK-6.x/triage`)**  
-- **Reasoning Engine 5.9.1 & Workflow Engine 5.9.1**  
+- **Reasoning Engine 5.9.5 & Workflow Engine 5.9.5**  
 - **Hierarchical Proof Trees in `KG_EXPLAIN` & `KG_EXPLAIN_DEEP` (XAI)**  
 
 ---
 
-# 🚀 What’s New in v5.9.1 UNIFIED
+# 🚀 What’s New in v5.9.5 UNIFIED
 
 ## 🔥 1. Dual-Language Isolated KG Architecture (`autosave_kg.json` & `autosave_kg_en.json`)
 Knowledge representation has been structurally segregated into dedicated linguistic domains.
@@ -152,7 +152,7 @@ System safety monitoring now tracks both temporal bounds and host hardware loads
 
 ---
 
-# 🧩 Additional Improvements in v5.9.1 UNIFIED
+# 🧩 Additional Improvements in v5.9.5 UNIFIED
 
 ### ✔ Dual-language graph isolation (`autosave_kg.json` & `autosave_kg_en.json`)  
 ### ✔ Native lossless entity merge engine (`kg merge <src> into <tgt>`)  
@@ -175,9 +175,10 @@ System safety monitoring now tracks both temporal bounds and host hardware loads
 ---
 
 # ⚙ Execution (IMPORTANT)
-SIRIUS Runtime 5.9.1 is launched via the unified single-process orchestrator:
+SIRIUS Runtime 5.9.5 is launched via the unified single-process orchestrator:
 
-```bash
-python sirius_orchestrator.py
+    python src/sirius_orchestrator.py --port 8080
+
 Access the interactive 4-Panel UI Suite via browser:
-http://127.0.0.1:8080
+
+    http://127.0.0.1:8080
