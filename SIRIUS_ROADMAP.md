@@ -1,6 +1,6 @@
 # 🚀 SIRIUS ROADMAP — Full Development Plan (2024–2027)  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.9.1 UNIFIED  
+**Version:** 5.9.5 UNIFIED  
 **Scope:** Runtime 5.x → Autonomy 6.x → System Intelligence 7.x  
 **Author:** Richard Pizem  
 
@@ -71,7 +71,7 @@ The roadmap is structured into **three major eras**:
 - 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) with automatic `currentModule = "none"` state clearance  
 - Guard hardware telemetry auditing CPU, RAM, and Disk metrics  
 
-## ✔ 5.9.1 UNIFIED — Dual-Language KG, Native Merge, Ontological Reasoning & COLNÍK Guard (Current Milestone)  
+## ✔ 5.9.5 UNIFIED — Dual-Language KG, Native Merge, Ontological Reasoning & COLNÍK Guard (Current Milestone)  
 - **Dual-Language Isolated Knowledge Stores:** Physical and logical partition across Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) with dynamic language context switching based on UI header  
 - **Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`):** Direct runtime consolidation relocating all properties, summaries, and habitat records from source to target with directional alias linking (`src -[alias]-> tgt`)  
 - **Ontological & Taxonomical Category Deduction (`KG_VERIFY`):** Deduces higher-order biological categories directly from stored records (marsupials -> mammals) with persistent edge auto-commits  
