@@ -1,6 +1,6 @@
 # 🌌 SIRIUS LOCAL AI — Unified Autonomous Workstation Overview  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.9.1 UNIFIED  
+**Version:** 5.9.5 UNIFIED  
 **Architecture:** Modular, Deterministic, Explainable, Single-Process Orchestrated, Dual-Language KG, Native Lossless Merge, COLNÍK Guard Hardened, HitL Safe Trash, Autonomy‑Supervised  
 **Scope:** PC + Workstation Offline AI Operating Environment (Port 8080)  
 **Author:** Richard Pizem  
@@ -32,14 +32,14 @@ SIRIUS is composed of tightly integrated, decoupled subsystems operating within 
 - **Autonomous ENVOY 5 & Disambiguation Triage** — encyclopedic disambiguation resolution, Anti-Prefix Guard, Strip-Bracket Fallback, and Non-Bio Domain Shield (`EnvoyNormalizer5`) bound to language endpoints (`sk.wikipedia.org` / `en.wikipedia.org`)  
 - **PanelAPI & TimeCore/Guard** — interactive non-blocking `[ÁNO/NIE]` / `[YES/NO]` confirmation loops and real-time CPU, RAM, Disk hardware telemetry  
 - **Zero Proposal Recurrence Engine** — permanent elimination of redundant learning proposals once entities, aliases, or taxonomical edges are committed  
-- **ReasoningEngine 5.9.1** — deterministic multi‑hop symbolic inference, orbital jumps, property inheritance, and proof-tree generation  
+- **ReasoningEngine 5.9.5** — deterministic multi‑hop symbolic inference, orbital jumps, property inheritance, and proof-tree generation  
 - **COLNIK‑6.x Customs Decision Gate** — primitive ALLOW / DENY / TRIAGE customs validation across Standard, High-Performance IPC, and COLNÍK Guard modes  
 - **AUTONOMY 6.x (Control, Guard, Safe Trash & Triage Mode)** — supervised proposal generation, hardware anomaly containment, and triage routing in `COLNIK-6.x/triage`  
 - **EXECUTE 6.x** — deterministic mutation executor and atomic dual-disk committer  
 - **4-Panel UI Suite (Port 8080)** — browser dashboard (`Duplicates`, `Triage`, `Navigation`, `Terminal`) with automatic module context reset (`currentModule = "none"`)  
 - **Security Family 5.x & Identity Engine 3.1** — constant-time O(1) access tiers (OWNER / FAMILY / STRANGER) and academic bypass  
 - **System Agent 5** — hardened OS‑level gatekeeper enforcing reversibility, terminal isolation, and COLNÍK Guard compliance  
-- **Workflow Engine 5.9.1** — deterministic multi-step state machine with proof-tree dispatch  
+- **Workflow Engine 5.9.5** — deterministic multi-step state machine with proof-tree dispatch  
 - **Self‑Repair Layer 5.8** — SHA-256 cryptographic hash sealing, baseline shadow restoration, and dual-graph partition healing  
 
 Each module is strictly bounded, fully inspectable, explainable, and validated through COLNIK‑6.x.
@@ -147,7 +147,7 @@ Explainability is mandatory across all execution layers.
 User / Web UI / Shell Terminal (Port 8080)
   │
   ▼
-Token Guard (Immediate drop of @#$%^&*)
+Token Guard (Immediate drop of @#\$%^&*)
   │
   ▼
 InputParser5 (.rstrip("?") trailing punctuation stripping & compound noun extraction)
@@ -163,55 +163,44 @@ sirius_orchestrator.py (Single-Process Daemon on Port 8080 with TerminalAssistan
   ├── TimeCore (cycle_delta()) & Guard (Hardware resource metrics)
   ├── Dual-Language KG Core (autosave_kg.json & autosave_kg_en.json)
   ├── Native Lossless Merge Engine (kg merge <src> into <tgt>)
-  ├── ReasoningEngine 5.9.1 (Taxonomical KG_VERIFY & Proof trees)
+  ├── ReasoningEngine 5.9.5 (Taxonomical KG_VERIFY & Proof trees)
   ├── COLNIK-6.x Customs Decision Gate (Standard & High-Performance IPC Mode)
   ├── AUTONOMY 6.x (Confirmation State Latching & Triage Mode in COLNIK-6.x/triage)
   ├── PanelAPI ([ÁNO/NIE] / [YES/NO] Confirmation Loops — Zero Recurrence)
   └── EXECUTE 6.x (Dual Atomic Persistence & Safe Execution)
-  📱 Cross‑Platform Core
+```
+
+---
+
+## 📱 Cross‑Platform Core  
 SIRIUS executes deterministically across:
 
-Windows 11 workstations (native execution)
+- Windows 11 workstations (native execution)  
+- Android / Mobile runtimes (via unified agent core)  
+- identical dual Knowledge Graph schemas (`autosave_kg.json` & `autosave_kg_en.json`)  
+- identical symbolic reasoning rules and explainability proof trees  
+- unified identity and academic bypass logic  
 
-Android / Mobile runtimes (via unified agent core)
+---
 
-identical dual Knowledge Graph schemas (autosave_kg.json & autosave_kg_en.json)
-
-identical symbolic reasoning rules and explainability proof trees
-
-unified identity and academic bypass logic
-
-🏁 Summary
+## 🏁 Summary  
 SIRIUS Local AI is a System‑Intelligent Autonomous Workstation — a unified, deterministic, explainable, single-process orchestrated, dual-language persistent offline AI system engineered to operate Windows 11 safely, linguistically segregated, protected from destructive commands, and transparently.
 
 It is:
 
-autonomous with active human oversight and confirmation state latching
-
-linguistically segregated across Slovak and English graphs
-
-equipped with native lossless entity merging (kg merge)
-
-capable of automated biological taxonomical deduction (KG_VERIFY)
-
-protected against destructive shell routines via COLNÍK Guard in 0.0s
-
-non-destructive with file removals mediated by HitL Safe Trash
-
-sanitized at entry via Token Guard and sliding-window quarantine rotation
-
-persistent without proposal recurrence
-
-decoupled and safe from terminal shell hijacking
-
-explainable via hierarchical proof trees
-
-validated by customs-grade decision gates
-
-self-healing and hash-sealed
-
-identity-aware with academic priority
-
-100% offline and sovereign
+- autonomous with active human oversight and confirmation state latching  
+- linguistically segregated across Slovak and English graphs  
+- equipped with native lossless entity merging (`kg merge`)  
+- capable of automated biological taxonomical deduction (`KG_VERIFY`)  
+- protected against destructive shell routines via COLNÍK Guard in 0.0s  
+- non-destructive with file removals mediated by HitL Safe Trash  
+- sanitized at entry via Token Guard and sliding-window quarantine rotation  
+- persistent without proposal recurrence  
+- decoupled and safe from terminal shell hijacking  
+- explainable via hierarchical proof trees  
+- validated by customs-grade decision gates  
+- self-healing and hash-sealed  
+- identity-aware with academic priority  
+- 100% offline and sovereign  
 
 A complete, auditable, and self-contained alternative to probabilistic cloud AI systems.
