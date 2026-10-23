@@ -1,20 +1,20 @@
-# 🚀 SIRIUS LOCAL AI — Runtime 6.1.0
+# 🚀 SIRIUS LOCAL AI — Runtime 5.9.5
 ### Modular Kernel • Hybrid Multimodal Analyzer • Deterministic Local AI
 ### Fully Offline • Zero Cloud • Secure Family Behavior Engine • COLNIK‑6.x (Standard & IPC Mode) • AUTONOMY‑6.x (Control, Guard, Safe Trash & Triage Mode) • Unified Orchestrator • 4-Panel UI Suite • Dual-Language KG Architecture
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-6.1.0-purple">
-  <img src="https://img.shields.io/badge/license-SUL--3.2.0-green">
-  <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Android%20%7C%20iOS-blue">
-  <img src="https://img.shields.io/badge/runtime-Local%20Intelligent%20Runtime%206.1-red">
-  <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
+  <img src="https://img.shields.io/badge/version-5.9.5-orange">
+  <img src="https://img.shields.io/badge/license-MIT-blue">
+  <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Linux%20%7C%20macOS-blue">
+  <img src="https://img.shields.io/badge/runtime-Unified%20SingleProcess%205.9.5-orange">
+  <img src="https://img.shields.io/badge/local%20AI-100%25-success">
 </p>
 
 ---
 
 # 🌌 Introduction — Evolution of the SIRIUS Runtime
 
-SIRIUS Runtime **6.1.0** is the next-generation multimodal diagnostic runtime built directly on top of the fully stabilized **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & Comprehensive Security Protocol 5.9.1**, including:
+SIRIUS Runtime **5.9.5** is the stabilized multimodal diagnostic runtime built directly on top of the unified **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & Comprehensive Security Protocol 5.9.5**, including:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**
@@ -38,12 +38,12 @@ SIRIUS Runtime **6.1.0** is the next-generation multimodal diagnostic runtime bu
 - **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Security/Metric Supervision (CPU, RAM, Disk)**
 - **COLNIK‑6.x (Standard & High-Performance IPC Mode)**
 - **AUTONOMY 6.x (Control, Guard, Safe Trash & Triage Mode in `COLNIK-6.x/triage`)**
-- **Reasoning Engine 5.9.1 & Workflow Engine 5.9.1**
+- **Reasoning Engine 5.9.5 & Workflow Engine 5.9.5**
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)**
 - **System Agent 5 & Identity Engine 3.1 (SECURITY FAMILY 5.x)**
 - **Self‑Repair Layer 5.8**
 
-Runtime 6.1.0 merges all stabilized 5.9.1 foundations into a **single deterministic multimodal diagnostic system** capable of analyzing:
+Runtime 5.9.5 merges all stabilized foundations into a **single deterministic multimodal diagnostic system** capable of analyzing:
 
 - audio
 - MIDI (pattern detection, track alignment, rhythmic harmonic structures aligned with the Yamaha standard)
@@ -56,7 +56,7 @@ Runtime 6.1.0 merges all stabilized 5.9.1 foundations into a **single determinis
 
 ---
 
-# 🧠 Hybrid Multimodal Analyzer 6.1
+# 🧠 Hybrid Multimodal Analyzer 5.9.5
 
 A multimodal diagnostic analyzer with deterministic logic, deep explainability, and customs-grade COLNIK validation.
 
@@ -101,7 +101,7 @@ A multimodal diagnostic analyzer with deterministic logic, deep explainability, 
 
 ---
 
-# 🧩 Modular Kernel 6.1
+# 🧩 Modular Kernel 5.9.5
 
 A modular kernel engineered for isolation, cycle-safety, and continuous local operation.
 
@@ -111,9 +111,9 @@ A modular kernel engineered for isolation, cycle-safety, and continuous local op
 - Token Guard input filter rejecting malicious symbols (`@#$%^&*`) at entry
 - COLNÍK Guard 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`)
 - Human-in-the-Loop Safe Trash preventing direct file deletions
-- unified error layer 6.1 with automated rollback capabilities
+- unified error layer 5.9.5 with automated rollback capabilities
 - deterministic execution pipeline without race conditions
-- Self-Repair Layer 2.0 integration
+- Self-Repair Layer 5.8 integration
 - terminal decoupling: automatic module state reset (`currentModule = "none"`) on input clearing
 - deep explainability-aware dispatch
 - COLNIK-validated kernel mutations (Standard & High-Performance IPC Mode)
@@ -121,7 +121,7 @@ A modular kernel engineered for isolation, cycle-safety, and continuous local op
 
 ---
 
-# 🛡 Family Security Engine 6.1
+# 🛡 Family Security Engine 5.9.5
 
 A robust behavioral layer for household workstations and child safety.
 
@@ -140,7 +140,7 @@ A robust behavioral layer for household workstations and child safety.
 
 ---
 
-# 🔧 Self‑Repair Layer 2.0
+# 🔧 Self‑Repair Layer 5.8
 
 Autonomous diagnostic and integrity recovery engine.
 
@@ -156,17 +156,17 @@ Autonomous diagnostic and integrity recovery engine.
 
 ---
 
-# 🧭 Architecture Diagram (Runtime 6.1)
+# 🧭 Architecture Diagram (Runtime 5.9.5)
 
 ```text
 ┌────────────────────────────────────────────────────────┐
-│              Hybrid Multimodal Analyzer 6.1            │
+│              Hybrid Multimodal Analyzer 5.9.5          │
 │         (Audio / MIDI • Image • Video • Data)          │
 └───────────────────────────┬────────────────────────────┘
                             │
 ┌───────────────────────────▼────────────────────────────┐
 │                  Token Guard Engine                    │
-│           (Hard Rejection of @#$%^&* Symbols)          │
+│            (Hard Rejection of @#\$%^&* Symbols)         │
 └───────────────────────────┬────────────────────────────┘
                             │
 ┌───────────────────────────▼────────────────────────────┐
@@ -176,14 +176,14 @@ Autonomous diagnostic and integrity recovery engine.
                             │
 ┌───────────────────────────▼────────────────────────────┐
 │      Single-Process Orchestrator (Port 8080)           │
-│   (`sirius_orchestrator.py` + TerminalAssistant)       │
+│    (`sirius_orchestrator.py` + TerminalAssistant)      │
 ├───────────────────────────┬────────────────────────────┤
 │ 4-Panel UI Suite          │ TimeCore & Guard (Metrics) │
 │ (Duplicates/Triage/Nav/CLI│ PanelAPI Confirmation Latch│
 └───────────────────────────┬────────────────────────────┘
                             │
 ┌───────────────────────────▼────────────────────────────┐
-│                    Modular Kernel 6.1                  │
+│                   Modular Kernel 5.9.5                 │
 │   (COLNIK-6.x Customs Gate • AUTONOMY 6.x Governance)  │
 │   (COLNÍK Guard Shell Interceptor • Safe UI Trash)     │
 └───────────────────────────┬────────────────────────────┘
@@ -195,11 +195,13 @@ Autonomous diagnostic and integrity recovery engine.
 └───────────────────────────┬────────────────────────────┘
                             │
 ┌───────────────────────────▼────────────────────────────┐
-│                  Self‑Repair Layer 2.0                 │
-│        & Family Security Engine 6.1 (Identity 3.1)     │
+│                  Self‑Repair Layer 5.8                 │
+│        & Family Security Engine 5.9.5 (Identity 3.1)   │
 └────────────────────────────────────────────────────────┘
 📘 Installation & Execution
 Launch the runtime via the central single-process orchestrator:
-python sirius_orchestrator.py
+
+python src/sirius_orchestrator.py --port 8080
 Access the interactive 4-Panel UI Suite via browser:
+
 http://127.0.0.1:8080
