@@ -1,13 +1,13 @@
 # 🔐 SECURITY FAMILY 5.x — Identity Engine 3.1 & Unified Permission Framework  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.x (Updated for 5.9.1 UNIFIED)  
+**Version:** 5.x (Updated for 5.9.5 UNIFIED)  
 **Component:** Security Family  
 **Role:** Identity enforcement, permission gating, terminal decoupling, dual-language graph isolation, COLNÍK Guard shell access control, Token Guard sanitization, HitL Safe Trash governance, and orchestrator-supervised security logic
 
 ---
 
 ## 🎯 Purpose  
-Security Family 5.x is the unified identity, permission, and system protection layer of SIRIUS Local AI (v5.9.1).  
+Security Family 5.x is the unified identity, permission, and system protection layer of SIRIUS Local AI (v5.9.5).  
 It ensures that every natural language query, workflow transition, compound noun phrase evaluation (`InputParser5`), Knowledge Graph mutation across dual-language stores (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN), native entity merge (`kg merge`), reasoning derivation, and host system operation is validated through identity profiles, deep symbolic explainability, single-process orchestration (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore), interactive `PanelAPI` confirmation loops with confirmation state latching, `Guard` supervision, COLNÍK Guard command blocking (0.0s), Human-in-the-Loop Safe Trash review, Token Guard sanitization, and AUTONOMY‑6.x governance.
 
 Security Family protects the local workstation from unauthorized access, destructive shell executions, unverified file deletions, erratic execution loops, cross-domain contamination, cross-lingual graph corruption, and terminal shell hijacking.
@@ -79,7 +79,7 @@ Deterministic educational bypass governed by Schoolwork Engine 5.8:
 
 ---
 
-## 🔍 Permission & Gating Pipeline (v5.9.1)  
+## 🔍 Permission & Gating Pipeline (v5.9.5)  
 
 ### **1 — Identity Verification, Token Guard & Input Sanitization**  
 Before query processing begins:  
@@ -191,7 +191,7 @@ Security Family audits all Knowledge Graph write requests:
 ## 🔐 Safety Rules  
 - ❌ No execution of forbidden host OS commands (0.0s block via COLNÍK Guard)  
 - ⛔ Immediate Token Guard rejection on inputs containing malformed symbols (`@#$%^&*`)  
-- 🗄️️ Strict dual-language isolation: SK and EN graphs must never cross-contaminate  
+- 🗄 Strict dual-language isolation: SK and EN graphs must never cross-contaminate  
 - 🗑️ No direct unverified disk deletions: file removals must route through HitL Safe Trash (`GET /trash`)  
 - 🔒 Mandatory customs clearance via COLNIK‑6.x (Standard & High-Performance IPC Mode)  
 - 🛡 Supervised decision gating via AUTONOMY 6.x (Control, Guard, Safe Trash & Triage Mode)  
@@ -205,8 +205,8 @@ Security Family audits all Knowledge Graph write requests:
 
 ---
 
-## 📊 Module Status (v5.9.1)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.1 architecture  
+## 📊 Module Status (v5.9.5)  
+- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
 - ✔ Identity access tiers verified (OWNER / FAMILY / STRANGER)  
 - ✔ Token Guard input sanitization active  
 - ✔ Trailing punctuation trimming (`.rstrip("?")`) and confirmation state latching verified  
@@ -228,7 +228,7 @@ Security Family audits all Knowledge Graph write requests:
 ---
 
 ## 🏁 Summary  
-Security Family 5.x is the unified identity and permission enforcement framework of SIRIUS Local AI (v5.9.1).  
+Security Family 5.x is the unified identity and permission enforcement framework of SIRIUS Local AI (v5.9.5).  
 It validates every query, workflow, dual-language Knowledge Graph mutation, native entity merge, reasoning step, shell command, and system operation through identity tiers, entry-level Token Guard sanitization, COLNÍK Guard 0.0s shell protection, Human-in-the-Loop Safe Trash, deep symbolic explainability, central orchestrator execution, confirmation state latching, COLNIK‑6.x customs validation, and AUTONOMY‑6.x governance.
 
 It ensures that SIRIUS operates on local workstations **safely, deterministically, identity‑aware, linguistically segregated, shielded from destructive actions, and with verifiable explainability**.
