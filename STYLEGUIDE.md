@@ -1,9 +1,9 @@
-# 📐 STYLEGUIDE – SIRIUS LOCAL AI (v5.9.1 UNIFIED)
+# 📐 STYLEGUIDE – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
 ### Mandatory Coding, Architecture, Security, Dual-Language KG & Quality Guidelines
 
 This document defines the strict engineering guidelines, naming conventions, safety requirements, and architectural rules for all code written for **SIRIUS LOCAL AI**.
 
-Version **5.9.1 UNIFIED** expands this styleguide with explicit rules for:
+Version **5.9.5 UNIFIED** expands this styleguide with explicit rules for:
 - Single-Process Orchestrator (sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant + TimeCore)
 - Dual-Language Isolated Knowledge Stores (autosave_kg.json for SK & autosave_kg_en.json for EN)
 - Native Lossless Knowledge Graph Merge Engine (kg merge <src> into <tgt>)
@@ -28,12 +28,12 @@ Version **5.9.1 UNIFIED** expands this styleguide with explicit rules for:
 - COLNIK‑6.x Enterprise Customs Decision Gate (Standard, High-Performance IPC Mode & COLNÍK Guard)
 - AUTONOMY‑6.x Supervised Proposal/Confirmation Layer (Control, Guard, Safe Trash & Triage Mode)
 - System Agent 5 (Hardened OS‑Level Gatekeeper and Reversibility Enforcer)
-- Reasoning Engine 5.9.1 and Proof Trees (KG_EXPLAIN + KG_EXPLAIN_DEEP)
+- Reasoning Engine 5.9.5 and Proof Trees (KG_EXPLAIN + KG_EXPLAIN_DEEP)
 - Self‑Repair Layer 5.8 (Cryptographic Hash Sealing, Dual KG Healing and Shadow Baseline Restoration)
 
 ---
 
-# 12.1 Core Principles (Expanded for 5.9.1 UNIFIED)
+# 12.1 Core Principles (Expanded for 5.9.5 UNIFIED)
 
 - All module interactions, web services, and execution streams must be managed centrally by the single-process daemon sirius_orchestrator.py on port 8080 with embedded TerminalAssistant and TimeCore.
 - Raw inputs must clear Token Guard immediately at runtime entry; any sequence containing forbidden characters (@, #, $, %, ^, &, *) must be rejected prior to tokenization.
@@ -57,7 +57,7 @@ Version **5.9.1 UNIFIED** expands this styleguide with explicit rules for:
 
 ---
 
-# 12.2 Naming Conventions (Expanded for 5.9.1 UNIFIED)
+# 12.2 Naming Conventions (Expanded for 5.9.5 UNIFIED)
 
 The following names are reserved and must strictly follow SIRIUS conventions:
 
@@ -96,7 +96,7 @@ The following names are reserved and must strictly follow SIRIUS conventions:
 
 ---
 
-# 12.3 File and Folder Structure (Expanded for 5.9.1 UNIFIED)
+# 12.3 File and Folder Structure (Expanded for 5.9.5 UNIFIED)
 
 Directory hierarchy:
 
@@ -126,7 +126,7 @@ Directory hierarchy:
 /security_family_v3_1/academic_bypass
 
 Rules:
-- Execution entry point is exclusively python sirius_orchestrator.py (spawns daemon, embedded TerminalAssistant, and UI on port 8080).
+- Execution entry point is exclusively python src/sirius_orchestrator.py --port 8080 (spawns daemon, embedded TerminalAssistant, and UI on port 8080).
 - Dual-language Knowledge Graphs must persist separately into autosave_kg.json (SK) and autosave_kg_en.json (EN).
 - All inter-module communication must use memory-based IPC pipelines hosted within sirius_orchestrator.py, completely avoiding disk-based file locking contention.
 - Terminal input clearing in terminal_panel must execute an explicit event dispatch setting currentModule = "none".
@@ -139,7 +139,7 @@ Rules:
 
 ---
 
-# 12.4 Function Length and Modular Prechecks (Expanded for 5.9.1 UNIFIED)
+# 12.4 Function Length and Modular Prechecks (Expanded for 5.9.5 UNIFIED)
 
 OS-level, Knowledge Graph mutation, shell execution, and external triage functions must be decomposed into explicit lifecycle phases:
 
@@ -172,7 +172,7 @@ Maximum length of any orchestration or execution function: 45 lines.
 
 ---
 
-# 12.5 Comments and Documentation Standards (Expanded for 5.9.1 UNIFIED)
+# 12.5 Comments and Documentation Standards (Expanded for 5.9.5 UNIFIED)
 
 Code comments must explicitly document:
 - Token Guard character inspection logic rejecting @#$%^&*.
@@ -193,7 +193,7 @@ Code comments must explicitly document:
 
 ---
 
-# 12.6 Error Messages (Expanded for 5.9.1 UNIFIED)
+# 12.6 Error Messages (Expanded for 5.9.5 UNIFIED)
 
 - "Token Guard violation – malformed or forbidden characters (@#$%^&*) detected; input rejected."
 - "Confirmation state latch error – pending proposal context lost; re-prompting required."
@@ -219,7 +219,7 @@ Code comments must explicitly document:
 
 ---
 
-# 12.7 Security Rules in Code (Expanded for 5.9.1 UNIFIED)
+# 12.7 Security Rules in Code (Expanded for 5.9.5 UNIFIED)
 
 - All execution must originate from sirius_orchestrator.py on local port 8080.
 - Raw input strings must be validated by Token Guard before reaching parser or workflow layers.
@@ -238,7 +238,7 @@ Code comments must explicitly document:
 
 ---
 
-# 12.8 Testing Requirements (Expanded for 5.9.1 UNIFIED)
+# 12.8 Testing Requirements (Expanded for 5.9.5 UNIFIED)
 
 Input Sanitization and Hygiene tests must include:
 - Token Guard tests (asserting strings with @#$%^&* are dropped immediately).
@@ -284,7 +284,7 @@ Supervision and Customs tests must include:
 
 ---
 
-# 12.9 Logging Rules (Expanded for 5.9.1 UNIFIED)
+# 12.9 Logging Rules (Expanded for 5.9.5 UNIFIED)
 
 - Log single-process daemon state transitions asynchronously to avoid blocking the main runloop.
 - Log execution latency deltas (cycle_delta()) alongside hardware metrics (CPU, RAM, Disk).
@@ -301,7 +301,7 @@ Supervision and Customs tests must include:
 
 ---
 
-# 12.10 Module Boundaries (Expanded for 5.9.1 UNIFIED)
+# 12.10 Module Boundaries (Expanded for 5.9.5 UNIFIED)
 
 - sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant and TimeCore is the exclusive runtime orchestrator and daemon host.
 - TokenGuard is the exclusive validator for entry-level character sequence sanitization (@#$%^&*).
@@ -311,7 +311,7 @@ Supervision and Customs tests must include:
 - InputParser5 is the exclusive parser for natural language compound noun extraction and trailing punctuation stripping.
 - autosave_kg.json (SK) and autosave_kg_en.json (EN) are the exclusive atomic persistence targets for the Knowledge Graph.
 - RuntimeCore is the exclusive engine for native in-memory entity consolidation (kg merge).
-- ReasoningEngine5.9.1 is the exclusive reasoner for taxonomical deduction (KG_VERIFY) and reverse location queries.
+- ReasoningEngine5.9.5 is the exclusive reasoner for taxonomical deduction (KG_VERIFY) and reverse location queries.
 - EnvoyNormalizer5 is the exclusive authority for Non-Bio Domain Shielding and sentence-bound extraction.
 - terminal_panel on Port 8080 must strictly isolate user input and enforce currentModule = "none" decoupling.
 - System Agent 5 is the exclusive validator of host OS actions and reversibility policies.
@@ -324,5 +324,5 @@ Supervision and Customs tests must include:
 
 # Document Status (Updated)
 
-Version: 4.0.0 -> 4.2.0 -> 4.3.0 -> 4.4.0 PRO -> 4.5.0 PRO -> 5.0.0 UNIFIED -> 5.3.0 UNIFIED -> 5.5.0 UNIFIED -> 5.6.2 UNIFIED -> 5.7.0 UNIFIED -> 5.8 UNIFIED -> 5.9.0 UNIFIED -> 5.9.1 UNIFIED  
-This styleguide establishes the complete, mandatory engineering rules for deterministic, dual-language segregated, natively merged, taxonomically deduced, input-sanitized, shell-protected, terminal-decoupled, domain-shielded, and COLNIK‑validated architecture in Runtime 5.9.1 UNIFIED.
+Version: 4.0.0 -> 4.2.0 -> 4.3.0 -> 4.4.0 PRO -> 4.5.0 PRO -> 5.0.0 UNIFIED -> 5.3.0 UNIFIED -> 5.5.0 UNIFIED -> 5.6.2 UNIFIED -> 5.7.0 UNIFIED -> 5.8 UNIFIED -> 5.9.0 UNIFIED -> 5.9.5 UNIFIED  
+This styleguide establishes the complete, mandatory engineering rules for deterministic, dual-language segregated, natively merged, taxonomically deduced, input-sanitized, shell-protected, terminal-decoupled, domain-shielded, and COLNIK‑validated architecture in Runtime 5.9.5 UNIFIED.
