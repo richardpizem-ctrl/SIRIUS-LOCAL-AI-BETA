@@ -1,13 +1,13 @@
-# 🧠 SYSTEM INTELLIGENCE LAYER 5.9.1 — Predictive, Resource-Supervised, Deep Explainable & Single-Process Orchestrated OS Awareness  
+# 🧠 SYSTEM INTELLIGENCE LAYER 5.9.5 — Predictive, Resource-Supervised, Deep Explainable & Single-Process Orchestrated OS Awareness  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.9.1 UNIFIED  
+**Version:** 5.9.5 UNIFIED  
 **Component:** System Intelligence Layer  
 **Role:** Real-time hardware telemetry, execution latency profiling, COLNÍK Guard auditing, HitL Safe Trash monitoring, Token Guard telemetry, terminal decoupling verification, anomaly detection, predictive safety, proof-tree explainability, single-process orchestrator routing, and customs-grade triage containment  
 
 ---
 
 ## 🎯 Purpose  
-The System Intelligence Layer 5.9.1 provides real-time, low-overhead OS and host workstation awareness for SIRIUS Local AI.  
+The System Intelligence Layer 5.9.5 provides real-time, low-overhead OS and host workstation awareness for SIRIUS Local AI.  
 It monitors real-time CPU, RAM, and Disk metrics via Guard (< 1% overhead), tracks command execution latency via TimeCore (cycle_delta()), audits shell safety alongside COLNÍK Guard (0.0s hard blocking of forbidden commands), supervises non-destructive file disposal through the Human-in-the-Loop Safe Trash pipeline (GET /trash), enforces the 100-file sliding-window quarantine ceiling (COLNIK-6.x/envoy/quarantine/), audits Token Guard input drops (@#$%^&*), verifies terminal state decoupling (currentModule = "none"), detects process and execution loop anomalies, predicts risky states, evaluates caller identity tiers (OWNER / FAMILY / STRANGER), generates hierarchical proof trees (KG_EXPLAIN & KG_EXPLAIN_DEEP), and routes decisions through the single-process orchestrator (sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant + TimeCore), interactive PanelAPI confirmation loops ([ÁNO/NIE] / [YES/NO]) with confirmation state latching, COLNIK-6.x (Standard & High-Performance IPC Mode), and AUTONOMY-6.x (Control, Guard, Safe Trash & Triage Mode).
 
 This layer elevates SIRIUS from simple automation to **OS-intelligent, predictive, explainable, single-process orchestrated, dual-language isolated, natively merged, input-sanitized, shell-protected, and customs-validated workstation autonomy**.
@@ -50,7 +50,7 @@ OS Telemetry & Hardware Signals → System Intelligence Layer & Guard → Token 
 
 ---
 
-## 🔍 Intelligence Pipeline (v5.9.1)  
+## 🔍 Intelligence Pipeline (v5.9.5)  
 
 ### 1 — Hardware Telemetry, Latency Profiling & OS Signal Collection  
 Under TimeCore temporal bounds and Guard supervision, the layer continuously monitors:  
@@ -193,8 +193,8 @@ The System Intelligence Layer provides real-time state telemetry to Self-Repair 
 
 ---
 
-## 📊 Module Status (v5.9.1)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.1 architecture  
+## 📊 Module Status (v5.9.5)  
+- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
 - ✔ Real-time Guard hardware telemetry operational (< 1% overhead)  
 - ✔ TimeCore latency profiling (cycle_delta()) active  
 - ✔ COLNÍK Guard 0.0s command blocking integration verified  
@@ -213,7 +213,7 @@ The System Intelligence Layer provides real-time state telemetry to Self-Repair 
 ---
 
 ## 🏁 Summary  
-System Intelligence Layer 5.9.1 is the real-time OS awareness, command auditing, and hardware telemetry core of SIRIUS Local AI.  
+System Intelligence Layer 5.9.5 is the real-time OS awareness, command auditing, and hardware telemetry core of SIRIUS Local AI.  
 It monitors system resources, profiles execution latency via TimeCore cycle_delta(), intercepts destructive shell routines in 0.0s via COLNÍK Guard, routes file removals into Human-in-the-Loop Safe Trash, enforces 100-file quarantine ceilings, decouples terminal inputs to protect host shells, drops malformed inputs via Token Guard, detects anomalies, predicts risks, evaluates caller identity, generates hierarchical proof trees, and routes decisions through central orchestrator supervision, PanelAPI confirmation, COLNIK-6.x customs gates, and AUTONOMY-6.x governance.
 
 It transforms SIRIUS into a **system-intelligent, predictive, explainable, single-process orchestrated, dual-language isolated, natively merged, and autonomy-supervised workstation** capable of operating Windows 11 safely, deterministically, and with 100% offline sovereignty.
