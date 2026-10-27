@@ -14,187 +14,187 @@ It runs natively as a single-process daemon directly through `sirius_orchestrato
 
 The interface implements a fully decoupled architecture across four specialized panels (**Duplicates**, **Triage**, **Navigation**, **Terminal**), integrates entry-level **Token Guard** filtering (`@#$%^&*` drop), pre-processing spellcheck (`spellcheck_engine.py`), greedy trailing punctuation stripping (`.rstrip("?")`), supports confirmation state latching across conversation turns, enforces **COLNÍK Guard** shell protection (0.0s hard blocks on destructive commands like `format` and `diskpart`), and manages the **Human-in-the-Loop Safe UI Trash** pipeline (`GET /trash`).
 
-Výstup do UI je striktne podriadený vrstve **Professor Middleware Layer** (`Professor Validator`): Runtime Core môže v Znalostnom Grafe nájsť čokoľvek, ale Professor rozhodne (cez stavy **PASS / WARN / REJECT**), či a v akej forme sa výstup používateľovi vôbec zobrazí. Zároveň interface vynucuje kľúčový mechanizmus **Terminal State Decoupling**: vymazanie vstupného poľa alebo zrušenie príkazu okamžite resetuje kontext terminálu na `currentModule = "none"`, čím permanentne bráni úniku konverzačných dotazov do hostiteľského shellu Windows 11.
+UI output is strictly governed by the **Professor Middleware Layer** (`Professor Validator`): while the Runtime Core can discover any arbitrary data within the Knowledge Graph, the Professor determines (via **PASS / WARN / REJECT** states) whether and in what format that output is presented to the user. Concurrently, the interface enforces the critical **Terminal State Decoupling** mechanism: clearing the input field or canceling a command immediately resets the terminal context to `currentModule = "none"`, permanently preventing conversational queries from leaking into the host Windows 11 shell.
 
 ---
 
 ## 🧩 Architecture Overview  
-[ UŽÍVATEĽ / UI PANEL (Port 8080) ]  
-          │ (Zadanie dopytu / Príkaz)  
+[ USER / UI PANEL (Port 8080) ]  
+          │ (Query Input / Command)  
           ▼  
-Token Guard (@#$%^&* drop) → spellcheck_engine.py (Korekcia preklepov a diakritiky)  
+Token Guard (@#$%^&* drop) → spellcheck_engine.py (Typo and diacritics correction)  
           ▼  
-sirius_orchestrator.py (Port 8080 s TerminalAssistant + TimeCore)  
+sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore)  
           ▼  
 COLNÍK Guard (0.0s Hard Block) → Terminal Decoupling Guard (currentModule = "none")  
           ▼  
-RuntimeCore 5.9.5 (Vyhľadávanie v autosave_kg.json / autosave_kg_en.json)  
-          │ (Surová odpoveď / Dáta z grafu)  
+RuntimeCore 5.9.5 (Lookup in autosave_kg.json / autosave_kg_en.json)  
+          │ (Raw response / Graph data)  
           ▼  
 ┌────────────────────────────────────────────────────────┐  
-│                PROFESSOR MIDDLEWARE LAYER              │  
+│               PROFESSOR MIDDLEWARE LAYER               │  
 │                                                        │  
 │   1. Professor Cleaner / grammar_engine.py             │  
 │   2. Professor Validator (PASS / WARN / REJECT)        │  
 │   3. Professor Summarizer / professor_miner.py         │  
 └────────────────────────────────────────────────────────┘  
-          │ (Filtrovaná, obohatená a validovaná odpoveď)  
+          │ (Filtered, enriched, and validated response)  
           ▼  
 PanelAPI [ÁNO/NIE] / [YES/NO] → COLNIK-6.x / AUTONOMY 6.x → HitL Safe Trash (GET /trash)  
           ▼  
-[ UI PANEL (V2) — Vykreslenie výsledku používateľovi ]  
+[ UI PANEL (V2) — Rendering the result to the user ]  
 
 ---
 
 ### Core Responsibilities  
-- hostovať webové rozhranie lokálne cez HTTP/WebSocket na porte 8080 v rámci jedného procesu s TerminalAssistant a TimeCore  
-- zahodiť škodlivé vstupné tokeny (@#$%^&*) okamžite na vstupe cez Token Guard a normalizovať text cez spellcheck_engine  
-- sprostredkovať výstup až po overení cez **Professor Validator** (prepustenie pri PASS, vizuálny príznak pri WARN, zablokovanie výstupu pri REJECT)  
-- vykonať okamžitý reset modulu (currentModule = "none") pri vymazaní vstupu na zaistenie úplnej izolácie od shellu OS  
-- smerovať terminálové príkazy cez COLNÍK Guard: 0.0s okamžité blokovanie zakázaných príkazov (format, diskpart, rmdir /s, del /f /s /q c:, drop database)  
-- spravovať Human-in-the-Loop Safe UI Trash: zachytávať priame mazanie súborov z disku a presúvať ich do karantény pre manuálnu kontrolu (GET /trash)  
-- poskytovať vizuálnu kontrolu a správu karanténneho radu v COLNIK-6.x/triage a dohliadať na strop posuvného okna karantény (100 súborov v COLNIK-6.x/envoy/quarantine/)  
-- zabezpečovať neinvazívny audit duplicitných súborov s prísnym uplatňovaním politiky REPORT_ONLY  
-- vykresľovať telemetriu hardvéru a profilovanie latencie príkazov asynchrónne (Guard CPU, RAM, Disk zaťaženie pod 1 %, TimeCore cycle_delta())  
-- riadiť interaktívne potvrdzovacie slučky cez PanelAPI ([ÁNO/NIE] / [YES/NO]) s potvrdeným stavom latchingu a nulovou redundanciou návrhov  
-- umožňovať plynulé prepínanie medzi používateľským a vývojárskym režimom naprieč izolovanými jazykovými partíciami grafu (SK / EN)  
+- Host the web interface locally via HTTP/WebSocket on port 8080 within a single process alongside TerminalAssistant and TimeCore  
+- Drop malicious input tokens (@#$%^&*) immediately at entry via Token Guard and normalize text through spellcheck_engine  
+- Relay output only after verification via **Professor Validator** (forward on PASS, visual uncertainty flag on WARN, output suppression on REJECT)  
+- Execute an immediate module reset (currentModule = "none") upon clearing input to guarantee total isolation from the OS shell  
+- Route terminal commands through COLNÍK Guard: 0.0s instantaneous blocking of prohibited commands (format, diskpart, rmdir /s, del /f /s /q c:, drop database)  
+- Manage Human-in-the-Loop Safe UI Trash: intercept direct disk-level file deletions and route them into quarantine for manual inspection (GET /trash)  
+- Provide visual inspection and management of the quarantine queue in COLNIK-6.x/triage and supervise the quarantine sliding window limit (100 files in COLNIK-6.x/envoy/quarantine/)  
+- Ensure non-invasive auditing of duplicate files with strict enforcement of the REPORT_ONLY policy  
+- Asynchronously render hardware telemetry and command latency profiling (Guard CPU, RAM, Disk overhead under 1%, TimeCore cycle_delta())  
+- Drive interactive confirmation loops via PanelAPI ([ÁNO/NIE] / [YES/NO]) with state latching and zero proposal redundancy  
+- Enable seamless switching between User and Developer modes across isolated language partitions of the graph (SK / EN)  
 
 ### Key Files & Endpoints  
-- ui_suite_8080/index.html (hlavný dashboard)  
-- ui_suite_8080/neon_theme.css (futuristický neónový vizuál)  
-- ui_suite_8080/app.js (manažment stavov modulov a WebSocket most)  
-- ui_suite_8080/terminal_decoupling_guard.js (uvoľnenie kontextu na "none")  
-- orchestrator/terminal_assistant.py (gatekeeper shell príkazov a profilovač latencie)  
-- colnik_6_x/colnik_guard.py (klasifikačná matica príkazov)  
-- runtime5/token_guard.py (filter symbolových injekcií)  
-- runtime5/spellcheck_engine.py (predspracovanie diakritiky a preklepov)  
-- runtime5/professor_validator.py (kvalitatívna brána PASS / WARN / REJECT)  
-- runtime5/grammar_engine.py (Professor Cleaner & extrakcia trojíc)  
+- ui_suite_8080/index.html (main dashboard)  
+- ui_suite_8080/neon_theme.css (futuristic neon visuals)  
+- ui_suite_8080/app.js (module state management and WebSocket bridge)  
+- ui_suite_8080/terminal_decoupling_guard.js (context release to "none")  
+- orchestrator/terminal_assistant.py (shell command gatekeeper and latency profiler)  
+- colnik_6_x/colnik_guard.py (command classification matrix)  
+- runtime5/token_guard.py (symbol injection filter)  
+- runtime5/spellcheck_engine.py (diacritics and typo pre-processing)  
+- runtime5/professor_validator.py (PASS / WARN / REJECT quality gate)  
+- runtime5/grammar_engine.py (Professor Cleaner & triplet extraction)  
 - runtime5/professor_miner.py (Professor Summarizer)  
-- filesystem/safe_trash_quarantine.py (správca karantény vymazaných súborov)  
-- runtime5/envoy_quarantine_5.py (rotátor posuvného okna karantény na 100 súborov)  
-- ORCHESTRATOR/sirius_orchestrator.py (jednoprocesový démon na porte 8080)  
-- PANEL_API/panel_api.py (spracovanie výziev [ÁNO/NIE] / [YES/NO])  
-- http://127.0.0.1:8080 (lokálny endpoint)  
-- GET /trash (rozhranie pre kontrolu a bezpečné vysypanie koša)  
+- filesystem/safe_trash_quarantine.py (deleted files quarantine manager)  
+- runtime5/envoy_quarantine_5.py (100-file sliding window quarantine rotator)  
+- ORCHESTRATOR/sirius_orchestrator.py (single-process daemon on port 8080)  
+- PANEL_API/panel_api.py (prompt handler for [ÁNO/NIE] / [YES/NO])  
+- http://127.0.0.1:8080 (local endpoint)  
+- GET /trash (interface for inspection and safe emptying of the trash)  
 
 ---
 
-## 🎓 Professor Middleware Layer (Kvalitatívna kontrola výstupu)
+## 🎓 Professor Middleware Layer (Output Quality Control)
 
-Medzi Runtime Core a UI Panelom stojí validačná vrstva **Professor**, ktorá garantuje, že do používateľského rozhrania sa nedostanú chybné, protirečivé alebo neúplné fakty:
+Positioned between the Runtime Core and the UI Panel, the **Professor** validation layer guarantees that erroneous, contradictory, or incomplete facts never reach the user interface:
 
 1. **Professor Cleaner (`grammar_engine.py`):**  
-   - Normalizuje vyťažené relácie a trojice, čistí stop-slová a izoluje zvratné zámená (*sa/si*).  
-   - Filtruje jednopísmenové spojky pre SK a neurčité členy pre EN bez poškodenia zmyslu viacslovných objektov.
+   - Normalizes extracted relations and triplets, cleans stopwords, and isolates reflexive pronouns (*sa/si*).  
+   - Filters single-letter conjunctions for SK and indefinite articles for EN without degrading the integrity of multi-word entities.
 
-2. **Professor Validator (Rozhodovacia logika):**  
-   - **PASS (Vysoká kvalita faktov):** Fakty sú konzistentné, overené a kompletné. Odpoveď je okamžite uvoľnená do UI.  
-   - **WARN (Použiteľné, ale neisté):** Fakty spĺňajú základné kritériá, ale majú nižšiu mieru istoty. Odpoveď je odoslaná s vizuálnym neónovým príznakom neistoty.  
-   - **REJECT (Neúplné, poškodené alebo protirečivé):** Odpoveď sa vôbec nezostaví ani nezobrazí. UI dostane štruktúrovanú správu o zamietnutí:
+2. **Professor Validator (Decision Logic):**  
+   - **PASS (High Fact Quality):** Facts are consistent, verified, and complete. The response is immediately rendered to the UI.  
+   - **WARN (Usable but Uncertain):** Facts satisfy baseline criteria but exhibit a lower confidence threshold. The response is forwarded with a neon visual uncertainty flag.  
+   - **REJECT (Incomplete, Corrupted, or Contradictory):** The response is withheld entirely. The UI receives a structured rejection payload:
      ```json
      {
        "status": "REJECT",
        "reason": "INCOMPLETE_FACTS"
      }
      ```
-     *(Alternatívne dôvody: `"LOW_CONFIDENCE"`, `"CONTRADICTION"`)*
+     *(Alternative reasons: `"LOW_CONFIDENCE"`, `"CONTRADICTION"`)*
 
 3. **Professor Summarizer (`professor_miner.py`):**  
-   - Zabezpečuje syntézu viacerých faktických uzlov do stručného a prehľadného výstupu pre UI.
+   - Synthesizes multiple factual nodes into a concise, scannable UI output.
 
 ---
 
 ## 🖥 4-Panel Suite Layout (Port 8080)  
 
-### 1. Duplicates Panel (Manažment duplicitných súborov & Safe Trash)  
-- vizuálny prehľad duplicitných súborov nájdených na lokálnom disku  
-- prísne uplatňovanie pravidla REPORT_ONLY (žiadne automatické mazanie bez zásahu používateľa)  
-- integrácia Human-in-the-Loop Safe Trash: súbory smerujú do karantény a vyžadujú manuálne schválenie cez `GET /trash`  
-- priame prepojenie na Guard metriky diskového úložiska  
+### 1. Duplicates Panel (Duplicate File Management & Safe Trash)  
+- Visual overview of duplicate files discovered on the local drive  
+- Strict enforcement of the REPORT_ONLY rule (no automated deletion without explicit user intervention)  
+- Human-in-the-Loop Safe Trash integration: flagged files are routed to quarantine, requiring manual approval via `GET /trash`  
+- Direct pipeline integration with Guard disk telemetry metrics  
 
-### 2. Triage Panel (Karanténny rad COLNIK-6.x/triage & Sledovanie posuvného okna)  
-- sledovanie zachytených, neoverených alebo poškodených dát v reálnom čase  
-- monitorovanie limitu posuvného okna (striktne maximálne 100 JSON záznamov v `COLNIK-6.x/envoy/quarantine/`)  
-- kontrola normalizovaných dát z ENVOY 5 cez Non-Bio Domain Shield (`NonBioDomainShield`)  
-- explicitné tlačidlá na manuálne uvoľnenie (Release) alebo bezpečné vyradenie (Discard) karanténnych objektov  
+### 2. Triage Panel (COLNIK-6.x/triage Quarantine Queue & Sliding Window Tracking)  
+- Real-time tracking of intercepted, unverified, or corrupted data  
+- Sliding window capacity monitoring (strictly capped at 100 JSON records in `COLNIK-6.x/envoy/quarantine/`)  
+- Ingestion verification of normalized ENVOY 5 data guarded by the Non-Bio Domain Shield (`NonBioDomainShield`)  
+- Dedicated controls for manual release (Release) or safe disposal (Discard) of quarantined objects  
 
-### 3. Navigation Panel (Navigácia, Zdravie subsystémov & Duálny KG)  
-- deterministické prepínanie vetiev: Runtime Core, Duálny KG (`autosave_kg.json` & `autosave_kg_en.json`), Envoy Researcher, Bezpečnostný Vault a Autonómia  
-- dynamické prepínanie jazykového kontextu (SK / EN) do izolovaných grafov  
-- stavové indikátory neónového rozhrania:  
-  - Orchestrator: port 8080 aktívny s TerminalAssistant & TimeCore  
-  - Knowledge Graph: duálna partícia synchronizovaná (Lossless `kg merge` a `KG_VERIFY` aktívne)  
-  - Professor Validator: stav filtrovania a priepustnosti (PASS / WARN / REJECT)  
-  - COLNÍK Guard: ochrana príkazov shellu aktívna (0.0s blokovanie)  
-  - COLNIK-6.x Gate: štandardný aj IPC režim v prevádzke  
-  - Guard Telemetria: vyťaženie CPU, RAM a disku v norme (< 1 % réžia)  
-  - TimeCore: stabilný pulz `cycle_delta()` a profilovač latencie  
+### 3. Navigation Panel (Navigation, Subsystem Health & Dual KG)  
+- Deterministic branch routing: Runtime Core, Dual KG (`autosave_kg.json` & `autosave_kg_en.json`), Envoy Researcher, Security Vault, and Autonomy  
+- Dynamic language context switching (SK / EN) across isolated graphs  
+- Neon status indicators:  
+  - Orchestrator: port 8080 active with TerminalAssistant & TimeCore  
+  - Knowledge Graph: dual partitions synchronized (lossless `kg merge` and `KG_VERIFY` active)  
+  - Professor Validator: throughput and filtering state (PASS / WARN / REJECT)  
+  - COLNÍK Guard: shell command protection active (0.0s block latency)  
+  - COLNIK-6.x Gate: standard and IPC runtime operational  
+  - Guard Telemetry: CPU, RAM, and Disk overhead nominal (< 1% overhead)  
+  - TimeCore: steady `cycle_delta()` pulse and latency profiling  
 
-### 4. Terminal Panel (Izolovaná príkazová konzola & COLNÍK Guard)  
-- interaktívny neónový terminál s automatickým oddelením stavu (Decoupling):  
-  - vymazanie vstupu (Backspace/Clear) okamžite nastaví `currentModule = "none"`  
-  - zabraňuje tomu, aby bežné konverzačné otázky unikli ako príkazy do systémového shellu Windows (PowerShell/CMD)  
-  - Token Guard na vstupe zahadzuje reťazce s nepovolenými znakmi (`@#$%^&*`)  
-  - orezávanie otáznikov (`.rstrip("?")`) zabezpečuje čisté hľadanie v entitách  
-  - COLNÍK Guard v čase 0.0s zastavuje deštruktívne príkazy (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`)  
-  - viacstupňový dekodér výstupu (UTF-8 -> CP1250 -> CP852) garantuje nepoškodenú diakritiku  
-  - podpora viacslovných fráz cez InputParser5 a zobrazenie stromov odvodenia (`KG_EXPLAIN_DEEP`)  
+### 4. Terminal Panel (Isolated Command Console & COLNÍK Guard)  
+- Interactive neon terminal with automated State Decoupling:  
+  - Clearing input (Backspace/Clear) immediately sets `currentModule = "none"`  
+  - Prevents standard conversational queries from leaking as command strings into the host Windows shell (PowerShell/CMD)  
+  - Token Guard immediately drops illegal character strings (`@#$%^&*`) on input  
+  - Trailing question mark trimming (`.rstrip("?")`) guarantees clean entity resolution  
+  - COLNÍK Guard halts destructive commands at 0.0s (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`)  
+  - Multi-tier output decoding pipeline (UTF-8 -> CP1250 -> CP852) guarantees pristine diacritics  
+  - Support for multi-word phrases via InputParser5 alongside deductive inference trees (`KG_EXPLAIN_DEEP`)  
 
 ---
 
 ## 🔀 Operating Modes  
 
-### User Mode (Bežná prevádzka)  
-- čisté neónové rozhranie zamerané na dialóg, overovanie faktov, školské úlohy (SCHOOLWORK bypass) a skúmanie znalostného grafu  
-- všetky výstupy sú overené validačnou vrstvou Professor  
-- interaktívne potvrdzovanie nových entít cez PanelAPI (`[ÁNO/NIE]` / `[YES/NO]`) s latchingom stavu  
-- systémové administrátorské príkazy a shell sú úplne skryté a zablokované  
+### User Mode (Standard Operation)  
+- Clean neon UI focused on dialogue, fact verification, academic inquiries (SCHOOLWORK bypass), and knowledge graph navigation  
+- All outputs are gated and verified by the Professor validation layer  
+- Interactive new entity confirmation via PanelAPI (`[ÁNO/NIE]` / `[YES/NO]`) with state latching  
+- Administrative operating system commands and raw shell access remain hidden and strictly locked  
 
-### Developer Mode (Inžiniersky a auditný režim)  
-- podrobný tracing orchestrátora, profilovanie latencie TimeCore (`cycle_delta()`) a zber IPC kanálov  
-- správa natívneho zlučovania entít (`kg merge <src> into <tgt>`) a taxonomickej dedukcie (`KG_VERIFY`)  
-- zobrazenie stromov dôkazov (ASCII a HTML proof trees) z `KG_EXPLAIN_DEEP`  
-- diagnostika vrstvy Professor Validator: detailné dôvody pre REJECT a WARN stavy  
-- nástroje na správu aliasov (`kg add alias`, `kg merge`, `kg reverse location`, `kg debug stats`, `kg release`)  
-- priamy prístup k hardvérovej telemetrii Guard a colným verdiktom COLNIK-6.x (ALLOW / DENY / TRIAGE)  
-- živá kontrola karantény `COLNIK-6.x/triage` a Safe UI Trash (`GET /trash`)  
+### Developer Mode (Engineering & Audit Operation)  
+- Low-level orchestrator tracing, TimeCore latency profiling (`cycle_delta()`), and IPC stream monitoring  
+- Native entity merge controls (`kg merge <src> into <tgt>`) and taxonomic deduction auditing (`KG_VERIFY`)  
+- Visual rendering of proof trees (ASCII and HTML formats) via `KG_EXPLAIN_DEEP`  
+- Professor Validator diagnostics: inspection of granular REJECT and WARN telemetry  
+- Entity alias management tools (`kg add alias`, `kg merge`, `kg reverse location`, `kg debug stats`, `kg release`)  
+- Direct inspection of Guard hardware telemetry and COLNIK-6.x triage verdicts (ALLOW / DENY / TRIAGE)  
+- Live control of `COLNIK-6.x/triage` quarantine and the Safe UI Trash pipeline (`GET /trash`)  
 
 ---
 
 ## 🎨 Design & Security Principles  
-- **Futuristic Neon Aesthetic:** ergonomické tmavé pozadie kombinované s vysoko kontrastnými prvkami pre dlhodobú prácu  
-- **Professor Quality Gating:** Runtime Core síce vyhľadá dáta, ale Professor Middleware autoritatívne určí, či sa fakt smie zobraziť používateľovi  
-- **Terminal State Decoupling:** nulová šanca na únik konverzačného textu do shellu operačného systému (`currentModule = "none"`)  
-- **COLNÍK Guard Interception:** okamžité zastavenie zakázaných shell príkazov v 0.0s  
-- **Human-in-the-Loop Safe Trash:** blokovanie trvalého mazania; presun do karantény s manuálnou kontrolou cez `GET /trash`  
-- **Token Guard Entry Sanitization:** okamžité zahadzovanie injekčných sekvencií (`@#$%^&*`) na prahu UI  
-- **Confirmation State Latching:** udržanie ID čakajúceho návrhu v pamäti naprieč krokmi dialógu  
-- **Dual-Language Sovereignty:** prísne oddelené slovenské a anglické databázy bez miešania faktov  
-- **Single-Process Sovereignty:** orchestrátor, UI server, TerminalAssistant aj TimeCore bežia v jedinom procese `sirius_orchestrator.py`  
-- **Zero Recurrence Assurance:** potvrdené fakty a odvodené taxonómie sa už nikdy znova nepýtajú používateľa na potvrdenie  
-- **Strict Non-Destructive Defaults:** predvolený bezpečný režim REPORT_ONLY pre prácu so súbormi  
+- **Futuristic Neon Aesthetic:** High-contrast elements against an ergonomic dark theme optimized for long operational sessions  
+- **Professor Quality Gating:** The Runtime Core gathers graph data, but the Professor Middleware holds definitive authority on whether facts are permitted to reach the UI  
+- **Terminal State Decoupling:** Zero probability of conversational queries spilling into host OS shells (`currentModule = "none"`)  
+- **COLNÍK Guard Interception:** Instantaneous 0.0s halting of prohibited command executions  
+- **Human-in-the-Loop Safe Trash:** Deletion suppression in favor of quarantine routing with explicit sign-off via `GET /trash`  
+- **Token Guard Entry Sanitization:** Immediate dropping of injection patterns (`@#$%^&*`) at the UI threshold  
+- **Confirmation State Latching:** Retention of pending proposal IDs across conversational turns  
+- **Dual-Language Sovereignty:** Fully segregated Slovak and English database partitions preventing cross-linguistic contamination  
+- **Single-Process Sovereignty:** Orchestrator, UI server, TerminalAssistant, and TimeCore run entirely within a single `sirius_orchestrator.py` process  
+- **Zero Recurrence Assurance:** Confirmed facts and established taxonomies are permanently committed, eliminating repeated prompts  
+- **Strict Non-Destructive Defaults:** Standard operation strictly defaults to safe, non-destructive REPORT_ONLY handling  
 
 ---
 
 ## 📊 Module Status (v5.9.5)  
-- ✔ Plne stabilizované a pripravené na produkciu  
-- ✔ Autor architektúry: Richard Pizem  
-- ✔ 4-panelové rozhranie (Duplicates, Triage, Navigation, Terminal) nasadené  
-- ✔ Bezpečnostný reset `currentModule = "none"` aktívny  
-- ✔ Jednoprocesový beh na porte 8080 (`sirius_orchestrator.py` s TerminalAssistant a TimeCore)  
-- ✔ Professor Middleware Layer integrovaná (Cleaner, Validator PASS/WARN/REJECT, Summarizer)  
-- ✔ COLNÍK Guard 0.0s blokovanie deštruktívnych príkazov overené  
-- ✔ Human-in-the-Loop Safe UI Trash funkčný (`GET /trash`)  
-- ✔ Token Guard a orezávanie otáznikov (`.rstrip("?")`) aktívne  
-- ✔ Posuvné okno karantény (strop 100 súborov) aktívne  
-- ✔ PanelAPI potvrdzovacie slučky (`[ÁNO/NIE]` / `[YES/NO]`) s latchingom stavu funkčné  
-- ✔ Duálna vizualizácia grafu overená (`autosave_kg.json` a `autosave_kg_en.json`)  
-- ✔ Vizuálna integrácia karanténneho radu `COLNIK-6.x/triage` dokončená  
-- ✔ Guard telemetria hardvéru (CPU, RAM, Disk) v prevádzke s réžiou < 1 %  
+- ✔ Fully stabilized and production-ready  
+- ✔ Architectural design by Richard Pizem  
+- ✔ 4-panel layout (Duplicates, Triage, Navigation, Terminal) deployed  
+- ✔ Security reset mechanism `currentModule = "none"` active  
+- ✔ Single-process execution active on port 8080 (`sirius_orchestrator.py` with TerminalAssistant and TimeCore)  
+- ✔ Professor Middleware Layer integrated (Cleaner, Validator PASS/WARN/REJECT, Summarizer)  
+- ✔ COLNÍK Guard 0.0s destructive command interception verified  
+- ✔ Human-in-the-Loop Safe UI Trash operational (`GET /trash`)  
+- ✔ Token Guard and trailing question mark trimming (`.rstrip("?")`) active  
+- ✔ Sliding window quarantine limit (100 files ceiling) active  
+- ✔ PanelAPI interactive confirmation loops (`[ÁNO/NIE]` / `[YES/NO]`) with state latching verified  
+- ✔ Dual graph visualization verified (`autosave_kg.json` and `autosave_kg_en.json`)  
+- ✔ `COLNIK-6.x/triage` queue visual integration complete  
+- ✔ Guard hardware telemetry (CPU, RAM, Disk) operational with < 1% overhead  
 
 ---
 
 ## 🏁 Summary  
-UI PANEL 6.x v rámci architektúry **SIRIUS Local AI v5.9.5 UNIFIED**, navrhnutej Richardom Pizemom, predstavuje ucelené, bezpečné a neónovo ladené webové rozhranie na adrese `http://127.0.0.1:8080`.  
-Garantuje úplné oddelenie používateľského vstupu od hostiteľského shellu, blokuje deštruktívne príkazy v 0.0s cez COLNÍK Guard, presmerováva mazanie súborov do Safe Trash karantény, udržiava strop karantény na 100 súboroch a **cez validačnú vrstvu Professor prísne kontroluje kvalitu a konzistenciu každého jedného zobrazeného faktu** — **deterministicky, bezpečne, vysvetliteľne a 100 % offline**.
+UI PANEL 6.x within the **SIRIUS Local AI v5.9.5 UNIFIED** architecture, designed by Richard Pizem, delivers a unified, secure, neon-styled web suite operating at `http://127.0.0.1:8080`.  
+It guarantees complete decoupling of user input from the host shell, blocks destructive commands in 0.0s via COLNÍK Guard, routes file deletions through the Safe Trash quarantine, enforces a 100-file sliding window limit, and **strictly regulates the veracity, consistency, and completeness of every displayed fact through the Professor validation layer** — **deterministically, safely, explainably, and 100% offline**.
