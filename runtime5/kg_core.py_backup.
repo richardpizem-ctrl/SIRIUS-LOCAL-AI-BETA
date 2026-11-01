@@ -1,0 +1,527 @@
+from runtime5.logging_5 import log5
+from runtime5.health_monitor_5 import HealthMonitor5
+from runtime5.error_handler_5 import ErrorHandler5
+
+from runtime5.kg_schema import make_entity, make_relation
+
+
+class KnowledgeGraph:
+    """
+    Unified Knowledge Graph Core for Runtime 5.x
+    ENTITY:    { "name": str, "attributes": dict }
+    RELATION: { "source": str, "relation": str, "target": str }
+    """
+
+    def __init__(self):
+        self.entities = {}        # key: lowercase name → entity dict
+        self.relations = []       # list of relation dicts
+        self.relation_index = {}  # key: lowercase name → list of relations (source OR target)
+        self.explanations = {}    # entity → key → explanation dict
+        log5("[KnowledgeGraph] Initialized KG Core (Unified Schema)")
+
+    # --------------------------------------------------------
+    # ⭐⭐⭐ REQUIRED BY KG_LIST & KG_STATS
+    # --------------------------------------------------------
+    def list_entities(self):
+        try:
+            return list(self.entities.keys())
+        except Exception:
+            return []
+
+    def count_entities(self):
+        try:
+            return len(self.entities.keys())
+        except Exception:
+            return 0
+
+    def count_relations(self):
+        try:
+            return len(self.relations)
+        except Exception:
+            return 0
+
+    def count_attributes(self):
+        try:
+            total = 0
+            for ent in self.entities.values():
+                total += len(ent.get("attributes", {}))
+            return total
+        except Exception:
+            return 0
+
+    # --------------------------------------------------------
+    # ⭐⭐⭐ REQUIRED BY KG_STATS → ORPHANS
+    # --------------------------------------------------------
+    def count_orphans(self):
+        try:
+            orphans = 0
+            for name, ent in self.entities.items():
+                attrs = ent.get("attributes", {})
+                rels = self.get_relations(name)
+                if len(attrs) == 0 and len(rels) == 0:
+                    orphans += 1
+            return orphans
+        except Exception:
+            return 0
+
+    # --------------------------------------------------------
+    # ⭐⭐⭐ REQUIRED BY KG_GET, KG_UNSET, KG_RENAME, KG_EXISTS ⭐⭐⭐
+    # --------------------------------------------------------
+    def exists(self, entity: str) -> bool:
+        return entity.strip().lower() in self.entities
+
+    # --------------------------------------------------------
+    # ENTITY MANAGEMENT
+    # --------------------------------------------------------
+    def add_entity(self, name: str, attributes=None, silent: bool = False):
+        def _exec():
+            key = name.strip().lower()
+            attrs = attributes or {}
+
+            if isinstance(attrs, dict) and "attributes" in attrs and "name" in attrs:
+                attrs = attrs["attributes"]
+
+            if key in self.entities:
+                self.entities[key]["attributes"].update(attrs)
+                if not silent:
+                    log5(f"[KG] Updated entity: {name}")
+            else:
+                self.entities[key] = make_entity(name, attrs)
+                if not silent:
+                    log5(f"[KG] Added entity: {name}")
+
+        return ErrorHandler5.safe_execute(_exec, context=name)
+
+    def get_entity(self, name: str):
+        key = name.strip().lower()
+        return self.entities.get(key)
+
+    def get_facts(self, name: str):
+        key = name.strip().lower()
+        ent = self.entities.get(key)
+        return ent["attributes"] if ent else {}
+
+    def has_entity(self, name: str) -> bool:
+        return name.strip().lower() in self.entities
+
+    # --------------------------------------------------------
+    # ⭐⭐⭐ ENTITY RENAME (NEW – REQUIRED BY KG_RENAME) ⭐⭐⭐
+    # --------------------------------------------------------
+    def rename_entity(self, old_name: str, new_name: str):
+        def _exec():
+            old_key = old_name.strip().lower()
+            new_key = new_name.strip().lower()
+
+            # 1. Old entity must exist
+            if old_key not in self.entities:
+                log5(f"[KG] RENAME: Entity '{old_name}' does not exist.")
+                return {
+                    "status": "error",
+                    "message": f"Entity '{old_name}' does not exist."
+                }
+
+            # 2. New entity must NOT exist
+            if new_key in self.entities:
+                log5(f"[KG] RENAME: Entity '{new_name}' already exists.")
+                return {
+                    "status": "error",
+                    "message": f"Entity '{new_name}' already exists."
+                }
+
+            # 3. Move entity data
+            self.entities[new_key] = self.entities.pop(old_key)
+
+            # 4. Update relations (source + target)
+            for r in self.relations:
+                s = r.get("source", "").strip().lower()
+                t = r.get("target", "").strip().lower()
+
+                if s == old_key:
+                    r["source"] = new_name
+                if t == old_key:
+                    r["target"] = new_name
+
+            # 5. Update relation_index
+            if old_key in self.relation_index:
+                self.relation_index[new_key] = self.relation_index.pop(old_key)
+
+            for key in list(self.relation_index.keys()):
+                updated = []
+                for r in self.relation_index[key]:
+                    s = r.get("source", "").strip().lower()
+                    t = r.get("target", "").strip().lower()
+
+                    if s == old_key:
+                        r["source"] = new_name
+                    if t == old_key:
+                        r["target"] = new_name
+
+                    updated.append(r)
+
+                self.relation_index[key] = updated
+
+            log5(f"[KG] Renamed entity '{old_name}' → '{new_name}'")
+
+            return {
+                "status": "ok",
+                "message": f"Entity '{old_name}' renamed to '{new_name}'."
+            }
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"old": old_name, "new": new_name},
+            fallback=False
+        )
+
+    # --------------------------------------------------------
+    # ATTRIBUTE GET
+    # --------------------------------------------------------
+    def get_attributes(self, entity: str):
+        key = entity.strip().lower()
+        ent = self.entities.get(key)
+        return ent["attributes"] if ent else {}
+
+    # --------------------------------------------------------
+    # ATTRIBUTE SET
+    # --------------------------------------------------------
+    def set_attribute(self, entity: str, key: str, value, silent: bool = False):
+        def _exec():
+            e = entity.strip().lower()
+
+            if e not in self.entities:
+                self.entities[e] = make_entity(entity)
+
+            if key == "attributes" and isinstance(value, dict) and "attributes" in value and "name" in value:
+                clean = value["attributes"]
+                self.entities[e]["attributes"].update(clean)
+            else:
+                self.entities[e]["attributes"][key] = value
+
+            if not silent:
+                log5(f"[KG] Set attribute: {entity}.{key} = {value}")
+
+            return True
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"entity": entity, "key": key, "value": value}
+        )
+
+    # --------------------------------------------------------
+    # ATTRIBUTE UNSET
+    # --------------------------------------------------------
+    def unset_attribute(self, entity: str, key: str):
+        def _exec():
+            e = entity.strip().lower()
+
+            if e not in self.entities:
+                return False
+
+            attrs = self.entities[e].get("attributes", {})
+            if key not in attrs:
+                return False
+
+            del attrs[key]
+            log5(f"[KG] Unset attribute: {entity}.{key}")
+            return True
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"entity": entity, "key": key},
+            fallback=False
+        )
+
+    # --------------------------------------------------------
+    # LEGACY ATTRIBUTE SET
+    # --------------------------------------------------------
+    def set_fact(self, entity: str, key: str, value, silent: bool = False):
+        def _exec():
+            e = entity.strip().lower()
+
+            if e not in self.entities:
+                self.entities[e] = make_entity(entity)
+
+            if key == "attributes" and isinstance(value, dict) and "attributes" in value and "name" in value:
+                clean = value["attributes"]
+                self.entities[e]["attributes"].update(clean)
+            else:
+                self.entities[e]["attributes"][key] = value
+
+            if not silent:
+                log5(f"[KG] SET {entity}.{key} = {value}")
+
+            return True
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"entity": entity, "key": key, "value": value}
+        )
+
+    # --------------------------------------------------------
+    # RELATIONS
+    # --------------------------------------------------------
+    def add_relation(self, source: str, relation: str, target: str, silent: bool = False):
+        def _exec():
+            s = source.strip().lower()
+            t = target.strip().lower()
+
+            # --- SIRIUS KG INPUT FILTER (GUARD) ---
+            bad_subjects = {
+                "they", "there", "thi", "the", "the other", "it", "this", "these",
+                "that", "those", "what", "which", "who", "whom", "whose", "he", "she",
+                "we", "you", "one", "another", "some", "many", "such"
+            }
+            if s in bad_subjects or s.startswith("thi ") or len(s) < 2:
+                return False
+            t_words = t.split()
+            if len(t_words) < 2 or t in ("a substance", "a thing", "an object", "a type"):
+                return False
+            # --------------------------------------
+
+            if s not in self.entities:
+                self.entities[s] = make_entity(source)
+            if t not in self.entities:
+                self.entities[t] = make_entity(target)
+
+            for r in self.relations:
+                if r["source"].lower() == s and r["relation"] == relation and r["target"].lower() == t:
+                    if not silent:
+                        log5(f"[KG] Relation already exists: {source} -[{relation}]-> {target}")
+                    return True
+
+            rel = make_relation(source, relation, target)
+            self.relations.append(rel)
+
+            self.relation_index.setdefault(s, []).append(rel)
+            self.relation_index.setdefault(t, []).append(rel)
+
+            if not silent:
+                log5(f"[KG] Added relation: {source} -[{relation}]-> {target}")
+
+            return True
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"source": source, "relation": relation, "target": target}
+        )
+
+    # --------------------------------------------------------
+    # REMOVE RELATION
+    # --------------------------------------------------------
+    def remove_relation(self, source: str, relation: str, target: str):
+        def _exec():
+            s = source.strip().lower()
+            t = target.strip().lower()
+
+            removed = False
+
+            new_relations = []
+            for r in self.relations:
+                if r["source"].lower() == s and r["relation"] == relation and r["target"].lower() == t:
+                    removed = True
+                else:
+                    new_relations.append(r)
+
+            self.relations = new_relations
+
+            if s in self.relation_index:
+                self.relation_index[s] = [
+                    r for r in self.relation_index[s]
+                    if not (r["source"].lower() == s and r["relation"] == relation and r["target"].lower() == t)
+                ]
+
+            if t in self.relation_index:
+                self.relation_index[t] = [
+                    r for r in self.relation_index[t]
+                    if not (r["source"].lower() == s and r["relation"] == relation and r["target"].lower() == t)
+                ]
+
+            if removed:
+                log5(f"[KG] Removed relation: {source} -[{relation}]-> {target}")
+            else:
+                log5(f"[KG] Relation not found: {source} -[{relation}]-> {target}")
+
+            return removed
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"source": source, "relation": relation, "target": target},
+            fallback=False
+        )
+
+    # --------------------------------------------------------
+    # ⭐⭐⭐ REQUIRED BY KG_EXPLAIN_DEEP & KG_EXPLORE
+    # --------------------------------------------------------
+    def get_relations(self, entity: str = None):
+        def _exec():
+            if entity is None:
+                return self.relations
+
+            e = entity.strip().lower()
+            results = []
+
+            for r in self.relations:
+                s = r.get("source", "").strip().lower()
+                t = r.get("target", "").strip().lower()
+
+                if s == e or t == e:
+                    results.append(r)
+
+            return results
+
+        return ErrorHandler5.safe_execute(_exec, context=entity, fallback=[])
+
+    # --------------------------------------------------------
+    # ⭐⭐⭐ NEW: REQUIRED BY REASONING RULES (DedicsnostVlastnostiRule, TranzitivneRelacieRule, etc.)
+    # --------------------------------------------------------
+    def get_relations_between(self, source: str, target: str, relation: str = None):
+        """
+        Vráti všetky relácie medzi daným source a target.
+        Ak je relation zadané, filtruje aj podľa typu relácie.
+        """
+        def _exec():
+            s = source.strip().lower()
+            t = target.strip().lower()
+            rel_type = relation
+
+            results = []
+            for r in self.relations:
+                rs = r.get("source", "").strip().lower()
+                rt = r.get("target", "").strip().lower()
+                rr = r.get("relation")
+
+                if rs == s and rt == t:
+                    if rel_type is None or rr == rel_type:
+                        results.append(r)
+
+            return results
+
+        return ErrorHandler5.safe_execute(
+            _exec,
+            context={"source": source, "target": target, "relation": relation},
+            fallback=[]
+        )
+
+    # --------------------------------------------------------
+    # OUTBOUND / INBOUND HELPERS
+    # --------------------------------------------------------
+    def get_relations_outbound(self, entity: str):
+        def _exec():
+            e = entity.strip().lower()
+            results = []
+
+            for r in self.relations:
+                s = r.get("source", "").strip().lower()
+                if s == e:
+                    results.append(r)
+
+            return results
+
+        return ErrorHandler5.safe_execute(_exec, context=entity, fallback=[])
+
+    def get_relations_inbound(self, entity: str):
+        def _exec():
+            e = entity.strip().lower()
+            results = []
+
+            for r in self.relations:
+                t = r.get("target", "").strip().lower()
+                if t == e:
+                    results.append(r)
+
+            return results
+
+        return ErrorHandler5.safe_execute(_exec, context=entity, fallback=[])
+
+    # --------------------------------------------------------
+    # NEIGHBORS
+    # --------------------------------------------------------
+    def get_neighbors(self, entity: str):
+        def _exec():
+            e = entity.strip().lower()
+            neighbors = set()
+
+            for r in self.relations:
+                s = r.get("source", "").strip().lower()
+                t = r.get("target", "").strip().lower()
+
+                if s == e and t:
+                    neighbors.add(t)
+                elif t == e and s:
+                    neighbors.add(s)
+
+            return list(neighbors)
+
+        return ErrorHandler5.safe_execute(_exec, context=entity, fallback=[])
+
+    # --------------------------------------------------------
+    # RELATION FILTER BY TYPE
+    # --------------------------------------------------------
+    def get_relations_by_type(self, relation_type: str):
+        return [
+            r for r in self.relations
+            if r.get("relation") == relation_type or r.get("type") == relation_type
+        ]
+
+    # --------------------------------------------------------
+    # GET ALL RELATIONS
+    # --------------------------------------------------------
+    def get_all_relations(self):
+        return list(self.relations)
+
+    # --------------------------------------------------------
+    # EXPLANATION STORAGE
+    # --------------------------------------------------------
+    def add_explanation(self, entity: str, key: str, explanation: dict):
+        e = entity.strip().lower()
+        self.explanations.setdefault(e, {})
+        self.explanations[e][key] = explanation
+
+    def get_explanation(self, entity: str, key: str):
+        e = entity.strip().lower()
+        return self.explanations.get(e, {}).get(key)
+
+    # --------------------------------------------------------
+    # EXPORT / IMPORT
+    # --------------------------------------------------------
+    def export_json(self):
+        return {
+            "entities": {
+                name: ent["attributes"]
+                for name, ent in self.entities.items()
+            },
+            "relations": self.relations
+        }
+
+    def import_json(self, data, silent: bool = False):
+        self.entities = {}
+        self.relations = []
+        self.relation_index = {}
+
+        for name, attrs in data.get("entities", {}).items():
+            if isinstance(attrs, dict) and "attributes" in attrs and "name" in attrs:
+                attrs = attrs["attributes"]
+            self.add_entity(name, attrs, silent=True)
+
+        for r in data.get("relations", []):
+            src = r.get("source")
+            rel = r.get("relation")
+            tgt = r.get("target")
+
+            if src and rel and tgt:
+                self.add_relation(src, rel, tgt, silent=True)
+            else:
+                log5(f"[KG] Skipped invalid relation: {r}")
+
+        if not silent:
+            log5(f"[KG] AUTOLOAD completed: entities={len(self.entities)}, relations={len(self.relations)}")
+
+    # --------------------------------------------------------
+    # SNAPSHOT
+    # --------------------------------------------------------
+    def snapshot(self):
+        return {
+            "entities": self.entities,
+            "relations": self.relations,
+            "degraded": HealthMonitor5.is_degraded()
+        }
