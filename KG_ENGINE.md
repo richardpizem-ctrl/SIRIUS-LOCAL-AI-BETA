@@ -1,14 +1,14 @@
 # 🧠 KG ENGINE 6.x — Knowledge Graph Core  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.x  
-**SIRIUS Local AI Version:** 5.9.5  
+**SIRIUS Local AI Version:** 6.0.1  
 **Component:** KG ENGINE  
 **Role:** Unified symbolic knowledge graph engine powering isolated dual-language partitions, native lossless entity merging, taxonomical deduction, non-destructive reverse location reasoning, Token Guard sanitization, SafeRollback crash protection, Professor Validator verification, and multi-hop reasoning under orchestrator and PanelAPI supervision
 
 ---
 
 ## 🎯 Purpose  
-The KG ENGINE 6.x module is the central symbolic knowledge system of SIRIUS Local AI (v5.9.5).  
+The KG ENGINE 6.x module is the central symbolic knowledge system of SIRIUS Local AI (v6.0.1).  
 It manages isolated language stores (`autosave_kg.json` for Slovak and `autosave_kg_en.json` for English), native lossless entity mergers (`kg merge`), ontological taxonomical deduction (`KG_VERIFY`), reverse habitat querying, compound semantic concepts, multi-alias mappings, and graph-based reasoning operations.  
 All explainability, relation discovery, and multi-hop inference rely directly on this engine.
 
@@ -17,7 +17,7 @@ KG ENGINE provides deterministic, transparent, and fully inspectable knowledge o
 ---
 
 ## 🧩 Architecture Overview  
-**Runtime 5.9.5 / InputParser5 → Token Guard → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE / RuntimeCore → SafeRollback / Professor Validator → ReasoningEngine5 → AUTONOMY 6.x → COLNIK (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → Dual-Graph Commit (`autosave_kg.json` / `autosave_kg_en.json`)**
+**Runtime 6.0.1 / InputParser5 → Token Guard → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE / RuntimeCore → SafeRollback / Professor Validator → ReasoningEngine5 → AUTONOMY 6.x → COLNIK (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → Dual-Graph Commit (`autosave_kg.json` / `autosave_kg_en.json`)**
 
 ### Core Responsibilities  
 - Manage entities, relations, and compound noun phrases (*ovcia vlna*, *mobilny telefon*, *pevna linka*)  
@@ -178,7 +178,7 @@ Upon confirmed learning, native merge, or developer command:
 ### **5 — Provide Output & Telemetry**  
 Results are dispatched to:  
 - ReasoningEngine5  
-- AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Safe Trash)  
+- AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Safe Trash, tested in `dist_V6_CHECK`)  
 - 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) on port 8080  
 
 ---
@@ -198,8 +198,8 @@ Results are dispatched to:
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully implemented & optimized for Runtime 5.9.5 architecture  
+## 📊 Module Status (v6.0.1)  
+- ✔ Fully implemented & optimized for Runtime 5.x architecture  
 - ✔ Dual-Language Graph Isolation (`autosave_kg.json` & `autosave_kg_en.json`) operational  
 - ✔ Native Lossless Entity Merge (`kg merge`) validated  
 - ✔ Taxonomical category inference auto-commit (`KG_VERIFY`) operational  
@@ -221,6 +221,6 @@ Results are dispatched to:
 ---
 
 ## 🏁 Summary  
-KG ENGINE 6.x is the symbolic core of SIRIUS Local AI (v5.9.5).  
+KG ENGINE 6.x is the symbolic core of SIRIUS Local AI (v6.0.1).  
 It manages isolated dual-language knowledge bases, native lossless entity merges, taxonomical deductions, reverse habitat queries, aliases, relations, explainability, and multi-hop reasoning with deterministic precision.  
-The engine is fully integrated with Runtime 5.9.5, `sirius_orchestrator.py` on port 8080, ReasoningEngine5, AUTONOMY 6.x, COLNIK-6.x, Token Guard, SafeRollback, Professor Validator, and PanelAPI, forming the foundation of SIRIUS’s transparent, offline-first knowledge architecture.
+The engine is fully integrated with Runtime 5.x, `sirius_orchestrator.py` on port 8080, ReasoningEngine5, AUTONOMY 6.x, COLNIK-6.x, Token Guard, SafeRollback, Professor Validator, and PanelAPI, forming the foundation of SIRIUS’s transparent, offline-first knowledge architecture.
