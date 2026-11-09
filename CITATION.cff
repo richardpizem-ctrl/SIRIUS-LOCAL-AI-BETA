@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as follows."
 title: "SIRIUS LOCAL AI"
-version: "5.9.5"
-date-released: 2026-10-22
+version: "6.0.1"
+date-released: 2026-11-09
 
 authors:
   - family-names: "Pizem"
@@ -15,8 +15,8 @@ keywords:
   - "local AI"
   - "offline assistant"
   - "modular AI runtime"
-  - "intelligent runtime 5.9.5"
-  - "runtime core 5.9.5 unified"
+  - "intelligent runtime 6.0.1"
+  - "runtime core 5.x unified"
   - "dual-language KG architecture"
   - "isolated knowledge graphs"
   - "autosave_kg.json"
@@ -59,9 +59,9 @@ keywords:
   - "terminal decoupling"
   - "duplicates triage navigation terminal"
   - "plugin system 5.x"
-  - "workflow engine 5.9.5"
-  - "reasoning engine 5.9.5"
-  - "explainability engine 5.9.5"
+  - "workflow engine 6.0.1"
+  - "reasoning engine 5.x"
+  - "explainability engine 6.0.1"
   - "KG_EXPLAIN"
   - "KG_EXPLAIN_DEEP"
   - "multi-hop inference"
@@ -71,9 +71,9 @@ keywords:
   - "evidence trees"
   - "confidence scoring"
   - "rule chaining"
-  - "semantic triage 5.9.5"
-  - "AITE 5.9.5"
-  - "unified knowledge graph 5.9.5"
+  - "semantic triage 6.0.1"
+  - "AITE 6.0.1"
+  - "unified knowledge graph 6.0.1"
   - "KG comfort commands"
   - "secure local processing"
   - "Windows automation"
@@ -86,8 +86,8 @@ keywords:
   - "time-limits engine v3"
   - "self-repair layer 5.8"
   - "health-check engine 5.8"
-  - "PC automation runtime 5.9.5"
-  - "Mobile Runtime 5.8"
+  - "PC automation runtime 6.0.1"
+  - "Mobile Runtime 5.x"
   - "ENVOY Execution Layer 5"
   - "ENVOY Permission Layer 5"
   - "safe external retrieval"
@@ -112,9 +112,9 @@ keywords:
   - "Guard supervision"
 
 abstract: >
-  SIRIUS LOCAL AI is a fully modular, offline-only AI runtime designed for secure,
+  SIRIUS LOCAL AI is a fully modular, offline-first AI runtime designed for secure,
   deterministic execution of commands, workflows, plugins, reasoning tasks, and
-  semantic automation. Version 5.9.5 introduces a major architectural leap with a
+  semantic automation. Version 6.0.1 introduces a major architectural leap with a
   native dual-language Knowledge Graph architecture (autosave_kg.json for SK and
   autosave_kg_en.json for EN) that completely segregates linguistic knowledge stores
   and eliminates cross-lingual contamination. It integrates a native lossless entity
@@ -122,16 +122,18 @@ abstract: >
   inference (KG_VERIFY) recognizing biological sub-taxa with persistent edge auto-commits,
   and delivers robust reverse location querying with anti-flora classification guards.
 
-  Version 5.9.5 further hardens system safety and stability through greedy trailing
+  Version 6.0.1 further hardens system safety and stability through greedy trailing
   punctuation stripping (.rstrip("?")), confirmation state latching across interactive
   turns, a hard Token Guard against malicious character sequences, an automated 100-file
   sliding-window quarantine rotator, TerminalAssistant with 0.0s blocking of forbidden
-  commands, a Human-in-the-Loop Safe Trash pipeline that prevents direct file destruction,
-  granular SafeRollback module-level backups and restorations, and strict cognitive verification
-  through Professor Validator middleware. Execution is driven centrally by sirius_orchestrator.py
-  through an integrated single-process IPC Daemon running natively on port 8080.
+  commands, a Human-in-the-Loop Safe Trash pipeline that prevents direct file destruction
+  (tested in dist_V6_CHECK), granular SafeRollback module-level backups and restorations,
+  and strict cognitive verification through Professor Validator middleware. Execution is driven
+  centrally by sirius_orchestrator.py through an integrated single-process IPC Daemon running
+  natively on port 8080.
 
   The system operates entirely on the user's device without cloud dependencies or
-  external data transmission. All operations adhere to strict security boundaries,
-  customs validation through COLNIK-6.x, autonomous supervision via AUTONOMY-6.x,
-  TimeCore latency profiling, Guard monitoring, and auditable symbolic explainability.
+  external data transmission (with optional user-approved ENVOY web lookups). All operations
+  adhere to strict security boundaries, customs validation through COLNIK-6.x, autonomous
+  supervision via AUTONOMY-6.x, TimeCore latency profiling, Guard monitoring, and auditable
+  symbolic explainability.
