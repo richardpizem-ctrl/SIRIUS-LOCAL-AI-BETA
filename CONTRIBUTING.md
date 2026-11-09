@@ -1,13 +1,13 @@
-# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 
 Thank you for your interest in contributing to SIRIUS LOCAL AI.  
 This document defines the rules, processes, and expectations for all contributors.  
 The goal is to maintain a clean, safe, modular, deterministic, explainable, and intelligent local AI system built on the Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback Crash Resilience, Professor Validator Middleware & COLNÍK Guard Security Protocol.
 
-All processing is fully local.  
-No data leaves your device.
+All processing is fully local (with optional user-approved ENVOY web lookups).  
+No data leaves your device without explicit consent.
 
-Version 5.9.5 updates these guidelines to include:
+Version **6.0.1** updates these guidelines to include:
 
 - Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)  
 - Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)  
@@ -20,14 +20,14 @@ Version 5.9.5 updates these guidelines to include:
 - SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and `shutil.rmtree` restorations)  
 - Professor Validator Middleware enforcing strict `PASS / WARN / REJECT` cognitive verification  
 - COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)  
-- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction  
+- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (tested in `dist_V6_CHECK`)  
 - 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with deterministic state release)  
 - Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)  
 - Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)  
 - Contextual Domain Shield & Sentence-Bound Bio Filter (`EnvoyNormalizer5`)  
 - PanelAPI & Native Integrated IPC Bridge  
 - TimeCore Latency Telemetry (`cycle_delta()`) & Guard Security/Metric Supervision  
-- Reasoning Engine 5.9.5 & Workflow Engine 5.9.5  
+- Reasoning Engine 5.x & Workflow Engine 6.0.1  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)  
 - Proof Tree & Evidence Tree Foundations  
 - COLNIK‑6.x Validation Layer (Standard & High-Performance IPC Mode)  
@@ -43,13 +43,13 @@ Version 5.9.5 updates these guidelines to include:
 - Explainability must remain transparent and deterministic  
 - No action may bypass user confirmations (PanelAPI `[ÁNO/NIE]` / `[YES/NO]`)  
 - Strict linguistic partition: SK and EN graph stores must never merge into a single mixed schema  
-- Human-in-the-Loop Safe Trash: files flagged for deletion must route to quarantine, never direct disk removal  
+- Human-in-the-Loop Safe Trash: files flagged for deletion must route to quarantine, never direct disk removal (tested in `dist_V6_CHECK`)  
 - Hard Token Guard: all inputs must be sanitized against forbidden symbolic injections  
 - No duplicate confirmation prompts on confirmed entities or deduced taxonomies (zero proposal recurrence)  
 - Compound natural language queries must preserve modifiers without arbitrary truncation  
 - Modular architecture must remain clean and strictly separated  
 - All contributions must respect existing module APIs and `sirius_orchestrator.py`  
-- No network operations or external data transmission (100% offline-first)  
+- Offline-first execution (with optional user-approved ENVOY web lookups)  
 - No hidden automation or background tasks without TimeCore/Guard supervision  
 - UI panels must remain decoupled; input clearing must reset module states (`currentModule = "none"`)  
 - No global mutable state or circular imports  
@@ -63,7 +63,7 @@ Version 5.9.5 updates these guidelines to include:
   - Professor Validator Middleware (`professor_validator.py`)  
   - EnvoyExecutionLayer5, EnvoyNormalizer5 & EnvoyQuarantine5  
   - COLNÍK Guard & TerminalAssistant  
-  - Human-in-the-Loop Safe Trash  
+  - Human-in-the-Loop Safe Trash (tested in `dist_V6_CHECK`)  
   - 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`)  
   - SECURITY FAMILY 5.x  
   - Identity Engine 3.1  
@@ -74,7 +74,7 @@ Version 5.9.5 updates these guidelines to include:
   - COLNIK‑6.x Validation Layer (Standard & IPC Mode)  
   - AUTONOMY 6.x (Control, Guard & Triage Mode)  
   - PanelAPI & TimeCore/Guard Supervision  
-- Reasoning Engine 5.9.5 must not be extended unsafely  
+- Reasoning Engine 5.x must not be extended unsafely  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP must remain transparent and correct  
 
 ---
@@ -83,7 +83,7 @@ Version 5.9.5 updates these guidelines to include:
 
 1. Fork the repository  
 2. Create a new branch for your change  
-3. Implement the change according to the Runtime 5.9.5 architecture  
+3. Implement the change according to the Runtime 5.x architecture  
 4. Test it in your local environment (Windows 11, Port 8080)  
 5. Submit a Pull Request with a clear description  
 
@@ -119,7 +119,7 @@ Key rules:
 - Envoy triage must respect disambiguation checks and anti-prefix guards  
 - SECURITY FAMILY 5.x code must follow safety-first design  
 - SCHOOLWORK ENGINE 5.8 must remain intact and non-bypassable  
-- Reasoning Engine 5.9.5 integrations must be deterministic and safe  
+- Reasoning Engine 5.x integrations must be deterministic and safe  
 - Self-Repair Layer 5.8 must not be disabled or bypassed  
 - System Agent 5 must validate all system-level actions  
 - ENVOY 5 must sanitize all web queries and prevent non-bio habitat leakage  
@@ -142,7 +142,7 @@ Every change must include:
 - predictable behavior under invalid inputs  
 - no silent failures  
 - no destructive operations without confirmation  
-- no reliance on external cloud APIs or network execution outside local IPC  
+- no reliance on external cloud APIs or network execution outside local IPC (with optional user-approved ENVOY web lookups)  
 
 If your change affects:
 
@@ -152,15 +152,15 @@ If your change affects:
 - **Taxonomical Reasoning (`KG_VERIFY`)** → test higher-order category deduction (*marsupials/macropods -> mammals*) and persistent edge auto-commit  
 - **Reverse Habitat Engine** → test multi-stem location parsing and anti-flora shielding on tree-dwelling fauna  
 - **TerminalAssistant & COLNÍK Guard** → test 0.0s blocking of forbidden commands (`format`, `diskpart`), prompt handling for risky commands, and TimeCore `cycle_delta()` telemetry  
-- **Safe UI Trash** → test file quarantine transitions and confirm zero direct unverified disk deletions  
+- **Safe UI Trash** → test file quarantine transitions and confirm zero direct unverified disk deletions (tested in `dist_V6_CHECK`)  
 - **EnvoyQuarantine5** → test sliding-window rotation ensuring the 100 JSON record ceiling is enforced  
 - **EnvoyExecutionLayer5** → test disambiguation resolution, prefix guards, strip-bracket fallback  
 - **EnvoyNormalizer5** → test habitat domain blocking for technological and abstract entities  
 - **SafeRollback** → test module-level `copytree` backups and `rmtree` restorations  
 - **Professor Validator** → test `PASS / WARN / REJECT` cognitive output verification  
 - **4-Panel UI Suite & PanelAPI** → test state resets on input clearance (`currentModule = "none"`), interactive `[ÁNO/NIE]` / `[YES/NO]` loops, and confirmation state latching  
-- **Workflow Engine 5.9.5 & Orchestrator** → test single-process routing via `sirius_orchestrator.py` on port 8080  
-- **Reasoning Engine 5.9.5** →  
+- **Workflow Engine 6.0.1 & Orchestrator** → test single-process routing via `sirius_orchestrator.py` on port 8080  
+- **Reasoning Engine 5.x** →  
   - multi-hop inference  
   - inheritance reasoning  
   - transitive reasoning  
@@ -228,7 +228,7 @@ Restrictions:
 - PRs must not weaken SECURITY FAMILY 5.x protections  
 - PRs must not interfere with SCHOOLWORK ENGINE 5.8  
 - PRs must not disable or bypass the Self-Repair Layer  
-- PRs must not misuse Reasoning Engine 5.9.5  
+- PRs must not misuse Reasoning Engine 5.x  
 - PRs must not introduce prefix drift or bypass disambiguation guards  
 - PRs must not bypass System Agent 5 validation  
 - PRs must not bypass ENVOY Execution/Permission Layers 5  
@@ -242,8 +242,8 @@ Restrictions:
 
 # 6. ❌ What We Do Not Accept
 
-- cloud-dependent or network-based execution pipelines  
-- automatic destructive file deletions without HitL quarantine routing  
+- cloud-dependent or network-based execution pipelines (without user-approved ENVOY options)  
+- automatic destructive file deletions without HitL quarantine routing (tested in `dist_V6_CHECK`)  
 - bridging or mixing Slovak and English knowledge graphs  
 - bypassing security, customs, Token Guard, or permission layers  
 - truncation of compound multi-word queries down to single tokens  
@@ -283,7 +283,7 @@ Guidelines:
 
 All contributions must respect:
 
-- `ARCHITECTURE.md` (v5.9.5)  
+- `ARCHITECTURE.md` (v6.0.1)  
 - `MODULE_MAP.md`  
 - `STYLEGUIDE.md`  
 - `SECURITY.md`  
@@ -318,13 +318,13 @@ Use clear, structured commit messages:
 - `fix: resolve reverse habitat fauna filtering with anti-flora guard`  
 - `sec: enforce Token Guard and COLNIK Guard 0.0s command blocking`  
 - `refactor: integrate SafeRollback backup and Professor Validator middleware`  
-- `docs: update CONTRIBUTING.md for v5.9.5`  
+- `docs: update CONTRIBUTING.md for v6.0.1`  
 
 Avoid vague messages like “update”, “fix stuff”, “misc changes”.
 
 ---
 
-# 10. 🧒 Family Safety Requirements (v5.9.5)
+# 10. 🧒 Family Safety Requirements (v6.0.1)
 
 Contributors must respect the integrity of the SECURITY FAMILY 5.x module:
 
@@ -353,10 +353,10 @@ Any PR affecting SECURITY FAMILY, SCHOOLWORK ENGINE, ENVOY, System Agent, COLNIK
 
 # 11. 📄 License
 
-All contributions are accepted only in accordance with the project’s SUL-3.2.0 License.
+All contributions are accepted only in accordance with the project’s MIT License.
 
 ---
 
 # 📌 Document Status
 
-Current version: **5.9.5** (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
+Current version: **6.0.1** (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
