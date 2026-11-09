@@ -3,16 +3,16 @@
 
 ---
 
-## v5.9.5 — Dual-Language KG Architecture + Native Lossless Entity Merge + Taxonomical Habitat Reasoning + Pre-Processing Spellcheck + Professor Middleware Layer + SafeRollback Crash Resilience + COLNÍK Guard Security Protocol (2026‑10‑22)
+## v6.0.1 — Dual-Language KG Architecture + Native Lossless Entity Merge + Taxonomical Habitat Reasoning + Pre-Processing Spellcheck + Professor Middleware Layer + SafeRollback Crash Resilience + COLNÍK Guard Security Protocol (2026‑11‑09)
 
 ### 🔥 Major Update
-Version 5.9.5 delivers a major architectural advancement focusing on complete bilingual knowledge isolation, native in-memory graph operations, resilient taxonomical inference, automated pre-processing diacritic and typo correction, authoritative cognitive fact verification through the Professor Middleware Layer, absolute state protection via SafeRollback, and comprehensive security hardening across the SIRIUS / COLNÍK ecosystem.  
-This release introduces independent, isolated storage backends for Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`), integrates a native lossless entity merge engine (`kg merge`) directly inside RuntimeCore, implements context-aware mammalian category deduction (`KG_VERIFY`), repairs reverse habitat querying with non-destructive flora shielding, integrates an entry-level pre-processing spellcheck engine (`spellcheck_engine.py`), enforces strict cognitive quality validation via the Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`) evaluating `PASS / WARN / REJECT` criteria, adds greedy trailing punctuation sanitization (`.rstrip("?")`), latches proposal confirmation states across interactive turns, implements granular module-level backup and restore via SafeRollback (`safe_rollback.py`), and formalizes the complete COLNÍK Guard security layer (featuring Token Guard, sliding-window quarantine rotation, and the Human-in-the-Loop Safe Trash pipeline).
+Version 6.0.1 delivers a major architectural advancement focusing on complete bilingual knowledge isolation, native in-memory graph operations, resilient taxonomical inference, automated pre-processing diacritic and typo correction, authoritative cognitive fact verification through the Professor Middleware Layer, absolute state protection via SafeRollback, and comprehensive security hardening across the SIRIUS / COLNÍK ecosystem.  
+This release introduces independent, isolated storage backends for Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`), integrates a native lossless entity merge engine (`kg merge`) directly inside RuntimeCore, implements context-aware mammalian category deduction (`KG_VERIFY`), repairs reverse habitat querying with non-destructive flora shielding, integrates an entry-level pre-processing spellcheck engine (`spellcheck_engine.py`), enforces strict cognitive quality validation via the Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`) evaluating `PASS / WARN / REJECT` criteria, adds greedy trailing punctuation sanitization (`.rstrip("?")`), latches proposal confirmation states across interactive turns, implements granular module-level backup and restore via SafeRollback (`safe_rollback.py`), and formalizes the complete COLNÍK Guard security layer (featuring Token Guard, sliding-window quarantine rotation, and the Human-in-the-Loop Safe Trash pipeline, tested in `dist_V6_CHECK`).
 
-The foundational principle of the v5.9.5 runtime is strictly enforced:  
+The foundational principle of the v6.0.1 runtime is strictly enforced:  
 > **Runtime Core and symbolic reasoning mechanisms may retrieve or infer any fact from the Knowledge Graph, but the Professor Middleware Layer authoritatively determines whether the output is permitted to reach the UI or commit to persistent state.**
 
-All operations execute 100% offline, orchestrated inside a single-process IPC daemon running natively on port 8080 via `sirius_orchestrator.py`.
+All operations execute locally and offline, orchestrated inside a single-process IPC daemon running natively on port 8080 via `sirius_orchestrator.py` (with optional user-approved ENVOY web lookups).
 
 ---
 
@@ -78,7 +78,7 @@ All operations execute 100% offline, orchestrated inside a single-process IPC da
 ---
 
 ### 🛡️ Comprehensive Security Protocol (COLNÍK Guard & Safe UI Trash)
-- **Safe UI Trash (Human-in-the-Loop):** Files flagged for removal (duplicates, empty folders, damaged files) are never deleted directly from disk; they are quarantined and require manual user approval via `GET /trash`.
+- **Safe UI Trash (Human-in-the-Loop):** Files flagged for removal (duplicates, empty folders, damaged files) are never deleted directly from disk; they are quarantined and require manual user approval via `GET /trash` (tested in `dist_V6_CHECK`).
 - **System File Protection:** System configurations, logs, code modules, knowledge graphs (`autosave_kg.json`, `autosave_kg_en.json`), and IPC buffers are strictly protected from modification.
 - **TerminalAssistant & COLNÍK Guard Shell Filter:**
   - **FORBIDDEN (0.0s Hard Block):** `format`, `rmdir /s`, `del /f /s /q c:`, `diskpart`, `drop database`, fork-bombs.
@@ -92,49 +92,57 @@ All operations execute 100% offline, orchestrated inside a single-process IPC da
 ---
 
 ### ⚙ Execution Command
-SIRIUS Runtime 5.9.5 is launched via the central orchestrator:
+SIRIUS Runtime v6.0.1 is launched via the central orchestrator:
 ```cmd
-python sirius_orchestrator.py --port 8080
-```
+python sirius_orchestrator.py
+📦 Included in ZIP (SIRIUS-KG-ALIAS-Windows-x64-REVIEW.zip)
+Full clean Runtime v6.0.1 codebase (all __pycache__ and compiled .pyc artifacts removed)
 
----
+sirius_orchestrator.py with native single-process port 8080 IPC bridge and embedded TerminalAssistant + TimeCore
 
-### 📦 Included in ZIP (`SIRIUS_LOCAL_AI_5.9.5.zip`)
-- Full clean Runtime 5.9.5 codebase (all `__pycache__` and compiled `.pyc` artifacts removed)
-- `sirius_orchestrator.py` with native single-process port 8080 IPC bridge and embedded `TerminalAssistant` + `TimeCore`
-- Dual knowledge graph stores: `autosave_kg.json` (SK) and `autosave_kg_en.json` (EN)
-- Pre-processing spellcheck module (`spellcheck_engine.py`)
-- Professor Middleware Layer: `grammar_engine.py` (Cleaner), `professor_validator.py` (PASS / WARN / REJECT Gate), and `professor_miner.py` (Summarizer)
-- SafeRollback backup/restore module (`safe_rollback.py`)
-- Native `kg merge` engine, Token Guard, and sliding-window quarantine rotator
-- Enhanced `InputParser5`, `EnvoyExecutionLayer5`, and `EnvoyNormalizer5`
-- 4-Panel UI suite assets and browser dashboard (`index.html` on port 8080)
-- COLNÍK 6.x validation subsystem (Standard, IPC Mode & COLNÍK Guard)
-- AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Safe Trash)
-- Full symbolic reasoning engine, XAI proof-tree pipeline, and taxonomical inference rules
+Dual knowledge graph stores: autosave_kg.json (SK) and autosave_kg_en.json (EN)
 
----
+Pre-processing spellcheck module (spellcheck_engine.py)
 
-## v5.9.1 — Dual-Language KG Architecture + Native Lossless Entity Merge + Taxonomical Habitat Reasoning + COLNÍK Guard Security Protocol (2026‑10‑06)
-*(Previous production version)*
+Professor Middleware Layer: grammar_engine.py (Cleaner), professor_validator.py (PASS / WARN / REJECT Gate), and professor_miner.py (Summarizer)
 
-## v5.9.0 — Semantic Multi-Word Parsing + Autonomous Envoy Disambiguation Triage + 4-Panel UI Suite + Multi-Alias KG Persistence (2026‑09‑25)
-*(Previous version)*
+SafeRollback backup/restore module (safe_rollback.py)
 
-## v5.8 — Unified Orchestrator + PanelAPI Loops + TimeCore & Guard Supervision + COLNIK/AUTONOMY IPC (2026‑09‑10)
-*(Previous version)*
+Native kg merge engine, Token Guard, and sliding-window quarantine rotator
 
-## v5.7.0 — Unified Logic Layer + Stabilized KG Platform + COLNIK‑AUTONOMY Integration
-*(Previous version)*
+Enhanced InputParser5, EnvoyExecutionLayer5, and EnvoyNormalizer5
 
-## v5.6.2 — Stabilized Logic Layer + Unified KG Platform
-*(Previous version)*
+4-Panel UI suite assets and browser dashboard (index.html on port 8080)
 
-## v5.5.0 — Unified Reasoning & Explainability Architecture
-*(Previous version)*
+COLNÍK validation subsystem (Standard, IPC Mode & COLNÍK Guard)
 
-## v5.0.0 — Unified Offline Reasoning Runtime
-*(Previous version)*
+AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Safe Trash)
 
-## v4.5.0 PRO — System Intelligence Expansion
-*(Previous version)*
+Full symbolic reasoning engine, XAI proof-tree pipeline, and taxonomical inference rules
+
+v5.9.5 — Dual-Language KG Architecture + Native Lossless Entity Merge + Taxonomical Habitat Reasoning + Pre-Processing Spellcheck + Professor Middleware Layer + SafeRollback Crash Resilience + COLNÍK Guard Security Protocol (2026‑10‑22)
+(Previous production version)
+
+v5.9.1 — Dual-Language KG Architecture + Native Lossless Entity Merge + Taxonomical Habitat Reasoning + COLNÍK Guard Security Protocol (2026‑10‑06)
+(Previous production version)
+
+v5.9.0 — Semantic Multi-Word Parsing + Autonomous Envoy Disambiguation Triage + 4-Panel UI Suite + Multi-Alias KG Persistence (2026‑09‑25)
+(Previous version)
+
+v5.8 — Unified Orchestrator + PanelAPI Loops + TimeCore & Guard Supervision + COLNIK/AUTONOMY IPC (2026‑09‑10)
+(Previous version)
+
+v5.7.0 — Unified Logic Layer + Stabilized KG Platform + COLNIK‑AUTONOMY Integration
+(Previous version)
+
+v5.6.2 — Stabilized Logic Layer + Unified KG Platform
+(Previous version)
+
+v5.5.0 — Unified Reasoning & Explainability Architecture
+(Previous version)
+
+v5.0.0 — Unified Offline Reasoning Runtime
+(Previous version)
+
+v4.5.0 PRO — System Intelligence Expansion
+(Previous version)
