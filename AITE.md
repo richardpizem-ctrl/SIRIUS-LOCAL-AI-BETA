@@ -1,16 +1,16 @@
-# ⚙️ Automatic Input Triage Engine (AITE) — v5.9.5  
-SIRIUS‑LOCAL‑AI Runtime 5.9.5 — Dual-Language KG Architecture, Native Merge & Orchestrated Protection
+# ⚙️ Automatic Input Triage Engine (AITE) — v6.0.1  
+SIRIUS‑LOCAL‑AI Runtime 5.x — Dual-Language KG Architecture, Native Merge & Orchestrated Protection
 
-AITE v5.9.5 is the latest production generation of the triage, routing, and semantic input processing layer engineered for the SIRIUS Runtime ecosystem.  
+AITE v6.0.1 is the latest production generation of the triage, routing, and semantic input processing layer engineered for the SIRIUS Runtime ecosystem.  
 It serves as the mission-critical gateway that parses multi-word queries, isolates copula grammatical terms, performs strict trailing punctuation stripping, binds active queries to language-isolated Knowledge Graphs (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN), and directs deterministic module execution under the central supervision of `sirius_orchestrator.py` and the COLNÍK Guard layer.
 
-AITE 5.9.5 is fully offline, deterministic, and natively synchronized across Runtime 5.9.5 components and the embedded IPC Bridge daemon on port 8080.
+AITE 6.0.1 is fully offline, deterministic, and natively synchronized across Runtime 5.x components and the embedded IPC Bridge daemon on port 8080.
 
 ---
 
-# 🚀 MODULE STATUS — v5.9.5 (PRODUCTION & INTEGRATED)
+# 🚀 MODULE STATUS — v6.0.1 (PRODUCTION & INTEGRATED)
 
-AITE 5.9.5 is fully aligned with the unified Runtime 5.9.5 production architecture:
+AITE 6.0.1 is fully aligned with the unified Runtime 5.x production architecture:
 
 - **Dual-Language Isolated Knowledge Stores:** Physical and logical partition across Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) graphs with dynamic language context switching.
 - **Native Lossless KG Merge Engine:** Full runtime support for `kg merge <src> into <tgt>` with attribute retention and automatic alias mapping.
@@ -21,14 +21,14 @@ AITE 5.9.5 is fully aligned with the unified Runtime 5.9.5 production architectu
 - **Hard Token Guard:** Instant entry-level rejection of corrupted and malicious symbol sequences (`@#$%^&*`).
 - **Envoy Sliding-Window Quarantine:** Automated rotation limiting log files to a maximum ceiling of 100 JSON records.
 - **COLNÍK Guard Shell Validation:** 0.0s hard blocking of forbidden system routines (`format`, `diskpart`) alongside telemetric profiling via TimeCore `cycle_delta()`.
-- **Safe UI Trash & Human-in-the-Loop (HitL):** Zero automated disk deletions; quarantine routing for user verification.
+- **Safe UI Trash & Human-in-the-Loop (HitL):** Zero automated disk deletions; quarantine routing for user verification (tested in `dist_V6_CHECK`).
 - **SafeRollback Integration:** Granular, module-level backup (`shutil.copytree`) and instant restoration (`shutil.rmtree`) for absolute crash and collision resilience.
 - **Professor Validator Matrix:** Strict `PASS / WARN / REJECT` decision middleware governing all cognitive outputs.
 - **Integrated IPC Bridge:** Single-process HTTP/OPTIONS server operating inside `sirius_orchestrator.py` on port 8080.
 
 ---
 
-# 🔥 What’s New in v5.9.5
+# 🔥 What’s New in v6.0.1
 
 ### Dual-Language Graph Binding (`autosave_kg.json` & `autosave_kg_en.json`)
 - **Strict Linguistic Isolation:** Total runtime and filesystem segregation between the Slovak knowledge base (`autosave_kg.json`) and the English knowledge base (`autosave_kg_en.json`), preventing cross-lingual contamination, mixed summaries, and bilingual hallucinations.
@@ -61,7 +61,7 @@ AITE 5.9.5 is fully aligned with the unified Runtime 5.9.5 production architectu
 
 # 1. Module Purpose
 
-AITE 5.9.5 automatically determines:
+AITE 6.0.1 automatically determines:
 
 - input category, structural layout, and trailing punctuation cleanup
 - whether compound noun tokens form an indivisible semantic concept
@@ -84,8 +84,8 @@ Supported inputs:
 
 # 2. Module Functions
 
-## 2.1 Input Recognition & Sanitization (Engine 5.9.5)
-AITE 5.9.5 recognizes and normalizes:
+## 2.1 Input Recognition & Sanitization (Engine 6.0.1)
+AITE 6.0.1 recognizes and normalizes:
 
 - multi-word compound phrases (`mobilny telefon`, `ovcia vlna`)
 - trailing question punctuation via `.rstrip("?")`
@@ -96,7 +96,7 @@ AITE 5.9.5 recognizes and normalizes:
 - affirmative and negative tokens across both languages (`ÁNO`, `ANO`, `YES`, `NIE`, `NO`)
 
 ## 2.2 Semantic Routing & Isolation Logic
-AITE 5.9.5 determines:
+AITE 6.0.1 determines:
 
 - binding to `self.kg_sk` or `self.kg_en` based on caller language headers
 - alias pathfinding to canonical nodes with attribute inheritance
@@ -123,27 +123,27 @@ AITE 5.9.5 determines:
 - commits raw payloads to `COLNIK-6.x/envoy/quarantine/` with 100-file sliding-window pruning
 
 ### COLNÍK 6.x & TerminalAssistant
-- validates console inputs and enforces the Human-in-the-Loop Safe Trash pipeline
+- validates console inputs and enforces the Human-in-the-Loop Safe Trash pipeline (tested in `dist_V6_CHECK`)
 - records latency telemetries via TimeCore `cycle_delta()`
 
 ---
 
 # 3. Module Architecture
 
-## 3.1 Components (v5.9.5)
+## 3.1 Components (v6.0.1)
 
-- **InputClassifier 5.9.5** — categorizes commands, queries, and multi-word compounds
-- **TokenGuard 5.9.5** — blocks malformed or malicious symbolic payloads
-- **LanguageContextRouter 5.9.5** — binds runtime instances to `kg_sk` or `kg_en`
-- **PunctuationSanitizer 5.9.5** — strips trailing question marks to prevent entity fragmentation
-- **TaxonomyReasoner 5.9.5** — deduces biological hierarchies (e.g., marsupials -> mammals)
-- **ReverseHabitatEngine 5.9.5** — conducts robust multi-stem geographical queries
-- **MergeInterceptor 5.9.5** — manages in-memory entity consolidation and alias formation
-- **ConfirmationLatch 5.9.5** — tracks pending proposal states across interactive turns
-- **COLNIKBridge 5.9.5** — coordinates terminal security and HitL quarantine deletion
-- **QuarantineRotator 5.9.5** — enforces sliding-window ceiling limits on stored cache files
+- **InputClassifier 6.0.1** — categorizes commands, queries, and multi-word compounds
+- **TokenGuard 6.0.1** — blocks malformed or malicious symbolic payloads
+- **LanguageContextRouter 6.0.1** — binds runtime instances to `kg_sk` or `kg_en`
+- **PunctuationSanitizer 6.0.1** — strips trailing question marks to prevent entity fragmentation
+- **TaxonomyReasoner 6.0.1** — deduces biological hierarchies (e.g., marsupials -> mammals)
+- **ReverseHabitatEngine 6.0.1** — conducts robust multi-stem geographical queries
+- **MergeInterceptor 6.0.1** — manages in-memory entity consolidation and alias formation
+- **ConfirmationLatch 6.0.1** — tracks pending proposal states across interactive turns
+- **COLNIKBridge 6.0.1** — coordinates terminal security and HitL quarantine deletion
+- **QuarantineRotator 6.0.1** — enforces sliding-window ceiling limits on stored cache files
 
-## 3.2 Processing Flow (v5.9.5)
+## 3.2 Processing Flow (v6.0.1)
 ```text
 User Input via UI Panel / Web Client (Port 8080)
 ↓
@@ -155,8 +155,8 @@ User Input via UI Panel / Web Client (Port 8080)
  Clean Input & Trailing Punctuation Stripping (.rstrip("?"))
 ↓
  Language Context Switch:
-   • Language == "EN" ──> Bind self.kg = self.kg_en (autosave_kg_en.json)
-   • Language == "SK" ──> Bind self.kg = self.kg_sk (autosave_kg.json)
+    • Language == "EN" ──> Bind self.kg = self.kg_en (autosave_kg_en.json)
+    • Language == "SK" ──> Bind self.kg = self.kg_sk (autosave_kg.json)
 ↓
  AITE Intent Classification:
  ├─ [Confirmation: ÁNO / YES] ──> Resolve Active Latch ──> Envoy Enrich ──> Atomic Save
@@ -167,4 +167,3 @@ User Input via UI Panel / Web Client (Port 8080)
  └─ [Entity Lookup: what is X?] ──> Check Local Graph
       ├─ [Found in KG] ──> Output Clean Summary
       └─ [Missing from KG] ──> Latch Confirmation State ──> Dispatch [ÁNO/NIE] Prompt
-      
