@@ -1,15 +1,15 @@
 # ⚡ AUTONOMY 6.x — Autonomous Decision Engine  
-**Status:** ✔ Production-Enhanced  
-**Version:** 6.x  
-**SIRIUS Local AI Version:** 5.9.5  
-**Component:** AUTONOMY  
-**Role:** Core autonomous reasoning, proposal generation, Dual-Language KG dispatch, Lossless Entity Merge governance, Human-in-the-Loop Safe Trash supervision, SafeRollback crash resilience, Professor Validator middleware, and 4-Panel UI integration
+Status: ✔ Production-Enhanced  
+Version: 6.x  
+SIRIUS Local AI Version: 6.0.1  
+Component: AUTONOMY  
+Role: Core autonomous reasoning, proposal generation, Dual-Language KG dispatch, Lossless Entity Merge governance, Human-in-the-Loop Safe Trash supervision, SafeRollback crash resilience, Professor Validator middleware, and 4-Panel UI integration
 
 ---
 
 ## 🎯 1. Purpose  
-The AUTONOMY 6.x module is the central decision-making, governance, and arbitration engine of the SIRIUS Local AI ecosystem (v5.9.5).  
-Its mission is to evaluate semantic reasoning signals, supervise safe learning proposals, bind execution context dynamically to isolated dual-language graphs (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN), coordinate native entity mergers (`kg merge`), supervise non-destructive quarantine workflows (Human-in-the-Loop Safe Trash), govern SafeRollback crash recovery, and orchestrate the full autonomy cycle via `sirius_orchestrator.py` on embedded port 8080 and PanelAPI.
+The AUTONOMY 6.x module is the central decision-making, governance, and arbitration engine of the SIRIUS Local AI ecosystem (v6.0.1).  
+Its mission is to evaluate semantic reasoning signals, supervise safe learning proposals, bind execution context dynamically to isolated dual-language graphs (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN), coordinate native entity mergers (`kg merge`), supervise non-destructive quarantine workflows (Human-in-the-Loop Safe Trash, tested in `dist_V6_CHECK`), govern SafeRollback crash recovery, and orchestrate the full autonomy cycle via `sirius_orchestrator.py` on embedded port 8080 and PanelAPI.
 
 AUTONOMY 6.x guarantees that autonomous knowledge acquisition, category deduction, and file operations remain 100% deterministic, audit-traceable, and strictly bound to user confirmation loops without proposal recurrence.
 
@@ -24,7 +24,7 @@ AUTONOMY 6.x guarantees that autonomous knowledge acquisition, category deductio
 - Supervise interactive learning proposals (`kg.learn_proposal`) with latched `[ÁNO/NIE]` / `[YES/NO]` state confirmation
 - Authorize and validate in-memory lossless entity mergers (`kg merge <src> into <tgt>`) with zero property loss and bi-directional alias tracking
 - Enforce taxonomical inference auto-commits (e.g., marsupials/macropods recognized as mammals) directly to the target graph with zero prompt recurrence
-- Govern non-destructive file disposal by routing deletions into isolated quarantine storage awaiting explicit HitL approval via `GET /trash`
+- Govern non-destructive file disposal by routing deletions into isolated quarantine storage awaiting explicit HitL approval via `GET /trash` (tested in `dist_V6_CHECK`)
 - Monitor terminal execution safety via COLNÍK Guard with 0.0s hard blocks on forbidden commands (`format`, `diskpart`, `rmdir /s`)
 - Enforce the 100-file sliding window ceiling inside `COLNIK-6.x/envoy/quarantine/` via automated rotation
 - Supervise SafeRollback crash and collision resilience (`safe_rollback.py`) executing granular module-level backups (`shutil.copytree`) and restorations (`shutil.rmtree`)
@@ -93,7 +93,7 @@ AUTONOMY updates internal state registers, clears temporary IPC buffers, release
 ## 🔐 4. Safety Rules  
 
 ### **Critical Safety Guarantees**  
-- 🔒 **Zero Direct File Deletions (HitL Safe Trash):** Files flagged for removal are never deleted directly; they are routed into quarantine and require manual user confirmation via `GET /trash`.  
+- 🔒 **Zero Direct File Deletions (HitL Safe Trash):** Files flagged for removal are never deleted directly; they are routed into quarantine and require manual user confirmation via `GET /trash` (tested in `dist_V6_CHECK`).  
 - 🛡️ **Terminal Command Access Control (COLNÍK Guard):** Immediate 0.0s hard blocking of forbidden commands (`format`, `rmdir /s`, `del /f /s /q c:`, `diskpart`, `drop database`).  
 - ⛔ **Token Guard Input Sanitization:** Commands containing dangerous character sequences (`@#$%^&*`) are blocked at runtime entry.  
 - 🗄️ **Dual-Language Isolation:** Total segregation between Slovak and English knowledge graphs, eliminating bilingual corruption and linguistic hallucinations.  
@@ -107,8 +107,8 @@ AUTONOMY updates internal state registers, clears temporary IPC buffers, release
 
 ---
 
-## 📊 5. Module Status (v5.9.5)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
+## 📊 5. Module Status (v6.0.1)  
+- ✔ Fully implemented & synchronized with Runtime 5.x architecture  
 - ✔ Production-enhanced and operational under Windows 11 on port 8080  
 - ✔ Dual-Language Graph Isolation (`autosave_kg.json` & `autosave_kg_en.json`) active  
 - ✔ Native Lossless Entity Merge (`kg merge`) validated  
@@ -118,7 +118,7 @@ AUTONOMY updates internal state registers, clears temporary IPC buffers, release
 - ✔ Hard Token Guard entry-level sanitization operational  
 - ✔ Envoy quarantine sliding-window rotation (100-file ceiling) active  
 - ✔ COLNÍK Guard shell access control (0.0s block on `format`) operational  
-- ✔ Safe UI Trash & Human-in-the-Loop quarantine pipeline active  
+- ✔ Safe UI Trash & Human-in-the-Loop quarantine pipeline active (tested in `dist_V6_CHECK`)  
 - ✔ SafeRollback backup & restore module fully integrated  
 - ✔ Professor Validator matrix (`PASS / WARN / REJECT`) active  
 - ✔ 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`) synchronized  
@@ -147,6 +147,6 @@ AUTONOMY updates internal state registers, clears temporary IPC buffers, release
 ---
 
 ## 🏁 7. Summary  
-AUTONOMY 6.x is the central decision, arbitration, and governance engine of SIRIUS Local AI (v5.9.5).  
+AUTONOMY 6.x is the central decision, arbitration, and governance engine of SIRIUS Local AI (v6.0.1).  
 It directs autonomous cycles (Control & Triage Mode), routes transactions across isolated dual-language knowledge graphs, governs lossless entity merges, deduces ontological taxonomies, eliminates repetitive interactive loops via auto-committing memory, and strictly protects system integrity through Token Guard, COLNÍK Guard, SafeRollback, Professor Validator, and the Human-in-the-Loop Safe Trash architecture.  
-Its deterministic logic guarantees robust, audit-ready, and predictable autonomous execution across the entire SIRIUS 5.9.5 runtime.
+Its deterministic logic guarantees robust, audit-ready, and predictable autonomous execution across the entire SIRIUS 5.x runtime.
