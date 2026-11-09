@@ -18,8 +18,8 @@
 
 ## ⚠️ Windows Startup Notice / Upozornenie pri spustení vo Windowse
 
-* **EN** — Extract the entire ZIP before running `SiriusOrchestrator.exe`. The executable in this release is unsigned. Depending on your Windows security settings, Windows may display a warning or block it from starting. If Windows blocks SIRIUS, please open a GitHub issue with your Windows version, the ZIP filename, and the exact error message.
-* **SK** — Pred spustením `SiriusOrchestrator.exe` rozbaľte celý ZIP. Spustiteľný súbor v tomto vydaní nemá digitálny podpis. Podľa nastavení zabezpečenia môže Windows zobraziť upozornenie alebo zablokovať spustenie. Ak Windows zablokuje SIRIUS, založte prosím GitHub issue a uveďte verziu Windowsu, názov ZIP-u a presnú chybovú hlášku.
+- **EN** — Extract the entire ZIP before running `SiriusOrchestrator.exe`. The executable in this release is unsigned. Depending on your Windows security settings, Windows may display a warning or block it from starting. If Windows blocks SIRIUS, please open a GitHub issue with your Windows version, the ZIP filename, and the exact error message.
+- **SK** — Pred spustením `SiriusOrchestrator.exe` rozbaľte celý ZIP. Spustiteľný súbor v tomto vydaní nemá digitálny podpis. Podľa nastavení zabezpečenia môže Windows zobraziť upozornenie alebo zablokovať spustenie. Ak Windows zablokuje SIRIUS, založte prosím GitHub issue a uveďte verziu Windowsu, názov ZIP-u a presnú chybovú hlášku.
 
 ---
 
@@ -90,24 +90,24 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 
 ---
 
-## 📋 What We Changed & Improved / Čo sme zmenili a vylepšili
+## 📋 What We Changed & Improved
 
-| Oblast / Area | Čo sme urobili (SK) | What We Did (EN) | Čo sme overili / Verified Results |
-| :--- | :--- | :--- | :--- |
-| **Windows EXE & Desktop Startup** | Dopracovali sme automatické otvorenie UI, obsluhu jeho súborov, riadené ukončenie a uloženie znalostného grafu pri vypnutí. | Integrated automatic UI launch, file handling, controlled shutdown, and Knowledge Graph autosave. | `.exe` opened the panel without manual CMD startup. Offline queries (e.g., "Čo je Slnko?") responded successfully. |
-| **EXE Content & Data Paths** | Zjednotili sme pracovné cesty pre IPC, Kôš a pomocný znalostný graf pod `SIRIUS_DATA`. | Unified working paths for IPC, Trash, and helper KG under `SIRIUS_DATA`. | Verified Runtime 5.x, Autonomy, Colník, Executor, and ENVOY modules inside the package. |
-| **Slovak, English & Diacritics** | Overili sme oddelené SK a EN grafy a vylepšili vyhľadávanie pre slová s diakritikou. | Verified separated SK/EN graphs and improved diacritics-insensitive search lookup. | Both queries like "CO JE MACKA DOMACA?" and "WHAT IS A ROUTER?" resolved correctly from the local graph. |
-| **ENVOY & Permissions** | Opravili sme načítavanie politík a preverili tok od otázky cez súhlas používateľa. | Fixed policy loading (`policies_envoy.json`) and verified user-consent workflows. | Loaded 5 rules successfully; external web queries correctly triggered explicit consent prompts. |
-| **Autonomy → Colník → Executor** | Oddelili sme vytváranie návrhov od ich vykonania a pridali voliteľný režim `--autonomy`. | Separated proposal generation from execution and added an optional `--autonomy` scanning mode. | Successfully detected file conflicts (`FILE_CONFLICT`) and processed safe `MOVE` operations via UI approval. |
-| **Trash & Recovery** | Dopracovali sme kontrolu tokenu, cesty, SHA-256 odtlačku a obnovu medzi diskami. | Added token validation, path checks, SHA-256 verification, and cross-volume file recovery. | Blocked unauthorized requests (HTTP 403) and successfully handled file restore/deletion workflows. |
-| **Terminal & Navigation** | Otestovali sme základné systémové príkazy a panelovú navigáciu. | Tested basic system commands and panel navigation features. | Command `mem` correctly outputted process stats; system modules opened smoothly. |
+| Area | What We Did | Verified Results |
+| :--- | :--- | :--- |
+| **Windows EXE & Desktop Startup** | Integrated automatic UI launch, file handling, controlled shutdown, and Knowledge Graph autosave. | `.exe` opened the panel without manual CMD startup. Offline queries (e.g., "Čo je Slnko?") responded successfully. |
+| **EXE Content & Data Paths** | Unified working paths for IPC, Trash, and helper KG under `SIRIUS_DATA`. | Verified Runtime 5.x, Autonomy, Colník, Executor, and ENVOY modules inside the package. |
+| **Slovak, English & Diacritics** | Verified separated SK/EN graphs and improved diacritics-insensitive search lookup. | Both queries like "CO JE MACKA DOMACA?" and "WHAT IS A ROUTER?" resolved correctly from the local graph. |
+| **ENVOY & Permissions** | Fixed policy loading (`policies_envoy.json`) and verified user-consent workflows. | Loaded 5 rules successfully; external web queries correctly triggered explicit consent prompts. |
+| **Autonomy → Colník → Executor** | Separated proposal generation from execution and added an optional `--autonomy` scanning mode. | Successfully detected file conflicts (`FILE_CONFLICT`) and processed safe `MOVE` operations via UI approval. |
+| **Trash & Recovery** | Added token validation, path checks, SHA-256 verification, and cross-volume file recovery. | Blocked unauthorized requests (HTTP 403) and successfully handled file restore/deletion workflows. |
+| **Terminal & Navigation** | Tested basic system commands and panel navigation features. | Command `mem` correctly outputted process stats; system modules opened smoothly. |
 
 ---
 
-## 🔍 Filtered & Excluded Behaviors / Čo sme odfiltrovali
+## 🔍 Filtered & Excluded Behaviors
 
-* **Action Safety:** Autonomy proposals no longer trigger automatic file movements without validation. Trash operations require proper security tokens and pre-execution file integrity checks.
-* **IPC Deduplication:** The IPC queue filters out duplicate proposal identifiers, leaving existing pending tasks untouched during empty cycles.
+- **Action Safety:** Autonomy proposals no longer trigger automatic file movements without validation. Trash operations require proper security tokens and pre-execution file integrity checks.
+- **IPC Deduplication:** The IPC queue filters out duplicate proposal identifiers, leaving existing pending tasks untouched during empty cycles.
 
 ---
 
