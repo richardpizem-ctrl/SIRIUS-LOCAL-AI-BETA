@@ -1,13 +1,13 @@
-# 📥 INSTALLATION GUIDE — SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# 📥 INSTALLATION GUIDE — SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 **Status:** ✔ Production-Enhanced  
-**Version:** 5.9.5  
+**Version:** 6.0.1  
 **Component:** Installation & Deployment  
-**Role:** Step-by-step local deployment guide for setting up SIRIUS LOCAL AI (v5.9.5) on Windows 11 with single-process orchestration on port 8080, dual-language graph isolation, SafeRollback crash resilience, Professor Validator middleware, and COLNÍK Guard security.
+**Role:** Step-by-step local deployment guide for setting up SIRIUS LOCAL AI (v6.0.1) on Windows 11 with single-process orchestration on port 8080, dual-language graph isolation, SafeRollback crash resilience, Professor Validator middleware, and COLNÍK Guard security.
 
 ---
 
 ## 🎯 1. Overview & System Requirements  
-SIRIUS Local AI is an offline-first, modular symbolic AI runtime. It requires **no cloud connectivity**, no external API keys, and no active internet connection during execution.
+SIRIUS Local AI is an offline-first, modular symbolic AI runtime (with optional user-approved ENVOY web lookups). It requires **no active cloud connectivity during core execution**, no external API keys, and operates entirely on local hardware.
 
 ### **System Requirements**
 - **Operating System:** Windows 11 (tested and optimized) or compatible local environment  
@@ -20,7 +20,7 @@ SIRIUS Local AI is an offline-first, modular symbolic AI runtime. It requires **
 ## ⚙️ 2. Step-by-Step Installation Instructions
 
 ### **Step 1: Clone or Download the Repository**  
-Obtain the latest SIRIUS Local AI release package (`SIRIUS_LOCAL_AI_5.9.5.zip`) or clone the repository directly from GitHub:
+Obtain the latest SIRIUS Local AI release package (`SIRIUS-KG-ALIAS-Windows-x64-REVIEW.zip`) or clone the repository directly from GitHub:
 ```cmd
 git clone [https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA.git](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA.git)
 cd SIRIUS-LOCAL-AI-BETA
@@ -28,7 +28,7 @@ Step 2: Verify Python Environment
 Ensure Python is installed and accessible in your system PATH:
 python --version
 Step 3: Review Directory Structure & Core Modules
-Ensure the root directory contains the updated v5.9.5 modules:
+Ensure the root directory contains the updated v6.0.1 modules:
 
 sirius_orchestrator.py (Central orchestrator and IPC daemon on port 8080)
 
@@ -43,7 +43,7 @@ autosave_kg_en.json (English knowledge graph store)
 ui/index.html (4-Panel UI Suite dashboard)
 
 🚀 3. Launching the Runtime
-To start the complete SIRIUS Local AI ecosystem (v5.9.5) via the unified single-process orchestrator, execute:
+To start the complete SIRIUS Local AI ecosystem (v6.0.1) via the unified single-process orchestrator, execute:
 python sirius_orchestrator.py
 This command initializes:
 
@@ -59,7 +59,7 @@ SafeRollback backup supervision (safe_rollback.py)
 
 Professor Validator cognitive verification matrix (PASS / WARN / REJECT)
 
-Human-in-the-Loop Safe Trash quarantine pipeline (GET /trash)
+Human-in-the-Loop Safe Trash quarantine pipeline (GET /trash, tested in dist_V6_CHECK)
 
 The 4-Panel UI Suite dashboard (Duplicates, Triage, Navigation, Terminal)
 
