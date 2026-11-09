@@ -1,19 +1,18 @@
-# 🏗 Architecture – SIRIUS LOCAL AI (Runtime 5.9.5 — Dual-Language KG Architecture, Lossless Entity Merge, Pre-Processing Spellcheck & Professor Middleware Layer)
+# 🏗 Architecture – SIRIUS LOCAL AI (Runtime 5.x — Dual-Language KG Architecture, Native Merge & Orchestrated Protection)
 **Author & Architecture Lead:** Richard Pizem  
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-5.9.5--UNIFIED-orange">
-  <img src="https://img.shields.io/badge/license-SUL--3.2.0-green">
+  <img src="https://img.shields.io/badge/version-6.0.1--PREVIEW-orange">
+  <img src="https://img.shields.io/badge/license-MIT-green">
   <img src="https://img.shields.io/badge/platform-Windows%2011-blue">
-  <img src="https://img.shields.io/badge/runtime-SIRIUS%20Runtime%205.9.5-red">
+  <img src="https://img.shields.io/badge/runtime-SIRIUS%20Runtime%205.x-red">
   <img src="https://img.shields.io/badge/local%20AI-100%25-blueviolet">
 </p>
 
-The SIRIUS LOCAL AI Runtime **5.9.5** represents an enterprise-grade, deterministic architecture built on top of:
+The SIRIUS LOCAL AI Runtime **v6.0.1** represents an enterprise-grade, deterministic architecture built on top of:
 
 - Dual-Language Knowledge Graph Architecture (`autosave_kg.json` for SK and `autosave_kg_en.json` for EN)
 - Native Lossless Entity Merge Engine (`kg merge <src> into <tgt>`) integrated directly inside `RuntimeCore`
-- Pre-Processing Spellcheck & Diacritics Normalization Layer (`spellcheck_engine.py`)
 - Authoritative **Professor Middleware Layer** (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`) executing strict `PASS / WARN / REJECT` decision middleware
 - Ontological & Taxonomical Reasoning Engine (`KG_VERIFY`) with hierarchical mammalian category deduction
 - Resilient Reverse Location Querying (`_execute_reverse_location_query`) with anti-flora classification guard
@@ -22,7 +21,7 @@ The SIRIUS LOCAL AI Runtime **5.9.5** represents an enterprise-grade, determinis
 - Hard Token Guard blocking corrupted and malicious input character sequences (`@#$%^&*`)
 - Automatic Envoy Quarantine Sliding Window enforcing a 100-file ceiling
 - TerminalAssistant + TimeCore Security Layer with 0.0s hard blocking of forbidden commands (`format`, `diskpart`)
-- Safe UI Trash & Human-in-the-Loop (HitL) verification isolating file removals without direct disk deletion (`GET /trash`)
+- Safe UI Trash & Human-in-the-Loop (HitL) verification isolating file removals without direct disk deletion (`GET /trash`, tested in `dist_V6_CHECK`)
 - SafeRollback Integration (`safe_rollback.py`) executing granular module-level backups (`shutil.copytree`) and instant restorations (`shutil.rmtree`) for absolute crash resilience
 - Single-Process IPC Bridge running natively on port 8080 inside `sirius_orchestrator.py`
 - Multi-Word Compound Parser (`InputParser5` preserving full noun phrases)
@@ -33,11 +32,10 @@ The foundational principle of the architecture is strictly enforced:
 
 ---
 
-# 🧩 Architectural Principles (Runtime 5.9.5)
+# 🧩 Architectural Principles (Runtime 5.x)
 
 - **Dual-Language Knowledge Graph Isolation:** Physical and logical partition of Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) graphs.
 - **Professor Cognitive Quality Gating:** Runtime Core can discover anything in the graph, but the Professor Middleware Layer determines if facts are released to the user via PASS / WARN / REJECT validation.
-- **Pre-Processing Text Hygiene:** Automatic normalization of typos and unaccented characters via `spellcheck_engine.py` prior to graph indexing.
 - **Native In-Memory Entity Consolidation:** Lossless property migration with bidirectional alias formation (`kg merge`).
 - **Taxonomical Inference without Recurrence:** Sub-taxa automatically deduced and auto-committed to KG (`KG_VERIFY`).
 - **Non-Destructive Habitat Traversal:** Uniform attribute retrieval via `self.kg.get_attributes()`.
@@ -45,21 +43,20 @@ The foundational principle of the architecture is strictly enforced:
 - **Deterministic Execution Loop:** Driven centrally by single-process `sirius_orchestrator.py` on local port 8080.
 - **Compound Phrase Integrity:** No truncation of multi-word modifiers.
 - **Autonomous Disambiguation Triage:** Sub-article pathfinding and parenthetical stripping.
-- **Zero-Cloud Guarantee:** 100% offline, local workstation execution.
+- **Offline-First Guarantee:** Local workstation execution (with optional user-approved ENVOY web lookups).
 - **Deterministic IPC Communication:** Hosted on local port 8080 without external process locks.
 - **Interactive CLI/UI Learning Proposals:** `[ÁNO/NIE]` / `[YES/NO]` with latched state confirmation across conversation turns.
 - **Customs-Grade Operation Auditing:** Verified via COLNIK-6.x and AUTONOMY 6.x.
-- **Human-in-the-Loop Safety Shielding:** All file deletions quarantined for explicit UI user approval (`GET /trash`).
+- **Human-in-the-Loop Safety Shielding:** All file deletions quarantined for explicit UI user approval (`GET /trash`, tested in `dist_V6_CHECK`).
 - **Absolute State Protection:** Powered by SafeRollback module-level backups (`safe_rollback.py`).
 
 ---
 
-# 🧱 Core Layers (Runtime 5.9.5)
+# 🧱 Core Layers (Runtime 5.x)
 
-## 1. Input Parsing, Token Hygiene & Spellcheck (`InputParser5`, `TokenGuard5` & `spellcheck_engine.py`)
+## 1. Input Parsing & Token Hygiene (`InputParser5` & `TokenGuard5`)
 Responsibilities:
 - Immediate rejection of malicious or corrupted inputs (`@`, `#`, `$`, `%`, `^`, `&`, `*`) upon receiving `kg query` commands via `TokenGuard5`
-- Diacritic normalization and typo suppression via `spellcheck_engine.py` ensuring accent-free queries (e.g., `urologia`) reliably match canonical nodes (e.g., `urológia`)
 - Greedy trailing punctuation stripping (`.rstrip("?")`) preventing token lookup mismatch (e.g., `CO JE MACROPUS?` cleanly resolves to `macropus`)
 - Extraction of complex compound noun phrases (`ovcia vlna`, `mobilny telefon`, `pevna linka`)
 - Strict isolation of copula verbs (`je`, `sú`, `is`, `are`) from subject entities, preventing query contamination
@@ -117,7 +114,7 @@ Capabilities:
 
 ## 6. Security & Customs Inspection Layer (COLNÍK 6.x & HitL Safe Trash)
 Responsibilities:
-- Human-in-the-Loop Safe Trash Pipeline: files flagged for deletion (duplicates, empty directories, corrupted data) are moved to quarantine storage and require explicit user confirmation via `GET /trash`
+- Human-in-the-Loop Safe Trash Pipeline: files flagged for deletion (duplicates, empty directories, corrupted data) are moved to quarantine storage and require explicit user confirmation via `GET /trash` (tested in `dist_V6_CHECK`)
 - TerminalAssistant + TimeCore Security Layer: real-time latency profiling via `cycle_delta()` and command categorization:
   - **FORBIDDEN (0.0s Hard Block):** `format`, `rmdir /s`, `del /f /s /q c:`, `diskpart`, `drop database`, fork-bombs
   - **RISKY (Explicit Prompt Required):** `rm`, `kill`, `taskkill`, `del`
@@ -132,7 +129,7 @@ Responsibilities:
 - Single-process lifecycle execution uniting Runtime, IPC Bridge, and background engines
 - Native HTTP/WebSocket server running on port 8080 inside `sirius_orchestrator.py`, removing external bridge dependencies
 - Deterministic routing and step registration inside `WorkflowEngine5`
-- Seamless handoffs: Ingestion → Spellcheck → KG → Reasoning → Professor Middleware → COLNIK → AUTONOMY → UI / OS
+- Seamless handoffs: Ingestion → KG → Reasoning → Professor Middleware → COLNIK → AUTONOMY → UI / OS
 - **SafeRollback Resilience:** Granular module-level backup (`shutil.copytree`) and instant restoration (`shutil.rmtree`) for state integrity protection
 
 ---
@@ -148,7 +145,7 @@ Capabilities:
 
 ---
 
-## 9. AUTONOMY 6.x & Self-Repair Layer (v5.9.5)
+## 9. AUTONOMY 6.x & Self-Repair Layer (v6.0.1)
 Capabilities:
 - Autonomous proposal and decision evaluations
 - Synchronized confirmation pipelines (`kg.learn_proposal`)
@@ -158,12 +155,11 @@ Capabilities:
 
 ---
 
-# 🧠 SYSTEM INTELLIGENCE LAYER (Runtime 5.9.5)
+# 🧠 SYSTEM INTELLIGENCE LAYER (Runtime 5.x)
 
 The intelligence layer enables SIRIUS to:
 
 - understand full compound natural language queries in Slovak and English
-- normalize user inputs against typos and diacritic omissions via `spellcheck_engine.py`
 - isolate language vocabularies across independent JSON storage backends without cross-lingual leakage
 - autonomously deduce biological taxonomy (marsupials -> mammals) and commit verified relations directly to disk
 - filter and validate all factual output through the Professor Middleware Layer (PASS / WARN / REJECT)
@@ -171,11 +167,11 @@ The intelligence layer enables SIRIUS to:
 - accurately query fauna and flora habitats using multi-stem location parsing without misclassifying tree-dwelling animals
 - defend the host environment via 0.0s command blocking, non-destructive quarantine trash, and instant SafeRollback recovery
 
-All executed **100% locally and offline**.
+All executed **locally and offline** (with optional user-approved ENVOY web lookups).
 
 ---
 
-# 🔌 Module Interconnections (Runtime 5.9.5)
+# 🔌 Module Interconnections (Runtime 5.x)
 
 ```text
 User Query (UI Panel / Web Dashboard on Port 8080)
@@ -183,8 +179,6 @@ User Query (UI Panel / Web Dashboard on Port 8080)
 sirius_orchestrator.py (Single-Process Daemon with Language Header SK / EN)
 ↓
 Token Guard (Entry-Level Sanitization: Blocks @#\$%^&*)
-↓
-spellcheck_engine.py (Diacritic & Typo Normalizer)
 ↓
 Punctuation Hygiene (.rstrip("?") strips trailing question marks)
 ↓
@@ -200,36 +194,36 @@ Intent & Pattern Classification:
 ├─ [Verification: is X a Y?] ──> Taxonomical Inference (e.g., Marsupial -> Mammal)
 └─ [Entity Lookup: what is X?] ──> Check Target Language KG
      ├─ [Found in KG] ──> Extract Raw Fact Triplets
-     │                     ↓
-     │           ┌────────────────────────────────────────┐
-     │           │       PROFESSOR MIDDLEWARE LAYER       │
-     │           │                                        │
-     │           │  1. Professor Cleaner (grammar_engine) │
-     │           │  2. Professor Validator                │
-     │           │     [PASS / WARN / REJECT]             │
-     │           │  3. Professor Summarizer               │
-     │           └──────────────────┬─────────────────────┘
-     │                              │
-     │             ┌────────────────┴────────────────┐
-     │             ▼                                 ▼
-     │       [PASS / WARN]                       [REJECT]
-     │             │                                 │
-     │             v                                 v
-     │      PanelAPI Render                 Quarantined to Triage
-     │      to UI V2 Dashboard              & Structured Error Return
+     │                   ↓
+     │              ┌────────────────────────────────────────┐
+     │              │        PROFESSOR MIDDLEWARE LAYER      │
+     │              │                                        │
+     │              │  1. Professor Cleaner (grammar_engine) │
+     │              │  2. Professor Validator                │
+     │              │     [PASS / WARN / REJECT]             │
+     │              │  3. Professor Summarizer               │
+     │              └──────────────────┬─────────────────────┘
+     │                                 │
+     │              ┌──────────────────┴────────────────┐
+     │              ▼                                   ▼
+     │         [PASS / WARN]                         [REJECT]
+     │              │                                   │
+     │              v                                   v
+     │       PanelAPI Render                     Quarantined to Triage
+     │      to UI V2 Dashboard                  & Structured Error Return
      │
      └─ [Missing from KG] ──> Latch Confirmation State ──> Dispatch [ÁNO/NIE] Prompt
-                                   ↓
+                                         ↓
                             User Confirms (ÁNO / YES)
-                                   ↓
+                                         ↓
                             ENVOY Execution Layer 5 (Context Scrape & Anti-Prefix Guard)
-                                   ↓
+                                         ↓
                             ENVOY Normalizer 5 (Contextual Domain & Habitat Filtering)
-                                   ↓
+                                         ↓
                             COLNIK-6.x Quarantine Logging (100-File Sliding Window Ceiling)
-                                   ↓
+                                         ↓
                             Atomic Commit to Language Graph (autosave_kg.json / autosave_kg_en.json)
-                                   ↓
+                                         ↓
                             Pass to Professor Validator Gate
-                                   ↓
+                                         ↓
                             PanelAPI Render to Web Interface
