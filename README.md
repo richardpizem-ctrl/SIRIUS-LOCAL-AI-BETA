@@ -1,8 +1,8 @@
-# SIRIUS‑LOCAL‑AI: Next-Generation Offline AI Runtime & Unified Architecture (v5.9.5)
+# 🚀 SIRIUS‑LOCAL‑AI: Next-Generation Offline AI Runtime & Unified Architecture (v6.0.1)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
-[![Runtime Architecture](https://img.shields.io/badge/Architecture-Unified%20SingleProcess%205.9.5-orange.svg)](ARCHITECTURE.md)
+[![Runtime Architecture](https://img.shields.io/badge/Architecture-Unified%20SingleProcess%206.0.1-orange.svg)](ARCHITECTURE.md)
 [![Status: IN DEVELOPMENT](https://img.shields.io/badge/Status-IN%20DEVELOPMENT-red.svg)](README.md)
 [![Offline First](https://img.shields.io/badge/100%25-Offline--First-success.svg)](README.md)
 
@@ -16,13 +16,20 @@
 
 ---
 
+## ⚠️ Windows Startup Notice / Upozornenie pri spustení vo Windowse
+
+* **EN** — Extract the entire ZIP before running `SiriusOrchestrator.exe`. The executable in this release is unsigned. Depending on your Windows security settings, Windows may display a warning or block it from starting. If Windows blocks SIRIUS, please open a GitHub issue with your Windows version, the ZIP filename, and the exact error message.
+* **SK** — Pred spustením `SiriusOrchestrator.exe` rozbaľte celý ZIP. Spustiteľný súbor v tomto vydaní nemá digitálny podpis. Podľa nastavení zabezpečenia môže Windows zobraziť upozornenie alebo zablokovať spustenie. Ak Windows zablokuje SIRIUS, založte prosím GitHub issue a uveďte verziu Windowsu, názov ZIP-u a presnú chybovú hlášku.
+
+---
+
 ## ⚡ Quickstart & Installation (ZIP Release)
 
 Follow these steps to set up and run the runtime directly from a release package without requiring Git tooling:
 
 ### 1. Download & Extract
 1. Navigate to the [Releases](https://github.com/richardpizem/SIRIUS-LOCAL-AI/releases) page.
-2. Under the latest build (`v5.9.5`), download the source archive: **`Source code (zip)`**.
+2. Under the latest build (`v6.0.1`), download the source archive: **`Source code (zip)`**.
 3. Extract the ZIP archive into your local workspace directory (e.g., `C:\SIRIUS-LOCAL-AI` or `~/SIRIUS-LOCAL-AI`).
 
 ### 2. Environment Setup
@@ -43,7 +50,7 @@ Start the unified runtime and IPC bridge on local port `8080`:
 
     python src/sirius_orchestrator.py --port 8080
 
-Once initialized, open your browser and access the interactive 4-Panel UI Suite at `[http://127.0.0.1:8080](http://127.0.0.1:8080)`.
+Once initialized, open your browser and access the interactive 4-Panel UI Suite at `http://127.0.0.1:8080`.
 
 ---
 
@@ -56,7 +63,7 @@ Once initialized, open your browser and access the interactive 4-Panel UI Suite 
 
 ---
 
-## 🚀 Key Features & Architectural Highlights (v5.9.5)
+## 🚀 Key Features & Architectural Highlights (v6.0.1)
 
 ### 1. Unified Single-Process Orchestration
 Driven natively by `sirius_orchestrator.py` executing on local port 8080:
@@ -83,6 +90,27 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 
 ---
 
+## 📋 What We Changed & Improved / Čo sme zmenili a vylepšili
+
+| Oblast / Area | Čo sme urobili (SK) | What We Did (EN) | Čo sme overili / Verified Results |
+| :--- | :--- | :--- | :--- |
+| **Windows EXE & Desktop Startup** | Dopracovali sme automatické otvorenie UI, obsluhu jeho súborov, riadené ukončenie a uloženie znalostného grafu pri vypnutí. | Integrated automatic UI launch, file handling, controlled shutdown, and Knowledge Graph autosave. | `.exe` opened the panel without manual CMD startup. Offline queries (e.g., "Čo je Slnko?") responded successfully. |
+| **EXE Content & Data Paths** | Zjednotili sme pracovné cesty pre IPC, Kôš a pomocný znalostný graf pod `SIRIUS_DATA`. | Unified working paths for IPC, Trash, and helper KG under `SIRIUS_DATA`. | Verified Runtime 5.x, Autonomy, Colník, Executor, and ENVOY modules inside the package. |
+| **Slovak, English & Diacritics** | Overili sme oddelené SK a EN grafy a vylepšili vyhľadávanie pre slová s diakritikou. | Verified separated SK/EN graphs and improved diacritics-insensitive search lookup. | Both queries like "CO JE MACKA DOMACA?" and "WHAT IS A ROUTER?" resolved correctly from the local graph. |
+| **ENVOY & Permissions** | Opravili sme načítavanie politík a preverili tok od otázky cez súhlas používateľa. | Fixed policy loading (`policies_envoy.json`) and verified user-consent workflows. | Loaded 5 rules successfully; external web queries correctly triggered explicit consent prompts. |
+| **Autonomy → Colník → Executor** | Oddelili sme vytváranie návrhov od ich vykonania a pridali voliteľný režim `--autonomy`. | Separated proposal generation from execution and added an optional `--autonomy` scanning mode. | Successfully detected file conflicts (`FILE_CONFLICT`) and processed safe `MOVE` operations via UI approval. |
+| **Trash & Recovery** | Dopracovali sme kontrolu tokenu, cesty, SHA-256 odtlačku a obnovu medzi diskami. | Added token validation, path checks, SHA-256 verification, and cross-volume file recovery. | Blocked unauthorized requests (HTTP 403) and successfully handled file restore/deletion workflows. |
+| **Terminal & Navigation** | Otestovali sme základné systémové príkazy a panelovú navigáciu. | Tested basic system commands and panel navigation features. | Command `mem` correctly outputted process stats; system modules opened smoothly. |
+
+---
+
+## 🔍 Filtered & Excluded Behaviors / Čo sme odfiltrovali
+
+* **Action Safety:** Autonomy proposals no longer trigger automatic file movements without validation. Trash operations require proper security tokens and pre-execution file integrity checks.
+* **IPC Deduplication:** The IPC queue filters out duplicate proposal identifiers, leaving existing pending tasks untouched during empty cycles.
+
+---
+
 ## 📌 Table of Contents & Navigation Map
 
 - [Quickstart & Installation](#-quickstart--installation-zip-release)
@@ -103,30 +131,30 @@ Driven natively by `sirius_orchestrator.py` executing on local port 8080:
 
 ---
 
-## 📁 Project Structure (v5.9.5)
+## 📁 Project Structure (v6.0.1)
 
 src/
-|-- commands/             # Natural language routing and command execution
-|-- context/              # Semantic context and state engine
-|-- core/                 # SafeRollback backup and state protection (safe_rollback.py)
-|-- professor/            # Professor Validator cognitive verification (professor_validator.py)
-|-- envoy/                # ENVOY execution, normalizer, and quarantine layers
-|-- filesystem/           # Safe file operations and HitL Safe Trash pipeline
-|-- knowledge_packs/      # Dual-language knowledge stores (autosave_kg.json / autosave_kg_en.json)
-|-- runtime/              # Runtime Core 5.9.5 and InputParser5
-|-- orchestrator/         # Unified Single-Process Orchestrator (sirius_orchestrator.py on Port 8080)
-|-- panel_api/            # Interactive PanelAPI loops ([ÁNO/NIE] / [YES/NO])
-|-- supervision/          # TimeCore temporal tracking & Guard resource monitoring
-|-- colnik/               # COLNIK-6.x customs validation, COLNÍK Guard & triage queue
-|-- autonomy/             # AUTONOMY 6.x decision engine, Guard supervision & Triage Mode
-|-- security_family/      # Identity Engine 3.1, time-limits v3, schoolwork engine
-|-- self_repair/          # Self-Repair Layer 5.8 integrity scanning
-|-- triage/               # Automatic Input Triage Engine (AITE 5.9.5)
-|-- ui/                   # 4-Panel UI dashboard (index.html)
-|-- workflow/             # Workflow Engine 5.9.5
-|-- autosave_kg.json      # Isolated Slovak Knowledge Graph Base
-|-- autosave_kg_en.json   # Isolated English Knowledge Graph Base
-`-- sirius.py             # Main runtime entry point
+|-- commands/              # Natural language routing and command execution
+|-- context/               # Semantic context and state engine
+|-- core/                  # SafeRollback backup and state protection (safe_rollback.py)
+|-- professor/             # Professor Validator cognitive verification (professor_validator.py)
+|-- envoy/                 # ENVOY execution, normalizer, and quarantine layers
+|-- filesystem/            # Safe file operations and HitL Safe Trash pipeline
+|-- knowledge_packs/       # Dual-language knowledge stores (autosave_kg.json / autosave_kg_en.json)
+|-- runtime/               # Runtime Core 6.0.1 and InputParser5
+|-- orchestrator/          # Unified Single-Process Orchestrator (sirius_orchestrator.py on Port 8080)
+|-- panel_api/             # Interactive PanelAPI loops ([ÁNO/NIE] / [YES/NO])
+|-- supervision/           # TimeCore temporal tracking & Guard resource monitoring
+|-- colnik/                # COLNIK-6.x customs validation, COLNÍK Guard & triage queue
+|-- autonomy/              # AUTONOMY 6.x decision engine, Guard supervision & Triage Mode
+|-- security_family/       # Identity Engine 3.1, time-limits v3, schoolwork engine
+|-- self_repair/           # Self-Repair Layer 5.8 integrity scanning
+|-- triage/                # Automatic Input Triage Engine (AITE 6.0.1)
+|-- ui/                    # 4-Panel UI dashboard (index.html)
+|-- workflow/              # Workflow Engine 6.0.1
+|-- autosave_kg.json       # Isolated Slovak Knowledge Graph Base
+|-- autosave_kg_en.json    # Isolated English Knowledge Graph Base
+`-- sirius.py              # Main runtime entry point
 
 ---
 
