@@ -1,9 +1,9 @@
-# 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide (Runtime 5.9.5 Unified)
+# 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide (Runtime 5.x Unified)
 ### Safe External Retrieval, Dual-Language KG Dispatch & Autonomous Triage Layer for SIRIUS LOCAL AI (Dual-Language KG Architecture, Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback Crash Resilience, Professor Validator Middleware & COLNÍK Guard Security Protocol)
 
 SIRIUS ENVOY 5 is an isolated external-retrieval, language-contextual normalization, and semantic triage subsystem that allows SIRIUS LOCAL AI to safely obtain, disambiguate, and structure information from external sources without exposing the local AI runtime to open network communication or data leaks.
 
-This v5.9.5 unified edition reflects the upgraded Runtime 5.9.5 architecture, including:
+This v6.0.1 unified edition reflects the upgraded Runtime 5.x architecture, including:
 
 - Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)  
 - Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK and `autosave_kg_en.json` for EN)  
@@ -18,7 +18,7 @@ This v5.9.5 unified edition reflects the upgraded Runtime 5.9.5 architecture, in
 - SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and `shutil.rmtree` restorations)  
 - Professor Validator Middleware enforcing strict `PASS / WARN / REJECT` cognitive verification  
 - COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)  
-- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction  
+- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (tested in `dist_V6_CHECK`)  
 - Multi-Word Compound Parser (`InputParser5` preserving compound noun phrases)  
 - Autonomous Disambiguation Triage & Strip-Bracket Fallback (`EnvoyExecutionLayer5`)  
 - Anti-Prefix & Phonetic Guard (preventing erroneous fuzzy query shifts)  
@@ -30,7 +30,7 @@ This v5.9.5 unified edition reflects the upgraded Runtime 5.9.5 architecture, in
 - COLNIK‑6.x Validation Layer (Standard & High-Performance IPC Mode)  
 - AUTONOMY 6.x (Control, Guard, Triage Mode & HitL Trash Governance)  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)  
-- Reasoning Engine 5.9.5 (Multi-hop, inheritance, transitivity, orbital & taxonomical rules)  
+- Reasoning Engine 5.x (Multi-hop, inheritance, transitivity, orbital & taxonomical rules)  
 
 This document explains:
 
@@ -42,7 +42,7 @@ This document explains:
 - how the quarantine sandbox functions under sliding-window limits  
 - how data flows safely into the isolated Knowledge Graphs with multi-alias mapping  
 - what ENVOY is strictly forbidden from doing  
-- how ENVOY integrates with Runtime 5.9.5 Unified Architecture  
+- how ENVOY integrates with Runtime 5.x Unified Architecture  
 
 ---
 
@@ -65,7 +65,7 @@ ENVOY acts as an isolated, outbound-only semantic customs portal, operating stri
 
 # 🛡 2. Why Does ENVOY Exist?
 
-SIRIUS is a 100% offline-first symbolic AI.  
+SIRIUS is an offline-first symbolic AI (with optional user-approved ENVOY web lookups).  
 However, when the local Knowledge Graph lacks specific entities, manual data entry would be tedious.  
 ENVOY allows the system to autonomously locate, disambiguate, and structure missing concepts into their respective language stores:
 
@@ -90,7 +90,7 @@ ENVOY allows the system to autonomously locate, disambiguate, and structure miss
 User Query (e.g., "CO JE MACROPUS?" / "MACROPUS" [Language: SK / EN])
 │
 ▼
-[Token Guard] ──────────► Rejects malformed symbolic inputs (@#$%^&*) at entry
+[Token Guard] ──────────► Rejects malformed symbolic inputs (@#\$%^&*) at entry
 │
 ▼
 [InputParser5] ─────────► Trims trailing punctuation (.rstrip("?")), preserves noun phrases, isolates copula verbs
@@ -115,6 +115,7 @@ User Query (e.g., "CO JE MACROPUS?" / "MACROPUS" [Language: SK / EN])
 │
 ▼
 [RuntimeCore / KG] ──────► Atomic commit to designated store (autosave_kg.json or autosave_kg_en.json)
+⚙️ 3. Core Subsystems & Pipeline Integration
 3.1 InputParser5 & Token Guard (Sanitization & Extraction)
 performs entry-level sanitization, rejecting malformed injection strings (@#$%^&*)
 
@@ -142,7 +143,7 @@ Strip-Bracket Fallback: automatically attempts root lemma lookups when encounter
 
 Target Endpoint Isolation: routes English queries strictly to en.wikipedia.org and Slovak queries strictly to sk.wikipedia.org
 
-4. Quarantine Sandbox, Sliding-Window Rotation & SafeRollback (EnvoyQuarantine5 & SafeRollback)
+3.4 Quarantine Sandbox, Sliding-Window Rotation & SafeRollback (EnvoyQuarantine5 & SafeRollback)
 completely isolated execution perimeter
 
 stores raw extraction payloads in COLNIK-6.x/envoy/quarantine/
@@ -183,20 +184,25 @@ commits updates atomically to disk
 
 guarantees zero proposal recurrence: future queries for any stored alias resolve instantly from memory
 
-🔄 4. How ENVOY Works – Step by Step (Runtime 5.9.5)
-1️⃣ User submits a query
+🔄 4. How ENVOY Works – Step by Step (Runtime 5.x)
+User submits a query
+
 User inputs via UI Panel: CO JE MACROPUS? (Language: SK) or MACROPUS (Language: EN).
 
-2️⃣ InputParser5 & Token Guard sanitize input
+InputParser5 & Token Guard sanitize input
+
 Token Guard confirms absence of forbidden characters. InputParser5 trims trailing question marks (.rstrip("?")), resolving clean token macropus.
 
-3️⃣ Context dispatch & graph verification
+Context dispatch & graph verification
+
 RuntimeCore checks the corresponding graph (autosave_kg.json for SK, autosave_kg_en.json for EN). If the entity exists but lacks detailed text or does not exist, AUTONOMY generates a proposal and latches the entity state in memory.
 
-4️⃣ PanelAPI interactive confirmation
+PanelAPI interactive confirmation
+
 The UI displays: Entity 'Macropus' is in memory, but lacks details. Search via Envoy? [YES/NO] (or Slovak equivalent). The user confirms with ÁNO / YES.
 
-5️⃣ Outbound fetch & disambiguation triage
+Outbound fetch & disambiguation triage
+
 ENVOY queries external reference sources (e.g., en.wikipedia.org for EN, sk.wikipedia.org for SK):
 
 checks if the response is an encyclopedic disambiguation index
@@ -205,10 +211,12 @@ resolves technical / biological sub-articles
 
 verifies against phonetic prefix over-matching
 
-6️⃣ Quarantine sanitization, SafeRollback & sliding-window rotation
+Quarantine sanitization, SafeRollback & sliding-window rotation
+
 The raw payload is stored in COLNIK-6.x/envoy/quarantine/ (automatically rotated to ensure <= 100 JSON records) and stripped of HTML, scripts, and trackers, backed up securely via SafeRollback.
 
-7️⃣ Contextual domain normalization & Professor Validator check
+Contextual domain normalization & Professor Validator check
+
 EnvoyNormalizer5 audits the text:
 
 classifies Macropus as a biological/marsupial genus
@@ -217,13 +225,16 @@ extracts core factual summary, taxonomy, and habitat attributes
 
 verifies output validity through Professor Validator (PASS / WARN / REJECT)
 
-8️⃣ COLNIK-6.x customs clearance
+COLNIK-6.x customs clearance
+
 COLNIK audits the structured graph nodes and relations, approving the commit.
 
-9️⃣ Commit to designated language store
+Commit to designated language store
+
 RuntimeCore records the entity and its attributes into autosave_kg.json or autosave_kg_en.json, executing an atomic serialization.
 
-🔟 Immediate response & zero future prompts
+Immediate response & zero future prompts
+
 The answer is rendered in the UI. Subsequent queries for Macropus in that language are served instantly from graph memory without confirmation prompts.
 
 🚫 5. What ENVOY Never Does
@@ -284,7 +295,7 @@ Navigation Panel: deterministic module switching across Runtime Core, KG, Envoy,
 Terminal Panel: complete input decoupling ensuring conversational questions never lock up the terminal or execute as host commands
 
 🔐 8. Security & Operational Guarantees
-100% Offline-First Core: The central reasoning engine never binds to external sockets.
+Offline-First Core (with optional user-approved ENVOY lookups): The central reasoning engine never binds to external sockets without consent.
 
 Dual-Language Isolation: Independent knowledge files eliminate bilingual hallucinations and mixed responses.
 
@@ -311,6 +322,6 @@ Deterministic Customs Inspection: All graph mutations are authorized by COLNIK-6
 Supervised Human Oversight: Sensitive operations and learning tasks mandate PanelAPI [ÁNO/NIE] / [YES/NO] approval.
 
 📄 Document Status
-Version: 5.9.5 (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
+Version: 6.0.1 (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
 
-This tutorial specifies the design, operational pipeline, and safety boundaries of SIRIUS ENVOY 5 within the unified Runtime 5.9.5 framework.
+This tutorial specifies the design, operational pipeline, and safety boundaries of SIRIUS ENVOY 5 within the unified Runtime 5.x framework.
