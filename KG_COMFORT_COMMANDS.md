@@ -1,6 +1,6 @@
 # 🧩 KG COMFORT COMMANDS — Developer‑Friendly Knowledge Graph Operations  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 6.x (Updated for Runtime 5.9.5 UNIFIED)  
+**Version:** 6.x (Updated for Runtime 5.x UNIFIED)  
 **Component:** KG Comfort Commands  
 **Role:** Fast, safe, deterministic developer commands for manipulating the Knowledge Graph with dual-language partition support, native entity merging, taxonomical reasoning, Token Guard sanitization, SafeRollback crash protection, Professor Validator verification, and orchestrator/PanelAPI supervision
 
@@ -22,7 +22,7 @@ They simplify entity creation, multi-alias mapping, native entity merging (`kg m
 - SafeRollback crash resilience (`safe_rollback.py`) protecting system state and graph configuration  
 - Professor Validator cognitive verification (`PASS / WARN / REJECT`) ensuring strict decision fidelity  
 - customs-grade validation through COLNIK‑6.x (Standard & High-Performance IPC Mode) with COLNÍK Guard 0.0s command blocking  
-- AUTONOMY 6.x gating, Guard resource supervision, and HitL Safe Trash quarantine pipeline  
+- AUTONOMY 6.x gating, Guard resource supervision, and HitL Safe Trash quarantine pipeline (tested in `dist_V6_CHECK`)  
 - interactive `PanelAPI` confirmation gates (`[ÁNO/NIE]` / `[YES/NO]`)  
 - complete symbolic explainability (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP` proof trees)  
 
@@ -79,7 +79,7 @@ Registers a secondary lookup alias for an entity, ensuring queries under either 
 Renames an entity while preserving all incoming and outgoing relations and alias pointers.
 
 #### `kg delete entity <NAME>`  
-Deletes an entity and its bound edges (routes through HitL Safe Trash quarantine, requires AUTONOMY proposal, COLNIK validation, and explicit PanelAPI confirmation).
+Deletes an entity and its bound edges (routes through HitL Safe Trash quarantine, requires AUTONOMY proposal, COLNIK validation, and explicit PanelAPI confirmation; tested in `dist_V6_CHECK`).
 
 #### `kg list entities`  
 Lists all indexed primary entities and registered aliases in the active Knowledge Graph partition.
@@ -187,15 +187,15 @@ All mutations pass through COLNIK‑6.x (Standard & High-Performance IPC Mode):
 
 ### **AUTONOMY Supervision & PanelAPI Confirmation**  
 AUTONOMY 6.x and `PanelAPI` supervise high-impact operations:  
-- mass entity or relation deletions (routed to Human-in-the-Loop Safe Trash)  
+- mass entity or relation deletions (routed to Human-in-the-Loop Safe Trash; tested in `dist_V6_CHECK`)  
 - native entity merges (`kg merge`)  
 - foreign package imports  
 - unverified entity creations without provenance  
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully updated & optimized for Runtime 5.9.5 architecture  
+## 📊 Module Status (v6.0.1)  
+- ✔ Fully updated & optimized for Runtime 5.x architecture  
 - ✔ Dual-Language Graph Isolation (`autosave_kg.json` & `autosave_kg_en.json`) active  
 - ✔ Native Lossless Entity Merge (`kg merge`) operational  
 - ✔ Taxonomical inference auto-commit (`KG_VERIFY`) verified  
@@ -216,5 +216,5 @@ AUTONOMY 6.x and `PanelAPI` supervise high-impact operations:
 ---
 
 ## 🏁 Summary  
-KG Comfort Commands provide a **safe, deterministic, developer‑friendly interface** for managing the Knowledge Graph in SIRIUS Local AI (v5.9.5).  
+KG Comfort Commands provide a **safe, deterministic, developer‑friendly interface** for managing the Knowledge Graph in SIRIUS Local AI (v6.0.1).  
 They streamline entity creation, dual-language routing, native lossless merging, taxonomical deduction, reverse location queries, multi-alias mapping, relation management, search queries, debugging, and data export/import — while upholding strict explainability, central orchestrator execution, zero proposal recurrence, SafeRollback resilience, Professor Validator verification, and customs-grade COLNIK validation.
