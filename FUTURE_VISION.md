@@ -1,8 +1,8 @@
-# 🌟 Future Vision (v5.9.5 and Beyond)
+# 🌟 Future Vision (v6.0.1 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and symbolic reasoning-driven AI workstation**, while remaining safe, deterministic, explainable, and 100% local.
 
-This **v5.9.5 unified edition** reflects the upgraded Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback Crash Resilience, Professor Validator Middleware & COLNÍK Guard Security Protocol, including:
+This **v6.0.1 unified edition** reflects the upgraded Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback Crash Resilience, Professor Validator Middleware & COLNÍK Guard Security Protocol, including:
 
 - Single-Process Orchestrator (`sirius_orchestrator.py` executing natively on port 8080 with embedded TerminalAssistant + TimeCore)  
 - Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK and `autosave_kg_en.json` for EN)  
@@ -17,7 +17,7 @@ This **v5.9.5 unified edition** reflects the upgraded Dual-Language KG Architect
 - SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and `shutil.rmtree` restorations)  
 - Professor Validator Middleware enforcing strict `PASS / WARN / REJECT` cognitive verification  
 - COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)  
-- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction  
+- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (tested in `dist_V6_CHECK`)  
 - Multi-Word Compound Semantic Parser (`InputParser5` preserving compound noun phrases)  
 - Autonomous Encyclopedic Disambiguation Triage & Strip-Bracket Fallback (`EnvoyExecutionLayer5`)  
 - Phonetic & Anti-Prefix Guard (neutralizing query drifts and prefix matching errors)  
@@ -30,18 +30,18 @@ This **v5.9.5 unified edition** reflects the upgraded Dual-Language KG Architect
 - COLNIK‑6.x Customs Validation Layer (Standard & High-Performance IPC Mode)  
 - AUTONOMY 6.x (Control, Guard & Triage Mode in `COLNIK-6.x/triage`)  
 - KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)  
-- Reasoning Engine 5.9.5 (Multi-hop, inheritance, transitivity, orbital & taxonomical inference rules)  
+- Reasoning Engine 5.x (Multi-hop, inheritance, transitivity, orbital & taxonomical inference rules)  
 
 This document describes:
 
-1. **What has already been delivered** (v1.0.0 → v5.9.5)  
+1. **What has already been delivered** (v1.0.0 → v6.0.1)  
 2. **What each major milestone introduced**  
-3. **What Runtime 5.9.5 consolidates and operationalizes**  
-4. **Long-term architectural direction (v6.0.0 and beyond)**  
+3. **What Runtime 6.0.1 consolidates and operationalizes**  
+4. **Long-term architectural direction (v7.0.0 and beyond)**  
 
 All capabilities adhere strictly to:
 
-- 100% offline, zero-cloud architecture  
+- 100% offline, zero-cloud architecture (with optional user-approved ENVOY web lookups)  
 - household- and family-safe isolation  
 - deterministic symbolic deduction  
 - verifiable explainability (XAI)  
@@ -150,9 +150,9 @@ Delivered:
 
 ---
 
-# 🚀 6. Version 5.9.5 – Dual-Language KG Architecture, Lossless Entity Merge, SafeRollback, Professor Validator & Comprehensive Security Protocol (Current Milestone)
+# 🚀 6. Version 6.0.1 – Dual-Language KG Architecture, Lossless Entity Merge, SafeRollback, Professor Validator & Comprehensive Security Protocol (Current Milestone)
 
-Version 5.9.5 introduces a major architectural leap, solving language collision issues, enabling native in-memory entity consolidation, establishing automated taxonomical inference, safeguarding system states via SafeRollback, verifying cognitive outputs via Professor Validator, and delivering a multi-layered local security architecture.
+Version 6.0.1 introduces a major architectural leap, solving language collision issues, enabling native in-memory entity consolidation, establishing automated taxonomical inference, safeguarding system states via SafeRollback, verifying cognitive outputs via Professor Validator, and delivering a multi-layered local security architecture.
 
 Delivered:
 
@@ -184,7 +184,7 @@ Delivered:
 - Professor Validator Middleware (`professor_validator.py`): strict decision verification matrix (`PASS / WARN / REJECT`) evaluating all cognitive outputs before UI rendering or graph commits  
 
 ### 🛡️ Comprehensive Security Protocol (COLNÍK Guard & HitL Safe Trash)
-- Safe UI Trash (Human-in-the-Loop): files flagged for removal (duplicates, empty folders, damaged files) are quarantined; direct unverified file destruction is blocked, requiring explicit approval via `GET /trash`  
+- Safe UI Trash (Human-in-the-Loop): files flagged for removal (duplicates, empty folders, damaged files) are quarantined; direct unverified file destruction is blocked, requiring explicit approval via `GET /trash` (tested in `dist_V6_CHECK`)  
 - COLNÍK Guard Shell Access Control: 0.0s hard blocking of forbidden commands (`format`, `rmdir /s`, `del /f /s /q c:`, `diskpart`, `drop database`), prompt checks for risky commands, and safe execution for telemetry (`mem`, `ps`, `sys`)  
 - Token Guard: entry-level sanitization rejecting corrupted or dangerous symbol sequences (`@#$%^&*`) on raw input before runtime processing  
 - Automatic Sliding-Window Quarantine Rotation: enforces a strict 100-file ceiling inside `COLNIK-6.x/envoy/quarantine/`, automatically pruning older JSON payloads upon new arrivals  
@@ -192,14 +192,14 @@ Delivered:
 
 ---
 
-# 🚀 7. Long-Term Vision (v6.0.0 and Beyond)
+# 🚀 7. Long-Term Vision (v7.0.0 and Beyond)
 
 ## 📦 Standalone Binary Distribution (.exe)
 - compilation of the complete SIRIUS runtime into an isolated, standalone executable  
 - zero dependency on host-installed Python runtimes or external environment managers  
 - single-click execution for local Windows 11 workstations  
 
-## 🧠 6.0.0 – Self-Repair Intelligence 2.0
+## 🧠 7.0.0 – Self-Repair Intelligence 2.0
 - autonomous code and graph integrity scanning  
 - dependency healing and automatic rollback recovery  
 - runtime self-diagnostics and anomaly isolation  
@@ -293,5 +293,5 @@ This combined architecture delivers a self-healing, logically isolated AI operat
 
 # 📄 Document Status
 
-**Version:** **5.9.5** (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)  
-Updated to reflect the **5.9.5 milestone release** and the roadmap progression toward standalone binary packaging, self-repair intelligence, and next-generation hybrid isolation.
+**Version:** **6.0.1** (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)  
+Updated to reflect the **6.0.1 milestone release** and the roadmap progression toward standalone binary packaging, self-repair intelligence, and next-generation hybrid isolation.
