@@ -26,7 +26,7 @@ SIRIUS LOCAL AI is an offline-first symbolic AI system with separate Slovak and 
 
 To run the pre-compiled standalone version directly on Windows without installing Python or Git:
 
-1. **Download:** Navigate to the [Releases v6.0.1](https://github.com/richardpizem/SIRIUS-LOCAL-AI/releases/tag/v6.0.1) page and download **`SIRIUS-KG-ALIAS-Windows-x64-REVIEW.zip`**.
+1. **Download:** Navigate to the [SIRIUS LOCAL AI v6.0.1](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/tag/v6.0.1) page and download **`SIRIUS-KG-ALIAS-Windows-x64-REVIEW.zip`**.
 2. **Extract:** Extract the entire ZIP archive to your desired location (e.g., `C:\SIRIUS_ARCHIVE`).
 3. **Launch:** Open the extracted folder and run **`SiriusOrchestrator.exe`**. The desktop interface will open automatically.
 
@@ -37,7 +37,7 @@ To run the pre-compiled standalone version directly on Windows without installin
 If you prefer to run or contribute directly from the source code repository:
 
 ### 1. Clone & Extract Source
-Download the source code ZIP from [Releases](https://github.com/richardpizem/SIRIUS-LOCAL-AI/releases/tag/v6.0.1) or clone the repository, then open your terminal in the root directory.
+Download the source code ZIP from the [SIRIUS LOCAL AI v6.0.1](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/tag/v6.0.1) page or clone the repository, then open your terminal in the root directory.
 
 ### 2. Environment Setup
 Ensure you have **Python 3.10+** installed:
@@ -53,7 +53,7 @@ Ensure you have **Python 3.10+** installed:
     pip install -r requirements.txt
 
 ### 3. Launch Orchestrator
-Start the unified runtime and IPC bridge:
+Start the unified runtime and IPC bridge from the root directory:
 
     python sirius_orchestrator.py
 
@@ -93,24 +93,19 @@ Once initialized, access the interactive 4-Panel UI Suite at `http://127.0.0.1:8
 ## 📌 Table of Contents & Navigation Map
 
 - [Quickstart & Installation](#-quickstart-windows-preview-recommended)
-- [Architecture Overview](ARCHITECTURE.md)
-- [Module Map](MODULE_MAP.md)
+- [Architecture Overview](#-architecture-overview-logical-module-mapping)
 - [Coding Styleguide](STYLEGUIDE.md)
 - [Testing Guide](TESTING_GUIDE.md)
-- [Performance Optimization Guide](PERFORMANCE_GUIDE.md)
+- [Performance Design](#-performance-design)
 - [Release Notes](RELEASE_NOTES.md)
-- [Roadmap & Version Plan](ROADMAP.md)
 - [Security Family & Identity Engine](SECURITY_FAMILY.md)
-- [Automatic Input Triage Engine (AITE)](AITE.md)
-- [ENVOY Tutorial & Triage Protocol](ENVOY_TUTORIAL.md)
 - [Contributing Guidelines](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Future Vision](FUTURE_VISION.md)
-- [Password Vault 5.0 Reference](PASSWORD_VAULT.md)
 
 ---
 
-## 📁 Project Structure (v6.0.1)
+## 📁 Architecture Overview (Logical Module Mapping)
+
+*Note: This section outlines the logical module organization and high-level architecture of the runtime components.*
 
 src/
 |-- commands/              # Natural language routing and command execution
@@ -137,10 +132,9 @@ src/
 
 ---
 
-## ⚙️ Performance & Optimization Guarantees
+## ⚙️ Performance Design
 
 - **Zero External API Latency:** 100% offline local execution (with optional user-approved ENVOY web lookups).
-- **Instant Memory Resolution:** O(1) hash-indexed dual-language graph lookups.
 - **Lightweight Asynchronous UI:** Non-blocking 4-Panel dashboard on port 8080.
 - **Strict Bounded Inference:** Cycle-safe reasoning preventing runaway recursion.
 
