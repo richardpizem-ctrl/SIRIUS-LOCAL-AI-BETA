@@ -1,10 +1,10 @@
-# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 
 This project follows a professional, respectful, and safety‑oriented standard of behavior.  
 The goal is to maintain a **safe, friendly, and productive environment** for all contributors  
 and all users of SIRIUS LOCAL AI — including households, families, and children.
 
-Version **5.9.5** updates the Code of Conduct to reflect the **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback Crash Resilience, Professor Validator Middleware & COLNÍK Guard Security Protocol**, including:
+Version **6.0.1** updates the Code of Conduct to reflect the **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback Crash Resilience, Professor Validator Middleware & COLNÍK Guard Security Protocol**, including:
 
 - **Unified Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**  
@@ -17,17 +17,17 @@ Version **5.9.5** updates the Code of Conduct to reflect the **Dual-Language KG 
 - **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and `shutil.rmtree` restorations)**  
 - **Professor Validator Middleware enforcing strict `PASS / WARN / REJECT` cognitive verification**  
 - **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**  
-- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction**  
+- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (tested in `dist_V6_CHECK`)**  
 - **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with deterministic state release)**  
 - **Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)**  
 - **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**  
 - **Contextual Domain Shield & Sentence-Bound Bio Filter (`EnvoyNormalizer5`)**  
 - **TimeCore Latency Telemetry (`cycle_delta()`) & Guard Security/Metric Supervision**  
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (Explainability Engines)**  
-- **Reasoning Engine 5.9.5 (multi-hop, inheritance, transitivity)**  
+- **Reasoning Engine 5.x (multi-hop, inheritance, transitivity)**  
 - **Proof Tree & Evidence Tree Foundations**  
 - **Confidence Scoring & Deterministic Rule Chaining**  
-- **Workflow Engine 5.9.5 (explainability routing)**  
+- **Workflow Engine 6.0.1 (explainability routing)**  
 - **Identity Engine 3.1 & SECURITY FAMILY 5.x**  
 - **Schoolwork Engine 5.8**  
 - **System Agent 5**  
@@ -53,7 +53,7 @@ Version **5.9.5** updates the Code of Conduct to reflect the **Dual-Language KG 
   - **Native KG Merge & Taxonomical Reasoning Layer**  
   - **SafeRollback Backup & Restore Module (`safe_rollback.py`)**  
   - **Professor Validator Middleware (`professor_validator.py`)**  
-  - **Human-in-the-Loop Safe Trash & Quarantine Storage**  
+  - **Human-in-the-Loop Safe Trash & Quarantine Storage (tested in `dist_V6_CHECK`)**  
   - **COLNÍK Guard Shell Access Controller (0.0s Hard Blocks)**  
   - **EnvoyQuarantine5 Sliding-Window Rotator (100-file ceiling)**  
   - **EnvoyExecutionLayer5 & EnvoyNormalizer5**  
@@ -65,7 +65,7 @@ Version **5.9.5** updates the Code of Conduct to reflect the **Dual-Language KG 
   - **AUTONOMY 6.x (Control, Guard & Triage Mode)**  
   - **PanelAPI & TimeCore/Guard Supervision**  
   - **KG_EXPLAIN & KG_EXPLAIN_DEEP**  
-  - **Reasoning Engine 5.9.5**  
+  - **Reasoning Engine 5.x**  
 
 These principles ensure that collaboration remains focused, respectful, and effective.
 
@@ -88,7 +88,7 @@ These principles ensure that collaboration remains focused, respectful, and effe
 - adhering to the Human-in-the-Loop Safe Trash pipeline without forcing direct deletions  
 - respecting FAMILY‑safe design and identity‑based protections  
 - ensuring SCHOOLWORK‑related features remain unrestricted and safe  
-- preserving deterministic, safe, offline‑only behavior  
+- preserving deterministic, safe, offline‑first behavior (with optional user-approved ENVOY web lookups)  
 - ensuring Terminal state releases (`currentModule = "none"`) to prevent shell capture  
 - ensuring **System Agent 5** remains the final gatekeeper  
 - ensuring ENVOY 5 disambiguation triage and domain filtering are not weakened  
@@ -232,7 +232,7 @@ This Code of Conduct applies to:
   - **Professor Validator Middleware (`professor_validator.py`)**  
   - **EnvoyExecutionLayer5, EnvoyNormalizer5 & EnvoyQuarantine5**  
   - **COLNÍK Guard & TerminalAssistant**  
-  - **Human-in-the-Loop Safe Trash**  
+  - **Human-in-the-Loop Safe Trash (tested in `dist_V6_CHECK`)**  
   - **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`)**  
   - **SECURITY FAMILY 5.x & Identity Engine 3.1**  
   - **Schoolwork Engine 5.8 & Time‑Limits Engine v3**  
@@ -241,12 +241,12 @@ This Code of Conduct applies to:
   - **AUTONOMY 6.x (Control, Guard & Triage Mode)**  
   - **PanelAPI, TimeCore & Guard Supervision**  
   - **KG_EXPLAIN & KG_EXPLAIN_DEEP**  
-  - **Reasoning Engine 5.9.5**  
+  - **Reasoning Engine 5.x**  
   - **Unified Orchestrator (`sirius_orchestrator.py` on Port 8080)**  
 
 ---
 
-# 8. 🧒 Family & Safety Considerations (v5.9.5)
+# 8. 🧒 Family & Safety Considerations (v6.0.1)
 
 SIRIUS LOCAL AI includes dedicated security layers designed to:
 
@@ -258,7 +258,7 @@ SIRIUS LOCAL AI includes dedicated security layers designed to:
 - maintain STRANGER‑mode protections for unknown users  
 - ensure OWNER‑level actions remain restricted  
 - integrate with Identity Engine 3.1 for behavior‑based recognition  
-- prevent unverified disk destruction through the Human-in-the-Loop Safe Trash pipeline  
+- prevent unverified disk destruction through the Human-in-the-Loop Safe Trash pipeline (tested in `dist_V6_CHECK`)  
 - block command injection at entry with Token Guard  
 - intercept forbidden terminal routines (`format`, `diskpart`, `rmdir /s`) in 0.0s  
 - ensure UI panels and Terminal cannot capture host execution without authorization  
@@ -285,4 +285,4 @@ and help maintain a respectful, safe, and productive environment for all users �
 
 ---
 
-**Document Status:** v5.9.5 (Dual-Language KG Architecture, Native Entity Merge, Taxonomical Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
+**Document Status:** v6.0.1 (Dual-Language KG Architecture, Native Entity Merge, Taxonomical Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
