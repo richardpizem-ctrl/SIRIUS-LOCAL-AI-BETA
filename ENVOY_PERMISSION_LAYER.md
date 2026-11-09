@@ -1,13 +1,13 @@
 # 🌐 ENVOY PERMISSION LAYER 5 — Safe External Retrieval & Identity‑Aware Access Control  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.9.5  
+**Version:** 6.0.1  
 **Component:** ENVOY Permission Layer  
 **Role:** Identity‑aware, explainable, orchestrator-supervised, COLNIK-validated permission, language context routing, domain shielding, SafeRollback resilience, and Professor Validator cognitive verification system for external retrieval tasks.
 
 ---
 
 ## 🎯 Purpose  
-The ENVOY Permission Layer 5 is the unified safety, permission, and domain-boundary framework that governs all external retrieval operations performed by ENVOY within Runtime 5.9.5.  
+The ENVOY Permission Layer 5 is the unified safety, permission, and domain-boundary framework that governs all external retrieval operations performed by ENVOY within Runtime 5.x.  
 It ensures that every outbound enrichment request is:
 
 - bound to the active linguistic context (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN)  
@@ -23,7 +23,7 @@ It ensures that every outbound enrichment request is:
 - autonomy‑aware with zero proposal recurrence on confirmed concepts and inferred taxonomies  
 - orchestrator-supervised via `sirius_orchestrator.py` on local port 8080 with embedded TerminalAssistant + TimeCore  
 - COLNIK‑validated (Standard & High-Performance IPC Mode) with Token Guard input sanitization  
-- strictly compliant with local-first, offline runtime isolation  
+- strictly compliant with local-first, offline runtime isolation (with optional user-approved ENVOY web lookups)  
 
 ENVOY never directly mutates runtime structures — all communication is filtered, sanitized, quarantined, and authorized through this permission layer under `TimeCore`, `Guard`, `SafeRollback`, `Professor Validator`, and `COLNÍK` supervision.
 
@@ -64,7 +64,7 @@ ENVOY never directly mutates runtime structures — all communication is filtere
 
 ---
 
-## 🔍 Permission Pipeline (v5.9.5)  
+## 🔍 Permission Pipeline (v6.0.1)  
 
 ### **1 — Identity, Token Guard & Context Validation**  
 Before ENVOY initiates any external retrieval process, the permission layer audits:  
@@ -81,7 +81,7 @@ If identity, token, or context validation fails, the request is immediately neut
 ---
 
 ### **2 — Semantic Integrity & Domain Guarding**  
-In Runtime 5.9.5, retrieval requests must pass semantic sanitation:  
+In Runtime 5.x, retrieval requests must pass semantic sanitation:  
 - **Compound Phrase Verification:** Ensures noun phrases (*ovcia vlna*, *mobilny telefon*) remain intact and are not truncated into isolated words.  
 - **Disambiguation Routing:** Confirms that parenthetical expressions or encyclopedia indexes resolve to valid root lemmas (Strip-Bracket Fallback).  
 - **Non-Bio Domain Shield:** Strictly bars abstract, engineering, and scientific topics (*fyzika*, *ekológia*, *architektúra*) from acquiring biological habitat properties.  
@@ -187,8 +187,8 @@ Only verified, normalized facts are committed to the designated language Knowled
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
+## 📊 Module Status (v6.0.1)  
+- ✔ Fully implemented & synchronized with Runtime 5.x architecture  
 - ✔ Dual-language target routing (`autosave_kg.json` vs. `autosave_kg_en.json`) active  
 - ✔ Token Guard input sanitization active  
 - ✔ Trailing punctuation trimming and confirmation latching active  
@@ -208,5 +208,5 @@ Only verified, normalized facts are committed to the designated language Knowled
 ---
 
 ## 🏁 Summary  
-ENVOY Permission Layer 5 serves as the defensive boundary and permission backbone for all external retrieval operations in SIRIUS Local AI (v5.9.5).  
-It ensures that ENVOY retrieves only safe, identity-validated, explainable, autonomy-approved, and COLNIK-verified facts under orchestrator supervision and PanelAPI confirmation loops — maintaining compound semantic integrity, binding payloads to isolated dual-language graph partitions, rotating quarantine storage via sliding windows, protecting domain boundaries, enforcing SafeRollback state recovery, verifying cognitive outputs via Professor Validator, and preserving strict offline-first runtime isolation.
+ENVOY Permission Layer 5 serves as the defensive boundary and permission backbone for all external retrieval operations in SIRIUS Local AI (v6.0.1).  
+It ensures that ENVOY retrieves only safe, identity-validated, explainable, autonomy-approved, and COLNIK-verified facts under orchestrator supervision and PanelAPI confirmation loops — maintaining compound semantic integrity, binding payloads to isolated dual-language graph partitions, rotating quarantine storage via sliding windows, protecting domain boundaries, enforcing SafeRollback state recovery, verifying cognitive outputs via Professor Validator, and preserving strict offline-first runtime isolation (with optional user-approved ENVOY web lookups).
