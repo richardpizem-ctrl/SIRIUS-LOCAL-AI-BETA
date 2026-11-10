@@ -1,6 +1,6 @@
 # 🌌 SIRIUS LOCAL AI — Unified Autonomous Workstation Overview  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.9.5 UNIFIED  
+**Version:** 6.0.1 UNIFIED  
 **Architecture:** Modular, Deterministic, Explainable, Single-Process Orchestrated, Dual-Language KG, Native Lossless Merge, COLNÍK Guard Hardened, HitL Safe Trash, Autonomy‑Supervised  
 **Scope:** PC + Workstation Offline AI Operating Environment (Port 8080)  
 **Author:** Richard Pizem  
@@ -29,18 +29,18 @@ SIRIUS is composed of tightly integrated, decoupled subsystems operating within 
 - **Sliding-Window Quarantine Rotator** — automatic maintenance enforcing a strict 100-file ceiling inside `COLNIK-6.x/envoy/quarantine/`  
 - **Punctuation Hygiene & Confirmation State Latching** — greedy trailing punctuation stripping (`.rstrip("?")`) preventing token lookup mismatch, and turn-persistent confirmation latching for pending proposals  
 - **Multi-Word Semantic Parser (`InputParser5`)** — extraction and preservation of compound noun phrases (`ovcia vlna`, `mobilny telefon`, `pevna linka`) and strict copula verb separation (`je`, `sú`, `is`, `are`)  
-- **Autonomous ENVOY 5 & Disambiguation Triage** — encyclopedic disambiguation resolution, Anti-Prefix Guard, Strip-Bracket Fallback, and Non-Bio Domain Shield (`EnvoyNormalizer5`) bound to language endpoints (`sk.wikipedia.org` / `en.wikipedia.org`)  
+- **Autonomous ENVOY 6 & Disambiguation Triage** — encyclopedic disambiguation resolution, Anti-Prefix Guard, Strip-Bracket Fallback, and Non-Bio Domain Shield (`EnvoyNormalizer5`) bound to language endpoints (`sk.wikipedia.org` / `en.wikipedia.org`)  
 - **PanelAPI & TimeCore/Guard** — interactive non-blocking `[ÁNO/NIE]` / `[YES/NO]` confirmation loops and real-time CPU, RAM, Disk hardware telemetry  
 - **Zero Proposal Recurrence Engine** — permanent elimination of redundant learning proposals once entities, aliases, or taxonomical edges are committed  
-- **ReasoningEngine 5.9.5** — deterministic multi‑hop symbolic inference, orbital jumps, property inheritance, and proof-tree generation  
+- **ReasoningEngine 6.0.1** — deterministic multi‑hop symbolic inference, orbital jumps, property inheritance, and proof-tree generation  
 - **COLNIK‑6.x Customs Decision Gate** — primitive ALLOW / DENY / TRIAGE customs validation across Standard, High-Performance IPC, and COLNÍK Guard modes  
 - **AUTONOMY 6.x (Control, Guard, Safe Trash & Triage Mode)** — supervised proposal generation, hardware anomaly containment, and triage routing in `COLNIK-6.x/triage`  
 - **EXECUTE 6.x** — deterministic mutation executor and atomic dual-disk committer  
 - **4-Panel UI Suite (Port 8080)** — browser dashboard (`Duplicates`, `Triage`, `Navigation`, `Terminal`) with automatic module context reset (`currentModule = "none"`)  
-- **Security Family 5.x & Identity Engine 3.1** — constant-time O(1) access tiers (OWNER / FAMILY / STRANGER) and academic bypass  
-- **System Agent 5** — hardened OS‑level gatekeeper enforcing reversibility, terminal isolation, and COLNÍK Guard compliance  
-- **Workflow Engine 5.9.5** — deterministic multi-step state machine with proof-tree dispatch  
-- **Self‑Repair Layer 5.8** — SHA-256 cryptographic hash sealing, baseline shadow restoration, and dual-graph partition healing  
+- **Security Family 6.x & Identity Engine 3.1** — constant-time O(1) access tiers (OWNER / FAMILY / STRANGER) and academic bypass  
+- **System Agent 6** — hardened OS‑level gatekeeper enforcing reversibility, terminal isolation, and COLNÍK Guard compliance  
+- **Workflow Engine 6.0.1** — deterministic multi-step state machine with proof-tree dispatch  
+- **Self‑Repair Layer 6.0** — SHA-256 cryptographic hash sealing, baseline shadow restoration, and dual-graph partition healing  
 
 Each module is strictly bounded, fully inspectable, explainable, and validated through COLNIK‑6.x.
 
@@ -97,7 +97,7 @@ SIRIUS delivers verifiable enterprise safety:
 - **Terminal Input Decoupling:** clearing command input immediately resets `currentModule = "none"`, permanently preventing conversational queries from executing as host OS shell commands  
 - **Reversibility Guarantee:** direct unverified disk deletions are barred; duplicate files enforce a strict `REPORT_ONLY` policy  
 - **Identity Enforcement:** constant-time evaluation of OWNER, FAMILY, and STRANGER profiles, with guaranteed academic bypass for schoolwork  
-- **Cryptographic Integrity:** continuous SHA-256 hash checks and shadow restoration via Self-Repair Layer 5.8  
+- **Cryptographic Integrity:** continuous SHA-256 hash checks and shadow restoration via Self-Repair Layer 6.0  
 
 ---
 
@@ -109,7 +109,7 @@ Accessible via browser on `http://127.0.0.1:8080`, the interface isolates manage
 - **Navigation Panel:** Deterministic, state-safe switching across Runtime Core, Knowledge Graph, Envoy, and Autonomy modules.  
 - **Terminal Panel:** Decoupled CLI console with automatic context clearance (`currentModule = "none"`), ensuring conversational text never captures host terminal focus, backed by COLNÍK Guard command validation.  
 
-Host automation operations mediate through System Agent 5 with strict sandbox isolation and verified reversibility.
+Host automation operations mediate through System Agent 6 with strict sandbox isolation and verified reversibility.
 
 ---
 
@@ -163,44 +163,56 @@ sirius_orchestrator.py (Single-Process Daemon on Port 8080 with TerminalAssistan
   ├── TimeCore (cycle_delta()) & Guard (Hardware resource metrics)
   ├── Dual-Language KG Core (autosave_kg.json & autosave_kg_en.json)
   ├── Native Lossless Merge Engine (kg merge <src> into <tgt>)
-  ├── ReasoningEngine 5.9.5 (Taxonomical KG_VERIFY & Proof trees)
+  ├── ReasoningEngine 6.0.1 (Taxonomical KG_VERIFY & Proof trees)
   ├── COLNIK-6.x Customs Decision Gate (Standard & High-Performance IPC Mode)
   ├── AUTONOMY 6.x (Confirmation State Latching & Triage Mode in COLNIK-6.x/triage)
   ├── PanelAPI ([ÁNO/NIE] / [YES/NO] Confirmation Loops — Zero Recurrence)
   └── EXECUTE 6.x (Dual Atomic Persistence & Safe Execution)
-```
-
----
-
-## 📱 Cross‑Platform Core  
+  📱 Cross‑Platform Core
 SIRIUS executes deterministically across:
 
-- Windows 11 workstations (native execution)  
-- Android / Mobile runtimes (via unified agent core)  
-- identical dual Knowledge Graph schemas (`autosave_kg.json` & `autosave_kg_en.json`)  
-- identical symbolic reasoning rules and explainability proof trees  
-- unified identity and academic bypass logic  
+Windows 11 workstations (native execution)
 
----
+Android / Mobile runtimes (via unified agent core)
 
-## 🏁 Summary  
+identical dual Knowledge Graph schemas (autosave_kg.json & autosave_kg_en.json)
+
+identical symbolic reasoning rules and explainability proof trees
+
+unified identity and academic bypass logic
+
+🏁 Summary
 SIRIUS Local AI is a System‑Intelligent Autonomous Workstation — a unified, deterministic, explainable, single-process orchestrated, dual-language persistent offline AI system engineered to operate Windows 11 safely, linguistically segregated, protected from destructive commands, and transparently.
 
 It is:
 
-- autonomous with active human oversight and confirmation state latching  
-- linguistically segregated across Slovak and English graphs  
-- equipped with native lossless entity merging (`kg merge`)  
-- capable of automated biological taxonomical deduction (`KG_VERIFY`)  
-- protected against destructive shell routines via COLNÍK Guard in 0.0s  
-- non-destructive with file removals mediated by HitL Safe Trash  
-- sanitized at entry via Token Guard and sliding-window quarantine rotation  
-- persistent without proposal recurrence  
-- decoupled and safe from terminal shell hijacking  
-- explainable via hierarchical proof trees  
-- validated by customs-grade decision gates  
-- self-healing and hash-sealed  
-- identity-aware with academic priority  
-- 100% offline and sovereign  
+autonomous with active human oversight and confirmation state latching
+
+linguistically segregated across Slovak and English graphs
+
+equipped with native lossless entity merging (kg merge)
+
+capable of automated biological taxonomical deduction (KG_VERIFY)
+
+protected against destructive shell routines via COLNÍK Guard in 0.0s
+
+non-destructive with file removals mediated by HitL Safe Trash
+
+sanitized at entry via Token Guard and sliding-window quarantine rotation
+
+persistent without proposal recurrence
+
+decoupled and safe from terminal shell hijacking
+
+explainable via hierarchical proof trees
+
+validated by customs-grade decision gates
+
+self-healing and hash-sealed
+
+identity-aware with academic priority
+
+100% offline and sovereign
 
 A complete, auditable, and self-contained alternative to probabilistic cloud AI systems.
+
