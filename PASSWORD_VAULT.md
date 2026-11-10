@@ -1,8 +1,8 @@
-# 🔐 PASSWORD VAULT 5.9.5 — Secure Local Credential Module
+# 🔐 PASSWORD VAULT 6.0.1 — Secure Local Credential Module
 ### Fully Offline • AES‑256‑GCM • Identity‑Aware • Deterministic • Dual-Language KG Ready • Token Guard Protected • SafeRollback Protected • Professor Validator Verified • COLNÍK Guard Hardened • Single-Process Orchestrator • AUTONOMY‑Supervised
 
-PASSWORD VAULT 5.9.5 is the official secure credential storage module of  
-**SIRIUS LOCAL AI — Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol 5.9.5**.
+PASSWORD VAULT 6.0.1 is the official secure credential storage module of  
+**SIRIUS LOCAL AI — Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol 6.0.1**.
 
 It provides **fully offline, encrypted, identity‑aware, deterministic** password and secret storage  
 with strict OWNER/FAMILY/STRANGER access rules, terminal input decoupling, entry-level Token Guard sanitization, SafeRollback crash protection, Professor Validator cognitive verification, and complete integration with:
@@ -14,14 +14,14 @@ with strict OWNER/FAMILY/STRANGER access rules, terminal input decoupling, entry
 - SafeRollback crash resilience (`safe_rollback.py` with granular backups and instant restorations)
 - Professor Validator middleware (`professor_validator.py` enforcing strict `PASS / WARN / REJECT` verification)
 - COLNÍK Guard Shell Filter (0.0s hard blocking of forbidden commands like `format` and `diskpart`)
-- Human-in-the-Loop Safe Trash pipeline (routing deletion targets to quarantine, preventing unverified disk removal)
+- Human-in-the-Loop Safe Trash pipeline (routing deletion targets to quarantine, preventing unverified disk removal, tested in `dist_V6_CHECK`)
 - Multi-Word Semantic Engine (`InputParser5` preserving compound service names)
 - PanelAPI interactive loops (`[ÁNO/NIE]` / `[YES/NO]` confirmation prompts)
 - TimeCore temporal tracking (`cycle_delta()`) & Guard security/resource supervision (CPU, RAM, Disk)
 - 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)
-- Runtime Core 5.9.5
-- Workflow Engine 5.9.5
-- Reasoning Engine 5.9.5
+- Runtime Core 6.0.1
+- Workflow Engine 6.0.1
+- Reasoning Engine 5.x
 - KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)
 - Security Family 5.x & Identity Engine 3.1
 - System Agent 5
@@ -35,7 +35,7 @@ All vault operations are **strictly local‑first**, never transmitted over open
 
 # 🧩 1. Purpose
 
-The PASSWORD VAULT 5.9.5 module provides:
+The PASSWORD VAULT 6.0.1 module provides:
 
 - secure offline credential storage with tamper-evident cryptographic sealing  
 - deterministic access rules managed centrally by `sirius_orchestrator.py` on port 8080  
@@ -57,7 +57,7 @@ It is engineered for **maximum security**, **absolute zero-cloud reliance**, and
 
 ---
 
-# 🔐 2. Security Model (v5.9.5)
+# 🔐 2. Security Model (v6.0.1)
 
 ### Cryptographic Foundation
 - **AES‑256‑GCM** authenticated symmetric encryption with integrity tags  
@@ -72,7 +72,7 @@ It is engineered for **maximum security**, **absolute zero-cloud reliance**, and
   - **FORBIDDEN (0.0s Hard Block):** `format`, `rmdir /s`, `del /f /s /q c:`, `diskpart`, `drop database`
   - **RISKY (Explicit Prompt):** `rm`, `kill`, `taskkill`, `del`
   - **ALLOWED:** `ps`, `mem`, `sys`, `grep`, `cat`, etc.
-- file removal operations (e.g., purging stale vault backups) route through the **Human-in-the-Loop Safe Trash** pipeline for manual review (`GET /trash`), prohibiting direct unverified deletion
+- file removal operations (e.g., purging stale vault backups) route through the **Human-in-the-Loop Safe Trash** pipeline for manual review (`GET /trash`, tested in `dist_V6_CHECK`), prohibiting direct unverified deletion
 
 ### Identity Rules & Policy Tiers
 - **OWNER** → full access (read / write / delete / export) with optional `PanelAPI` confirmation for critical keys
@@ -105,7 +105,7 @@ Every vault transaction produces audit traces and operational telemetry:
 - deterministic AES-256-GCM encryption/decryption execution  
 - identity‑aware access control and caller verification  
 - safe atomic vault updates and rollbacks  
-- safe credential deletion with zero-fill overwriting and HitL Safe Trash quarantine routing  
+- safe credential deletion with zero-fill overwriting and HitL Safe Trash quarantine routing (tested in `dist_V6_CHECK`)  
 - single-process orchestration via `sirius_orchestrator.py` on port 8080  
 - input processing via `InputParser5` preserving multi-word service labels  
 - trailing question mark stripping via `.rstrip("?")` to ensure exact credential key matches  
@@ -115,7 +115,7 @@ Every vault transaction produces audit traces and operational telemetry:
 - **COLNIK‑validated access gating and COLNÍK Guard shell command control**  
 - **AUTONOMY‑aware proposal supervision and Guard resource tracking**  
 
-### Additional Responsibilities (v5.9.5)
+### Additional Responsibilities (v6.0.1)
 - Token Guard input filter enforcement
 - compound noun preservation for custom services (`InputParser5`)
 - dual-language linkage: credentials can link to service entities or aliases stored in either `autosave_kg.json` (SK) or `autosave_kg_en.json` (EN)
@@ -134,11 +134,13 @@ The vault resides within an isolated directory tree:
 
 ```text
 vault/  
-├── vault.dat                 # encrypted AES-256-GCM credential container  
-├── vault_meta.json           # non-sensitive metadata & operational markers  
-├── vault_salt.bin            # cryptographically secure PBKDF2 salt  
-└── vault_integrity.json      # Self‑Repair Layer hash seals & integrity markers
-🔄 5. Operational Workflow (v5.9.5)
+├── vault.dat                # encrypted AES-256-GCM credential container  
+├── vault_meta.json          # non-sensitive metadata & operational markers  
+├── vault_salt.bin           # cryptographically secure PBKDF2 salt  
+└── vault_integrity.json     # Self‑Repair Layer hash seals & integrity markers
+
+🔄 5. Operational Workflow (v6.0.1)
+
 User / UI Vault Command  
 ↓  
 Token Guard (Entry check: reject inputs with @#\$%^&*)  
@@ -152,7 +154,7 @@ Identity Gate & Security Family 5.x Verification
 ↓  
 COLNÍK Guard Inspection  
 ├─ [Shell Operation] ─────> Verify Command (0.0s block on format/diskpart)  
-├─ [Deletion Request] ────> Route to Human-in-the-Loop Safe Trash (GET /trash)  
+├─ [Deletion Request] ────> Route to Human-in-the-Loop Safe Trash (GET /trash, tested in dist_V6_CHECK)  
 ↓  
 SafeRollback Backup & Professor Validator Verification (PASS / WARN / REJECT)  
 ↓  
@@ -164,6 +166,6 @@ Zero Plaintext Memory Wipe
 ↓  
 UI State Release (currentModule = "none") & Log Telemetry via TimeCore cycle_delta()
 📌 Document Status
-Version: 5.9.5 (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
+Version: 6.0.1 (Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol)
 
-This document specifies the operational credential vault of SIRIUS LOCAL AI, fully unifying AES-256-GCM security, Token Guard input hygiene, COLNÍK Guard shell protection, Human-in-the-Loop Safe Trash, SafeRollback crash resilience, Professor Validator verification, and single-process orchestration on port 8080.
+This document specifies the operational credential vault of SIRIUS LOCAL AI, fully unifying AES-256-GCM security, Token Guard input hygiene, COLNÍK Guard shell protection, Human-in-the-Loop Safe Trash (tested in dist_V6_CHECK), SafeRollback crash resilience, Professor Validator verification, and single-process orchestration on port 8080.
