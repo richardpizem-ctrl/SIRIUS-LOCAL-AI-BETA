@@ -1,7 +1,7 @@
-# 🧠 REASONING ENGINE 5.x — Deterministic Multi‑Hop Inference Core  
+# 🧠 REASONING ENGINE 6.0.1 — Deterministic Multi‑Hop Inference Core  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.x  
-**SIRIUS Local AI Version:** 5.9.5  
+**Version:** 6.0.1  
+**SIRIUS Local AI Version:** 6.0.1  
 **Author & Architecture Lead:** Richard Pizem  
 **Component:** ReasoningEngine5 & Professor Validator Middleware Integration  
 **Role:** Deterministic symbolic reasoning engine performing multi-hop inference, dual-language graph reasoning, taxonomical deduction, non-destructive reverse location evaluation, native merge traversal, proof-tree generation, and cognitive fact validation via Professor Middleware (PASS / WARN / REJECT) under single-process orchestrator supervision
@@ -9,17 +9,17 @@
 ---
 
 ## 🎯 Purpose  
-ReasoningEngine5 is the core inference module of SIRIUS Local AI (v5.9.5), architected by Richard Pizem.  
+ReasoningEngine5 is the core inference module of SIRIUS Local AI (v6.0.1), architected by Richard Pizem.  
 It evaluates symbolic rules, performs multi-hop graph derivations, validates semantic hypotheses, handles compound noun phrases via `InputParser5` with trailing punctuation hygiene (`.rstrip("?")`), executes taxonomical category deduction (`KG_VERIFY`), evaluates reverse geographic habitats with anti-flora shielding, resolves multi-alias pointers, and generates structured explanations across isolated dual-language Knowledge Graphs (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN).
 
-V architektúre v5.9.5 platí striktné pravidlo: **Reasoning Engine a Runtime Core môžu v znalostnom grafe odvodiť čokoľvek, ale Professor Middleware Layer (Cleaner, Validator PASS/WARN/REJECT, Summarizer) autoritatívne rozhodne, či sa odvodené fakty smú zobraziť používateľovi.** Žiadna neoverená dedukcia, halucinácia alebo neúplný fakt neprejde do UI bez schválenia validačnou bránou.
+V architektúre v6.0.1 platí striktné pravidlo: **Reasoning Engine a Runtime Core môžu v znalostnom grafe odvodiť čokoľvek, ale Professor Middleware Layer (Cleaner, Validator PASS/WARN/REJECT, Summarizer) autoritatívne rozhodne, či sa odvodené fakty smú zobraziť používateľovi.** Žiadna neoverená dedukcia, halucinácia alebo neúplný fakt neprejde do UI bez schválenia validačnou bránou.
 
 The engine is completely deterministic, transparent, and designed for enterprise-grade symbolic explainability (XAI), orchestrated through `sirius_orchestrator.py` on local port 8080 with embedded `TerminalAssistant` and `TimeCore` (`cycle_delta()`), protected by `Token Guard`, pre-processed by `spellcheck_engine.py`, gated by `Professor Validator`, and supervised by `Guard` and `COLNÍK Guard`.
 
 ---
 
 ## 🧩 Architecture Overview  
-**Runtime 5.9.5 / InputParser5 → Token Guard → spellcheck_engine.py → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE (`autosave_kg.json` / `autosave_kg_en.json`) → ReasoningEngine5 → PROFESSOR MIDDLEWARE LAYER (PASS / WARN / REJECT) → AUTONOMY 6.x → COLNIK-6.x (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → UI PANEL V2 / EXECUTE 6.x**
+**Runtime 6.0.1 / InputParser5 → Token Guard → spellcheck_engine.py → sirius_orchestrator.py (Port 8080) → Language Context Router → KG ENGINE (`autosave_kg.json` / `autosave_kg_en.json`) → ReasoningEngine5 → PROFESSOR MIDDLEWARE LAYER (PASS / WARN / REJECT) → AUTONOMY 6.x → COLNIK-6.x (IPC Mode) → PanelAPI [ÁNO/NIE] / [YES/NO] → UI PANEL V2 / EXECUTE 6.x**
 
 ### Core Responsibilities  
 - evaluate deterministic symbolic inference rules across isolated Slovak and English graph stores  
@@ -55,7 +55,7 @@ The engine is completely deterministic, transparent, and designed for enterprise
 
 ---
 
-## 🔍 Reasoning & Validation Pipeline (v5.9.5)  
+## 🔍 Reasoning & Validation Pipeline (v6.0.1)  
 
 ### **1 — Semantic Query Ingestion, Token Guard & Spellcheck Pre-Processing**  
 - Inputs pass through **Token Guard**; malicious symbolic character sequences (`@#$%^&*`) are dropped at entry.  
@@ -96,7 +96,7 @@ Traversal depth is strictly capped to prevent runaway cyclic recursion, tracked 
 
 ### **6 — Professor Middleware Verification: Cognitive Quality Gate**  
 Všetky odvodené fakty, trojice a multi-hop reťazce pred opustením inferenčného jadra povinne prechádzajú cez **Professor Middleware Layer**:
-1. **Professor Cleaner (`grammar_engine.py`):** Vyčistí extrahované relácie, normalizuje predikáty a zvratné slovesá (*sa zaoberá / deals with*), oddelí časticu *sa/si* od subjektu a začlení ju do hrany predikátu. Zachová spojky (*a, i*) pre SK a odfiltruje neurčité členy (*a/an*) pre EN.  
+1. **Professor Cleaner (`grammar_engine.py`):** Vyčistí extrahované relácie, normalizuje predikáty a zvratné slovesá (*sa zaoberá / deals with*), oddelí časticu *sa/si* od subjektu a začlení ju do hrany predikátu. Zachová spojky (*a, i*) pre SK a odfiltruje neurčité členy (*a/an*) for EN.  
 2. **Professor Validator (`professor_validator.py`):** Vyhodnotí faktickú integritu odvodenia:  
    - **PASS:** Odvodenie je kompletné, konzistentné a overené. Uvoľňuje sa do UI V2.  
    - **WARN:** Odvodenie nesie nižšiu mieru istoty (`LOW_CONFIDENCE`), no je použiteľné. UI zobrazí odpoveď s neónovým vizuálnym príznakom neistoty.  
@@ -146,7 +146,7 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 
 ## 🔐 Safety & Validation Rules  
 - 🎓 **Professor Quality Gating:** Runtime Core môže v grafe nájsť čokoľvek, ale Professor rozhodne, či sa to smie zobraziť používateľovi (PASS / WARN / REJECT)  
-- ❌ No destructive graph mutations or file deletions without explicit user confirmation (`PanelAPI` [ÁNO/NIE] / [YES/NO] & HitL Safe Trash)  
+- ❌ No destructive graph mutations or file deletions without explicit user confirmation (`PanelAPI` [ÁNO/NIE] / [YES/NO] & HitL Safe Trash, tested in `dist_V6_CHECK`)  
 - ⛔ Immediate Token Guard rejection on inputs containing malformed symbolic sequences (`@#$%^&*`)  
 - 🗄️ Strict dual-language isolation: Slovak and English reasoning cycles execute exclusively within their corresponding graph partitions  
 - 🔒 Deterministic, reproducible rule chaining without probabilistic hallucinations  
@@ -158,8 +158,8 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
+## 📊 Module Status (v6.0.1)  
+- ✔ Fully implemented & synchronized with Runtime 6.0.1 architecture  
 - ✔ Autor architektúry: Richard Pizem  
 - ✔ Integrovaná vrstva **Professor Middleware Layer** (grammar_engine, professor_validator, professor_miner)  
 - ✔ Validačná matica PASS / WARN / REJECT v plnej prevádzke  
@@ -176,13 +176,13 @@ Evaluates transitive logic across chains of directed edges, verifying structural
 - ✔ Hierarchical proof-tree generation active (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`)  
 - ✔ Single-process orchestrator integration on port 8080 operational with embedded TerminalAssistant + TimeCore  
 - ✔ COLNIK-6.x Customs validation and COLNÍK Guard handshake verified  
-- ✔ AUTONOMY 6.x proposal/confirmation, HitL Safe Trash & Triage Mode integrated  
+- ✔ AUTONOMY 6.x proposal/confirmation, HitL Safe Trash (tested in `dist_V6_CHECK`) & Triage Mode integrated  
 - ✔ 4-Panel UI Suite synchronization and terminal decoupling verified  
 
 ---
 
 ## 🏁 Summary  
-ReasoningEngine5 is the deterministic inference core of SIRIUS Local AI (v5.9.5), navrhnutý Richardom Pizemom.  
+ReasoningEngine6 is the deterministic inference core of SIRIUS Local AI (v6.0.1), navrhnutý Richardom Pizemom.  
 It performs multi-hop reasoning, evaluates symbolic rules, executes taxonomical deductions, navigates reverse habitat inquiries, traverses merged entity aliases, and generates transparent WHY explanations and proof trees throughout the autonomy cycle under central orchestrator supervision.  
 Všetky odvodené fakty sú prísne overované cez **Professor Middleware Layer**, čím je garantované, že do UI Panelu V2 sa dostanú výhradne konzistentné a pravdivé informácie.  
 The engine is production-stable and fully integrated with KG ENGINE, `sirius_orchestrator.py`, Professor Validator, AUTONOMY 6.x, COLNIK-6.x, Token Guard, COLNÍK Guard, PanelAPI, EXECUTE, and the 4-Panel UI Suite.
