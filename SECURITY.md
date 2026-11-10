@@ -1,10 +1,10 @@
-# 🛡 Security Architecture – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
-### Fully Offline • Deterministic • Dual-Language Isolated • Domain-Shielded • Single-Process Orchestrated • COLNÍK Guard Hardened • HitL Safe Trash • AUTONOMY‑Supervised
+# 🛡 Security Architecture – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
+### Fully Offline • Deterministic • Dual-Language Isolated • Domain-Shielded • Single-Process Orchestrated • COLNÍK Guard Hardened • HitL Safe Trash • SafeRollback Protected • Professor Validator Verified • AUTONOMY‑Supervised
 
-The **Security Architecture 5.9.5** defines all identity‑aware, OS‑aware, workflow‑aware, domain-shielded, semantic-aware, input-sanitized, shell-protected, and fetch‑aware protections inside the  
-**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & COLNÍK Guard Security Protocol 5.9.5**.
+The **Security Architecture 6.0.1** defines all identity‑aware, OS‑aware, workflow‑aware, domain-shielded, semantic-aware, input-sanitized, shell-protected, and fetch‑aware protections inside the  
+**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & COLNÍK Guard Security Protocol 6.0.1**.
 
-Version **5.9.5 UNIFIED** introduces major upgrades across all security layers:
+Version **6.0.1 UNIFIED** introduces major upgrades across all security layers:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**  
@@ -14,7 +14,9 @@ Version **5.9.5 UNIFIED** introduces major upgrades across all security layers:
 - **Entry-Level Token Guard (hard blocking of malicious symbol injections `@#$%^&*`)**  
 - **Punctuation Hygiene (`.rstrip("?")`) and Confirmation State Latching across turns**  
 - **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**  
-- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`)**  
+- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`, tested in `dist_V6_CHECK`)**  
+- **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and instant rollbacks)**  
+- **Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`) enforcing cognitive PASS / WARN / REJECT gating**  
 - **Sliding-Window Quarantine Rotation (100 JSON file ceiling in `COLNIK-6.x/envoy/quarantine/`)**  
 - **Character Encoding Fallback (UTF-8 -> CP1250 -> CP852 pipeline with zero diacritic corruption)**  
 - **Multi-Word Semantic Integrity (`InputParser5` compound phrase preservation)**  
@@ -33,12 +35,12 @@ Version **5.9.5 UNIFIED** introduces major upgrades across all security layers:
 All processing is fully local.  
 No data leaves the device unless explicitly permitted through:
 
-**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → DISAMBIGUATE → FETCH → ROTATING QUARANTINE → SHIELD → CUSTOMS → DUAL KG COMMIT**  
-(ENVOY 5 secure pipeline, orchestrated on port 8080 with TerminalAssistant, COLNIK‑validated, domain-shielded, sliding-window capped, and human-confirmed via `PanelAPI` [ÁNO/NIE] / [YES/NO] with confirmation state latching)
+**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → DISAMBIGUATE → FETCH → ROTATING QUARANTINE → SHIELD → PROFESSOR VALIDATOR → CUSTOMS → DUAL KG COMMIT**  
+(ENVOY 6 secure pipeline, orchestrated on port 8080 with TerminalAssistant, COLNIK‑validated, domain-shielded, sliding-window capped, and human-confirmed via `PanelAPI` [ÁNO/NIE] / [YES/NO] with confirmation state latching)
 
 ---
 
-# 🛡 5.9.5 Security Family 5.x – Identity Engine 3.1 (UPDATED)
+# 🛡 6.0.1 Security Family 5.x – Identity Engine 3.1 (UPDATED)
 
 Security Family 5.x strengthens the identity model and optimizes it for:
 
@@ -56,18 +58,22 @@ Ensure that all OS‑level, UI‑level, workflow‑level, reasoning‑level, and
 - deterministically validated via `sirius_orchestrator.py` on port 8080 with embedded TerminalAssistant + TimeCore  
 - identity‑controlled under OWNER / FAMILY / STRANGER access tiers  
 - safely restricted with instant safe-mode locking for ambiguous callers  
-- reversible and non-destructive via Human-in-the-Loop Safe Trash  
+- reversible and non-destructive via Human-in-the-Loop Safe Trash (tested in `dist_V6_CHECK`)  
+- protected against crashes via SafeRollback (`safe_rollback.py`)  
+- filtered for cognitive quality via Professor Middleware (`PASS / WARN / REJECT`)  
 - sanitized at entry via Token Guard against malicious symbols (`@#$%^&*`)  
 - fully audited with verifiable derivation traces  
 - explainable via `KG_EXPLAIN` & `KG_EXPLAIN_DEEP` proof trees  
 - customs-validated by COLNIK-6.x  
 - autonomy-supervised without proposal recurrence  
 
-### Security Enhancements (5.9.5 Upgrade)
+### Security Enhancements (6.0.1 Upgrade)
 - **Token Guard Entry Enforcement:** Raw inputs containing malicious or corrupted symbols (`@#$%^&*`) are dropped immediately at runtime threshold.  
 - **Punctuation Stripping & Confirmation Latching:** Trailing punctuation is stripped via `.rstrip("?")` to avoid entity lookup corruption, and pending proposal targets remain latched in memory across conversation turns.  
 - **COLNÍK Guard Command Interception:** TerminalAssistant intercepts forbidden shell instructions in 0.0s (`format`, `diskpart`, `rmdir /s`, etc.) before OS process execution.  
-- **Human-in-the-Loop Safe Trash:** Direct unverified disk deletions are blocked; removals route to quarantine awaiting explicit manual review via `GET /trash`.  
+- **Human-in-the-Loop Safe Trash:** Direct unverified disk deletions are blocked; removals route to quarantine awaiting explicit manual review via `GET /trash` (tested in `dist_V6_CHECK`).  
+- **SafeRollback Crash Protection:** Granular backups (`shutil.copytree`) and instant rollbacks (`shutil.rmtree`) protect module state integrity.  
+- **Professor Cognitive Gating:** Unverified or contradictory facts are blocked (`REJECT`) or flagged (`WARN`) before UI rendering.  
 - **Identity-Aware Dual-Language Resolution:** Access rules evaluate within the active linguistic graph (`autosave_kg.json` for SK, `autosave_kg_en.json` for EN) without cross-lingual contamination.  
 - **SCHOOLWORK Bypass 5.x:** Academic research tasks unconditionally bypass time and family restrictions while remaining explainable and auditable.  
 - **Terminal Lockdown on STRANGER:** Unrecognized users trigger immediate interface lockdown and terminal detachment (`currentModule = "none"`).  
@@ -86,9 +92,9 @@ Ensure that all OS‑level, UI‑level, workflow‑level, reasoning‑level, and
 
 ---
 
-# 🛡 5.9.5 Semantic Integrity, Dual-Language Partitioning & Domain Shielding (NEW)
+# 🛡 6.0.1 Semantic Integrity, Dual-Language Partitioning & Domain Shielding (NEW)
 
-Runtime 5.9.5 introduces dedicated architectural guards against linguistic truncation, cross-lingual contamination, and cross-domain attribute pollution.
+Runtime 6.0.1 introduces dedicated architectural guards against linguistic truncation, cross-lingual contamination, and cross-domain attribute pollution.
 
 ### Dual-Language Graph Isolation
 - **Physical & Logical Segregation:** Slovak entities serialize into `autosave_kg.json`, while English entities persist into `autosave_kg_en.json`, eliminating bilingual query collisions, mixed summaries, and translation hallucinations.  
@@ -126,7 +132,7 @@ Runtime 5.9.5 introduces dedicated architectural guards against linguistic trunc
 
 ---
 
-# 🛡 5.9.5 4-Panel UI Suite, Terminal Decoupling & COLNÍK Guard (NEW)
+# 🛡 6.0.1 4-Panel UI Suite, Terminal Decoupling & COLNÍK Guard (NEW)
 
 A dedicated, decoupled browser interface running locally on port 8080 engineered to isolate host shells and protect system storage.
 
@@ -144,7 +150,7 @@ A dedicated, decoupled browser interface running locally on port 8080 engineered
 - **State Lock Prevention:** Guarantees the terminal panel never captures input focus in a locked, unresolvable state.  
 
 ### Duplicates Panel & Safe UI Trash (Human-in-the-Loop)
-- **Safe UI Trash Pipeline:** File deletions (duplicates, empty folders, damaged files) route into quarantine storage; direct permanent removal is blocked without manual review via `GET /trash`.  
+- **Safe UI Trash Pipeline:** File deletions (duplicates, empty folders, damaged files) route into quarantine storage; direct permanent removal is blocked without manual review via `GET /trash` (tested in `dist_V6_CHECK`).  
 - **Hardware Telemetry:** Monitors host hardware telemetry via Guard.  
 - **Report-Only Baseline:** Enforces strict **REPORT_ONLY** policies for detected duplicates, preventing unauthorized mass file deletions.  
 
@@ -155,7 +161,7 @@ A dedicated, decoupled browser interface running locally on port 8080 engineered
 
 ---
 
-# 🛡 5.9.5 System Agent 5 – Hardened OS‑Level Gatekeeper
+# 🛡 6.0.1 System Agent 5 – Hardened OS‑Level Gatekeeper
 
 System Agent 5 is the final gatekeeper for all system-level operations under orchestrator supervision.
 
@@ -165,31 +171,31 @@ Ensure that **every host system action** is:
 - non-destructive and verified safe  
 - identity‑validated against active credentials  
 - intercepted by COLNÍK Guard if matching forbidden patterns  
-- routed to Safe Trash if attempting file deletion  
-- reversible with automated rollback states  
+- routed to Safe Trash if attempting file deletion (tested in `dist_V6_CHECK`)  
+- reversible with automated rollback states via `safe_rollback.py`  
 - deterministic and auditable  
 - explainable via proof trees  
 - customs-validated by COLNIK-6.x  
 - autonomy-supervised with zero recurrence  
 
-### Security Guarantees (5.9.5 Upgrade)
+### Security Guarantees (6.0.1 Upgrade)
 - constant-time identity validation (O(1))  
 - deep integration with `sirius_orchestrator.py` on port 8080 with embedded TerminalAssistant + TimeCore  
 - 0.0s hard blocking of destructive commands via COLNÍK Guard  
 - blocking of unverified process spawns or binary executions  
-- ENVOY 5 outbound permission enforcement  
+- ENVOY outbound permission enforcement  
 - `KG_EXPLAIN` & `KG_EXPLAIN_DEEP` derivation trees generated for all system decisions  
 - **COLNIK‑validated OS‑level actions**  
 - **AUTONOMY‑aware system validation**  
 
 ---
 
-# 🛡 5.9.5 ENVOY 5 Quarantined Fetch Pipeline (UPDATED)
+# 🛡 6.0.1 ENVOY Quarantined Fetch Pipeline (UPDATED)
 
-ENVOY 5 enforces an outbound-only, quarantined retrieval model with strict domain shielding, sliding-window limits, and zero local data leakage.
+ENVOY enforces an outbound-only, quarantined retrieval model with strict domain shielding, sliding-window limits, cognitive validation via Professor Middleware, and zero local data leakage.
 
 ### Security Flow
-**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → PARSE (`InputParser5`) → DISAMBIGUATE (`ExecutionLayer5`) → FETCH → ROTATING QUARANTINE (100-File Limit) → SHIELD (`Normalizer5`) → CUSTOMS (`COLNIK-6.x`) → DUAL KG COMMIT (`autosave_kg.json` / `autosave_kg_en.json`)**
+**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → PARSE (`InputParser5`) → DISAMBIGUATE (`ExecutionLayer5`) → FETCH → ROTATING QUARANTINE (100-File Limit) → SHIELD (`Normalizer5`) → PROFESSOR VALIDATOR (PASS/WARN/REJECT) → CUSTOMS (`COLNIK-6.x`) → DUAL KG COMMIT (`autosave_kg.json` / `autosave_kg_en.json`)**
 
 ### Protections
 - **Token Guard:** Drops malformed symbolic inputs (`@#$%^&*`) at entry.  
@@ -202,17 +208,20 @@ ENVOY 5 enforces an outbound-only, quarantined retrieval model with strict domai
 - **Zero Local Leakage:** Local files, memory dumps, and conversation histories are never transmitted.  
 - **Zero Recurrence:** Confirmed entities and deduced taxonomies are stored permanently, eliminating repeated learning prompts.  
 - **PanelAPI Confirmation:** Unindexed concepts mandate user approval via `[ÁNO/NIE]` / `[YES/NO]` confirmation.  
+- **Professor Validator Gating:** Ensures external facts are cognitively verified before reaching customs or memory storage.  
 - **COLNIK Validation:** All parsed payloads pass through customs inspection before graph commitment.  
 
 ---
 
-# 🛡 5.9.5 Password Vault 5.9.5 Security Model
+# 🛡 6.0.1 Password Vault 6.0.1 Security Model
 
 - **AES-256-GCM** authenticated symmetric encryption with random 256-bit salts  
 - **PBKDF2-HMAC-SHA256** key stretching (600,000+ iterations)  
 - Token Guard input filter rejecting injection symbols (`@#$%^&*`)  
 - COLNÍK Guard shell filtering on diagnostic commands (0.0s block on forbidden shell operations)  
-- Human-in-the-Loop Safe Trash for old credential backups  
+- Human-in-the-Loop Safe Trash for old credential backups (tested in `dist_V6_CHECK`)  
+- SafeRollback state protection (`safe_rollback.py`)  
+- Professor Validator verification for credential metadata updates  
 - OWNER-only write/delete access; FAMILY read-only for shared items; STRANGER blocked  
 - compound service name preservation via `InputParser5` with trailing punctuation stripping  
 - terminal state decoupling preventing secret strings from leaking to the host shell  
@@ -222,9 +231,9 @@ ENVOY 5 enforces an outbound-only, quarantined retrieval model with strict domai
 
 ---
 
-# 🛡 5.9.5 Self‑Repair & Integrity Guard (UPDATED)
+# 🛡 6.0.1 Self‑Repair & Integrity Guard (UPDATED)
 
-Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry, dual graph partitions, and the security stack.
+Self‑Repair Layer integrates directly with Guard resource telemetry, dual graph partitions, SafeRollback backups, and the security stack.
 
 ### Capabilities
 - cryptographic checksum auditing of `autosave_kg.json`, `autosave_kg_en.json`, core manifests, and vault containers  
@@ -238,8 +247,8 @@ Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry, dual 
 
 # 📄 Document Status
 
-**Version:** 5.9.5 UNIFIED  
-This document reflects the comprehensive security model of Runtime 5.9.5:
+**Version:** 6.0.1 UNIFIED  
+This document reflects the comprehensive security model of Runtime 6.0.1:
 
 - Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)  
 - Dual-Language Isolated Knowledge Stores (`autosave_kg.json` & `autosave_kg_en.json`)  
@@ -248,7 +257,9 @@ This document reflects the comprehensive security model of Runtime 5.9.5:
 - Non-Destructive Reverse Location Engine with Anti-Flora Guard  
 - Entry-Level Token Guard (`@#$%^&*` rejection)  
 - COLNÍK Guard Shell Access Control (0.0s hard block on forbidden commands)  
-- Human-in-the-Loop Safe UI Trash Pipeline (`GET /trash`)  
+- Human-in-the-Loop Safe UI Trash Pipeline (`GET /trash`, tested in `dist_V6_CHECK`)  
+- SafeRollback Crash Resilience (`safe_rollback.py`)  
+- Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`)  
 - Sliding-Window Quarantine Rotation (100-file ceiling)  
 - Greedy Trailing Punctuation Stripping (`.rstrip("?")`) & Confirmation State Latching  
 - Multi-Word Compound Preservation (`InputParser5`)  
@@ -259,7 +270,7 @@ This document reflects the comprehensive security model of Runtime 5.9.5:
 - TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource Monitoring (CPU, RAM, Disk)  
 - Security Family 5.x & Identity Engine 3.1  
 - System Agent 5  
-- Password Vault 5.9.5  
+- Password Vault 6.0.1  
 - Self‑Repair Layer 5.8  
 - Hierarchical Proof Trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`)  
 - **COLNIK‑6.x Enterprise Customs Decision Gate (Standard, High-Performance IPC Mode & COLNÍK Guard)**  
