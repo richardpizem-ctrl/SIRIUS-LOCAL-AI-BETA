@@ -1,12 +1,13 @@
-# ⭐ 11. NEW IN VERSION 5.9.5 — Dual-Language KG, Native Merge, Ontological Reasoning & Comprehensive Security Protocol (UNIFIED)
+# ⭐ 11. NEW IN VERSION 6.0.1 — Dual-Language KG, Native Merge, Ontological Reasoning & Comprehensive Security Protocol (UNIFIED)
 
-Version **5.9.5 UNIFIED** builds on the deterministic OS‑level automation introduced in 4.5.0 PRO,  
+Version **6.0.1 UNIFIED** builds on the deterministic OS‑level automation introduced in 4.5.0 PRO,  
 the unified Knowledge‑Graph‑driven architecture introduced in 5.0.0,  
 the full explainability and multi‑hop reasoning introduced in 5.5.0,  
 the Unified Knowledge Graph + Deep Explainability Era 5.6.x,  
 the Autonomy-Aware Era 5.7.0,  
 the Unified Orchestrated & PanelAPI Architecture 5.8,  
 the Semantic Multi-Word Parsing & 4-Panel UI Suite 5.9.0,  
+the Dual-Language & COLNÍK Guard Hardening of 5.9.5,  
 and now expands them with:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
@@ -30,7 +31,7 @@ and now expands them with:
 - **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource/Security Supervision (CPU, RAM, Disk)**  
 - **COLNIK‑6.x Enterprise Customs Decision Gate (Standard, High-Performance IPC Mode & COLNÍK Guard)**  
 - **AUTONOMY‑6.x Supervised Proposal/Confirmation Layer (Control, Guard, Safe Trash & Triage Mode)**  
-- **System Agent 5 (Hardened OS‑Level Gatekeeper & Terminal Decoupling)**  
+- **System Agent 6 (Hardened OS‑Level Gatekeeper & Terminal Decoupling)**  
 
 SIRIUS is now a **system‑intelligent, dual-language isolated, lossless-merging, taxonomically deduced, input-sanitized, shell-protected, explainable, identity‑aware, single-process orchestrated, autonomy‑supervised, COLNIK‑validated workstation**  
 that operates consistently across **PC + Mobile**, with deep multi-hop reasoning, dual-partition KG traversal,  
@@ -43,13 +44,13 @@ diverts file removals to Human-in-the-Loop Safe Trash, caps quarantine storage a
 
 ---
 
-### 11.1 System Intelligence Layer 5.9.5 — Predictive + Resource-Supervised + Deep Explainable + COLNIK‑Validated OS Awareness
+### 11.1 System Intelligence Layer 6.0.1 — Predictive + Resource-Supervised + Deep Explainable + COLNIK‑Validated OS Awareness
 
-System Intelligence Layer 5.9.5 introduces **real‑time, cross‑platform system context awareness**  
+System Intelligence Layer 6.0.1 introduces **real‑time, cross‑platform system context awareness**  
 with faster anomaly detection, continuous Guard hardware monitoring (CPU, RAM, Disk), execution latency profiling via TimeCore `cycle_delta()`, deep explainability traces, autonomy‑aware signals,  
 customs-validated routing, and COLNÍK Guard command interception.
 
-Capabilities (5.9.5):
+Capabilities (6.0.1):
 - real-time host hardware telemetry (CPU, RAM, Disk) monitored via Guard with less than 1% CPU overhead  
 - execution latency tracking profiled across every command via TimeCore `cycle_delta()`  
 - detection of execution loops and process anomalies under `TimeCore`/`Guard` supervision  
@@ -58,17 +59,17 @@ Capabilities (5.9.5):
 - autonomy‑aware anomaly proposals and quarantine routing to `COLNIK-6.x/triage`  
 - safe optimization suggestions without interrupting active workflows  
 - bounded system scans (never during active workflows)  
-- integration with System Agent 5, COLNÍK Guard, and Terminal Decoupling Guard  
+- integration with System Agent 6, COLNÍK Guard, and Terminal Decoupling Guard  
 - identity‑aware system context evaluation (O(1) checks)  
 - unified PC/Mobile diagnostics  
-- repair‑aware context for Self‑Repair Layer 5.8  
+- repair‑aware context for Self‑Repair Layer 6.0  
 
 Responsibilities:
 - monitor OS health and hardware resource metrics  
 - detect unsafe automation conditions and memory spikes  
 - prevent workflows from running in unstable host states  
 - provide deterministic system‑aware routing via `sirius_orchestrator.py`  
-- support Self‑Repair Layer 5.8 hash sealing, dual-graph partition verification, and shadow recovery  
+- support Self‑Repair Layer 6.0 hash sealing, dual-graph partition verification, and shadow recovery  
 - generate deep explainability metadata  
 - generate autonomy proposals for risky states  
 - validate all system‑context decisions through COLNIK‑6.x  
@@ -77,12 +78,12 @@ This layer elevates SIRIUS from "OS automation" to **OS‑intelligent, explainab
 
 ---
 
-### 11.2 System Agent 5 — Hardened OS‑Level Safety, Terminal Decoupling & COLNÍK Guard (UPDATED for 5.9.5)
+### 11.2 System Agent 6 — Hardened OS‑Level Safety, Terminal Decoupling & COLNÍK Guard (UPDATED for 6.0.1)
 
-System Agent 5 is the evolution of previous safety gatekeepers, now fully hardened with COLNÍK Guard, Safe UI Trash governance, explainability‑aware,  
+System Agent 6 is the evolution of previous safety gatekeepers, now fully hardened with COLNÍK Guard, Safe UI Trash governance, explainability‑aware,  
 COLNIK‑validated, and autonomy‑aware under single-process orchestrator supervision on port 8080.
 
-Enhancements (5.9.5):
+Enhancements (6.0.1):
 - **COLNÍK Guard Shell Interception:** 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`, fork-bombs), prompt checks for risky commands (`rm`, `kill`), and safe pass-through for telemetry (`ps`, `mem`, `sys`)  
 - **Human-in-the-Loop Safe UI Trash:** file deletion operations route to quarantine storage, blocking direct unverified disk destruction and requiring manual review via `GET /trash`  
 - **Token Guard Input Sanitization:** drops raw input payloads containing forbidden symbols (`@#$%^&*`) immediately at runtime threshold  
@@ -91,10 +92,10 @@ Enhancements (5.9.5):
 - reversible actions 3.2 and non-destructive disk operations  
 - constant‑time identity validation (O(1)) across OWNER, FAMILY, and STRANGER access tiers  
 - STRANGER lockdown mode: immediate terminal detachment and session isolation upon unauthorized access  
-- deeper integration with WIN‑CAP 5.x and 4-Panel UI Suite  
+- deeper integration with WIN‑CAP 6.x and 4-Panel UI Suite  
 - deterministic allow/deny evaluation 3.2  
-- ENVOY 5 outbound-only permission enforcement with language context binding  
-- repair‑aware validation (Self‑Repair Layer 5.8)  
+- ENVOY 6 outbound-only permission enforcement with language context binding  
+- repair‑aware validation (Self‑Repair Layer 6.0)  
 - KG_EXPLAIN + KG_EXPLAIN_DEEP traces for every OS‑level decision  
 - COLNIK‑validated OS‑level enforcement (Standard, High-Performance IPC Mode & COLNÍK Guard)  
 - AUTONOMY‑aware OS‑level gating & PanelAPI oversight with confirmation state latching  
@@ -113,7 +114,7 @@ Threat Protections:
 - enterprise‑grade COLNIK validation for all threats  
 - AUTONOMY‑aware threat routing to `COLNIK-6.x/triage`  
 
-System Agent 5 is the **central OS‑level safety brain** of the workstation.
+System Agent 6 is the **central OS‑level safety brain** of the workstation.
 
 ---
 
@@ -121,13 +122,13 @@ System Agent 5 is the **central OS‑level safety brain** of the workstation.
 
 The UI automation and management layer transitions to an integrated, browser-based 4-Panel UI Suite served natively on port 8080.
 
-Capabilities (5.9.5):
+Capabilities (6.0.1):
 - **Duplicates Panel:** live resource auditing and safe duplicate categorization enforcing strict `REPORT_ONLY` policies and routing proposed removals to HitL Safe Trash  
 - **Triage Panel:** visual supervision of quarantine queues, unparsed web payloads, and held mutations (`COLNIK-6.x/triage`)  
 - **Navigation Panel:** deterministic, state-safe module switching across Runtime Core, Knowledge Graph, Envoy, and Autonomy  
 - **Terminal Panel:** decoupled command line interface with COLNÍK Guard protection (0.0s hard blocking of `format`/`diskpart`) that automatically resets `currentModule = "none"` when clearing input, permanently preventing conversational queries from capturing terminal focus  
 - improved fuzzy matching and deterministic fallback logic  
-- safer Win32/UIA/WinRT routing mediated by System Agent 5 and COLNÍK Guard  
+- safer Win32/UIA/WinRT routing mediated by System Agent 6 and COLNÍK Guard  
 - identity‑aware UI actions and sandbox‑protected execution  
 - mis‑click prevention and semantic target resolution  
 - KG_EXPLAIN + KG_EXPLAIN_DEEP traces for UI actions  
@@ -138,11 +139,11 @@ This suite allows SIRIUS to operate Windows 11 **more safely, visually, intellig
 
 ---
 
-### 11.4 Security Family 5.x — Identity Engine 3.1, Token Guard & Academic Bypass (UPDATED for 5.9.5)
+### 11.4 Security Family 6.x — Identity Engine 3.1, Token Guard & Academic Bypass (UPDATED for 6.0.1)
 
-Security Family 5.x strengthens identity enforcement, input hygiene, and conversational stability, optimizing it for Runtime 5.9.5.
+Security Family 6.x strengthens identity enforcement, input hygiene, and conversational stability, optimizing it for Runtime 6.0.1.
 
-Enhancements (5.9.5):
+Enhancements (6.0.1):
 - constant‑time identity evaluation (O(1)) without background biometric training loops  
 - **Token Guard Input Sanitization:** audits raw input at entry, rejecting malformed injection strings (`@#$%^&*`)  
 - **Trailing Punctuation Stripping (`.rstrip("?")`):** guarantees that queries like `CO JE MACROPUS?` cleanly resolve to node `macropus` without key fragmentation  
@@ -157,34 +158,34 @@ Enhancements (5.9.5):
 - COLNIK‑validated identity enforcement  
 - AUTONOMY‑aware identity proposals  
 
-Identity is now enforced **at every layer**, including predictive system context, workflows, UI automation, ENVOY 5 fetch permissions, Token Guard filtering, and COLNIK validation under orchestrator supervision.
+Identity is now enforced **at every layer**, including predictive system context, workflows, UI automation, ENVOY 6 fetch permissions, Token Guard filtering, and COLNIK validation under orchestrator supervision.
 
 ---
 
-### 11.5 InputParser5 & Autonomous Disambiguation Triage — Semantic Integrity, Domain Shielding & Quarantine Maintenance (UPDATED for 5.9.5)
+### 11.5 InputParser6 & Autonomous Disambiguation Triage — Semantic Integrity, Domain Shielding & Quarantine Maintenance (UPDATED for 6.0.1)
 
-Runtime 5.9.5 introduces dedicated architectural layers protecting grammatical integrity, language-specific web triage, semantic domain boundaries, and quarantine storage ceilings.
+Runtime 6.0.1 introduces dedicated architectural layers protecting grammatical integrity, language-specific web triage, semantic domain boundaries, and quarantine storage ceilings.
 
-Improvements (5.9.5):
+Improvements (6.0.1):
 - **Token Guard Entry Filter:** drops payloads containing forbidden characters (`@#$%^&*`) before parsing begins  
 - **Trailing Punctuation Hygiene (`.rstrip("?")`):** strips trailing question marks to preserve canonical entity identifiers  
-- **Multi-Word Compound Preservation (`InputParser5`):** natively extracts and preserves compound noun phrases (e.g., `ovcia vlna`, `mobilny telefon`, `pevna linka`) without truncating modifiers  
+- **Multi-Word Compound Preservation (`InputParser6`):** natively extracts and preserves compound noun phrases (e.g., `ovcia vlna`, `mobilny telefon`, `pevna linka`) without truncating modifiers  
 - **Copula Verb Separation:** strictly isolates copula verbs (`je`, `sú`, `is`, `are`) from subject entities, preventing linguistic concatenations  
-- **Autonomous Disambiguation Triage (`EnvoyExecutionLayer5`):** automatically detects Wikipedia disambiguation pages (*„môže byť...“*) and follows the exact contextual branch  
+- **Autonomous Disambiguation Triage (`EnvoyExecutionLayer6`):** automatically detects Wikipedia disambiguation pages (*„môže byť...“*) and follows the exact contextual branch  
 - **Target Endpoint Binding:** routes English queries strictly to `en.wikipedia.org` and Slovak queries strictly to `sk.wikipedia.org`  
 - **Anti-Prefix & Phonetic Guard:** eliminates prefix over-matching anomalies, permanently stopping query drift (*Káva* -> *Kavala*)  
 - **Strip-Bracket Fallback:** recovers automatically from missing parenthetical articles by querying base root lemmas  
-- **Non-Bio Domain Shield (`EnvoyNormalizer5`):** strictly bars technical, formal, physical, or architectural disciplines (*ekológia*, *architektúra*, *fyzika*) from receiving inaccurate biological habitat attributes  
+- **Non-Bio Domain Shield (`EnvoyNormalizer6`):** strictly bars technical, formal, physical, or architectural disciplines (*ekológia*, *architektúra*, *fyzika*) from receiving inaccurate biological habitat attributes  
 - **Sentence-Bound Extractor:** requires declarative presence of explicit occurrence verbs (*žije*, *obýva*, *lives*, *occurs*) within the exact sentence before allowing habitat relation binding  
-- **Sliding-Window Quarantine Rotation (`EnvoyQuarantine5`):** isolates incoming payloads, stripping all HTML markup, scripts, trackers, and binaries, while automatically enforcing a 100-file ceiling inside `COLNIK-6.x/envoy/quarantine/`  
+- **Sliding-Window Quarantine Rotation (`EnvoyQuarantine6`):** isolates incoming payloads, stripping all HTML markup, scripts, trackers, and binaries, while automatically enforcing a 100-file ceiling inside `COLNIK-6.x/envoy/quarantine/`  
 
 Semantic extraction now routes tasks based on **token sanitization + punctuation hygiene + compound grammar + system context + identity + KG reasoning + domain shielding + COLNIK customs clearance**.
 
 ---
 
-### 11.6 Reasoning Engine 5.9.5 — Taxonomical Deduction, Reverse Habitats & Proof Trees
+### 11.6 Reasoning Engine 6.0.1 — Taxonomical Deduction, Reverse Habitats & Proof Trees
 
-Enhancements (5.9.5):
+Enhancements (6.0.1):
 - **Ontological & Taxonomical Category Deduction (`KG_VERIFY`):** deduces higher-order biological categories directly from summary records (recognizing that marsupials and macropods belong to mammals) and auto-commits verified relations directly to disk  
 - **Non-Destructive Reverse Location Engine (`_execute_reverse_location_query`):** multi-stem geographic matching (*Austrálii*, *Austrália*, *Australia*) combined with the False-Positive Flora Guard to ensure tree-dwelling animals (*„stromový vačkovec“*) are not misclassified as plants, reliably indexing *Koala*, *Macropus*, and *Krokodíl morský* under Australian fauna  
 - **Standardized Attribute Traversal:** direct node attribute queries unified via `self.kg.get_attributes()`, preventing silent lookup failures  
@@ -206,9 +207,9 @@ Reasoning is now **faster, safer, explainable, taxonomically sound, reverse-habi
 
 ---
 
-### 11.7 Workflow Engine 5.9.5 — Single-Process Orchestrated Multi‑Step Logic & Latency Profiling
+### 11.7 Workflow Engine 6.0.1 — Single-Process Orchestrated Multi‑Step Logic & Latency Profiling
 
-Workflow Engine 5.9.5 introduces:
+Workflow Engine 6.0.1 introduces:
 
 - single-process orchestrator transitions driven by `sirius_orchestrator.py` on local port 8080 with embedded `TerminalAssistant` and `TimeCore`  
 - execution latency tracking profiled across steps via TimeCore `cycle_delta()`  
@@ -217,7 +218,7 @@ Workflow Engine 5.9.5 introduces:
 - identity‑aware workflow gating 3.2  
 - semantic caching and dual-language multi-alias resolution  
 - deterministic fallback logic  
-- System Agent 5 and COLNÍK Guard command validation  
+- System Agent 6 and COLNÍK Guard command validation  
 - Human-in-the-Loop Safe Trash integration for file disposal workflows  
 - system‑context‑aware workflow routing  
 - KG‑aware workflow planning  
@@ -230,9 +231,9 @@ Workflows are now **safer, more stable, more intelligent, fully explainable, aut
 
 ---
 
-### 11.8 Unified Knowledge Graph 5.9.5 — Dual-Language Partitioning & Native Lossless Merging
+### 11.8 Unified Knowledge Graph 6.0.1 — Dual-Language Partitioning & Native Lossless Merging
 
-Enhancements (5.9.5):
+Enhancements (6.0.1):
 - **Dual-Language Isolated Stores:** physical and logical segregation of Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) knowledge graphs, eliminating cross-lingual contamination and translation hallucinations  
 - **Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`):** relocates all node properties, descriptions, alternative summaries, and habitat data from source to target without data loss directly inside `RuntimeCore`, while converting source nodes into persistent alias links (`src -[alias]-> tgt`)  
 - **Taxonomical Edge Auto-Commit (`KG_VERIFY`):** persistently commits deduced class hierarchies directly to disk  
@@ -249,7 +250,7 @@ Enhancements (5.9.5):
 
 ---
 
-## Conclusion (Updated for 5.9.5 UNIFIED)
+## Conclusion (Updated for 6.0.1 UNIFIED)
 
 SIRIUS Workstation is now:
 
@@ -263,7 +264,7 @@ SIRIUS Workstation is now:
 - a non-destructive file disposal system governed by Human-in-the-Loop Safe UI Trash (`GET /trash`)  
 - a storage-managed architecture enforcing a 100-file sliding-window quarantine ceiling  
 - a punctuation-resilient system with greedy trailing question mark stripping (`.rstrip("?")`)  
-- a compound natural language interpreter (`InputParser5`) preserving multi-word phrases  
+- a compound natural language interpreter (`InputParser6`) preserving multi-word phrases  
 - an autonomous encyclopedic researcher with disambiguation triage, language endpoint binding, and anti-prefix protection  
 - a domain-shielded intelligence barring cross-domain attribute pollution  
 - a zero-recurrence learning system that never re-prompts for known concepts  
@@ -278,7 +279,7 @@ SIRIUS Workstation is now:
 - an enterprise customs-validated workstation (COLNIK‑6.x Standard, High-Performance IPC Mode & COLNÍK Guard)  
 - a fully sovereign, private, modular, deterministic, and 100% offline system  
 
-Version **5.9.5 UNIFIED** completes the evolution of SIRIUS into a  
+Version **6.0.1 UNIFIED** completes the evolution of SIRIUS into a  
 **System‑Intelligent Autonomous Workstation** —  
 a system that can parse, think, predict, disambiguate, shield, isolate, merge, verify, persist, explain, validate, repair, and operate Windows 11  
 **safely, deterministically, intelligently, single-process orchestrated, autonomy‑supervised, and fully offline**.
