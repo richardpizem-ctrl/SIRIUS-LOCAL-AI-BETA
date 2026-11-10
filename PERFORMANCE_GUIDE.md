@@ -1,9 +1,9 @@
-# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 
 This document defines the performance model, optimization rules, and runtime guarantees of the  
-**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & COLNÍK Guard Security Protocol 5.9.5**.
+**Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & COLNÍK Guard Security Protocol 6.0.1**.
 
-Version **5.9.5 UNIFIED** expands and optimizes the runtime profile with:
+Version **6.0.1 UNIFIED** expands and optimizes the runtime profile with:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080) (embedded TerminalAssistant + TimeCore, zero IPC socket overhead, no file contention)**
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` & `autosave_kg_en.json`) (O(1) memory lookup with zero cross-lingual contamination)**
@@ -16,7 +16,7 @@ Version **5.9.5 UNIFIED** expands and optimizes the runtime profile with:
 - **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and restorations)**
 - **Professor Validator Middleware (`professor_validator.py` enforcing strict `PASS / WARN / REJECT` verification)**
 - **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**
-- **Human-in-the-Loop Safe UI Trash (non-destructive quarantine diversion preventing unverified disk I/O)**
+- **Human-in-the-Loop Safe UI Trash (non-destructive quarantine diversion preventing unverified disk I/O, tested in `dist_V6_CHECK`)**
 - **Character Encoding Fallback (UTF-8 -> CP1250 -> CP852 pipeline with zero diacritic corruption)**
 - **Multi-Word Semantic Engine (`InputParser5`) (constant-time token grouping and copula isolation)**
 - **Autonomous Disambiguation Triage (`EnvoyExecutionLayer5`) (bounded network timeouts and prefix checks)**
@@ -25,8 +25,8 @@ Version **5.9.5 UNIFIED** expands and optimizes the runtime profile with:
 - **Terminal State Decoupling (`currentModule = "none"`) (zero input lockups or CLI stalling)**
 - **PanelAPI & Interactive [ÁNO/NIE] / [YES/NO] Confirmation Loops (non-blocking async polling)**
 - **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource Telemetry (lightweight CPU/RAM/Disk metrics)**
-- **Workflow Engine 5.9.5 (constant-time transitions, COLNIK-validated and AUTONOMY-aware routing)**
-- **Reasoning Engine 5.9.5 (bounded multi-hop derivation, property inheritance, orbital & taxonomical rules)**
+- **Workflow Engine 6.0.1 (constant-time transitions, COLNIK-validated and AUTONOMY-aware routing)**
+- **Reasoning Engine 5.x (bounded multi-hop derivation, property inheritance, orbital & taxonomical rules)**
 - **KG_EXPLAIN & KG_EXPLAIN_DEEP (deterministic proof-tree generation under bounded memory constraints)**
 - **COLNIK-6.x Customs Decision Gate (constant-time allow/deny evaluation — Standard & High-Performance IPC Mode)**
 - **AUTONOMY 6.x (supervised proposal cycle, Guard metric integration, and bounded Triage Mode)**
@@ -59,7 +59,7 @@ All processing is fully local; no data leaves the user's device.
 
 ---
 
-# 2. Runtime Guarantees (Runtime 5.9.5)
+# 2. Runtime Guarantees (Runtime 6.0.1)
 
 - **Zero Socket Contention:** Single-process architecture hosting HTTP/WebSocket on port 8080 eliminates socket conflicts  
 - **Dual-Language Memory Isolation:** `self.kg_sk` and `self.kg_en` maintain isolated node registries, preventing cross-language graph pollution  
@@ -106,7 +106,7 @@ Rules:
 - **Bounded External Fetching:** External lookups execute with strict HTTP connection and read timeouts  
 - **Sliding-Window Quarantine Maintenance:** `COLNIK-6.x/envoy/quarantine/` tracks file counts and purges oldest records in `O(log N)` file-time sorting, never exceeding 100 JSON payloads  
 - **COLNÍK Guard Shell Filtering:** Exact string and prefix matching against FORBIDDEN commands executes in 0.0s before OS process creation  
-- **HitL Safe Trash Diversion:** File deletion interception moves files to quarantine without triggering destructive disk deletion routines  
+- **HitL Safe Trash Diversion:** File deletion interception moves files to quarantine without triggering destructive disk deletion routines (tested in `dist_V6_CHECK`)  
 - **Disambiguation Fast-Path:** Wikipedia disambiguation headers (*„môže byť...“*) are parsed via streaming text filters  
 - **Anti-Prefix Verification:** Prefix string comparisons are performed in constant time, stopping semantic drift immediately  
 - **Domain Normalizer:** Non-Bio Domain Shield evaluates only immediate declarative sentences, avoiding full-page semantic parsing  
@@ -118,13 +118,13 @@ Rules:
 
 - browser dashboard on port 8080 uses lightweight, event-driven DOM updates  
 - **Terminal Decoupling:** Clearing input resets `currentModule = "none"` instantly, freeing event listeners and preventing shell capture  
-- **Duplicates Panel:** File hash comparisons utilize streaming block hashing, categorizing duplicates into safe vs. critical (`REPORT_ONLY`) without disk saturation  
+- **Duplicates Panel:** File hash comparisons utilize streaming block hashing, categorizing duplicates into safe vs. critical (`REPORT_ONLY`) without disk saturation (tested in `dist_V6_CHECK`)  
 - **Triage Panel:** Live quarantine queue updates utilize delta payloads rather than full queue redraws  
 - **Navigation Panel:** Switching modules updates UI state in constant time without reloading backend services  
 
 ---
 
-# 7. Workflow Engine 5.9.5 & Orchestrator Performance
+# 7. Workflow Engine 6.0.1 & Orchestrator Performance
 
 - workflow transitions are executed as O(1) state-machine transitions managed by `sirius_orchestrator.py`  
 - workflows maintain cached operational contexts, avoiding redundant property lookups  
@@ -196,5 +196,5 @@ Rules:
 
 # 📄 Document Status
 
-**Version:** **5.9.5** UNIFIED  
-Performance rules and architectural guarantees are fully aligned with the **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol 5.9.5**, ensuring maximum responsiveness, zero unverified I/O, and determinism on local hardware.
+**Version:** **6.0.1** UNIFIED  
+Performance rules and architectural guarantees are fully aligned with the **Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback, Professor Validator & Comprehensive Security Protocol 6.0.1**, ensuring maximum responsiveness, zero unverified I/O, and determinism on local hardware.
