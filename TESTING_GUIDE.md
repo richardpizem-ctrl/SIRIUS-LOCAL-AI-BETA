@@ -1,6 +1,6 @@
-# 🔄 DATA FLOW & EXECUTION PIPELINE — SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# 🔄 DATA FLOW & EXECUTION PIPELINE — SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 **Status:** ✔ Active & Synchronized  
-**Version:** 5.9.5 UNIFIED  
+**Version:** 6.0.1 UNIFIED  
 **Author & Architecture Lead:** Richard Pizem  
 **Scope:** Deterministic End-to-End Ingestion, Reasoning, Quality Verification & Execution Flow (Port 8080)  
 
@@ -19,22 +19,22 @@ The system operates as a single-process daemon on local port **8080** via `siriu
 ## 🗺️ Architectural Pipeline Diagram
 
 +--------------------------------------------------------+
-|       [ USER / UI PANEL (Port 8080) / TERMINAL ]       |
+|        [ USER / UI PANEL (Port 8080) / TERMINAL ]      |
 +--------------------------------------------------------+
-                           | (Raw User Query / Command)
-                           v
+                            | (Raw User Query / Command)
+                            v
 +--------------------------------------------------------+
-|           1. INGESTION & SANITIZATION LAYER            |
+|            1. INGESTION & SANITIZATION LAYER           |
 |                                                        |
-|  * Token Guard           (Immediate drop of @#$%^&*)   |
+|  * Token Guard          (Immediate drop of @#$%^&*)    |
 |  * spellcheck_engine.py  (Diacritic & Typo Normalizer) |
-|  * InputParser5          (Greedy .rstrip("?"),         |
-|                           Compound Phrase Extractor)   |
+|  * InputParser6          (Greedy .rstrip("?"),         |
+|                          Compound Phrase Extractor)    |
 +--------------------------------------------------------+
-                           |
-                           v
+                            |
+                            v
 +--------------------------------------------------------+
-|       2. ORCHESTRATION & SHELL PROTECTION LAYER        |
+|        2. ORCHESTRATION & SHELL PROTECTION LAYER       |
 |                                                        |
 |  * sirius_orchestrator.py (Port 8080 IPC Daemon)       |
 |  * Terminal Decoupling    (Reset currentModule="none") |
@@ -42,10 +42,10 @@ The system operates as a single-process daemon on local port **8080** via `siriu
 |  * TimeCore Telemetry     (cycle_delta() profiling)    |
 |  * Language Context Router(Dynamic SK / EN Partition)  |
 +--------------------------------------------------------+
-                           |
-                           v
+                            |
+                            v
 +--------------------------------------------------------+
-|        3. RUNTIME CORE & REASONING ENGINE 5.9.5        |
+|        3. RUNTIME CORE & REASONING ENGINE 6.0.1        |
 |                                                        |
 |  * Autosave Stores (autosave_kg.json / _en.json)       |
 |  * In-Memory Traversal (get_attributes() standard)     |
@@ -54,14 +54,14 @@ The system operates as a single-process daemon on local port **8080** via `siriu
 |  * Reverse Location Reasoner (False-Positive Flora G.) |
 |  * Multi-Hop / Orbital Inference Engine                |
 +--------------------------------------------------------+
-                           |
-                           | (Raw Facts / Extracted Triplets)
-                           v
+                            |
+                            | (Raw Facts / Extracted Triplets)
+                            v
 +--------------------------------------------------------+
 |            4. PROFESSOR MIDDLEWARE LAYER               |
 |                                                        |
 |  1. Professor Cleaner (grammar_engine.py)              |
-|     - Predicate normalization (deals with, sa zaoberá)|
+|     - Predicate normalization (deals with, sa zaoberá) |
 |     - Reflexive particle isolation (sa/si into edge)   |
 |     - Particle preservation (a, i) / Stopword filter   |
 |                                                        |
@@ -69,17 +69,17 @@ The system operates as a single-process daemon on local port **8080** via `siriu
 |     - PASS   -> 100% Quality, Released to UI           |
 |     - WARN   -> Low Confidence, Visual Flag in UI      |
 |     - REJECT -> Blocked (INCOMPLETE_FACTS,             |
-|                            LOW_CONFIDENCE,             |
-|                            CONTRADICTION)              |
+|                          LOW_CONFIDENCE,               |
+|                          CONTRADICTION)                |
 |                                                        |
 |  3. Professor Summarizer (professor_miner.py)          |
 |     - Semantic synthesis of nodes prior to UI render   |
 +--------------------------------------------------------+
-                           |
-                           | (Verified & Filtered Payload)
-                           v
+                            |
+                            | (Verified & Filtered Payload)
+                            v
 +--------------------------------------------------------+
-|     5. CUSTOMS CLEARANCE, AUTONOMY & SAFE TRASH        |
+|      5. CUSTOMS CLEARANCE, AUTONOMY & SAFE TRASH       |
 |                                                        |
 |  * COLNIK-6.x Customs Gate (ALLOW / DENY / TRIAGE)     |
 |  * AUTONOMY 6.x (Confirmation State Latching)          |
@@ -87,19 +87,19 @@ The system operates as a single-process daemon on local port **8080** via `siriu
 |  * HitL Safe Trash (Quarantine via GET /trash)         |
 |  * Sliding-Window Rotator (100-file ceiling)           |
 +--------------------------------------------------------+
-                           |
-                           v
+                            |
+                            v
 +--------------------------------------------------------+
-|           6. EXECUTE 6.x & DUAL ATOMIC COMMIT          |
+|          6. EXECUTE 6.x & DUAL ATOMIC COMMIT           |
 |                                                        |
 |  * EXECUTE 6.x (Deterministic System Mutations)        |
 |  * Dual Atomic Serialization (*.tmp -> atomic rename)  |
 |  * Recurrence Suppression (Zero Proposal Recurrence)   |
 +--------------------------------------------------------+
-                           |
-                           v
+                            |
+                            v
 +--------------------------------------------------------+
-|         7. PRESENTATION LAYER (UI PANEL V2)            |
+|           7. PRESENTATION LAYER (UI PANEL V2)          |
 |                                                        |
 |  * Duplicates Panel (REPORT_ONLY + Safe Trash routing) |
 |  * Triage Panel (Inspection of COLNIK-6.x/triage)      |
@@ -117,7 +117,7 @@ The system operates as a single-process daemon on local port **8080** via `siriu
    Raw user inputs undergo immediate inspection at runtime entry. Any sequence containing malformed injection symbols (`@`, `#`, `$`, `%`, `^`, `&`, `*`) is dropped before parsing starts.
 2. **Pre-Processing Spellcheck (`spellcheck_engine.py`):**  
    Normalizes diacritics and corrects spelling typos, ensuring accent-free queries (e.g., `urologia`) reliably match canonical nodes (e.g., `urológia`).
-3. **Semantic Parser (`InputParser5`):**  
+3. **Semantic Parser (`InputParser6`):**  
    - Strips trailing question marks greedily via `.rstrip("?")` to guarantee exact entity lookup resolution.  
    - Extracts and preserves compound noun phrases (e.g., *ovcia vlna*, *mobilny telefon*, *pevna linka*) without noun-modifier truncation.  
    - Isolates copula verbs (*je*, *sú*, *is*, *are*) from entity subjects to prevent syntactic corruption.
@@ -157,12 +157,12 @@ The system operates as a single-process daemon on local port **8080** via `siriu
 The authoritative data quality gateway between Runtime Core and UI presentation:
 
 +--------------------------------------------------------+
-|                   Runtime Core Facts                   |
+|                     Runtime Core Facts                 |
 +---------------------------+----------------------------+
                             |
                             v
 +--------------------------------------------------------+
-|          1. Professor Cleaner (grammar_engine.py)      |
+|           1. Professor Cleaner (grammar_engine.py)     |
 |  - Isolates reflexive particles into relation edges    |
 |  - Preserves SK conjunctions (a, i) in compound objects|
 |  - Filters EN indefinite articles (a, an)              |
@@ -170,7 +170,7 @@ The authoritative data quality gateway between Runtime Core and UI presentation:
                             |
                             v
 +--------------------------------------------------------+
-|         2. Professor Validator (professor_validator)   |
+|          2. Professor Validator (professor_validator)  |
 |  - Cognitive consistency & factual integrity check     |
 +-------+-------------------+--------------------+-------+
         |                   |                    |
@@ -247,6 +247,6 @@ Status: PASS         Status: WARN         Status: REJECT
 ---
 
 ## 📌 Document Status
-**Version:** 5.9.5 UNIFIED  
+**Version:** 6.0.1 UNIFIED  
 **Architect:** Richard Pizem  
 This document defines the complete end-to-end data flow, single-process orchestration on port 8080, shell access control via COLNIK Guard, spellcheck pre-processing, quarantine ceiling management, and cognitive quality validation through the **Professor Middleware Layer** (PASS / WARN / REJECT).
