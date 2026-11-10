@@ -1,13 +1,13 @@
-# 🧠 SYSTEM INTELLIGENCE LAYER 5.9.5 — Predictive, Resource-Supervised, Deep Explainable & Single-Process Orchestrated OS Awareness  
+# 🧠 SYSTEM INTELLIGENCE LAYER 6.0.1 — Predictive, Resource-Supervised, Deep Explainable & Single-Process Orchestrated OS Awareness  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.9.5 UNIFIED  
+**Version:** 6.0.1 UNIFIED  
 **Component:** System Intelligence Layer  
 **Role:** Real-time hardware telemetry, execution latency profiling, COLNÍK Guard auditing, HitL Safe Trash monitoring, Token Guard telemetry, terminal decoupling verification, anomaly detection, predictive safety, proof-tree explainability, single-process orchestrator routing, and customs-grade triage containment  
 
 ---
 
 ## 🎯 Purpose  
-The System Intelligence Layer 5.9.5 provides real-time, low-overhead OS and host workstation awareness for SIRIUS Local AI.  
+The System Intelligence Layer 6.0.1 provides real-time, low-overhead OS and host workstation awareness for SIRIUS Local AI.  
 It monitors real-time CPU, RAM, and Disk metrics via Guard (< 1% overhead), tracks command execution latency via TimeCore (`cycle_delta()`), audits shell safety alongside COLNÍK Guard (0.0s hard blocking of forbidden commands), supervises non-destructive file disposal through the Human-in-the-Loop Safe Trash pipeline (`GET /trash`), enforces the 100-file sliding-window quarantine ceiling (`COLNIK-6.x/envoy/quarantine/`), audits Token Guard input drops (`@#$%^&*`), verifies terminal state decoupling (`currentModule = "none"`), detects process and execution loop anomalies, predicts risky states, evaluates caller identity tiers (OWNER / FAMILY / STRANGER), generates hierarchical proof trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`), and routes decisions through the single-process orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore), interactive `PanelAPI` confirmation loops (`[ÁNO/NIE]` / `[YES/NO]`) with confirmation state latching, COLNIK-6.x (Standard & High-Performance IPC Mode), and AUTONOMY-6.x (Control, Guard, Safe Trash & Triage Mode).
 
 This layer elevates SIRIUS from simple automation to **OS-intelligent, predictive, explainable, single-process orchestrated, dual-language isolated, natively merged, input-sanitized, shell-protected, and customs-validated workstation autonomy**.
@@ -15,7 +15,7 @@ This layer elevates SIRIUS from simple automation to **OS-intelligent, predictiv
 ---
 
 ## 🧩 Architecture Overview  
-**OS Telemetry & Hardware Signals → System Intelligence Layer & Guard → Token Guard → sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore) → COLNÍK Guard (0.0s Block) → System Agent 5 → Terminal Decoupling Guard → COLNIK-6.x → AUTONOMY 6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → HitL Safe Trash / Dual KG Commit (`autosave_kg.json` / `autosave_kg_en.json`) → EXECUTE 6.x**
+**OS Telemetry & Hardware Signals → System Intelligence Layer & Guard → Token Guard → sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore) → COLNÍK Guard (0.0s Block) → System Agent 6 → Terminal Decoupling Guard → COLNIK-6.x → AUTONOMY 6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → HitL Safe Trash / Dual KG Commit (`autosave_kg.json` / `autosave_kg_en.json`) → EXECUTE 6.x**
 
 ### Core Responsibilities  
 - monitor host hardware health and OS signals (CPU, RAM, Disk) asynchronously with less than 1% monitoring overhead  
@@ -29,7 +29,7 @@ This layer elevates SIRIUS from simple automation to **OS-intelligent, predictiv
 - predict risky operational states under `TimeCore` temporal limits and `Guard` supervision  
 - evaluate caller identity tiers (OWNER / FAMILY / STRANGER) and enforce guaranteed SCHOOLWORK academic bypass  
 - compile hierarchical explainability metadata and proof trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`) in ASCII and HTML  
-- support Self-Repair Layer 5.8 by detecting damaged config baselines, dual-graph leaks, and schema anomalies  
+- support Self-Repair Layer 6.0 by detecting damaged config baselines, dual-graph leaks, and schema anomalies  
 - dispatch unverified, corrupted, or anomalous operational payloads directly into `COLNIK-6.x/triage`  
 - validate all system-context decisions through COLNIK-6.x customs gates (Standard, High-Performance IPC Mode & COLNÍK Guard)  
 
@@ -40,9 +40,9 @@ This layer elevates SIRIUS from simple automation to **OS-intelligent, predictiv
 - `system_intelligence/hardware_telemetry.py`  
 - `orchestrator/terminal_assistant.py`  
 - `colnik_6_x/colnik_guard.py`  
-- `runtime5/token_guard.py`  
+- `runtime6/token_guard.py`  
 - `filesystem/safe_trash_quarantine.py`  
-- `runtime5/envoy_quarantine_5.py`  
+- `runtime6/envoy_quarantine_6.py`  
 - `ORCHESTRATOR/sirius_orchestrator.py`  
 - `PANEL_API/panel_api.py`  
 - `IPC_DATA/system_context.json`  
@@ -50,7 +50,7 @@ This layer elevates SIRIUS from simple automation to **OS-intelligent, predictiv
 
 ---
 
-## 🔍 Intelligence Pipeline (v5.9.5)  
+## 🔍 Intelligence Pipeline (v6.0.1)  
 
 ### **1 — Hardware Telemetry, Latency Profiling & OS Signal Collection**  
 Under `TimeCore` temporal bounds and `Guard` supervision, the layer continuously monitors:  
@@ -135,7 +135,7 @@ AUTONOMY and human oversight confirm or deny high-impact state transitions.
 ---
 
 ### **7 — Repair‑Aware Context & Baseline Verification**  
-The System Intelligence Layer provides real-time state telemetry to Self-Repair Layer 5.8:  
+The System Intelligence Layer provides real-time state telemetry to Self-Repair Layer 6.0:  
 - flags corrupted JSON stores or broken schemas across `autosave_kg.json` and `autosave_kg_en.json`  
 - detects missing configuration baselines, broken merge links, and integrity seal mismatches  
 - locks workflows during atomic shadow restorations to prevent race conditions  
@@ -193,12 +193,12 @@ The System Intelligence Layer provides real-time state telemetry to Self-Repair 
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
+## 📊 Module Status (v6.0.1)  
+- ✔ Fully implemented & synchronized with Runtime 6.0.1 architecture  
 - ✔ Real-time Guard hardware telemetry operational (< 1% overhead)  
 - ✔ TimeCore latency profiling (`cycle_delta()`) active  
 - ✔ COLNÍK Guard 0.0s command blocking integration verified  
-- ✔ Human-in-the-Loop Safe UI Trash pipeline active  
+- ✔ Human-in-the-Loop Safe Trash pipeline active  
 - ✔ Sliding-window quarantine rotation (100-file ceiling) active  
 - ✔ Token Guard input sanitization tracking operational  
 - ✔ Terminal state decoupling and focus release verified  
@@ -213,7 +213,7 @@ The System Intelligence Layer provides real-time state telemetry to Self-Repair 
 ---
 
 ## 🏁 Summary  
-System Intelligence Layer 5.9.5 is the real-time OS awareness, command auditing, and hardware telemetry core of SIRIUS Local AI.  
+System Intelligence Layer 6.0.1 is the real-time OS awareness, command auditing, and hardware telemetry core of SIRIUS Local AI.  
 It monitors system resources, profiles execution latency via TimeCore `cycle_delta()`, intercepts destructive shell routines in 0.0s via COLNÍK Guard, routes file removals into Human-in-the-Loop Safe Trash, enforces 100-file quarantine ceilings, decouples terminal inputs to protect host shells, drops malformed inputs via Token Guard, detects anomalies, predicts risks, evaluates caller identity, generates hierarchical proof trees, and routes decisions through central orchestrator supervision, PanelAPI confirmation, COLNIK-6.x customs gates, and AUTONOMY-6.x governance.
 
 It transforms SIRIUS into a **system-intelligent, predictive, explainable, single-process orchestrated, dual-language isolated, natively merged, and autonomy-supervised workstation** capable of operating Windows 11 safely, deterministically, and with 100% offline sovereignty.
