@@ -1,6 +1,6 @@
-# 🎛 UI AUTOMATION ENGINE 5.1 — Deterministic, Explainable, Orchestrator-Supervised, Terminal-Decoupled, COLNÍK Guard Hardened & Safe Trash Governed OS Automation  
+# 🎛 UI AUTOMATION ENGINE 6.0.1 — Deterministic, Explainable, Orchestrator-Supervised, Terminal-Decoupled, COLNÍK Guard Hardened & Safe Trash Governed OS Automation  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.1 (Updated for 5.9.5 UNIFIED)  
+**Version:** 6.0.1 (Updated for 6.0.1 UNIFIED)  
 **Component:** UI Automation Engine & 4-Panel UI Suite Integration  
 **Architecture Lead & Supervision:** Richard Pizem (Professor)  
 **Role:** Safe, deterministic, explainable, single-process orchestrated, terminal-decoupled, COLNÍK Guard validated, HitL Safe Trash integrated, and autonomy‑supervised automation of Windows 11 UI and local browser suite  
@@ -8,15 +8,15 @@
 ---
 
 ## 🎯 Purpose  
-UI Automation Engine 5.1 is responsible for executing deterministic, safe, explainable UI actions across Windows 11 and managing interactive operations inside the local 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal) on port 8080.  
-Under the architectural governance of Professor Richard Pizem, it integrates identity validation, Token Guard entry sanitization (@#$%^&*), trailing punctuation hygiene (.rstrip("?")), confirmation state latching across turns, multi-word compound noun target resolution (InputParser5), single-process central orchestration (sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant + TimeCore), interactive PanelAPI confirmation loops ([ÁNO/NIE] / [YES/NO]), real-time hardware telemetry and latency profiling via TimeCore (cycle_delta()) and Guard (CPU, RAM, Disk), COLNÍK Guard command interception (0.0s hard blocks on destructive commands like format and diskpart), Human-in-the-Loop Safe UI Trash review (GET /trash), sliding-window quarantine maintenance (100-file ceiling in COLNIK-6.x/envoy/quarantine/), COLNIK‑6.x (Standard & High-Performance IPC Mode) customs safety, AUTONOMY‑6.x (Control, Guard, Safe Trash & Triage Mode) supervised gating, and Terminal Decoupling Guards (currentModule = "none").  
+UI Automation Engine 6.0.1 is responsible for executing deterministic, safe, explainable UI actions across Windows 11 and managing interactive operations inside the local 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal) on port 8080.  
+Under the architectural governance of Professor Richard Pizem, it integrates identity validation, Token Guard entry sanitization (@#$%^&*), trailing punctuation hygiene (.rstrip("?")), confirmation state latching across turns, multi-word compound noun target resolution (InputParser6), single-process central orchestration (sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant + TimeCore), interactive PanelAPI confirmation loops ([ÁNO/NIE] / [YES/NO]), real-time hardware telemetry and latency profiling via TimeCore (cycle_delta()) and Guard (CPU, RAM, Disk), COLNÍK Guard command interception (0.0s hard blocks on destructive commands like format and diskpart), Human-in-the-Loop Safe UI Trash review (GET /trash), sliding-window quarantine maintenance (100-file ceiling in COLNIK-6.x/envoy/quarantine/), COLNIK‑6.x (Standard & High-Performance IPC Mode) customs safety, AUTONOMY‑6.x (Control, Guard, Safe Trash & Triage Mode) supervised gating, and Terminal Decoupling Guards (currentModule = "none").  
 
 This engine allows SIRIUS to operate Windows 11 **precisely, safely, intelligently, without host shell capture or destructive routines, and 100% offline**.  
 
 ---
 
 ## 🧩 Architecture Overview  
-Workflow Engine 5.9.5 → Token Guard → InputParser5 (.rstrip("?")) → sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore) → UI Automation Engine 5.1 → COLNÍK Guard (0.0s Block) → System Agent 5 → Terminal Decoupling Guard → COLNIK-6.x → AUTONOMY 6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → HitL Safe Trash / Dual KG Commit (autosave_kg.json / autosave_kg_en.json) → EXECUTE 6.x  
+Workflow Engine 6.0.1 → Token Guard → InputParser6 (.rstrip("?")) → sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore) → UI Automation Engine 6.0.1 → COLNÍK Guard (0.0s Block) → System Agent 6 → Terminal Decoupling Guard → COLNIK-6.x → AUTONOMY 6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → HitL Safe Trash / Dual KG Commit (autosave_kg.json / autosave_kg_en.json) → EXECUTE 6.x  
 
 ### Core Responsibilities  
 - perform deterministic UI actions managed centrally by sirius_orchestrator.py on local port 8080 with embedded TerminalAssistant + TimeCore  
@@ -42,9 +42,9 @@ Workflow Engine 5.9.5 → Token Guard → InputParser5 (.rstrip("?")) → sirius
 - ui_automation/terminal_decoupling_guard.py  
 - orchestrator/terminal_assistant.py  
 - colnik_6_x/colnik_guard.py  
-- runtime5/token_guard.py  
+- runtime6/token_guard.py  
 - filesystem/safe_trash_quarantine.py  
-- runtime5/envoy_quarantine_5.py  
+- runtime6/envoy_quarantine_6.py  
 - ORCHESTRATOR/sirius_orchestrator.py  
 - PANEL_API/panel_api.py  
 - IPC_DATA/ui_actions.json  
@@ -52,14 +52,14 @@ Workflow Engine 5.9.5 → Token Guard → InputParser5 (.rstrip("?")) → sirius
 
 ---
 
-## 🔍 Automation & Decoupling Pipeline (v5.9.5)  
+## 🔍 Automation & Decoupling Pipeline (v6.0.1)  
 
 ### 1 — Token Guard Sanitization, Semantic Target Resolution & Compound Parsing  
 UI Automation Engine resolves UI elements and action targets using:  
 - Token Guard raw input filtering dropping @#$%^&* before action ingestion  
 - Win32 API, UI Automation (UIA), and Windows Runtime (WinRT) wrappers  
 - semantic Knowledge Graph metadata bound to the active language store (autosave_kg.json for SK, autosave_kg_en.json for EN)  
-- compound phrase preservation via InputParser5 (matching full control names like správca úloh or task manager)  
+- compound phrase preservation via InputParser6 (matching full control names like správca úloh or task manager)  
 - greedy trailing punctuation stripping (.rstrip("?"))  
 - deterministic fuzzy matching with diacritic normalization (UTF-8 -> CP1250 -> CP852 pipeline)  
 - identity‑aware target filtering  
@@ -99,7 +99,7 @@ Before automation begins, the engine evaluates caller authorization:
 - FAMILY mode: restricted to safe application navigation and household tools; administrative dialogs and raw shell executions blocked  
 - STRANGER mode: zero-trust lockdown; immediate UI detachment and module context reset  
 - SCHOOLWORK bypass: educational applications, document viewers, and research tools operate with zero restriction latency  
-- ENVOY 5 outbound retrieval permission enforcement  
+- ENVOY 6 outbound retrieval permission enforcement  
 
 Unsafe identity contexts immediately abort automation.  
 
@@ -137,7 +137,7 @@ All UI actions clear the Kýklos decision gate:
 - threat classification and injection checks  
 - ambiguous or unverified UI actions route directly into COLNIK-6.x/triage  
 
-System Agent 5 strictly enforces COLNIK verdicts before touching OS window handles.  
+System Agent 6 strictly enforces COLNIK verdicts before touching OS window handles.  
 
 ---
 
@@ -174,7 +174,7 @@ Once validated, UI actions execute under strict controls:
 
 ### Semantic Targeting & Decoupling  
 - KG‑enhanced target resolution across isolated dual-language stores (autosave_kg.json & autosave_kg_en.json)  
-- compound phrase preservation via InputParser5  
+- compound phrase preservation via InputParser6  
 - greedy trailing punctuation stripping (.rstrip("?"))  
 - confirmation state latching across turns  
 - terminal decoupling controller resetting currentModule = "none"  
@@ -188,7 +188,7 @@ Once validated, UI actions execute under strict controls:
 
 ### Explainability & Safety (XAI)  
 - KG_EXPLAIN and KG_EXPLAIN_DEEP hierarchical proof trees  
-- System Agent 5 threat blocking and constant-time identity checks  
+- System Agent 6 threat blocking and constant-time identity checks  
 - COLNIK-6.x customs clearance logs  
 - reversible action enforcement via HitL Safe Trash  
 
@@ -211,10 +211,10 @@ Once validated, UI actions execute under strict controls:
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.5  
+## 📊 Module Status (v6.0.1)  
+- ✔ Fully implemented & synchronized with Runtime 6.0.1  
 - ✔ Architectural design overseen by Professor Richard Pizem  
-- ✔ Semantic compound target resolution operational (InputParser5)  
+- ✔ Semantic compound target resolution operational (InputParser6)  
 - ✔ Token Guard input sanitization active (@#$%^&* drop)  
 - ✔ Trailing punctuation trimming (.rstrip("?")) and confirmation state latching active  
 - ✔ COLNÍK Guard 0.0s command blocking integration verified  
@@ -233,7 +233,7 @@ Once validated, UI actions execute under strict controls:
 ---
 
 ## 🏁 Summary  
-UI Automation Engine 5.1 is the deterministic, explainable, single-process orchestrated, terminal-decoupled, COLNÍK Guard protected, and autonomy‑supervised automation core of SIRIUS Local AI (v5.9.5), designed and directed under the architectural vision of Professor Richard Pizem.  
+UI Automation Engine 6.0.1 is the deterministic, explainable, single-process orchestrated, terminal-decoupled, COLNÍK Guard protected, and autonomy‑supervised automation core of SIRIUS Local AI (v6.0.1), designed and directed under the architectural vision of Professor Richard Pizem.  
 It executes safe, validated, reversible UI actions across Windows 11 and the 4-Panel UI Suite using compound semantic parsing, Token Guard sanitization, confirmation state latching, identity enforcement, host hardware telemetry, TimeCore latency profiling, Human-in-the-Loop Safe Trash disposal, central orchestrator control, and enterprise customs-grade COLNIK validation.  
 
 It enables SIRIUS to operate Windows 11 **intelligently, safely, predictively, without terminal command leakage or destructive routines, and 100% offline**.
