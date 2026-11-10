@@ -1,21 +1,21 @@
-# 🛡 SYSTEM AGENT 5 — Hardened OS‑Level Safety & Validation Core  
+# 🛡 SYSTEM AGENT 6 — Hardened OS‑Level Safety & Validation Core  
 **Status:** ✔ Active (Enhanced)  
-**Version:** 5.9.5 UNIFIED  
+**Version:** 6.0.1 UNIFIED  
 **Component:** System Agent  
 **Role:** OS‑level safety, terminal decoupling, COLNÍK Guard command interception (0.0s hard blocks), HitL Safe Trash governance, Token Guard sanitization, identity enforcement, single-process orchestrator supervision, and customs-validated gating
 
 ---
 
 ## 🎯 Purpose  
-System Agent 5 is the hardened OS‑level safety brain of SIRIUS Local AI (v5.9.5).  
+System Agent 6 is the hardened OS‑level safety brain of SIRIUS Local AI (v6.0.1).  
 It enforces identity access tiers, blocks unsafe system operations, validates natural language automation queries, intercepts destructive shell commands in 0.0s via COLNÍK Guard, routes file deletions safely to Human-in-the-Loop Safe Trash (`GET /trash`), monitors system context and hardware telemetry via Guard, profiles execution latency via TimeCore (`cycle_delta()`), enforces strict terminal input decoupling (`currentModule = "none"`), drops malformed symbolic inputs via Token Guard (`@#$%^&*`), and ensures that every host modification is safe, reversible, explainable, and approved through the single-process orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore), interactive `PanelAPI` confirmation loops (`[ÁNO/NIE]` / `[YES/NO]`) with confirmation state latching, COLNIK‑6.x (Standard & High-Performance IPC Mode), and AUTONOMY‑6.x (Control, Guard, Safe Trash & Triage Mode).
 
-System Agent 5 protects the local workstation from unsafe workflows, unauthorized system mutations, destructive disk commands, command injection from conversational queries, and compromised execution states.
+System Agent 6 protects the local workstation from unsafe workflows, unauthorized system mutations, destructive disk commands, command injection from conversational queries, and compromised execution states.
 
 ---
 
 ## 🧩 Architecture Overview  
-**System Intelligence Layer & Guard → Token Guard → sirius_orchestrator.py (Port 8080 with TerminalAssistant) → System Agent 5 → COLNÍK Guard (0.0s Block) → Terminal Decoupling Guard → COLNIK-6.x → AUTONOMY 6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → HitL Safe Trash / Dual KG Commit (`autosave_kg.json` / `autosave_kg_en.json`) → EXECUTE 6.x**
+**System Intelligence Layer & Guard → Token Guard → sirius_orchestrator.py (Port 8080 with TerminalAssistant) → System Agent 6 → COLNÍK Guard (0.0s Block) → Terminal Decoupling Guard → COLNIK-6.x → AUTONOMY 6.x → PanelAPI [ÁNO/NIE] / [YES/NO] → HitL Safe Trash / Dual KG Commit (`autosave_kg.json` / `autosave_kg_en.json`) → EXECUTE 6.x**
 
 ### Core Responsibilities  
 - enforce identity permissions across OWNER, FAMILY, and STRANGER profiles in constant time ($O(1)$)  
@@ -41,7 +41,7 @@ System Agent 5 protects the local workstation from unsafe workflows, unauthorize
 - `system_agent/terminal_decoupling_guard.py`  
 - `orchestrator/terminal_assistant.py`  
 - `colnik_6_x/colnik_guard.py`  
-- `runtime5/token_guard.py`  
+- `runtime6/token_guard.py`  
 - `filesystem/safe_trash_quarantine.py`  
 - `ORCHESTRATOR/sirius_orchestrator.py`  
 - `PANEL_API/panel_api.py`  
@@ -50,7 +50,7 @@ System Agent 5 protects the local workstation from unsafe workflows, unauthorize
 
 ---
 
-## 🔍 Safety & Validation Pipeline (v5.9.5)  
+## 🔍 Safety & Validation Pipeline (v6.0.1)  
 
 ### **1 — Token Guard Sanitization & Identity Validation**  
 Before query ingestion starts in `sirius_orchestrator.py`:  
@@ -58,7 +58,7 @@ Before query ingestion starts in `sirius_orchestrator.py`:
 - evaluates identity profile in constant time ($O(1)$) across OWNER, FAMILY, and STRANGER access tiers  
 - STRANGER mode: zero-trust sandbox; immediate UI lockout and terminal detachment (`currentModule = "none"`)  
 - SCHOOLWORK bypass: guaranteed zero-latency execution for academic research  
-- ENVOY 5 outbound permission models bound to language partitions (`SK` / `EN`)  
+- ENVOY 6 outbound permission models bound to language partitions (`SK` / `EN`)  
 
 If identity or token validation fails, the action is halted immediately.
 
@@ -95,7 +95,7 @@ System Agent queries the System Intelligence Layer, `TimeCore`, and `Guard`:
 - command latency profiling via TimeCore `cycle_delta()`  
 - execution loop anomaly detection and memory spike mitigation  
 - active disk write status to prevent race conditions during Knowledge Graph atomic serialization across `autosave_kg.json` and `autosave_kg_en.json`  
-- repair-aware context for Self-Repair Layer 5.8  
+- repair-aware context for Self-Repair Layer 6.0  
 
 Workflows are paused or throttled if host system stability is compromised.
 
@@ -208,8 +208,8 @@ No destructive action is executed without rollback guarantees.
 
 ---
 
-## 📊 Module Status (v5.9.5)  
-- ✔ Fully implemented & synchronized with Runtime 5.9.5 architecture  
+## 📊 Module Status (v6.0.1)  
+- ✔ Fully implemented & synchronized with Runtime 6.0.1 architecture  
 - ✔ Identity access tiers verified (OWNER / FAMILY / STRANGER)  
 - ✔ Token Guard input sanitization active  
 - ✔ COLNÍK Guard 0.0s command blocking integration operational  
@@ -229,7 +229,7 @@ No destructive action is executed without rollback guarantees.
 ---
 
 ## 🏁 Summary  
-System Agent 5 is the hardened OS‑level safety core of SIRIUS Local AI (v5.9.5).  
+System Agent 6 is the hardened OS‑level safety core of SIRIUS Local AI (v6.0.1).  
 It enforces identity rules, intercepts destructive shell commands in 0.0s via COLNÍK Guard, routes file removals into Human-in-the-Loop Safe Trash, decouples terminal inputs to prevent host shell capture, drops malformed symbolic inputs via Token Guard, monitors host hardware telemetry, and ensures that every action is safe, reversible, explainable, single-process orchestrated, autonomy‑supervised, and customs-validated.
 
 It functions as the workstation's **central safety brain**, protecting SIRIUS from unauthorized operations, unverified disk destruction, and dangerous routines, ensuring deterministic, intelligent, and secure OS‑level execution.
