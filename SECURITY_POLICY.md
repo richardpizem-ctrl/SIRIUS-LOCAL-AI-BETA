@@ -1,11 +1,11 @@
-# 🔐 11.6 NEW SECURITY LAYER — Runtime 5.9.5 UNIFIED
+# 🔐 11.6 NEW SECURITY LAYER — Runtime 6.0.1 UNIFIED
 
-Version **5.9.5 UNIFIED** significantly expands and hardens the security model introduced in earlier runtime generations.  
-It integrates the **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**, **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**, **Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`)**, **Ontological & Taxonomical Reasoning (`KG_VERIFY`)**, **Non-Destructive Reverse Location Engine with Anti-Flora Classification Guard**, **Entry-Level Token Guard**, **COLNÍK Guard Shell Access Control (0.0s hard blocks)**, **Human-in-the-Loop Safe UI Trash**, **Quarantine Sliding-Window Rotation (100-file ceiling)**, **Punctuation Stripping (`.rstrip("?")`) and Confirmation State Latching**, **Multi-Word Compound Semantic Engine (`InputParser5`)**, **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**, **Contextual Domain Shield & Sentence-Bound Extractor (`EnvoyNormalizer5`)**, and the **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)**.
+Version **6.0.1 UNIFIED** significantly expands and hardens the security model introduced in earlier runtime generations.  
+It integrates the **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**, **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**, **Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`)**, **Ontological & Taxonomical Reasoning (`KG_VERIFY`)**, **Non-Destructive Reverse Location Engine with Anti-Flora Classification Guard**, **Entry-Level Token Guard**, **COLNÍK Guard Shell Access Control (0.0s hard blocks)**, **Human-in-the-Loop Safe UI Trash (tested in `dist_V6_CHECK`)**, **SafeRollback Crash Resilience (`safe_rollback.py`)**, **Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`)**, **Quarantine Sliding-Window Rotation (100-file ceiling)**, **Punctuation Stripping (`.rstrip("?")`) and Confirmation State Latching**, **Multi-Word Compound Semantic Engine (`InputParser5`)**, **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**, **Contextual Domain Shield & Sentence-Bound Extractor (`EnvoyNormalizer5`)**, and the **4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal` with automatic `currentModule = "none"` state clearance)**.
 
-It upgrades **System Agent 5**, **Security Family 5.x (Identity Engine 3.1)**, **WIN‑CAP 5.x**, **System Intelligence Layer 5.9.5**, and the **ENVOY 5** permission model with **full deep explainability (KG_EXPLAIN + KG_EXPLAIN_DEEP)**, **COLNIK‑6.x enterprise customs validation (Standard & High-Performance IPC Mode)**, **COLNÍK Guard command interception**, **Safe UI Trash pipeline (`GET /trash`)**, and **AUTONOMY‑6.x proposal/confirmation logic (Control, Guard, Safe Trash & Triage Mode in `COLNIK-6.x/triage`)**.
+It upgrades **System Agent 5**, **Security Family 5.x (Identity Engine 3.1)**, **WIN‑CAP 5.x**, **System Intelligence Layer 6.0.1**, and the **ENVOY** permission model with **full deep explainability (KG_EXPLAIN + KG_EXPLAIN_DEEP)**, **COLNIK‑6.x enterprise customs validation (Standard & High-Performance IPC Mode)**, **COLNÍK Guard command interception**, **Safe UI Trash pipeline (`GET /trash`, tested in `dist_V6_CHECK`)**, **SafeRollback protection (`safe_rollback.py`)**, **Professor Validator cognitive verification (`PASS / WARN / REJECT`)**, and **AUTONOMY‑6.x proposal/confirmation logic (Control, Guard, Safe Trash & Triage Mode in `COLNIK-6.x/triage`)**.
 
-New components and core enhancements in 5.9.5:
+New components and core enhancements in 6.0.1:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**  
@@ -16,7 +16,9 @@ New components and core enhancements in 5.9.5:
 - **Punctuation Hygiene (`.rstrip("?")`) preventing entity lookup mismatch**  
 - **Confirmation State Latching preserving pending proposal targets across turns**  
 - **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**  
-- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`)**  
+- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`, tested in `dist_V6_CHECK`)**  
+- **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and instant rollbacks)**  
+- **Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`) enforcing cognitive PASS / WARN / REJECT verification**  
 - **Sliding-Window Quarantine Ceiling Rotation (100 JSON file maximum in `COLNIK-6.x/envoy/quarantine/`)**  
 - **Character Encoding Fallback (UTF-8 -> CP1250 -> CP852 pipeline with zero diacritic corruption)**  
 - **Multi-Word Semantic Integrity (`InputParser5` preserving compound noun phrases & copula verb separation)**  
@@ -36,12 +38,12 @@ New components and core enhancements in 5.9.5:
 All processing is fully local.  
 No data leaves the device unless explicitly permitted through:
 
-**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → PARSE (`InputParser5`) → DISAMBIGUATE (`ExecutionLayer5`) → FETCH → ROTATING QUARANTINE (100-File Limit) → SHIELD (`Normalizer5`) → CUSTOMS (`COLNIK-6.x`) → DUAL KG COMMIT (`autosave_kg.json` / `autosave_kg_en.json`)**  
-(ENVOY 5 secure pipeline, single-process orchestrated on port 8080 with TerminalAssistant, COLNIK‑validated, domain-shielded, sliding-window capped, and human-confirmed via `PanelAPI` [ÁNO/NIE] / [YES/NO] with confirmation state latching)
+**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → PARSE (`InputParser5`) → DISAMBIGUATE (`ExecutionLayer5`) → FETCH → ROTATING QUARANTINE (100-File Limit) → SHIELD (`Normalizer5`) → PROFESSOR VALIDATOR (PASS/WARN/REJECT) → CUSTOMS (`COLNIK-6.x`) → DUAL KG COMMIT (`autosave_kg.json` / `autosave_kg_en.json`)**  
+(ENVOY 6 secure pipeline, single-process orchestrated on port 8080 with TerminalAssistant, COLNIK‑validated, domain-shielded, sliding-window capped, and human-confirmed via `PanelAPI` [ÁNO/NIE] / [YES/NO] with confirmation state latching)
 
 ---
 
-# 🔐 11.7 System Agent 5 — Hardened OS‑Level Security Gatekeeper (UPDATED for 5.9.5)
+# 🔐 11.7 System Agent 5 — Hardened OS‑Level Security Gatekeeper (UPDATED for 6.0.1)
 
 System Agent 5 is the final gatekeeper for all host system-level operations under single-process orchestrator supervision.
 
@@ -49,22 +51,24 @@ System Agent 5 is the final gatekeeper for all host system-level operations unde
 - validate every host system action under single-process orchestrator supervision (`sirius_orchestrator.py` on port 8080 with embedded TerminalAssistant + TimeCore)  
 - enforce OWNER / FAMILY / STRANGER access tiers via Identity Engine 3.1 in constant time ($O(1)$)  
 - enforce COLNÍK Guard command interception: 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`)  
-- enforce Human-in-the-Loop Safe Trash review: route all file removal operations into quarantine, preventing direct unverified disk destruction (`GET /trash`)  
+- enforce Human-in-the-Loop Safe Trash review: route all file removal operations into quarantine, preventing direct unverified disk destruction (`GET /trash`, tested in `dist_V6_CHECK`)  
+- protect module state consistency via SafeRollback (`safe_rollback.py`) prior to risky mutations  
+- enforce cognitive verification via Professor Middleware (`professor_validator.py`)  
 - block risky, unverified, or unauthorized operations  
 - guarantee reversibility and non-destructive execution across all OS tasks  
 - log sensitive system interactions with verifiable cryptographic provenance and TimeCore latency profiling (`cycle_delta()`)  
 - integrate with System Intelligence Layer and Guard resource telemetry (CPU, RAM, Disk)  
-- enforce ENVOY 5 outbound permission models and language binding  
+- enforce ENVOY outbound permission models and language binding  
 - generate `KG_EXPLAIN` + `KG_EXPLAIN_DEEP` hierarchical proof trees for every decision  
 - enforce terminal decoupling: ensure clearing commands triggers `currentModule = "none"`, preventing host shell injection  
 - **COLNIK‑validate every OS‑level mutation (Standard, High-Performance IPC Mode & COLNÍK Guard)**  
 - **AUTONOMY‑aware system validation (Control, Guard, Safe Trash & Triage Mode)**  
 
-### Security Guarantees (5.9.5):
+### Security Guarantees (6.0.1):
 - no module has direct unmediated OS shell access  
 - destructive commands are halted in 0.0s before process spawning  
 - files proposed for deletion are quarantined rather than unverified direct removal  
-- all actions must clear System Agent 5 and COLNÍK Guard validation prior to dispatch  
+- all actions must clear System Agent 5, SafeRollback, and COLNÍK Guard validation prior to dispatch  
 - constant-time identity and permission checks  
 - guaranteed SCHOOLWORK academic bypass with zero latency  
 - quarantined ENVOY fetch validation preventing data exfiltration  
@@ -85,11 +89,11 @@ System Agent 5 is the final gatekeeper for all host system-level operations unde
 
 ---
 
-# 🔐 11.8 Security Family 5.x — Identity Enforcement 3.1 (UPDATED for 5.9.5)
+# 🔐 11.8 Security Family 5.x — Identity Enforcement 3.1 (UPDATED for 6.0.1)
 
-Security Family 5.x strengthens the identity model, prevents prompt fatigue, and unifies access policies across local sessions.
+Security Family strengthens the identity model, prevents prompt fatigue, and unifies access policies across local sessions.
 
-### Enhancements (5.9.5):
+### Enhancements (6.0.1):
 - constant-time identity classification ($O(1)$) across OWNER, FAMILY, and STRANGER modes  
 - entry-level input sanitization via Token Guard: drops payloads containing forbidden symbols (`@#$%^&*`)  
 - trailing punctuation hygiene: greedy stripping (`.rstrip("?")`) to preserve canonical entity identifiers  
@@ -98,7 +102,7 @@ Security Family 5.x strengthens the identity model, prevents prompt fatigue, and
 - SCHOOLWORK bypass: educational inquiries bypass restrictions deterministically and explainably  
 - zero proposal recurrence: once an entity, alias, or taxonomical edge is confirmed, redundant learning prompts are suppressed  
 - stronger STRANGER‑mode lockdown: unverified access instantly locks terminal access and resets active module context  
-- deeper integration with System Agent 5, `sirius_orchestrator.py`, COLNÍK Guard, and `PanelAPI`  
+- deeper integration with System Agent 5, `sirius_orchestrator.py`, COLNÍK Guard, SafeRollback, Professor Middleware, and `PanelAPI`  
 - `KG_EXPLAIN` + `KG_EXPLAIN_DEEP` proof trees generated for all access decisions  
 - **COLNIK‑validated identity enforcement (Standard & High-Performance IPC Mode)**  
 - **AUTONOMY‑aware identity proposals, Safe Trash review, and Guard telemetry tracking**  
@@ -114,9 +118,9 @@ Security Family 5.x strengthens the identity model, prevents prompt fatigue, and
 
 ---
 
-# 🔐 11.9 Semantic Integrity, Token Guard & Terminal Safety (NEW for 5.9.5)
+# 🔐 11.9 Semantic Integrity, Token Guard & Terminal Safety (NEW for 6.0.1)
 
-Runtime 5.9.5 introduces dedicated architectural layers protecting input hygiene, grammatical integrity, and terminal execution isolation.
+Runtime introduces dedicated architectural layers protecting input hygiene, grammatical integrity, and terminal execution isolation.
 
 ### Token Guard Entry Sanitization:
 - raw inputs are audited immediately before processing  
@@ -137,12 +141,12 @@ Runtime 5.9.5 introduces dedicated architectural layers protecting input hygiene
 
 ---
 
-# 🔐 11.10 WIN‑CAP 5.x — OS Capability Isolation (UPDATED for 5.9.5)
+# 🔐 11.10 WIN‑CAP 5.x — OS Capability Isolation (UPDATED for 6.0.1)
 
-WIN‑CAP 5.x provides:
+WIN‑CAP provides:
 
 - safe, abstracted OS capability wrappers (`file_ops`, `app_ops`, `system_context`)  
-- integration with the Human-in-the-Loop Safe Trash pipeline, preventing direct file unlinking  
+- integration with the Human-in-the-Loop Safe Trash pipeline (tested in `dist_V6_CHECK`), preventing direct file unlinking  
 - deterministic capability boundaries enforced at compile and runtime  
 - identity-aware execution with complete mediation by System Agent 5 and COLNÍK Guard  
 - no privileged or direct kernel-level access  
@@ -152,9 +156,9 @@ WIN‑CAP 5.x provides:
 
 ---
 
-# 🔐 11.11 System Intelligence Layer 5.9.5 — Predictive Security & Guard Supervision (UPDATED)
+# 🔐 11.11 System Intelligence Layer 6.0.1 — Predictive Security & Guard Supervision (UPDATED)
 
-System Intelligence Layer 5.9.5 adds predictive security, diagnostic monitoring, and real-time hardware tracking validated by COLNIK‑6.x, AUTONOMY‑6.x, and Guard supervision.
+System Intelligence Layer adds predictive security, diagnostic monitoring, and real-time hardware tracking validated by COLNIK‑6.x, AUTONOMY‑6.x, and Guard supervision.
 
 ### Capabilities:
 - real-time monitoring of host CPU, RAM, and Disk metrics via Guard (< 1% overhead)  
@@ -169,24 +173,24 @@ System Intelligence Layer 5.9.5 adds predictive security, diagnostic monitoring,
 ### Threat Protections:
 - detection of abnormal runtime states and memory leaks  
 - identification of unauthorized background process spawns  
-- safe rollback recommendations  
+- safe rollback recommendations via `safe_rollback.py`  
 - direct integration with Self‑Repair Layer 5.8 and `COLNIK-6.x/triage`  
 - **COLNIK‑validated threat detection**  
 - **AUTONOMY‑aware threat routing**  
 
 ---
 
-# 🔐 11.12 ENVOY 5 — Domain-Shielded Quarantined Fetch Pipeline (UPDATED for 5.9.5)
+# 🔐 11.12 ENVOY — Domain-Shielded Quarantined Fetch Pipeline (UPDATED for 6.0.1)
 
-ENVOY 5 introduces an outbound-only, permission-gated retrieval architecture with language context binding, sliding-window quarantine limits, autonomous disambiguation, anti-prefix protection, and strict contextual domain shielding.
+ENVOY enforces an outbound-only, permission-gated retrieval architecture with language context binding, sliding-window quarantine limits, autonomous disambiguation, anti-prefix protection, cognitive verification via Professor Middleware, and strict contextual domain shielding.
 
 ### Security Flow:
-**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → PARSE (`InputParser5`) → DISAMBIGUATE (`ExecutionLayer5`) → FETCH → ROTATING QUARANTINE (100-File Limit) → SHIELD (`Normalizer5`) → CUSTOMS (`COLNIK-6.x`) → DUAL KG COMMIT (`autosave_kg.json` / `autosave_kg_en.json`)**
+**TOKEN GUARD → ASK → CONTEXT BIND (SK/EN) → PARSE (`InputParser5`) → DISAMBIGUATE (`ExecutionLayer5`) → FETCH → ROTATING QUARANTINE (100-File Limit) → SHIELD (`Normalizer5`) → PROFESSOR VALIDATOR (PASS/WARN/REJECT) → CUSTOMS (`COLNIK-6.x`) → DUAL KG COMMIT (`autosave_kg.json` / `autosave_kg_en.json`)**
 
 ### Protections:
 - **Token Guard Entry Filter:** drops payloads containing forbidden characters (`@#$%^&*`)  
 - **Trailing Punctuation Stripping:** trims trailing question marks via `.rstrip("?")` to preserve pure entity identifiers  
-- **Confirmation State Latching:** maintains pending entity proposal states across conversation turns  
+- **Confirmation State Latching:** maintains pending proposal states across conversation turns  
 - **Language Partition Isolation:** routes English queries to `en.wikipedia.org` committing to `autosave_kg_en.json`; routes Slovak queries to `sk.wikipedia.org` committing to `autosave_kg.json`  
 - **Sliding-Window Quarantine Rotation:** limits stored payload logs inside `COLNIK-6.x/envoy/quarantine/` to a maximum 100-file ceiling by auto-pruning older entries  
 - **Outbound-Only:** runtime never binds to open inbound network sockets; zero external network exposure  
@@ -199,13 +203,14 @@ ENVOY 5 introduces an outbound-only, permission-gated retrieval architecture wit
 - **Zero Local Data Exfiltration:** local files, conversation histories, and identity data are never transmitted  
 - **Zero Recurrence:** confirmed knowledge and deduced taxonomies are permanently committed, eliminating repeated learning prompts  
 - **PanelAPI Confirmation:** novel concepts require explicit human approval via `[ÁNO/NIE]` / `[YES/NO]` prompts  
+- **Professor Validator Gating:** ensures external facts are cognitively verified before reaching customs or memory storage  
 - **COLNIK Customs Clearance:** all parsed facts pass through customs inspection before graph commitment  
 
 ---
 
-# 🔐 11.13 Self‑Repair Layer 5.8 — Security Integration & Integrity Seals (UPDATED)
+# 🔐 11.13 Self‑Repair Layer — Security Integration & Integrity Seals (UPDATED)
 
-Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry, dual graph partitions, and the security architecture.
+Self‑Repair Layer integrates directly with Guard resource telemetry, dual graph partitions, SafeRollback backups, and the security architecture.
 
 ### Capabilities:
 - continuous cryptographic hash verification of `autosave_kg.json`, `autosave_kg_en.json`, manifests, and vault containers  
@@ -229,7 +234,7 @@ Self‑Repair Layer 5.8 integrates directly with Guard resource telemetry, dual 
 
 # 📄 Document Status (Updated)
 
-**Version:** **5.9.5 UNIFIED (Expanded)**  
+**Version:** **6.0.1 UNIFIED**  
 This security policy now fully governs:
 
 - Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)  
@@ -239,7 +244,9 @@ This security policy now fully governs:
 - Non-Destructive Reverse Location Engine with Anti-Flora Guard  
 - Entry-Level Token Guard (`@#$%^&*` rejection)  
 - COLNÍK Guard Shell Access Control (0.0s hard block on forbidden commands)  
-- Human-in-the-Loop Safe UI Trash Pipeline (`GET /trash`)  
+- Human-in-the-Loop Safe UI Trash Pipeline (`GET /trash`, tested in `dist_V6_CHECK`)  
+- SafeRollback Crash Resilience (`safe_rollback.py`)  
+- Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`)  
 - Sliding-Window Quarantine Rotation (100-file ceiling)  
 - Trailing Punctuation Stripping (`.rstrip("?")`) & Confirmation State Latching  
 - Multi-Word Compound Preservation (`InputParser5`)  
@@ -250,10 +257,10 @@ This security policy now fully governs:
 - TimeCore Temporal Tracking (`cycle_delta()`) & Guard Resource Supervision (CPU, RAM, Disk)  
 - Security Family 5.x (Identity Engine 3.1)  
 - System Agent 5  
-- Password Vault 5.9.5  
+- Password Vault 6.0.1  
 - WIN‑CAP 5.x  
-- System Intelligence Layer 5.9.5  
-- ENVOY 5 & EnvoyQuarantine5  
+- System Intelligence Layer 6.0.1  
+- ENVOY & EnvoyQuarantine5  
 - Self‑Repair Layer 5.8  
 - Hierarchical Proof Trees (`KG_EXPLAIN` & `KG_EXPLAIN_DEEP`)  
 - **COLNIK‑6.x Enterprise Customs Validation Layer (Standard, High-Performance IPC Mode & COLNÍK Guard)**  
