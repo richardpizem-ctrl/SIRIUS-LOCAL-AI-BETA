@@ -1,10 +1,10 @@
-# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.8 → v5.9.0 → v5.9.5 → v6.x)
+# ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.8 → v5.9.0 → v5.9.5 → v6.0.1)
 ### Evolution of the Unified Orchestration, Dual-Language KG Architecture, Native Lossless Merge, Ontological Reasoning & COLNÍK Guard Security Protocol
 
 This roadmap outlines the evolution of SIRIUS LOCAL AI from the **4.5.0 PRO** architecture  
 into the **Unified Runtime 5.x** generation, the **Unified KG + Deep Explainability 5.6.2 Era**,  
 the **Orchestrated & Autonomy‑Aware 5.8 Era**, the **Semantic Multi-Word Parsing & 4-Panel UI 5.9.0 Era**,  
-the **Dual-Language KG & Comprehensive Security 5.9.5 Era**, and the upcoming **Runtime 6.x Modular Kernel Era**.
+the **Dual-Language KG & Comprehensive Security 5.9.5 Era**, and the current milestone **Runtime 6.0.1 Modular Kernel Era**.
 
 All versions remain:
 - 100% offline  
@@ -383,124 +383,44 @@ Goal: Eliminate query truncation on compound noun phrases, deploy autonomous enc
 
 # ⭐ 5.9.5 — Version 5.9.5 UNIFIED  
 ### Dual-Language KG Architecture, Lossless Entity Merge, Ontological Habitat Reasoning & Comprehensive Security Protocol  
-**Status:** Current Stable Release
+**Status:** Completed (Previous Stable)
 
 Goal: Completely isolate Slovak and English knowledge graphs, implement native in-memory entity merging (`kg merge`), establish automated taxonomical category deduction (`KG_VERIFY`), deploy reverse location querying with anti-flora protection, enforce 0.0s command blocking via COLNÍK Guard, implement Human-in-the-Loop Safe Trash, limit quarantine storage to a 100-file sliding window, and harden conversational flows via punctuation trimming and confirmation state latching.
 
 ---
 
-## 🔥 NEW Core Components (v5.9.5)
+# ⭐ 6.0.1 — Version 6.0.1 UNIFIED  
+### Modular Kernel + Hybrid Multimodal Analyzer + Professor Middleware Gateway + SafeRollback & HitL Safe Trash (Tested in `dist_V6_CHECK`)  
+**Status:** Current Stable Release
 
-### 🌐 Dual-Language Isolated KG Architecture (`autosave_kg.json` & `autosave_kg_en.json`)
-- physical and logical segregation of Slovak (`autosave_kg.json`) and English (`autosave_kg_en.json`) knowledge graphs  
-- completely prevents cross-lingual contamination, mixed-language responses, and translation hallucinations  
-- dynamic context dispatching: `RuntimeCore` automatically binds queries, node retrieval, attributes, and relations dynamically based on active UI language flag (`SK` / `EN`)  
-- independent atomic dual autosaves triggered upon shutdown or post-enrichment  
-
-### 🔀 Native Lossless KG Merge Engine (`kg merge <src> into <tgt>`)
-- integrated natively inside `RuntimeCore` without external scripts or fragile import chains  
-- zero-loss attribute relocation: migrates all properties, descriptions, alternative summaries, and habitat data from source to target  
-- automatic alias transition: source entities are preserved as lightweight alias nodes (`src -[alias]-> tgt`), enabling seamless bi-directional traversal  
-
-### 🧬 Ontological & Taxonomical Reasoning (`KG_VERIFY`)
-- context-aware biological deduction: automatically recognizes that marsupials and macropods belong to mammals without requiring rigid Wikipedia exact matches  
-- persistent edge auto-commit: verified relations (`kangaroo -[is_a]-> mammal`, `macropus -[je]-> cicavec`) are committed directly to disk with zero confirmation recurrence  
-
-### 🌍 Non-Destructive Reverse Location Engine (`_execute_reverse_location_query`)
-- universal multi-stem matching supporting inflected geographical terms across both languages (*Austrálii*, *Austrália*, *Australia*)  
-- False-Positive Flora Guard: eliminated naive substring collisions that previously misclassified tree-dwelling animals (*„stromový vačkovec“*) as flora  
-- direct attribute access: standardized traversal via `self.kg.get_attributes()`, preventing silent lookup failures  
-
-### 🛡️ Comprehensive Security Protocol: COLNÍK Guard & Safe UI Trash
-- **COLNÍK Guard Shell Interceptor:** 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`), interactive prompt checks for risky commands, and safe execution for telemetry (`mem`, `ps`, `sys`)  
-- **Human-in-the-Loop Safe UI Trash:** direct unverified disk deletions are blocked; files flagged for removal route into quarantine storage and require explicit user review via `GET /trash`  
-- **Token Guard Sanitization:** raw input is audited at runtime entry, instantly rejecting malformed symbolic injection sequences (`@#$%^&*`)  
-- **Sliding-Window Quarantine Rotation:** automatically limits stored logs inside `COLNIK-6.x/envoy/quarantine/` to a strict 100-file ceiling by pruning oldest records upon new arrivals  
-- **Character Encoding Fallback:** multi-stage shell decoding (UTF-8 -> CP1250 -> CP852 fallback) ensuring full diacritics integrity  
-
-### 🔤 Punctuation Hygiene & Confirmation State Latching
-- **Greedy Trailing Punctuation Stripping (`.rstrip("?")`):** guarantees that queries like `CO JE MACROPUS?` cleanly resolve to node `macropus` without key fragmentation  
-- **Confirmation State Latching:** maintains pending entity proposal identifiers in memory across conversation turns, ensuring affirmative user inputs (`ÁNO` / `YES`) execute without detached states  
+Goal: Introduce autonomous stability, cognitive quality gating via the **Professor Middleware Layer** (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`), crash resilience via `safe_rollback.py`, and hybrid multimodal analysis (Audio/MIDI, Image, Video) built on top of the stabilized 5.9.5 security, dual-graph, and single-process orchestrator foundations.
 
 ---
 
-## Output (v5.9.5)
-SIRIUS gains:
-- complete physical and logical partition across dual-language knowledge graphs  
-- native in-memory entity consolidation with full attribute retention and alias mapping  
-- automated biological taxonomical deduction with persistent edge auto-commits  
-- precise reverse location querying with anti-flora classification guards  
-- 0.0s command blocking of destructive shell routines via COLNÍK Guard  
-- non-destructive file disposal via the Human-in-the-Loop Safe Trash pipeline  
-- hard entry-level sanitization via Token Guard and 100-file sliding-window quarantine limits  
-- deterministic confirmation latching and greedy punctuation stripping  
+## 🔥 NEW Core Components (v6.0.1)
 
----
-
-# ⭐ 6.0 — Version 6.0.0  
-### Modular Kernel + Hybrid Multimodal Analyzer + Self‑Repair 2.0  
-**Status:** Planned
-
-Goal: Introduce autonomous evolutionary stability — the runtime can repair, optimize, and analyze multimodal data deterministically on top of the stabilized 5.9.5 security and dual-graph foundations.
-
----
-
-## 🔥 Planned Core Components (v6.0.0)
-
-### 🧠 Hybrid Multimodal Analyzer 6.0
+### 🧠 Hybrid Multimodal Analyzer 6.0.1
 - audio/MIDI analysis (pattern detection, track alignment following the Yamaha 16-track standard, harmonic structures)  
 - image structure analysis  
 - video frame semantic extraction  
 - KG‑linked multimodal facts bound to isolated language partitions  
 - deterministic multimodal inference  
 
-### 🧩 Modular Kernel 6.0
-- sandboxed modules  
-- kernel‑level routing  
-- unified error layer  
-- deterministic execution pipeline  
-- reduced module complexity  
+### 🎓 Professor Middleware Layer
+- **Professor Cleaner (`grammar_engine.py`):** normalizes triplets, handles reflexive verbs and phrasal predicates  
+- **Professor Validator (`professor_validator.py`):** strict verification matrix enforcing `PASS / WARN / REJECT` cognitive gating before data reaches the UI  
+- **Professor Summarizer (`professor_miner.py`):** multi-node evidence synthesis for UI Panel V2  
 
-### 🛡 Family Security Engine 6.0
-- behavior‑pattern detection  
-- StrangerMode 3.1  
-- SchoolMode 3.1  
-- TimeLimits 3.1  
-- KG‑linked safety inference  
+### 🔄 SafeRollback Crash Resilience (`safe_rollback.py`)
+- granular module-level backups utilizing `shutil.copytree` before mutations  
+- instant rollbacks via `shutil.rmtree` protecting system integrity during exception states  
 
-### 🔧 Self‑Repair Layer 2.0
-- autonomous repair cycles  
-- deep integrity graph  
-- dependency healing  
-- kernel‑level recovery  
-- anomaly detection  
-
-### 🔁 Workflow Engine 6.0
-- self‑optimizing transitions  
-- adaptive fallback logic  
-- repair‑aware execution  
-
-### 🛰 System Agent 6.0
-- evolutionary safety rules  
-- adaptive identity gating  
-- dynamic OS‑action policies  
-
-### 📚 Knowledge Packs 6.0
-- self‑repairing KG entities  
-- adaptive semantic linking  
-
----
-
-## Output (v6.0.0)
-SIRIUS gains:
-- autonomous stability  
-- autonomous repairs  
-- multimodal diagnostics  
-- evolutionary runtime behavior  
+### 🗑️ Human-in-the-Loop Safe Trash & Testing Suite (`dist_V6_CHECK`)
+- robust file deletion interception routing targets to quarantine awaiting `GET /trash` review  
+- fully verified across rigorous validation suites (`dist_V6_CHECK`)  
 
 ---
 
 # 📌 Roadmap Status (Updated)
-**Current version:** 5.9.5 UNIFIED (Stable)  
-**Next major release:** 6.0.0 – Modular Kernel + Multimodal Analyzer + Self‑Repair 2.0  
-**Long‑term direction:** Autonomous Runtime Evolution & Hybrid Isolation Layer (6.x → 7.x)
+**Current version:** 6.0.1 UNIFIED (Stable)  
+**Next major direction:** Autonomous Runtime Evolution & Advanced Hybrid Isolation (6.x → 7.x)
