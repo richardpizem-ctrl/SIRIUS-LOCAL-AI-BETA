@@ -1,14 +1,14 @@
-# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v5.9.5 UNIFIED
+# 🟦 RELEASE NOTES – SIRIUS LOCAL AI v6.0.1 UNIFIED
 ### Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, Pre-Processing Spellcheck, Professor Middleware Quality Gateway & Comprehensive Security Protocol
 **Author & Architecture Lead:** Richard Pizem  
 
-Version **5.9.5 UNIFIED** marks a decisive evolutionary milestone in the SIRIUS LOCAL AI runtime architecture.  
+Version **6.0.1 UNIFIED** marks a decisive evolutionary milestone in the SIRIUS LOCAL AI runtime architecture.  
 It solves fundamental challenges in cross-lingual knowledge contamination, introduces native in-memory entity consolidation (`kg merge`), deploys automated taxonomical category deduction (`KG_VERIFY`), enables robust reverse location querying with anti-flora protection, introduces an entry-level text pre-processing and spellcheck engine (`spellcheck_engine.py`), and implements the authoritative **Professor Middleware Layer** (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`) enforcing cognitive quality gating (`PASS / WARN / REJECT`).
 
 The core architectural directive is strictly enforced:  
 > **Runtime Core and symbolic reasoning mechanisms may retrieve or infer any fact from the Knowledge Graph, but the Professor Middleware Layer authoritatively determines whether the output is permitted to reach the UI or commit to persistent state.**
 
-Building on the unified foundations of the **v5.9.x** series, this release introduces:
+Building on the unified foundations of the **v6.0.x** series, this release introduces:
 
 - **Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)**  
 - **Dual-Language Isolated Knowledge Stores (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN)**  
@@ -24,7 +24,7 @@ Building on the unified foundations of the **v5.9.x** series, this release intro
 - **Sliding-Window Quarantine Ceiling Rotation (100 JSON file maximum in `COLNIK-6.x/envoy/quarantine/`)**  
 - **SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and instant rollback)**  
 - **COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like `format` and `diskpart`)**  
-- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`)**  
+- **Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`, tested in `dist_V6_CHECK`)**  
 - **Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)**  
 - **Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)**  
 - **Contextual Domain Shield & Bio Filtering (`EnvoyNormalizer5`)**  
@@ -35,12 +35,12 @@ Building on the unified foundations of the **v5.9.x** series, this release intro
 - **TimeCore Temporal Tracking (`cycle_delta()`) & Guard Security/Metric Supervision (CPU, RAM, Disk)**  
 - **COLNIK‑6.x Customs Decision Gate (Standard & High-Performance IPC Mode)**  
 - **AUTONOMY 6.x (Control, Guard, Safe Trash & Triage Mode in `COLNIK-6.x/triage`)**  
-- **Reasoning Engine 5.9.5 & Workflow Engine 5.9.5**  
+- **Reasoning Engine 6.0.1 & Workflow Engine 6.0.1**  
 - **Hierarchical Proof Trees in `KG_EXPLAIN` & `KG_EXPLAIN_DEEP` (XAI)**  
 
 ---
 
-# 🚀 What’s New in v5.9.5 UNIFIED
+# 🚀 What’s New in v6.0.1 UNIFIED
 
 ## 🔥 1. Dual-Language Isolated KG Architecture (`autosave_kg.json` & `autosave_kg_en.json`)
 Knowledge representation has been structurally segregated into dedicated linguistic domains.
@@ -111,7 +111,7 @@ Reverse habitat querying reliably identifies regional fauna without misclassific
 Local host protection has been fortified with multi-tiered command and filesystem firewalls.
 
 - **COLNÍK Guard Shell Interceptor:** 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`), interactive prompt checks for risky commands, and safe execution for system telemetry (`mem`, `ps`, `sys`)  
-- **Human-in-the-Loop Safe UI Trash:** direct unverified disk deletions are blocked; files flagged for removal route into quarantine storage and require explicit user review via `GET /trash`  
+- **Human-in-the-Loop Safe UI Trash:** direct unverified disk deletions are blocked; files flagged for removal route into quarantine storage and require explicit user review via `GET /trash` (tested in `dist_V6_CHECK`)  
 - **Token Guard Sanitization:** raw input is audited at runtime entry, instantly rejecting malformed symbolic injection sequences (`@#$%^&*`)  
 - **Sliding-Window Quarantine Rotation:** automatically limits stored logs inside `COLNIK-6.x/envoy/quarantine/` to a strict 100-file ceiling by pruning oldest records upon new arrivals  
 - **SafeRollback Crash Resilience:** granular module-level backups (`shutil.copytree`) and restorations (`shutil.rmtree`) guaranteeing state integrity across interrupted cycles  
@@ -169,7 +169,7 @@ Guarantees domain boundary integrity for external facts before Knowledge Graph i
 ## 🔥 13. 4-Panel UI Suite & Terminal State Decoupling
 A unified, browser-based management console running locally on port 8080.
 
-- **Duplicates Panel:** live resource auditing and safe duplicate file categorization enforcing `REPORT_ONLY` and routing deletions to HitL Safe Trash  
+- **Duplicates Panel:** live resource auditing and safe duplicate file categorization enforcing `REPORT_ONLY` and routing deletions to HitL Safe Trash (tested in `dist_V6_CHECK`)  
 - **Triage Panel:** visual supervision of quarantine queues and unclassified payloads (`COLNIK-6.x/triage`)  
 - **Navigation Panel:** deterministic module switching across Runtime, KG, Envoy, and Autonomy with real-time status telemetry  
 - **Terminal Panel:** decoupled command line interface that automatically resets `currentModule = "none"` when clearing input, running shell commands through COLNÍK Guard security  
@@ -186,7 +186,7 @@ System safety monitoring now tracks both temporal bounds and host hardware loads
 
 ---
 
-# 🧩 Additional Improvements in v5.9.5 UNIFIED
+# 🧩 Additional Improvements in v6.0.1 UNIFIED
 
 ### ✔ Dual-language graph isolation (`autosave_kg.json` & `autosave_kg_en.json`)  
 ### ✔ Pre-processing spellcheck and diacritics normalization (`spellcheck_engine.py`)  
@@ -197,7 +197,7 @@ System safety monitoring now tracks both temporal bounds and host hardware loads
 ### ✔ Non-destructive reverse habitat engine with False-Positive Flora Guard  
 ### ✔ Hard Token Guard entry-level sanitization rejecting `@#$%^&*`  
 ### ✔ COLNÍK Guard 0.0s hard blocking of forbidden commands (`format`, `diskpart`, `rmdir /s`)  
-### ✔ Human-in-the-Loop Safe UI Trash pipeline with review via `GET /trash`  
+### ✔ Human-in-the-Loop Safe UI Trash pipeline with review via `GET /trash` (tested in `dist_V6_CHECK`)  
 ### ✔ Sliding-window quarantine rotation enforcing 100-file ceiling  
 ### ✔ SafeRollback crash resilience engine (`safe_rollback.py`)  
 ### ✔ Trailing punctuation trimming (`.rstrip("?")`) and confirmation state latching  
@@ -213,7 +213,7 @@ System safety monitoring now tracks both temporal bounds and host hardware loads
 ---
 
 # ⚙ Execution
-SIRIUS Runtime 5.9.5 is launched via the unified single-process orchestrator:
+SIRIUS Runtime 6.0.1 is launched via the unified single-process orchestrator:
 
 ```bash
 python src/sirius_orchestrator.py --port 8080
