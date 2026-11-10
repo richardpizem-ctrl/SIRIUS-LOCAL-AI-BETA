@@ -1,9 +1,9 @@
-# 📐 STYLEGUIDE – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# 📐 STYLEGUIDE – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 ### Mandatory Coding, Architecture, Security, Dual-Language KG & Quality Guidelines
 
 This document defines the strict engineering guidelines, naming conventions, safety requirements, and architectural rules for all code written for **SIRIUS LOCAL AI**.
 
-Version **5.9.5 UNIFIED** expands this styleguide with explicit rules for:
+Version **6.0.1 UNIFIED** expands this styleguide with explicit rules for:
 - Single-Process Orchestrator (sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant + TimeCore)
 - Dual-Language Isolated Knowledge Stores (autosave_kg.json for SK & autosave_kg_en.json for EN)
 - Native Lossless Knowledge Graph Merge Engine (kg merge <src> into <tgt>)
@@ -16,9 +16,9 @@ Version **5.9.5 UNIFIED** expands this styleguide with explicit rules for:
 - Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (GET /trash)
 - Sliding-Window Quarantine Ceiling Rotation (100 JSON file maximum in COLNIK-6.x/envoy/quarantine/)
 - Multi-Stage Character Encoding Fallback (UTF-8 -> CP1250 -> CP852 pipeline with zero diacritic corruption)
-- Multi-Word Semantic Engine (InputParser5 compound phrase preservation & copula verb separation)
-- Autonomous Disambiguation Triage and Anti-Prefix Guard (EnvoyExecutionLayer5)
-- Contextual Domain Shield and Sentence-Bound Habitat Extractor (EnvoyNormalizer5)
+- Multi-Word Semantic Engine (InputParser6 compound phrase preservation & copula verb separation)
+- Autonomous Disambiguation Triage and Anti-Prefix Guard (EnvoyExecutionLayer6)
+- Contextual Domain Shield and Sentence-Bound Habitat Extractor (EnvoyNormalizer6)
 - Permanent Elimination of Interactive Proposal Recurrence on Confirmed Knowledge
 - 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal with automatic currentModule = "none" state clearance)
 - Terminal State Decoupling (preventing shell capture and command injection)
@@ -27,13 +27,13 @@ Version **5.9.5 UNIFIED** expands this styleguide with explicit rules for:
 - TimeCore Temporal Tracking (cycle_delta()) and Guard Resource/Security Supervision (CPU, RAM, Disk)
 - COLNIK‑6.x Enterprise Customs Decision Gate (Standard, High-Performance IPC Mode & COLNÍK Guard)
 - AUTONOMY‑6.x Supervised Proposal/Confirmation Layer (Control, Guard, Safe Trash & Triage Mode)
-- System Agent 5 (Hardened OS‑Level Gatekeeper and Reversibility Enforcer)
-- Reasoning Engine 5.9.5 and Proof Trees (KG_EXPLAIN + KG_EXPLAIN_DEEP)
-- Self‑Repair Layer 5.8 (Cryptographic Hash Sealing, Dual KG Healing and Shadow Baseline Restoration)
+- System Agent 6 (Hardened OS‑Level Gatekeeper and Reversibility Enforcer)
+- Reasoning Engine 6.0.1 and Proof Trees (KG_EXPLAIN + KG_EXPLAIN_DEEP)
+- Self‑Repair Layer 6.0 (Cryptographic Hash Sealing, Dual KG Healing and Shadow Baseline Restoration)
 
 ---
 
-# 12.1 Core Principles (Expanded for 5.9.5 UNIFIED)
+# 12.1 Core Principles (Expanded for 6.0.1 UNIFIED)
 
 - All module interactions, web services, and execution streams must be managed centrally by the single-process daemon sirius_orchestrator.py on port 8080 with embedded TerminalAssistant and TimeCore.
 - Raw inputs must clear Token Guard immediately at runtime entry; any sequence containing forbidden characters (@, #, $, %, ^, &, *) must be rejected prior to tokenization.
@@ -47,17 +47,17 @@ Version **5.9.5 UNIFIED** expands this styleguide with explicit rules for:
 - File removal operations must route through the Human-in-the-Loop Safe Trash pipeline; direct unverified file unlinking is strictly prohibited, mandating user review via GET /trash.
 - Quarantine log payloads in COLNIK-6.x/envoy/quarantine/ must be capped at a strict 100-file ceiling, automatically rotating and pruning the oldest records upon new arrivals.
 - Shell output decoders must employ a multi-stage decoding pipeline (UTF-8 -> CP1250 -> CP852 fallback) to prevent diacritic character mangling.
-- Natural language concept extraction must preserve compound noun phrases (ovcia vlna, mobilny telefon, pevna linka) in full via InputParser5, strictly isolating copula verbs (je, sú, is, are).
+- Natural language concept extraction must preserve compound noun phrases (ovcia vlna, mobilny telefon, pevna linka) in full via InputParser6, strictly isolating copula verbs (je, sú, is, are).
 - Clearing terminal input or completing a query must immediately reset active context (currentModule = "none"), permanently isolating web UI input from host OS shell execution.
 - External retrieval via ENVOY must dynamically bind to language-specific Wikipedia endpoints (sk.wikipedia.org vs. en.wikipedia.org), resolve disambiguation structures („môže byť...“), and enforce the Anti-Prefix Guard to prevent query drift (Káva -> Kavala).
-- External facts must clear the Non-Bio Domain Shield (EnvoyNormalizer5), strictly barring technical, physical, or abstract concepts from receiving biological habitat metadata.
+- External facts must clear the Non-Bio Domain Shield (EnvoyNormalizer6), strictly barring technical, physical, or abstract concepts from receiving biological habitat metadata.
 - Duplicate file scans must enforce a strict REPORT_ONLY policy; proposed removals must divert to the HitL Safe Trash quarantine.
 - Host hardware telemetry (CPU, RAM, Disk) must be monitored asynchronously via Guard (< 1% overhead), with command latency profiled via TimeCore cycle_delta().
 - All mutations, shell invocations, and workflows must clear the primitive ALLOW / DENY / TRIAGE decision matrix of COLNIK-6.x; unverified or malformed payloads must route to COLNIK-6.x/triage.
 
 ---
 
-# 12.2 Naming Conventions (Expanded for 5.9.5 UNIFIED)
+# 12.2 Naming Conventions (Expanded for 6.0.1 UNIFIED)
 
 The following names are reserved and must strictly follow SIRIUS conventions:
 
@@ -76,12 +76,12 @@ The following names are reserved and must strictly follow SIRIUS conventions:
 - HumanInTheLoopSafeTrash
 - QuarantineSlidingWindowRotator
 - MultiStageEncodingFallback
-- InputParser5
+- InputParser6
 - MultiWordCompoundExtractor
 - CopulaVerbSeparator
 - MultiAliasRegistry
 - ZeroRecurrenceGate
-- DisambiguationTriager5
+- DisambiguationTriager6
 - AntiPrefixGuard
 - StripBracketFallback
 - NonBioDomainShield
@@ -96,24 +96,24 @@ The following names are reserved and must strictly follow SIRIUS conventions:
 
 ---
 
-# 12.3 File and Folder Structure (Expanded for 5.9.5 UNIFIED)
+# 12.3 File and Folder Structure (Expanded for 6.0.1 UNIFIED)
 
 Directory hierarchy:
 
 /orchestrator
 /orchestrator/server_8080
 /orchestrator/terminal_assistant
-/runtime5/parsers/input_parser_5
-/runtime5/token_guard
-/runtime5/envoy_quarantine_5
+/runtime6/parsers/input_parser_6
+/runtime6/token_guard
+/runtime6/envoy_quarantine_6
 /kg/dual_language_stores
 /kg/merge_engine
 /kg/taxonomical_reasoner
 /kg/reverse_location_engine
 /filesystem/safe_trash_quarantine
-/envoy_v5/disambiguation
-/envoy_v5/anti_prefix_guard
-/envoy_v5/domain_shields
+/envoy_v6/disambiguation
+/envoy_v6/anti_prefix_guard
+/envoy_v6/domain_shields
 /colnik_6_x/colnik_guard
 /colnik_6_x/triage
 /colnik_6_x/envoy/quarantine
@@ -139,7 +139,7 @@ Rules:
 
 ---
 
-# 12.4 Function Length and Modular Prechecks (Expanded for 5.9.5 UNIFIED)
+# 12.4 Function Length and Modular Prechecks (Expanded for 6.0.1 UNIFIED)
 
 OS-level, Knowledge Graph mutation, shell execution, and external triage functions must be decomposed into explicit lifecycle phases:
 
@@ -172,7 +172,7 @@ Maximum length of any orchestration or execution function: 45 lines.
 
 ---
 
-# 12.5 Comments and Documentation Standards (Expanded for 5.9.5 UNIFIED)
+# 12.5 Comments and Documentation Standards (Expanded for 6.0.1 UNIFIED)
 
 Code comments must explicitly document:
 - Token Guard character inspection logic rejecting @#$%^&*.
@@ -193,7 +193,7 @@ Code comments must explicitly document:
 
 ---
 
-# 12.6 Error Messages (Expanded for 5.9.5 UNIFIED)
+# 12.6 Error Messages (Expanded for 6.0.1 UNIFIED)
 
 - "Token Guard violation – malformed or forbidden characters (@#$%^&*) detected; input rejected."
 - "Confirmation state latch error – pending proposal context lost; re-prompting required."
@@ -205,7 +205,7 @@ Code comments must explicitly document:
 - "Taxonomical verification failed – inconsistent ontology path detected during category deduction."
 - "Flora Guard alert – reverse location classification blocked animal entity from botanical grouping."
 - "Orchestrator daemon failed to bind port 8080 – port already in use or socket restricted."
-- "InputParser5 error – copula verb concatenation detected; tokenization aborted."
+- "InputParser6 error – copula verb concatenation detected; tokenization aborted."
 - "Knowledge Graph error – dual-key mapping failed; multi-alias commit rejected."
 - "Zero Recurrence violation – redundant proposal generated for indexed alias or deduced category."
 - "Disambiguation failed – Wikipedia disambiguation branch unresolved; fallback engaged."
@@ -219,7 +219,7 @@ Code comments must explicitly document:
 
 ---
 
-# 12.7 Security Rules in Code (Expanded for 5.9.5 UNIFIED)
+# 12.7 Security Rules in Code (Expanded for 6.0.1 UNIFIED)
 
 - All execution must originate from sirius_orchestrator.py on local port 8080.
 - Raw input strings must be validated by Token Guard before reaching parser or workflow layers.
@@ -228,7 +228,7 @@ Code comments must explicitly document:
 - Conversational natural language inputs must never be piped directly into OS shell execution environments.
 - Every input clear or escape event in the web console must unconditionally assert currentModule = "none".
 - Slovak and English entities must never be merged into a single mixed knowledge graph.
-- No external data may be bound to Knowledge Graph entities without clearing EnvoyNormalizer5 domain filters.
+- No external data may be bound to Knowledge Graph entities without clearing EnvoyNormalizer6 domain filters.
 - All file duplicate operations must default strictly to read-only reporting (REPORT_ONLY).
 - Identity authorization must evaluate in constant time (O(1)) without background biometric tracking.
 - Academic research queries must execute with zero restriction latency via Schoolwork Engine bypass rules.
@@ -238,7 +238,7 @@ Code comments must explicitly document:
 
 ---
 
-# 12.8 Testing Requirements (Expanded for 5.9.5 UNIFIED)
+# 12.8 Testing Requirements (Expanded for 6.0.1 UNIFIED)
 
 Input Sanitization and Hygiene tests must include:
 - Token Guard tests (asserting strings with @#$%^&* are dropped immediately).
@@ -284,7 +284,7 @@ Supervision and Customs tests must include:
 
 ---
 
-# 12.9 Logging Rules (Expanded for 5.9.5 UNIFIED)
+# 12.9 Logging Rules (Expanded for 6.0.1 UNIFIED)
 
 - Log single-process daemon state transitions asynchronously to avoid blocking the main runloop.
 - Log execution latency deltas (cycle_delta()) alongside hardware metrics (CPU, RAM, Disk).
@@ -301,20 +301,20 @@ Supervision and Customs tests must include:
 
 ---
 
-# 12.10 Module Boundaries (Expanded for 5.9.5 UNIFIED)
+# 12.10 Module Boundaries (Expanded for 6.0.1 UNIFIED)
 
 - sirius_orchestrator.py on Port 8080 with embedded TerminalAssistant and TimeCore is the exclusive runtime orchestrator and daemon host.
 - TokenGuard is the exclusive validator for entry-level character sequence sanitization (@#$%^&*).
 - COLNÍK Guard is the exclusive gatekeeper for shell command inspection and 0.0s hard blocking.
 - HitL Safe Trash is the exclusive pipeline for non-destructive file removals awaiting manual approval (GET /trash).
-- EnvoyQuarantine5 is the exclusive manager for enforcing the 100-file sliding-window quarantine ceiling.
-- InputParser5 is the exclusive parser for natural language compound noun extraction and trailing punctuation stripping.
+- EnvoyQuarantine6 is the exclusive manager for enforcing the 100-file sliding-window quarantine ceiling.
+- InputParser6 is the exclusive parser for natural language compound noun extraction and trailing punctuation stripping.
 - autosave_kg.json (SK) and autosave_kg_en.json (EN) are the exclusive atomic persistence targets for the Knowledge Graph.
 - RuntimeCore is the exclusive engine for native in-memory entity consolidation (kg merge).
-- ReasoningEngine5.9.5 is the exclusive reasoner for taxonomical deduction (KG_VERIFY) and reverse location queries.
-- EnvoyNormalizer5 is the exclusive authority for Non-Bio Domain Shielding and sentence-bound extraction.
+- ReasoningEngine6.0.1 is the exclusive reasoner for taxonomical deduction (KG_VERIFY) and reverse location queries.
+- EnvoyNormalizer6 is the exclusive authority for Non-Bio Domain Shielding and sentence-bound extraction.
 - terminal_panel on Port 8080 must strictly isolate user input and enforce currentModule = "none" decoupling.
-- System Agent 5 is the exclusive validator of host OS actions and reversibility policies.
+- System Agent 6 is the exclusive validator of host OS actions and reversibility policies.
 - Guard is the exclusive auditor of real-time hardware metrics (CPU, RAM, Disk).
 - COLNIK‑6.x is the exclusive customs gate issuing ALLOW / DENY / TRIAGE verdicts.
 - AUTONOMY‑6.x is the exclusive governance layer for proposals, enforcing Zero Proposal Recurrence and confirmation state latching.
@@ -324,5 +324,5 @@ Supervision and Customs tests must include:
 
 # Document Status (Updated)
 
-Version: 4.0.0 -> 4.2.0 -> 4.3.0 -> 4.4.0 PRO -> 4.5.0 PRO -> 5.0.0 UNIFIED -> 5.3.0 UNIFIED -> 5.5.0 UNIFIED -> 5.6.2 UNIFIED -> 5.7.0 UNIFIED -> 5.8 UNIFIED -> 5.9.0 UNIFIED -> 5.9.5 UNIFIED  
-This styleguide establishes the complete, mandatory engineering rules for deterministic, dual-language segregated, natively merged, taxonomically deduced, input-sanitized, shell-protected, terminal-decoupled, domain-shielded, and COLNIK‑validated architecture in Runtime 5.9.5 UNIFIED.
+Version: 4.0.0 -> 4.2.0 -> 4.3.0 -> 4.4.0 PRO -> 4.5.0 PRO -> 5.0.0 UNIFIED -> 5.3.0 UNIFIED -> 5.5.0 UNIFIED -> 5.6.2 UNIFIED -> 5.7.0 UNIFIED -> 5.8 UNIFIED -> 5.9.0 UNIFIED -> 5.9.5 UNIFIED -> 6.0.1 UNIFIED  
+This styleguide establishes the complete, mandatory engineering rules for deterministic, dual-language segregated, natively merged, taxonomically deduced, input-sanitized, shell-protected, terminal-decoupled, domain-shielded, and COLNIK‑validated architecture in Runtime 6.0.1 UNIFIED.
