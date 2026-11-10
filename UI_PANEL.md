@@ -1,7 +1,7 @@
 # 🎛 UI PANEL 6.x — 4-Panel Futuristic Neon Web Suite (Port 8080)
 **Status:** ✔ Active & Stabilized  
-**Version:** 6.x (Stabilized for 5.9.5 UNIFIED)  
-**SIRIUS Local AI Version:** 5.9.5 UNIFIED  
+**Version:** 6.x (Stabilized for 6.0.1 UNIFIED)  
+**SIRIUS Local AI Version:** 6.0.1 UNIFIED  
 **Author / Architecture:** Richard Pizem  
 **Component:** 4-Panel UI Suite, Terminal Decoupling Controller, COLNÍK Guard Shell Filter, Professor Validator Middleware & Safe Trash Bridge  
 **Role:** Unified browser-based interface running natively on local port 8080 under single-process orchestrator supervision with embedded TerminalAssistant, TimeCore latency profiling, COLNÍK Guard (0.0s hard blocks), Professor Middleware quality gating (PASS / WARN / REJECT), HitL Safe Trash management, and automated terminal state decoupling (`currentModule = "none"`)
@@ -9,7 +9,7 @@
 ---
 
 ## 🎯 Purpose  
-UI PANEL 6.x is a modern web interface with a futuristic neon aesthetic, serving as the primary interaction and presentation layer for the **SIRIUS Local AI v5.9.5** runtime, architected by Richard Pizem.  
+UI PANEL 6.x is a modern web interface with a futuristic neon aesthetic, serving as the primary interaction and presentation layer for the **SIRIUS Local AI v6.0.1** runtime, architected by Richard Pizem.  
 It runs natively as a single-process daemon directly through `sirius_orchestrator.py` on local port **8080** with embedded `TerminalAssistant` and `TimeCore`, permanently eliminating socket collisions and disk-level file locking contention.
 
 The interface implements a fully decoupled architecture across four specialized panels (**Duplicates**, **Triage**, **Navigation**, **Terminal**), integrates entry-level **Token Guard** filtering (`@#$%^&*` drop), pre-processing spellcheck (`spellcheck_engine.py`), greedy trailing punctuation stripping (`.rstrip("?")`), supports confirmation state latching across conversation turns, enforces **COLNÍK Guard** shell protection (0.0s hard blocks on destructive commands like `format` and `diskpart`), and manages the **Human-in-the-Loop Safe UI Trash** pipeline (`GET /trash`).
@@ -20,28 +20,28 @@ UI output is strictly governed by the **Professor Middleware Layer** (`Professor
 
 ## 🧩 Architecture Overview  
 [ USER / UI PANEL (Port 8080) ]  
-          │ (Query Input / Command)  
-          ▼  
+         │ (Query Input / Command)  
+         ▼  
 Token Guard (@#$%^&* drop) → spellcheck_engine.py (Typo and diacritics correction)  
-          ▼  
+         ▼  
 sirius_orchestrator.py (Port 8080 with TerminalAssistant + TimeCore)  
-          ▼  
+         ▼  
 COLNÍK Guard (0.0s Hard Block) → Terminal Decoupling Guard (currentModule = "none")  
-          ▼  
-RuntimeCore 5.9.5 (Lookup in autosave_kg.json / autosave_kg_en.json)  
-          │ (Raw response / Graph data)  
-          ▼  
+         ▼  
+RuntimeCore 6.0.1 (Lookup in autosave_kg.json / autosave_kg_en.json)  
+         │ (Raw response / Graph data)  
+         ▼  
 ┌────────────────────────────────────────────────────────┐  
-│               PROFESSOR MIDDLEWARE LAYER               │  
+│                    PROFESSOR MIDDLEWARE LAYER          │  
 │                                                        │  
-│   1. Professor Cleaner / grammar_engine.py             │  
-│   2. Professor Validator (PASS / WARN / REJECT)        │  
-│   3. Professor Summarizer / professor_miner.py         │  
+│    1. Professor Cleaner / grammar_engine.py            │  
+│    2. Professor Validator (PASS / WARN / REJECT)       │  
+│    3. Professor Summarizer / professor_miner.py        │  
 └────────────────────────────────────────────────────────┘  
-          │ (Filtered, enriched, and validated response)  
-          ▼  
+         │ (Filtered, enriched, and validated response)  
+         ▼  
 PanelAPI [ÁNO/NIE] / [YES/NO] → COLNIK-6.x / AUTONOMY 6.x → HitL Safe Trash (GET /trash)  
-          ▼  
+         ▼  
 [ UI PANEL (V2) — Rendering the result to the user ]  
 
 ---
@@ -66,13 +66,13 @@ PanelAPI [ÁNO/NIE] / [YES/NO] → COLNIK-6.x / AUTONOMY 6.x → HitL Safe Trash
 - ui_suite_8080/terminal_decoupling_guard.js (context release to "none")  
 - orchestrator/terminal_assistant.py (shell command gatekeeper and latency profiler)  
 - colnik_6_x/colnik_guard.py (command classification matrix)  
-- runtime5/token_guard.py (symbol injection filter)  
-- runtime5/spellcheck_engine.py (diacritics and typo pre-processing)  
-- runtime5/professor_validator.py (PASS / WARN / REJECT quality gate)  
-- runtime5/grammar_engine.py (Professor Cleaner & triplet extraction)  
-- runtime5/professor_miner.py (Professor Summarizer)  
+- runtime6/token_guard.py (symbol injection filter)  
+- runtime6/spellcheck_engine.py (diacritics and typo pre-processing)  
+- runtime6/professor_validator.py (PASS / WARN / REJECT quality gate)  
+- runtime6/grammar_engine.py (Professor Cleaner & triplet extraction)  
+- runtime6/professor_miner.py (Professor Summarizer)  
 - filesystem/safe_trash_quarantine.py (deleted files quarantine manager)  
-- runtime5/envoy_quarantine_5.py (100-file sliding window quarantine rotator)  
+- runtime6/envoy_quarantine_6.py (100-file sliding window quarantine rotator)  
 - ORCHESTRATOR/sirius_orchestrator.py (single-process daemon on port 8080)  
 - PANEL_API/panel_api.py (prompt handler for [ÁNO/NIE] / [YES/NO])  
 - http://127.0.0.1:8080 (local endpoint)  
@@ -116,7 +116,7 @@ Positioned between the Runtime Core and the UI Panel, the **Professor** validati
 ### 2. Triage Panel (COLNIK-6.x/triage Quarantine Queue & Sliding Window Tracking)  
 - Real-time tracking of intercepted, unverified, or corrupted data  
 - Sliding window capacity monitoring (strictly capped at 100 JSON records in `COLNIK-6.x/envoy/quarantine/`)  
-- Ingestion verification of normalized ENVOY 5 data guarded by the Non-Bio Domain Shield (`NonBioDomainShield`)  
+- Ingestion verification of normalized ENVOY 6 data guarded by the Non-Bio Domain Shield (`NonBioDomainShield`)  
 - Dedicated controls for manual release (Release) or safe disposal (Discard) of quarantined objects  
 
 ### 3. Navigation Panel (Navigation, Subsystem Health & Dual KG)  
@@ -139,7 +139,7 @@ Positioned between the Runtime Core and the UI Panel, the **Professor** validati
   - Trailing question mark trimming (`.rstrip("?")`) guarantees clean entity resolution  
   - COLNÍK Guard halts destructive commands at 0.0s (`format`, `diskpart`, `rmdir /s`, `del /f /s /q c:`, `drop database`)  
   - Multi-tier output decoding pipeline (UTF-8 -> CP1250 -> CP852) guarantees pristine diacritics  
-  - Support for multi-word phrases via InputParser5 alongside deductive inference trees (`KG_EXPLAIN_DEEP`)  
+  - Support for multi-word phrases via InputParser6 alongside deductive inference trees (`KG_EXPLAIN_DEEP`)  
 
 ---
 
@@ -177,7 +177,7 @@ Positioned between the Runtime Core and the UI Panel, the **Professor** validati
 
 ---
 
-## 📊 Module Status (v5.9.5)  
+## 📊 Module Status (v6.0.1)  
 - ✔ Fully stabilized and production-ready  
 - ✔ Architectural design by Richard Pizem  
 - ✔ 4-panel layout (Duplicates, Triage, Navigation, Terminal) deployed  
@@ -196,5 +196,5 @@ Positioned between the Runtime Core and the UI Panel, the **Professor** validati
 ---
 
 ## 🏁 Summary  
-UI PANEL 6.x within the **SIRIUS Local AI v5.9.5 UNIFIED** architecture, designed by Richard Pizem, delivers a unified, secure, neon-styled web suite operating at `http://127.0.0.1:8080`.  
+UI PANEL 6.x within the **SIRIUS Local AI v6.0.1 UNIFIED** architecture, designed by Richard Pizem, delivers a unified, secure, neon-styled web suite operating at `http://127.0.0.1:8080`.  
 It guarantees complete decoupling of user input from the host shell, blocks destructive commands in 0.0s via COLNÍK Guard, routes file deletions through the Safe Trash quarantine, enforces a 100-file sliding window limit, and **strictly regulates the veracity, consistency, and completeness of every displayed fact through the Professor validation layer** — **deterministically, safely, explainably, and 100% offline**.
