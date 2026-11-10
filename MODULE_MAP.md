@@ -1,10 +1,10 @@
-# 🗺️ Module Map – SIRIUS LOCAL AI (v5.9.5 UNIFIED)
+# 🗺️ Module Map – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 **Author & Architecture Lead:** Richard Pizem  
 
 This document defines all modules of the project, their purpose, responsibilities, and interconnections.  
-It serves as an architectural orientation map for the Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, Pre-Processing Spellcheck Layer, SafeRollback Crash Resilience, Professor Middleware Layer (Cleaner, Validator PASS/WARN/REJECT, Summarizer) & COLNÍK Guard Security Protocol 5.9.5.
+It serves as an architectural orientation map for the Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, Pre-Processing Spellcheck Layer, SafeRollback Crash Resilience, Professor Middleware Layer (Cleaner, Validator PASS/WARN/REJECT, Summarizer) & COLNÍK Guard Security Protocol 6.0.1.
 
-Version 5.9.5 UNIFIED expands, decouples, and stabilizes the module map with:
+Version 6.0.1 UNIFIED expands, decouples, and stabilizes the module map with:
 
 - Single-Process Orchestrator (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore)
 - Pre-Processing & Spellcheck Layer (`spellcheck_engine.py` for diacritics and typo normalization)
@@ -18,7 +18,7 @@ Version 5.9.5 UNIFIED expands, decouples, and stabilizes the module map with:
 - Sliding-Window Quarantine Ceiling Rotation (100 JSON file maximum in `COLNIK-6.x/envoy/quarantine/`)
 - SafeRollback Crash Resilience (`safe_rollback.py` with granular `shutil.copytree` backups and restorations)
 - COLNÍK Guard Shell Access Control (0.0s hard blocking of forbidden commands like format and diskpart)
-- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`)
+- Human-in-the-Loop Safe UI Trash preventing direct unverified disk destruction (`GET /trash`, tested in `dist_V6_CHECK`)
 - Multi-Word Semantic Engine (`InputParser5` preserving compound noun phrases)
 - Autonomous Disambiguation Triage & Anti-Prefix Guard (`EnvoyExecutionLayer5`)
 - Contextual Domain Shield & Bio Filtering (`EnvoyNormalizer5`)
@@ -27,8 +27,8 @@ Version 5.9.5 UNIFIED expands, decouples, and stabilizes the module map with:
 - Native Integrated High-Performance IPC Bridge eliminating file locking bottlenecks
 - PanelAPI & Interactive `[ÁNO/NIE]` / `[YES/NO]` Confirmation Loops
 - TimeCore Temporal Tracking (`cycle_delta()`) & Guard Security/Metric Supervision (CPU, RAM, Disk)
-- Workflow Engine 5.9.5 (Deterministic, explainability-aware routing)
-- Reasoning Engine 5.9.5 (Multi-hop, inheritance, transitivity, orbital & taxonomical rules)
+- Workflow Engine 6.0.1 (Deterministic, explainability-aware routing)
+- Reasoning Engine 5.x (Multi-hop, inheritance, transitivity, orbital & taxonomical rules)
 - KG_EXPLAIN & KG_EXPLAIN_DEEP (Hierarchical proof trees & XAI attribution)
 - KG Comfort Commands with dual-language partition switching and native merge execution
 - COLNIK‑6.x Enterprise Customs Validation Layer (Standard, High-Performance IPC Mode & COLNÍK Guard)
@@ -36,11 +36,11 @@ Version 5.9.5 UNIFIED expands, decouples, and stabilizes the module map with:
 - System Agent 5 & Identity Engine 3.1 (SECURITY FAMILY 5.x)
 - Self‑Repair Layer 5.8
 
-All processing is fully local; no data leaves the user's device.
+All processing is fully local; no data leaves the user's device (with optional user-approved ENVOY web lookups).
 
 ---
 
-# 1. Runtime Core & Orchestrator 5.9.5 (Unified)
+# 1. Runtime Core & Orchestrator 6.0.1 (Unified)
 Purpose: Central single-process execution orchestrator driven by `sirius_orchestrator.py` on local port 8080 with embedded TerminalAssistant and TimeCore.  
 Responsibilities:
 - module initialization and lifecycle management via `sirius_orchestrator.py`
@@ -57,7 +57,7 @@ Responsibilities:
 - enforcing capability boundaries and deterministic error propagation
 - integration with Security Family 5.x, SafeRollback (`safe_rollback.py`), Professor Middleware Layer, and Self‑Repair Layer 5.8
 - COLNIK‑6.x validation of workflow, shell commands, and KG mutations (Standard, IPC Mode & COLNÍK Guard)
-- AUTONOMY 6.x proposal evaluation, Guard metric auditing, HitL Safe Trash, and Triage Mode routing
+- AUTONOMY 6.x proposal evaluation, Guard metric auditing, HitL Safe Trash (tested in `dist_V6_CHECK`), and Triage Mode routing
 
 ---
 
@@ -110,7 +110,7 @@ Responsibilities:
 
 ---
 
-# 5. Autonomous ENVOY & Quarantine Subsystem (v5.9.5)
+# 5. Autonomous ENVOY & Quarantine Subsystem (v6.0.1)
 Purpose: Safe, outbound-only external retrieval, domain-guarded semantic normalization, and sliding-window quarantine maintenance.  
 Responsibilities:
 - Permission Layer 5: identity gating (OWNER/FAMILY/STRANGER), confirmation latching, and outbound policy audits
@@ -123,7 +123,7 @@ Responsibilities:
 
 ---
 
-# 6. Reasoning Engine 5.9.5 & Deep Explainability (XAI)
+# 6. Reasoning Engine 5.x & Deep Explainability (XAI)
 Purpose: Structured symbolic reasoning and verifiable proof-tree generation.  
 Responsibilities:
 - multi-hop rule deduction and property inheritance (`DedicsnostVlastnostiRule`)
@@ -138,7 +138,7 @@ Responsibilities:
 
 ---
 
-# 7. Workflow Engine 5.9.5
+# 7. Workflow Engine 6.0.1
 Purpose: Deterministic multi-step process orchestration.  
 Responsibilities:
 - workflow state machine executed within `sirius_orchestrator.py`
@@ -154,7 +154,7 @@ Responsibilities:
 # 8. 4-Panel UI Suite (Port 8080)
 Purpose: Modular local dashboard running via browser on port 8080.  
 Responsibilities:
-- Duplicates Panel: live resource auditing and safe duplicate categorization (`REPORT_ONLY`), routing removals to HitL Safe Trash
+- Duplicates Panel: live resource auditing and safe duplicate categorization (`REPORT_ONLY`), routing removals to HitL Safe Trash (tested in `dist_V6_CHECK`)
 - Triage Panel: visual supervision of quarantine queues and unclassified files (`COLNIK-6.x/triage`)
 - Navigation Panel: deterministic module switching across Runtime, KG, Envoy, and Autonomy
 - Terminal Panel: interactive CLI with COLNÍK Guard protection (0.0s blocking of format/diskpart) and automatic state release (`currentModule = "none"`)
@@ -166,7 +166,7 @@ Responsibilities:
 Purpose: Authoritative customs inspection gate and command security filter deciding ALLOW / DENY / TRIAGE.  
 Responsibilities:
 - COLNÍK Guard: 0.0s hard blocking of forbidden commands (`format`, `rmdir /s`, `diskpart`, `del /f /s /q c:`, `drop database`)
-- Human-in-the-Loop Safe Trash: intercepting file deletions and routing them to quarantine awaiting `GET /trash` review
+- Human-in-the-Loop Safe Trash: intercepting file deletions and routing them to quarantine awaiting `GET /trash` review (tested in `dist_V6_CHECK`)
 - inspecting all Knowledge Graph mutations and workflow steps
 - high-performance IPC synchronization with AUTONOMY on port 8080
 - verifying entity domain boundaries (Non-Bio Shield validation)
@@ -185,7 +185,7 @@ Responsibilities:
 - evaluating multi-word reasoning outputs and taxonomical deductions
 - enforcing zero proposal recurrence on indexed aliases and committed categories
 - coordinating interactive confirmation loops via PanelAPI (`[ÁNO/NIE]` / `[YES/NO]`)
-- governing non-destructive file disposal via Human-in-the-Loop Safe Trash
+- governing non-destructive file disposal via Human-in-the-Loop Safe Trash (tested in `dist_V6_CHECK`)
 - Guard supervision: real-time monitoring of CPU, RAM, and Disk metrics
 - managing quarantine containment in `COLNIK-6.x/triage`
 
@@ -197,7 +197,7 @@ Responsibilities:
 - executing authorized mutations dispatched via `proposals.json`
 - committing dual-key multi-alias entries to `autosave_kg.json` or `autosave_kg_en.json` via RuntimeCore
 - executing native entity mergers (`kg merge`) with zero attribute loss and alias link generation
-- executing safe file operations under strict HitL Safe Trash quarantine rules
+- executing safe file operations under strict HitL Safe Trash quarantine rules (tested in `dist_V6_CHECK`)
 - enforcing terminal module resets (`currentModule = "none"`)
 - producing structured execution telemetry in `responses.json` with TimeCore `cycle_delta()` metrics
 
@@ -216,7 +216,7 @@ Responsibilities:
 Purpose: Safe, deterministic filesystem operations and non-destructive trash isolation.  
 Responsibilities:
 - moving, copying, and validating file paths
-- routing deleted items into quarantine storage (`GET /trash`) rather than direct unverified disk deletion
+- routing deleted items into quarantine storage (`GET /trash`) rather than direct unverified disk deletion (tested in `dist_V6_CHECK`)
 - rollback-safe file handling
 - semantic organization (documents, code, schoolwork)
 - COLNIK-validated operations and duplicate detection
@@ -295,62 +295,72 @@ All modules communicate through:
 
 ```text
 [ UŽÍVATEĽ / UI PANEL (Port 8080) ]
-          │ (Zadanie dopytu / Príkaz)
-          ▼
+         │ (Zadanie dopytu / Príkaz)
+         ▼
 Token Guard (Rejects inputs with @#\$%^&*)
-          ▼
+         ▼
 Pre-Processing & Spellcheck Layer (spellcheck_engine.py)
-          ▼
+         ▼
 InputParser5 (Punctuation stripping .rstrip("?") & compound phrase preservation)
-          ▼
+         ▼
 Language Context Router (Binds to autosave_kg.json [SK] or autosave_kg_en.json [EN])
-          ▼
+         ▼
 sirius_orchestrator.py (Single-Process Daemon on Port 8080 with TerminalAssistant & TimeCore)
   ├── 4-Panel UI Suite (Duplicates, Triage, Navigation, Terminal with state reset)
   ├── TimeCore & Guard (Temporal tracking cycle_delta() & Resource supervision)
   ├── SafeRollback (safe_rollback.py)
   ├── Security Family 5.x & Identity Engine 3.1
   ├── System Agent 5 & COLNÍK Guard (0.0s Hard Block on format, diskpart, rmdir /s)
-  ├── RuntimeCore 5.9.5 & Dual Knowledge Graph Core (autosave_kg.json / autosave_kg_en.json)
+  ├── RuntimeCore 6.0.1 & Dual Knowledge Graph Core (autosave_kg.json / autosave_kg_en.json)
   │     ├── Native Merge Engine (kg merge <src> into <tgt>)
-  │     └── ReasoningEngine 5.9.5 (Multi-hop, taxonomical KG_VERIFY & Proof trees)
+  │     └── ReasoningEngine 5.x (Multi-hop, taxonomical KG_VERIFY & Proof trees)
   │
   ├─────► (Raw Graph Output)
   │       ▼
-  │     ┌────────────────────────────────────────────────────────┐
-  │     │               PROFESSOR MIDDLEWARE LAYER               │
-  │     │                                                        │
-  │     │   1. Professor Cleaner / grammar_engine.py             │
-  │     │   2. Professor Validator (PASS / WARN / REJECT)        │
-  │     │   3. Professor Summarizer / professor_miner.py         │
-  │     └────────────────────────────────────────────────────────┘
+  │      ┌────────────────────────────────────────────────────────┐
+  │      │                  PROFESSOR MIDDLEWARE LAYER            │
+  │      │                                                        │
+  │      │    1. Professor Cleaner / grammar_engine.py            │
+  │      │    2. Professor Validator (PASS / WARN / REJECT)       │
+  │      │    3. Professor Summarizer / professor_miner.py        │
+  │      └────────────────────────────────────────────────────────┘
   │       │
   │       ▼ (Validated Output)
   ├── Envoy 5 (ExecutionLayer5, Anti-Prefix Guard, EnvoyNormalizer5 & EnvoyQuarantine5)
   ├── COLNIK-6.x Customs Decision Gate (Standard, IPC Mode & COLNÍK Guard)
-  ├── HitL Safe Trash (Quarantined file removal pipeline via GET /trash)
+  ├── HitL Safe Trash (Quarantined file removal pipeline via GET /trash, tested in dist_V6_CHECK)
   ├── AUTONOMY 6.x (Control, Guard, Triage Mode & Confirmation Latching)
   ├── PanelAPI ([ÁNO/NIE] / [YES/NO] confirmation loops)
   └── EXECUTE 6.x -> Dual KG Commit / Lossless Merge / UI V2 Render
-```
+  📌 Document Status
+Version: 6.0.1 UNIFIED
 
----
+Author & Architecture Lead: Richard Pizem
 
-# 📌 Document Status
-Version: 5.9.5 UNIFIED  
-**Author & Architecture Lead:** Richard Pizem  
+Updated to reflect the 6.0.1 milestone release:
 
-Updated to reflect the 5.9.5 milestone release:
-- Isolated dual-language Knowledge Graph backends (`autosave_kg.json` & `autosave_kg_en.json`)
-- Pre-processing Spellcheck Layer (`spellcheck_engine.py`)
-- Authoritative Professor Middleware Layer (`grammar_engine.py`, `professor_validator.py`, `professor_miner.py`) with PASS / WARN / REJECT gating
-- Native lossless entity merge engine (`kg merge`)
-- Taxonomical category inference (`KG_VERIFY`)
-- Non-destructive reverse habitat reasoning with anti-flora guard
-- Token Guard entry-level sanitization (`@#$%^&*` drop)
-- 100-file sliding-window quarantine rotation
-- SafeRollback crash resilience (`safe_rollback.py`)
-- COLNÍK Guard 0.0s command blocking
-- Human-in-the-Loop Safe Trash pipeline (`GET /trash`)
-- Single-process orchestration via `sirius_orchestrator.py` on port 8080 with TerminalAssistant & TimeCore
-- Complete 4-Panel UI terminal decoupling (`currentModule = "none"`)
+Isolated dual-language Knowledge Graph backends (autosave_kg.json & autosave_kg_en.json)
+
+Pre-processing Spellcheck Layer (spellcheck_engine.py)
+
+Authoritative Professor Middleware Layer (grammar_engine.py, professor_validator.py, professor_miner.py) with PASS / WARN / REJECT gating
+
+Native lossless entity merge engine (kg merge)
+
+Taxonomical category inference (KG_VERIFY)
+
+Non-destructive reverse habitat reasoning with anti-flora guard
+
+Token Guard entry-level sanitization (@#$%^&* drop)
+
+100-file sliding-window quarantine rotation
+
+SafeRollback crash resilience (safe_rollback.py)
+
+COLNÍK Guard 0.0s command blocking
+
+Human-in-the-Loop Safe Trash pipeline (GET /trash, tested in dist_V6_CHECK)
+
+Single-process orchestration via sirius_orchestrator.py on port 8080 with TerminalAssistant & TimeCore
+
+Complete 4-Panel UI terminal decoupling (currentModule = "none")
