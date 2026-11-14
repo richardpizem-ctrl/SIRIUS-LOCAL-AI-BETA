@@ -1,8 +1,6 @@
 🚀 SIRIUS‑LOCAL‑AI (v6.1.0) — Offline Symbolic AI & Clinical Knowledge Engine
 > ⚠️ **WARNING:** This release is a Windows Preview intended for testing and evaluation. Use with awareness of ongoing development cycles!
-<p align="center">
-  <b>SIRIUS LOCAL AI</b> is an advanced offline-first symbolic AI system featuring isolated Slovak and English knowledge graphs, autonomous cognitive reasoning, and specialized clinical sub-modules. Designed for sovereign local execution with zero external cloud dependencies.
-</p>
+SIRIUS LOCAL AI is an advanced offline-first symbolic AI system featuring isolated Slovak and English knowledge graphs, autonomous cognitive reasoning, and specialized clinical sub-modules. Designed for sovereign local execution with zero external cloud dependencies.
 ---
 🔍 SEO Metadata & Keywords
 Primary Keywords: SIRIUS Local AI, offline symbolic AI, knowledge graph, Python AI runtime, Colník Guard, Delta-Medic, Professor reasoning engine, Windows orchestrator, secure local AI, offline medical triage.
@@ -26,8 +24,25 @@ Idle Batch Processing: While SIRIUS is idle, Professor actively scans both the S
 Symbolic Synthesis: Its inaugural operational rule automatically synthesizes structured explanations (such as detailed analyses regarding biological categories or environmental graphs) directly from explicit graph relationships.
 Fact Append & Safe Writes: Automatically appends and saves supporting backing facts alongside the generated narrative. All write operations and graph mutations are rigorously tested and verified on isolated memory copies before committing to storage.
 ---
-🏗️ Architecture & Component Diagram
-```text
+📸 Visual UI Interface & Architecture Diagram
+UI Screenshot Reference
+The offline web dashboard and 4-Panel UI suite operating seamlessly under local IPC and Colník Guard supervision:
+```
+[ SIRIUS LOCAL AI UI - 4-Panel Suite v6.1.0 ]
++--------------------------------------------------------------------------+
+|  [EN GB] [SK SK]   TIME: 05:38:54                        [ EXIT ]        |
+|  [Duplikáty] [Triáž] [Kôš] [Navigácia] [Terminál] [DELTA-MEDIC (demo)]   |
+|--------------------------------------------------------------------------+
+|  autosave_kg_delta.json (SK)       |  autosave_kg_en_delta.json (EN)     |
+|  - Akútna bolesť na hrudníku       |  - Acute Myocardial Infarction      |
+|  - Anafylaktický šok               |  - Advanced Cardiac Life Support    |
+|--------------------------------------------------------------------------+
+|  Colník Guard — Real Integrity Audit |  Advanced Triage Simulation       |
+|  [Status: Strict Schema Active]    |  [Severity Score Evaluator]       |
++--------------------------------------------------------------------------+
+```
+Architecture Component Diagram
+```
 ================================================================================
                     SIRIUS LOCAL AI v6.1.0 — ARCHITECTURE SUITE
 ================================================================================
@@ -69,26 +84,25 @@ Extract: Extract the entire ZIP archive to your desired location (e.g., `C:\SIRI
 Launch: Open the extracted folder and run `SiriusOrchestrator.exe`. The desktop interface will open automatically.
 ---
 💻 Developer Setup: Build from Source
-If you prefer to run or contribute directly from the source code repository:
 1. Clone & Extract Source
 Download the source code ZIP from the SIRIUS LOCAL AI v6.1.0 page or clone the repository, then open your terminal in the root directory.
 2. Environment Setup
 Ensure you have Python 3.10+ installed:
 Windows (PowerShell / Command Prompt):
-```powershell
+```
 python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
 ```
 Linux / macOS (Bash):
-```bash
+```
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 3. Launch Orchestrator
 Start the unified runtime and IPC bridge from the root directory:
-```bash
+```
 python sirius_orchestrator.py
 ```
 Once initialized, access the interactive 4-Panel UI Suite at `http://127.0.0.1:8080`.
@@ -108,7 +122,7 @@ Slovak, English & Diacritics	Verified separated SK/EN graphs and improved diacri
 ENVOY & Permissions	Fixed policy loading (`policies_envoy.json`) and verified user-consent workflows.	dist_ENVOY_POLICY: Loaded 5 rules successfully; external web queries triggered explicit consent prompts.
 ---
 📁 Architecture Overview (Logical Module Mapping)
-```text
+```
 src/
 |-- commands/              # Natural language routing and command execution
 |-- context/               # Semantic context and state engine
@@ -142,6 +156,6 @@ Strict Bounded Inference: Cycle-safe reasoning preventing runaway recursion.
 The project is open-source and licensed under the MIT License. See the LICENSE file for details.
 ---
 ✨ Author & Lead Architect
-Richard Pizem  
-Lead Architect & Solo Maintainer  
+Richard Pizem
+Lead Architect & Solo Maintainer
 SIRIUS‑LOCAL‑AI (Banská Bystrica, Slovakia)
