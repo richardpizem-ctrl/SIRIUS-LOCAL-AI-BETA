@@ -19,7 +19,23 @@ DELTA-MEDIC v1.3.1
 The DELTA-MEDIC (demo) panel runs offline and comes with five Slovak and four English sample records. You can search, edit, import, and export the records as JSON. English titles include a Slovak translation in parentheses.
 The score display is an interface demonstration for sample data. The panel is for evaluation and does not provide clinical decisions or treatment recommendations.
 Architecture
+Windows Preview v6.1.0
+```mermaid
+flowchart TD
+    Panel["Desktop panel"] -->|"Local IPC · port 8080"| Orchestrator["SiriusOrchestrator.exe"]
+    Panel --> Delta["DELTA-MEDIC v1.3.1 · Offline demo"]
+    Orchestrator --> Runtime["Runtime 5.x"]
+    Orchestrator -->|"During idle time"| Professor["Professor · Idle synthesis"]
+    Runtime -->|"Reads and writes"| Graphs["Separate SK and EN knowledge graphs"]
+    Professor -->|"Reads facts and saves supported explanations"| Graphs
+    Runtime -->|"User-approved lookup"| Envoy["ENVOY"]
+    Orchestrator -->|"File triage and proposals"| Colnik["COLNÍK 6.x"]
+```
+Runtime uses `runtime5/runtime_core_5.py`. The orchestrator runs idle synthesis through `professor/idle_synthesis.py`. DELTA-MEDIC uses its own sample records.
+<details>
+<summary>Original architecture overview</summary>
 ![SIRIUS Architecture Diagram](./diagram%20%286%29.png)
+</details>
 Component	Role
 `sirius_orchestrator.py`	Launches the desktop window and its loopback IPC bridge on port 8080.
 `runtime5/`	Parses requests, queries the active knowledge graph, and handles optional ENVOY lookups.
