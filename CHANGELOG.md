@@ -1,3 +1,15 @@
+# Changelog
+
+## v6.1.0 Windows Preview — 2026-11-14
+
+- Added DELTA-MEDIC v1.3.1 to the desktop menu with nine offline sample records.
+- Added the Professor idle workflow for explanations based on supported graph relationships.
+- Documented Windows installation, separate graph data and the Preview's verification scope.
+
+See the [GitHub release](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/tag/v6.1.0) and [Windows Preview release notes](RELEASE_NOTES.md).
+
+## Earlier changelog
+
 # 📜 CHANGELOG — SIRIUS LOCAL AI
 **Author & Architecture Lead:** Richard Pizem  
 

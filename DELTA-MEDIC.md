@@ -1,3 +1,9 @@
+# DELTA-MEDIC in the BETA v6.1.0 Windows Preview
+
+Open the demo from the [Windows installation](INSTALLATION.md). It uses sample records and its own local catalogue. The score displayed by the demo does not provide clinical decisions or treatment recommendations.
+
+## DELTA-MEDIC v1.3.1 guide
+
 # DELTA-MEDIC v1.3.1
 
 **Offline demo in SIRIUS LOCAL AI BETA v6.1.0**

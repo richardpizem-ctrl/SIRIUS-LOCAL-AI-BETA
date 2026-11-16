@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+Try the local graph first. The Preview offers an optional ENVOY lookup when the user approves it. A subsequent ENVOY alias guard passed source-level tests and awaits verification in a running new EXE. See [the test scope](TESTING_GUIDE.md).
+
 # 🌐 ENVOY PERMISSION LAYER 5 — Safe External Retrieval & Identity‑Aware Access Control  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1  

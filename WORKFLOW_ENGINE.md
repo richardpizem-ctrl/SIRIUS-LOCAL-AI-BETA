@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The historical workflow design below complements the current [Windows Preview architecture](ARCHITECTURE.md). See [the test guide](TESTING_GUIDE.md) for exercised workflows.
+
 # 🔄 WORKFLOW ENGINE 5.8 — Deterministic, Explainable, Orchestrator-Supervised, System‑Aware Multi‑Step Logic  
 **Status:** ✔ Active  
 **Version:** 5.8  

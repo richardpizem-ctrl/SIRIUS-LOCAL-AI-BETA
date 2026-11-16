@@ -1,3 +1,20 @@
+# Install SIRIUS LOCAL AI BETA v6.1.0 on Windows
+
+1. Download [SIRIUS-LOCAL-AI-BETA-v6.1.0-Windows-Preview.zip](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/download/v6.1.0/SIRIUS-LOCAL-AI-BETA-v6.1.0-Windows-Preview.zip) from the [v6.1.0 release](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/tag/v6.1.0).
+2. Extract the entire ZIP to a fresh folder. Keep `_internal` beside `SiriusOrchestrator.exe`.
+3. Double-click `SiriusOrchestrator.exe`. The Preview bundles its Python runtime.
+4. Select **SK** or **EN** in the desktop panel. Close the application through **EXIT**.
+
+The executable is unsigned. Windows may block startup depending on its security settings. If startup is blocked, record your Windows version, ZIP filename and exact message for the issue report.
+
+## Data and first check
+
+The app uses writable graph copies in `SIRIUS_DATA`. Keep the complete distribution together and back up the writable data separately before moving or replacing a working installation. The shipped graphs are used to initialize the working copies.
+
+To verify a local response, disconnect the network and try **Čo je Slnko?** in SK or **What is the Sun?** in EN. See the [testing guide](TESTING_GUIDE.md) for Professor, DELTA-MEDIC and ENVOY scenarios.
+
+## Earlier source installation instructions
+
 # 📥 INSTALLATION GUIDE — SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 **Status:** ✔ Production-Enhanced  
 **Version:** 6.0.1  

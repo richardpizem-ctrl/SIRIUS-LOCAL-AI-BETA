@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The Preview distinguishes file-action proposals and user confirmation from Professor's idle explanation workflow. See [the architecture](ARCHITECTURE.md).
+
 # 🤖 AUTONOMY PROPOSALS 6.x — Supervised Autonomous Decision Generation  
 **Status:** ✔ Production-Enhanced  
 **Version:** 6.x (Updated for Runtime 5.x UNIFIED)  

@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+For the current desktop Preview, see [the release notes](RELEASE_NOTES.md) and [architecture](ARCHITECTURE.md). The wider workstation vision below includes plans outside this release.
+
 # 🌌 SIRIUS LOCAL AI — Unified Autonomous Workstation Overview  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1 UNIFIED  

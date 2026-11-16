@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+See [the release roadmap](ROADMAP.md) for the current line between shipped Preview features and future integration. This file preserves the longer-term plan.
+
 # 🚀 SIRIUS ROADMAP — Full Development Plan (2024–2027)  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1 UNIFIED  

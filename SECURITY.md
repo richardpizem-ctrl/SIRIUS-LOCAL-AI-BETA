@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The Preview EXE is unsigned and may be blocked by Windows. See [installation](INSTALLATION.md) for the startup notice and [the ENVOY permission layer](ENVOY_PERMISSION_LAYER.md) for optional lookup approval. The older architecture below is not a security certification for the packaged Preview.
+
 # 🛡 Security Architecture – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 ### Fully Offline • Deterministic • Dual-Language Isolated • Domain-Shielded • Single-Process Orchestrated • COLNÍK Guard Hardened • HitL Safe Trash • SafeRollback Protected • Professor Validator Verified • AUTONOMY‑Supervised
 

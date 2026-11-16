@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The console output below is a historical session. Use [the Windows testing guide](TESTING_GUIDE.md) for current v6.1.0 scenarios.
+
 C:\Users\richa\SIRIUS-LOCAL-AI-BETA>python -m runtime5.runtime5_cli
 [RUNTIME5 2026-07-11 08:39:05] [INFO] [RuntimeCore] Initializing Runtime 5.x
 [RUNTIME5 2026-07-11 08:39:05] [INFO] [PermissionLayer5] Initialized ENVOY Permission Layer 5.x

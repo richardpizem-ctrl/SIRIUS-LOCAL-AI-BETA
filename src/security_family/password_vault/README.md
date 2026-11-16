@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+These notes document the earlier vault module under `src`. See the [root vault guide](../../../PASSWORD_VAULT.md) for its status relative to BETA v6.1.0.
+
 # 🔐 Security.PasswordVault 4.0 — Offline Password Manager
 
 Part of **Security Family 4.x** in **SIRIUS LOCAL AI BETA**.

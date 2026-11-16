@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The material below documents an earlier system-agent design. See [the Preview architecture](ARCHITECTURE.md) for the shipped role of the panel, orchestrator and COLNÍK.
+
 # 🛡 SYSTEM AGENT 6 — Hardened OS‑Level Safety & Validation Core  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1 UNIFIED  

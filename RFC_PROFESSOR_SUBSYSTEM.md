@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This RFC records the original proposal. See [Professor in BETA v6.1.0](PROTOCOL_PROFESSOR_V1.md) for the shipped idle workflow and the verified Slovak fixture.
+
 # RFC: SIRIUS Satellite Subsystem — Professor
 
 **Status:** Active · Updated for SIRIUS LOCAL AI BETA v6.1.0  

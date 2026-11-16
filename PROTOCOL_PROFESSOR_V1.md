@@ -1,3 +1,13 @@
+# Professor in BETA v6.1.0
+
+The Windows Preview runs Professor during panel inactivity and pauses synthesis while the user is active. The initial rule, `fish_habitat_v1`, needs explicit classification, habitat and habitat-example relationships in the active graph. A text summary alone cannot satisfy the rule.
+
+On a local Windows EXE using a separate Slovak fixture, Professor logged `SK explanation saved` and the resulting JSON contained `professor_explanation` with all three supporting relationships. A `batch completed` message reports processing and can appear even when there is no eligible explanation. Only the Slovak save was verified in this executable fixture test.
+
+The broader membership rule tested in a separate working source is a development item. The next step is to integrate it into the `IdleSynthesis` implementation used for packaging and verify the resulting build. See [the test guide](TESTING_GUIDE.md).
+
+## Earlier Professor governance and protocol
+
 # PROFESSOR SUBSYSTEM GOVERNANCE & EXECUTION PROTOCOL (V2.0)
 **Security Classification:** STRICT AIR-LOCK INTERFACE  
 **Operational Objective:** Deterministic Knowledge Graph saturation and bilingual synchronization across isolated SK/EN environments.

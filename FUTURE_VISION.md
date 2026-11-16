@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+See [the current roadmap](ROADMAP.md) for v6.1.0 status and the BETA–GAMA milestone. The vision below includes proposals beyond the Preview.
+
 # 🌟 Future Vision (v6.0.1 and Beyond)
 
 SIRIUS LOCAL AI is evolving from a modular automation runtime into a **full offline household, developer, and symbolic reasoning-driven AI workstation**, while remaining safe, deterministic, explainable, and 100% local.

@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+Use the desktop panel and its SK/EN selection in the Preview. For supported examples start with [the Windows test guide](TESTING_GUIDE.md). The developer commands below are earlier examples.
+
 # 🧩 KG COMFORT COMMANDS — Developer‑Friendly Knowledge Graph Operations  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.x (Updated for Runtime 5.x UNIFIED)  

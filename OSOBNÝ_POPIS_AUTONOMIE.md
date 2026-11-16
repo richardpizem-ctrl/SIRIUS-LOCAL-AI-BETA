@@ -1,3 +1,7 @@
+## Kontext vydania BETA v6.1.0
+
+Pôvodný osobný opis autonómie zachytáva víziu projektu. Aktuálny stav vydania 6.1.0 je v [poznámkach k vydaniu](RELEASE_NOTES.md). Automatické vysvetlenia spracúva [Professor](PROTOCOL_PROFESSOR_V1.md).
+
 AUTONÓMIA – 6 PILIEROV SIRIUS 6.x
 1️⃣ Autonómia poznania PC
 Autonómia musí dokonale poznať prostredie, v ktorom pracuje.

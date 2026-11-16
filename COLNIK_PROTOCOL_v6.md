@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This protocol describes the COLNÍK 6.x IPC design. BETA v6.1.0 retains Runtime 5.x and uses COLNÍK for the desktop file-action workflow. See [the architecture](ARCHITECTURE.md).
+
 # COLNÍK 6.x – PROTOKOLY
 
 ## REQUEST PROTOCOL (COLNÍK 6.x)

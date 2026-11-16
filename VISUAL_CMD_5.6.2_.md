@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This transcript belongs to the 5.6.x development series. The [v6.1.0 test guide](TESTING_GUIDE.md) covers the current Preview.
+
 C:\SIRIUS_ARCHIVE\SIRIUS-LOCAL-AI-5.6.1>python runtime5_cli.py
 [RUNTIME5 2026-08-12 11:03:48] [INFO] [RuntimeCore] Initializing Runtime 5.x
 [RUNTIME5 2026-08-12 11:03:48] [INFO] [PermissionLayer5] Initialized ENVOY Permission Layer 5.x

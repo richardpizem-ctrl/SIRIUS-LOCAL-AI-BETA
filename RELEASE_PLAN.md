@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+Release v6.1.0 is already published as a Windows Preview. Use [the release notes](RELEASE_NOTES.md) for shipped contents and [the roadmap](ROADMAP.md) for remaining work.
+
 # 🟦 RELEASE NOTES – SIRIUS LOCAL AI v6.0.1 UNIFIED
 ### Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning & Comprehensive Security Protocol
 

@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The shipped SK and EN graphs initialize separate writable copies in the Preview. GAMA Android knowledge packs belong to the mobile repository. See [the current architecture](ARCHITECTURE.md).
+
 # SIRIUS‑LOCAL‑AI  
 **A fully modular, offline‑only AI runtime with unified orchestration (`sirius_orchestrator.py` on Port 8080 with embedded TerminalAssistant + TimeCore), dual-language isolated KG architecture (`autosave_kg.json` for SK & `autosave_kg_en.json` for EN), native lossless entity merge (`kg merge`), taxonomical & marsupial inference (`KG_VERIFY`), non-destructive reverse location reasoning, entry-level Token Guard, 100-file sliding-window quarantine rotation, SafeRollback crash resilience (`safe_rollback.py`), Professor Validator middleware (`professor_validator.py`), COLNÍK Guard shell access control (0.0s hard blocks), Human-in-the-Loop Safe Trash (tested in `dist_V6_CHECK`), multi-word semantic parsing (`InputParser5`), autonomous disambiguation triage & anti-prefix protection (`EnvoyExecutionLayer5`), contextual domain shielding (`EnvoyNormalizer5`), 4-Panel UI Suite (`Duplicates`, `Triage`, `Navigation`, `Terminal`), interactive PanelAPI [ÁNO/NIE] / [YES/NO] loops, TimeCore & Guard supervision, unified reasoning, deep explainability, self‑repair, COLNIK‑6.x (Standard & High-Performance IPC Mode), and AUTONOMY 6.x (Control, Guard & Triage Mode).**
 

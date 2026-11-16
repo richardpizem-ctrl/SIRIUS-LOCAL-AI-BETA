@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The Preview uses two independently writable graphs in `SIRIUS_DATA`. Professor can store explanations with supporting relationships. See [the Professor execution protocol](PROTOCOL_PROFESSOR_V1.md).
+
 # 🧠 KG ENGINE 6.x — Knowledge Graph Core  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.x  
