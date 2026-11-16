@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This directory preserves an earlier Runtime 4 baseline. Current BETA v6.1.0 documentation starts at the [root README](../README.md).
+
 # File: baseline_runtime4/README.md
 # Version: 4.5.0
 # Purpose: Stores known‑good baseline copies of runtime4 modules

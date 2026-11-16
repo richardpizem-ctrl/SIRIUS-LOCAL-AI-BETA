@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This file preserves earlier COLNÍK protocol notes. See [the COLNÍK protocol guide](COLNIK_PROTOCOL_v6.md) and the [Preview architecture](ARCHITECTURE.md) for context.
+
 # COLNÍK 6.x – PROTOKOLY
 
 ## REQUEST PROTOCOL (COLNÍK 6.x)

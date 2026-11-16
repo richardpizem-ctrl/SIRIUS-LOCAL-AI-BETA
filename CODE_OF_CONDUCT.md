@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The community guidelines below apply to contributions and discussions across versions, including BETA v6.1.0.
+
 # 🧭 CODE OF CONDUCT – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 
 This project follows a professional, respectful, and safety‑oriented standard of behavior.  

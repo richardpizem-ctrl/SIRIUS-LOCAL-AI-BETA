@@ -1,3 +1,17 @@
+# BETA roadmap from v6.1.0
+
+The [v6.1.0 Windows Preview](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/tag/v6.1.0) is the public BETA baseline. Active mobile development continues in [GAMA](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-GAMA).
+
+| Work | Status |
+| --- | --- |
+| Professor idle synthesis | Initial fish rule in the Preview. Local Slovak fixture confirmed automatic JSON persistence. |
+| Additional Professor reasoning | A membership-chain example passed in working source. Integration into the packaged idle implementation and EXE verification remain open. |
+| ENVOY alias handling | Source tests passed for suppressing full-question aliases in the affected relation-query path. The new Windows EXE has not passed a launch test. |
+| BETA–GAMA through ENVOY | Planned first test: an explicitly approved, read-only GAMA query to BETA with a local result, plus denial and unavailable-device cases. |
+| DELTA2 MEDIC | Future work beyond the v1.3.1 sample catalogue. |
+
+## Earlier roadmap
+
 # ⭐ Runtime Roadmap – SIRIUS LOCAL AI (v4.5.0 → v5.0 → v5.5 → v5.6.2 → v5.8 → v5.9.0 → v5.9.5 → v6.0.1)
 ### Evolution of the Unified Orchestration, Dual-Language KG Architecture, Native Lossless Merge, Ontological Reasoning & COLNÍK Guard Security Protocol
 

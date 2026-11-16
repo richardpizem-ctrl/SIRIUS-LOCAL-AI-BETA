@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The v6.1.0 desktop menu includes DELTA-MEDIC (demo) alongside the file and terminal panels. Use SK/EN to switch the local knowledge graph and **EXIT** to quit. See [installation](INSTALLATION.md).
+
 # 🎛 UI PANEL 6.x — 4-Panel Futuristic Neon Web Suite (Port 8080)
 **Status:** ✔ Active & Stabilized  
 **Version:** 6.x (Stabilized for 6.0.1 UNIFIED)  

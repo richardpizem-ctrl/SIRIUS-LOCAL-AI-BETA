@@ -1,3 +1,18 @@
+# BETA v6.1.0 Windows Preview architecture
+
+| Component | Role in the Preview |
+| --- | --- |
+| Desktop panel and orchestrator | The panel sends local IPC requests to the orchestrator via the loopback HTTP bridge on port 8080. |
+| Runtime 5.x | Handles parsing, lookup in the active language graph, and optional ENVOY requests after approval. |
+| SK and EN knowledge graphs | `autosave_kg.json` and `autosave_kg_en.json` have independent writable copies in `SIRIUS_DATA`. |
+| Professor | The Preview architecture calls `IdleSynthesis` during inactivity to derive and persist supported explanations. |
+| COLNÍK 6.x | Handles guards and proposal workflows for file actions. |
+| DELTA-MEDIC v1.3.1 | The panel provides an offline demo catalogue with its own local records. |
+
+[Installation](INSTALLATION.md) · [Module map](MODULE_MAP.md) · [Professor protocol](PROTOCOL_PROFESSOR_V1.md) · [Release notes](RELEASE_NOTES.md)
+
+## Earlier Runtime 5.x architecture reference
+
 # 🏗 Architecture – SIRIUS LOCAL AI (Runtime 5.x — Dual-Language KG Architecture, Native Merge & Orchestrated Protection)
 **Author & Architecture Lead:** Richard Pizem  
 

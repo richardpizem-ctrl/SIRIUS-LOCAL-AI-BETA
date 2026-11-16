@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The Preview includes local SK and EN queries, Professor idle synthesis and DELTA-MEDIC demo. See [the v6.1.0 architecture](ARCHITECTURE.md) for the current path.
+
 # ⭐ 11. NEW IN VERSION 6.0.1 — Dual-Language KG, Native Merge, Ontological Reasoning & Comprehensive Security Protocol (UNIFIED)
 
 Version **6.0.1 UNIFIED** builds on the deterministic OS‑level automation introduced in 4.5.0 PRO,  

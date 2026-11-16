@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The material below describes the earlier recovery design. For the Preview, see [the verified scenarios](TESTING_GUIDE.md).
+
 # 🔧 SELF‑REPAIR LAYER 5.8 — Autonomous Integrity, Recovery & Runtime Stabilization  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 5.8 (Updated for 6.0.1 UNIFIED)  

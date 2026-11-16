@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+In the v6.1.0 panel, a local answer can work offline. An optional web lookup through ENVOY requires approval. The proposed GAMA-to-BETA query is a future integration milestone. See [the roadmap](ROADMAP.md).
+
 # 🌐 SIRIUS ENVOY 5 — Tutorial & Concept Guide (Runtime 5.x Unified)
 ### Safe External Retrieval, Dual-Language KG Dispatch & Autonomous Triage Layer for SIRIUS LOCAL AI (Dual-Language KG Architecture, Lossless Entity Merge, Ontological Habitat Reasoning, SafeRollback Crash Resilience, Professor Validator Middleware & COLNÍK Guard Security Protocol)
 

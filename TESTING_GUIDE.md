@@ -1,3 +1,19 @@
+# Test BETA v6.1.0 Windows Preview
+
+| Scenario | Test | Evidence or expected result |
+| --- | --- | --- |
+| Startup | Extract the full release ZIP and launch the EXE. | The desktop panel opens and loads the SK and EN graphs. Record the exact Windows message if blocked. |
+| Local graph | Disconnect the network. Ask “Čo je Slnko?” in SK and “What is the Sun?” in EN. | The tested desktop build produced local answers in both languages. |
+| ENVOY | With network available, use a question that misses locally and inspect the approval prompt. | A previously verified approved English lookup saved a result retrievable locally on the next query. Record denial separately when tested. |
+| DELTA-MEDIC | Open the demo from the menu and review both languages. | The installed Preview displayed five SK and four EN sample records. |
+| Professor | Use a disposable SK graph with the fish rule’s three explicit supporting relationships. Launch and leave the panel idle. | Look for `SK explanation saved`, then read the graph back and check `professor_explanation` and its supporting `facts`. A local EXE test passed with this setup. |
+
+Use a separate data directory for fixture tests. An idle batch completion message records scanning. The saved log line and JSON readback establish persistence. English on-device persistence was not covered by the Slovak fixture.
+
+The later ENVOY alias guard passed source-level isolated and integration tests with simulated ENVOY. Its new test executable was blocked before startup on the development PC. Keep that result separate from the released v6.1.0 binary.
+
+## Earlier runtime test notes
+
 # 🔄 DATA FLOW & EXECUTION PIPELINE — SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 **Status:** ✔ Active & Synchronized  
 **Version:** 6.0.1 UNIFIED  

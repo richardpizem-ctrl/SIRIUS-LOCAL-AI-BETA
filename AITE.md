@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The Windows Preview primarily documents the desktop panel and local knowledge questions. The AITE material below describes the earlier input-triage design and does not constitute a device test for every classifier.
+
 # ⚙️ Automatic Input Triage Engine (AITE) — v6.0.1  
 SIRIUS‑LOCAL‑AI Runtime 5.x — Dual-Language KG Architecture, Native Merge & Orchestrated Protection
 

@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+Use [the test guide](TESTING_GUIDE.md) to identify the Preview build and scenario before recording measurements. The earlier resource targets below are reference values, not benchmarks for this ZIP.
+
 # ⚡ PERFORMANCE GUIDE – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 
 This document defines the performance model, optimization rules, and runtime guarantees of the  

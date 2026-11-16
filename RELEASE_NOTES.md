@@ -1,3 +1,17 @@
+# BETA v6.1.0 Windows Preview release notes
+
+Published on **14 November 2026**. [GitHub release and ZIP](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/tag/v6.1.0).
+
+- **Professor** scans both language graphs during idle time. Its initial rule uses explicit classification, habitat and example relationships to synthesize an explanation about fish with supporting facts.
+- **DELTA-MEDIC v1.3.1** adds an offline sample catalogue to the panel, with five Slovak and four English records and local JSON import/export. The score is part of the demo interface. See [the demo guide](DELTA-MEDIC.md).
+- **Runtime 5.x and local graphs** remain the basis of the Windows Preview. ENVOY offers an optional web lookup after user approval.
+
+The Preview ZIP includes the executable and its `_internal` directory. See [installation](INSTALLATION.md) for startup instructions. The README records a known startup log message where IdentityEngine uses defaults if it cannot find `config/security_identity.json`.
+
+An automatic Slovak Professor save was observed in a separately tested local executable with a dedicated fixture graph. That result covers the fish rule and does not establish an English write or a write on the shipped default graph. Post-release ENVOY alias-guard and general Professor inference work are development items covered by the [roadmap](ROADMAP.md).
+
+## Earlier v6.0.1 release notes
+
 # 🟦 RELEASE NOTES – SIRIUS LOCAL AI v6.0.1 UNIFIED
 ### Dual-Language KG Architecture, Native Lossless Entity Merge, Ontological Habitat Reasoning, Pre-Processing Spellcheck, Professor Middleware Quality Gateway & Comprehensive Security Protocol
 **Author & Architecture Lead:** Richard Pizem  

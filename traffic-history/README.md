@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This folder records historical repository traffic. See the [root README](../README.md) for the current v6.1.0 Windows Preview.
+
 # 📊 SIRIUS Traffic History
 
 Tento priečinok obsahuje dlhodobú históriu klonov a návštev projektu SIRIUS-LOCAL-AI-BETA.

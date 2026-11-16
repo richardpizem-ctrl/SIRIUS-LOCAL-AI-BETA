@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This is a developer tutorial for a COLNÍK decision gate. Use [the current Windows test guide](TESTING_GUIDE.md) to distinguish Preview behavior from protocol examples.
+
 # 🌐 KÝKLOS GATE (COLNIK-6.x) – Primitive Decision Gate, Security Protocol & IPC Tutorial
 
 ## 1. Overview

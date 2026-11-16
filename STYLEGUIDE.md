@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The contributor style guidance below is shared across releases. For what to run against this build, see [the Windows test guide](TESTING_GUIDE.md).
+
 # 📐 STYLEGUIDE – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 ### Mandatory Coding, Architecture, Security, Dual-Language KG & Quality Guidelines
 

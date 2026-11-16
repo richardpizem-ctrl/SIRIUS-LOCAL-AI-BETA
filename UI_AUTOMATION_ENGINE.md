@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+For the Preview, follow the [panel guide](UI_PANEL.md) and its guarded file workflows. The design below is a reference for earlier automation behavior.
+
 # 🎛 UI AUTOMATION ENGINE 6.0.1 — Deterministic, Explainable, Orchestrator-Supervised, Terminal-Decoupled, COLNÍK Guard Hardened & Safe Trash Governed OS Automation  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1 (Updated for 6.0.1 UNIFIED)  

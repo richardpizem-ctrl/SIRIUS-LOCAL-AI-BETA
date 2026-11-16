@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+See [the Preview architecture](ARCHITECTURE.md) for the released Windows build. The earlier enterprise overview below preserves the design context.
+
 [SIRIUS LOCAL AI 6.0.1 — INITIALIZATION & CORE ORCHESTRATOR BRIDGE]
 
 Richard, architektonický základ verzie 5.9.5 je pevne zafixovaný. Prechádzame priamo na verziu 6.0.1, kde implementujeme kľúčové vylepšenia pre single-process orchestrátor, rozšírenú podporu pre Windows Defender Application Control (WDAC) pri kompilácii cez PyInstaller a prísnejšiu deterministickú validáciu cez COLNÍK Guard.

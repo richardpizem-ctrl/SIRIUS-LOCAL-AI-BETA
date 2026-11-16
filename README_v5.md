@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+See the [current README](README.md) and [release notes](RELEASE_NOTES.md) for Windows Preview v6.1.0. This file preserves an older README.
+
 # 🚀 SIRIUS LOCAL AI — Runtime 6.0.1
 ### Modular Kernel • Hybrid Multimodal Analyzer • Deterministic Local AI
 ### Fully Offline • Zero Cloud • Secure Family Behavior Engine • COLNIK‑6.x (Standard & IPC Mode) • AUTONOMY‑6.x (Control, Guard, Safe Trash & Triage Mode) • Unified Orchestrator • 4-Panel UI Suite • Dual-Language KG Architecture

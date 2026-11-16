@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The Preview retains Runtime 5.x. Runtime query reasoning and [Professor idle synthesis](PROTOCOL_PROFESSOR_V1.md) have separate entry points and verification.
+
 # 🧠 REASONING ENGINE 6.0.1 — Deterministic Multi‑Hop Inference Core  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1  

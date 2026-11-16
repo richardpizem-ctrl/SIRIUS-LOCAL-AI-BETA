@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+Use [the current documentation index](DOCS.md), identify the exact build or branch in reports, and distinguish source tests, packaged EXE tests and checks on the public ZIP. See [the testing guide](TESTING_GUIDE.md).
+
 # 🤝 Contributing Guidelines – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 
 Thank you for your interest in contributing to SIRIUS LOCAL AI.  

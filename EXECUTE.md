@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The execution layer belongs to the guarded file-action path. Professor graph explanations follow the separate [idle synthesis path](PROTOCOL_PROFESSOR_V1.md).
+
 # 🔧 EXECUTE 6.x — Action Execution Engine  
 **Status:** ✔ Production-Enhanced  
 **Version:** 6.x  

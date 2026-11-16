@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+This page preserves an earlier design of system awareness. The [test guide](TESTING_GUIDE.md) identifies behaviors verified in the Windows Preview.
+
 # 🧠 SYSTEM INTELLIGENCE LAYER 6.0.1 — Predictive, Resource-Supervised, Deep Explainable & Single-Process Orchestrated OS Awareness  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1 UNIFIED  

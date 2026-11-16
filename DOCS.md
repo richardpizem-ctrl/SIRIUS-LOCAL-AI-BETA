@@ -1,3 +1,22 @@
+# SIRIUS LOCAL AI BETA v6.1.0 documentation
+
+This index covers the published [Windows Preview v6.1.0](https://github.com/richardpizem-ctrl/SIRIUS-LOCAL-AI-BETA/releases/tag/v6.1.0). The executable bundles Runtime 5.x with the desktop panel, separate Slovak and English local graphs, and the COLNÍK 6.x action workflow.
+
+| Task | Guide |
+| --- | --- |
+| Install the Windows Preview | [Installation](INSTALLATION.md) |
+| See what changed | [Release notes](RELEASE_NOTES.md) and [changelog](CHANGELOG.md) |
+| Verify the installed build | [Testing guide](TESTING_GUIDE.md) |
+| Understand the runtime, panel and graph | [Architecture](ARCHITECTURE.md), [module map](MODULE_MAP.md) and [KG engine](KG_ENGINE.md) |
+| Understand Professor | [Professor execution protocol](PROTOCOL_PROFESSOR_V1.md) |
+| Try the sample catalogue | [DELTA-MEDIC demo](DELTA-MEDIC.md) |
+| Understand online lookup and permissions | [ENVOY tutorial](ENVOY_TUTORIAL.md) and [permission layer](ENVOY_PERMISSION_LAYER.md) |
+| Review planned work | [Roadmap](ROADMAP.md) and [release plan](RELEASE_PLAN.md) |
+
+The [README](README.md) describes the Preview. In the reference pages below, older implementation descriptions and logs retain their original versions for comparison.
+
+## Earlier documentation index
+
 ---
 title: SIRIUS LOCAL AI Documentation
 layout: default

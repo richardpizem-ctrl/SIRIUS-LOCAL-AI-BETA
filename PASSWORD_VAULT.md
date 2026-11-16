@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The password-vault design below is an earlier module reference. The Windows Preview verification in [the test guide](TESTING_GUIDE.md) does not cover a vault workflow.
+
 # 🔐 PASSWORD VAULT 6.0.1 — Secure Local Credential Module
 ### Fully Offline • AES‑256‑GCM • Identity‑Aware • Deterministic • Dual-Language KG Ready • Token Guard Protected • SafeRollback Protected • Professor Validator Verified • COLNÍK Guard Hardened • Single-Process Orchestrator • AUTONOMY‑Supervised
 

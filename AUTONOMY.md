@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+Autonomy is documented as a proposal path. File actions in the Preview follow the panel and COLNÍK workflow. For Professor's idle knowledge synthesis, see [the Professor protocol](PROTOCOL_PROFESSOR_V1.md).
+
 # ⚡ AUTONOMY 6.x — Autonomous Decision Engine  
 Status: ✔ Production-Enhanced  
 Version: 6.x  

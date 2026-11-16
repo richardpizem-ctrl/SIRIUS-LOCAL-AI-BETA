@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The desktop verification recorded a case where IdentityEngine could not find `config/security_identity.json` and used defaults. See [the release notes](RELEASE_NOTES.md) for the known issue.
+
 # 🔐 SECURITY FAMILY 6.0.1 — Identity Engine 3.1 & Unified Permission Framework  
 **Status:** ✔ Active (Enhanced)  
 **Version:** 6.0.1 (Updated for 6.0.1 UNIFIED)  

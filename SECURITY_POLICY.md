@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The sections below are earlier engineering design notes, rather than a release-specific audit. See [the security architecture](SECURITY.md) and [the Windows test scope](TESTING_GUIDE.md).
+
 # 🔐 11.6 NEW SECURITY LAYER — Runtime 6.0.1 UNIFIED
 
 Version **6.0.1 UNIFIED** significantly expands and hardens the security model introduced in earlier runtime generations.  

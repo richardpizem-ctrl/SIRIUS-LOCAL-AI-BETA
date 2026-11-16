@@ -1,3 +1,7 @@
+## BETA v6.1.0 context
+
+The Preview uses COLNÍK 6.x for guarded file workflows. See [the protocol](COLNIK_PROTOCOL_v6.md) and [panel guide](UI_PANEL.md) before relying on implementation details below.
+
 # 🛃 COLNÍK 6.x — Customs & Security Validation Layer  
 **Status:** ✔ Production-Enhanced  
 **Version:** 6.x (Updated for Runtime 5.x UNIFIED)  

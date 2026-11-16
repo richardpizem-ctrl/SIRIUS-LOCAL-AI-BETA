@@ -1,3 +1,15 @@
+# BETA v6.1.0 module map
+
+- **Entry point:** [sirius_orchestrator.py](sirius_orchestrator.py) and the [desktop panel](UI_PANEL/).
+- **Local reasoning:** [Runtime 5.x](runtime5/), separate SK and EN graphs, and Professor idle synthesis.
+- **File workflows:** [Autonomy](AUTONOMY/) proposals and the [COLNÍK protocol](COLNIK_PROTOCOL_v6.md).
+- **Optional external lookup:** [ENVOY](ENVOY_TUTORIAL.md), subject to user approval.
+- **Independent offline demo:** [DELTA-MEDIC v1.3.1](DELTA-MEDIC.md).
+
+See [the architecture guide](ARCHITECTURE.md) for the Preview flow.
+
+## Earlier module catalogue
+
 # 🗺️ Module Map – SIRIUS LOCAL AI (v6.0.1 UNIFIED)
 **Author & Architecture Lead:** Richard Pizem  
 
